@@ -1,0 +1,2 @@
+class ItemFacturasController < ApplicationController
+end
