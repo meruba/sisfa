@@ -11,4 +11,10 @@ class ItemFactura < ActiveRecord::Base
                             :numericality => { :greater_than_or_equal_to => 0 }
     validates :descuento, :numericality => true,
                           :numericality => { :greater_than_or_equal_to => 0 }
+
+    #relations
+    belongs_to :factura
+    belongs_to :producto
+    belongs_to :item_factura
+
 end

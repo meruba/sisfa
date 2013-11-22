@@ -6,5 +6,8 @@ class Persona < ActiveRecord::Base
 	validates :numero_identificacion, :uniqueness => true
 	validates :telefono, :celular, :numericality => true
 	validates :email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i 
+#relations
+	has_many :facturas
+	
 
 end
