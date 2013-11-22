@@ -1,0 +1,2 @@
+class KardexesController < ApplicationController
+end
