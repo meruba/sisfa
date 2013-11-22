@@ -1,0 +1,2 @@
+class LineaKardexesController < ApplicationController
+end
