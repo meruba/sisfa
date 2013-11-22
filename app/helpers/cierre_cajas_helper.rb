@@ -1,0 +1,2 @@
+module CierreCajasHelper
+end

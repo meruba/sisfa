@@ -1,0 +1,2 @@
+class CierreCajasController < ApplicationController
+end
