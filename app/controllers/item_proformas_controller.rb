@@ -1,0 +1,2 @@
+class ItemProformasController < ApplicationController
+end
