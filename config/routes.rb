@@ -1,4 +1,19 @@
 Sisfa::Application.routes.draw do
+  
+  get "pacientes/new"
+get "login"   => "sesion_usuarios#new",        :as => "login"
+get "logout"  => "sesion_usuarios#destroy",    :as => "logout"
+get "signup"  => "usuarios#new",               :as => "signup"
+
+#  get "sesion_usuarios/new"
+#  get "usuarios/new"
+  
+  resources :sesion_usuarios
+  resources :usuarios
+  resources :personas
+  resources :pacientes
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
