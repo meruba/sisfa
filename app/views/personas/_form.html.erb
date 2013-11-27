@@ -1,0 +1,54 @@
+<%= form_for(@persona) do |f| %>
+  <% if @persona.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@persona.errors.count, "error") %> prohibited this persona from being saved:</h2>
+
+      <ul>
+      <% @persona.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form_persona">
+  
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+
+  <div class="field">
+    <%= f.label :direccion %><br>
+    <%= f.text_field :direccion %>
+  </div>
+  <div class="field">
+    <%= f.label :numero_de_identificacion %><br>
+    <%= f.text_field :numero_identificacion %>
+  </div>
+  <div class="field">
+    <%= f.label :Telefono %><br>
+    <%= f.text_field :telefono %>
+  </div>
+  <div class="field">
+    <%= f.label :Celular %><br>
+    <%= f.text_field :celular %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :Tipo_De_Paciente %><br>
+    <%= f.text_field :tipo_de_paciente %>
+  </div>
+  <div class="field">
+    <%= f.label :Codigo_ISSFA %><br>
+    <%= f.text_field :codigo_issfa %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Guardar", class: "btn btn-large btn-primary"  %>
+  </div>
+  </div>
+<% end %>
+<h1>prueba</h1>
