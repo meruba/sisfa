@@ -1,0 +1,66 @@
+<%= form_for(@paciente) do |f| %>
+  <% if @paciente.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
+
+      <ul>
+      <% @paciente.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="form_paciente">
+  
+  <div class="field">
+    <%= f.label :numero_de_historia_cliente %><br>
+    <%= f.text_field :n_hclinica %>
+  </div>
+
+  <div class="field">
+    <%= f.label :fecha_de_ingreso %><br>
+    <%= f.date_select :fecha_de_ingreso %>
+  </div>
+  <div class="field">
+    <%= f.label :hora_de_ingreso %><br>
+    <%= f.time_select :hora_de_ingreso %>
+  </div>
+  <div class="field">
+    <%= f.label :Pertenece_a %><br>
+    <%= f.text_field :pertenece %>
+  </div>
+  <div class="field">
+    <%= f.label :Sexo %><br>
+    <%= f.text_field :sexo %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_de_nacimiento %><br>
+    <%= f.date_select :fecha_de_nacimiento %>
+  </div>
+  <div class="field">
+    <%= f.label :Estado_Civil %><br>
+    <%= f.text_field :estado_civil %>
+  </div>
+  <div class="field">
+    <%= f.label :grado %><br>
+    <%= f.text_field :grado %>
+  </div>
+    <div class="field">
+    <%= f.label :familiar %><br>
+    <%= f.text_field :familiar %>
+  </div>
+    <div class="field">
+    <%= f.label :brigada %><br>
+    <%= f.text_field :brigada %>
+  </div>
+    <div class="field">
+    <%= f.label :tipo_de_paciente %><br>
+    <%= f.text_field :tipo_de_paciente %>
+  </div>
+  <br>
+  <div class="actions">
+    <%= f.submit "Guardar", class: "btn btn-large btn-primary"  %>
+  </div>
+  </div>
+
+<% end %>
