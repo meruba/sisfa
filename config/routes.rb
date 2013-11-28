@@ -13,6 +13,7 @@ get "signup"  => "users#new",               :as => "signup"
   resources :personas
   resources :pacientes
   resources :clientes
+  resources :proveedors
 
 
   # The priority is based upon order of creation: first created -> highest priority.
