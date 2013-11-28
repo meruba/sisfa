@@ -1,5 +1,5 @@
 Sisfa::Application.routes.draw do
-  
+
 get "pacientes/new"
 get "login"   => "sesion_usuarios#new",        :as => "login"
 get "logout"  => "sesion_usuarios#destroy",    :as => "logout"
@@ -12,6 +12,7 @@ get "signup"  => "users#new",               :as => "signup"
   resources :users
   resources :personas
   resources :pacientes
+  resources :clientes
 
 
   # The priority is based upon order of creation: first created -> highest priority.
