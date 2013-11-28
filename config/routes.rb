@@ -1,15 +1,15 @@
 Sisfa::Application.routes.draw do
   
-  get "pacientes/new"
+get "pacientes/new"
 get "login"   => "sesion_usuarios#new",        :as => "login"
 get "logout"  => "sesion_usuarios#destroy",    :as => "logout"
-get "signup"  => "usuarios#new",               :as => "signup"
+get "signup"  => "users#new",               :as => "signup"
 
 #  get "sesion_usuarios/new"
 #  get "usuarios/new"
   
   resources :sesion_usuarios
-  resources :usuarios
+  resources :users
   resources :personas
   resources :pacientes
 
