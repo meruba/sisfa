@@ -1,14 +1,14 @@
 Sisfa::Application.routes.draw do
 
 get "pacientes/new"
-get "login"   => "sesion_usuarios#new",        :as => "login"
-get "logout"  => "sesion_usuarios#destroy",    :as => "logout"
-get "signup"  => "users#new",               :as => "signup"
+get "login"   => "user_sessions#new",        :as => "login"
+get "logout"  => "user_sessions#destroy",    :as => "logout"
+# get "signup"  => "users#new",               :as => "signup"
 
 #  get "sesion_usuarios/new"
 #  get "usuarios/new"
   
-  resources :sesion_usuarios
+  resources :user_sessions
   resources :users
   resources :personas
   resources :pacientes
@@ -19,7 +19,7 @@ get "signup"  => "users#new",               :as => "signup"
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+   root 'user_sessions#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

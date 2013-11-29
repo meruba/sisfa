@@ -1,14 +1,32 @@
-<header class="navbar navbar-fixed-top">
-<nav class="navbar navbar-default">
+
+<nav class="navbar navbar-default" role="navigation">
   <div class="navbar-header">
     <a class="navbar-brand" href="#">Farmacia</a>
   </div>
   <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <%if current_user%>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%=current_user.username %><b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <li><a href="#">Perfil</a></li>
+          <li><a href="#">Ajustes</a></li>
+          <li class="divider"></li>
+          <li><a href="#"><%=link_to("Logout", :controller => 'user_sessions', :action => 'destroy')%></a></li>
+        </ul>
+      </li>
+    </ul>
     <ul class="nav navbar-nav navbar-right">
       <li><a href="#">Facturacion</a></li>
       <li><a href="#">Ventas</a></li>
       <li><a href="#">Inventario</a></li>
     </ul>
+    <% else %>
+      <ul class="nav navbar-nav navbar-right">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Ayuda</a></li>
+      <li><a href="#">Ingresar</a></li>
+    </ul>
+    <% end %>
   </div>
 </nav>
-</header>
