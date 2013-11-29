@@ -6,16 +6,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-
-    respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'Persona Almacenada.' }
-        #format.json { render action: 'show', status: :created, location: @persona }
+        # redirect_to(:controller => 'clientes', :action => 'new')
+        flash[:success] = "Nuevo Usuario.."
       else
-        format.html { render action: 'new' }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash[:error] = "Ups! Algo salio mal.."
       end
-    end
   end
 
   private 
