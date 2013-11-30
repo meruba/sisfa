@@ -8,12 +8,12 @@
                       <%= form_tag user_sessions_path do %>
                       <div class="input-group"> 
                         <span class="input-group-addon">
-                        <span class="glyphicon glyphicon-user"></span>
+                        <i class="fa fa-user"></i>
                         </span>
                         <%= text_field_tag :username, params[:username], :placeholder => "Nombre de Usuario", :required => true, class: "form-control" %>
                       </div><br>
                       <div class="input-group">
-                        <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <%= password_field_tag :password, "", :placeholder => "Contraseña", class: "form-control" %>
                       </div><br>
                       <%= submit_tag "Iniciar sesión", :required => true, class: "btn btn-primary btn-block" %>
