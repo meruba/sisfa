@@ -30,9 +30,17 @@ gem 'jbuilder', '~> 1.2'
 # authentication:
 gem "sorcery"
 
+# form
+gem "nested_form"
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :development do
+	gem 'better_errors'
+	gem 'binding_of_caller'
+	gem 'meta_request'
 end
 
 # Use ActiveModel has_secure_password
