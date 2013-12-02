@@ -1,7 +1,11 @@
 class UsersController < ApplicationController
+# before_action :set_user, only: [:show,:edit, :update]  
   
   def index
     @users = User.all
+  end
+  
+  def show
   end
 
  	def new
@@ -9,19 +13,20 @@ class UsersController < ApplicationController
     @user.build_cliente
   end
 
+  def edit
+  end
+
   def create
-    @user = User.new(user_params) 
+    @user = User.new(current_user_params) 
       if @user.save
-        # redirect_to(:controller => 'clientes', :action => 'new')
         redirect_back_or_to(users_path, notice: "Nuevo Usuario")
-        flash[:success] = "Nuevo Usuario.."
       else
         flash[:error] = "Ups! Algo salio mal.."
       end
   end
 
   private 
-    def user_params
+    def current_user_params
       params.require(:user).permit :username,
                                     :password,
                                     :cliente_attributes => [
@@ -34,5 +39,8 @@ class UsersController < ApplicationController
                                     ]
     end
 
+    def set_user
+      @user = current_user.find(params[:id])
+    end
 end
 
