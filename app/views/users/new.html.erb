@@ -3,49 +3,22 @@
         <div class="col-md-4 col-md-offset-4">
             <div class="panel panel-default">
                 <div class="panel-body">
-                  <i class= "fa fa-users fa-3x"></i>
                   <h3 class= "text-center">Crear Usuarios</h3>
                   <%= nested_form_for @user do |f| %>
-                    <% if @user.errors.any? %>
-                      <div class="error_messages">
-                        <h2>Form is invalid</h2>
-                      <ul>
-                        <% for message in @user.errors.full_messages %>
-                            <li><%= message %></li>
+                    <%= f.fields_for :cliente do |cliente_params| %>
+                      <%=  cliente_params.text_field :nombre, class: "form-control", :placeholder => "Nombres Apellidos" %><br>
+                      <%=  cliente_params.text_field :numero_de_identificacion, class: "form-control", :placeholder => "Cedula o Ruc" %>
                         <% end %>
-                      </ul>
-                      </div>
-                    <% end %>
-                    <div class="input-group"> 
-                      <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-user"></span>
-                      </span>
-                        <%= f.fields_for :cliente do |cliente_params| %>
-                          <%=  cliente_params.text_field :nombre  %>
-                        <% end %>
-                    </div><br>
-                    <div class="input-group"> 
-                      <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-user"></span>
-                      </span>
-                        <%= f.text_field :username, :placeholder => "Nombre de Usuario", class: "form-control" %>
-                    </div><br>
-                    <div class="input-group"> 
-                      <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-user"></span>
-                       </span>
+                    <br>
+                        <%= f.text_field :username, :placeholder => "Usuario", class: "form-control" %>
+                    <br>
                          <%= f.password_field :password, :placeholder => "Password", class: "form-control" %>
-                    </div><br>
-                    <div class="input-group"> 
-                      <span class="input-group-addon">
-                      <span class="glyphicon glyphicon-user"></span>
-                      </span>
+                    <br>
                         <%= f.password_field :password_confirmation, :placeholder => "Confirmar Password", class: "form-control" %>
-                    </div><br>
+                    <br>
                     <div class="input-group">
                       <%= f.submit :Guardar, class: "crear_nuevo", data: {disable_with: "Almacenando"}%>
                       </div>
-                      <%=link_to "prueba", nil, class: "crear_nuevo"%>
                   <% end %>
                 </div>
             </div>
