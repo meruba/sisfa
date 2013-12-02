@@ -1,6 +1,7 @@
 class Factura < ActiveRecord::Base
 #relations
-belongs_to :persona
+belongs_to :cliente
+belongs_to :proveedor
 has_many :item_facturas
 has_many :productos, :thorugh => :item_facturas
 #valitations

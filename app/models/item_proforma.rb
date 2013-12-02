@@ -1,4 +1,6 @@
 class ItemProforma < ActiveRecord::Base
 #relations
-	has one :item_factura
+	belongs to :producto
+
+	belongs to :proforma
 end

@@ -15,6 +15,6 @@ class ItemFactura < ActiveRecord::Base
     #relations
     belongs_to :factura
     belongs_to :producto
-    belongs_to :item_factura
+    
 
 end

@@ -7,5 +7,6 @@ class Producto < ActiveRecord::Base
   validates :nombre, :length => { :maximum => 100 }
 #relations
   has_many :item_facturas
-  has_many :lineaKardexes
+  #has_many :lineaKardexes
+  has_many :item_proformas
 end
