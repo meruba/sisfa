@@ -16,7 +16,7 @@
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <%= password_field_tag :password, "", :placeholder => "Contraseña", class: "form-control" %>
                       </div><br>
-                      <%= submit_tag "Iniciar sesión", :required => true, class: "btn btn-primary btn-block" %>
+                      <%= submit_tag "Iniciar sesión", data: {disable_with: "Ingresando"}, class: "btn btn-primary btn-block" %>
                       <% end %>
                 </div>
             </div>

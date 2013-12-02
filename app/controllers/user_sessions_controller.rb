@@ -10,14 +10,13 @@ class UserSessionsController < ApplicationController
        # session[:user_id] = @user.id
        redirect_back_or_to(clientes_path, notice: "Bienvenido")
     else
-      flash[:error] = "Ups! algo salio mal"
-      render 'new'
+      flash[:error] = "Usuario o Contrasena invalido"
+      redirect_to root_path
     end
   end
 
   def destroy
     logout
-    # session[:user_id] = nil
-    redirect_to root_path, notice: "Adios"
+    redirect_to root_path, notice: "Has Cerrado Sesion"
   end
 end
