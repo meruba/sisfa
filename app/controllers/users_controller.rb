@@ -14,6 +14,18 @@ class UsersController < ApplicationController
   end
 
   def edit
+    if current_user.id === params[:id].to_i
+      # is editing himself, allow:
+      cliente_params = current_user_params.delete :cliente
+      user = Usuario.update_info(current_user.id, current_user_params, cliente_params)
+      if user.cliente.valid?
+        render json: { cliente_id: current_user.cliente_id }
+      else
+        respond_with user
+      end
+    else
+      raise "not yet for editing other users."
+    end
   end
 
   def create
@@ -29,6 +41,7 @@ class UsersController < ApplicationController
     def current_user_params
       params.require(:user).permit :username,
                                     :password,
+                                    :rol,
                                     :cliente_attributes => [
                                       :nombre,
                                       :direccion,
