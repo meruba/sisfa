@@ -6,11 +6,12 @@
                   <h3 class= "text-center">Crear Usuarios</h3>
                   <%= nested_form_for @user do |f| %>
                     <%= f.fields_for :cliente do |cliente_params| %>
-                      <%=  cliente_params.text_field :nombre, class: "form-control", :placeholder => "Nombres Apellidos" %><br>
-                      <%=  cliente_params.text_field :numero_de_identificacion, class: "form-control", :placeholder => "Cedula o Ruc" %>
+                      <%=  cliente_params.text_field :nombre, class: "form-control", :placeholder => "Nombres Apellidos" %>
                         <% end %>
                     <br>
-                        <%= f.text_field :username, :placeholder => "Usuario", class: "form-control" %>
+                        <%= f.text_field :username, :placeholder => "Nombre de Usuario", class: "form-control" %>
+                    <br>
+                        <%= f.select(:rol, ['Administrador', 'Vendedor'], { :prompt => 'Tipo de Usuario'}, { :class => 'form-control' }) %>
                     <br>
                          <%= f.password_field :password, :placeholder => "Password", class: "form-control" %>
                     <br>
