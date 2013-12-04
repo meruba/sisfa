@@ -14,6 +14,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :pacientes
   resources :clientes
   resources :proveedors
+  resources :productos
+  resources :facturas
+  resources :item_facturas
 
 
   # The priority is based upon order of creation: first created -> highest priority.

@@ -1,5 +1,7 @@
 class Producto < ActiveRecord::Base
 
+	# accepts_nested_attributes_for :proveedor
+
 #validations  
   validates :nombre,:presence => true
   validates :precio,:presence => true,
