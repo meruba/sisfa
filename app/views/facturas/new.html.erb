@@ -1,0 +1,121 @@
+<h2 class="text-center">FACTURA</h2>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="row clearfix">
+				<!-- formulario datos del cliente -->
+				<%= nested_form_for @factura do |f| %>
+				<div class="col-md-4 col-md-offset-2">
+					<%= f.fields_for :cliente do |cliente_params| %>
+					<div class="form-group">
+						<!-- <%= f.label :nombre, class: "control-label" %> -->
+						<div class="col">
+							<%=  cliente_params.text_field :nombre, class: "form-control-border", :placeholder => "Nombres Apellidos" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<!-- <%= f.label :Cedula, class: "control-label" %> -->
+						<div class="col">
+							<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border", :placeholder => "Cedula o RUC" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<!-- <%= f.label :direccion, class: "control-label" %> -->
+						<div class="col">
+							<%=  cliente_params.text_field :direccion, class: "form-control-border", :placeholder => "Direccion" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<!-- <%= f.label :telefono, class: "control-label" %> -->
+						<div class="col">
+							<%=  cliente_params.text_field :telefono, class: "form-control-border", :placeholder => "Telefono" %>
+						</div>
+					</div>
+					<% end %>
+				</div>
+				<!-- datos de factura -->
+				<div class="col-md-4 column">
+					<label>Vendedor: </label>
+					<%= f.text_field :numero, class: "form-control-border" %>
+					<hr>
+					<%= f.text_field :fecha_de_emision, :placeholder => Time.now.strftime("%Y-%m-%d"), class: "form-control-border" %>
+					<%= f.text_field :fecha_de_vencimiento, :placeholder => (Time.now + 1.month).strftime("%Y-%m-%d"), class: "form-control-border" %>
+				</div>
+				<!-- ingreso de productos -->
+				<div class="col-md-8 col-md-offset-2">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>
+									Codigo
+								</th>
+								<th>
+									Nombre
+								</th>
+								<th>
+									Cantidad
+								</th>
+								<th>
+									V. Unit
+								</th>
+								<th>
+									Descuento
+								</th>
+								<th>
+									IVA
+								</th>
+								<th>
+									Total
+								</th>
+							</tr>
+						</thead>
+						<%= f.fields_for :item_factura do |item_factura| %>
+						<tbody>
+							<tbody>
+								<tr>
+									<td></td>
+									<td></td>
+									<td>
+										<%=  item_factura.number_field  :cantidad, class: "form-control", :placeholder => "cantidad" %>
+									</td>
+									<td>
+										<%=  item_factura.text_field :valor_unitario, class: "form-control", :placeholder => "V. Unit", :readonly => true %>
+									</td>
+									<td>
+										<%=  item_factura.text_field :descuento, class: "form-control", :placeholder => "Desct." %>
+									</td>
+									<td>
+										<%=  item_factura.text_field :iva, class: "form-control", :placeholder => "Iva", :readonly => true %>
+									</td>
+									<td>
+										<%=  item_factura.text_field :total, class: "form-control", :placeholder => "Total", :readonly => true %>
+									</td>
+								</tr>
+							</tbody>
+						</tbody>
+						<% end %>
+					</table>
+				</div>
+				<!-- impuestos de la factura -->
+				<div class="col-md-6 col-md-offset-7">
+					<div class="col-md-2">
+						<%= f.label :subtotal%><br>
+						<%= f.label :descuento%><br>
+						<%= f.label :iva%><br>
+						<%= f.label :subtotal12 %><br>
+						<%= f.label :total%>
+					</div>
+					<div class="col-md-5">
+						<%= f.text_field :subtotal_0, class: "form-control-border"%><br>
+						<%= f.text_field :descuento, class: "form-control-border"%><br>
+						<%= f.text_field :iva, class: "form-control-border"%><br>
+						<%= f.text_field :subtotal_12, class: "form-control-border" %><br>
+						<%= f.text_field :total, class: "form-control-border"%>
+						<%= f.submit :Guardar, class: "crear_nuevo", data: {disable_with: "Almacenando"}%>
+					</div>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
