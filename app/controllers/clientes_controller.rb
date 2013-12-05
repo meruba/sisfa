@@ -1,11 +1,25 @@
 class ClientesController < ApplicationController
-  before_filter :require_login
+  # before_filter :require_login
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
   # GET /clientes
   # GET /clientes.json
   def index
-    @clientes = Cliente.all
+    # respond_to do |format|
+    #   format.json {
+    #     @clientes = Cliente.where("nombre like ?", "%#{params[:term]}%")
+    #   }
+    # end
+      # I will explain this part in a moment.
+      if params[:term]
+        @clientes = Cliente.find(:all,:conditions => ['numero_de_identificacion LIKE ?', "#{params[:term]}%"])
+      else
+        @clientes = Cliente.all
+      end
+      respond_to do |format|  
+        format.html # index.html.erb  
+        format.json { render :json => @clientes }
+      end
   end
 
   # GET /clientes/1
