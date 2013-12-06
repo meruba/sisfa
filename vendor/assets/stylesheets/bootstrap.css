@@ -1,3 +1,4 @@
+@charset "utf-8";
 /*!
  * Bootstrap v3.0.2 by @fat and @mdo
  * Copyright 2013 Twitter, Inc.
@@ -2634,8 +2635,8 @@ input[type="button"].btn-block {
 
 @font-face {
   font-family: 'Glyphicons Halflings';
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  src: url('fonts/glyphicons-halflings-regular.eot');
+  src: url('fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('fonts/glyphicons-halflings-regular.woff') format('woff'), url('fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
 }
 
 .glyphicon {
@@ -5373,17 +5374,17 @@ a.thumbnail.active {
   color: #a47e3c;
 }
 
-.alert-danger {
+.alert-error {
   color: #b94a48;
   background-color: #f2dede;
   border-color: #ebccd1;
 }
 
-.alert-danger hr {
+.alert-error hr {
   border-top-color: #e4b9c0;
 }
 
-.alert-danger .alert-link {
+.alert-error .alert-link {
   color: #953b39;
 }
 
