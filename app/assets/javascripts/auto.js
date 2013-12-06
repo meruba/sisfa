@@ -1,34 +1,21 @@
 $(function() {
-  $('#cedula').autocomplete({
+  $('#numero_de_identificacion').autocomplete({
     minLength: 3,
     source: '/clientes.json',
-    select: nombre
+    select: function( event, ui ) {
+      $("#nombre").val(ui.item.nombre);
+      $("#direccion").val(ui.item.direccion);
+      $("#telefono").val(ui.item.telefono);
+    }
   });
-      function nombre(event, ui)
-    {
-      $( "#cedula" ).val( ui.item.numero_de_identificacion + " / " + ui.item.nombre );
-      return false;
+  $('#producto').autocomplete({
+    minLength: 3,
+    source: '/productos.json',
+    select: function( event, ui ) {
+      var suma = $("#factura_item_factura_cantidad").val()*ui.item.precio;
+      $("#factura_item_factura_total").val(suma);
+      $("#factura_item_factura_valor_unitario").val(ui.item.precio);
+      $("#codigo").val(ui.item.codigo);
     }
-          function set_values(event, ui)
-    {
-      var direccion = ui.item.direccion;
-      
-      // actualizamos los datos en el formulario
-      $("#direccion").text(direccion);
-    }
-//     $("#search").autocomplete({
-//         source: function(request, response) {
-//             $.get("http://ws.spotify.com/search/1/track.json", {
-//                 q: request.term
-//             }, function(data) {
-//                 response($.map(data.tracks, function (el) {
-//                     return el.name;
-//                 }));
-//             });
-//         }
-//     }).on('focus', function(event) {
-//     var self = this;
-//     $(self).autocomplete( "search", this.value);;
-// });
-
+  });
 });

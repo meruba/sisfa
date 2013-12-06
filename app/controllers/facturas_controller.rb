@@ -3,7 +3,7 @@ class FacturasController < ApplicationController
 	def new
 		@factura = Factura.new
 		@factura.build_cliente
-		# @factura.build_item_factura
+		@factura.item_facturas.build
 	end
 
 	def create

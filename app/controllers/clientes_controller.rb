@@ -5,21 +5,25 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
-    # respond_to do |format|
-    #   format.json {
-    #     @clientes = Cliente.where("nombre like ?", "%#{params[:term]}%")
-    #   }
-    # end
-      # I will explain this part in a moment.
-      if params[:term]
-        @clientes = Cliente.find(:all,:conditions => ['numero_de_identificacion LIKE ?', "#{params[:term]}%"])
-      else
-        @clientes = Cliente.all
+   respond_to do |format|
+    format.html{
+      @clientes = Cliente.all
+    }
+    format.json { 
+      @clientes = Cliente.where("numero_de_identificacion like ?", "%#{params[:term]}%")
+      @clientes = @clientes.map do |cliente|
+        {
+          :id => cliente.id,
+          :label => cliente.numero_de_identificacion,
+          :value => cliente.numero_de_identificacion,
+          :nombre => cliente.nombre,
+          :direccion => cliente.direccion,
+          :telefono => cliente.telefono
+        }
       end
-      respond_to do |format|  
-        format.html # index.html.erb  
-        format.json { render :json => @clientes }
-      end
+      render :json => @clientes 
+    }
+     end
   end
 
   # GET /clientes/1
