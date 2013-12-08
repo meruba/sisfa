@@ -1,6 +1,7 @@
 class ProductosController < ApplicationController
 	
   def index
+    @producto = Producto.new
     respond_to do |format|
       format.html {    
         @productos = Producto.all
@@ -26,12 +27,12 @@ class ProductosController < ApplicationController
   end
 
   def create
-    @producto = Producto.new(producto_params) 
-    if @producto.save
-      redirect_back_or_to(clientes_path, notice: "Productos Ingresados")
-    else
-      flash[:error] = "Datos no validos"
+    @producto = Producto.create(producto_params) 
+    respond_to do |format|
+      format.html
+      format.js
     end
+    redirect_to root_path
   end
 
   private 
