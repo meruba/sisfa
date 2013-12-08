@@ -1,0 +1,42 @@
+<div class="modal-header">
+	<h1 class="modal-title" id="myModalLabel">Nuevo Producto</h1>
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+</div>
+<div class="modal-body">
+	<%= form_for(@producto) do |f| %>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :nombre %>
+			<%= f.text_field :nombre, class: "form-control" %>
+		</div>
+	</div>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :precio %>
+			<%= f.text_field :precio, class: "form-control"%>
+		</div>
+	</div>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :codigo %>
+			<%= f.text_field :codigo, class: "form-control"%>
+		</div>
+	</div>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :categoria %>
+			<%= f.text_field :categoria, class: "form-control"%>
+		</div>
+	</div>
+	<div class="form-inline">
+		<div class="form-group">
+			<%= f.label :casa_comercial %>
+			<%= f.text_field :casa_comercial, class: "form-control"%>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<%= f.submit 'Guardar', class: "btn btn-primary"%>
+</div>
+<% end %>
