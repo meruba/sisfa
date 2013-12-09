@@ -66,35 +66,14 @@
 								</th>
 							</tr>
 						</thead>
-						<%= f.fields_for :item_factura do |item_factura| %>
+						<%= f.fields_for :item_facturas do |item_factura| %>
 						<tbody>
-							<tbody>
 								<tr>
-									<td>
-										<input type="text" id="codigo" class= "form-control">
-									</td>
-									<td>
-										<input type="text" id="producto" class= "form-control">
-									</td>
-									<td>
-										<%=  item_factura.number_field  :cantidad, class: "form-control", :placeholder => "0", min: "1" %>
-									</td>
-									<td>
-										<%=  item_factura.text_field :valor_unitario, class: "form-control", :placeholder => "0", min: "0", :readonly => true %>
-									</td>
-									<td>
-										<%=  item_factura.text_field :descuento, class: "form-control", :placeholder => "Desct." %>
-									</td>
-									<td>
-										<%=  item_factura.text_field :iva, class: "form-control", :placeholder => "0.0", :readonly => true %>
-									</td>
-									<td>
-										<%=  item_factura.text_field :total, class: "form-control", :placeholder => "Total", :readonly => true %>
-									</td>
+								<%= render 'itemfacturas', item_factura:item_factura %>
 								</tr>
 							</tbody>
-						</tbody>
 						<% end %>
+						<%= f.link_to_add "Agregar", :item_facturas %>
 					</table>
 				</div>
 				<!-- impuestos de la factura -->

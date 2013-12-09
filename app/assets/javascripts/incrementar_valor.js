@@ -1,5 +1,5 @@
 $(function() {
-  $("#factura_item_factura_cantidad").on("click", function(){
+  $(".cantidad").on("input", function(){
     console.log("pressed!")
   });
 });
