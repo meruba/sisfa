@@ -1,20 +1,20 @@
 <%= link_to 'Nuevo', {:controller => 'productos', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}  %>
 <h1>Lista de Productos</h1>
 
-<div class="table-responsive">
+<div class="table-responsive" id="table-productos">
   <table class="table table-bordered">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Precio</th>
-      <th>Codigo</th>
-      <th>Categoria</th>
-      <th>Casa Comercial</th>
-    </tr>
-  </thead>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Codigo</th>
+        <th>Categoria</th>
+        <th>Casa Comercial</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @productos.each do |producto| %>
+    <tbody>
+      <% @productos.each do |producto| %>
       <tr>
         <td><%= producto.nombre %></td>
         <td><%= producto.precio %></td>
@@ -22,12 +22,10 @@
         <td><%= producto.categoria %></td>
         <td><%= producto.casa_comercial %></td>
       </tr>
-    <% end %>
-  </tbody>
+      <% end %>
+    </tbody>
+  </table>
 </div>
-</table>
-
-<br>
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

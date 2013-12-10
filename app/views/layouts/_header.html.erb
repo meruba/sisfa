@@ -16,32 +16,80 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="fa fa-user"></span>
-          </i><%=current_user.username %><b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="#"><span class="fa fa-user"></span> Perfil</a></li>
-            <li><a href="#"><span class="fa fa-cog"></span> Ajustes</a></li>
-            <li class="divider"></li>
-            <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right">
-       <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-bell"></span> Alertas <span class="label label-info">15</span>
-       </a>
-       <ul class="dropdown-menu">
-        <li><a href="#"><span class="label label-info">7 Dias</span> Medicamento 1</a></li>
-        <li><a href="#"><span class="label label-warning">5 Dias</span> Medicamento 2</a></li>
-        <li><a href="#"><span class="label label-danger">2 Dias</span> Medicamento 3</a></li>
-        <li class="divider"></li>
-        <li><a href="#" class="text-center">Ver Todo</a></li>
-      </ul>
-      <% else %>
-      <ul class="nav navbar-nav navbar-right">
-        <li><%=link_to("Home", root_path) %></li>
-        <li><a href="#">Ayuda</a></li>
-        <li><%=link_to("Nuevo Usuario", :controller => 'users', :action => 'new')%></li>
-      </ul>
-      <% end %>
+            <%=current_user.username %><b class="caret"></b></a>
+            <ul class="dropdown-menu">
+              <li><a href="#"><span class="fa fa-user"></span> Perfil</a></li>
+              <li><a href="#"><span class="fa fa-cog"></span> Ajustes</a></li>
+              <li class="divider"></li>
+              <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Clientes
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%=link_to("Lista", :controller => 'clientes', :action => 'index')%></li>                
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Facturacion
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%=link_to("Ventanilla", :controller => 'facturas', :action => 'new')%></li>
+              <li><a href="#">Hospitalizacion</a></li>
+              <li><a href="#">Consulta Externa</a></li>                
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Productos
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%=link_to("Inventario", :controller => 'productos', :action => 'index')%></li>
+              <li><a href="#">Kardex</a></li>                
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              Proveedores
+              <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%=link_to("Ingresar", :controller => 'proveedors', :action => 'new')%></li>
+              <li><a href="#">Lista</a></li>                
+            </ul>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+         <li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="fa fa-bell"></span> Alertas <span class="label label-info">15</span>
+         </a>
+         <ul class="dropdown-menu">
+          <li><a href="#"><span class="label label-info">7 Dias</span> Medicamento 1</a></li>
+          <li><a href="#"><span class="label label-warning">5 Dias</span> Medicamento 2</a></li>
+          <li><a href="#"><span class="label label-danger">2 Dias</span> Medicamento 3</a></li>
+          <li class="divider"></li>
+          <li><a href="#" class="text-center">Ver Todo</a></li>
+        </ul>
+        <% else %>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%=link_to("Home", root_path) %></li>
+          <li><a href="#">Ayuda</a></li>
+          <li><%=link_to("Nuevo Usuario", :controller => 'users', :action => 'new')%></li>
+        </ul>
+        <% end %>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>

@@ -4,37 +4,17 @@
 </div>
 <%= form_for(@producto, :remote => true) do |f| %>
 <div class="modal-body">
-	<div class="form-inline">
-		<div class="form-group">
-			<%= f.label :nombre %>
-			<%= f.text_field :nombre, class: "form-control" %>
-		</div>
-	</div>
-	<div class="form-inline">
-		<div class="form-group">
-			<%= f.label :precio %>
-			<%= f.text_field :precio, class: "form-control"%>
-		</div>
-	</div>
-	<div class="form-inline">
-		<div class="form-group">
-			<%= f.label :codigo %>
-			<%= f.text_field :codigo, class: "form-control"%>
-		</div>
-	</div>
-	<div class="form-inline">
-		<div class="form-group">
-			<%= f.label :categoria %>
-			<%= f.text_field :categoria, class: "form-control"%>
-		</div>
-	</div>
-	<div class="form-inline">
-		<div class="form-group">
-			<%= f.label :casa_comercial %>
-			<%= f.text_field :casa_comercial, class: "form-control"%>
-		</div>
-	</div>
-	</div>
+	<%= f.label :nombre %>
+	<%= f.text_field :nombre, class: "form-control" %>
+	<%= f.label :precio %>
+	<%= f.text_field :precio, class: "form-control"%>
+	<%= f.label :codigo %>
+	<%= f.text_field :codigo, class: "form-control"%>
+	<%= f.label :categoria %>
+	<%= f.text_field :categoria, class: "form-control"%>
+	<%= f.label :casa_comercial %>
+	<%= f.text_field :casa_comercial, class: "form-control"%>
+</div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
