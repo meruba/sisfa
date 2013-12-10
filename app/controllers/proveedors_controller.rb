@@ -1,6 +1,7 @@
 class ProveedorsController < ApplicationController
 	# GET /proveedor
   # GET /proveedors.json
+  before_filter :require_login
   def index
     @proveedors = Proveedor.all
   end
