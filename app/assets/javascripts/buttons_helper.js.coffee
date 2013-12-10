@@ -3,7 +3,7 @@ window.Helpers ||= {}
 window.Helpers.ButtonsHelper = {
   init: ->
     $(".crear_nuevo:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-plus'></i>" + $(this).html()
+      $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-plus'></i> " + $(this).html()
 
     $(".mostrar_show:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn").html "<i class='icon-eye-open'></i> " + $(this).html()
