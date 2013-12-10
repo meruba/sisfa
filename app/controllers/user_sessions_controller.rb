@@ -1,4 +1,5 @@
 class UserSessionsController < ApplicationController
+  
   def new
     if current_user
       redirect_to :controller => :clientes, :action => :new

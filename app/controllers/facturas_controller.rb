@@ -1,4 +1,5 @@
 class FacturasController < ApplicationController
+  before_filter :require_login
 	
 	def new
 		@factura = Factura.new
