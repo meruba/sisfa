@@ -18,4 +18,7 @@ $(function() {
       $("#codigo").val(ui.item.codigo);
     }
   });
+  $('#datepicker').datetimepicker({
+    pickTime: false
+  });
 });
