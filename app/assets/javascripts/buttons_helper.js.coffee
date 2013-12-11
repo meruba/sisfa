@@ -2,8 +2,13 @@ window.Helpers ||= {}
 
 window.Helpers.ButtonsHelper = {
   init: ->
+<<<<<<< HEAD
     $(".guardar_submit:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-success").html "<i class='fa fa-plus'></i> " + $(this).html()
+=======
+    $(".crear_nuevo:not(.looks_like_button)").each ->
+      $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-plus'></i> " + $(this).html()
+>>>>>>> e231682e13d8588b2a56aa79c45bd5a27060dca3
 
     $(".mostrar_view:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-eye'></i> " + $(this).html()
