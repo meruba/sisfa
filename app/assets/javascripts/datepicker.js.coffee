@@ -1,5 +1,5 @@
 init_datepicker = ->
-  $('#datepicker').datetimepicker
+  $('.datepicker').datetimepicker
     pickTime: false
 
 jQuery ->
