@@ -10,49 +10,88 @@
       </ul>
     </div>
   <% end %>
-  <div class="form_proveedor">
   
-  <div class="field">
-    <%= f.label :nombre_o_razon_social %><br>
-    <%= f.text_field :nombre_o_razon_social %>
-  </div>
 
-  <div class="field">
-    <%= f.label :direccion %><br>
-    <%= f.text_field :direccion %>
+
+
+  <div class="col-md-7 col-sm-offset-2">
+  
+   
+ 
+ <form class="form-horizontal" role="form">
+  <div class="form-group">
+    <%= f.label :nombre, class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :nombre_o_razon_social , class: "form-control", placeholder: "Nombre o Razon Social"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :numero_de_identificacion %><br>
-    <%= f.text_field :numero_de_identificacion %>
+  <div class="form-group">
+    <%= f.label :direccion , class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :direccion , class: "form-control", placeholder: "Dirección"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :telefono %><br>
-    <%= f.text_field :telefono %>
+  <div class="form-group">
+    <%= f.label :identificacion , class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :numero_de_identificacion , class: "form-control", placeholder: "Numero de Identificación"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :codigo %><br>
-    <%= f.text_field :codigo %>
+  <div class="form-group">
+    <%= f.label :telefono, class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :telefono , class: "form-control", placeholder: "Telefono"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :representante_legal %><br>
-    <%= f.text_field :representante_legal %>
+  <div class="form-group">
+    <%= f.label :codigo , class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :codigo, class: "form-control", placeholder: "Código"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :pais %><br>
-    <%= f.text_field :pais %>
+  <div class="form-group">
+    <%= f.label :representante, class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :representante_legal, class: "form-control", placeholder: "Representante Legal"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :ciudad %><br>
-    <%= f.text_field :ciudad %>
+  <div class="form-group">
+    <%= f.label :pais, class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :pais, class: "form-control", placeholder: "País"%>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :fax %><br>
-    <%= f.text_field :fax %>
+  <div class="form-group">
+    <%= f.label :ciudad, class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :ciudad, class: "form-control", placeholder: "Ciudad"%>
+    </div>
   </div>
-  <br>
-  <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-large btn-primary"  %>
+  <div class="form-group">
+    <%= f.label :fax , class: "col-lg-3 control-label" %>
+    <div class="col-lg-7">
+             <%= f.text_field :fax , class: "form-control", placeholder: "Fax"%>
+    </div>
   </div>
+  
+  
+    
+  <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-10">
+       <br>
+      <br>
+     <%= f.submit "Guardar", class:"btn btn-success" %>
+    </div>
+  </div>
+ 
+ <div class="form-group">
+    <div class="col-sm-offset-5 col-sm-10">
+       <br>
+      <br>
+     <%= f.submit " Atras ", class:"btn btn-primary" %>
+    </div>
   </div>
 <% end %>
+
+ 
 
