@@ -2,17 +2,20 @@ window.Helpers ||= {}
 
 window.Helpers.ButtonsHelper = {
   init: ->
-    $(".crear_nuevo:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-plus'></i>" + $(this).html()
+    $(".guardar_submit:not(.looks_like_button)").each ->
+      $(this).addClass("looks_like_button btn btn-success").html "<i class='fa fa-plus'></i> " + $(this).html()
 
-    $(".mostrar_show:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn").html "<i class='icon-eye-open'></i> " + $(this).html()
+    $(".mostrar_view:not(.looks_like_button)").each ->
+      $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-eye'></i> " + $(this).html()
+
+    $(".nuevo_new:not(.looks_like_button)").each ->
+      $(this).addClass("looks_like_button btn btn-primary").html "<i class='fa fa-plus'></i> " + $(this).html()
 
     $(".delete_destroy:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn btn-danger").html "<i class='icon-remove icon-white'></i> " + $(this).html()
+      $(this).addClass("looks_like_button btn btn-danger").html "<i class='fa fa-times'></i> " + $(this).html()
 
     $(".editar_edit:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn").html "<i class='icon-edit'></i> " + $(this).html()
+      $(this).addClass("looks_like_button btn btn-warning").html "<i class='fa fa-pencil'></i> " + $(this).html()
 
     $(".atras_back:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-inverse").html "<i class='icon-arrow-left icon-white'></i> " + $(this).html()

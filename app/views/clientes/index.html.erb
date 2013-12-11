@@ -23,9 +23,9 @@
         <td><%= cliente.numero_de_identificacion %></td>
         <td><%= cliente.telefono %></td>
         <td><%= cliente.email %></td>
-        <td><%= link_to 'Mostrar', cliente , class: "btn btn-primary btn-sm"%></td>
-        <td><%= link_to 'Editar', edit_cliente_path(cliente) , class: "btn btn-warning btn-sm"%></td>
-        <td><%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Esta seguro de Eliminar?' } , class: "btn btn-danger btn-sm"%></td>
+        <td><%= link_to 'Mostrar', cliente , class: "mostrar_view btn-sm"%></td>
+        <td><%= link_to 'Editar', edit_cliente_path(cliente) , class: "editar_edit btn-sm"%></td>
+        <td><%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Esta seguro de Eliminar?' } , class: "delete_destroy btn-sm"%></td>
       </tr>
     <% end %>
   </tbody>
@@ -34,4 +34,4 @@
 
 <br>
 
-<%= link_to 'Nuevo Cliente', new_cliente_path, class: "crear_nuevo" %>
+<%= link_to 'Nuevo Cliente', new_cliente_path, class: "nuevo_new" %>
