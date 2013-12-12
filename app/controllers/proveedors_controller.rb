@@ -3,8 +3,27 @@ class ProveedorsController < ApplicationController
   # GET /proveedors.json
   before_filter :require_login
   def index
-    @proveedors = Proveedor.all
-  end
+    @proveedor = Proveedor.new
+   respond_to do |format|
+    format.html {    
+      @proveedors = Proveedor.all
+    }
+    format.json { 
+      @proveedors = Proveedor.where("nombre like ?", "%#{params[:term]}%")
+      @proveedors = @proveedors.map do |proveedor|
+        {
+          :id => cliente.id,
+          :label => cliente.numero_de_identificacion,
+          :value => cliente.numero_de_identificacion,
+          :nombre_o_razon_social => cliente.nombre_o_razon_social,
+          :direccion => cliente.direccion,
+          :telefono => cliente.telefono
+        }
+      end
+      render :json => @proveedors
+    }
+  end    
+end
 
   # GET /proveedors/1
   # GET /proveedors/1.json
@@ -29,9 +48,11 @@ class ProveedorsController < ApplicationController
       if @proveedor.save
         format.html { redirect_to @proveedor, notice: 'Proveedor Almacenada.' }
         format.json { render action: 'show', status: :created, location: @proveedor }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @proveedor.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -61,8 +82,8 @@ class ProveedorsController < ApplicationController
   end
   
   private 
-    def proveedor_params
-      params.require(:proveedor).permit(:nombre_o_razon_social, :direccion, :codigo, :numero_de_identificacion, :telefono, :ciduad, :pais, :representante_legal, :fax)
-    end
+  def proveedor_params
+    params.require(:proveedor).permit(:nombre_o_razon_social, :direccion, :codigo, :numero_de_identificacion, :telefono, :ciduad, :pais, :representante_legal, :fax)
+  end
 
 end

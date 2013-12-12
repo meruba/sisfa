@@ -1,1 +1,44 @@
-<%= link_to 'Guardar', new_cliente_path, class: "Guardar" %>
+<%= link_to 'Nuevo', {:controller => 'proveedors', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
+<h1>Lista de Proveedors</h1>
+
+<div class="table-responsive" id="table-proveedors">
+  <table class="data-table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre o Razon Social</th>
+        <th>Direccion</th>
+        <th>Numero de identificacion</th>
+        <th>Telefono</th>
+        <th>Codigo</th>
+        <th>Representante Legal</th>
+        <th>Pais</th>
+        <th>Ciudad</th>
+        <th>Fax</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @proveedors.each do |proveedor| %>
+      <tr>
+        <td><%= proveedor.nombre_o_razon_social %></td>
+        <td><%= proveedor.direccion %></td>
+        <td><%= proveedor.numero_de_identificacion %></td>
+        <td><%= proveedor.telefono%></td>
+        <td><%= proveedor.codigo %></td>
+        <td><%= proveedor.representante_legal %></td>
+        <td><%= proveedor.pais %></td>
+        <td><%= proveedor.ciudad %></td>
+        <td><%= proveedor.fax%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="content_modal">
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
