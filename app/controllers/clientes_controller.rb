@@ -5,6 +5,7 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
+    @cliente= Cliente.new
    respond_to do |format|
     format.html{
       @clientes = Cliente.all
@@ -49,9 +50,10 @@ class ClientesController < ApplicationController
       if @cliente.save
         format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
         format.json { render action: 'show', status: :created, location: @cliente }
+        format.js
       else
         format.html { render action: 'new' }
-        format.json { render json: @cliente.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

@@ -1,4 +1,4 @@
-<%= link_to 'Nuevo Cliente', new_cliente_path, class: "nuevo_new" %>
+<%= link_to 'Nuevo', {:controller => 'clientes', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 <h1 class="text-center">LISTA DE CLIENTES</h1>
 
 <div class="table-responsive">
@@ -32,3 +32,10 @@
   </tbody>
 </table>
 </div>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content" id="content_modal">
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
