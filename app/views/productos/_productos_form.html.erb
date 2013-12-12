@@ -5,13 +5,13 @@
 <%= form_for(@producto, :remote => true) do |f| %>
 <div class="modal-body">
 	<%= f.label :nombre %>
-	<%= f.text_field :nombre, class: "form-control" %>
+	<%= f.text_field :nombre, class: "form-control", required:true %>
 	<%= f.label :precio %>
-	<%= f.text_field :precio, class: "form-control"%>
+	<%= f.number_field :precio, class: "form-control", required:true, min:0%>
 	<%= f.label :codigo %>
-	<%= f.text_field :codigo, class: "form-control"%>
+	<%= f.text_field :codigo, class: "form-control", required:true%>
 	<%= f.label :fecha_de_caducidad %>
-	<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker"%>
+	<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker", required:true%>
 	<%= f.label :categoria %>
 	<%= f.text_field :categoria, class: "form-control"%>
 	<%= f.label :casa_comercial %>

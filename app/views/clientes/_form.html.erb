@@ -10,15 +10,16 @@
 <%= form_for(@cliente, :remote => true) do |f| %>
 <div class="modal-body">
   <%= f.label :nombre %>
-  <%= f.text_field :nombre, class: "form-control" %>
+  <%= f.text_field :nombre, class: "form-control", required:true %>
+  <%= f.label :numero_de_identificacion %>
+  <%= f.text_field :numero_de_identificacion, class: "form-control", required:true%>
   <%= f.label :direccion %>
   <%= f.text_field :direccion, class: "form-control"%>
   <%= f.label :telefono %>
   <%= f.text_field :telefono, class: "form-control"%>
   <%= f.label :email %>
   <%= f.text_field :email, class: "form-control"%>
-  <%= f.label :numero_de_identificacion %>
-  <%= f.text_field :numero_de_identificacion, class: "form-control"%>
+ 
 </div>
 </div>
 <div class="modal-footer">
