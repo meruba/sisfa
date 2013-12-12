@@ -1,14 +1,12 @@
 init_datepicker = ->
-  $('.datepicker').datepicker
-    # pickTime: false
+  $(".datepicker").datepicker({
+    format: 'yyyy-mm-dd'
+  })
+null
 
-jQuery ->
-  init_datepicker()
-# $(document).on "page:load", init_datepicker()
-# $ ->
-#   $("#myModal").on "shown.bs.modal", ->
-#     init_datepicker()
+jQuery init_datepicker
+$(document).on "page:load", init_datepicker
 
-
-
-# window.Helpers.init_datepicker = init_datepicker
+$ ->
+  $("#myModal").on "shown.bs.modal", ->
+    jQuery init_datepicker
