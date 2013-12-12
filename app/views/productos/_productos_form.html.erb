@@ -6,8 +6,14 @@
 <div class="modal-body">
 	<%= f.label :nombre %>
 	<%= f.text_field :nombre, class: "form-control", required:true %>
-	<%= f.label :precio %>
-	<%= f.number_field :precio, class: "form-control", required:true, min:0%>
+	<%= f.label :nombre_generico %>
+	<%= f.text_field :nombre_generico, class: "form-control", required:true %>
+	<%= f.label :precio_a %>
+	<%= f.number_field :precio_a, class: "form-control", required:true, min:0%>
+	<%= f.label :precio_b %>
+	<%= f.number_field :precio_b, class: "form-control", required:true, min:0 %>
+	<%= f.label :precio_c %>
+	<%= f.number_field :precio_c, class: "form-control", required:true, min:0 %>
 	<%= f.label :codigo %>
 	<%= f.text_field :codigo, class: "form-control", required:true%>
 	<%= f.label :fecha_de_caducidad %>

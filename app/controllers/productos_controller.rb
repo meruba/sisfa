@@ -13,7 +13,7 @@ class ProductosController < ApplicationController
             :id => producto.id,
             :label => producto.nombre,
             :value => producto.nombre,
-            :precio => producto.precio,
+            :precio_a => producto.precio_a,
             :codigo => producto.codigo
           }
         end
@@ -44,7 +44,10 @@ class ProductosController < ApplicationController
   private 
   def producto_params
     params.require(:producto).permit(:nombre,
-     :precio,
+     :nombre_generico,
+     :precio_a,
+     :precio_b,
+     :precio_c,
      :codigo,
      :categoria,
      :descripcion,

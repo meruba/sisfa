@@ -6,7 +6,10 @@
     <thead>
       <tr>
         <th>Nombre</th>
-        <th>Precio</th>
+        <th>Nombre Generico</th>
+        <th>Precio A</th>
+        <th>Precio B</th>
+        <th>Precio C</th>
         <th>Codigo</th>
         <th>Categoria</th>
         <th>Casa Comercial</th>
@@ -17,7 +20,10 @@
       <% @productos.each do |producto| %>
       <tr>
         <td><%= producto.nombre %></td>
-        <td><%= producto.precio %></td>
+        <td><%= producto.nombre_generico %></td>
+        <td><%= producto.precio_a %></td>
+        <td><%= producto.precio_b %></td>
+        <td><%= producto.precio_c %></td>
         <td><%= producto.codigo %></td>
         <td><%= producto.categoria %></td>
         <td><%= producto.casa_comercial %></td>
