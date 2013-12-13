@@ -74,6 +74,7 @@ class ClientesController < ApplicationController
   def update
     respond_to do |format|
       if @cliente.update(cliente_params)
+        @clientes = Cliente.all
         format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
         format.json { render action: 'show', status: :created, location: @cliente }
         format.js { render "success"}
