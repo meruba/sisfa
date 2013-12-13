@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h1 class="modal-title" id="myModalLabel">Informacion</h1>
+</div>
+<div class="modal-body">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Nombre:</strong>
+    <%= @cliente.nombre %>
+  </p>
+  <p>
+    <strong>Direccion:</strong>
+    <%= @cliente.direccion %>
+  </p>
+  <p>
+    <strong>Numero de identificacion:</strong>
+    <%= @cliente.numero_de_identificacion %>
+  </p>
+  <p>
+    <strong>Telefono:</strong>
+    <%= @cliente.telefono %>
+  </p>
+  <p>
+    <strong>Email:</strong>
+    <a href="mailto:"><%= @cliente.email%></a>
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <%= link_to 'Editar', edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"}%>
+</div>

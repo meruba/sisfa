@@ -6,30 +6,33 @@ class ClientesController < ApplicationController
   # GET /clientes.json
   def index
     @cliente= Cliente.new
-   respond_to do |format|
-    format.html{
-      @clientes = Cliente.all
-    }
-    format.json { 
-      @clientes = Cliente.where("numero_de_identificacion like ?", "%#{params[:term]}%")
-      @clientes = @clientes.map do |cliente|
-        {
-          :id => cliente.id,
-          :label => cliente.numero_de_identificacion,
-          :value => cliente.numero_de_identificacion,
-          :nombre => cliente.nombre,
-          :direccion => cliente.direccion,
-          :telefono => cliente.telefono
-        }
-      end
-      render :json => @clientes 
-    }
-     end
+    respond_to do |format|
+      format.html{
+        @clientes = Cliente.all
+      }
+      format.json { 
+        @clientes = Cliente.where("numero_de_identificacion like ?", "%#{params[:term]}%")
+        @clientes = @clientes.map do |cliente|
+          {
+            :id => cliente.id,
+            :label => cliente.numero_de_identificacion,
+            :value => cliente.numero_de_identificacion,
+            :nombre => cliente.nombre,
+            :direccion => cliente.direccion,
+            :telefono => cliente.telefono
+          }
+        end
+        render :json => @clientes 
+      }
+    end
   end
 
   # GET /clientes/1
   # GET /clientes/1.json
   def show
+    respond_to do |format|
+      format.js{ render "new" }
+    end
   end
 
   # GET /clientes/new
@@ -100,4 +103,4 @@ class ClientesController < ApplicationController
     def cliente_params
       params.require(:cliente).permit(:nombre, :direccion, :numero_de_identificacion, :telefono, :email)
     end
-end
+  end
