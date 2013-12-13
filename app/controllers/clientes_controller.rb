@@ -34,11 +34,17 @@ class ClientesController < ApplicationController
 
   # GET /clientes/new
   def new
-    @cliente = Cliente.new
+    @cliente= Cliente.new
+    respond_to do |format|
+      format.js{ render "init" }
+    end
   end
 
   # GET /clientes/1/edit
   def edit
+    respond_to do |format|
+      format.js{ render "init" }
+    end
   end
 
   # POST /clientes
@@ -50,7 +56,7 @@ class ClientesController < ApplicationController
       if @cliente.save
         format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
         format.json { render action: 'show', status: :created, location: @cliente }
-        format.js
+        format.js { render "success"}
       else
         format.html { render action: 'new' }
         format.js
@@ -65,7 +71,7 @@ class ClientesController < ApplicationController
       if @cliente.update(cliente_params)
         format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
         format.json { render action: 'show', status: :created, location: @cliente }
-        format.json
+        format.js { render "success"}
       else
         format.html { render action: 'edit' }
         format.json { render json: @cliente.errors, status: :unprocessable_entity }
