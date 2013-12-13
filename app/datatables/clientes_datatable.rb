@@ -21,8 +21,8 @@ private
       [
         (cliente.nombre),
         (cliente.numero_de_identificacion),
-        (cliente.telefono),
         (cliente.direccion),
+        (cliente.telefono),        
         (cliente.email)
       ]
     end 
@@ -36,7 +36,7 @@ private
     clientes = Cliente.order("#{sort_column} #{sort_direction}")
     clientes = clientes.page(page).per_page(per_page)
     if params[:sSearch].present?
-      clientes = clientes.where("nombre like :search or numero_de_identificacion like :search", search: "%#{params[:sSearch]}%")
+      clientes = clientes.where("nombre like :search or numero_de_identificacion like :search or email like :search", search: "%#{params[:sSearch]}%")
     end
     clientes
   end
