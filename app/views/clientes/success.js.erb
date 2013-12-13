@@ -5,5 +5,8 @@
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
+  $(".table-responsive").html('<%= j render 'clientes', clientes: @clientes %>');
+  window.Helpers.init_datatables();
+
   // agregar mensaje
 <%- end %>

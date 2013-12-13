@@ -1,0 +1,18 @@
+<table class="data-table table-bordered">
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Direccion</th>
+      <th>Numero de identificacion</th>
+      <th>Telefono</th>
+      <th>Email</th>
+      <th>Acciones</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% clientes.each do |cliente| %>
+      <%= render "cliente", cliente: cliente %>
+      <% end %>
+    </tbody>
+</table>
