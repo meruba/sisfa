@@ -1,6 +1,6 @@
 class ClientesController < ApplicationController
   before_filter :require_login
-  # before_action :set_cliente, only: [:show, :edit, :update, :destroy]
+  before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
   # GET /clientes
   # GET /clientes.json
@@ -64,10 +64,12 @@ class ClientesController < ApplicationController
     respond_to do |format|
       if @cliente.update(cliente_params)
         format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
-        format.json { head :no_content }
+        format.json { render action: 'show', status: :created, location: @cliente }
+        format.json
       else
         format.html { render action: 'edit' }
         format.json { render json: @cliente.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

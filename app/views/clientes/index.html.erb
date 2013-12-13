@@ -1,36 +1,35 @@
-<%= link_to 'Nuevo', {:controller => 'clientes', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
+<%= link_to 'Nuevo', new_cliente_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 <h1 class="text-center">LISTA DE CLIENTES</h1>
 
 <div class="table-responsive">
   <table class="data-table table-bordered">
-  <thead>
-    <tr>
-      <th>Nombre</th>
-      <th>Direccion</th>
-      <th>Numero de identificacion</th>
-      <th>Telefono</th>
-      <th>Email</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Direccion</th>
+        <th>Numero de identificacion</th>
+        <th>Telefono</th>
+        <th>Email</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
 
-  <tbody>
-    <% @clientes.each do |cliente| %>
+    <tbody>
+      <% @clientes.each do |cliente| %>
       <tr>
         <td><%= cliente.nombre %></td>
         <td><%= cliente.direccion %></td>
         <td><%= cliente.numero_de_identificacion %></td>
         <td><%= cliente.telefono %></td>
         <td><%= cliente.email %></td>
-        <td><%= link_to 'Mostrar', cliente , class: "mostrar_view btn-sm"%></td>
-        <td><%= link_to 'Editar', edit_cliente_path(cliente) , class: "editar_edit btn-sm"%></td>
-        <td><%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Esta seguro de Eliminar?' } , class: "delete_destroy btn-sm"%></td>
+        <td><%= link_to 'Mostrar', cliente , class: "mostrar_view btn-sm"
+        %>
+        <%= link_to 'Editar', edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}%>
+        <%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Esta seguro de Eliminar?' } , class: "delete_destroy btn-sm"%></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
 </div>
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
