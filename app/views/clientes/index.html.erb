@@ -23,17 +23,10 @@
         <td><%= cliente.telefono %></td>
         <td><%= cliente.email %></td>
         <td><%= link_to 'Mostrar', cliente, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "mostrar_view"} %>
-        <%= link_to 'Editar', edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}%>
-        <%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Esta seguro de Eliminar?' } , class: "delete_destroy btn-sm"%></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-</div>
-<!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content" id="content_modal">
-    </div><!-- /.modal-content -->
-  </div><!-- /.modal-dialog -->
-</div><!-- /.modal -->
+          <%= link_to 'Editar', edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}%>
+          <%= link_to 'Eliminar', cliente, method: :delete, data: { confirm: '¿Esta seguro de Eliminar?' } , class: "delete_destroy btn-sm"%></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
