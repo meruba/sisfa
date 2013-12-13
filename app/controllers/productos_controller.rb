@@ -1,6 +1,13 @@
 class ProductosController < ApplicationController
 	before_filter :require_login
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: ProductosDatatable.new(view_context) }
+    end
+  end
+
+  def autocomple
     @producto = Producto.new
     respond_to do |format|
       format.html {    
