@@ -1,5 +1,5 @@
 class ClientesDatatable
-  delegate :params, :h, to: :@view
+  delegate :params, :link_to, :h, to: :@view
 
   def initialize(view)
     @view = view
@@ -23,7 +23,8 @@ private
         (cliente.numero_de_identificacion),
         (cliente.direccion),
         (cliente.telefono),        
-        (cliente.email)
+        (cliente.email),
+        (link_to 'Editar', @view.edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
       ]
     end 
   end
