@@ -5,6 +5,13 @@ class ClientesController < ApplicationController
   # GET /clientes
   # GET /clientes.json
   def index
+    respond_to do |format|
+      format.html
+      format.json { render json: ClientesDatatable.new(view_context) }
+    end
+  end
+
+  def autocomple
     @cliente= Cliente.new
     respond_to do |format|
       format.html{

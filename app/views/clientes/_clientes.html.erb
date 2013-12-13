@@ -1,4 +1,4 @@
-<table class="data-table table-bordered">
+<table class="data-table table-bordered" data-source="<%= clientes_url(format: "json") %>">
   <thead>
     <tr>
       <th>Nombre</th>
@@ -11,8 +11,5 @@
   </thead>
 
   <tbody>
-    <% clientes.each do |cliente| %>
-      <%= render "cliente", cliente: cliente %>
-      <% end %>
     </tbody>
 </table>
