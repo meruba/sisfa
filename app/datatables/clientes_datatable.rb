@@ -19,11 +19,11 @@ private
   def data
     clientes.map do |cliente|
       [
-        h(cliente.nombre),
-        h(cliente.numero_de_identificacion),
-        h(cliente.telefono),
-        h(cliente.direccion),
-        h(cliente.email)
+        (cliente.nombre),
+        (cliente.numero_de_identificacion),
+        (cliente.telefono),
+        (cliente.direccion),
+        (cliente.email)
       ]
     end 
   end

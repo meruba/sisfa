@@ -2,7 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 init_datatables = ->
-	$('.data-table').dataTable
+	$('#table_clientes').dataTable
     sDom: "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
     oLanguage:
       sUrl: "datatables.spanish.txt"
