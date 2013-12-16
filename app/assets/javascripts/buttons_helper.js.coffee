@@ -30,6 +30,4 @@ window.Helpers.ButtonsHelper = {
 jQuery window.Helpers.ButtonsHelper.init
 $(document).on "page:load", window.Helpers.ButtonsHelper.init
 $(document).on "nested:fieldAdded", window.Helpers.ButtonsHelper.init
-$("#myModal").on "show.bs.modal", (e) ->
-  console.log "hola"
-  window.Helpers.ButtonsHelper.init
+$("#myModal").on "show.bs.modal", console.log "hola"
