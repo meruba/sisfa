@@ -1,5 +1,6 @@
 Sisfa::Application.routes.draw do
 get "clientes/autocomplete"
+get "productos/autocomplete"
 get "pacientes/new"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"

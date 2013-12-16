@@ -7,8 +7,8 @@ class ProductosController < ApplicationController
     end
   end
 
-  def autocomple
-    @producto = Producto.new
+  def autocomplete
+    # @producto = Producto.new
     respond_to do |format|
       format.html {    
         @productos = Producto.all

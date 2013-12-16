@@ -9,7 +9,7 @@ init_autocomplete = ->
 
   $("#producto").autocomplete
     minLength: 3
-    source: "/productos.json"
+    source: "/productos/autocomplete.json"
     select: (event, ui) ->
       suma = $("#factura_item_factura_cantidad").val() * ui.item.precio
       $("#factura_item_factura_total").val suma
@@ -19,3 +19,4 @@ init_autocomplete = ->
 jQuery ->
   init_autocomplete()
 $(document).on "page:load", init_autocomplete
+$(document).on "nested:fieldAdded", init_autocomplete
