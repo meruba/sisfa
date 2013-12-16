@@ -11,8 +11,8 @@ class ClientesController < ApplicationController
     end
   end
 
-  def autocomple
-    @cliente= Cliente.new
+  def autocomplete
+    # @cliente= Cliente.new
     respond_to do |format|
       format.html{
         @clientes = Cliente.all

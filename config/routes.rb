@@ -1,5 +1,5 @@
 Sisfa::Application.routes.draw do
-
+get "clientes/autocomplete"
 get "pacientes/new"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -45,7 +45,6 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   #       get 'sold'
   #     end
   #   end
-
   # Example resource route with sub-resources:
   #   resources :products do
   #     resources :comments, :sales
