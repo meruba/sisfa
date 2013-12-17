@@ -8,15 +8,15 @@
 				<div class="col-md-4 col-md-offset-2">
 					<%= f.fields_for :cliente do |cliente_params| %>
 					<div class="form-group">
-						<!-- <%= f.label :nombre, class: "control-label" %> -->
-						<div class="col">
-							<%=  cliente_params.text_field :nombre, class: "form-control-border", id: "nombre", :placeholder => "Nombres Apellidos" %>
-						</div>
-					</div>
-					<div class="form-group">
 						<!-- <%= f.label :Cedula, class: "control-label" %> -->
 						<div class="col">
 							<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border", id: "numero_de_identificacion", :placeholder => "Cedula o RUC" %>
+						</div>
+					</div>
+					<div class="form-group">
+						<!-- <%= f.label :nombre, class: "control-label" %> -->
+						<div class="col">
+							<%=  cliente_params.text_field :nombre, class: "form-control-border", id: "nombre", :placeholder => "Nombres Apellidos" %>
 						</div>
 					</div>
 					<div class="form-group">
@@ -36,7 +36,7 @@
 				<!-- datos de factura -->
 				<div class="col-md-4 column">
 					<label class="fecha"></label><br>
-					<label>Vendedor: </label>
+					<label>Vendedor: </label> <span><%= current_user.username %></span>
 				</div>
 				<!-- ingreso de productos -->
 				<div class="col-md-8 col-md-offset-2">
@@ -66,14 +66,16 @@
 								</th>
 							</tr>
 						</thead>
-						<%= f.fields_for :item_facturas do |item_factura| %>
 						<tbody>
+							<%= f.fields_for :item_facturas, :wrapper => false do |item_factura| %>
 								<tr>
-								<%= render 'itemfacturas', item_factura:item_factura %>
+									<%= render 'itemfacturas', item_factura:item_factura %>
 								</tr>
-							</tbody>
-						<% end %>
-						<%= f.link_to_add "Agregar", :item_facturas %>
+							<% end %>
+						<tr>
+							<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %></td>
+						</tr>
+						</tbody>
 					</table>
 				</div>
 				<!-- impuestos de la factura -->

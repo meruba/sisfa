@@ -7,7 +7,7 @@ init_autocomplete = ->
       $("#direccion").val ui.item.direccion
       $("#telefono").val ui.item.telefono
 
-  $("#producto").autocomplete
+  $(".autocomplete_producto").autocomplete
     minLength: 3
     source: "/productos/autocomplete.json"
     select: (event, ui) ->
