@@ -11,10 +11,9 @@ init_autocomplete = ->
     minLength: 3
     source: "/productos/autocomplete.json"
     select: (event, ui) ->
-      suma = $(".cantidad").val() * ui.item.precio_a
-      $(".total").val suma
-      $(".valor_unitario").val ui.item.precio_a
-      $(".codigo").val ui.item.codigo
+      $this = $(this)
+      $this.closest(".fields").find("td:nth-child(1)").find(".codigo").val ui.item.codigo
+      $this.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val ui.item.precio_a
 
   $(".cantidad").on "input", ->
     $this = $(this)

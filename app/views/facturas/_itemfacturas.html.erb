@@ -1,21 +1,21 @@
 <td>
-	<input type="text" class= "form-control codigo">
+	<input type="text" class= "form-control codigo" readonly= true>
 </td>
 <td>
 	<input type="text" class= "form-control autocomplete_producto">
 </td>
 <td>
   <%= item_factura.hidden_field :id %>
-	<%=  item_factura.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1" %>
+	<%=  item_factura.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1"%>
 </td>
 <td>
 	<%=  item_factura.text_field :valor_unitario, class: "form-control valor_unitario", :placeholder => "0", min: "0", :readonly => true %>
 </td>
 <td>
-	<%=  item_factura.text_field :descuento, class: "form-control descuento", :placeholder => "Desct." %>
+	<%=  item_factura.text_field :descuento, class: "form-control descuento", :placeholder => "Desct.", value: "0.0" %>
 </td>
 <td>
-	<%=  item_factura.text_field :iva, class: "form-control iva", :placeholder => "0.0", :readonly => true %>
+	<%=  item_factura.text_field :iva, class: "form-control iva", :placeholder => "0.0", :readonly => true, value: "0.0"%>
 </td>
 <td>
 	<%=  item_factura.text_field :total, class: "form-control total", :placeholder => "Total", :readonly => true %>
