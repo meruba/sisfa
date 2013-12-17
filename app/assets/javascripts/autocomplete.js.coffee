@@ -16,6 +16,13 @@ init_autocomplete = ->
       $(".valor_unitario").val ui.item.precio_a
       $(".codigo").val ui.item.codigo
 
+  $(".cantidad").on "input", ->
+    $this = $(this)
+    cantidad = $this.val()
+    valor_unitario = $this.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val()
+    total = $this.closest(".fields").find("td:nth-child(7)").find(".total")
+    total.val(cantidad * valor_unitario)
+
 jQuery ->
   init_autocomplete()
 $(document).on "page:load", init_autocomplete
