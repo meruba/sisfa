@@ -68,7 +68,7 @@
 						</thead>
 						<tbody>
 							<%= f.fields_for :item_facturas, :wrapper => false do |item_factura| %>
-								<tr>
+								<tr class="fields">
 									<%= render 'itemfacturas', item_factura:item_factura %>
 								</tr>
 							<% end %>
