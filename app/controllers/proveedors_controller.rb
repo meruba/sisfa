@@ -2,6 +2,7 @@ class ProveedorsController < ApplicationController
 	# GET /proveedor
   # GET /proveedors.json
   before_filter :require_login
+  before_action :set_proveedor, only: [:show, :edit, :update, :destroy]
   
   def index
     respond_to do |format|
@@ -35,30 +36,39 @@ class ProveedorsController < ApplicationController
   # GET /proveedors/1
   # GET /proveedors/1.json
   def show
+   respond_to do |format|
+      format.js{ render "new" }
+    end
   end
 
   # GET /proveedors/new
   def new
-    @proveedor = Proveedor.new
+   @proveedor= Proveedor.new
+    respond_to do |format|
+      format.js{ render "init" }
+    end
   end
-
   # GET /proveeodrs/1/edit
   def edit
+    respond_to do |format|
+      format.js{ render "init" }
+    end
   end
 
   # POST /proveedors
   # POST /proveedors.json
   def create
     @proveedor = Proveedor.new(proveedor_params)
-
     respond_to do |format|
       if @proveedor.save
-        format.html { redirect_to @proveedor, notice: 'Proveedor Almacenada.' }
+        @proveedors = Proveedor.all
+        format.html { redirect_to @proveedor, notice: 'Proveedor was successfully created.' }
         format.json { render action: 'show', status: :created, location: @proveedor }
-        format.js
+        format.js { 
+          render "success"
+        }
       else
         format.html { render action: 'new' }
-        format.json { render json: @proveedor.errors, status: :unprocessable_entity }
         format.js
       end
     end
@@ -67,13 +77,16 @@ class ProveedorsController < ApplicationController
   # PATCH/PUT /proveedors/1
   # PATCH/PUT /proveedors/1.json
   def update
-    respond_to do |format|
+   respond_to do |format|
       if @proveedor.update(proveedor_params)
-        format.html { redirect_to @proveedor, notice: 'Modificacion exitosa.' }
-        format.json { head :no_content }
+        @proveedors = Proveedor.all
+        format.html { redirect_to @proveedor, notice: 'Proveedor was successfully updated.' }
+        format.json { render action: 'show', status: :created, location: @proveedor}
+        format.js { render "success"}
       else
         format.html { render action: 'edit' }
         format.json { render json: @proveedor.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -88,9 +101,13 @@ class ProveedorsController < ApplicationController
     end
   end
   
+  
   private 
   def proveedor_params
     params.require(:proveedor).permit(:nombre_o_razon_social, :direccion, :codigo, :numero_de_identificacion, :telefono, :ciduad, :pais, :representante_legal, :fax)
   end
+  def set_proveedor
+      @proveedor = Proveedor.find(params[:id])
+    end
 
 end

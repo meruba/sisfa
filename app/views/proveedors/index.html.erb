@@ -1,25 +1,6 @@
-<%= link_to 'Nuevo', {:controller => 'proveedors', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
-<h1>Lista de Proveedors</h1>
+<%= link_to 'Nuevo', new_proveedor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
+<h1 class="text-center">LISTA DE PROVEEDORES</h1>
 
-<div class="table-responsive" id="table-proveedors">
-  <table class="data-table table-bordered data-table" data-source="<%= proveedors_url(format: "json") %>">
-    <thead>
-      <tr>
-        <th>Nombre o Razon Social</th>
-        <th>Direccion</th>
-        <th>Numero de identificacion</th>
-        <th>Telefono</th>
-        <th>Codigo</th>
-        <th>Representante Legal</th>
-        <th>Pais</th>
-        <th>Ciudad</th>
-        <th>Fax</th>
-        <th>Acciones</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      
-    </tbody>
-  </table>
+<div class="table-responsive">
+  <%= render "proveedors", proveedors: @proveedors %>  
 </div>

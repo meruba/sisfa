@@ -1,0 +1,46 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h1 class="modal-title" id="myModalLabel">Informacion</h1>
+</div>
+<div class="modal-body">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Nombre o Razon Social:</strong>
+    <%= @proveedor.nombre_o_razon_social %>
+  </p>
+  <p>
+    <strong>Direccion:</strong>
+    <%= @proveedor.direccion %>
+  </p>
+  <p>
+    <strong>Numero de identificacion:</strong>
+    <%= @proveedor.numero_de_identificacion %>
+  </p>
+  <p>
+    <strong>Telefono:</strong>
+    <%= @proveedor.telefono %>
+  </p>
+  <p>
+    <strong>Codigo:</strong>
+   <%= @proveedor.codigo%>
+  </p>
+  <p>
+    <strong>Ciudad:</strong>
+   <%= @proveedor.ciudad%>
+  </p>
+  <p>
+    <strong>Pais:</strong>
+   <%= @proveedor.pais%>
+  </p>
+  <p>
+    <strong>Fax:</strong>
+   <%= @proveedor.fax%>
+  </p>
+  <p>
+    <strong>Representante Legal:</strong>
+   <%= @proveedor.representante_legal%>
+  </p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+</div>
