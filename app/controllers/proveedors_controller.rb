@@ -2,7 +2,14 @@ class ProveedorsController < ApplicationController
 	# GET /proveedor
   # GET /proveedors.json
   before_filter :require_login
-  def index
+  
+def index
+    respond_to do |format|
+      format.html
+      format.json { render json: ProveedorsDatatable.new(view_context) }
+    end
+  end
+  def autocomplete
     @proveedor = Proveedor.new
    respond_to do |format|
     format.html {    
