@@ -3,34 +3,34 @@ class ProveedorsController < ApplicationController
   # GET /proveedors.json
   before_filter :require_login
   
-def index
+  def index
     respond_to do |format|
       format.html
       format.json { render json: ProveedorsDatatable.new(view_context) }
     end
   end
   def autocomplete
-    @proveedor = Proveedor.new
-   respond_to do |format|
-    format.html {    
-      @proveedors = Proveedor.all
-    }
-    format.json { 
-      @proveedors = Proveedor.where("nombre like ?", "%#{params[:term]}%")
-      @proveedors = @proveedors.map do |proveedor|
-        {
-          :id => cliente.id,
-          :label => cliente.numero_de_identificacion,
-          :value => cliente.numero_de_identificacion,
-          :nombre_o_razon_social => cliente.nombre_o_razon_social,
-          :direccion => cliente.direccion,
-          :telefono => cliente.telefono
-        }
-      end
-      render :json => @proveedors
-    }
-  end    
-end
+    # @proveedor = Proveedor.new
+    respond_to do |format|
+      format.html {    
+        @proveedors = Proveedor.all
+      }
+      format.json { 
+        @proveedors = Proveedor.where("nombre like ?", "%#{params[:term]}%")
+        @proveedors = @proveedors.map do |proveedor|
+          {
+            :id => cliente.id,
+            :label => cliente.numero_de_identificacion,
+            :value => cliente.numero_de_identificacion,
+            :nombre_o_razon_social => cliente.nombre_o_razon_social,
+            :direccion => cliente.direccion,
+            :telefono => cliente.telefono
+          }
+        end
+        render :json => @proveedors
+      }
+    end    
+  end
 
   # GET /proveedors/1
   # GET /proveedors/1.json
