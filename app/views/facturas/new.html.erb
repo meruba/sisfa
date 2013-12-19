@@ -5,9 +5,17 @@
 			<div class="row clearfix">
 				<!-- formulario datos del cliente -->
 				<%= nested_form_for @factura do |f| %>
+				<% if @factura.errors.any? %>
+				<h2>Errores:</h2>	
+				<ul>
+					<% @factura.errors.full_messages.each do |message| %>
+					<li><%= message %></li>
+					<% end %>
+				</ul>
+				<% end %>
 				<div class="col-md-4 col-md-offset-2">
 					<%= f.fields_for :cliente do |cliente_params| %>
-					<%=  cliente_params.hidden_field :id %>
+					<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
 					<div class="form-group">
 						<div class="col">
 							<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cedula o RUC" %>
@@ -65,13 +73,13 @@
 						</thead>
 						<tbody>
 							<%= f.fields_for :item_facturas, :wrapper => false do |item_factura| %>
-								<tr class="fields">
-									<%= render 'itemfacturas', item_factura:item_factura %>
-								</tr>
+							<tr class="fields">
+								<%= render 'itemfacturas', item_factura:item_factura %>
+							</tr>
 							<% end %>
-						<tr>
-							<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %></td>
-						</tr>
+							<tr>
+								<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %></td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -89,7 +97,7 @@
 						<%= f.text_field :descuento, class: "form-control-border descuento_factura"%><br>
 						<%= f.text_field :iva, class: "form-control-border iva_factura"%><br>
 						<%= f.text_field :subtotal_12, class: "form-control-border subtotal_12" %><br>
-						<%= f.text_field :total, class: "form-control-border total_factura"%>
+						<%= f.text_field :total, class: "form-control-border total_factura"%><br>
 						<%= f.submit :Guardar, class: "crear_nuevo", data: {disable_with: "Almacenando"}%>
 					</div>
 				</div>
