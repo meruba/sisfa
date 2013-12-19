@@ -1,48 +1,52 @@
 class FacturasController < ApplicationController
-  before_filter :require_login
+	before_filter :require_login
 	
 	def new
-		@factura = Factura.new
-		@factura.build_cliente
+		@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
 		@factura.item_facturas.build
 	end
 
 	def create
-		@factura = Factura.new(factura_params)
-		  if @factura.save
-        redirect_back_or_to(clientes_path, notice: "Factura Creada")
-      else
-        flash[:error] = "Error al Facturar"
-      end
-	end
+		cliente_attrs = params[:factura].delete :cliente
+		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
+		if @cliente.save
+			@factura = @cliente.facturas.build(factura_params)
+			@factura.fecha_de_emision = Time.now
+			@factura.fecha_de_vencimiento = Time.now + 30.days
+  	# raise 'error'
+  	if @factura.save
+  		redirect_to facturas_path, :notice => "Factura Guardada"
+  	else
+  		render "new"
+  	end
+  else
+  	flash[:notice] = 'Errores en el cliente'
+  	@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
+  	@factura.itemfacturas.build
+  	render "new"
+  end 
+end
 
-	private
+private
 
-	def factura_params
-	  params.require(:factura).permit :numero,
-	  																:observacion,
-	  																:fecha_de_emision,
-	  																:fecha_de_vencimiento,
-	  																:subtotal_0,
-	  																:subtotal_12,
-	  																:descuento,
-	  																:iva,
-	  																:total,
-	  																:cliente_attributes => [
-                                      :nombre,
-                                      :direccion,
-                                      :telefono,
-                                      :numero_de_identificacion,
-                                      :email,
-                                      :created_at,
-                                      :updated_at
-                                    ],
-                                    :item_factura_attributes => [
-                                    	:cantidad,
-                                    	:valor_unitario,
-                                    	:descuento,
-                                    	:iva,
-                                    	:total
-                                    ]
-	end
+def factura_params
+	params.require(:factura).permit :numero,
+	:observacion,
+	:fecha_de_emision,
+	:fecha_de_vencimiento,
+	:subtotal_0,
+	:subtotal_12,
+	:descuento,
+	:iva,
+	:total,
+	:cliente_id,
+	:item_facturas_attributes => [
+		:cantidad,
+		:valor_unitario,
+		:descuento,
+		:iva,
+		:total,
+		:producto_id
+	]
+end
 end
