@@ -3,6 +3,7 @@ init_autocomplete = ->
     minLength: 3
     source: "/clientes/autocomplete.json"
     select: (event, ui) ->
+      $(".cliente_id").val ui.item.id
       $(".nombre").val ui.item.nombre
       $(".direccion").val ui.item.direccion
       $(".telefono").val ui.item.telefono
@@ -12,6 +13,7 @@ init_autocomplete = ->
     source: "/productos/autocomplete.json"
     select: (event, ui) ->
       $this = $(this)
+      $this.closest(".fields").find("td:nth-child(3)").find(".producto_id").val ui.item.id
       $this.closest(".fields").find("td:nth-child(1)").find(".codigo").val ui.item.codigo
       $this.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val ui.item.precio_a
 
