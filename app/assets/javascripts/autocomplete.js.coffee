@@ -16,23 +16,21 @@ init_autocomplete = ->
       $this.closest(".fields").find("td:nth-child(3)").find(".producto_id").val ui.item.id
       $this.closest(".fields").find("td:nth-child(1)").find(".codigo").val ui.item.codigo
       $this.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val ui.item.precio_a
-      cantidad = $this.closest(".fields").find("td:nth-child(3)").find(".cantidad").val()
-      valor_unitario = $this.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val()
-      total = $this.closest(".fields").find("td:nth-child(7)").find(".total")
-      total.val(cantidad * valor_unitario)
-      calcular_valores()
+      calcular_total_producto($this)
+      calcular_valores_factura()
 
   $(".cantidad").on "input", ->
     $this = $(this)
-    cantidad = $this.val()
-    valor_unitario = $this.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val()
-    total = $this.closest(".fields").find("td:nth-child(7)").find(".total")
-    total.val(cantidad * valor_unitario)
-    calcular_valores()
+    calcular_total_producto($this)
+    calcular_valores_factura()
 
-calcular_total = ->
+calcular_total_producto = (componente) ->
+  cantidad = componente.closest(".fields").find("td:nth-child(3)").find(".cantidad").val()
+  valor_unitario = componente.closest(".fields").find("td:nth-child(4)").find(".valor_unitario").val()
+  total = componente.closest(".fields").find("td:nth-child(7)").find(".total")
+  total.val(cantidad * valor_unitario)
 
-calcular_valores = ->
+calcular_valores_factura = ->
   sum = 0
   $(".total").each ->
     sum += parseFloat($(this).val())
