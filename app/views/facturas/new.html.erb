@@ -1,92 +1,65 @@
-<div class="container">
-	<!-- <div class="row clearfix"> -->
-		<div class="col-md-8 column col-md-offset-2">
-			<legend class="text-left">FACTURA</legend>
-			<div class="row clearfix">
-				<!-- formulario datos del cliente -->
-				<%= nested_form_for @factura do |f| %>
-				<% if @factura.errors.any? %>
-				<h2>Errores:</h2>	
-				<ul>
-					<% @factura.errors.full_messages.each do |message| %>
+<div class="col-md-7 column col-md-offset-2">
+	<legend>FACTURA</legend>
+	<h6 class="text-muted text-right fecha"></h6>
+	<!-- formulario datos del cliente -->
+	<%= nested_form_for @factura do |f| %>
+		<% if @factura.errors.any? %>
+			<h2>Errores:</h2>	
+			<ul>
+				<% @factura.errors.full_messages.each do |message| %>
 					<li><%= message %></li>
-					<% end %>
-				</ul>
 				<% end %>
-				<div class="col-md-4">
-					<%= f.fields_for :cliente do |cliente_params| %>
-					<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
-							<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cedula o RUC" %>
-							<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
-							<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Direccion"%>
-							<%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Telefono"%>
-					<% end %>
-				</div>
-				<!-- datos de factura -->
-				<div class="col-md-4">
-					<label class="fecha"></label><br>
-					<label>Vendedor: </label> <span><%= current_user.username %></span>
-				</div>
-				<!-- ingreso de productos -->
-				<div class="col-md-12">
-					<table class="table">
-						<thead>
-							<tr>
-								<th>
-									Codigo
-								</th>
-								<th>
-									Nombre
-								</th>
-								<th>
-									Cantidad
-								</th>
-								<th>
-									V. Unit
-								</th>
-								<th>
-									Descuento
-								</th>
-								<th>
-									IVA
-								</th>
-								<th>
-									Total
-								</th>
-							</tr>
-						</thead>
-						<tbody>
-							<%= f.fields_for :item_facturas, :wrapper => false do |item_factura| %>
-							<tr class="fields">
-								<%= render 'itemfacturas', item_factura:item_factura %>
-							</tr>
-							<% end %>
-							<tr>
-								<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<!-- impuestos de la factura -->
-				<div class="col-md-6 col-md-offset-7">
-					<div class="col-md-2">
-						<%= f.label :subtotal%><br>
-						<%= f.label :descuento%><br>
-						<%= f.label :iva%><br>
-						<%= f.label :subtotal12 %><br>
-						<%= f.label :total%>
-					</div>
-					<div class="col-md-5">
-						<%= f.text_field :subtotal_0, class: "form-control-border subtotal_0"%><br>
-						<%= f.text_field :descuento, class: "form-control-border descuento_factura"%><br>
-						<%= f.text_field :iva, class: "form-control-border iva_factura"%><br>
-						<%= f.text_field :subtotal_12, class: "form-control-border subtotal_12" %><br>
-						<%= f.text_field :total, class: "form-control-border total_factura"%><br>
-						<%= f.submit :Guardar, class: "crear_nuevo", data: {disable_with: "Almacenando"}%>
-					</div>
-				</div>
+			</ul>
+		<% end %>
+	<%= f.fields_for :cliente do |cliente_params| %>
+		<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+		<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cedula o RUC" %>
+		<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
+		<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Direccion"%>
+		<%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Telefono"%>
+	<% end %>
+	<!-- ingreso de productos -->
+		<table class="table" id="factura">
+			<thead>
+				<tr>
+					<th>Codigo</th>
+					<th>Producto</th>
+					<th>Cantidad</th>
+					<th>V.Unit</th>
+					<th>Descuento</th>
+					<th>I.V.A.</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<%= f.fields_for :item_facturas, :wrapper => false do |item_factura| %>
+				<tr class="fields">
+					<%= render 'itemfacturas', item_factura:item_factura %>
+				</tr>
 				<% end %>
-			</div>
+				<tr>
+					<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	<!-- impuestos de la factura -->
+	<div class="col-md-6 col-md-offset-7">
+		<div class="col-md-4">
+			<%= f.label :subtotal%>
+			<%= f.label :descuento%>
+			<%= f.label :iva%>
+			<%= f.label :subtotal12 %>
+			<%= f.label :total%>
+		</div>
+		<div class="col-md-5">
+			<%= f.text_field :subtotal_0, class: "form-control-border subtotal_0", :readonly => true%>
+			<%= f.text_field :descuento, class: "form-control-border descuento_factura", :readonly => true%>
+			<%= f.text_field :iva, class: "form-control-border iva_factura", :readonly => true%>
+			<%= f.text_field :subtotal_12, class: "form-control-border subtotal_12",:readonly => true %>
+			<%= f.text_field :total, class: "form-control-border total_factura", :readonly => true%>
+			<%= f.submit :Guardar, class: "crear_nuevo", data: {disable_with: "Almacenando"}%>
 		</div>
 	</div>
+	<% end %>
 </div>

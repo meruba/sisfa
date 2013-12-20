@@ -1,23 +1,23 @@
 <td>
-	<input type="text" class= "form-control codigo" readonly= true>
+	<input type="text" class= "form-control-border codigo" readonly= true>
 </td>
-<td>
-	<input type="text" class= "form-control autocomplete_producto">
+<td class="col-sm-3">
+	<input type="text" class= "form-control-border autocomplete_producto" placeholder= "producto">
 </td>
 <td>
   <%= item_factura.hidden_field :producto_id, class: "producto_id"%>
-	<%=  item_factura.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1", value: 1 %>
+	<%=  item_factura.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1", value: 1 %>
 </td>
 <td>
-	<%=  item_factura.text_field :valor_unitario, class: "form-control valor_unitario", :placeholder => "0", min: "0", :readonly => true, value: 0.0 %>
+	<%=  item_factura.text_field :valor_unitario, class: "form-control-border text-center valor_unitario", :placeholder => "0", min: "0", :readonly => true, value: 0.0 %>
 </td>
 <td>
-	<%=  item_factura.text_field :descuento, class: "form-control descuento", :placeholder => "Desct.", value: "0.0" %>
+	<%=  item_factura.text_field :descuento, class: "form-control-border text-center descuento", :placeholder => "Desct.", value: "0.0" %>
 </td>
 <td>
-	<%=  item_factura.text_field :iva, class: "form-control iva", :placeholder => "0.0", :readonly => true, value: "0.0"%>
+	<%=  item_factura.text_field :iva, class: "form-control-border text-center iva", :placeholder => "0.0", :readonly => true, value: "0.0"%>
 </td>
 <td>
-	<%=  item_factura.text_field :total, class: "form-control total", :placeholder => "Total", :readonly => true, value: 0.0 %>
+	<%=  item_factura.text_field :total, class: "form-control-border text-center total", :placeholder => "Total", :readonly => true, value: 0.0 %>
 </td>
 <td><%= item_factura.link_to_remove '', :class => "delete_destroy" %></td>
