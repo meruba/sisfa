@@ -1,7 +1,7 @@
-<h2 class="text-center">FACTURA</h2>
 <div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
+	<!-- <div class="row clearfix"> -->
+		<div class="col-md-8 column col-md-offset-2">
+			<legend class="text-left">FACTURA</legend>
 			<div class="row clearfix">
 				<!-- formulario datos del cliente -->
 				<%= nested_form_for @factura do |f| %>
@@ -13,38 +13,22 @@
 					<% end %>
 				</ul>
 				<% end %>
-				<div class="col-md-4 col-md-offset-2">
+				<div class="col-md-4">
 					<%= f.fields_for :cliente do |cliente_params| %>
 					<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
-					<div class="form-group">
-						<div class="col">
 							<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cedula o RUC" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col">
 							<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col">
 							<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Direccion"%>
-						</div>
-					</div>
-					<div class="form-group">
-						<div class="col">
 							<%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Telefono"%>
-						</div>
-					</div>
 					<% end %>
 				</div>
 				<!-- datos de factura -->
-				<div class="col-md-4 column">
+				<div class="col-md-4">
 					<label class="fecha"></label><br>
 					<label>Vendedor: </label> <span><%= current_user.username %></span>
 				</div>
 				<!-- ingreso de productos -->
-				<div class="col-md-8 col-md-offset-2">
+				<div class="col-md-12">
 					<table class="table">
 						<thead>
 							<tr>
