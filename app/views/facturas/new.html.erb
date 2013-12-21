@@ -29,6 +29,7 @@
 					<th>Descuento</th>
 					<th>I.V.A.</th>
 					<th>Total</th>
+					<th></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -41,25 +42,31 @@
 					<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %>
 					</td>
 				</tr>
+				<!-- impuestos de la factura -->
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td class="col-sm-3">
+						<h6>Subtotal 0%:</h6>
+						<h6>Descuento:</h6>
+						<h6>Subtotal 12%:</h6>
+						<h6>I.V.A:</h6>
+						<h4>TOTAL:</h4>
+					</td>
+					<td class="col-sm-2">
+						<%= f.text_field :subtotal_0, class: "input-noborder subtotal_0", :readonly => true%>
+						<%= f.text_field :descuento, class: "input-noborder descuento_factura", :readonly => true%>
+						<%= f.text_field :subtotal_12, class: "input-noborder subtotal_12",:readonly => true %>
+						<%= f.text_field :iva, class: "input-noborder iva_factura", :readonly => true%>
+						<%= f.text_field :total, class: "input-noborder total_factura", :readonly => true%>
+					</td>
+				</tr>
 			</tbody>
 		</table>
-	<!-- impuestos de la factura -->
-	<div class="col-md-6 col-md-offset-7">
-		<div class="col-md-4">
-			<%= f.label :subtotal%>
-			<%= f.label :descuento%>
-			<%= f.label :iva%>
-			<%= f.label :subtotal12 %>
-			<%= f.label :total%>
-		</div>
-		<div class="col-md-5">
-			<%= f.text_field :subtotal_0, class: "form-control-border subtotal_0", :readonly => true%>
-			<%= f.text_field :descuento, class: "form-control-border descuento_factura", :readonly => true%>
-			<%= f.text_field :iva, class: "form-control-border iva_factura", :readonly => true%>
-			<%= f.text_field :subtotal_12, class: "form-control-border subtotal_12",:readonly => true %>
-			<%= f.text_field :total, class: "form-control-border total_factura", :readonly => true%>
-			<%= f.submit :Guardar, class: "crear_nuevo", data: {disable_with: "Almacenando"}%>
-		</div>
-	</div>
+		<%= f.submit :Guardar, class: "guardar_submit", data: {disable_with: "Almacenando"}%>
 	<% end %>
 </div>
