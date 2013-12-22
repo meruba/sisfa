@@ -8,6 +8,8 @@
 	<%= f.text_field :nombre, class: "form-control", required:true %>
 	<%= f.label :nombre_generico %>
 	<%= f.text_field :nombre_generico, class: "form-control", required:true %>
+	<%= f.label :cantidad %>
+	<%= f.number_field :cantidad_disponible, class: "form-control", required:true %>
 	<%= f.label :precio_a %>
 	<%= f.number_field :precio_a, class: "form-control", required:true, min:0%>
 	<%= f.label :precio_b %>
