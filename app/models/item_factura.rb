@@ -5,15 +5,21 @@ class ItemFactura < ActiveRecord::Base
   belongs_to :producto
 
 	# validations:
-    validates :cantidad,  :presence => true,
-    :numericality => { :only_integer => true },
-    :numericality => { :greater_than_or_equal_to => 0 }
-    validates :valor_unitario,  :presence => true,
-    :numericality => true,
-    :numericality => { :greater_than_or_equal_to => 0 }
-    validates :total, :presence => true,
-    :numericality => true,
-    :numericality => { :greater_than_or_equal_to => 0 }
-    validates :descuento, :numericality => true,
-    :numericality => { :greater_than_or_equal_to => 0 }
+  validates :cantidad, :valor_unitario, :total, :descuento, :presence => true,
+                                                            :numericality => { :greater_than_or_equal_to => 0 }
+  validate :stock                                                            
+  validate :valida_descuento
+
+  # methods
+  def stock
+    if self.cantidad > producto.cantidad_disponible
+      errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
+    end
+  end
+
+  def valida_descuento
+    if self.descuento > self.total
+      errors.add :descuento, "descuento no valido en:" + producto.nombre
+    end
+  end
 end
