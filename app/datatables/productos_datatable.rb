@@ -21,9 +21,8 @@ private
       [
         (producto.nombre),
         (producto.nombre_generico),
+        (producto.cantidad_disponible),
         (producto.precio_a),
-        (producto.precio_b),        
-        (producto.precio_c),
         (producto.codigo),
         (producto.categoria),
         (producto.casa_comercial)
@@ -53,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[nombre nombre_generico precio_a precio_c precio_c codigo categoria casa_comercial]
+    columns = %w[nombre nombre_generico cantidad_disponible precio codigo categoria casa_comercial]
     columns[params[:iSortCol_0].to_i]
   end
 
