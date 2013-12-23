@@ -14,19 +14,19 @@ class FacturasController < ApplicationController
 			@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
 			@factura.fecha_de_emision = Time.now
 			@factura.fecha_de_vencimiento = Time.now + 30.days
-  	# raise 'error'
-  	if @factura.save
-  		redirect_to facturas_path, :notice => "Factura Guardada"
-  	else
-  		render "new"
-  	end
-  else
-  	flash[:notice] = 'Errores en el cliente'
-  	@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
-  	@factura.itemfacturas.build
-  	render "new"
-  end 
-end
+			Factura.disminuir_stock(@factura.item_facturas)
+			if @factura.save
+				redirect_to facturas_path, :notice => "Factura Guardada"
+			else
+				render "new"
+			end
+		else
+			flash[:error] = 'Errores en Cliente'
+			@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
+			@factura.item_facturas.build
+			render "new"
+		end 
+	end
 
 private
 
