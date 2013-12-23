@@ -11,6 +11,14 @@ init_autocomplete = ->
   $(".autocomplete_producto").autocomplete
     minLength: 3
     source: "/productos/autocomplete.json"
+    response: (event, ui) ->
+      unless ui.content.length
+        noResult =
+          value: ""
+          label: "Ningun Resultado"
+        ui.content.push noResult
+      else
+        $("#message").empty()
     select: (event, ui) ->
       $this = $(this)
       $this.closest(".fields").find("td:nth-child(3)").find(".producto_id").val ui.item.id
@@ -22,6 +30,11 @@ init_autocomplete = ->
   $(".cantidad").on "input", ->
     $this = $(this)
     calcular_total_producto($this)
+    calcular_valores_factura()
+
+  $(".eliminar_item").on "click", ->
+    $this = $(this)
+    $this.closest(".fields").remove()
     calcular_valores_factura()
 
 calcular_total_producto = (componente) ->
@@ -44,4 +57,4 @@ jQuery ->
   init_autocomplete()
 $(document).on "page:load", init_autocomplete
 $(document).on "nested:fieldAdded", init_autocomplete
-$(document).on "nested:fieldRemoved", init_autocomplete
+# $(document).on "nested:fieldRemoved", init_autocomplete

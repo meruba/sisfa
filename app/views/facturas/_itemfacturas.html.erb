@@ -1,7 +1,7 @@
 <td>
 	<input type="text" class= "form-control-border codigo" readonly= true>
 </td>
-<td class="col-sm-3">
+<td>
 	<input type="text" class= "form-control-border autocomplete_producto" placeholder= "producto">
 </td>
 <td>
@@ -20,4 +20,4 @@
 <td>
 	<%=  item_factura.text_field :total, class: "form-control-border text-center total", :placeholder => "Total", :readonly => true, value: 0.0 %>
 </td>
-<td><%= item_factura.link_to_remove '', :class => "delete_destroy" %></td>
+<td><%= item_factura.link_to_remove '', :class => "delete_destroy eliminar_item" %></td>
