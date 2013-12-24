@@ -1,25 +1,25 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h1 class="modal-title" id="myModalLabel">Editar Perfil</h1>
+  <h3 class="modal-title" id="myModalLabel">Editar Perfil</h3>
 </div>
 <%= nested_form_for @user do |f| %>
 <div class="modal-body">
   <%= f.fields_for :cliente do |cliente_params| %>
-  <%=  cliente_params.text_field :nombre, :placeholder=>"Nombre", class: "form-control"%>
-  <%=  cliente_params.text_field :direccion, :placeholder=>"Dirección", class: "form-control"%>
-  <%=  cliente_params.text_field :numero_de_identificacion, :placeholder=>"Numero de Identificación", class: "form-control"%>
-  <%=  cliente_params.text_field :telefono, :placeholder=>"Telefono", class: "form-control"%>
-  <%=  cliente_params.text_field :email, :placeholder=>"email", class: "form-control"%><br>
-  <% end %>
-  <legend>Datos de Usuario</legend>
-  <%= f.text_field :username, :placeholder => "Nombre de Usuario", class: "form-control" %>
-  <%= f.password_field :password, :placeholder => "Nueva Clave", class: "form-control" %>
-  <%= f.password_field :password_confirmation, :placeholder => "Confirmar Clave", class: "form-control" %>
+    <%=  cliente_params.text_field :nombre, :placeholder=>"Nombre", class: "form-control-border"%>
+    <%=  cliente_params.text_field :direccion, :placeholder=>"Dirección", class: "form-control-border"%>
+    <%=  cliente_params.text_field :numero_de_identificacion, :placeholder=>"Numero de Identificación", class: "form-control-border"%>
+    <%=  cliente_params.text_field :telefono, :placeholder=>"Telefono", class: "form-control-border"%>
+    <%=  cliente_params.text_field :email, :placeholder=>"email", class: "form-control-border"%>
+    <% end %> 
+    <br>
+    <legend>Datos de Usuario</legend>
+    <%= f.text_field :username, :placeholder => "Nombre de Usuario", class: "form-control-border" %>
+    <%= f.password_field :password, :placeholder => "Nueva Clave", class: "form-control-border" %>
+    <%= f.password_field :password_confirmation, :placeholder => "Confirmar Clave", class: "form-control-border" %>
 </div>
-</div>
-<div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-  <%= f.submit 'Guardar', class: "btn btn-success"%>
-</div>
-<% end %>
+  <div class="modal-footer">
+    <%= f.submit 'Guardar', class: "btn btn-success"%>
+    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+    <% end %>
+  </div>
 
