@@ -3,6 +3,7 @@
 <head>
 	<title>Sisfa</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
 	<%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
 	<%= stylesheet_link_tag    "/assets/font-awsome/css/font-awesome.min.css"%>
 	<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
@@ -12,15 +13,15 @@
   <header>
     <%= render 'layouts/header' %>
   </header>
-  <main role="main">
+  <div role="main">
     <div class="container">
     <%= render 'layouts/flash' %>
     <%= yield %>
     <%= render 'layouts/modal' %>
     </div>
-  </main>
+  </div>
+  <footer>
+    <p class="text-center muted ">&copy; Copyright 2013 - Sistema Farmacia </p>
+  </footer>
 </body>
-<footer>
-  <p class="text-center muted ">&copy; Copyright 2013 - Sistema Farmacia </p>
-</footer>
 </html>
