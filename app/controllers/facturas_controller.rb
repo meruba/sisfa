@@ -2,7 +2,17 @@ class FacturasController < ApplicationController
 	before_filter :require_login
 	
 	def new
-		@factura = Factura.new
+		@factura = Factura.new(:tipo=>"ventanilla")
+		@factura.item_facturas.build
+	end
+
+	def consulta_externa
+		@factura = Factura.new(:tipo=>"consulta_externa")
+		@factura.item_facturas.build
+	end
+
+	def hospitalizacion
+		@factura = Factura.new(:tipo=>"hospitalizacion")
 		@factura.item_facturas.build
 	end
 
@@ -40,6 +50,7 @@ private
 																		:descuento,
 																		:iva,
 																		:total,
+																		:tipo,
 																		:cliente_id,
 																		:item_facturas_attributes => [
 																			:cantidad,
