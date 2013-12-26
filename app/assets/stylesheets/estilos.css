@@ -1,6 +1,6 @@
 .form-control-border{
   border: 0;
-  width: 100%;
+  width: 90%;
   border-bottom: 1px solid #cccccc;
   padding-top: 5px;
   padding-left: 5px;
@@ -12,6 +12,7 @@
   width: 100%;
   border-bottom: 1px solid #cccccc;
   padding-top: 2px;
+  /*background-color: #e7e7e7;*/
 }
 
 .form-control-border:focus {
