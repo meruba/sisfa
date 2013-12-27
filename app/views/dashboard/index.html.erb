@@ -1,2 +1,17 @@
-<h1>Dashboard#index</h1>
-<p>Find me in app/views/dashboard/index.html.erb</p>
+<h1 class="text-center">Resultados</h1>
+
+<div>
+<h4>Hoy se han emitido <%= @facturashoy.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
+
+<h2>Facturas Ventanilla</h2>
+<h4>Hoy se han emitido <%= @facturasventanilla.count %> facturas en ventanilla con un total de <%= @facturasventanilla.sum(:total) %></h4>
+
+<h2>Facturas Consulta Externa</h2>
+<h4>Hoy se han emitido <%= @facturaconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturaconsultaexterna.sum(:total) %></h4>
+
+<h2>Facturas Hospitalización</h2>
+<h4>Hoy se han emitido <%= @facturashospitalizacion.count %> facturas en hospitalización con un total de <%= @facturashospitalizacion.sum(:total) %></h4>
+
+
+
+</div>
