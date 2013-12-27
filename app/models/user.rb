@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id               :integer          not null, primary key
+#  username         :string(255)      not null
+#  crypted_password :string(255)
+#  salt             :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  cliente_id       :integer
+#  rol              :string(255)      not null
+#
+
 class User < ActiveRecord::Base
 
 authenticates_with_sorcery!

@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: facturas
+#
+#  id                   :integer          not null, primary key
+#  numero               :integer          not null
+#  observacion          :string(255)
+#  fecha_de_emision     :datetime         not null
+#  fecha_de_vencimiento :datetime         not null
+#  subtotal_0           :float            not null
+#  subtotal_12          :float            not null
+#  descuento            :float            not null
+#  iva                  :float            not null
+#  total                :float            not null
+#  created_at           :datetime
+#  updated_at           :datetime
+#  cliente_id           :integer          not null
+#  tipo                 :string(255)      not null
+#
+
 class Factura < ActiveRecord::Base
 #relations
 belongs_to :cliente

@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: item_facturas
+#
+#  id             :integer          not null, primary key
+#  cantidad       :integer          not null
+#  valor_unitario :float            not null
+#  descuento      :float
+#  iva            :float            not null
+#  total          :float            not null
+#  created_at     :datetime
+#  updated_at     :datetime
+#  producto_id    :integer          not null
+#  factura_id     :integer          not null
+#
+
 class ItemFactura < ActiveRecord::Base
   
   #relationships

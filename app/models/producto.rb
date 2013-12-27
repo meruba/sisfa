@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: productos
+#
+#  id                  :integer          not null, primary key
+#  nombre              :string(255)      not null
+#  precio_a            :float            not null
+#  codigo              :string(255)
+#  categoria           :string(255)
+#  descripcion         :string(255)
+#  fecha_de_caducidad  :date
+#  casa_comercial      :string(255)
+#  nombre_generico     :string(255)
+#  precio_b            :float
+#  precio_c            :float
+#  cantidad_disponible :float            not null
+#
+
 class Producto < ActiveRecord::Base
 
 	# accepts_nested_attributes_for :proveedor
