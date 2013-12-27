@@ -17,9 +17,11 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :numeric
 item_facturas = []
 def self.disminuir_stock (item_facturas)
 	item_facturas.each do |item|
-		producto  = Producto.find(item.producto_id)
-		producto.cantidad_disponible -= item.cantidad
-		producto.save
+		unless item.producto_id.nil?
+			producto  = Producto.find(item.producto_id)
+			producto.cantidad_disponible -= item.cantidad
+			producto.save
+		end
 	end
 	# item_facturas.each do |value, key|
 	# 	producto  = Producto.find("#{key[:producto_id]}")
