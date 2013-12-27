@@ -1,8 +1,7 @@
-<div>
+<%= nested_form_for @factura do |f| %>
 <div class="col-md-7">
 	<h6 class="text-muted text-right fecha"></h6>
 	<!-- formulario datos del cliente -->
-	<%= nested_form_for @factura do |f| %>
 	<% if @factura.errors.any? %>
 	<h2>Errores:</h2>	
 	<ul>
@@ -12,12 +11,13 @@
 	</ul>
 	<% end %>
 	<%= f.fields_for :cliente do |cliente_params| %>
-		<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
-		<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cedula o RUC" %>
-		<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
+	<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+	<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cedula o RUC" %>
+	<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
 	<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Direccion"%>
 	<%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Telefono"%>
 	<% end %>
+	<!-- item factura -->
 	<div class="table-responsive">
 		<table class="table" id="factura">
 			<thead>
@@ -34,7 +34,7 @@
 			<tbody>
 				<%= f.fields_for :item_facturas, :wrapper => false do |item_factura| %>
 				<tr class="fields">
-					<%= render 'itemfacturas', item_factura:item_factura %>
+					<%= render 'item_facturas/itemfacturas', item_factura:item_factura %>
 				</tr>
 				<% end %>
 				<tr>
@@ -45,13 +45,13 @@
 		</table>
 	</div>
 </div>
+<!-- datos de impuestos factura -->
 <div class="col-md-2 col-md-offset-1">
 	<div class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">IMPUESTOS %</h3>
 		</div>
 		<div class="panel-body">
-			<%=  f.hidden_field :tipo, class: "tipo_factura" %>
 			<table>
 				<thead>
 					<th></th>
@@ -67,6 +67,7 @@
 							<h4>TOTAL:</h4>
 						</td>
 						<td>
+							<%=  f.hidden_field :tipo, class: "tipo_factura" %>
 							<%= f.text_field :subtotal_0, class: "input-noborder subtotal_0 text-right", :readonly => true%>
 							<%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
 							<%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>
@@ -78,8 +79,7 @@
 			</table>
 			<br>
 			<%= f.submit :Guardar, class: "guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
-			<% end %>
 		</div>
 	</div>
 </div>
-</div>
+<% end %>
