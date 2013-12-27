@@ -8,16 +8,16 @@ class UserSessionsController < ApplicationController
 
   def create 
     if @user = login(params[:username], params[:password])
-       redirect_to :controller => 'facturas', :action => 'new'
+       redirect_to root_path
        flash[:notice] = "Bienvenido"
      else
       flash[:error] = "Usuario o Contrasena invalido"
-      redirect_to root_path
+      redirect_to login_path
     end
   end
 
   def destroy
     logout
-    redirect_to root_path, notice: "Has Cerrado Sesion"
+    redirect_to login_path, notice: "Has Cerrado Sesion"
   end
 end

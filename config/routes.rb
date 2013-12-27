@@ -1,4 +1,5 @@
 Sisfa::Application.routes.draw do
+get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "pacientes/new"
@@ -30,7 +31,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'user_sessions#new'
+   root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
