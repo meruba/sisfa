@@ -8,6 +8,8 @@ window.Helpers.DateHelper = {
       $(this).text(moment().lang("es").format("MMMM"))
     $(".fecha_sin_hora").each ->
       $(this).text(moment().lang("es").format("LL"))
+    $(".año").each ->
+      $(this).text(moment().lang("es").format("YYYY"))
 }
 
 jQuery window.Helpers.DateHelper.init

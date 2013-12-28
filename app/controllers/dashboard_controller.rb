@@ -11,6 +11,11 @@ class DashboardController < ApplicationController
     @facturasmesventanilla = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => "ventanilla")
     @facturasmeshospitalizacion = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => "hospitalizacion")
     @facturamesconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => "consulta_externa")
+    #estas son las consultas referentes al año
+    @facturasaño = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year)
+    @facturasañoventanilla = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "ventanilla")
+    @facturasañohospitalizacion = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "hospitalizacion")
+    @facturasañoconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "consulta_externa")  
   end
 end
 
