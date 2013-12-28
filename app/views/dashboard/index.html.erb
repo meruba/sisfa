@@ -8,19 +8,26 @@
 
 <div class="tab-content">
   <div class="tab-pane active" id="diario">
-    <h4>Hoy se han emitido <%= @facturashoy.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
+    <h4><span class="fecha_sin_hora"></span> se han emitido <%= @facturashoy.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
     <h2>Facturas Ventanilla</h2>
-    <h4>Hoy se han emitido <%= @facturasventanilla.count %> facturas en ventanilla con un total de <%= @facturasventanilla.sum(:total) %></h4>
+    <h4><span class="fecha_sin_hora"></span> se han emitido <%= @facturasventanilla.count %> facturas en ventanilla con un total de <%= @facturasventanilla.sum(:total) %></h4>
 
     <h2>Facturas Consulta Externa</h2>
-    <h4>Hoy se han emitido <%= @facturaconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturaconsultaexterna.sum(:total) %></h4>
+    <h4><span class="fecha_sin_hora"></span> se han emitido <%= @facturaconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturaconsultaexterna.sum(:total) %></h4>
 
     <h2>Facturas Hospitalización</h2>
-    <h4>Hoy se han emitido <%= @facturashospitalizacion.count %> facturas en hospitalización con un total de <%= @facturashospitalizacion.sum(:total) %></h4>
+    <h4><span class="fecha_sin_hora"></span> se han emitido <%= @facturashospitalizacion.count %> facturas en hospitalización con un total de <%= @facturashospitalizacion.sum(:total) %></h4>
   </div>
   
   <div class="tab-pane" id="mensual">
+    <h4>Durante el mes de <span class="mes"></span> se han emitido <%= @facturasmes.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
+    <h2>Facturas Ventanilla</h2>
+    <h4>Hoy se han emitido <%= @facturasmesventanilla.count %> facturas en ventanilla con un total de <%= @facturasmesventanilla.sum(:total) %></h4>
+    <h2>Facturas Consulta Externa</h2>
+    <h4>Durante el mes de <span class="mes"></span> se han emitido <%= @facturamesconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturamesconsultaexterna.sum(:total) %></h4>
 
+    <h2>Facturas Hospitalización</h2>
+    <h4>Durante el mes de <span class="mes"></span> se han emitido <%= @facturasmeshospitalizacion.count %> facturas en hospitalización con un total de <%= @facturasmeshospitalizacion.sum(:total) %></h4>
   </div>
   
   <div class="tab-pane" id="anual">
