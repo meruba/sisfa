@@ -1,17 +1,30 @@
-<h1 class="text-center">Resultados</h1>
+<h1 class="text-center">Estadísticas</h1>
+  
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#diario" data-toggle="tab">Diario</a></li>
+  <li><a href="#mensual" data-toggle="tab">Mensual</a></li>
+  <li><a href="#anual" data-toggle="tab">Anual</a></li>
+</ul>
 
-<div>
-<h4>Hoy se han emitido <%= @facturashoy.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
+<div class="tab-content">
+  <div class="tab-pane active" id="diario">
+    <h4>Hoy se han emitido <%= @facturashoy.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
+    <h2>Facturas Ventanilla</h2>
+    <h4>Hoy se han emitido <%= @facturasventanilla.count %> facturas en ventanilla con un total de <%= @facturasventanilla.sum(:total) %></h4>
 
-<h2>Facturas Ventanilla</h2>
-<h4>Hoy se han emitido <%= @facturasventanilla.count %> facturas en ventanilla con un total de <%= @facturasventanilla.sum(:total) %></h4>
+    <h2>Facturas Consulta Externa</h2>
+    <h4>Hoy se han emitido <%= @facturaconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturaconsultaexterna.sum(:total) %></h4>
 
-<h2>Facturas Consulta Externa</h2>
-<h4>Hoy se han emitido <%= @facturaconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturaconsultaexterna.sum(:total) %></h4>
+    <h2>Facturas Hospitalización</h2>
+    <h4>Hoy se han emitido <%= @facturashospitalizacion.count %> facturas en hospitalización con un total de <%= @facturashospitalizacion.sum(:total) %></h4>
+  </div>
+  
+  <div class="tab-pane" id="mensual">
 
-<h2>Facturas Hospitalización</h2>
-<h4>Hoy se han emitido <%= @facturashospitalizacion.count %> facturas en hospitalización con un total de <%= @facturashospitalizacion.sum(:total) %></h4>
+  </div>
+  
+  <div class="tab-pane" id="anual">
 
-
-
+  </div>
 </div>
+
