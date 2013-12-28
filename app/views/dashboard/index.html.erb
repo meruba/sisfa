@@ -1,5 +1,5 @@
 <h1 class="text-center">Estadísticas</h1>
-  
+
 <ul class="nav nav-tabs">
   <li class="active"><a href="#diario" data-toggle="tab">Diario</a></li>
   <li><a href="#mensual" data-toggle="tab">Mensual</a></li>
@@ -20,7 +20,7 @@
   </div>
   
   <div class="tab-pane" id="mensual">
-    <h4>Durante el mes de <span class="mes"></span> se han emitido <%= @facturasmes.count %> facturas con un total de <%= @facturashoy.sum(:total) %></h4>
+    <h4>Durante el mes de <span class="mes"></span> se han emitido <%= @facturasmes.count %> facturas con un total de <%= @facturasmes.sum(:total) %></h4>
     <h2>Facturas Ventanilla</h2>
     <h4>Hoy se han emitido <%= @facturasmesventanilla.count %> facturas en ventanilla con un total de <%= @facturasmesventanilla.sum(:total) %></h4>
     <h2>Facturas Consulta Externa</h2>
@@ -31,7 +31,13 @@
   </div>
   
   <div class="tab-pane" id="anual">
-
+    <h4>Durante el año <span class="año"></span> se han emitido <%= @facturasaño.count %> facturas con un total de <%= @facturasaño.sum(:total) %></h4>
+    <h2>Facturas Ventanilla</h2>
+    <h4>Durante el <span class="año"></span> se han emitido <%= @facturasañoventanilla.count %> facturas en ventanilla con un total de <%= @facturasañoventanilla.sum(:total) %></h4>
+    <h2>Facturas Consulta Externa</h2>
+    <h4>Durante el <span class="año"></span> se han emitido <%= @facturamesconsultaexterna.count %> facturas en consulta externa con un total de <%= @facturamesconsultaexterna.sum(:total) %></h4>
+    <h2>Facturas Hospitalización</h2>
+    <h4>Durante el <span class="año"></span> se han emitido <%= @facturasañohospitalizacion.count %> facturas en hospitalización con un total de <%= @facturasañohospitalizacion.sum(:total) %></h4>
   </div>
 </div>
 
