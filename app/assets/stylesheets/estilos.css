@@ -27,7 +27,6 @@ table.dataTable td{ background-color: white;  border:1px lightgrey;}
 table.dataTable tr.odd { background-color: white;  border:1px lightgrey;}
 table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 
-.table{
-  margin-top: 20px;
-}
-
+.table{margin-top: 20px;}
+.rating-num { margin-top:0px;font-size: 44px; }
+.estadisticas {padding-top: 20px;}

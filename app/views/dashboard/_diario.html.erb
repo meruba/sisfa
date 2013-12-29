@@ -1,0 +1,75 @@
+<!-- <div class="container"> -->
+    <div class="row">
+        <div class="col-xs-12 col-md-7  estadisticas">
+            <div class="welli well-sm">
+                <div class="row">
+                    <div class="col-xs-12 col-md-5 text-center">
+                        <h3 class="rating-num">
+                            $ <%=number_with_precision(@facturashoy.sum(:total), :precision => 2)%></h3>
+                        <div class="rating">
+                           <h5>TOTAL DE HOY</h5>
+                        </div>
+                        <div>
+                            <span class="fecha_sin_hora"></span>
+                        </div>
+                        <!-- <span class="fa fa-archive"></span> -->
+                        <!-- <a href="#" class="navbar-link">Cerrar Caja</a> -->
+                    </div>
+                    <div class="col-xs-12 col-md-7">
+                        <div class="row rating-desc">
+                            <!-- Total Ventanilla-->
+                            <div class="col-xs-3 col-md-4 text-right">
+                                <span>Ventanilla</span>
+                            </div>
+                            <div class="col-xs-8 col-md-8">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentaje_ventanilla%>%">
+                                        $ <%=number_with_precision(@facturasventanilla.sum(:total), :precision => 2)%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total hospitalizacion-->
+                            <div class="col-xs-3 col-md-4 text-right">
+                                <span>Hospitalizacion</span>
+                            </div>
+                            <div class="col-xs-8 col-md-8">
+                                <div class="progress progress-striped">
+                                    <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentaje_hospitalizacion%>%">
+                                        $ <%=number_with_precision(@facturashospitalizacion.sum(:total), :precision => 2)%>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Total Consulta Externa-->
+                            <div class="col-xs-3 col-md-4 text-right">
+                                <span>Consulta</span>
+                            </div>
+                            <div class="col-xs-8 col-md-8">
+                                <div class="progress">
+                                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
+                                        aria-valuemin="0" aria-valuemax="100" style="width:  <%=@porcentaje_consultaexterna%>%">
+                                        $ <%=number_with_precision(@facturaconsultaexterna.sum(:total), :precision => 2)%>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!-- numero total de facturas -->
+                    <div class="progress progress-striped">
+                      <div class="progress-bar progress-bar-success" style="width:  <%=@porcentaje_ventanilla%>%"><%=@porcentaje_ventanilla%>%
+                      </div>
+                      <div class="progress-bar progress-bar-warning" style="width:  <%=@porcentaje_hospitalizacion%>%"><%=@porcentaje_hospitalizacion%>%
+                      </div>
+                      <div class="progress-bar progress-bar-info" style="width:  <%=@porcentaje_consultaexterna%>%"><%=@porcentaje_consultaexterna%>%
+                      </div>
+                    </div>
+<!--                     <span class="fa fa-print"></span>
+                    <a href="#" class="navbar-link">Imprimir</a>
+                    <span class="fa fa-archive"></span>
+                    <a href="#" class="navbar-link">Cerrar Caja</a> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- </div> -->
