@@ -5,7 +5,7 @@ window.Helpers.DateHelper = {
     $(".fecha").each ->
       $(this).text(moment().lang("es").format("LLL"))
     $(".mes").each ->
-      $(this).text(moment().lang("es").format("MMMM"))
+      $(this).text(moment().lang("es").format("MMMM").toUpperCase())
     $(".fecha_sin_hora").each ->
       $(this).text(moment().lang("es").format("LL"))
     $(".año").each ->
