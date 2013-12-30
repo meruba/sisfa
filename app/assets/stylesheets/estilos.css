@@ -30,3 +30,14 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .table{margin-top: 20px;}
 .rating-num { margin-top:0px;font-size: 44px; }
 .estadisticas {padding-top: 20px;}
+
+
+.carousel-caption {
+  font-size: 20px;
+}
+
+.carousel-caption h4 {
+  font-size: 25px;
+}
+
+#myCarousel .item { height: 160px; }
