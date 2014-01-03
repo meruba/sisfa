@@ -26,9 +26,6 @@
               </div>
             </div>
           </div>
-          <div class=" col-xs-2 col-md-2 text-left">
-            #<span><%= @cantidad_mes_ventanilla%></span>
-          </div>
         <!-- Total hospitalizacion-->
           <div class="col-xs-3 col-md-3 text-left">
             <span>Hospitalizacion:</span>
@@ -41,9 +38,6 @@
               </div>
             </div>
           </div>
-        <div class="col-xs-2 col-md-2 text-left">
-          #<span><%= @cantidad_mes_hospitalizacion%></span>
-        </div>
         <!-- Total Consulta Externa-->
         <div class="col-xs-3 col-md-3 text-left">
           <span>Consulta:</span>
@@ -56,10 +50,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-2 col-md-2 text-left">
-          #<span><%= @cantidad_mes_consultaexterna%></span>
-        </div>
-        <!-- numero total de facturas -->
+        <!-- numero total de facturas por porcentaje-->
         <div class="col-xs-10 col-md-10">
           <div class="progress progress-striped">
             <div class="progress-bar progress-bar-success" style="width:  <%=@porcentajemes_ventanilla%>%"><%=@porcentajemes_ventanilla%>%
@@ -70,8 +61,8 @@
             </div>
           </div>
         </div>
-        <!-- numero total de facturas por porcentaje -->
-        <div class="col-xs-10 col-md-10">
+        <!-- numero total de facturas-->
+        <!-- <div class="col-xs-10 col-md-10">
           <div class="progress progress-striped">
             <div class="progress-bar progress-bar-success" style="width:  <%=@porcentajemes_ventanilla%>%"><%=@cantidad_mes_ventanilla%>
             </div>
@@ -80,7 +71,7 @@
             <div class="progress-bar progress-bar-info" style="width:  <%=@porcentajemes_consultaexterna%>%"><%=@cantidad_mes_consultaexterna%>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </div>

@@ -55,7 +55,7 @@ private
   end
 
   def sort_column
-    columns = %w[nombre_o_razon_social direccion numero_de_identificacion telefono codigo represntante_legal pais ciudad fax]
+    columns = %w[nombre_o_razon_social direccion numero_de_identificacion telefono codigo representante_legal pais ciudad fax]
     columns[params[:iSortCol_0].to_i]
   end
 
