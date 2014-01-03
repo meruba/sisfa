@@ -30,16 +30,27 @@ class ProductosController < ApplicationController
   end
 
   def new
-    @producto = Producto.new
+    @producto=  Producto.new
+    respond_to do |format|
+      format.js{ render "init" }
+    end
+  end
+  def edit
+    respond_to do |format|
+      format.js{ render "init" }
+    end
   end
 
   def create
     @producto = Producto.new(producto_params)
     respond_to do |format|
       if @producto.save
+        @productos = Producto.all
         format.html { redirect_to @producto, notice: 'Producto guardado' }
         format.json { render action: 'show', status: :created, location: @producto }
-        format.js
+        format.js{
+          render "success"
+        }
       else
         format.html { render action: 'new' }
         format.json { render json: @producto.errors, status: :unprocessable_entity }

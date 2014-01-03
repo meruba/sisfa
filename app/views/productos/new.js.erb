@@ -1,3 +1,2 @@
 m = $('#content_modal');
-m.html('<%= j(render partial: 'productos_form', locals: {proveedor: @proveedor}) %>');
-$('#content_modal').integrateDatepicker();
+m.html('<%= j(render partial: 'form', locals: {producto: @producto}) %>');

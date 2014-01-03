@@ -1,20 +1,6 @@
 <%= link_to 'Nuevo', {:controller => 'productos', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
-<h1>Lista de Productos</h1>
+<h1 class="text-center">LISTA DE PRODUCTOS</h1>
 
 <div class="table-responsive">
-  <table class="data-table table-bordered" id="table_productos" data-source="<%= productos_url(format: "json") %>">
-    <thead>
-      <tr>
-        <th>Nombre</th>
-        <th>Nombre Generico</th>
-        <th>Cantidad</th>        
-        <th>Precio</th>
-        <th>Codigo</th>
-        <th>Categoria</th>
-        <th>Casa Comercial</th>
-      </tr>
-    </thead>
-    <tbody>
-    </tbody>
-  </table>
+  <%= render "productos", productos: @productos %>  
 </div>
