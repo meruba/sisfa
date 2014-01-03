@@ -52,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[nombre nombre_generico cantidad_disponible precio codigo categoria casa_comercial]
+    columns = %w[nombre nombre_generico cantidad_disponible precio_a codigo categoria casa_comercial]
     columns[params[:iSortCol_0].to_i]
   end
 
