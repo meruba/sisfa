@@ -4,7 +4,7 @@
     <div class="welli well-sm">
       <div class="row">
         <div class="col-xs-12 col-md-4 text-center">
-          <h3 class="rating-num">$ <%=number_with_precision(@facturasmes.sum(:total), :precision => 2)%></h3>
+          <h3 class="rating-num">$ <%= number_with_precision(@totalfacturasmes, :precision => 2)%></h3>
           <div class="rating">
            <h5>TOTAL DE <span class="mes"></span></h5>
          </div>
@@ -22,12 +22,12 @@
             <div class="progress progress-striped">
               <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
               aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentajemes_ventanilla%>%">
-              $ <%=number_with_precision(@facturasmesventanilla.sum(:total), :precision => 2)%>
+              $ <%=@totalmes_ventanilla%>
               </div>
             </div>
           </div>
           <div class=" col-xs-2 col-md-2 text-left">
-            #<span><%= @facturasmesventanilla.count%></span>
+            #<span><%= @cantidad_mes_ventanilla%></span>
           </div>
         <!-- Total hospitalizacion-->
           <div class="col-xs-3 col-md-3 text-left">
@@ -37,12 +37,12 @@
             <div class="progress progress-striped">
               <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
               aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentajemes_hospitalizacion%>%">
-              $ <%=number_with_precision(@facturasmeshospitalizacion.sum(:total), :precision => 2)%>
+              $ <%=@totalmes_hospitalizacion%>
               </div>
             </div>
           </div>
         <div class="col-xs-2 col-md-2 text-left">
-          #<span><%= @facturasmeshospitalizacion.count%></span>
+          #<span><%= @cantidad_mes_hospitalizacion%></span>
         </div>
         <!-- Total Consulta Externa-->
         <div class="col-xs-3 col-md-3 text-left">
@@ -52,12 +52,12 @@
           <div class="progress">
             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
             aria-valuemin="0" aria-valuemax="100" style="width:  <%=@porcentajemes_consultaexterna%>%">
-            $ <%=number_with_precision(@facturasmesconsultaexterna.sum(:total), :precision => 2)%>
+              $ <%=@totalmes_consultaexterna%>
             </div>
           </div>
         </div>
         <div class="col-xs-2 col-md-2 text-left">
-          #<span><%= @facturasmesconsultaexterna.count%></span>
+          #<span><%= @cantidad_mes_consultaexterna%></span>
         </div>
         <!-- numero total de facturas -->
         <div class="col-xs-10 col-md-10">
@@ -70,8 +70,16 @@
             </div>
           </div>
         </div>
-        <div class="col-xs-2 col-md-2">
-          #<span><%= @facturasmes.count%></span>
+        <!-- numero total de facturas por porcentaje -->
+        <div class="col-xs-10 col-md-10">
+          <div class="progress progress-striped">
+            <div class="progress-bar progress-bar-success" style="width:  <%=@porcentajemes_ventanilla%>%"><%=@cantidad_mes_ventanilla%>
+            </div>
+            <div class="progress-bar progress-bar-warning" style="width:  <%=@porcentajemes_hospitalizacion%>%"><%=@cantidad_mes_hospitalizacion%>
+            </div>
+            <div class="progress-bar progress-bar-info" style="width:  <%=@porcentajemes_consultaexterna%>%"><%=@cantidad_mes_consultaexterna%>
+            </div>
+          </div>
         </div>
       </div>
     </div>
