@@ -25,5 +25,4 @@ class Proveedor < ActiveRecord::Base
 	validates :codigo, :presence =>true
 #relations
 	has_many :facturas
-
 end
