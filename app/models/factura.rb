@@ -16,6 +16,7 @@
 #  updated_at           :datetime
 #  cliente_id           :integer          not null
 #  tipo                 :string(255)      not null
+#  anulada              :boolean          default(FALSE)
 #
 
 class Factura < ActiveRecord::Base

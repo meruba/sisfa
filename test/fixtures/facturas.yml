@@ -16,6 +16,7 @@
 #  updated_at           :datetime
 #  cliente_id           :integer          not null
 #  tipo                 :string(255)      not null
+#  anulada              :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
