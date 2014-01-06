@@ -9,15 +9,15 @@ class UserSessionsController < ApplicationController
   def create 
     if @user = login(params[:username], params[:password])
        redirect_to root_path
-       flash[:notice] = "Bienvenido"
+       flash[:notice] = "Bienvenido #{current_user.username}"
      else
-      flash[:error] = "Usuario o Contrasena invalido"
+      flash[:error] = "Usuario o contraseña inválido"
       redirect_to login_path
     end
   end
 
   def destroy
     logout
-    redirect_to login_path, notice: "Has Cerrado Sesion"
+    redirect_to login_path, notice: "Has Cerrado Sesión"
   end
 end
