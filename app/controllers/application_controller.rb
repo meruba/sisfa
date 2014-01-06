@@ -6,6 +6,6 @@ class ApplicationController < ActionController::Base
   protected
 
   def not_authenticated
-  	redirect_to login_url, :alert => "Necesitas Iniciar Sesion"
+  	redirect_to login_url, :alert => "Necesitas Iniciar Sesión"
   end
 end

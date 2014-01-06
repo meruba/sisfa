@@ -32,7 +32,7 @@ Rails.application.config.sorcery.configure do |config|
   # How long in seconds to keep the session alive.
   # Default: `3600`
   #
-  config.session_timeout = 3600
+  config.session_timeout = 10
 
 
   # Use the last action as the beginning of session timeout.
@@ -444,7 +444,7 @@ module Sorcery::Controller::Submodules::SessionTimeout::InstanceMethods
     if validate_session_without_flash_message
       true
     else
-      flash[:error] = "Tu Sesion ha expirado" if logged_in
+      flash[:error] = "Tu Sesión ha expirado" if logged_in
       false
     end
   end
