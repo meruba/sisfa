@@ -25,6 +25,8 @@ private
         (cliente.telefono),        
         (cliente.email),
         (link_to 'Editar', @view.edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
+        # (link_to '', cliente, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
+
       ]
     end 
   end
