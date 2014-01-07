@@ -4,33 +4,33 @@
 </div>
 <%= form_for(@producto, :remote => true) do |f| %>
 <div class="modal-body">
-	<%= f.label :nombre %>
+	<%= f.label :Nombre %>
 	<%= f.text_field :nombre, class: "form-control", required:true %>
-	<%= f.label :nombre_generico %>
+	<%= f.label :Nombre_genérico %>
 	<%= f.text_field :nombre_generico, class: "form-control", required:true %>
-	<%= f.label :cantidad %>
+	<%= f.label :Cantidad %>
 	<%= f.number_field :cantidad_disponible, class: "form-control", required:true %>
-	<%= f.label :codigo %>
+	<%= f.label :Código %>
 	<%= f.text_field :codigo, class: "form-control", required:true%>
-	<%= f.label :fecha_de_caducidad %>
+	<%= f.label :Fecha_de_caducidad %>
 	<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker", required:true%>
-	<%= f.label :categoria %>
+	<%= f.label :Categoria %>
 	<%= f.text_field :categoria, class: "form-control"%><br>
 	<div class='row'>
 		<div class='col-xs-4 form-group cvc required'>
-			<%= f.label :precio_a, class: "control-label"%>
+			<%= f.label :Precio_A, class: "control-label"%>
 			<%= f.number_field :precio_a, class: "form-control", required:true, min:0%>
 		</div>
 		<div class='col-xs-4 form-group expiration required'>
-			<%= f.label :precio_b, class: "control-label" %>
+			<%= f.label :Precio_B, class: "control-label" %>
 			<%= f.number_field :precio_b, class: "form-control", required:true, min:0 %>
 		</div>
 		<div class='col-xs-4 form-group expiration required'>
-			<%= f.label :precio_c, class: "control-label" %>
+			<%= f.label :Precio_C, class: "control-label" %>
 			<%= f.number_field :precio_c, class: "form-control", required:true, min:0 %>
 		</div>
 	</div>
-	<%= f.label :casa_comercial %>
+	<%= f.label :Casa_comercial %>
 	<%= f.text_field :casa_comercial, class: "form-control"%>
 </div>
 </div>
