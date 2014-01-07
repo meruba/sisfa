@@ -35,6 +35,7 @@ class UsersController < ApplicationController
     def current_user_params
       params.require(:user).permit :username,
                                     :password,
+                                    :password_confirmation,
                                     :rol,
                                     :cliente_attributes => [
                                       :nombre,
