@@ -1,4 +1,4 @@
-<%= nested_form_for @factura do |f| %>
+<%= nested_form_for @factura, :remote => true do |f| %>
 <div class="col-md-7">
 	<h6 class="text-muted text-right fecha"></h6>
 	<!-- formulario datos del cliente -->
@@ -38,7 +38,7 @@
 				</tr>
 				<% end %>
 				<tr>
-					<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new" %>
+					<td><%= f.link_to_add "Producto", :item_facturas, :class => "nuevo_new"%>
 					</td>
 				</tr>
 			</tbody>
