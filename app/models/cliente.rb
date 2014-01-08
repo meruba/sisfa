@@ -15,7 +15,8 @@
 class Cliente < ActiveRecord::Base
 
 #validations
-
+	validates :nombre, :numero_de_identificacion, :presence =>true
+	validates_id :numero_de_identificacion
 # relationships
 	has_one :user
 	has_many :proformas
