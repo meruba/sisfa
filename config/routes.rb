@@ -24,6 +24,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :productos
   resources :facturas
   resources :item_facturas
+  resources :proformas
+  resources :item_proformas
+
 
   # resources :facturas do
   #   member do
