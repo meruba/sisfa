@@ -22,7 +22,6 @@
 class Proforma < ActiveRecord::Base
 #relations
 belongs_to :cliente
-belongs_to :proveedor
 has_many :item_proformas
 has_many :productos, :through => :item_proformas
 
@@ -35,15 +34,15 @@ validates :numero, :fecha_de_emision, :fecha_de_vencimiento, :subtotal_0, :subto
 validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :numericality => true, :numericality => { :greater_than_or_equal_to => 0 }
 
 #methods
-item_proformas = []
-def self.disminuir_stock (item_proformas)
-  item_proformas.each do |item|
-    unless item.producto_id.nil?
-      producto  = Producto.find(item.producto_id)
-      producto.cantidad_disponible -= item.cantidad
-      producto.save
-    end
-  end
+# item_proformas = []
+# def self.disminuir_stock (item_proformas)
+#   item_proformas.each do |item|
+#     unless item.producto_id.nil?
+#       producto  = Producto.find(item.producto_id)
+#       producto.cantidad_disponible -= item.cantidad
+#       producto.save
+#     end
+#   end
   # item_proformas.each do |value, key|
   #   producto  = Producto.find("#{key[:producto_id]}")
   #   cantidad_item = item_facturas[value][:cantidad].to_f
@@ -51,6 +50,6 @@ def self.disminuir_stock (item_proformas)
   #   raise 'error'
   #   producto.save
   # end
-end
+# end
 
 end
