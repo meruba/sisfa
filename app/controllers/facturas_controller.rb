@@ -10,7 +10,7 @@ class FacturasController < ApplicationController
 	end
 
 	def venta
-		@factura = Factura.new
+		@factura = Factura.new(:tipo=>"ventanilla")
 	end
 
   def show
@@ -23,7 +23,7 @@ class FacturasController < ApplicationController
 		@factura = Factura.new(:tipo=>"ventanilla")
 		@factura.item_facturas.build
 		respond_to do |format|
-			format.html
+			# format.html
 			format.js
 		end
 	end
