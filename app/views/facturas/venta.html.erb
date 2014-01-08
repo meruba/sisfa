@@ -1,5 +1,5 @@
 <div class=" col-md-offset-1 row">
-	<ul class="nav nav-tabs">
+	<ul id="tab_ventas" class="nav nav-tabs">
 		<!-- <li class="active"><a href="#diario" data-toggle="tab">Tipo</a></li> -->
 		<li class="active"><%=link_to "Ventanilla",{:controller => 'facturas', :action => 'ventanilla'}, :remote => true, :data => {:toogle => "tab"}  %></li>
 		<li><%=link_to "Hospitalizacion",{:controller => 'facturas', :action => 'hospitalizacion'}, :remote => true, :data => {:toogle => "tab"} %></li>
