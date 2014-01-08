@@ -6,7 +6,7 @@
 // window.Helpers.init_datatables();
 // window.Helpers.ButtonsHelper.init();
 // window.Helpers.init_autocomplete();
-$(".tab-content").html("<h4 class= 'col-md-10'>Hospitalizacion</h4><%= j render('form') %>");
+$(".tab-content").html("<%= j render('hospitalizacion') %>");
 window.Helpers.ButtonsHelper.init();
+window.Helpers.DateHelper.init()
 window.Helpers.AutocompleteHelper.init_autocomplete();
-
