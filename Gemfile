@@ -45,6 +45,8 @@ group :development do
 end
 
 gem 'will_paginate'
+
+gem 'id_ecuador'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
