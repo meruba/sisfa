@@ -29,7 +29,7 @@ has_many :productos, :through => :item_proformas
 accepts_nested_attributes_for :item_proformas
 
 #valitations
-validates :numero, :fecha_de_emision, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presence =>true
+validates :numero, :fecha_emision, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presence =>true
 validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :numericality => true, :numericality => { :greater_than_or_equal_to => 0 }
 
 #methods
