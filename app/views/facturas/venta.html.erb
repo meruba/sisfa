@@ -5,10 +5,9 @@
 		<li><%=link_to "Hospitalizacion",{:controller => 'facturas', :action => 'hospitalizacion'}, :remote => true, :data => {:toogle => "tab"} %></li>
 		<li><%=link_to("Consulta Externa",{:controller => 'facturas', :action => 'consulta_externa'}, :remote => true, :data => {:toogle => "tab"})%></li>
 	</ul>
-</div>
-
-<div class="col-md-offset-1 tab-content">
-	<%= render "ventanilla" %>
+	<div class="tab-content">
+		<%= render "ventanilla" %>
+	</div>
 </div>
 
 <%= javascript_tag "window.Helpers.NavbarVentas.init();" %>
