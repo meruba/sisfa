@@ -1,10 +1,13 @@
 Sisfa::Application.routes.draw do
 get "dashboard/index"
+get "dashboard/todas_facturas"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "pacientes/new"
+get "facturas/ventanilla"
 get "facturas/hospitalizacion"
 get "facturas/consulta_externa"
+get "facturas/venta"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
 # get "signup"  => "users#new",               :as => "signup"
