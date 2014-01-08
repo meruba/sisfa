@@ -1,0 +1,12 @@
+// if ($("#hospitalizacion").find(".new_factura").length>0 == true){ //si contiene el formularrio
+// 	$("#hospitalizacion").empty();
+// 	$("#hospitalizacion").prepend("<h4 class= 'col-md-10'>Hospitalizacion</h4><%= j render('form') %>");
+// 	console.log("lo agregue 1 vez")
+// }
+// window.Helpers.init_datatables();
+// window.Helpers.ButtonsHelper.init();
+// window.Helpers.init_autocomplete();
+$(".tab-content").html("<h4 class= 'col-md-10'>Hospitalizacion</h4><%= j render('form') %>");
+window.Helpers.ButtonsHelper.init();
+window.Helpers.AutocompleteHelper.init_autocomplete();
+

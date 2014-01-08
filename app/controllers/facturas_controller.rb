@@ -1,19 +1,52 @@
 class FacturasController < ApplicationController
 	before_filter :require_login
-	
-	def new
-		@factura = Factura.new(:tipo=>"ventanilla")
-		@factura.item_facturas.build
+  before_action :set_factura, only: [:show]
+
+	def index
+		respond_to do |format|
+			format.html
+			format.json { render json: FacturasDatatable.new(view_context) }
+		end
 	end
 
+	def venta
+		@factura = Factura.new
+	end
+
+  def show
+    respond_to do |format|
+      format.js
+    end
+  end
+
+	def ventanilla
+		@factura = Factura.new(:tipo=>"ventanilla")
+		@factura.item_facturas.build
+		respond_to do |format|
+			format.html
+			format.js
+		end
+	end
+	
 	def consulta_externa
 		@factura = Factura.new(:tipo=>"consulta_externa")
 		@factura.item_facturas.build
+		respond_to do |format|
+			# format.html
+			format.js
+		end
 	end
 
 	def hospitalizacion
 		@factura = Factura.new(:tipo=>"hospitalizacion")
 		@factura.item_facturas.build
+		respond_to do |format|
+			# format.html
+			format.js
+		end
+	end
+
+	def anular
 	end
 
 	def create
@@ -38,27 +71,31 @@ class FacturasController < ApplicationController
 		end 
 	end
 
-private
+	private
 
 	def factura_params
 		params.require(:factura).permit :numero,
-																		:observacion,
-																		:fecha_de_emision,
-																		:fecha_de_vencimiento,
-																		:subtotal_0,
-																		:subtotal_12,
-																		:descuento,
-																		:iva,
-																		:total,
-																		:tipo,
-																		:cliente_id,
-																		:item_facturas_attributes => [
-																			:cantidad,
-																			:valor_unitario,
-																			:descuento,
-																			:iva,
-																			:total,
-																			:producto_id
-																		]
+		:observacion,
+		:fecha_de_emision,
+		:fecha_de_vencimiento,
+		:subtotal_0,
+		:subtotal_12,
+		:descuento,
+		:iva,
+		:total,
+		:tipo,
+		:cliente_id,
+		:item_facturas_attributes => [
+			:cantidad,
+			:valor_unitario,
+			:descuento,
+			:iva,
+			:total,
+			:producto_id
+		]
+	end
+
+	def set_factura
+		@factura = Factura.find(params[:id])
 	end
 end
