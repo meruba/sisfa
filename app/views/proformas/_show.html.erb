@@ -1,16 +1,16 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title" id="myModalLabel">Proforma<span class="text-right"> Nº<%= @Proforma.numero%></span></h3>
+    <h3 class="modal-title" id="myModalLabel">Proforma<span class="text-right"> Nº<%= @proforma.numero%></span></h3>
 </div>
 <div class="modal-body">
   <!-- <p id="notice"><%= notice %></p> -->
   <p>
     <strong>Cliente:</strong>
-    <%= @Proforma.cliente.nombre%>
+    <%= @proforma.cliente.nombre%>
   </p>
   <p>
     <strong>Fecha de Emisión:</strong>
-    <%= @Proforma.fecha_de_emision %>
+    <%= @proforma.fecha_de_emision %>
   </p>
     <table class="table table-hover">
   <thead class= "well">

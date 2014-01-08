@@ -9,7 +9,7 @@ class ProformasDatatable
     {
       sEcho: params[:sEcho].to_i,
       iTotalRecords: Proforma.count,
-      iTotalDisplayRecords: Proformas.total_entries,
+      iTotalDisplayRecords: proformas.total_entries,
       aaData: data
     }
   end
@@ -17,16 +17,15 @@ class ProformasDatatable
 private
 
   def data
-    proformas.map do |Proforma|
+    proformas.map do |proforma|
       [
         (proforma.cliente.nombre),
         (proforma.numero),
-        (proforma.tipo),
         (proforma.total),
         (link_to '', proforma, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
         # (link_to 'Mostrar', @view.show(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
         # (link_to '', @view.show_factura_path(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
-        # (link_to 'delete', factura, method: :delete, class: "cancel_button")
+        # (link_to 'delete', proforma, method: :delete, class: "cancel_button")
       ]
     end 
   end
@@ -53,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[cliente_id numero tipo total]
+    columns = %w[cliente_id numero  total]
     columns[params[:iSortCol_0].to_i]
   end
 
