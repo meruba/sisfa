@@ -32,13 +32,13 @@ window.Helpers.AutocompleteHelper = {
 
     $(".cantidad").on "input", ->
       $this = $(this)
-      calcular_total_producto($this)
-      calcular_valores_factura()
+      window.Helpers.AutocompleteHelper.calcular_total_producto($this)
+      window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
     $(".eliminar_item").on "click", ->
       $this = $(this)
       $this.closest(".fields").remove()
-      calcular_valores_factura()
+      window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
   calcular_total_producto: (componente) ->
     cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
