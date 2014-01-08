@@ -27,8 +27,8 @@ window.Helpers.AutocompleteHelper = {
         $this.closest(".fields").find("td:nth-child(2)").find(".producto_id").val ui.item.id
         # $this.closest(".fields").find("td:nth-child(1)").find(".codigo").val ui.item.codigo
         $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_a
-        calcular_total_producto($this)
-        calcular_valores_factura()
+        window.Helpers.AutocompleteHelper.calcular_total_producto($this)
+        window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
     $(".cantidad").on "input", ->
       $this = $(this)
