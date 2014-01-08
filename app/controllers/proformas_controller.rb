@@ -1,6 +1,6 @@
 class ProformasController < ApplicationController
 	before_filter :require_login
-  before_action :set_factura, only: [:show]
+  before_action :set_proforma, only: [:show]
 
 	def index
 		respond_to do |format|
@@ -20,7 +20,6 @@ class ProformasController < ApplicationController
 		raise "error"
 			@proforma.numero = Proforma.last ? Proforma.last.numero + 1 : 1
 			@proforma.fecha_de_emision = Time.now
-			@proforma.fecha_de_vencimiento = Time.now + 30.days
 			if @proforma.save
 				redirect_to proformas_path, :notice => "Proforma Guardada"
 			else
