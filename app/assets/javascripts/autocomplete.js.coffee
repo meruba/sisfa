@@ -58,9 +58,9 @@ window.Helpers.AutocompleteHelper = {
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
-$(document).on "page:load", window.Helpers.AutocompleteHelper.init
+$(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocomplete
 # jQuery ->
 #   init_autocomplete()
 # $(document).on "page:load", init_autocomplete
-# $(document).on "nested:fieldAdded", init_autocomplete
+$(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 # $(document).on "nested:fieldRemoved", init_autocomplete
