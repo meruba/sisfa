@@ -12,9 +12,9 @@
         <br>
         <%= f.select(:rol, ['Administrador', 'Vendedor'], { :prompt => 'Tipo de Usuario'}, { :class => 'form-control' }) %>
         <br>
-        <%= f.password_field :password, :placeholder => "Password", class: "form-control" %>
+        <%= f.password_field :password, :placeholder => "Clave", class: "form-control" %>
         <br>
-        <%= f.password_field :password_confirmation, :placeholder => "Confirmar Password", class: "form-control" %>
+        <%= f.password_field :password_confirmation, :placeholder => "Confirmar Clave", class: "form-control" %>
         <br>
         <%= f.hidden_field(:cliente_id) %>
         <div class="input-group">
