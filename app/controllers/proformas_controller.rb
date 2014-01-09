@@ -12,6 +12,11 @@ class ProformasController < ApplicationController
 		@proforma = Proforma.new
 		@proforma.item_proformas.build
 	end
+	def show
+    respond_to do |format|
+      format.js
+    end
+  end
 	def create
 		cliente_attrs = params[:proforma].delete :cliente
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
