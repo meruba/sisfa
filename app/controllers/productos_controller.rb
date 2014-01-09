@@ -1,6 +1,6 @@
 class ProductosController < ApplicationController
 	before_filter :require_login
-  before_action :set_producto, only: [:show]
+  before_action :set_producto, only: [:show, :edit, :update]
   def index
     respond_to do |format|
       format.html
@@ -64,6 +64,22 @@ class ProductosController < ApplicationController
       end
     end
   end
+
+  def update
+    respond_to do |format|
+      if @producto.update(producto_params)
+        @productos = Producto.all
+        format.html { redirect_to @producto, notice: 'Producto was successfully updated.' }
+        format.json { render action: 'show', status: :created, location: @producto }
+        format.js { render "success"}
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @producto.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end
+  end
+
 
   private 
   def producto_params
