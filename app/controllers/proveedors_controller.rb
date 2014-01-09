@@ -2,7 +2,7 @@ class ProveedorsController < ApplicationController
 	# GET /proveedor
   # GET /proveedors.json
   before_filter :require_login
-  before_action :set_proveedor, only: [:show, :edit, :update, :destroy]
+  before_action :set_proveedor, only: [:show, :edit, :update]
   
   def index
     respond_to do |format|
@@ -90,21 +90,11 @@ class ProveedorsController < ApplicationController
       end
     end
   end
-
-  # DELETE /proveedors/1
-  # DELETE /proveedors/1.json
-  def destroy
-    @articulo.destroy
-    respond_to do |format|
-      format.html { redirect_to proveedors_url }
-      format.json { head :no_content }
-    end
-  end
   
   
   private 
   def proveedor_params
-    params.require(:proveedor).permit(:nombre_o_razon_social, :direccion, :codigo, :numero_de_identificacion, :telefono, :ciduad, :pais, :representante_legal, :fax)
+    params.require(:proveedor).permit(:nombre_o_razon_social, :direccion, :codigo, :numero_de_identificacion, :telefono, :codigo,:ciudad, :pais, :representante_legal, :fax)
   end
   def set_proveedor
       @proveedor = Proveedor.find(params[:id])

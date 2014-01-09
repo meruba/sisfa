@@ -20,15 +20,15 @@ private
     proveedors.map do |proveedor|
       [
         (proveedor.nombre_o_razon_social),
-        (proveedor.direccion),
+        #(proveedor.direccion),
         (proveedor.numero_de_identificacion),
         (proveedor.telefono),        
         (proveedor.codigo),
-        (proveedor.representante_legal),
-        (proveedor.pais),        
+        #(proveedor.representante_legal),
+        #(proveedor.pais),        
         (proveedor.ciudad),
-        (proveedor.fax),
-         (link_to 'Editar', @view.edit_proveedor_path(proveedor), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
+        #(proveedor.fax),
+        (link_to '', @view.edit_proveedor_path(proveedor), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', proveedor, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
       ]
     end 
   end
@@ -55,7 +55,7 @@ private
   end
 
   def sort_column
-    columns = %w[nombre_o_razon_social direccion numero_de_identificacion telefono codigo representante_legal pais ciudad fax]
+    columns = %w[nombre_o_razon_social numero_de_identificacion telefono codigo ciudad ]
     columns[params[:iSortCol_0].to_i]
   end
 
