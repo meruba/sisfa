@@ -10,7 +10,7 @@
   </p>
   <p>
     <strong>Fecha de Emisión:</strong>
-    <%= @factura.fecha_de_emision %>
+    <%= @factura.fecha_de_emision.to_s(:db) %>
   </p>
     <table class="table table-hover">
   <thead class= "well">

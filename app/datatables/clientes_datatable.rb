@@ -24,7 +24,7 @@ private
         (cliente.direccion),
         (cliente.telefono),        
         (cliente.email),
-        (link_to 'Editar', @view.edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}) + " " + (link_to '', cliente, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info"),
+        (link_to '', @view.edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', cliente, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info"),
       ]
     end 
   end

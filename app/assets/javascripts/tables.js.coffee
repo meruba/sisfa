@@ -6,9 +6,14 @@ init_datatables = ->
     sDom: "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
     oLanguage:
       sUrl: "datatables.spanish.txt"
+    aoColumnDefs: [
+    	bSortable: false
+    	aTargets: [-1]
+    ]
     bProcessing: true
     bServerSide: true
     sAjaxSource: $(".data-table").data('source')
+
 
 jQuery ->
   init_datatables()
