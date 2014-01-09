@@ -17,15 +17,15 @@ class ProveedorsController < ApplicationController
         @proveedors = Proveedor.all
       }
       format.json { 
-        @proveedors = Proveedor.where("nombre like ?", "%#{params[:term]}%")
+        @proveedors = Proveedor.where("nombre_o_razon_social like ?", "%#{params[:term]}%")
         @proveedors = @proveedors.map do |proveedor|
           {
-            :id => cliente.id,
-            :label => cliente.numero_de_identificacion,
-            :value => cliente.numero_de_identificacion,
-            :nombre_o_razon_social => cliente.nombre_o_razon_social,
-            :direccion => cliente.direccion,
-            :telefono => cliente.telefono
+            :id => proveedor.id,
+            :label => proveedor.numero_de_identificacion,
+            :value => proveedor.numero_de_identificacion,
+            :nombre_o_razon_social => proveedor.nombre_o_razon_social,
+            :direccion => proveedor.direccion,
+            :telefono => proveedor.telefono
           }
         end
         render :json => @proveedors
