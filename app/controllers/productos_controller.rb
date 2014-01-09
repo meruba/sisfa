@@ -1,5 +1,6 @@
 class ProductosController < ApplicationController
 	before_filter :require_login
+  before_action :set_producto, only: [:show]
   def index
     respond_to do |format|
       format.html
@@ -33,6 +34,11 @@ class ProductosController < ApplicationController
     @producto=  Producto.new
     respond_to do |format|
       format.js{ render "init" }
+    end
+  end
+  def show
+    respond_to do |format|
+      format.js
     end
   end
   def edit
@@ -73,4 +79,7 @@ class ProductosController < ApplicationController
                                      :fecha_de_caducidad,
                                      :casa_comercial
   end  
+  def set_producto
+      @producto = Producto.find(params[:id])
+    end
 end

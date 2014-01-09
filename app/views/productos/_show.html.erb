@@ -1,0 +1,55 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h1 class="modal-title" id="myModalLabel">Informacion</h1>
+</div>
+<div class="modal-body">
+  <p id="notice"><%= notice %></p>
+  <p>
+    <strong>Nombre:</strong>
+    <%= @producto.nombre %>
+  </p>
+  <p>
+    <strong>Nombre genérico:</strong>
+    <%= @producto.nombre_generico %>
+  </p>
+  <p>
+    <strong>Descripción:</strong>
+    <%= @producto.descripcion%>
+  </p>
+  <p>
+    <strong>Categoría:</strong>
+    <%= @producto.categoria %>
+  </p>
+  <p>
+    <strong>Código:</strong>
+    <%= @producto.codigo %>
+  </p>
+  <p>
+    <strong>Cantidad:</strong>
+    <%= @producto.cantidad_disponible %>
+  </p>
+  <p>
+    <strong>Casa comercial:</strong>
+    <%= @producto.casa_comercial %>
+  </p>
+  <p>
+    <strong>Precio A:</strong>
+    <%= @producto.precio_a %>
+  </p>
+  <p>
+    <strong>Precio B:</strong>
+    <%= @producto.precio_b %>
+  </p>
+  <p>
+    <strong>Precio C:</strong>
+    <%= @producto.precio_c %>
+  </p>
+  <p>
+    <strong>Fecha de Caducidad:</strong>
+    <%= @producto.fecha_de_caducidad %>
+  </p>
+  
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+</div>

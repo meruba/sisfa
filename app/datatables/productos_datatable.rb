@@ -1,5 +1,5 @@
 class ProductosDatatable
-  delegate :params, :h, to: :@view
+  delegate :params, :link_to, :h, to: :@view
 
   def initialize(view)
     @view = view
@@ -20,12 +20,13 @@ private
     productos.map do |producto|
       [
         (producto.nombre),
-        (producto.nombre_generico),
+        #(producto.nombre_generico),
         (producto.cantidad_disponible),
         (producto.precio_a),
         (producto.codigo),
         (producto.categoria),
-        (producto.casa_comercial)
+        (link_to '', @view.edit_producto_path(producto), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', producto, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info"),
+        #(producto.casa_comercial)
       ]
     end 
   end
@@ -38,7 +39,7 @@ private
     productos = Producto.order("#{sort_column} #{sort_direction}")
     productos = productos.page(page).per_page(per_page)
     if params[:sSearch].present?
-      productos = productos.where("nombre like :search or nombre_generico like :search or codigo like :search or casa_comercial like :search or categoria like :search", search: "%#{params[:sSearch]}%")
+      productos = productos.where("nombre like :search or codigo like :search or categoria like :search", search: "%#{params[:sSearch]}%")
     end
     productos
   end
@@ -52,7 +53,7 @@ private
   end
 
   def sort_column
-    columns = %w[nombre nombre_generico cantidad_disponible precio_a codigo categoria casa_comercial]
+    columns = %w[nombre cantidad_disponible precio_a codigo categoria ]
     columns[params[:iSortCol_0].to_i]
   end
 
