@@ -1,20 +1,21 @@
 class FacturasDatatable
   delegate :params,:link_to, :h, to: :@view
 
-  def initialize(view)
+  def initialize(view, place)
     @view = view
+    @place = place
   end
 
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Factura.count,
+      iTotalRecords: facturas.count,
       iTotalDisplayRecords: facturas.total_entries,
       aaData: data
     }
   end
 
-private
+  private
 
   def data
     facturas.map do |factura|
@@ -36,7 +37,14 @@ private
   end
 
   def fetch_facturas
-    facturas = Factura.order("#{sort_column} #{sort_direction}")
+    case @place
+    when "compra"  
+      facturas = Factura.where(:tipo => "compra").order("#{sort_column} #{sort_direction}")
+    when "anulada"
+      facturas = Factura.where(:anulada => true).order("#{sort_column} #{sort_direction}")
+    when "venta"
+      facturas = Factura.where("tipo != 'compra'").order("#{sort_column} #{sort_direction}")
+    end
     facturas = facturas.page(page).per_page(per_page)
     if params[:sSearch].present?
       facturas = facturas.where("tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
