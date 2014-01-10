@@ -55,12 +55,24 @@ window.Helpers.AutocompleteHelper = {
     $(".descuento_factura").val 0
     $(".iva_factura").val((sum*0.12).toFixed(2));
     $(".total_factura").val((sum*0.12+sum).toFixed(2));
+
+  init_autocompleteProveedor: ->
+    $(".numero_de_identificacion_proveedor").autocomplete
+      minLength: 3
+      source: "/proveedors/autocomplete.json"
+      select: (event, ui) ->
+        $(".proveedor_id").val ui.item.id
+        $(".nombre").val ui.item.nombre_o_razon_social
+        $(".direccion").val ui.item.direccion
+        $(".telefono").val ui.item.telefono
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocomplete
+$(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
 # jQuery ->
 #   init_autocomplete()
 # $(document).on "page:load", init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
+$(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
 # $(document).on "nested:fieldRemoved", init_autocomplete
