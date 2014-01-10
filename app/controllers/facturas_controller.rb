@@ -19,6 +19,11 @@ class FacturasController < ApplicationController
     end
   end
 
+  def compra
+		@factura = Factura.new(:tipo => "compra") 
+		@factura.item_facturas.build
+  end
+  
 	def ventanilla
 		@factura = Factura.new(:tipo=>"ventanilla")
 		@factura.item_facturas.build
