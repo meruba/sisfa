@@ -8,13 +8,14 @@
 	<div class="tab-content">
 		<div class="tab-pane active" id="todas">
 			<div class="table-responsive">
-				<%= render "facturas/datatables/facturas", facturas: @facturas %>
+				<%= render "facturas/datatables/facturas_venta", facturas: @facturas %>
 			</div>
 		</div>
 		<div class="tab-pane" id="anuladas">
-			<%= render "facturas/datatables/facturas", facturas: @facturas %>
+			<%= render "facturas/datatables/facturas_anuladas", facturas: @facturas %>
 		</div>
 		<div class="tab-pane" id="compra">
+			<%= render "facturas/datatables/facturas_compra", facturas: @facturas %>
 		</div>
 	</div>
 </div>

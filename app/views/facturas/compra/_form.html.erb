@@ -1,15 +1,18 @@
 <%= nested_form_for @factura do |f| %>
+<% if @factura.errors.any? %>
+	<% @factura.errors.full_messages.each do |message| %>
+	<div class="flash_menssage">
+    <div class="alert alert-error">
+      <a class="close" data-dismiss="alert">×</a>
+			<div id="flash_notice"><%= message %></div>
+    </div>
+  </div>
+	<% end %>
+</ul>
+<% end %>
 <div class="col-md-7">
 	<h6 class="text-muted text-right fecha"></h6>
 	<!-- formulario datos del proveedor -->
-	<% if @factura.errors.any? %>
-	<h2>Errores:</h2>	
-	<ul>
-		<% @factura.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
-	<% end %>
 	<%= f.fields_for :proveedor do |proveedor_params| %>
 	<%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>
 	<%=  proveedor_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion_proveedor", :placeholder => "Cédula o RUC" %>

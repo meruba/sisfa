@@ -44,6 +44,7 @@ def self.disminuir_stock (item_facturas)
 			producto.save
 		end
 	end
+end
 	# item_facturas.each do |value, key|
 	# 	producto  = Producto.find("#{key[:producto_id]}")
 	# 	cantidad_item = item_facturas[value][:cantidad].to_f
@@ -51,6 +52,14 @@ def self.disminuir_stock (item_facturas)
 	# 	raise 'error'
 	# 	producto.save
 	# end
+def self.aumentar_stock (item_facturas)
+	item_facturas.each do |item|
+		unless item.producto_id.nil?
+			producto  = Producto.find(item.producto_id)
+			producto.cantidad_disponible += item.cantidad
+			producto.save
+		end
+	end
 end
 
 end
