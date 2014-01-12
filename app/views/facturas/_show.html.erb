@@ -4,10 +4,17 @@
 </div>
 <div class="modal-body">
   <!-- <p id="notice"><%= notice %></p> -->
+<% if  @factura.cliente.nil?%>
+  <p>
+    <strong>Proveedor:</strong>
+    <%= @factura.proveedor.nombre_o_razon_social%>
+  </p>
+<% else %>
   <p>
     <strong>Cliente:</strong>
     <%= @factura.cliente.nombre%>
   </p>
+<% end %>
   <p>
     <strong>Fecha de Emisión:</strong>
     <%= @factura.fecha_de_emision.to_s(:db) %>

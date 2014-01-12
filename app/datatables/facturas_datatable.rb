@@ -18,6 +18,8 @@ class FacturasDatatable
   private
 
   def data
+    case @place
+    when "venta"
     facturas.map do |factura|
       [
         (factura.cliente.nombre),
@@ -25,11 +27,30 @@ class FacturasDatatable
         (factura.tipo),
         (factura.total),
         (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
-        # (link_to 'Mostrar', @view.show(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
-        # (link_to '', @view.show_factura_path(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
-        # (link_to 'delete', factura, method: :delete, class: "cancel_button")
+        # (link_to '', factura, method: :anulada, class: "fa fa-eye btn btn-danger")
+      ]
+    end
+    when "anulada"
+    facturas.map do |factura|
+      [
+        (factura.cliente.nombre),
+        (factura.numero),
+        (factura.tipo),
+        (factura.total),
+        (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
       ]
     end 
+    when "compra"
+    facturas.map do |factura|
+      [
+        (factura.proveedor.nombre_o_razon_social),
+        (factura.numero),
+        (factura.total),
+        (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
+        # (link_to 'delete', factura, method: :delete, class: "cancel_button")
+      ]
+    end
+    end
   end
 
   def facturas
@@ -38,7 +59,7 @@ class FacturasDatatable
 
   def fetch_facturas
     case @place
-    when "compra"
+    when "compra"  
       facturas = Factura.where(:tipo => "compra").order("#{sort_column} #{sort_direction}")
     when "anulada"
       facturas = Factura.where(:anulada => true).order("#{sort_column} #{sort_direction}")
