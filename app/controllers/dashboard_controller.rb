@@ -91,7 +91,7 @@ class DashboardController < ApplicationController
         end
       end
     end
-    return total
+    return '%.2f' %total
   end
 
   def valor_total_facturas(facturas)
@@ -101,7 +101,7 @@ class DashboardController < ApplicationController
           total += factura.total
       end
     end
-    return total
+    return '%.2f' %total
   end
 end
 
