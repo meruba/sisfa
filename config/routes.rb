@@ -1,6 +1,6 @@
 Sisfa::Application.routes.draw do
 get "dashboard/index"
-get "dashboard/todas_facturas"
+get "dashboard/reporte_mes"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "proveedors/autocomplete"
@@ -12,12 +12,9 @@ get "facturas/venta"
 get "facturas/compra"
 get "facturas/index_compra"
 get "facturas/index_anulada"
+get "facturas/anular"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
-# get "signup"  => "users#new",               :as => "signup"
-
-#  get "sesion_usuarios/new"
-#  get "usuarios/new"
   
   resources :user_sessions
   resources :users
@@ -31,12 +28,6 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :proformas
   resources :item_proformas
 
-
-  # resources :facturas do
-  #   member do
-  #     post 'hospitalizacion'
-  #   end
-  # end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
