@@ -8,6 +8,7 @@
   $(".table-responsive").html('<%= j render 'productos', productos: @productos %>');
   window.Helpers.init_datatables();
   window.Helpers.ButtonsHelper.init();
+  alertify.success("Cliente guardado");
 
   // agregar mensaje
 <%- end %>
