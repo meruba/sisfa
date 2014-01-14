@@ -67,6 +67,12 @@ class FacturasController < ApplicationController
 	end
 
 	def anular
+		if @factura.anulada
+			@factura.anulada = false
+		else
+			@factura.anulada = true
+		end
+			@factura.save
 	end
 
 	def create
@@ -77,6 +83,20 @@ class FacturasController < ApplicationController
 		end 
 	end
 
+	def update    
+		respond_to do |format|
+      if @factura.update(factura_params)
+        @factura = Factura.all
+        format.html { redirect_to @factura, notice: 'Factura modificada exitosamente' }
+        format.json { render action: 'show', status: :created, location: @factura }
+        # format.js { render "success"}
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @factura.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end		
+	end
 	private
 
 	def create_factura_venta
@@ -89,16 +109,28 @@ class FacturasController < ApplicationController
 			@factura.fecha_de_vencimiento = Time.now + 30.days
 			Factura.disminuir_stock(@factura.item_facturas)
 			if @factura.save
-				redirect_to facturas_path, :notice => "Factura Guardada"
+				respond_to do |format|
+					format.html{
+						redirect_to facturas_path, :notice => "Factura Guardada"
+					}
+					format.js
+				end
 			else
-				render "venta"
+				respond_to do |format|
+					format.html {
+						flash["alert-error"] = "Hubo un problema."
+						render 'venta'
+					}
+					format.js
+				end
 			end
 		else
+			raise 'error'
 			flash[:error] = 'Errores en Cliente'
 			@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
 			@factura.item_facturas.build
 			render "venta"
-		end 
+		end
 	end
 
 	def create_factura_compra
