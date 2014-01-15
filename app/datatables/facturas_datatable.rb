@@ -65,7 +65,7 @@ class FacturasDatatable
     when "anulada"
       facturas = Factura.where(:anulada => true).order("#{sort_column} #{sort_direction}")
     when "venta"
-      facturas = Factura.where("tipo != 'compra'").order("#{sort_column} #{sort_direction}")
+      facturas = Factura.where("tipo != 'compra' and anulada = false").order("#{sort_column} #{sort_direction}")
     end
     facturas = facturas.page(page).per_page(per_page)
     if params[:sSearch].present?
