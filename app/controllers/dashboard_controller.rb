@@ -54,6 +54,23 @@ class DashboardController < ApplicationController
     # @facturasañohospitalizacion = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "hospitalizacion")
     # @facturasañoconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "consulta_externa")  
   end
+def reporte_mes
+  @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month , :tipo =>  '!= compra')
+  # render :pdf => "my_pdf", :layout => false, :template => "/dashboard/reporte_mes"
+  respond_to do |format|
+    format.html
+    format.pdf do
+      render :pdf => "mes ventanilla",
+      :template => 'dashboard/reporte_mes.html.erb',
+      :layout => false,
+      :footer => {
+        :center => "Center",
+        :left => "Left",
+        :right => "Right"
+      }
+    end
+  end  
+end
 
   private
 
@@ -68,6 +85,7 @@ class DashboardController < ApplicationController
     else
       porcentaje = (100 * total_tipo_factura)/total_facturas
     end
+    return porcentaje
   end
 
   def cantidad_facturas(facturas, tipo_factura)
