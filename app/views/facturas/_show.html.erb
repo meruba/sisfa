@@ -1,44 +1,44 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3 class="modal-title" id="myModalLabel">Factura<span class="text-right"> Nº<%= @factura.numero%></span></h3>
+  <h3 class="modal-title" id="myModalLabel">Factura<span class="text-right"> Nº<%= @factura.numero%></span></h3>
 </div>
 <div class="modal-body">
   <!-- <p id="notice"><%= notice %></p> -->
-<% if  @factura.cliente.nil?%>
+  <% if  @factura.cliente.nil?%>
   <p>
     <strong>Proveedor:</strong>
     <%= @factura.proveedor.nombre_o_razon_social%>
   </p>
-<% else %>
+  <% else %>
   <p>
     <strong>Cliente:</strong>
     <%= @factura.cliente.nombre%>
   </p>
-<% end %>
+  <% end %>
   <p>
     <strong>Fecha de Emisión:</strong>
     <%= @factura.fecha_de_emision.to_s(:db) %>
   </p>
-    <table class="table table-hover">
-  <thead class= "well">
-    <tr>
-      <th>Producto</th>
-      <th>Cantidad</th>
-      <th>Precio</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @factura.item_facturas.each do |item| %>
+  <table class="table table-hover">
+    <thead class= "well">
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @factura.item_facturas.each do |item| %>
       <tr>
         <td><%= item.producto.nombre%></td>
         <td><%= item.cantidad %></td>
         <td>$ <%= item.producto.precio_a %></td>
         <td>$ <%= item.total %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+      <% end %>
+    </tbody>
+  </table>
   <h4 class="text-success text-right">
     <strong>Total: $</strong>
     <%= @factura.total %>
