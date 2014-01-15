@@ -1,6 +1,6 @@
 class FacturasController < ApplicationController
 	before_filter :require_login
-	before_action :set_factura, only: [:show]
+	before_action :set_factura, only: [:show, :anular]
 
 #obtiene todas las facturas de venta tipo: ventanilla, consulta externa y hospitalizacion
 	def index
@@ -73,6 +73,7 @@ class FacturasController < ApplicationController
 			@factura.anulada = true
 		end
 			@factura.save
+			redirect_to facturas_path, :notice => "Factura Anulada"
 	end
 
 	def create
@@ -104,7 +105,7 @@ class FacturasController < ApplicationController
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
 		if @cliente.save
 			@factura = @cliente.facturas.build(factura_params)
-			@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
+			@factura.numero = Factura.where(:tipo => "!= 'compra' ").last ? Factura.where(:tipo => "!= 'compra' ").last.numero + 1 : 1
 			@factura.fecha_de_emision = Time.now
 			@factura.fecha_de_vencimiento = Time.now + 30.days
 			Factura.disminuir_stock(@factura.item_facturas)

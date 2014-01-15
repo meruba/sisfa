@@ -27,7 +27,7 @@ class FacturasDatatable
         (factura.tipo),
         (factura.total),
         (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info") + " " + 
-        (link_to '', @view.factura_path(factura), data: { confirm: 'Esta seguro?' }, class: "fa fa-thumbs-down btn btn-danger")
+        (link_to '', @view.anular_factura_path(factura), method: :post, data: { confirm: 'Esta seguro?' }, class: "fa fa-thumbs-down btn btn-danger")
         # (link_to 'Create PDF',factura, :format => :pdf)
       ]
     end
