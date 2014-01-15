@@ -70,8 +70,10 @@ class ClientesController < ApplicationController
           render "success"
         }
       else
-        format.html { render action: 'new' }
-        format.js
+        format.html { render action: 'index' }
+        format.js{
+          render "success"
+        }
       end
     end
   end
