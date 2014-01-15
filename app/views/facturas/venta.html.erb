@@ -6,7 +6,7 @@
 		<li><%=link_to("Consulta Externa",{:controller => 'facturas', :action => 'consulta_externa'}, :remote => true, :data => {:toogle => "tab"})%></li>
 	</ul>
 	<div class="tab-content">
-		<%= render "ventanilla" %>
+		<%= render "facturas/venta/ventanilla" %>
 	</div>
 </div>
 
