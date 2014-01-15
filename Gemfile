@@ -47,6 +47,10 @@ end
 gem 'will_paginate'
 
 gem 'id_ecuador'
+
+#generate files pdf
+gem 'wkhtmltopdf-binary'
+gem 'wicked_pdf'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

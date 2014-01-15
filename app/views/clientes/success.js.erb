@@ -1,5 +1,9 @@
 <%- if @cliente.errors.any? %>
   $('#content_modal').html('<%= escape_javascript(render('form')) %>');
+  window.Helpers.ButtonsHelper.init();
+  <%- @cliente.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
   // agegar errores
 <%- else %>
   $("#myModal").modal("hide");
