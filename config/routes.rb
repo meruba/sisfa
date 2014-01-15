@@ -12,7 +12,6 @@ get "facturas/venta"
 get "facturas/compra"
 get "facturas/index_compra"
 get "facturas/index_anulada"
-get "facturas/anular"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
   
@@ -23,7 +22,15 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :clientes
   resources :proveedors
   resources :productos
-  resources :facturas
+  resources :facturas do
+    member do
+      post "anular"
+    end
+  end
+    #     member do
+  #       get 'short'
+  #       post 'toggle'
+  #     end
   resources :item_facturas
   resources :proformas
   resources :item_proformas
