@@ -90,7 +90,7 @@ class ClientesController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @cliente.errors, status: :unprocessable_entity }
-        format.js
+        format.js { render "success"}
       end
     end
   end
