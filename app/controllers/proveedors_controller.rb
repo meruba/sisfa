@@ -21,7 +21,7 @@ class ProveedorsController < ApplicationController
         @proveedors = @proveedors.map do |proveedor|
           {
             :id => proveedor.id,
-            :label => proveedor.numero_de_identificacion,
+            :label => proveedor.numero_de_identificacion + " / " + proveedor.nombre_o_razon_social,
             :value => proveedor.numero_de_identificacion,
             :nombre_o_razon_social => proveedor.nombre_o_razon_social,
             :direccion => proveedor.direccion,

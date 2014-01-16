@@ -22,7 +22,7 @@ class ClientesController < ApplicationController
         @clientes = @clientes.map do |cliente|
           {
             :id => cliente.id,
-            :label => cliente.numero_de_identificacion,
+            :label => cliente.numero_de_identificacion + " / " + cliente.nombre,
             :value => cliente.numero_de_identificacion,
             :nombre => cliente.nombre,
             :direccion => cliente.direccion,

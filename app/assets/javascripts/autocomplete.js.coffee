@@ -17,8 +17,9 @@ window.Helpers.AutocompleteHelper = {
       response: (event, ui) ->
         unless ui.content.length
           noResult =
-            value: ""
-            label: "Ningun Resultado"
+            value: event.target.value
+            label: "Agregar: #{event.target.value}"
+            # kind: "<a href='#'>t</a>"
           ui.content.push noResult
         else
           $("#message").empty()
