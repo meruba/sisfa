@@ -25,7 +25,7 @@ private
         (producto.precio_a),
         (producto.codigo),
         (producto.categoria),
-        (link_to '', @view.edit_producto_path(producto), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', producto, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info"),
+        (link_to '', @view.edit_producto_path(producto), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', producto, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info mostrar"),
         #(producto.casa_comercial)
       ]
     end 
