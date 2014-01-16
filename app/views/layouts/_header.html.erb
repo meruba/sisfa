@@ -28,22 +28,16 @@
         </ul>
         <ul class="nav navbar-nav navbar-left">
           <li class="dropdown">
-
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-users"></i>
-              CLIENTES
-              <b class="caret"></b>
-            </a>
-            <ul class="dropdown-menu">
-              <li><%=link_to("Lista", :controller => 'clientes', :action => 'index')%></li>                
-            </ul>
+              <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, :controller => 'clientes', :action => 'index')%></li>
+            </a>  
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-left">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-stack-overflow"></i>
-              FACTURACIÓN
+              Facturación
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
@@ -58,7 +52,7 @@
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-barcode"></i>
-              PRODUCTOS
+              Productos
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
@@ -70,20 +64,22 @@
         <ul class="nav navbar-nav navbar-left">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-ambulance"></i> 
-              PROVEEDORES
-              <b class="caret"></b>
+           
+            <li><%=link_to("<i class='fa fa-ambulance'></i> Proveedores".html_safe, :controller => 'proveedors', :action => 'index')%></li>
+            </a>  
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-left">
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             </a>
-            <ul class="dropdown-menu">
-              <li><%=link_to("Ingresar", :controller => 'proveedors', :action => 'index')%></li>           
-            </ul>
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-left">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-file-text-o"></i>
-              PROFORMA
+              Proforma
               <b class="caret"></b>
             </a>
             <ul class="dropdown-menu">
