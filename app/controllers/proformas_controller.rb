@@ -25,15 +25,15 @@ class ProformasController < ApplicationController
 			@proforma.numero = Proforma.last ? Proforma.last.numero + 1 : 1
 			@proforma.fecha_emision = Time.now
 			if @proforma.save
-				redirect_to clientes_path, :notice => "Proforma Guardada"
+				redirect_to proformas_path, :notice => "Proforma Guardada"
 			else
-				render "new"
+				flash[:error] = 'Error en la Proforma'
 			end
 		else
 			flash[:error] = 'Errores en Cliente'
 			@proforma = Proforma.new(:numero => Proforma.last ? Proforma.last.numero + 1 : 1 )
 			@proforma.item_proformas.build
-			render "new"
+			redirect_to proformas_path
 		end 
 	end
 
