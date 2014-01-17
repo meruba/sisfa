@@ -77,14 +77,15 @@ def generar_reporte
   @end_date = params[:fecha_final]
   @tipo_factura = params[:tipo_factura]
   @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
-  respond_to do |format|
-    format.html
-    format.pdf do
-      render :pdf => "reporte",
-      :template => 'dashboard/generar_reporte.html.erb',
-      :layout => false
-    end
-  end
+  render :pdf => "my_pdf", :layout => false, :template => "dashboard/generar_reporte"
+  # respond_to do |format|
+  #   format.html
+  #   format.pdf do
+  #     render :pdf => "reporte",
+  #     :template => 'dashboard/generar_reporte.html.erb',
+  #     :layout => false
+  #   end
+  # end
 end
 
   private

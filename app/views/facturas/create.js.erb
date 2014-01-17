@@ -1,8 +1,9 @@
-<% if @factura.new_record? %>
-  // window.Helpers.Notification.create("alert-error","Hubo un problema.");
-  console.log("error")
+<%- if @factura.errors.any? %>
+	window.Helpers.ButtonsHelper.init();
+	<%- @factura.errors.full_messages.each do |msg|%>
+		alertify.error("<%=j msg %>");
+	<%- end %>
 <% else %>
-  console.log("se guardo")
-  window.Helpers.Notification.create("alert-success","Factura Almacenada.");
-  $(".tab-content").find(".new_factura")[0].reset();
+  alertify.success("Factura Guardada");
+	$(".tab-content").find(".new_factura")[0].reset();
 <% end %>
