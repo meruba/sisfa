@@ -2,7 +2,7 @@ window.Helpers ||= {}
 
 window.Helpers.TooltipHelper = {
   init: ->
-  	$("[data-toggle=tooltip]").tooltip placement: "top"
+  	$(".mostrar").tooltip placement: "top"
     # $(".mostrar").each ->
     #   console.log $(this)
     #   $(this).insertBefore "<div class='tooltip' title='Mostrar'><div class='tooltip-inner'>"

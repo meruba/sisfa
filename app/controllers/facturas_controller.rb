@@ -98,6 +98,7 @@ class FacturasController < ApplicationController
       end
     end		
 	end
+
 	private
 
 	def create_factura_venta
@@ -142,11 +143,13 @@ class FacturasController < ApplicationController
 			# @factura.numero = Factura.last ? Factura.last.numero + 1 : 1
 			@factura.fecha_de_emision = Time.now
 			@factura.fecha_de_vencimiento = Time.now + 30.days
+				# raise 'error'
 			if @factura.save
 				Factura.aumentar_stock(@factura.item_facturas)
 				redirect_to "compra", :notice => "Factura Guardada"
 			else
-				render "compra"
+				# render "compra"
+				redirect_to facturas_path, flash[:error] => "ERROR"
 			end
 		else
 			flash[:error] = 'Errores en Proveedor'
