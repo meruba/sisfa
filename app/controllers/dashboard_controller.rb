@@ -73,10 +73,10 @@ def reporte_mes
 end
 
 def generar_reporte
-  @star_date = params[:fecha_inicial]
+  @start_date = params[:fecha_inicial]
   @end_date = params[:fecha_final]
   @tipo_factura = params[:tipo_factura]
-  @search = Factura.where(:created_at => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
+  @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
   respond_to do |format|
     format.html
     format.pdf do
