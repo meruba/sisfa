@@ -3,13 +3,13 @@
 	<div class= "col-md-5 estadisticas">
 		<div class= "col-md-6 text-center">
 			<h3>Generar Reporte:</h3>
-			<%= select_tag :tipo_factura, options_for_select([:ventanilla, :hospitalizacion, :consulta_externa, :compra]), { :class => "col-md-4 form-control" } %>
+			<%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='compra'>Compra</option>".html_safe, { :class => "col-md-4 form-control" } %>
 		</div>
 		<div class="col-md-6"><br>
 			<span class="fa fa-calendar"></span>
-			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "fecha de inicio" %><br><br>
+			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio" %><br><br>
 			<span class="fa fa-calendar"></span>
-			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "fecha final" %><br><br>
+			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "Fecha final" %><br><br>
 			<%= submit_tag "Imprimir", :name => nil, :class => "btn-block guardar_submit"%>
 		</div>
 	</div>
