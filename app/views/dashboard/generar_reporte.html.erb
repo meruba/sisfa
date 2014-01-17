@@ -1,0 +1,32 @@
+<% if  @search.empty?%>
+  <h3>No se encontro ninguna factura</h3>
+<% else %>
+  <h3>Reporte de Facturas  de <%= @tipo_factura%>  desde:</h3>
+  <h4><%= @star_date%> hasta <%= @end_date%></h4>
+  <%= @total%>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>Nº Factura</th>
+        <th>Cliente/Proveedor</th>
+        <th>Fecha</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @search.each do |factura| %>
+      <tr>
+        <td><%= factura.numero %></td>
+        <% if factura.cliente.nil?%>
+        <td><%= factura.proveedor.nombre_o_razon_social%></td>
+        <% else %>
+        <td><%= factura.cliente.nombre%></td>
+        <% end %>
+        <td><%= factura.created_at.to_s(:db) %></td>
+        <td><%= factura.total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <td><%= link_to 'Imprimir PDF', :format => :pdf %></td>
+<% end %>

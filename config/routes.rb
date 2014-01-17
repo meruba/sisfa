@@ -12,6 +12,7 @@ get "facturas/venta"
 get "facturas/compra"
 get "facturas/index_compra"
 get "facturas/index_anulada"
+post "dashboard/generar_reporte"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
   

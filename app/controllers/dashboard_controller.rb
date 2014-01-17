@@ -52,10 +52,10 @@ class DashboardController < ApplicationController
     # @facturasaño = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year)
     # @facturasañoventanilla = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "ventanilla")
     # @facturasañohospitalizacion = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "hospitalizacion")
-    # @facturasañoconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "consulta_externa")  
+    # @facturasañoconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "consulta_externa")
   end
 def reporte_mes
-  @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month , :tipo =>  '!= compra')
+  @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => 'ventanilla')
   # render :pdf => "my_pdf", :layout => false, :template => "/dashboard/reporte_mes"
   respond_to do |format|
     format.html
@@ -72,8 +72,23 @@ def reporte_mes
   end  
 end
 
-  private
+def generar_reporte
+  @star_date = params[:fecha_inicial]
+  @end_date = params[:fecha_final]
+  @tipo_factura = params[:tipo_factura]
+  @search = Factura.where(:created_at => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
+  respond_to do |format|
+    format.html
+    format.pdf do
+      render :pdf => "reporte",
+      :template => 'dashboard/generar_reporte.html.erb',
+      :layout => false
+    end
+  end
+end
 
+  private
+  
   def consulta_facturas(query)
     todasfacturas = Factura.where(:created_at => query)
     return :json => todasfacturas
