@@ -11,6 +11,8 @@ init_datatables = ->
         bSortable: false
         aTargets: [-1]
       ]
+      fnInitComplete: (oSettings, json) ->
+        jQuery window.Helpers.TooltipHelper.init
 
 jQuery ->
   init_datatables()
