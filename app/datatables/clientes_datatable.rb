@@ -24,7 +24,7 @@ private
         (cliente.direccion),
         (cliente.telefono),        
         (cliente.email),
-        (link_to '', @view.edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', cliente, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "mostrar fa fa-eye btn btn-info"),
+        (link_to '', @view.edit_cliente_path(cliente), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-pencil btn btn-warning"}) + " " + (link_to '', cliente, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info"),
       ]
     end 
   end

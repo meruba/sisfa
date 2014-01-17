@@ -28,7 +28,7 @@ private
         #(proveedor.pais),        
         (proveedor.ciudad),
         #(proveedor.fax),
-        (link_to '', @view.edit_proveedor_path(proveedor), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-pencil btn btn-warning"}) + " " + (link_to '', proveedor, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
+        (link_to '', @view.edit_proveedor_path(proveedor), {:remote => true, :rel=> 'tooltip', :title => 'Editar', 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-pencil btn btn-warning"}) + " " + (link_to '', proveedor, :remote => true, :rel => 'tooltip', :title=> 'Mostrar', 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info")
       ]
     end 
   end
