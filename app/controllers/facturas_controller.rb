@@ -106,11 +106,12 @@ class FacturasController < ApplicationController
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
 		if @cliente.save
 			@factura = @cliente.facturas.build(factura_params)
-			@factura.numero = Factura.where(:tipo => "!= 'compra' ").last ? Factura.where(:tipo => "!= 'compra' ").last.numero + 1 : 1
+			@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
 			@factura.fecha_de_emision = Time.now
 			@factura.fecha_de_vencimiento = Time.now + 30.days
-			Factura.disminuir_stock(@factura.item_facturas)
+			Factura.item_venta(@factura.item_facturas)
 			if @factura.save
+				# raise "error"
 				respond_to do |format|
 					format.html{
 						redirect_to facturas_path, :notice => "Factura Guardada"
@@ -127,7 +128,7 @@ class FacturasController < ApplicationController
 				end
 			end
 		else
-			raise 'error'
+			# raise 'error'
 			flash[:error] = 'Errores en Cliente'
 			@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
 			@factura.item_facturas.build
@@ -143,13 +144,16 @@ class FacturasController < ApplicationController
 			# @factura.numero = Factura.last ? Factura.last.numero + 1 : 1
 			@factura.fecha_de_emision = Time.now
 			@factura.fecha_de_vencimiento = Time.now + 30.days
+			Factura.item_compra(@factura.item_facturas)
 				# raise 'error'
 			if @factura.save
 				Factura.aumentar_stock(@factura.item_facturas)
-				redirect_to "compra", :notice => "Factura Guardada"
+				# redirect_to "compra", :notice => "Factura Guardada"
+				redirect_to facturas_path, :notice => "Factura Guardada"
 			else
 				# render "compra"
-				redirect_to facturas_path, flash[:error] => "ERROR"
+				flash[:error] = "Error al facturar"
+				redirect_to facturas_path
 			end
 		else
 			flash[:error] = 'Errores en Proveedor'
@@ -158,6 +162,7 @@ class FacturasController < ApplicationController
 			render "new"
 		end 
 	end
+
 	def factura_params
 		params.require(:factura).permit :numero,
 		:observacion,
@@ -176,6 +181,7 @@ class FacturasController < ApplicationController
 			:descuento,
 			:iva,
 			:total,
+			:tipo,
 			:producto_id
 		]
 	end
