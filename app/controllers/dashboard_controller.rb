@@ -2,21 +2,21 @@ class DashboardController < ApplicationController
   before_filter :require_login
   def index
     #estas son las consultas referentes a hoy... no olvides
-    facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day)
-    @cantidad_dia_ventanilla = cantidad_facturas(facturas_dia, "ventanilla")
-    @totaldia_ventanilla = valor_total_por_facturas(facturas_dia, "ventanilla")
-    @cantidad_dia_consultaexterna = cantidad_facturas(facturas_dia, "consulta_externa")
-    @totaldia_consultaexterna = valor_total_por_facturas(facturas_dia, "consulta_externa")
-    @cantidad_dia_hospitalizacion = cantidad_facturas(facturas_dia, "hospitalizacion")
-    @totaldia_hospitalizacion = valor_total_por_facturas(facturas_dia, "hospitalizacion")
-    @totalfacturashoy = valor_total_facturas(facturas_dia)
+    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"compra")
+    @cantidad_dia_ventanilla = cantidad_facturas(@facturas_dia, "ventanilla")
+    @totaldia_ventanilla = valor_total_por_facturas(@facturas_dia, "ventanilla")
+    @cantidad_dia_consultaexterna = cantidad_facturas(@facturas_dia, "consulta_externa")
+    @totaldia_consultaexterna = valor_total_por_facturas(@facturas_dia, "consulta_externa")
+    @cantidad_dia_hospitalizacion = cantidad_facturas(@facturas_dia, "hospitalizacion")
+    @totaldia_hospitalizacion = valor_total_por_facturas(@facturas_dia, "hospitalizacion")
+    @totalfacturashoy = valor_total_facturas(@facturas_dia)
     @cantidadfacturashoy = @cantidad_dia_ventanilla + @cantidad_dia_hospitalizacion + @cantidad_dia_consultaexterna
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_dia_ventanilla, @cantidadfacturashoy)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_dia_hospitalizacion, @cantidadfacturashoy)
     @porcentajedia_consultaexterna = regla_de_tres(@cantidad_dia_consultaexterna, @cantidadfacturashoy)
     # raise 'error'
     #estas son las consultas referentes al mes
-    facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month)
+    facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month, "compra")
     @cantidad_mes_ventanilla = cantidad_facturas(facturas_mes, "ventanilla")
     @totalmes_ventanilla = valor_total_por_facturas(facturas_mes, "ventanilla")
     @cantidad_mes_consultaexterna = cantidad_facturas(facturas_mes, "consulta_externa")
@@ -37,7 +37,7 @@ class DashboardController < ApplicationController
     # @porcentajemes_consultaexterna = regla_de_tres(@facturasmesconsultaexterna,@facturasmes)
     # # raise 'error'
     # #estas son las consultas referentes al año
-    facturas_año = consulta_facturas(Time.now.beginning_of_year..Time.now.end_of_year)
+    facturas_año = consulta_facturas(Time.now.beginning_of_year..Time.now.end_of_year, "compra")
     @cantidad_año_ventanilla = cantidad_facturas(facturas_año, "ventanilla")
     @totalaño_ventanilla = valor_total_por_facturas(facturas_año, "ventanilla")
     @cantidad_año_consultaexterna = cantidad_facturas(facturas_año, "consulta_externa")
@@ -72,26 +72,22 @@ def reporte_mes
   end  
 end
 
-def generar_reporte
-  @start_date = params[:fecha_inicial]
-  @end_date = params[:fecha_final]
-  @tipo_factura = params[:tipo_factura]
-  @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
-  render :pdf => "my_pdf", :layout => false, :template => "dashboard/generar_reporte"
-  # respond_to do |format|
-  #   format.html
-  #   format.pdf do
-  #     render :pdf => "reporte",
-  #     :template => 'dashboard/generar_reporte.html.erb',
-  #     :layout => false
-  #   end
-  # end
-end
+  def generar_reporte
+    @start_date = params[:fecha_inicial]
+    @end_date = params[:fecha_final]
+    @tipo_factura = params[:tipo_factura]
+    @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
+    render :pdf => "my_pdf", :layout => false, :template => "dashboard/generar_reporte"
+  end
 
   private
   
-  def consulta_facturas(query)
-    todasfacturas = Factura.where(:created_at => query)
+  def consulta_facturas(query, tipo)
+    if tipo
+    todasfacturas = Factura.where(:created_at => query).where.not(:tipo => tipo)
+  else
+    todasfacturas = Factura.where(:created_at => query)  
+  end
     return :json => todasfacturas
   end
 
