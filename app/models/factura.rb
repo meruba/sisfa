@@ -23,6 +23,7 @@ class Factura < ActiveRecord::Base
 #relations
 belongs_to :cliente
 belongs_to :proveedor
+belongs_to :user
 has_many :item_facturas
 has_many :productos, :through => :item_facturas
 

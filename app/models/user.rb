@@ -19,7 +19,7 @@ authenticates_with_sorcery!
 
 #relationships
 	belongs_to :cliente
-	
+	has_many :facturas
 	accepts_nested_attributes_for :cliente
 #validation
   validates_confirmation_of :password
