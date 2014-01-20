@@ -26,6 +26,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.tipo),
         (factura.total),
+        (factura.user_id),
         (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Modificar', class: "ttip fa fa-eye btn btn-info") + " " + 
         (link_to '', @view.anular_factura_path(factura), method: :post, data: { confirm: 'Esta seguro?' }, :rel => "tooltip", :title => 'Anular', class: "ttip fa fa-thumbs-down btn btn-danger")
         # (link_to 'Create PDF',factura, :format => :pdf)
@@ -38,6 +39,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.tipo),
         (factura.total),
+        (factura.user_id),
         (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
       ]
     end 
@@ -47,6 +49,7 @@ class FacturasDatatable
         (factura.proveedor.nombre_o_razon_social),
         (factura.numero),
         (factura.total),
+        (factura.user_id),
         (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
         # (link_to 'delete', factura, method: :delete, class: "cancel_button")
       ]
@@ -83,7 +86,7 @@ class FacturasDatatable
   end
 
   def sort_column
-    columns = %w[cliente_id numero tipo total]
+    columns = %w[cliente_id numero tipo user_id total]
     columns[params[:iSortCol_0].to_i]
   end
 
