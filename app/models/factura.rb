@@ -45,6 +45,24 @@ def self.disminuir_stock (item_facturas)
 		end
 	end
 end
+
+def self.item_compra (item_facturas)
+	item_facturas.each do |item|		
+		item.tipo = "compra"
+	end
+end
+
+def self.item_venta (item_facturas)
+	item_facturas.each do |item|		
+		unless item.producto_id.nil?
+			item.tipo = "venta"
+			producto  = Producto.find(item.producto_id)
+			producto.cantidad_disponible -= item.cantidad
+			# raise 'error'
+			producto.save
+		end
+	end
+end
 	# item_facturas.each do |value, key|
 	# 	producto  = Producto.find("#{key[:producto_id]}")
 	# 	cantidad_item = item_facturas[value][:cantidad].to_f
@@ -55,6 +73,7 @@ end
 def self.aumentar_stock (item_facturas)
 	item_facturas.each do |item|
 		unless item.producto_id.nil?
+			# item.tipo = "compra"
 			producto  = Producto.find(item.producto_id)
 			producto.cantidad_disponible += item.cantidad
 			producto.save
