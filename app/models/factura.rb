@@ -55,13 +55,7 @@ end
 
 def self.item_venta (item_facturas)
 	item_facturas.each do |item|		
-		unless item.producto_id.nil?
-			item.tipo = "venta"
-			producto  = Producto.find(item.producto_id)
-			producto.cantidad_disponible -= item.cantidad
-			# raise 'error'
-			producto.save
-		end
+		item.tipo = "venta"
 	end
 end
 	# item_facturas.each do |value, key|

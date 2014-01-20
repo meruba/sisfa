@@ -112,6 +112,7 @@ class FacturasController < ApplicationController
 			@factura.fecha_de_vencimiento = Time.now + 30.days
 			Factura.item_venta(@factura.item_facturas)
 			if @factura.save
+				Factura.disminuir_stock(@factura.item_facturas)
 				# raise "error"
 				respond_to do |format|
 					format.html{
