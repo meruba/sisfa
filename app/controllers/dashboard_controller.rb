@@ -76,7 +76,7 @@ end
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
     @tipo_factura = params[:tipo_factura]
-    @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura] )
+    @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo => params[:tipo_factura])
     render :pdf => "my_pdf", :layout => false, :template => "dashboard/generar_reporte"
   end
 
