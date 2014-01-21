@@ -40,7 +40,7 @@ class FacturasDatatable
         (factura.tipo),
         (factura.total),
         (factura.user_id),
-        (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
+        (link_to '', factura, :remote => true, :rel => 'tooltip','data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info")
       ]
     end 
     when "compra"
@@ -50,7 +50,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.total),
         (factura.user_id),
-        (link_to '', factura, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-eye btn btn-info")
+        (link_to '', factura, :remote => true, :rel =>'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostar', class: "ttip fa fa-eye btn btn-info")
         # (link_to 'delete', factura, method: :delete, class: "cancel_button")
       ]
     end
