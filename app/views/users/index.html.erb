@@ -1,16 +1,21 @@
 <h3 class="text-center">Administración de Usuarios</h3>
 <% @users.each do |user| %>
+<% if user != current_user%>
   <div class=" well row col-md-8 col-md-offset-2">
     <div class="col-md-2">
       <!-- agregar imagen de Usuario -->
+    <%= image_tag "/images/user-placeholder.jpg", class: "img-circle" %>      
     </div>
     <div class="col-sm-4 col-md-6">
       <blockquote>
         <p><%= user.cliente.nombre%></p><small><%= user.rol%></small>
+        <%=link_to("Suspender",root_path, class: "btn-danger" )%>
+        <%=link_to("Editar Clave",root_path, class: "btn-warning" )%>
       </blockquote>
     </div>
     <i class="fa fa-envelope malito"></i> <%= user.cliente.email%><br/>
     <i class="fa fa-map-marker"></i> <%= user.cliente.direccion%><br/>
     <i class="fa fa-phone"></i> <%= user.cliente.telefono%>
   </div>
+  <% end %>
 <% end %>
