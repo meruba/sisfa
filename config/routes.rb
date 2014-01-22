@@ -17,7 +17,11 @@ get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
   
   resources :user_sessions
-  resources :users
+  resources :users do
+    member do
+      post "suspender"
+    end
+  end
   resources :personas
   resources :pacientes
   resources :clientes

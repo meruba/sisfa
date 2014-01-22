@@ -1,16 +1,14 @@
 <%= nested_form_for @factura do |f| %>
-<% if @factura.errors.any? %>
-	<% @factura.errors.full_messages.each do |message| %>
-	<div class="flash_menssage">
-    <div class="alert alert-error">
-      <a class="close" data-dismiss="alert">×</a>
-			<div id="flash_notice"><%= message %></div>
-    </div>
-  </div>
-	<% end %>
-<% end %>
 <div class="col-md-7">
 	<h6 class="text-muted text-right fecha"></h6>
+	<% if @factura.errors.any? %>
+	<h2>Errores:</h2>	
+	<ul>
+		<% @factura.errors.full_messages.each do |message| %>
+		<li><%= message %></li>
+		<% end %>
+	</ul>
+<% end %>
 	<!-- formulario datos del proveedor -->
 	<%= f.fields_for :proveedor do |proveedor_params| %>
 	<%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>

@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-# before_action :set_user, only: [:show,:edit, :update]  
   
+  before_action :set_user, only: [:suspender]    
   skip_before_filter :require_login, :except => [:new]
 
   def index
@@ -31,11 +31,22 @@ class UsersController < ApplicationController
       end
   end
 
+  def suspender
+    if @user.suspendido
+      @user.suspendido = false
+    else
+      @user.suspendido = true
+    end
+    @user.save
+    redirect_to users_path, :notice => "Usuario Suspendido"    
+  end
+
   private 
     def current_user_params
       params.require(:user).permit :username,
                                     :password,
                                     :password_confirmation,
+                                    :suspendido,
                                     :rol,
                                     :cliente_attributes => [
                                       :nombre,
@@ -48,7 +59,7 @@ class UsersController < ApplicationController
     end
 
     def set_user
-      @user = current_user.find(params[:id])
+      @user = User.find(params[:id])
     end
 end
 
