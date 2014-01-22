@@ -1,9 +1,15 @@
-<%- if @cliente.errors.any? %>
+<%- if @user.errors.any? %>
   $('#content_modal').html('<%= escape_javascript(render('form')) %>');
-  // agegar errores
+  window.Helpers.ButtonsHelper.init();
+  <%- @user.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
 <%- else %>
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
+  window.Helpers.init_datatables();
+  window.Helpers.ButtonsHelper.init();
+  alertify.success("Usuario Modificado");
   // agregar mensaje
 <%- end %>
