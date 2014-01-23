@@ -3,7 +3,7 @@
   <% if user != current_user%>
     <div class=" row-user row col-md-7 col-md-offset-2">
       <div class="col-sm-4 col-md-2">
-        <%= image_tag "/images/user-placeholder.jpg", class: "img-circle" %>      
+        <%= image_tag "/images/user-placeholder.jpg", class: "img-circle", width: 75, height: 75 %>      
       </div>
       <div class="col-sm-4 col-md-4">
         <blockquote>
@@ -17,7 +17,6 @@
         <div class="links-users">
           <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
           <%= link_to '', edit_user_path(user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Nueva Clave',:class => "ttip fa fa-key btn btn-warning btn-xs"}%>
-          <%= link_to '', suspender_user_path(user), method: :post, :rel => 'tooltip', :title => 'Ver', class: "ttip fa fa-eye btn btn-info btn-xs"%>
         </div>
       </div>
     </div>
