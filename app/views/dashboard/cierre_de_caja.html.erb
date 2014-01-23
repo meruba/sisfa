@@ -1,4 +1,4 @@
-<% if  @hoy.empty?%>
+<% if  @mes.empty?%>
   <h3>No se encontro ninguna factura</h3>
 <% else %>
   <h3>Cierre de Caja de: <%= @tipo_factura%></h3>
@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @hoy.count%></td>
+        <td><%= @mes.count%></td>
     </tbody>
   </table>
 <% end %>

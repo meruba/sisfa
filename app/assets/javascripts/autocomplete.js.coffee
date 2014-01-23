@@ -20,16 +20,16 @@ window.Helpers.AutocompleteHelper = {
         $(".nombre").val ui.item.nombre
         $(".direccion").val ui.item.direccion
         $(".telefono").val ui.item.telefono
-    .data("ui-autocomplete")._renderItem = (ul, item) ->
-      a = $('<a>', 
-        text: item.label)
-      $(a).attr('href', "/clientes/new")
-      $(a).attr('data-remote', 'true')
-      $(a).attr('data-target', '#myModal')
-      $(a).attr('data-toggle', 'modal')
+    #.data("ui-autocomplete")._renderItem = (ul, item) ->
+      #a = $('<a>', 
+      #  text: item.label)
+      #$(a).attr('href', "/clientes/new")
+      #$(a).attr('data-remote', 'true')
+      #$(a).attr('data-target', '#myModal')
+      #$(a).attr('data-toggle', 'modal')
       # f = items
       # console.log $("<li></li>").data("item.autocomplete", item).append(a).appendTo ul
-      $("<li></li>").data("item.autocomplete", item).append(a).appendTo ul
+      #$("<li></li>").data("item.autocomplete", item).append(a).appendTo ul
 
     $(".autocomplete_producto").autocomplete
       minLength: 3
