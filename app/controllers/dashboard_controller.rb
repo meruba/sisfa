@@ -80,6 +80,13 @@ end
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte"
   end
 
+  def cierre_de_caja
+    @tipo_factura = params[:tipo_factura]
+    @hoy = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => params[:tipo_factura])
+    @mes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => params[:tipo_factura])
+    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja"
+  end
+
   private
   
   def consulta_facturas(query, tipo)

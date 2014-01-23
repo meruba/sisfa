@@ -1,0 +1,13 @@
+<%= form_tag dashboard_cierre_de_caja_path do %>
+<div class= "row">
+  <div class= "col-md-5 estadisticas">
+    <div class= "col-md-6 text-center">
+      <h3>Cerrar Caja:</h3>
+      <%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='compra'>Compra</option>".html_safe, { :class => "col-md-4 form-control" } %>
+    </div>
+    <div class="col-md-6">
+      <%= submit_tag "Imprimir", :name => nil, :class => "btn-block guardar_submit"%>
+    </div>
+  </div>
+</div>
+<% end %>

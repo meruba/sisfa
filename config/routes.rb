@@ -13,6 +13,7 @@ get "facturas/compra"
 get "facturas/index_compra"
 get "facturas/index_anulada"
 post "dashboard/generar_reporte"
+post "dashboard/cierre_de_caja"
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
   
