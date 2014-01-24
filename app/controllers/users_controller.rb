@@ -25,9 +25,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
       if @user.save
-        redirect_back_or_to(users_path, notice: "Nuevo Usuario")
+         redirect_to @user, notice: 'Usuario Creado'
       else
-        flash[:error] = "Ups! Algo salio mal.."
+         redirect_to @user
+        flash[:error] = "Hubo un Error.."
       end
   end
 
