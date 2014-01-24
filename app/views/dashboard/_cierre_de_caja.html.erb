@@ -1,6 +1,5 @@
 <%= form_tag dashboard_cierre_de_caja_path do %>
 <div class= "row">
-<<<<<<< HEAD
   <div class= "col-md-6 estadisticas">
     <div class= "col-md-6">
       <h4>Cerrar Caja:</h4>
@@ -16,16 +15,6 @@
           <button class="btn btn-info" type="button">Ir</button>
         </span>
       </div>
-=======
-  <div class= "col-md-5 estadisticas">
-    <div class= "col-md-6 text-center">
-      <h3>Cerrar Caja:</h3>
-      <%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='todo'>Todo</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %>
-      <%= select_tag :periodo, "<option value='hoy'>Hoy</option><option value='mes'>Mes</option><option value='año'>Año</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %>
-    </div>
-    <div class="col-md-6">
-      <%= submit_tag "Imprimir", :name => nil, :class => "btn-block guardar_submit print"%>
->>>>>>> d56b30d1de0d5f24e215951976a26d6091f34b27
     </div>
   </div>
 </div>
