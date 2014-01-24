@@ -83,17 +83,16 @@ end
   def cierre_de_caja
     @tipo_factura = params[:tipo_factura]
     @periodo = params[:periodo]
-
-    if 
-      @periodo = "hoy"
-    @hoy = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => params[:tipo_factura])
-    else 
-      @periodo = "mes"
-      raise "error"
-    @mes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => params[:tipo_factura])
+    case @periodo
+    when "hoy" 
+      @search = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => params[:tipo_factura])
+    when "mes"      
+      @search = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => params[:tipo_factura])
+    when "año"
+      @search = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => params[:tipo_factura])
     end
-    
-    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja"
+    @search
+    # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja"
   end
 
   private

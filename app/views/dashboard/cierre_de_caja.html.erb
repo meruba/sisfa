@@ -1,8 +1,8 @@
-<% if  @mes.empty?%>
+<% if  @search.empty?%>
   <h3>No se encontro ninguna factura</h3>
 <% else %>
   <h3>Cierre de Caja de: <%= @tipo_factura%></h3>
-  <%= @total%>
+  <!-- <%= @total%> -->
   <table class="table table-hover table-print">
     <thead>
       <tr>
@@ -14,7 +14,10 @@
     </thead>
     <tbody>
       <tr>
-        <td><%= @mes.count%></td>
+        <td><%= @search.count%></td>
+        <td><%= '%.2f' % @search.sum(:subtotal_12)%></td>
+        <td><%= '%.2f' % @search.sum(:iva)%></td>
+        <td><%= '%.2f' % @search.sum(:total)%></td>
     </tbody>
   </table>
 <% end %>
