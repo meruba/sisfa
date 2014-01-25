@@ -12,6 +12,7 @@
 #  total         :float            not null
 #  created_at    :datetime
 #  updated_at    :datetime
+#  cliente_id    :integer          not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

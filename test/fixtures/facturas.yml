@@ -14,9 +14,11 @@
 #  total                :float            not null
 #  created_at           :datetime
 #  updated_at           :datetime
-#  cliente_id           :integer          not null
 #  tipo                 :string(255)      not null
 #  anulada              :boolean          default(FALSE)
+#  proveedor_id         :integer
+#  cliente_id           :integer
+#  user_id              :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
