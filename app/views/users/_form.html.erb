@@ -2,7 +2,7 @@
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
   <h3 class="modal-title" id="myModalLabel">Editar Perfil</h3>
 </div>
-<%= nested_form_for @user do |f| %>
+<%= nested_form_for @user, :remote => true do |f| %>
 <div class="modal-body">
   <%= f.fields_for :cliente do |cliente_params| %>
     <%=  cliente_params.text_field :nombre, :placeholder=>"Nombre", class: "form-control-border"%>
@@ -18,7 +18,7 @@
     <%= f.password_field :password_confirmation, :placeholder => "Confirmar Clave", class: "form-control-border" %>
 </div>
   <div class="modal-footer">
-    <%= f.submit 'Guardar', class: "btn btn-success"%>
+    <%= f.submit 'Guardar', class: "btn btn-success", :remote => true%>
     <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
     <% end %>
   </div>

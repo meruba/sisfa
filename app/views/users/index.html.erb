@@ -15,7 +15,11 @@
         <i class="fa fa-map-marker"></i> <%= user.cliente.direccion%><br/>
         <i class="fa fa-phone"></i> <%= user.cliente.telefono%><br/>
         <div class="links-users">
-          <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
+          <% if user.suspendido %>
+            <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Activar', class: "ttip fa fa-thumbs-o-up btn btn-success btn-xs"%>
+          <% else %>
+            <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
+          <% end %>
           <%= link_to '', edit_user_path(user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Nueva Clave',:class => "ttip fa fa-key btn btn-warning btn-xs"}%>
         </div>
       </div>

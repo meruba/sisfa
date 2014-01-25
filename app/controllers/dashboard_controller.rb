@@ -14,7 +14,6 @@ class DashboardController < ApplicationController
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_dia_ventanilla, @cantidadfacturashoy)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_dia_hospitalizacion, @cantidadfacturashoy)
     @porcentajedia_consultaexterna = regla_de_tres(@cantidad_dia_consultaexterna, @cantidadfacturashoy)
-    # raise 'error'
     #estas son las consultas referentes al mes
     facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month, "compra")
     @cantidad_mes_ventanilla = cantidad_facturas(facturas_mes, "ventanilla")
@@ -28,35 +27,9 @@ class DashboardController < ApplicationController
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_mes_ventanilla, @cantidadfacturasmes)
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_mes_hospitalizacion, @cantidadfacturasmes)
     @porcentajemes_consultaexterna = regla_de_tres(@cantidad_mes_consultaexterna, @cantidadfacturasmes)
-    # @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month)
-    # @facturasmesventanilla = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => "ventanilla")
-    # @facturasmeshospitalizacion = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => "hospitalizacion")
-    # @facturasmesconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => "consulta_externa")
-    # @porcentajemes_ventanilla = regla_de_tres(@facturasmesventanilla,@facturasmes)
-    # @porcentajemes_hospitalizacion = regla_de_tres(@facturasmeshospitalizacion,@facturasmes)
-    # @porcentajemes_consultaexterna = regla_de_tres(@facturasmesconsultaexterna,@facturasmes)
-    # # raise 'error'
-    # #estas son las consultas referentes al año
-    #facturas_año = consulta_facturas(Time.now.beginning_of_year..Time.now.end_of_year, "compra")
-    #@cantidad_año_ventanilla = cantidad_facturas(facturas_año, "ventanilla")
-    #@totalaño_ventanilla = valor_total_por_facturas(facturas_año, "ventanilla")
-    #@cantidad_año_consultaexterna = cantidad_facturas(facturas_año, "consulta_externa")
-    #@totalaño_consultaexterna = valor_total_por_facturas(facturas_año, "consulta_externa")
-    #@cantidad_año_hospitalizacion = cantidad_facturas(facturas_año, "hospitalizacion")
-    #@totalaño_hospitalizacion = valor_total_por_facturas(facturas_año, "hospitalizacion")
-    #@totalfacturasaño = valor_total_facturas(facturas_año)
-    #@cantidadfacturasaño = @cantidad_año_ventanilla + @cantidad_año_hospitalizacion + @cantidad_año_consultaexterna
-    #@porcentajeaño_ventanilla = regla_de_tres(@cantidad_año_ventanilla, @cantidadfacturasaño)
-    #@porcentajeaño_hospitalizacion = regla_de_tres(@cantidad_año_hospitalizacion, @cantidadfacturasaño)
-    #@porcentajeaño_consultaexterna = regla_de_tres(@cantidad_año_consultaexterna, @cantidadfacturasaño)
-    # @facturasaño = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year)
-    # @facturasañoventanilla = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "ventanilla")
-    # @facturasañohospitalizacion = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "hospitalizacion")
-    # @facturasañoconsultaexterna = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => "consulta_externa")
-  end
+    end
 def reporte_mes
   @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => 'ventanilla')
-  # render :pdf => "my_pdf", :layout => false, :template => "/dashboard/reporte_mes"
   respond_to do |format|
     format.html
     format.pdf do
@@ -147,6 +120,10 @@ end
       end
     end
     return '%.2f' %total
+  end
+
+  def caducados
+    @caducados = Producto.where
   end
 end
 

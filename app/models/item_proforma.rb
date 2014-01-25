@@ -3,15 +3,15 @@
 # Table name: item_proformas
 #
 #  id             :integer          not null, primary key
-#  cantidad       :integer          not null
-#  valor_unitario :float            not null
-#  descuento      :float
-#  iva            :float            not null
-#  total          :float            not null
 #  created_at     :datetime
 #  updated_at     :datetime
+#  cantidad       :float            not null
+#  valor_unitario :float            not null
+#  descuento      :float
+#  iva            :float
 #  producto_id    :integer          not null
-#  factura_id     :integer          not null
+#  proforma_id    :integer          not null
+#  total          :float            not null
 #
 
 class ItemProforma < ActiveRecord::Base

@@ -12,6 +12,7 @@
 #  updated_at     :datetime
 #  producto_id    :integer          not null
 #  factura_id     :integer          not null
+#  tipo           :string(255)
 #
 
 class ItemFactura < ActiveRecord::Base
