@@ -21,6 +21,8 @@ authenticates_with_sorcery!
 #relationships
 	belongs_to :cliente
 	has_many :facturas
+  has_many :user_rols
+  has_many :rols, through: :user_rols
 	accepts_nested_attributes_for :cliente
 #validation
   validates_confirmation_of :password
