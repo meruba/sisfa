@@ -1,9 +1,14 @@
-<%- if @factura.errors.any? %>
-	window.Helpers.ButtonsHelper.init();
-	<%- @factura.errors.full_messages.each do |msg|%>
-		alertify.error("<%=j msg %>");
+<%- if @cliente.errors.any? %>
+	<%- @cliente.errors.full_messages.each do |msg|%>
+		alertify.error("Cliente: <%=j msg %>");
 	<%- end %>
-<% else %>
-  alertify.success("Factura Guardada");
-	$(".tab-content").find(".new_factura")[0].reset();
-<% end %>
+<%- else %>
+  <%- if @factura.errors.any? %>
+    <%- @factura.errors.full_messages.each do |msg|%>
+      alertify.error("<%=j msg %>");
+    <%- end %>
+  <%- else %>
+    alertify.success("Factura Guardada");
+    $(".tab-content").html("<h4>Factura Guardada</h4>");
+  <%- end %>
+<%- end %>

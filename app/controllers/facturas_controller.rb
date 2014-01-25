@@ -37,6 +37,10 @@ class FacturasController < ApplicationController
 	def compra
 		@factura = Factura.new(:tipo => "compra") 
 		@factura.item_facturas.build
+		respond_to do |format|
+			# format.html
+			format.js
+		end
 	end
 
 	def ventanilla
@@ -104,37 +108,19 @@ class FacturasController < ApplicationController
 	def create_factura_venta
 		cliente_attrs = params[:factura].delete :cliente
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
-		if @cliente.save
-			@factura = @cliente.facturas.build(factura_params)
-			@factura.user_id = current_user.id
-			@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
-			@factura.fecha_de_emision = Time.now
-			@factura.fecha_de_vencimiento = Time.now + 30.days
-			Factura.item_venta(@factura.item_facturas)
-			if @factura.save
-				Factura.disminuir_stock(@factura.item_facturas)
-				# raise "error"
-				respond_to do |format|
-					format.html{
-						redirect_to facturas_path, :notice => "Factura Guardada"
-					}
-					format.js
-				end
-			else
-				respond_to do |format|
-					format.html {
-						flash["alert-error"] = "Hubo un problema."
-						render 'venta'
-					}
-					format.js
+		respond_to do |format|
+			if @cliente.save
+				@factura = @cliente.facturas.build(factura_params)
+				@factura.user_id = current_user.id
+				@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
+				@factura.fecha_de_emision = Time.now
+				@factura.fecha_de_vencimiento = Time.now + 30.days
+				Factura.item_venta(@factura.item_facturas)
+				if @factura.save
+					Factura.disminuir_stock(@factura.item_facturas)
 				end
 			end
-		else
-			# raise 'error'
-			flash[:error] = 'Errores en Cliente'
-			@factura = Factura.new(:numero => Factura.last ? Factura.last.numero + 1 : 1 )
-			@factura.item_facturas.build
-			render "venta"
+			format.js
 		end
 	end
 
