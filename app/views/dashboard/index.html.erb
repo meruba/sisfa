@@ -6,13 +6,13 @@
   <li><a href="#mensual" data-toggle="tab">Mensual</a></li>
   <li><a href="#reporte" data-toggle="tab">Reporte</a></li>
   <li><a href="#cierre" data-toggle="tab">Cierre de Caja</a></li>
+  <li><a href="#caducados" data-toggle="tab">Productos por caducadar</a></li>
 </ul>
 
 <div class="tab-content">
   <div class="tab-pane active" id="diario">
     <%= render 'diario'%>
   </div>
-  
   <div class="tab-pane" id="mensual">
     <%= render 'mensual'%>
   </div>
@@ -22,6 +22,9 @@
   </div>
   <div class="tab-pane" id="cierre">
     <%= render 'cierre_de_caja'%>
+  </div>
+    <div class="tab-pane" id="caducados">
+    <%= render 'caducados'%>
   </div>
 </div>
 
