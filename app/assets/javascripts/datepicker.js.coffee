@@ -1,6 +1,7 @@
 init_datepicker = ->
   $(".datepicker").datepicker({
-    format: 'yyyy-mm-dd'
+    format: 'yyyy-mm-dd',
+    language: "es"
   })
 null
 
