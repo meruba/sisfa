@@ -28,22 +28,23 @@ class DashboardController < ApplicationController
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_mes_hospitalizacion, @cantidadfacturasmes)
     @porcentajemes_consultaexterna = regla_de_tres(@cantidad_mes_consultaexterna, @cantidadfacturasmes)
     end
-def reporte_mes
-  @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => 'ventanilla')
-  respond_to do |format|
-    format.html
-    format.pdf do
-      render :pdf => "mes ventanilla",
-      :template => 'dashboard/reporte_mes.html.erb',
-      :layout => false,
-      :footer => {
-        :center => "Center",
-        :left => "Left",
-        :right => "Right"
-      }
-    end
-  end  
-end
+
+  def reporte_mes
+    @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => 'ventanilla')
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "mes ventanilla",
+        :template => 'dashboard/reporte_mes.html.erb',
+        :layout => false,
+        :footer => {
+          :center => "Center",
+          :left => "Left",
+          :right => "Right"
+        }
+      end
+    end  
+  end
 
   def generar_reporte
     @start_date = params[:fecha_inicial]
@@ -66,6 +67,13 @@ end
     end
     @search
     # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja"
+  end
+
+  def caducados
+    respond_to do |format|
+      format.json { render json: ProductosDatatable.new(view_context, "caducados") }
+    end
+    # @caducados = Producto.where(:fecha_de_caducidad =>Time.now.end_of_day..Time.now.months_since(4))    
   end
 
   private
@@ -120,10 +128,6 @@ end
       end
     end
     return '%.2f' %total
-  end
-
-  def caducados
-    @caducados = Producto.where
   end
 end
 
