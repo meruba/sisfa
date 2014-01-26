@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-     <%=link_to image_tag("/images/logo1.png", :width=>45, :heigth=>45), "",class: "brand_img"%>
+      <%=link_to image_tag("/images/logo1.png", :width=>45, :heigth=>45), "",class: "brand_img"%>
       <%=link_to("SISFA",root_path, class: "navbar-brand" )%>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -16,7 +16,7 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="fa fa-user"></span>
-            <%=current_user.username %><b class="caret"></b></a>
+            <%=current_user.username %> <b class="fa fa-angle-down"></b></a>
             <ul class="dropdown-menu">
               <li><%= link_to 'Perfil', edit_user_path(current_user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></li>
               <li><%= link_to 'Ver Usuarios', users_path %></li>
@@ -27,19 +27,16 @@
             </ul>
           </li>
         </ul>
-        <ul class="nav navbar-nav navbar-left">
-          <li class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, :controller => 'clientes', :action => 'index')%></li>
-            </a>  
-          </li>
+        <ul class="nav navbar-nav navbar-left jjj">
+          <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, :controller => 'clientes', :action => 'index')%></li>  
+        </li>
         </ul>
         <ul class="nav navbar-nav navbar-left">
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-stack-overflow"></i>
               Facturación
-              <b class="caret"></b>
+              <b class="fa fa-angle-down"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%=link_to("Venta", :controller => 'facturas', :action => 'venta')%></li>
@@ -54,7 +51,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-barcode"></i>
                 Productos
-                <b class="caret"></b>
+                <b class="fa fa-angle-down"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%=link_to("Inventario", :controller => 'productos', :action => 'index')%></li>
@@ -72,12 +69,12 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <i class="fa fa-file-text-o"></i>
               Proforma
-              <b class="caret"></b>
+              <b class="fa fa-angle-down"></b>
             </a>
             <ul class="dropdown-menu">
               <li><%=link_to("Crear", :controller => 'proformas', :action => 'new')%></li>
               <li class="divider"></li>
-              <li><%=link_to("Lista Proformas", :controller => 'proformas', :action => 'index')%></li>                
+              <li><%=link_to("Lista Proformas", :controller => 'proformas', :action => 'index')%></li>
             </ul>
           </li>
         </ul>
