@@ -57,7 +57,7 @@ class UsersController < ApplicationController
       @user.suspendido = true
     end
     @user.save
-    redirect_to users_path, :notice => "Usuario Suspendido"    
+    redirect_to users_path, :notice => "Usuario modificado"    
   end
 
   private 
