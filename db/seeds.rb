@@ -10,3 +10,7 @@
 end
 cliente = Cliente.create(nombre: "Fabricio Flores", numero_de_identificacion: "1104015936")
 user = User.create(username: 'fabricio', password:'fabricio', cliente: cliente, rol: Rol.administrador)
+cliente = Cliente.create(nombre: "Angel Valdez", numero_de_identificacion: "1100867900")
+user = User.create(username: 'angel', password:'valdez', cliente: cliente, rol: Rol.administrador)
+cliente = Cliente.create(nombre: "Lenin Capa", numero_de_identificacion: "1104706922")
+user = User.create(username: 'lenin', password:'capa', cliente: cliente, rol: Rol.administrador)
