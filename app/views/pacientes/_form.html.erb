@@ -1,66 +1,86 @@
-<%= form_for(@paciente) do |f| %>
-  <% if @paciente.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
-
-      <ul>
-      <% @paciente.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
+<%= nested_form_for @paciente do |f| %>
+<% if @paciente.errors.any? %>
+<div id="error_explanation">
+  <h2><%= pluralize(@paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
+  <ul>
+    <% @paciente.errors.full_messages.each do |msg| %>
+    <li><%= msg %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+<%= f.fields_for :cliente do |cliente_params| %>
+<div class="datos-cliente">
+  <div class= "form-inline">
+    <div class="field">
+      <%= cliente_params.label :nombre_del_paciente %>
+      <%= cliente_params.text_field :nombre %>
+      <%= cliente_params.label :numero_de_identificacion %>
+      <%= cliente_params.text_field :numero_de_identificacion %>
+<!--       <%= f.label :numero_de_historia_clinica %>
+      <%= f.text_field :n_hclinica %> -->
     </div>
-  <% end %>
-  <div class="form_paciente">
-  
-  <div class="field">
-    <%= f.label :numero_de_historia_cliente %><br>
-    <%= f.text_field :n_hclinica %>
   </div>
-
-  <div class="field">
-    <%= f.label :fecha_de_ingreso %><br>
-    <%= f.date_select :fecha_de_ingreso %>
+</div>
+<% end %>
+<div class="form_paciente">
+  <div class="datos-paciente">
+    <div class= "form-inline">
+      <div class="field">
+        <%= f.label :numero_de_historia_clinica %>
+        <%= f.text_field :n_hclinica %> 
+      </div>
+      <div class="field">    
+        <%= f.label :tipo_de_paciente %>
+        <%= f.select(:tipo_de_paciente, ['Militar', 'Civil', 'Familiar'], {}, { :class => 'form-control' }) %>
+      </div>
+      <div class="field">
+        <%= f.label :Sexo %>
+        <%= f.select(:sexo, ['Masculino', 'Femenino'],{},{ :class => 'form-control' }) %>
+      </div>
+      <div class="field">
+        <%= f.label :fecha_de_nacimiento %>
+        <%= f.text_field :fecha_de_nacimiento, :class => "datepicker" %>
+      </div>
+      <div class="field">
+        <%= f.label :Estado_Civil %>
+        <%= f.select(:estado_civil, ['Casado', 'Soltero', 'Divorciado', 'Union Libre'], { :prompt => 'Selecione'}, { :class => 'form-control' }) %>
+      </div>
+    </div>
+    <div class="datos-hospital form-inline">
+      <div class="field">
+        <%= f.label :fecha_de_ingreso %>
+        <%= f.text_field :fecha_de_ingreso, :class => "datepicker" %>
+      </div>
+      <div class="field">
+        <%= f.label :hora_de_ingreso %>
+        <%= f.text_field :hora_de_ingreso, { :class => 'form-control' }%>
+      </div>
+      <div class="field">
+        <%= f.label :Pertenece_a %>
+        <%= f.select(:pertenece, ['A', 'B'], { :prompt => 'Seleccione'}, { :class => 'form-control' }) %>
+      </div>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :hora_de_ingreso %><br>
-    <%= f.time_select :hora_de_ingreso %>
-  </div>
-  <div class="field">
-    <%= f.label :Pertenece_a %><br>
-    <%= f.text_field :pertenece %>
-  </div>
-  <div class="field">
-    <%= f.label :Sexo %><br>
-    <%= f.text_field :sexo %>
-  </div>
-  <div class="field">
-    <%= f.label :fecha_de_nacimiento %><br>
-    <%= f.date_select :fecha_de_nacimiento %>
-  </div>
-  <div class="field">
-    <%= f.label :Estado_Civil %><br>
-    <%= f.text_field :estado_civil %>
-  </div>
-  <div class="field">
-    <%= f.label :grado %><br>
-    <%= f.text_field :grado %>
-  </div>
+  <legend>Identificacion Militar</legend>
+  <div class="datos-militar form-inline col-md-10">
     <div class="field">
-    <%= f.label :familiar %><br>
-    <%= f.text_field :familiar %>
-  </div>
+      <%= f.label :familiar %>
+      <%= f.text_field :familiar %>
+    </div>
     <div class="field">
-    <%= f.label :brigada %><br>
-    <%= f.text_field :brigada %>
-  </div>
+      <%= f.label :grado %>
+      <%= f.select(:grado, ['Sargento'], {}, { :class => 'form-control' }) %>
+    </div>
     <div class="field">
-    <%= f.label :tipo_de_paciente %><br>
-    <%= f.text_field :tipo_de_paciente %>
+      <%= f.label :brigada %>
+      <%= f.select(:brigada, ['N34'], {}, { :class => 'form-control' }) %>
+    </div>
   </div>
-  <br>
+  <br />
   <div class="actions">
-    <%= f.submit "Guardar", class: "btn btn-large btn-primary"  %>
+    <%= f.submit "Guardar", class: "guardar_submit"  %>
   </div>
-  </div>
+</div>
 
 <% end %>

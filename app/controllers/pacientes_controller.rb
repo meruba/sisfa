@@ -1,8 +1,12 @@
 class PacientesController < ApplicationController
 	# GET /personas
   # GET /personas.json
+  
   def index
-    @pacientes = Paciente.all
+    respond_to do |format|
+      format.html
+      format.json { render json: PacientesDatatable.new(view_context) }
+    end
   end
 
   # GET /personas/1
@@ -13,6 +17,7 @@ class PacientesController < ApplicationController
   # GET /personas/new
   def new
     @paciente = Paciente.new
+    @paciente.build_cliente
   end
 
   # GET /personas/1/edit
@@ -23,10 +28,9 @@ class PacientesController < ApplicationController
   # POST /personas.json
   def create
     @paciente = Paciente.new(paciente_params)
-
     respond_to do |format|
       if @paciente.save
-        format.html { redirect_to @paciente, notice: 'Paciente Almacenada.' }
+        format.html { redirect_to @paciente, notice: 'Paciente Almacenado.' }
         format.json { render action: 'show', status: :created, location: @persona }
       else
         format.html { render action: 'new' }
@@ -60,8 +64,27 @@ class PacientesController < ApplicationController
   end
   
   private 
-    def paciente_params
-      params.require(:paciente).permit(:n_hclinica, :fecha_de_ingreso, :fecha_de_nacimiento, :hora_de_ingreso, :pertenece, :sexo, :estado_civil, :grado, :familiar, :brigada,
-      	:tipo_de_paciente)
-    end  
+
+  def paciente_params
+    params.require(:paciente).permit :n_hclinica, 
+      :fecha_de_ingreso, 
+      :fecha_de_nacimiento, 
+      :hora_de_ingreso, 
+      :pertenece, 
+      :sexo, 
+      :estado_civil, 
+      :grado, 
+      :familiar, 
+      :brigada,
+      :tipo_de_paciente,
+      :cliente_attributes => [
+        :nombre,
+        :numero_de_identificacion,
+        :direccion,
+        :telefono,
+        :email,
+        :created_at,
+        :updated_at
+      ]        
+  end  
 end

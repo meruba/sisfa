@@ -21,6 +21,8 @@
 
 class Paciente < ActiveRecord::Base
 belongs_to :cliente
+accepts_nested_attributes_for :cliente
+
 #validations
 	validates :n_hclinica, :fecha_de_nacimiento, :hora_de_ingreso, :pertenece, :fecha_de_ingreso, :sexo, :estado_civil, :tipo_de_paciente, :presence => true
 end
