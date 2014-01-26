@@ -37,10 +37,10 @@ class FacturasController < ApplicationController
 	def compra
 		@factura = Factura.new(:tipo => "compra") 
 		@factura.item_facturas.build
-		respond_to do |format|
-			# format.html
-			format.js
-		end
+		# respond_to do |format|
+		# 	format.html
+		# 	format.js
+		# end
 	end
 
 	def ventanilla
