@@ -41,3 +41,18 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 #myCarousel .item { height: 160px; }
+
+.flash_menssage{
+  /*opacity: 0.8;*/
+  position: fixed;
+  z-index: 999999;
+  width: 300px;
+  top: 65px;
+  /*left: auto;*/
+  /*right: auto;*/
+  right: 12px;
+}
+
+.row-user{
+  padding-top: 15px;  
+}
