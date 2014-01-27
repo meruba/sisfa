@@ -2,6 +2,8 @@
   <h3>No se encontro ninguna factura</h3>
 <% else %>
   <h3>Reporte de Facturas  de <%= @tipo_factura%>  desde:</h3>
+  <%case @tipo_factura%>
+  <%when "ventanilla"%>
   <h4><%= @start_date%> hasta <%= @end_date%></h4>
   <%= @total%>
   <table class="table table-hover table-print">
@@ -12,6 +14,8 @@
         <th>Dirección</th>
         <th>Vendedor</th>
         <th>Fecha</th>
+        <th>Sub Total</th>
+        <th>IVA</th>
         <th>Total</th>
       </tr>
     </thead>
@@ -23,10 +27,121 @@
         <td><%= factura.cliente.direccion %></td>
         <td><%= factura.user.username %></td>
         <td><%= factura.created_at.to_s(:db) %></td>
+        <td><%= factura.subtotal_12%></td>
+        <td><%= factura.iva%></td>
         <td><%= factura.total %></td>
       </tr>
       <% end %>
     </tbody>
   </table>
   <h4>Nº Total de Facturas: <%= @search.count%> </h4>
+   <h4>Nº Total de Venta: <%= @search.sum(:total)%> </h4>
+
+  <%when "hospitalizacion"%>
+  <h4><%= @start_date%> hasta <%= @end_date%></h4>
+  <%= @total%>
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº Factura</th>
+        <th>Cliente</th>
+        <th>Dirección</th>
+        <th>Servicio</th>
+        <th>Rango</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Sub Total</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @search.each do |factura| %>
+      <tr>
+        <td><%= factura.numero %></td>
+        <td><%= factura.cliente.nombre%></td>
+        <td><%= factura.cliente.direccion %></td>
+        <td> aki va servicio</td>
+        <td> aki va rango</td>
+        <td><%= factura.user.username %></td>
+        <td><%= factura.created_at.to_s(:db) %></td>
+        <td><%= factura.subtotal_12 %></td>
+        <td><%= factura.iva %></td>
+        <td><%= factura.total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h4>Nº Total de Facturas: <%= @search.count%> </h4>
+   <h4>Nº Total de Venta: <%= @search.sum(:total)%> </h4>
+
+
+  <%when "consulta_externa"%>
+  <h4><%= @start_date%> hasta <%= @end_date%></h4>
+  <%= @total%>
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº Reporte</th>
+        <th>Dependencia</th>
+        <th>Dirección</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Sub Total</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @search.each do |factura| %>
+      <tr>
+        <td> aki va numero de reporte </td>
+        <td> aki va dependencia</td>
+        <td>Hospital Basico 7 B.I Loja</td>
+        <td><%= factura.user.username %></td>
+        <td><%= factura.created_at.to_s(:db) %></td>
+        <td><%= factura.subtotal_12 %></td>
+         <td><%= factura.iva %></td>
+        <td><%= factura.total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h4>Nº Total de Reportes: <%= @search.count%> </h4>
+   <h4>Nº Total de Venta: <%= @search.sum(:total)%> </h4>
+
+  <%when "compra"%>
+  <h4><%= @start_date%> hasta <%= @end_date%></h4>
+  <%= @total%>
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº Factura</th>
+        <th>Proveedor</th>
+        <th>Dirección</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Sub Total</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @search.each do |factura| %>
+      <tr>
+        <td><%= factura.numero %></td>
+        <td><%= factura.cliente.nombre%></td>
+        <td><%= factura.cliente.direccion %></td>
+        <td><%= factura.user.username %></td>
+        <td><%= factura.created_at.to_s(:db) %></td>
+        <td><%= factura.subtotal_12%></td>
+        <td><%= factura.iva %></td>
+        <td><%= factura.total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <h4>Nº Total de Facturas: <%= @search.count%> </h4>
+   <h4>Nº Total de Compra: <%= @search.sum(:total)%> </h4>
+<% end %>
 <% end %>
