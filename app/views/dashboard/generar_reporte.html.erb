@@ -8,7 +8,9 @@
     <thead>
       <tr>
         <th>Nº Factura</th>
-        <th>Cliente/Proveedor</th>
+        <th>Cliente</th>
+        <th>Dirección</th>
+        <th>Vendedor</th>
         <th>Fecha</th>
         <th>Total</th>
       </tr>
@@ -17,11 +19,9 @@
       <% @search.each do |factura| %>
       <tr>
         <td><%= factura.numero %></td>
-        <% if factura.cliente.nil?%>
-        <td><%= factura.proveedor.nombre_o_razon_social%></td>
-        <% else %>
         <td><%= factura.cliente.nombre%></td>
-        <% end %>
+        <td><%= factura.cliente.direccion %></td>
+        <td><%= factura.user.username %></td>
         <td><%= factura.created_at.to_s(:db) %></td>
         <td><%= factura.total %></td>
       </tr>
