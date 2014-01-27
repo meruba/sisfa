@@ -27,13 +27,14 @@ class ProformasController < ApplicationController
 			if @proforma.save
 				redirect_to proformas_path, :notice => "Proforma Guardada"
 			else
+				render action: 'new' 
 				flash[:error] = 'Error en la Proforma'
 			end
 		else
-			flash[:error] = 'Errores en Cliente'
+			flash[:error] = 'Errores en el cliente' 
 			@proforma = Proforma.new(:numero => Proforma.last ? Proforma.last.numero + 1 : 1 )
 			@proforma.item_proformas.build
-			redirect_to proformas_path
+			render 'new'
 		end 
 	end
 
