@@ -28,20 +28,9 @@ table.dataTable tr.odd { background-color: white;  border:1px lightgrey;}
 table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 
 .table{margin-top: 20px;}
-.rating-num { margin-top:0px;font-size: 44px; }
+.total-num { margin-top:0px;font-size: 44px; }
 .estadisticas {padding-top: 20px;}
-
-
-.carousel-caption {
-  font-size: 20px;
-}
-
-.carousel-caption h4 {
-  font-size: 25px;
-}
-
-#myCarousel .item { height: 160px; }
-
+.info-cierre-caja {padding-bottom: 15px}
 .flash_menssage{
   /*opacity: 0.8;*/
   position: fixed;
@@ -56,3 +45,12 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .row-user{
   padding-top: 15px;  
 }
+/*.carousel-caption {
+  font-size: 20px;
+}
+
+.carousel-caption h4 {
+  font-size: 25px;
+}
+
+#myCarousel .item { height: 160px; }*/
