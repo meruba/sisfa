@@ -14,7 +14,8 @@ get "facturas/index_compra"
 get "facturas/index_anulada"
 get "dashboard/caducados"
 post "dashboard/generar_reporte"
-post "dashboard/cierre_de_caja"
+# get "dashboard/cierre_de_caja"
+match "dashboard/cierre_de_caja" => "dashboard#cierre_de_caja", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
   
