@@ -51,19 +51,20 @@ class DashboardController < ApplicationController
     @end_date = params[:fecha_final]
     @tipo_factura = params[:tipo_factura]
     @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo => params[:tipo_factura]).where(:anulada => false)
-    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte"
+    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
   end
 
   def cierre_de_caja
     @tipo_factura = params[:tipo_factura]
-    @periodo = params[:periodo]
-    case @periodo
-    when "hoy" 
-      @search = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => params[:tipo_factura])
-    when "mes"      
-      @search = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => params[:tipo_factura])
-    when "año"
-      @search = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => params[:tipo_factura])
+    case @tipo_factura
+    when "ventanilla"
+      @search = cerrar_caja("ventanilla","dia")
+    when "hospitalizacion" 
+      @search = cerrar_caja("hospitalizacion","dia")
+    when "consulta_externa"
+      @search = cerrar_caja("consulta_externa","dia")
+    when "todo"
+      #falta aun programar
     end
     @search
     # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja"
@@ -77,6 +78,17 @@ class DashboardController < ApplicationController
   end
 
   private
+
+  def cerrar_caja(tipo, perido)
+    case perido
+    when "dia"
+      facturas = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => tipo)  
+    when "mes"
+      facturas = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => tipo)        
+    when "año"
+      facturas = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => tipo)        
+    end
+  end
   
   def consulta_facturas(query, tipo)
     if tipo

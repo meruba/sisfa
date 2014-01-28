@@ -1,12 +1,10 @@
-<%= form_tag dashboard_cierre_de_caja_path do %>
-<div class= "row">
-  <div class= "col-md-6 estadisticas">
-    <div class= "col-md-6">
-      <h4>Cerrar Caja:</h4>
-      <%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='todo'>Todo</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %>
-      <%= select_tag :periodo, "<option value='hoy'>Hoy</option><option value='mes'>Mes</option><option value='año'>Año</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %>
-      <%= submit_tag "Imprimir", :name => nil, :class => "btn-block mostrar_view"%>
-    </div>
-  </div>
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3 class="modal-title" id="myModalLabel">Que caja desea cerrar ?</h3>
 </div>
+<div class="modal-body">
+<%= form_tag dashboard_cierre_de_caja_path do %>
+      <%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='todo'>Todo</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %>
+      <%= submit_tag "Imprimir", :name => nil, :class => "btn-block mostrar_view", :format => :pdf %>
 <% end %>
+</div>
