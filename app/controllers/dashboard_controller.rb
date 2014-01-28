@@ -82,11 +82,11 @@ class DashboardController < ApplicationController
   def cerrar_caja(tipo, perido)
     case perido
     when "dia"
-      facturas = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => tipo)  
+      facturas = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => tipo).where(:anulada => false)  
     when "mes"
-      facturas = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => tipo)        
+      facturas = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => tipo).where(:anulada => false)
     when "año"
-      facturas = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => tipo)        
+      facturas = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => tipo).where(:anulada => false)
     end
   end
   
