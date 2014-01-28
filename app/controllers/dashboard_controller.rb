@@ -29,23 +29,6 @@ class DashboardController < ApplicationController
     @porcentajemes_consultaexterna = regla_de_tres(@cantidad_mes_consultaexterna, @cantidadfacturasmes)
     end
 
-  def reporte_mes
-    @facturasmes = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => 'ventanilla')
-    respond_to do |format|
-      format.html
-      format.pdf do
-        render :pdf => "mes ventanilla",
-        :template => 'dashboard/reporte_mes.html.erb',
-        :layout => false,
-        :footer => {
-          :center => "Center",
-          :left => "Left",
-          :right => "Right"
-        }
-      end
-    end  
-  end
-
   def generar_reporte
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
