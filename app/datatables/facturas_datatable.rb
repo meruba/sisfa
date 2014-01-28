@@ -26,7 +26,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.tipo),
         (factura.total),
-        (factura.user_id),
+        (factura.user.username),
         (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Modificar', class: "ttip fa fa-eye btn btn-info") + " " + 
         (link_to '', @view.anular_factura_path(factura), method: :post, data: { confirm: 'Esta seguro?' }, :rel => "tooltip", :title => 'Anular', class: "ttip fa fa-thumbs-down btn btn-danger")
         # (link_to 'Create PDF',factura, :format => :pdf)
@@ -39,7 +39,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.tipo),
         (factura.total),
-        (factura.user_id),
+        (factura.user.username),
         (link_to '', factura, :remote => true, :rel => 'tooltip','data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info")
       ]
     end 
@@ -49,7 +49,7 @@ class FacturasDatatable
         (factura.proveedor.nombre_o_razon_social),
         (factura.numero),
         (factura.total),
-        (factura.user_id),
+        (factura.user.username),
         (link_to '', factura, :remote => true, :rel =>'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostar', class: "ttip fa fa-eye btn btn-info")
         # (link_to 'delete', factura, method: :delete, class: "cancel_button")
       ]
