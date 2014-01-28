@@ -4,17 +4,18 @@
 </div>
 <%= form_for(@cliente, :remote => true) do |f| %>
 <div class="modal-body">
-  <%= f.label :Nombre %>
-  <%= f.text_field :nombre, class: "form-control", required:true %>
-  <%= f.label :numero_de_identificacion, "C.I O RUC" %>
-  <%= f.text_field :numero_de_identificacion, class: "form-control", required:true%>
-  <%= f.label :Dirección %>
-  <%= f.text_field :direccion, class: "form-control"%>
-  <%= f.label :Teléfono %>
-  <%= f.text_field :telefono, class: "form-control"%>
-  <%= f.label :email %>
-  <%= f.text_field :email, class: "form-control"%>
- 
+  <div class="field">
+    <%= f.label :Nombre %>
+    <%= f.text_field :nombre, required:true %>
+    <%= f.label :numero_de_identificacion, "C.I O RUC" %>
+    <%= f.text_field :numero_de_identificacion, required:true%>
+    <%= f.label :Dirección %>
+    <%= f.text_field :direccion %>
+    <%= f.label :Teléfono %>
+    <%= f.text_field :telefono %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
 </div>
 </div>
 <div class="modal-footer">

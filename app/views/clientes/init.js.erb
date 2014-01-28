@@ -1,3 +1,4 @@
 m = $('#content_modal');
 m.html('<%= j(render partial: 'form', locals: {cliente: @cliente}) %>');
 window.Helpers.ButtonsHelper.init();
+window.Helpers.FormsHelper.init()
