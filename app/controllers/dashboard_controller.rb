@@ -37,20 +37,25 @@ class DashboardController < ApplicationController
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
   end
 
-  def cierre_de_caja
-    @tipo_factura = params[:tipo_factura]
-    case @tipo_factura
-    when "ventanilla"
-      @search = cerrar_caja("ventanilla","dia")
-    when "hospitalizacion" 
-      @search = cerrar_caja("hospitalizacion","dia")
-    when "consulta_externa"
-      @search = cerrar_caja("consulta_externa","dia")
-    when "todo"
-      #falta aun programar
-    end
-    @search
+  def cierre_de_caja_dia
+    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"compra")
+    @cantidad_dia_ventanilla = cantidad_facturas(@facturas_dia, "ventanilla")
+    @totaldia_ventanilla = valor_total_por_facturas(@facturas_dia, "ventanilla")
+    @cantidad_dia_consultaexterna = cantidad_facturas(@facturas_dia, "consulta_externa")
+    @totaldia_consultaexterna = valor_total_por_facturas(@facturas_dia, "consulta_externa")
+    @cantidad_dia_hospitalizacion = cantidad_facturas(@facturas_dia, "hospitalizacion")
+    @totaldia_hospitalizacion = valor_total_por_facturas(@facturas_dia, "hospitalizacion")
+    @totalfacturashoy = valor_total_facturas(@facturas_dia)
+    @cantidadfacturashoy = @cantidad_dia_ventanilla + @cantidad_dia_hospitalizacion + @cantidad_dia_consultaexterna
+    @ventanilla_iva = sumar_impuesto(@facturas_dia, "ventanilla", "iva")
+    @hospitalizacion_iva = sumar_impuesto(@facturas_dia, "hospitalizacion", "iva")
+    @consultaexterna_iva = sumar_impuesto(@facturas_dia, "consulta_externa", "iva")
+    @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
+    # raise 'error'
     # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja"
+  end
+
+  def cierre_de_caja_mes
   end
 
   def caducados
@@ -62,17 +67,6 @@ class DashboardController < ApplicationController
 
   private
 
-  def cerrar_caja(tipo, perido)
-    case perido
-    when "dia"
-      facturas = Factura.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day, :tipo => tipo).where(:anulada => false)  
-    when "mes"
-      facturas = Factura.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month, :tipo => tipo).where(:anulada => false)
-    when "año"
-      facturas = Factura.where(:created_at => Time.now.beginning_of_year..Time.now.end_of_year, :tipo => tipo).where(:anulada => false)
-    end
-  end
-  
   def consulta_facturas(query, tipo)
     if tipo
     todasfacturas = Factura.where(:created_at => query).where(:anulada => false).where.not(:tipo => tipo)
@@ -124,5 +118,28 @@ class DashboardController < ApplicationController
     end
     return '%.2f' %total
   end
-end
 
+  def sumar_impuesto (todas_facturas, tipo_factura, tipo_impuesto)
+    impuesto = tipo_impuesto
+    sumar = 0
+    todas_facturas.each do |value, key|
+      key.each do |factura|
+        if factura.tipo == tipo_factura
+          case impuesto
+          when 'iva'
+            sumar += factura.iva
+          when 'subtotal_0'
+            sumar += factura.subtotal_0
+          when 'subtotal_12'
+            sumar += factura.subtotal_12
+          when 'descuento'
+            sumar += factura.descuento
+          end
+          sumar
+        end
+      end
+    end
+    return sumar
+  end
+
+end
