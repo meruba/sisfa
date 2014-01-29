@@ -45,12 +45,11 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .row-user{
   padding-top: 15px;  
 }
-/*.carousel-caption {
-  font-size: 20px;
+
+.table-factura thead tr th{
+  padding-right: 8px;
 }
 
-.carousel-caption h4 {
-  font-size: 25px;
+.table-factura tbody tr th{
+  padding-right: 8px;
 }
-
-#myCarousel .item { height: 160px; }*/
