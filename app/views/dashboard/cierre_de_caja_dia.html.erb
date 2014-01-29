@@ -1,0 +1,34 @@
+<table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th></th>
+        <th>VENTANILLA</th>
+        <th>HOSPITALIZACION</th>
+        <th>CONSULTA EXTERNA</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>TOTAL DE FACTURAS:</td>
+        <td><%= @cantidad_dia_ventanilla %></td>
+        <td><%= @cantidad_dia_hospitalizacion %></td>
+        <td><%= @cantidad_dia_consultaexterna %></td>
+        <td><%= @cantidadfacturashoy %></td>
+      </tr>
+      <tr>
+        <td>TOTAL IVA:</td>
+        <td><%= '%.2f' % @ventanilla_iva %></td>
+        <td><%= '%.2f' % @hospitalizacion_iva %></td>
+        <td><%= '%.2f' % @consultaexterna_iva %></td>
+        <td><%= '%.2f' % @total_iva %></td>
+      </tr>
+      <tr>
+        <td>TOTAL VENTAS:</td>
+        <td><%= @totaldia_ventanilla %></td>
+        <td><%= @totaldia_hospitalizacion %></td>
+        <td><%= @totaldia_consultaexterna %></td>
+        <td><%= @totalfacturashoy %></td>
+      </tr>
+    </tbody>
+  </table>
