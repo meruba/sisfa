@@ -32,3 +32,6 @@
       </tr>
     </tbody>
   </table>
+<% unless request.format.to_sym == :pdf %>
+<%= link_to ' Imprimir', {:format => :pdf} , {:class => "fa fa-print", :target => "_blank"} %>  
+<% end %>
