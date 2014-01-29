@@ -1,0 +1,43 @@
+<% factura = Factura.last %>
+<h6>
+  Cliente: <%= factura.cliente.nombre%>
+</h6>
+<h6>
+  RUC/C.I: <%= factura.cliente.numero_de_identificacion%>
+</h6>
+<h6>
+  Dirección: <%= factura.cliente.direccion%>
+</h6>
+<h6>
+  Loja: <%= factura.fecha_de_emision %>
+</h6>
+<table class="table-factura">
+  <thead>
+    <tr>
+      <th>CANT</th>
+      <th>PRODUCTO</th>
+      <th>V.Unt</th>
+      <th>Iva</th>
+      <th>Desct</th>
+      <th>TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% factura.item_facturas.each do |item| %>
+    <tr>
+      <td><%= item.cantidad %></td>
+      <td><%= item.producto.nombre%></td>
+      <td>$ <%= item.producto.precio_a %></td>
+      <td>$ <%= item.iva%></td>
+      <td>$ <%= item.descuento%></td>
+      <td>$ <%= item.total %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+<div class="text-right">
+  <h6>SUB: <%= factura.subtotal_0 %></h6>
+  <h6>IVA: <%= factura.iva %></h6>
+  <h6>DESC: <%= factura.descuento %></h6>
+  <h6>TOTAL: <%= factura.total %></h6>
+</div>
