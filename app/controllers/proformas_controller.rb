@@ -8,15 +8,18 @@ class ProformasController < ApplicationController
 			format.json { render json: ProformasDatatable.new(view_context) }
 		end
 	end
+
 	def new
 		@proforma = Proforma.new
 		@proforma.item_proformas.build
 	end
+
 	def show
     respond_to do |format|
       format.js
     end
   end
+  
 	def create
 		cliente_attrs = params[:proforma].delete :cliente
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
@@ -25,7 +28,8 @@ class ProformasController < ApplicationController
 			@proforma.numero = Proforma.last ? Proforma.last.numero + 1 : 1
 			@proforma.fecha_emision = Time.now
 			if @proforma.save
-				redirect_to proformas_path, :notice => "Proforma Guardada"
+      	render :pdf => "proforma", :layout => 'report.html', :template => "proformas/proforma_pdf.html.erb"
+				# redirect_to proformas_path, :notice => "Proforma Guardada"
 			else
 				render action: 'new' 
 				flash[:error] = 'Error en la Proforma'
@@ -35,7 +39,7 @@ class ProformasController < ApplicationController
 			@proforma = Proforma.new(:numero => Proforma.last ? Proforma.last.numero + 1 : 1 )
 			@proforma.item_proformas.build
 			render 'new'
-		end 
+		end
 	end
 
 	private
