@@ -1,0 +1,43 @@
+<% proforma = Proforma.last %>
+
+<h2 class="text-center">HOSPITAL 7 B.I LOJA</h2>
+<%= image_tag("/images/logo1.png",:width=>45, :heigth=>45)%>
+
+<h4><strong>Proforma Nº <%= proforma.numero%></strong></h4>
+  <p>
+    <strong>Cliente:</strong>
+    <%= proforma.cliente.nombre%>
+  </p>
+  <p>
+    <strong>Numero de Identificación:</strong>
+    <%= proforma.cliente.numero_de_identificacion%>
+  </p>
+  <p>
+    <strong>Fecha de Emisión:</strong>
+    <%= proforma.fecha_emision %>
+  </p>
+    <table class="table table-hover">
+  <thead class= "well">
+    <tr>
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody class="text-left">
+    <% proforma.item_proformas.each do |item| %>
+      <tr>
+        <td><%= item.producto.nombre%></td>
+        <td><%= item.cantidad %></td>
+        <td>$ <%= item.producto.precio_a %></td>
+        <td>$ <%= item.total %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+  <h4 class="text-right">
+    <strong>Total: $
+    <%= proforma.total %>
+    </strong>
+  </h4>
