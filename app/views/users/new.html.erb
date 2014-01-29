@@ -12,8 +12,7 @@
         <br>
         <%= f.text_field :username, :placeholder => "Nombre de Usuario", class: "form-control" %>
         <br>
-        <%= f.hidden_field :rol %>
-        <%= f.select :rol, Rol.all.map { |rol| rol.nombre  },{ :prompt => "Seleccione Rol"}, {class: "form-control"}%>
+        <%= f.select :rol, Rol.all.map { |rol| [rol.nombre, rol.id ] },{ :prompt => "Seleccione Rol"}, {class: "form-control"}%>
         <br>
         <%= f.password_field :password, :placeholder => "Clave", class: "form-control" %>
         <br>

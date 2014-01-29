@@ -23,12 +23,14 @@ class UsersController < ApplicationController
   end
 
   def create
+    rol = params[:user].delete :rol
     @user = User.new(user_params)
+    @user.rol = Rol.where(:id => rol).first
       if @user.save
-         redirect_to @user, notice: 'Usuario Creado'
+         redirect_to users_path, notice: 'Usuario Creado'
       else
-         redirect_to @user
-        flash[:error] = "Hubo un Error.."
+        render 'new'
+        flash[:now] = "Hubo un Error.."
       end
   end
 
@@ -66,7 +68,6 @@ class UsersController < ApplicationController
                                     :password,
                                     :password_confirmation,
                                     :suspendido,
-                                    :rol,
                                     :cliente_attributes => [
                                       :nombre,
                                       :numero_de_identificacion,
