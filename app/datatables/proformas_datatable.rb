@@ -25,7 +25,6 @@ private
         (link_to '', proforma, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info")
         # (link_to 'Mostrar', @view.show(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
         # (link_to '', @view.show_factura_path(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
-        # (link_to 'delete', proforma, method: :delete, class: "cancel_button")
       ]
     end 
   end
@@ -38,7 +37,7 @@ private
     proformas = Proforma.order("#{sort_column} #{sort_direction}")
     proformas = proformas.page(page).per_page(per_page)
     if params[:sSearch].present?
-      proformas = proformas.where("tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
+      proformas = proformas.where("numero like :search", search: "%#{params[:sSearch]}%")
     end
     proformas
   end
