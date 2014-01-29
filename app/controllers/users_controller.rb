@@ -30,7 +30,6 @@ class UsersController < ApplicationController
          redirect_to users_path, notice: 'Usuario Creado'
       else
         render 'new'
-        flash[:now] = "Hubo un Error.."
       end
   end
 
