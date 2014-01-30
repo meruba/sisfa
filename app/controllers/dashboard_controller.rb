@@ -47,6 +47,10 @@ class DashboardController < ApplicationController
     @totaldia_hospitalizacion = valor_total_por_facturas(@facturas_dia, "hospitalizacion")
     @totalfacturashoy = valor_total_facturas(@facturas_dia)
     @cantidadfacturashoy = @cantidad_dia_ventanilla + @cantidad_dia_hospitalizacion + @cantidad_dia_consultaexterna
+    @ventanilla_subtotal = sumar_impuesto(@facturas_dia, "ventanilla", "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas_dia, "hospitalizacion", "subtotal_0")
+    @consultaexterna_subtotal = sumar_impuesto(@facturas_dia, "consulta_externa", "subtotal_0")
+    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
     @ventanilla_iva = sumar_impuesto(@facturas_dia, "ventanilla", "iva")
     @hospitalizacion_iva = sumar_impuesto(@facturas_dia, "hospitalizacion", "iva")
     @consultaexterna_iva = sumar_impuesto(@facturas_dia, "consulta_externa", "iva")
@@ -62,6 +66,30 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_mes
+    @facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month,"compra")
+    @cantidad_mes_ventanilla = cantidad_facturas(@facturas_mes, "ventanilla")
+    @totalmes_ventanilla = valor_total_por_facturas(@facturas_mes, "ventanilla")
+    @cantidad_mes_consultaexterna = cantidad_facturas(@facturas_mes, "consulta_externa")
+    @totalmes_consultaexterna = valor_total_por_facturas(@facturas_mes, "consulta_externa")
+    @cantidad_mes_hospitalizacion = cantidad_facturas(@facturas_mes, "hospitalizacion")
+    @totalmes_hospitalizacion = valor_total_por_facturas(@facturas_mes, "hospitalizacion")
+    @totalfacturasmes = valor_total_facturas(@facturas_mes)
+    @cantidadfacturasmes = @cantidad_mes_ventanilla + @cantidad_mes_hospitalizacion + @cantidad_mes_consultaexterna
+    @ventanilla_subtotal = sumar_impuesto(@facturas_mes, "ventanilla", "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas_mes, "hospitalizacion", "subtotal_0")
+    @consultaexterna_subtotal = sumar_impuesto(@facturas_mes, "consulta_externa", "subtotal_0")
+    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
+    @ventanilla_iva = sumar_impuesto(@facturas_mes, "ventanilla", "iva")
+    @hospitalizacion_iva = sumar_impuesto(@facturas_mes, "hospitalizacion", "iva")
+    @consultaexterna_iva = sumar_impuesto(@facturas_mes, "consulta_externa", "iva")
+    @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
+    respond_to do |format|
+      format.html
+      format.js
+      format.pdf do
+        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja_mes.html.erb"
+      end
+    end
   end
 
   def caducados

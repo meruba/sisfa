@@ -1,0 +1,13 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3 class="modal-title" id="myModalLabel">VENTAS DEL MES</h3>
+</div>
+<div class="modal-body">
+  <div class="table-responsive">
+    <%= render 'dashboard/cierre_mes/caja_mes'%>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-success", :target => "_blank"} %>
+</div>
