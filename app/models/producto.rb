@@ -27,6 +27,6 @@ class Producto < ActiveRecord::Base
  
 #relations
   has_many :item_facturas
-  #has_many :lineaKardexes
+  has_one :kardex
   has_many :item_proformas
 end

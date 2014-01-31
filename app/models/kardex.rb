@@ -14,5 +14,5 @@ class Kardex < ActiveRecord::Base
 	validates :fecha, :presence => true
 #relations
 has_many :lineaKardexes
-has_many :productos, :through => :lineaKardexes
+belongs_to :producto
 end
