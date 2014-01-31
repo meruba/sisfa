@@ -35,7 +35,8 @@ accepts_nested_attributes_for :item_facturas
 
 #valitations
 validates :numero, :fecha_de_emision, :fecha_de_vencimiento, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presence =>true
-validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :numericality => true, :numericality => { :greater_than_or_equal_to => 0 }
+validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality => true, :numericality => { :greater_than_or_equal_to => 0 }
+validates :total, :numericality => { :greater_than => 0 }
 
 #methods
 item_facturas = []
