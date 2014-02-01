@@ -17,15 +17,23 @@
 
 class Producto < ActiveRecord::Base
 
-	# accepts_nested_attributes_for :proveedor
+#callbacks
+before_create :set_precios
 
 #validations  
-  validates :nombre,:cantidad_disponible, :precio_a, :presence => true
-  validates :cantidad_disponible, :precio_a, :numericality => { :greater_than_or_equal_to => 0}
+  validates :nombre,:cantidad_disponible, :precio_compra, :presence => true
+  validates :cantidad_disponible, :precio_compra, :numericality => { :greater_than_or_equal_to => 0}
   validates :nombre, :length => { :maximum => 100 }
  
 #relations
   has_many :item_facturas
   has_one :kardex
   has_many :item_proformas
+
+  #methods
+  private
+  def set_precios
+    precio_compra_iva = self.precio_compra * 0.12 + self.precio_compra
+    self.precio_venta = precio_compra_iva * 0.10 + precio_compra_iva
+  end
 end
