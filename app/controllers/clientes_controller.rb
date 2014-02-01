@@ -38,7 +38,7 @@ class ClientesController < ApplicationController
   # GET /clientes/1.json
   def show
     respond_to do |format|
-      format.js{ render "new" }
+      format.js{ render "show" }
     end
   end
 
@@ -46,14 +46,14 @@ class ClientesController < ApplicationController
   def new
     @cliente= Cliente.new
     respond_to do |format|
-      format.js{ render "init" }
+      format.js{ render "new_or_edit" }
     end
   end
 
   # GET /clientes/1/edit
   def edit
     respond_to do |format|
-      format.js{ render "init" }
+      format.js{ render "new_or_edit" }
     end
   end
 
