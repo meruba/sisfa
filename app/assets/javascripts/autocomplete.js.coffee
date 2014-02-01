@@ -7,47 +7,38 @@ window.Helpers.AutocompleteHelper = {
       source: "/clientes/autocomplete.json"
       response: (event, ui) ->
         unless ui.content.length
-          a = $("<a>")
-          $(a).attr('data-remote', 'true')
-          addNew =
+          addNewCliente =
+            id: "vacio"
             label:  "Agregar: #{event.target.value}"
-          # console.log addNew
-          ui.content.push addNew
+          ui.content.push addNewCliente
         else
           $("#message").empty()
       select: (event, ui) ->
-        $(".cliente_id").val ui.item.id
-        $(".nombre").val ui.item.nombre
-        $(".direccion").val ui.item.direccion
-        $(".telefono").val ui.item.telefono
-    #.data("ui-autocomplete")._renderItem = (ul, item) ->
-      #a = $('<a>', 
-      #  text: item.label)
-      #$(a).attr('href', "/clientes/new")
-      #$(a).attr('data-remote', 'true')
-      #$(a).attr('data-target', '#myModal')
-      #$(a).attr('data-toggle', 'modal')
-      # f = items
-      # console.log $("<li></li>").data("item.autocomplete", item).append(a).appendTo ul
-      #$("<li></li>").data("item.autocomplete", item).append(a).appendTo ul
+        if ui.item.id == "vacio"
+          $('#myModal').modal
+            remote: "/clientes/new"
+        else
+          $(".cliente_id").val ui.item.id
+          $(".nombre").val ui.item.nombre
+          $(".direccion").val ui.item.direccion
+          $(".telefono").val ui.item.telefono
 
     $(".autocomplete_producto").autocomplete
       minLength: 3
       source: "/productos/autocomplete.json"
       response: (event, ui) ->
         unless ui.content.length
-          noResult =
-            value: event.target.value
+          addNewProducto =
+            id: "vacio"
             label: "Agregar: #{event.target.value}"
-            # kind: "<a href='#'>t</a>"
-          ui.content.push noResult
+          ui.content.push addNewProducto
         else
           $("#message").empty()
       select: (event, ui) ->
         $this = $(this)
         $this.closest(".fields").find("td:nth-child(2)").find(".producto_id").val ui.item.id
         # $this.closest(".fields").find("td:nth-child(1)").find(".codigo").val ui.item.codigo
-        $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_a
+        $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
         window.Helpers.AutocompleteHelper.calcular_total_producto($this)
         window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
@@ -91,7 +82,7 @@ window.Helpers.AutocompleteHelper = {
         $(".telefono").val ui.item.telefono
 
   autocomplete_precio_producto: ->
-    $(".precio_a").on "input", ->
+    $(".precio_venta").on "input", ->
       # $this = $(this)
       console.log "cambiar"
       # $(".precio_b").val($this.val())

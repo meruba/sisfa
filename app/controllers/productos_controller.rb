@@ -21,7 +21,7 @@ class ProductosController < ApplicationController
             :id => producto.id,
             :label => producto.nombre,
             :value => producto.nombre,
-            :precio_a => producto.precio_a,
+            :precio_venta => producto.precio_venta,
             :codigo => producto.codigo
           }
         end
