@@ -1,6 +1,10 @@
 <%- if @proveedor.errors.any? %>
   $('#content_modal').html('<%= escape_javascript(render('form')) %>');
-  // agegar errores
+  window.Helpers.ButtonsHelper.init();
+  window.Helpers.FormsHelper.init()
+  <%- @proveedor.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
 <%- else %>
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
@@ -8,6 +12,6 @@
   $(".table-responsive").html('<%= j render 'proveedors', proveedors: @proveedors %>');
   window.Helpers.init_datatables();
   window.Helpers.ButtonsHelper.init();
-
+  alertify.success("Proveedor guardado");
   // agregar mensaje
 <%- end %>

@@ -4,24 +4,26 @@
 </div>
 <%= form_for(@proveedor, :remote => true) do |f| %>
 <div class="modal-body">
-  <%= f.label :Nombre %>
-  <%= f.text_field :nombre_o_razon_social, class: "form-control", required:true %>
-  <%= f.label :Dirección %>
-  <%= f.text_field :direccion, class: "form-control"%>
-  <%= f.label :Identificación %>
-  <%= f.text_field :numero_de_identificacion, class: "form-control", required:true%>
-  <%= f.label :Teléfono %>
-  <%= f.text_field :telefono, class: "form-control"%>
-  <%= f.label :Código %>
-  <%= f.text_field :codigo, class: "form-control", required:true%>
-  <%= f.label :Representante_Legal %>
-  <%= f.text_field :representante_legal, class: "form-control datepicker", required:true%>
-  <%= f.label :País %>
-  <%= f.text_field :pais, class: "form-control"%>
-  <%= f.label :Ciudad %>
-  <%= f.text_field :ciudad, class: "form-control"%>
-  <%= f.label :Fax%>
-  <%= f.text_field :fax, class: "form-control"%>
+  <div class= "field">
+    <%= f.label :Nombre %>
+    <%= f.text_field :nombre_o_razon_social, required:true %>
+    <%= f.label :Dirección %>
+    <%= f.text_field :direccion%>
+    <%= f.label :Identificación %>
+    <%= f.text_field :numero_de_identificacion, required:true%>
+    <%= f.label :Teléfono %>
+    <%= f.text_field :telefono%>
+    <%= f.label :Código %>
+    <%= f.text_field :codigo, required:true%>
+    <%= f.label :Representante_Legal %>
+    <%= f.text_field :representante_legal, class: "form-control datepicker", required:true%>
+    <%= f.label :País %>
+    <%= f.text_field :pais%>
+    <%= f.label :Ciudad %>
+    <%= f.text_field :ciudad%>
+    <%= f.label :Fax%>
+    <%= f.text_field :fax%>
+  </div>
 </div>
 </div>
 <div class="modal-footer">

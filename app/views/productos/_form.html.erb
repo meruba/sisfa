@@ -4,22 +4,24 @@
 </div>
 <%= form_for(@producto, :remote => true) do |f| %>
 <div class="modal-body">
-	<%= f.label :nombre %>
-	<%= f.text_field :nombre, class: "form-control", required:true %>
-	<%= f.label :nombre_generico %>
-	<%= f.text_field :nombre_generico, class: "form-control", required:true %>
-	<%= f.label :cantidad_disponible %>
-	<%= f.number_field :cantidad_disponible, class: "form-control", required:true %>
-	<%= f.label :codigo %>
-	<%= f.text_field :codigo, class: "form-control", required:true%>
-	<%= f.label :Fecha_de_caducidad %>
-	<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker", required:true%>
-	<%= f.label :categoria %>
-	<%= f.text_field :categoria, class: "form-control"%>
-	<%= f.label :precio_compra, "Precio de compra (sin IVA)",  class: "control-label"%>
-	<%= f.number_field :precio_compra, class: "form-control", required:true, min:0 %>
-	<%= f.label :casa_comercial %>
-	<%= f.text_field :casa_comercial, class: "form-control"%>
+	<div class="field">
+		<%= f.label :nombre %>
+		<%= f.text_field :nombre, required:true %>
+		<%= f.label :nombre_generico %>
+		<%= f.text_field :nombre_generico, required:true %>
+		<%= f.label :cantidad_disponible %>
+		<%= f.number_field :cantidad_disponible, required:true %>
+		<%= f.label :codigo %>
+		<%= f.text_field :codigo, required:true%>
+		<%= f.label :Fecha_de_caducidad %>
+		<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker", required:true%>
+		<%= f.label :categoria %>
+		<%= f.text_field :categoria%>
+		<%= f.label :precio_compra, "Precio de compra (sin IVA)"%>
+		<%= f.number_field :precio_compra, required:true, min:0 %>
+		<%= f.label :casa_comercial %>
+		<%= f.text_field :casa_comercial%>
+	</div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

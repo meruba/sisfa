@@ -37,7 +37,7 @@ class ProveedorsController < ApplicationController
   # GET /proveedors/1.json
   def show
    respond_to do |format|
-      format.js{ render "new" }
+      format.js{ render "show" }
     end
   end
 
@@ -45,13 +45,13 @@ class ProveedorsController < ApplicationController
   def new
    @proveedor= Proveedor.new
     respond_to do |format|
-      format.js{ render "init" }
+      format.js{ render "new_or_edit" }
     end
   end
   # GET /proveeodrs/1/edit
   def edit
     respond_to do |format|
-      format.js{ render "init" }
+      format.js{ render "new_or_edit" }
     end
   end
 
@@ -69,7 +69,9 @@ class ProveedorsController < ApplicationController
         }
       else
         format.html { render action: 'new' }
-        format.js
+        format.js{
+          render "success"
+        }
       end
     end
   end
@@ -86,7 +88,7 @@ class ProveedorsController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @proveedor.errors, status: :unprocessable_entity }
-        format.js
+        format.js { render "success"}
       end
     end
   end
