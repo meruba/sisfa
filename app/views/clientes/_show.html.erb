@@ -1,6 +1,6 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h1 class="modal-title" id="myModalLabel">Informacion</h1>
+  <h1 class="modal-title" id="myModalLabel">Información</h1>
 </div>
 <div class="modal-body">
   <p id="notice"><%= notice %></p>
@@ -49,6 +49,6 @@
   <% end %>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
   <%= link_to 'Editar', edit_cliente_path(cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}%>
 </div>

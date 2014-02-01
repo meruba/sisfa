@@ -33,7 +33,7 @@ class ProductosController < ApplicationController
   def new
     @producto=  Producto.new
     respond_to do |format|
-      format.js{ render "init" }
+      format.js{ render "new_or_edit" }
     end
   end
   def show
@@ -43,7 +43,7 @@ class ProductosController < ApplicationController
   end
   def edit
     respond_to do |format|
-      format.js{ render "init" }
+      format.js{ render "new_or_edit" }
     end
   end
 
@@ -64,7 +64,9 @@ class ProductosController < ApplicationController
       else
         format.html { render action: 'new' }
         format.json { render json: @producto.errors, status: :unprocessable_entity }
-        format.js
+        format.js{
+          render "success"
+        }
       end
     end
   end
@@ -79,7 +81,9 @@ class ProductosController < ApplicationController
       else
         format.html { render action: 'edit' }
         format.json { render json: @producto.errors, status: :unprocessable_entity }
-        format.js
+        format.js{
+          render "success"
+        }
       end
     end
   end

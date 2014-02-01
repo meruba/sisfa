@@ -48,4 +48,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+  <%= link_to 'Editar', edit_producto_path(producto), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}%>
 </div>

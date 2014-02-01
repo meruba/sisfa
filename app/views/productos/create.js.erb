@@ -1,9 +1,0 @@
-<%- if @producto.errors.any? %>
-  $('#content_modal').html('<%= escape_javascript(render('productos_form')) %>');
-  // agegar errores
-<%- else %>
-  $("#myModal").modal("hide");
-  $('body').removeClass('modal-open');
-  $('.modal-backdrop').remove();
-  // agregar mensaje
-<%- end %>
