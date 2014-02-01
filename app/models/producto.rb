@@ -18,7 +18,7 @@
 class Producto < ActiveRecord::Base
 
 #callbacks
-before_create :set_precios
+  before_create :set_precios
 
 #validations  
   validates :nombre,:cantidad_disponible, :precio_compra, :presence => true
@@ -30,7 +30,7 @@ before_create :set_precios
   has_one :kardex
   has_many :item_proformas
 
-  #methods
+#methods
   private
   def set_precios
     precio_compra_iva = self.precio_compra * 0.12 + self.precio_compra
