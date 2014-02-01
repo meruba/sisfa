@@ -4,35 +4,22 @@
 </div>
 <%= form_for(@producto, :remote => true) do |f| %>
 <div class="modal-body">
-	<%= f.label :Nombre %>
+	<%= f.label :nombre %>
 	<%= f.text_field :nombre, class: "form-control", required:true %>
-	<%= f.label :Nombre_genérico %>
+	<%= f.label :nombre_generico %>
 	<%= f.text_field :nombre_generico, class: "form-control", required:true %>
-	<%= f.label :Cantidad %>
+	<%= f.label :cantidad_disponible %>
 	<%= f.number_field :cantidad_disponible, class: "form-control", required:true %>
-	<%= f.label :Código %>
+	<%= f.label :codigo %>
 	<%= f.text_field :codigo, class: "form-control", required:true%>
 	<%= f.label :Fecha_de_caducidad %>
 	<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker", required:true%>
-	<%= f.label :Categoria %>
-	<%= f.text_field :categoria, class: "form-control"%><br>
-	<div class='row'>
-		<div class='col-xs-4 form-group cvc required'>
-			<%= f.label :Precio_de_compra_sin_IVA, class: "control-label"%>
-			<%= f.number_field :precio_a, class: "form-control", required:true, min:0, :onkeypressed => "$(#producto_precio_b).value = $(this).value" %>
-		</div>
-		<div class='col-xs-4 form-group expiration required'>
-			<%= f.label :Precio_de_compra_con_IVA, class: "control-label" %>
-			<%= f.number_field :precio_b, class: "form-control", required:true, min:0 %>
-		</div>
-		<div class='col-xs-4 form-group expiration required'>
-			<%= f.label :Precio_de_venta_al_Público_con_el_10porciento_de_ganancia, class: "control-label" %>
-			<%= f.number_field :precio_c, class: "form-control", required:true, min:0 %>
-		</div>
-	</div>
-	<%= f.label :Casa_comercial %>
+	<%= f.label :categoria %>
+	<%= f.text_field :categoria, class: "form-control"%>
+	<%= f.label :precio_compra, "Precio de compra (sin IVA)",  class: "control-label"%>
+	<%= f.number_field :precio_compra, class: "form-control", required:true, min:0 %>
+	<%= f.label :casa_comercial %>
 	<%= f.text_field :casa_comercial, class: "form-control"%>
-</div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
