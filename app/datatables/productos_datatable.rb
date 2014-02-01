@@ -23,7 +23,8 @@ private
         (producto.nombre),
         #(producto.nombre_generico),
         (producto.cantidad_disponible),
-        (producto.precio_a),
+        (producto.precio_compra),
+        (producto.precio_venta),
         (producto.codigo),
         (producto.categoria),
         (link_to '', @view.edit_producto_path(producto), {:remote => true, :rel => 'tooltip', :title => 'Editar', 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-pencil btn btn-warning"}) + " " + (link_to '', producto, :remote => true, :rel => 'tooltip', :title=> 'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info mostrar"),
@@ -64,7 +65,7 @@ private
   end
 
   def sort_column
-    columns = %w[nombre cantidad_disponible precio_a codigo categoria ]
+    columns = %w[nombre cantidad_disponible precio_compra precio_venta codigo categoria ]
     columns[params[:iSortCol_0].to_i]
   end
 
