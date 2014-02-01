@@ -4,15 +4,14 @@
 #
 #  id                  :integer          not null, primary key
 #  nombre              :string(255)      not null
-#  precio_a            :float            not null
+#  precio_compra       :float            not null
 #  codigo              :string(255)
 #  categoria           :string(255)
 #  descripcion         :string(255)
 #  fecha_de_caducidad  :date
 #  casa_comercial      :string(255)
 #  nombre_generico     :string(255)
-#  precio_b            :float
-#  precio_c            :float
+#  precio_venta        :float
 #  cantidad_disponible :float            not null
 #
 
