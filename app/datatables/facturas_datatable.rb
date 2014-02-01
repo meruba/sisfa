@@ -77,7 +77,7 @@ class FacturasDatatable
         facturas = facturas.includes(:proveedor).where("proveedors.nombre_o_razon_social like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
       when "anulada"
         facturas = facturas.includes(:cliente).where("clientes.nombre like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
-      when "ventas"
+      when "venta"
         facturas = facturas.includes(:cliente).where("clientes.nombre like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
       end
     end
