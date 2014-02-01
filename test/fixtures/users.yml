@@ -9,7 +9,6 @@
 #  created_at       :datetime
 #  updated_at       :datetime
 #  cliente_id       :integer
-#  rol              :string(255)      not null
 #  suspendido       :boolean          default(FALSE)
 #
 

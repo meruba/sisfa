@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: rols
+#
+#  id         :integer          not null, primary key
+#  nombre     :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class Rol < ActiveRecord::Base
   # validations
   validates :nombre, presence: true, uniqueness: true
