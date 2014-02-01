@@ -65,13 +65,10 @@ class ClientesController < ApplicationController
     respond_to do |format|
       if @cliente.save
         @clientes = Cliente.all
-        format.html { redirect_to @cliente, notice: 'Cliente was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @cliente }
         format.js { 
           render "success"
         }
       else
-        format.html { render action: 'index' }
         format.js{
           render "success"
         }

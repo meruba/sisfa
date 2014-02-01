@@ -5,7 +5,6 @@
   <%- @cliente.errors.full_messages.each do |msg|%>
     alertify.error("<%=j msg %>");
   <%- end %>
-  // agegar errores
 <%- else %>
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
@@ -15,5 +14,4 @@
   window.Helpers.ButtonsHelper.init();
   window.Helpers.FormsHelper.init()
   alertify.success("Cliente guardado");
-  // agregar mensaje
 <%- end %>
