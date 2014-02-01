@@ -46,7 +46,7 @@ class ClientesController < ApplicationController
   def new
     @cliente= Cliente.new
     respond_to do |format|
-      format.html
+      format.html { render "new" } 
       format.js{ render "new_or_edit" }
     end
   end
