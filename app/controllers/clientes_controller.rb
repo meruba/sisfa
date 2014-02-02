@@ -14,9 +14,6 @@ class ClientesController < ApplicationController
   def autocomplete
     # @cliente= Cliente.new
     respond_to do |format|
-      format.html{
-        @clientes = Cliente.all
-      }
       format.json { 
         @clientes = Cliente.where("numero_de_identificacion like ?", "%#{params[:term]}%")
         @clientes = @clientes.map do |cliente|
@@ -64,7 +61,6 @@ class ClientesController < ApplicationController
     @cliente = Cliente.new(cliente_params)
     respond_to do |format|
       if @cliente.save
-        @clientes = Cliente.all
         format.js { 
           render "success"
         }
@@ -81,7 +77,6 @@ class ClientesController < ApplicationController
   def update
     respond_to do |format|
       if @cliente.update(cliente_params)
-        @clientes = Cliente.all
         format.html { redirect_to @cliente, notice: 'Cliente was successfully updated.' }
         format.json { render action: 'show', status: :created, location: @cliente }
         format.js { render "success"}
