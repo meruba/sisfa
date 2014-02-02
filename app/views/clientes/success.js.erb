@@ -9,7 +9,7 @@
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
-  $(".table-responsive").html('<%= j render 'clientes', clientes: @clientes %>');
+  $(".table-clientes").html('<%= j render 'clientes', clientes: @clientes %>');
   window.Helpers.init_datatables();
   window.Helpers.ButtonsHelper.init();
   window.Helpers.FormsHelper.init()
