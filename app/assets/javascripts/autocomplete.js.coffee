@@ -10,13 +10,17 @@ window.Helpers.AutocompleteHelper = {
           addNewCliente =
             id: "vacio"
             label:  "Agregar: #{event.target.value}"
+            cedula: event.target.value
           ui.content.push addNewCliente
         else
           $("#message").empty()
       select: (event, ui) ->
         if ui.item.id == "vacio"
+          $.getScript "/clientes/new"
           $('#myModal').modal
-            remote: "/clientes/new"
+            remote: ""
+          $('#myModal').on "shown.bs.modal", ->
+            $('#cliente_numero_de_identificacion').val(ui.item.cedula)
         else
           $(".cliente_id").val ui.item.id
           $(".nombre").val ui.item.nombre
@@ -92,10 +96,7 @@ jQuery window.Helpers.AutocompleteHelper.init
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
 $(document).on "page:load", window.Helpers.AutocompleteHelper.autocomplete_precio_producto
-# jQuery ->
-#   init_autocomplete()
-# $(document).on "page:load", init_autocomplete
+
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.autocomplete_precio_producto
-# $(document).on "nested:fieldRemoved", init_autocomplete
