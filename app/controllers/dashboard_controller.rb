@@ -2,14 +2,14 @@ class DashboardController < ApplicationController
   before_filter :require_login
   def index
     #estas son las consultas referentes a hoy... no olvides
-    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"venta")
-    @cantidad_dia_ventanilla = cantidad_facturas(@facturas_dia, "ventanilla")
-    @totaldia_ventanilla = valor_total_por_facturas(@facturas_dia, "ventanilla")
-    @cantidad_dia_consultaexterna = cantidad_facturas(@facturas_dia, "consulta_externa")
-    @totaldia_consultaexterna = valor_total_por_facturas(@facturas_dia, "consulta_externa")
-    @cantidad_dia_hospitalizacion = cantidad_facturas(@facturas_dia, "hospitalizacion")
-    @totaldia_hospitalizacion = valor_total_por_facturas(@facturas_dia, "hospitalizacion")
-    @totalfacturashoy = valor_total_facturas(@facturas_dia)
+    facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"venta")
+    @cantidad_dia_ventanilla = cantidad_facturas(facturas_dia, "ventanilla")
+    @totaldia_ventanilla = valor_total_por_facturas(facturas_dia, "ventanilla")
+    @cantidad_dia_consultaexterna = cantidad_facturas(facturas_dia, "consulta_externa")
+    @totaldia_consultaexterna = valor_total_por_facturas(facturas_dia, "consulta_externa")
+    @cantidad_dia_hospitalizacion = cantidad_facturas(facturas_dia, "hospitalizacion")
+    @totaldia_hospitalizacion = valor_total_por_facturas(facturas_dia, "hospitalizacion")
+    @totalfacturashoy = valor_total_facturas(facturas_dia)
     @cantidadfacturashoy = @cantidad_dia_ventanilla + @cantidad_dia_hospitalizacion + @cantidad_dia_consultaexterna
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_dia_ventanilla, @cantidadfacturashoy)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_dia_hospitalizacion, @cantidadfacturashoy)
