@@ -2,7 +2,7 @@ class DashboardController < ApplicationController
   before_filter :require_login
   def index
     #estas son las consultas referentes a hoy... no olvides
-    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"compra")
+    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"venta")
     @cantidad_dia_ventanilla = cantidad_facturas(@facturas_dia, "ventanilla")
     @totaldia_ventanilla = valor_total_por_facturas(@facturas_dia, "ventanilla")
     @cantidad_dia_consultaexterna = cantidad_facturas(@facturas_dia, "consulta_externa")
@@ -15,7 +15,7 @@ class DashboardController < ApplicationController
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_dia_hospitalizacion, @cantidadfacturashoy)
     @porcentajedia_consultaexterna = regla_de_tres(@cantidad_dia_consultaexterna, @cantidadfacturashoy)
     #estas son las consultas referentes al mes
-    facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month, "compra")
+    facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month, "venta")
     @cantidad_mes_ventanilla = cantidad_facturas(facturas_mes, "ventanilla")
     @totalmes_ventanilla = valor_total_por_facturas(facturas_mes, "ventanilla")
     @cantidad_mes_consultaexterna = cantidad_facturas(facturas_mes, "consulta_externa")
@@ -27,18 +27,18 @@ class DashboardController < ApplicationController
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_mes_ventanilla, @cantidadfacturasmes)
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_mes_hospitalizacion, @cantidadfacturasmes)
     @porcentajemes_consultaexterna = regla_de_tres(@cantidad_mes_consultaexterna, @cantidadfacturasmes)
-    end
+  end
 
   def generar_reporte
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
     @tipo_factura = params[:tipo_factura]
-    @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo => params[:tipo_factura]).where(:anulada => false)
+    @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo_venta => params[:tipo_factura]).where(:anulada => false)
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
   end
 
   def cierre_de_caja_dia
-    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"compra")
+    @facturas_dia = consulta_facturas(Time.now.beginning_of_day..Time.now.end_of_day,"venta")
     @cantidad_dia_ventanilla = cantidad_facturas(@facturas_dia, "ventanilla")
     @totaldia_ventanilla = valor_total_por_facturas(@facturas_dia, "ventanilla")
     @cantidad_dia_consultaexterna = cantidad_facturas(@facturas_dia, "consulta_externa")
@@ -66,7 +66,7 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_mes
-    @facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month,"compra")
+    @facturas_mes = consulta_facturas(Time.now.beginning_of_month..Time.now.end_of_month,"venta")
     @cantidad_mes_ventanilla = cantidad_facturas(@facturas_mes, "ventanilla")
     @totalmes_ventanilla = valor_total_por_facturas(@facturas_mes, "ventanilla")
     @cantidad_mes_consultaexterna = cantidad_facturas(@facturas_mes, "consulta_externa")
@@ -102,11 +102,7 @@ class DashboardController < ApplicationController
   private
 
   def consulta_facturas(query, tipo)
-    if tipo
-    todasfacturas = Factura.where(:created_at => query).where(:anulada => false).where.not(:tipo => tipo)
-  else
-    todasfacturas = Factura.where(:created_at => query)  
-  end
+    todasfacturas = Factura.where(:created_at => query).where(:tipo => tipo).where(:anulada => false)
     return :json => todasfacturas
   end
 
@@ -123,7 +119,7 @@ class DashboardController < ApplicationController
     cantidad = 0
     facturas.each do |value, key|
       key.each do |factura|
-        if factura.tipo == tipo_factura
+        if factura.tipo_venta == tipo_factura
           cantidad += 1
         end
       end
@@ -135,7 +131,7 @@ class DashboardController < ApplicationController
     total = 0
     facturas.each do |value, key|
       key.each do |factura|
-        if factura.tipo == tipo_factura
+        if factura.tipo_venta == tipo_factura
           total += factura.total
         end
       end
@@ -158,7 +154,7 @@ class DashboardController < ApplicationController
     sumar = 0
     todas_facturas.each do |value, key|
       key.each do |factura|
-        if factura.tipo == tipo_factura
+        if factura.tipo_venta == tipo_factura
           case impuesto
           when 'iva'
             sumar += factura.iva

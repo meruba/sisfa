@@ -24,7 +24,7 @@ class FacturasDatatable
       [
         (factura.cliente.nombre),
         (factura.numero),
-        (factura.tipo),
+        (factura.tipo_venta),
         (factura.total),
         (factura.user.username),
         (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info") + " " + 
@@ -68,7 +68,7 @@ class FacturasDatatable
     when "anulada"
       facturas = Factura.where(:anulada => true).order("#{sort_column} #{sort_direction}")
     when "venta"
-      facturas = Factura.where("tipo != 'compra' and anulada = false").order("#{sort_column} #{sort_direction}")
+      facturas = Factura.where("tipo = 'venta' and anulada = false").order("#{sort_column} #{sort_direction}")
     end
     facturas = facturas.page(page).per_page(per_page)
     if params[:sSearch].present?

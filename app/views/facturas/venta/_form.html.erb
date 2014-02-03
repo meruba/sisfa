@@ -68,7 +68,8 @@
 							<h4>TOTAL:</h4>
 						</td>
 						<td>
-							<%=  f.hidden_field :tipo, class: "tipo_factura" %>
+							<%= f.hidden_field :tipo %>
+							<%= f.hidden_field :tipo_venta%>
 							<%= f.text_field :subtotal_0, class: "input-noborder subtotal_0 text-right", :readonly => true%>
 							<%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
 							<%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>

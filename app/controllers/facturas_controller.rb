@@ -25,7 +25,7 @@ class FacturasController < ApplicationController
 	end
 
 	def venta
-		@factura = Factura.new(:tipo=>"ventanilla")
+		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"ventanilla")
 	end
 
 	def show
@@ -44,16 +44,7 @@ class FacturasController < ApplicationController
 	end
 
 	def ventanilla
-		@factura = Factura.new(:tipo=>"ventanilla")
-		@factura.item_facturas.build
-		respond_to do |format|
-			# format.html
-			format.js
-		end
-	end
-	
-	def consulta_externa
-		@factura = Factura.new(:tipo=>"consulta_externa")
+		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"ventanilla")
 		@factura.item_facturas.build
 		respond_to do |format|
 			# format.html
@@ -62,7 +53,16 @@ class FacturasController < ApplicationController
 	end
 
 	def hospitalizacion
-		@factura = Factura.new(:tipo=>"hospitalizacion")
+		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"hospitalizacion")
+		@factura.item_facturas.build
+		respond_to do |format|
+			# format.html
+			format.js
+		end
+	end
+
+	def consulta_externa
+		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"consulta_externa")
 		@factura.item_facturas.build
 		respond_to do |format|
 			# format.html
@@ -161,6 +161,7 @@ class FacturasController < ApplicationController
 		:iva,
 		:total,
 		:tipo,
+		:tipo_venta,
 		:user_id,
 		:cliente_id,
 		:item_facturas_attributes => [
