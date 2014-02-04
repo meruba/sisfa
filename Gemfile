@@ -42,7 +42,6 @@ group :development do
 	gem 'binding_of_caller'
 	gem 'meta_request'
   gem 'rack-mini-profiler'
-  gem 'rails-erd'
 end
 
 gem 'will_paginate'
