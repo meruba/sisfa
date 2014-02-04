@@ -10,9 +10,17 @@
 #
 
 class Kardex < ActiveRecord::Base
+
+#callbacks
+after_create :set_first_item
+
 #validations
-	validates :fecha, :presence => true
+validates :fecha, :presence => true
 #relations
 has_many :lineakardexes
 belongs_to :producto
+
+def set_first_item
+  Lineakardex.create(:kardex => self, :tipo => "Entrada", :fecha => Time.now )
+end
 end

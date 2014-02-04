@@ -51,10 +51,6 @@ class ProductosController < ApplicationController
     @producto = Producto.new(producto_params)
     respond_to do |format|
       if @producto.save
-        Kardex.create(
-          :producto => @producto,
-          :fecha => Time.now
-          )
         @productos = Producto.all
         format.html { redirect_to @producto, notice: 'Producto guardado' }
         format.json { render action: 'show', status: :created, location: @producto }
