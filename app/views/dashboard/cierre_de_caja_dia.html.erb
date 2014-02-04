@@ -1,6 +1,0 @@
-<h3>REPORTE DE CIERRE DE CAJA:</h3>
- <h4>Fecha: <span class="fecha_sin_hora"></span></h4>
-    <%= render 'dashboard/cierre_dia/caja_dia'%>
-<% unless request.format.to_sym == :pdf %>
-<%= link_to ' Imprimir', {:format => :pdf} , {:class => "fa fa-print", :target => "_blank"} %>  
-<% end %>

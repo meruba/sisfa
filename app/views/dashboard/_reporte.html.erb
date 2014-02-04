@@ -1,4 +1,3 @@
-<%= form_tag dashboard_generar_reporte_path do %>
 <div class="row col-md-8 estadisticas" id="reportes">
 	<div class="col-sm-4">
 		<div class="panel panel-default">
@@ -6,12 +5,14 @@
 				<h3 class="panel-title">Ventas y Compras</h3>
 			</div><!-- end panel-heading -->	
 			<div class="panel-body">
+				<%= form_tag dashboard_generar_reporte_path do %>
 				<%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='compra'>Compra</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %> <br />	
 				<span class="fa fa-calendar"></span>
 				<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio" %><br><br>
 				<span class="fa fa-calendar"></span>
 				<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "Fecha final" %><br><br>
 				<%= submit_tag "Imprimir", :name => nil, :class => "btn btn-block btn-info"%>
+				<% end %>
 			</div>
 		</div><!-- end panel -->
 	</div><!-- end venta y compra -->
@@ -22,12 +23,14 @@
 			</div><!-- end panel-heading -->
 			<div class="panel-body">												
 				<h5>Ingrese Fecha:</h5>
+				<%= form_tag dashboard_reportes_cierre_caja_path, method: :get do %>
 				<div class="input-group">
-					<input type="text" placeholder="Fecha" class=" datepicker form-control">
+  				<%= text_field_tag :fecha, params[:fecha],:class =>" datepicker form-control", :placeholder => "Fecha"%>
 					<span class="input-group-btn">
-						<button class="btn btn-info" type="button">Ir</button>
-					</span>
-				</div>
+  					<%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
+  				</span>
+  			</div>
+			<% end %>
 			</div>
 		</div><!-- end panel -->
 	</div><!-- end cierre de caja -->
@@ -48,4 +51,3 @@
 		</div><!-- end panel -->
 	</div><!-- end liquidaciones -->
 </div>
-<% end %>

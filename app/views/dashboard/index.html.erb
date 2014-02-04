@@ -1,26 +1,11 @@
 <h1 class= "text-center"><span class="fa fa-bar-chart-o"></span> Estadísticas</h1>
-<!-- <h2 class="text-center">Estadísticas</h2> -->
-
-<ul class="nav nav-tabs">
-  <li class="active"><a href="#diario" data-toggle="tab">Diario</a></li>
-  <li><a href="#mensual" data-toggle="tab">Mensual</a></li>
-  <li><a href="#reporte" data-toggle="tab">Reporte</a></li>
-  <li><a href="#caducados" data-toggle="tab">Productos por caducadar</a></li>
+<ul class="nav nav-tabs" id="tab_ventas">
+  <li><%=link_to "Diario",{:controller => 'dashboard', :action => 'estadisticas_dia'}, :remote => true, :data => {:toogle => "tab"} %></li>
+  <li><%=link_to "Mes",{:controller => 'dashboard', :action => 'estadisticas_mes'}, :remote => true, :data => {:toogle => "tab"} %></li>
+  <li><%=link_to "Reportes",{:controller => 'dashboard', :action => 'generar_reporte'}, :remote => true, :data => {:toogle => "tab"} %></li>
 </ul>
 
 <div class="tab-content">
-  <div class="tab-pane active" id="diario">
-    <%= render 'diario'%>
-  </div>
-  <div class="tab-pane" id="mensual">
-    <%= render 'mensual'%>
-  </div>
-
-  <div class="tab-pane" id="reporte">
-    <%= render 'reporte'%>
-  </div>
-    <div class="tab-pane" id="caducados">
-    <%= render 'caducados'%>
-  </div>
 </div>
 
+<%= javascript_tag "window.Helpers.NavbarVentas.init();" %>

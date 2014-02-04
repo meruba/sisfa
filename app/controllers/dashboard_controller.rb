@@ -1,31 +1,39 @@
 class DashboardController < ApplicationController
   before_filter :require_login
 
-  def index
-    # porcentaje de ventas dia
-    estadisticas_dia(Time.now)
-    @porcentajedia_ventanilla = regla_de_tres(@cantidad_dia_ventanilla, @cantidadfacturashoy)
-    @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_dia_hospitalizacion, @cantidadfacturashoy)
-    @porcentajedia_consultaexterna = regla_de_tres(@cantidad_dia_consultaexterna, @cantidadfacturashoy)
+  def index    
+  end
 
+  def estadisticas_dia
+    # porcentaje de ventas dia
+    estadisticas(Time.now, nil)
+    @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
+    @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
+    @porcentajedia_consultaexterna = regla_de_tres(@cantidad_consultaexterna, @cantidadfacturas)
+  end
+
+  def estadisticas_mes
     # porcentaje de ventas mes  
-    estadisticas_mes(Time.now)
-    @porcentajemes_ventanilla = regla_de_tres(@cantidad_mes_ventanilla, @cantidadfacturasmes)
-    @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_mes_hospitalizacion, @cantidadfacturasmes)
-    @porcentajemes_consultaexterna = regla_de_tres(@cantidad_mes_consultaexterna, @cantidadfacturasmes)
+    estadisticas(nil, Time.now)
+    @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
+    @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
+    @porcentajemes_consultaexterna = regla_de_tres(@cantidad_consultaexterna, @cantidadfacturas)
   end
 
   def generar_reporte
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
     @tipo_factura = params[:tipo_factura]
-    @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo_venta => params[:tipo_factura]).where(:anulada => false)
-    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
+    # @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo_venta => params[:tipo_factura]).where(:anulada => false)
+    respond_to do |format|
+      format.js
+    end
+    # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
   end
 
   def reportes_cierre_caja
     # @caja = Factura.where("fecha_de_emision LIKE ? ", "%#{params[:fecha].to_time}%")
-    estadisticas_dia(params[:fecha])
+    estadisticas(params[:fecha])
     @ventanilla_subtotal = sumar_impuesto(@facturas_dia, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas_dia, "hospitalizacion", "subtotal_0")
     @consultaexterna_subtotal = sumar_impuesto(@facturas_dia, "consulta_externa", "subtotal_0")
@@ -38,40 +46,39 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_dia
-    estadisticas_dia(Time.now)
-    @ventanilla_subtotal = sumar_impuesto(@facturas_dia, "ventanilla", "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas_dia, "hospitalizacion", "subtotal_0")
-    @consultaexterna_subtotal = sumar_impuesto(@facturas_dia, "consulta_externa", "subtotal_0")
+    estadisticas(Time.now, nil)
+    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    @consultaexterna_subtotal = sumar_impuesto(@facturas, "consulta_externa", "subtotal_0")
     @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas_dia, "ventanilla", "iva")
-    @hospitalizacion_iva = sumar_impuesto(@facturas_dia, "hospitalizacion", "iva")
-    @consultaexterna_iva = sumar_impuesto(@facturas_dia, "consulta_externa", "iva")
+    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
+    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
+    @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
     @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
     respond_to do |format|
       format.html
       format.js
       format.pdf do
-        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja_dia.html.erb"
+        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
       end
     end
-    # raise 'error'
   end
 
   def cierre_de_caja_mes
-    estadisticas_mes(Time.now)
-    @ventanilla_subtotal = sumar_impuesto(@facturas_mes, "ventanilla", "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas_mes, "hospitalizacion", "subtotal_0")
-    @consultaexterna_subtotal = sumar_impuesto(@facturas_mes, "consulta_externa", "subtotal_0")
+    estadisticas(nil, Time.now)
+    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    @consultaexterna_subtotal = sumar_impuesto(@facturas, "consulta_externa", "subtotal_0")
     @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas_mes, "ventanilla", "iva")
-    @hospitalizacion_iva = sumar_impuesto(@facturas_mes, "hospitalizacion", "iva")
-    @consultaexterna_iva = sumar_impuesto(@facturas_mes, "consulta_externa", "iva")
+    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
+    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
+    @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
     @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
     respond_to do |format|
       format.html
       format.js
       format.pdf do
-        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/cierre_de_caja_mes.html.erb"
+        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
       end
     end
   end
@@ -85,33 +92,23 @@ class DashboardController < ApplicationController
 
   private
 
-  def estadisticas_dia(dia)
-    #estas son las consultas referentes a hoy... no olvides
-    fecha = dia
-    @facturas_dia = consulta_facturas(fecha.beginning_of_day..fecha.end_of_day,"venta")
-    @cantidad_dia_ventanilla = cantidad_facturas(@facturas_dia, "ventanilla")
-    @totaldia_ventanilla = valor_total_por_facturas(@facturas_dia, "ventanilla")
-    @cantidad_dia_consultaexterna = cantidad_facturas(@facturas_dia, "consulta_externa")
-    @totaldia_consultaexterna = valor_total_por_facturas(@facturas_dia, "consulta_externa")
-    @cantidad_dia_hospitalizacion = cantidad_facturas(@facturas_dia, "hospitalizacion")
-    @totaldia_hospitalizacion = valor_total_por_facturas(@facturas_dia, "hospitalizacion")
-    @totalfacturashoy = valor_total_facturas(@facturas_dia)
-    @cantidadfacturashoy = @cantidad_dia_ventanilla + @cantidad_dia_hospitalizacion + @cantidad_dia_consultaexterna
-  end
+  def estadisticas(dia, mes)
+    fecha_dia = dia
+    fecha_mes = mes
+    if dia
+      @facturas = consulta_facturas(fecha_dia.beginning_of_day..fecha_dia.end_of_day,"venta")
+    else
+      @facturas = consulta_facturas(fecha_mes.beginning_of_month..fecha_mes.end_of_month,"venta")
+    end
 
-  def estadisticas_mes(mes)
-    #estas son las consultas referentes al mes
-    fecha = mes
-    @facturas_mes = consulta_facturas(fecha.beginning_of_month..fecha.end_of_month,"venta")
-    @cantidad_mes_ventanilla = cantidad_facturas(@facturas_mes, "ventanilla")
-    @totalmes_ventanilla = valor_total_por_facturas(@facturas_mes, "ventanilla")
-    @cantidad_mes_consultaexterna = cantidad_facturas(@facturas_mes, "consulta_externa")
-    @totalmes_consultaexterna = valor_total_por_facturas(@facturas_mes, "consulta_externa")
-    @cantidad_mes_hospitalizacion = cantidad_facturas(@facturas_mes, "hospitalizacion")
-    @totalmes_hospitalizacion = valor_total_por_facturas(@facturas_mes, "hospitalizacion")
-    @totalfacturasmes = valor_total_facturas(@facturas_mes)
-    @cantidadfacturasmes = @cantidad_mes_ventanilla + @cantidad_mes_hospitalizacion + @cantidad_mes_consultaexterna    
-    
+    @cantidad_ventanilla = cantidad_facturas(@facturas, "ventanilla")
+    @total_ventanilla = valor_total_por_facturas(@facturas, "ventanilla")
+    @cantidad_consultaexterna = cantidad_facturas(@facturas, "consulta_externa")
+    @total_consultaexterna = valor_total_por_facturas(@facturas, "consulta_externa")
+    @cantidad_hospitalizacion = cantidad_facturas(@facturas, "hospitalizacion")
+    @total_hospitalizacion = valor_total_por_facturas(@facturas, "hospitalizacion")
+    @totalfacturas = valor_total_facturas(@facturas)
+    @cantidadfacturas = @cantidad_ventanilla + @cantidad_hospitalizacion + @cantidad_consultaexterna
   end
 
   def consulta_facturas(query, tipo)

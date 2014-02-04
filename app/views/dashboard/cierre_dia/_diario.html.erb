@@ -4,7 +4,7 @@
     <div class="welli well-sm">
       <div class="row">
         <div class="col-xs-12 col-md-5 text-center info-cierre-caja">
-          <h3 class="total-num">$ <%= @totalfacturashoy %></h3>
+          <h3 class="total-num">$ <%= @totalfacturas %></h3>
             <h5>TOTAL DE HOY</h5>
             <h5 class="fecha_sin_hora"></h5>
              <%= link_to ' Cerrar Caja', dashboard_cierre_de_caja_dia_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
@@ -19,7 +19,7 @@
               <div class="progress progress">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
                 aria-valuemin="0" aria-valuemax="100" data-original-title="Remove this user" style="width: <%=@porcentajedia_ventanilla%>%">
-                $ <%=@totaldia_ventanilla%>
+                $ <%=@total_ventanilla%>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <div class="progress progress">
               <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
               aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentajedia_hospitalizacion%>%">
-              $ <%=@totaldia_hospitalizacion%>
+              $ <%=@total_hospitalizacion%>
               </div>
             </div>
           </div>
@@ -43,7 +43,7 @@
           <div class="progress">
             <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20"
             aria-valuemin="0" aria-valuemax="100" style="width:  <%=@porcentajedia_consultaexterna%>%">
-            $ <%=@totaldia_consultaexterna%>
+            $ <%=@total_consultaexterna%>
           </div>
         </div>
       </div>
