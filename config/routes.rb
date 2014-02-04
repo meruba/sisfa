@@ -33,7 +33,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :pacientes
   resources :clientes
   resources :proveedors
-  resources :productos
+  resources :productos do
+    resources :kardexes, :as => "kardex"
+  end
   resources :facturas do
     member do
       post "anular"
