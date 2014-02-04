@@ -1,4 +1,4 @@
-<% if  @cantidadfacturashoy == 0 %>
+<% if  @cantidadfacturas == 0 %>
   <h3>No has facturado nada Aun!..</h3>
 <% else %>
 <table class="table table-hover table-print">
@@ -14,10 +14,10 @@
     <tbody>
       <tr>
         <td>Facturas:</td>
-        <td><%= @cantidad_dia_ventanilla %></td>
-        <td><%= @cantidad_dia_hospitalizacion %></td>
-        <td><%= @cantidad_dia_consultaexterna %></td>
-        <td><%= @cantidadfacturashoy %></td>
+        <td><%= @cantidad_ventanilla %></td>
+        <td><%= @cantidad_hospitalizacion %></td>
+        <td><%= @cantidad_consultaexterna %></td>
+        <td><%= @cantidadfacturas %></td>
       </tr>
       <tr>
         <td>Subtotal:</td>
@@ -35,10 +35,10 @@
       </tr>
       <tr>
         <td>Total:</td>
-        <td><%= @totaldia_ventanilla %></td>
-        <td><%= @totaldia_hospitalizacion %></td>
-        <td><%= @totaldia_consultaexterna %></td>
-        <td><%= @totalfacturashoy %></td>
+        <td><%= @total_ventanilla %></td>
+        <td><%= @total_hospitalizacion %></td>
+        <td><%= @total_consultaexterna %></td>
+        <td><%= @totalfacturas %></td>
       </tr>
     </tbody>
 </table>
