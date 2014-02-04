@@ -1,6 +1,5 @@
 Sisfa::Application.routes.draw do
 get "dashboard/index"
-get "dashboard/reporte_mes"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "proveedors/autocomplete"
@@ -13,10 +12,14 @@ get "facturas/compra"
 get "facturas/index_compra"
 get "facturas/index_anulada"
 get "dashboard/caducados"
-post "dashboard/generar_reporte"
+# post "dashboard/generar_reporte"
 get "dashboard/cierre_de_caja_dia"
 get "dashboard/cierre_de_caja_mes"
+get "dashboard/reportes_cierre_caja"
+get "dashboard/estadisticas_dia"
+get "dashboard/estadisticas_mes"
 # match "dashboard/cierre_de_caja_dia" => "dashboard#cierre_de_caja_dia", via: [:get, :post]
+match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
   
