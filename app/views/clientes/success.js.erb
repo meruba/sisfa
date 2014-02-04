@@ -14,4 +14,9 @@
   window.Helpers.ButtonsHelper.init();
   window.Helpers.FormsHelper.init()
   alertify.success("Cliente guardado");
+  $(".direccion").val("<%=j @cliente.direccion %>");
+  $(".cliente_id").val("<%=j @cliente.id.to_s %>");
+  $(".nombre").val("<%=j @cliente.nombre %>");
+  $(".telefono").val("<%=j @cliente.telefono %>");
+  $(".numero_de_identificacion").val("<%=j @cliente.numero_de_identificacion %>");
 <%- end %>
