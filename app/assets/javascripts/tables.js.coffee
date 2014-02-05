@@ -13,6 +13,11 @@ init_datatables = ->
       ]
       fnInitComplete: (oSettings, json) ->
         jQuery window.Helpers.TooltipHelper.init
+  $('.data-table-without-json').each ->
+    $(this).dataTable
+      sDom: "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
+      oLanguage:
+        sUrl: "/datatables.spanish.txt"
 
 jQuery ->
   init_datatables()
