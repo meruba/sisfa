@@ -30,8 +30,8 @@
       <tr>
         <td><%= item.producto.nombre%></td>
         <td><%= item.cantidad %></td>
-        <td>$ <%= item.producto.precio_a %></td>
-        <td>$ <%= item.total %></td>
+        <td>$ <%= '%.2f' % item.producto.precio_venta %></td>
+        <td>$ <%= '%.2f' % item.total %></td>
       </tr>
     <% end %>
   </tbody>
