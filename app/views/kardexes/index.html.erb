@@ -1,22 +1,22 @@
 <legend>Kardex de <%= @producto.nombre%></legend>
 
 <table class="data-table-without-json table-bordered">
-<thead>
-  <tr>
-    <th>Fecha</th>
-    <th>Tipo</th>
-    <th>Cantidad</th>
-    <th>Precio</th>
-  </tr>
-</thead>
-<tbody>
-  <% @lineaskardex.each do |lineakardex| %>
+  <thead>
     <tr>
-      <td><%= lineakardex.fecha.strftime("%B %e, %Y") %></td>
-      <td><%= lineakardex.tipo %></td>
-      <td><%= lineakardex.cantidad %></td>
-      <td><%= lineakardex.v_unitario %></td>
+      <th>Fecha</th>
+      <th>Tipo</th>
+      <th>Cantidad</th>
+      <th>Precio</th>
     </tr>
-  <% end %>
-</tbody>
+  </thead>
+  <tbody>
+    <% @lineaskardex.each do |lineakardex| %>
+      <tr>
+        <td><%= lineakardex.fecha.strftime("%Y-%m-%d") %></td>
+        <td><%= lineakardex.tipo %></td>
+        <td><%= lineakardex.cantidad.to_i %></td>
+        <td><%= lineakardex.v_unitario %></td>
+      </tr>
+    <% end %>
+  </tbody>
 </table>
