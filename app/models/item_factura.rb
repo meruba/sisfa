@@ -17,6 +17,9 @@
 
 class ItemFactura < ActiveRecord::Base
   
+  #rollbacks
+  after_create :add_kardex_line
+
   #relationships
   belongs_to :factura
   belongs_to :producto
@@ -40,6 +43,12 @@ class ItemFactura < ActiveRecord::Base
   def valida_descuento
     if self.descuento > self.total
       errors.add :descuento, "descuento no valido en:" + producto.nombre
+    end
+  end
+
+  def add_kardex_line
+    if self.tipo != "compra"
+      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra )
     end
   end
 end
