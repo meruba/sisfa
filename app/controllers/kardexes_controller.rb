@@ -2,6 +2,6 @@ class KardexesController < ApplicationController
   before_filter :find_producto_for_kardex
 
   def index
-    @kardex = @producto.kardex
+    @lineaskardex = @producto.kardex.lineakardexes
   end
 end
