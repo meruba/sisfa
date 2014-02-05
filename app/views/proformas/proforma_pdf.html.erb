@@ -1,8 +1,8 @@
 <% proforma = Proforma.last %>
-
-<h2 class="text-center">HOSPITAL 7 B.I LOJA</h2>
-<%= image_tag("/images/logo1.png",:width=>45, :heigth=>45)%>
-
+  <div class="text-center">
+    <%= wicked_pdf_image_tag "/images/logo1.png"%>
+    <h3>HOSPITAL BASICO 7 B.I LOJA</h3>
+  </div>
 <h4><strong>Proforma Nº <%= proforma.numero%></strong></h4>
   <p>
     <strong>Cliente:</strong>
