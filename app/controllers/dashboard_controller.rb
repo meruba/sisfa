@@ -21,28 +21,34 @@ class DashboardController < ApplicationController
   end
 
   def generar_reporte
-    @start_date = params[:fecha_inicial]
-    @end_date = params[:fecha_final]
-    @tipo_factura = params[:tipo_factura]
-    # @search = Factura.where(:fecha_de_emision => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, :tipo_venta => params[:tipo_factura]).where(:anulada => false)
     respond_to do |format|
+      @start_date = params[:fecha_inicial]
+      @end_date = params[:fecha_final]
+      @tipo_factura = params[:tipo_factura]
+      @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo_venta => params[:tipo_factura]).where(:anulada => false)
+      format.html
       format.js
     end
     # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
   end
 
   def reportes_cierre_caja
-    # @caja = Factura.where("fecha_de_emision LIKE ? ", "%#{params[:fecha].to_time}%")
-    estadisticas(params[:fecha])
-    @ventanilla_subtotal = sumar_impuesto(@facturas_dia, "ventanilla", "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas_dia, "hospitalizacion", "subtotal_0")
-    @consultaexterna_subtotal = sumar_impuesto(@facturas_dia, "consulta_externa", "subtotal_0")
+    estadisticas(params[:fecha].to_time, nil)
+    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    @consultaexterna_subtotal = sumar_impuesto(@facturas, "consulta_externa", "subtotal_0")
     @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas_dia, "ventanilla", "iva")
-    @hospitalizacion_iva = sumar_impuesto(@facturas_dia, "hospitalizacion", "iva")
-    @consultaexterna_iva = sumar_impuesto(@facturas_dia, "consulta_externa", "iva")
+    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
+    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
+    @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
     @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
-    raise 'error'
+    respond_to do |format|
+      format.html
+      format.js
+      format.pdf do
+        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
+      end
+    end
   end
 
   def cierre_de_caja_dia
