@@ -42,13 +42,7 @@ class DashboardController < ApplicationController
     @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
     @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
     @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
-    respond_to do |format|
-      format.html
-      format.js
-      format.pdf do
-        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
-      end
-    end
+    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
   end
 
   def cierre_de_caja_dia
