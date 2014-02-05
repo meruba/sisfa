@@ -9,9 +9,13 @@
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
-  $(".table-responsive").html('<%= j render 'proveedors', proveedors: @proveedors %>');
+  $(".table-proveedores").html('<%= j render 'proveedors', proveedors: @proveedors %>');
   window.Helpers.init_datatables();
   window.Helpers.ButtonsHelper.init();
   alertify.success("Proveedor guardado");
-  // agregar mensaje
+  $(".direccion").val("<%=j @proveedor.direccion %>");
+  $(".proveedor_id").val("<%=j @proveedor.id.to_s %>");
+  $(".nombre").val("<%=j @proveedor.nombre_o_razon_social %>");
+  $(".telefono").val("<%=j @proveedor.telefono %>");
+  $(".numero_de_identificacion_proveedor").val("<%=j @proveedor.numero_de_identificacion %>");
 <%- end %>

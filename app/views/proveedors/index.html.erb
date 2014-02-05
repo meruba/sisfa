@@ -1,6 +1,6 @@
 <%= link_to 'Nuevo', new_proveedor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 <h1 class="text-center">LISTA DE PROVEEDORES</h1>
 
-<div class=" col-md-10 col-md-offset-1 table-responsive">
+<div class=" col-md-10 col-md-offset-1 table-responsive table-proveedores">
   <%= render "proveedors", proveedors: @proveedors %>  
 </div>

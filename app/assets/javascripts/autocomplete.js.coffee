@@ -79,11 +79,28 @@ window.Helpers.AutocompleteHelper = {
     $(".numero_de_identificacion_proveedor").autocomplete
       minLength: 3
       source: "/proveedors/autocomplete.json"
+      response: (event, ui) ->
+        unless ui.content.length
+          addNewProveedor =
+            id: "vacio"
+            label:  "Agregar: #{event.target.value}"
+            cedula: event.target.value
+          ui.content.push addNewProveedor
+        else
+          $("#message").empty()
       select: (event, ui) ->
-        $(".proveedor_id").val ui.item.id
-        $(".nombre").val ui.item.nombre_o_razon_social
-        $(".direccion").val ui.item.direccion
-        $(".telefono").val ui.item.telefono
+        if ui.item.id == "vacio"
+          $.getScript "/proveedors/new"
+          $('#myModal').modal
+            remote: ""
+          $('#myModal').on "shown.bs.modal", ->
+            $('#proveedor_numero_de_identificacion').val(ui.item.cedula)
+        else
+          $(".proveedor_id").val ui.item.id
+          $(".nombre").val ui.item.nombre_o_razon_social
+          $(".direccion").val ui.item.direccion
+          $(".telefono").val ui.item.telefono
+
 
   autocomplete_precio_producto: ->
     $(".precio_venta").on "input", ->
