@@ -18,7 +18,7 @@ window.Helpers.ButtonsHelper = {
       $(this).addClass("looks_like_button btn btn-warning").html "<i class='fa fa-pencil'></i> " + $(this).html()
 
     $(".atras_back:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn btn-inverse").html "<i class='fa fa-chevron-left'></i> " + $(this).html()
+      $(this).addClass("looks_like_button btn btn-default").html "<i class='fa fa-chevron-left'></i> " + $(this).html()
 
     $(".cancel_button:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-inverse").html "<i class='icon-remove icon-white'></i> " + $(this).html()
