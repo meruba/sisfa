@@ -27,9 +27,11 @@ class DashboardController < ApplicationController
       @tipo_factura = params[:tipo_factura]
       @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo_venta => params[:tipo_factura]).where(:anulada => false)
       format.html
+      format.pdf do
+        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'  
+      end
       format.js
     end
-    # render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'
   end
 
   def reportes_cierre_caja
