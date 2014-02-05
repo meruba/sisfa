@@ -1,5 +1,8 @@
 <legend>Kardex de <%= @producto.nombre%></legend>
 
+<h4>Stock actual</h4>
+<p> <%= @producto.cantidad_disponible.to_i %> </p>
+
 <table class="data-table-without-json table-bordered">
   <thead>
     <tr>
