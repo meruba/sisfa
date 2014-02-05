@@ -56,9 +56,6 @@ window.Helpers.AutocompleteHelper = {
       $this.closest(".fields").remove()
       window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
-  call_modal: ->
-    # $.ui.autocomplete::_renderItem = (ul, item) ->
-
   calcular_total_producto: (componente) ->
     cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
     valor_unitario = componente.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val()
@@ -101,19 +98,11 @@ window.Helpers.AutocompleteHelper = {
           $(".direccion").val ui.item.direccion
           $(".telefono").val ui.item.telefono
 
-
-  autocomplete_precio_producto: ->
-    $(".precio_venta").on "input", ->
-      # $this = $(this)
-      console.log "cambiar"
-      # $(".precio_b").val($this.val())
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
-$(document).on "page:load", window.Helpers.AutocompleteHelper.autocomplete_precio_producto
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
-$(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.autocomplete_precio_producto
