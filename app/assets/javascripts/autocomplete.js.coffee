@@ -32,10 +32,10 @@ window.Helpers.AutocompleteHelper = {
       source: "/productos/autocomplete.json"
       response: (event, ui) ->
         unless ui.content.length
-          addNewProducto =
+          NoExiste =
             id: "vacio"
-            label: "Agregar: #{event.target.value}"
-          ui.content.push addNewProducto
+            label: "No existe: #{event.target.value}"
+          ui.content.push NoExiste
         else
           $("#message").empty()
       select: (event, ui) ->
@@ -117,7 +117,7 @@ window.Helpers.AutocompleteHelper = {
           $('#myModal').modal
             remote: ""
           $('#myModal').on "shown.bs.modal", ->
-            $('.autocomplete_producto_compra').val(ui.item.producto)
+            $('#producto_nombre').val(ui.item.producto)
         else
         $this = $(this)
         $this.closest(".fields").find("td:nth-child(2)").find(".producto_id").val ui.item.id
