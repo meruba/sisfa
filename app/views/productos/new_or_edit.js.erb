@@ -2,3 +2,4 @@ m = $('#content_modal');
 m.html('<%= j(render partial: 'form', locals: {producto: @producto}) %>');
 window.Helpers.ButtonsHelper.init();
 window.Helpers.FormsHelper.init()
+window.Helpers.Datepicker.init_datepicker();
