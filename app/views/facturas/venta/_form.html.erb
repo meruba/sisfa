@@ -1,16 +1,9 @@
 <%= nested_form_for @factura, :remote => true do |f| %>
+<%= form_errors_for @factura %>
 <div class="col-md-7">
 	<h6 class="text-muted text-right fecha"></h6>
 	<h6 class="text-muted text-right">Vendedor: <%= current_user.username%></h6>
 	<!-- formulario datos del cliente -->
-	<% if @factura.errors.any? %>
-	<h2>Errores:</h2>	
-	<ul>
-		<% @factura.errors.full_messages.each do |message| %>
-		<li><%= message %></li>
-		<% end %>
-	</ul>
-	<% end %>
 	<%= f.fields_for :cliente do |cliente_params| %>
 	<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
 	<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cédula o RUC" %>
