@@ -79,4 +79,13 @@ def self.aumentar_stock (item_facturas)
 	end
 end
 
+def rollback_factura
+	self.item_facturas.each do |item|
+		producto = item.producto
+		producto.cantidad_disponible = producto.cantidad_disponible + item.cantidad
+		Lineakardex.create(:kardex => producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.producto.precio_compra, :observaciones => "Factura anulada" )
+		producto.save
+	end
+end
+
 end
