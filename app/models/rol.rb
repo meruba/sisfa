@@ -22,7 +22,7 @@ class Rol < ActiveRecord::Base
   end
   
   def self.enfermera
-    @@alumno ||= find_by nombre: "Enfermera"
+    @@enfermera ||= find_by nombre: "Enfermera"
   end
 
   def self.vendedor
