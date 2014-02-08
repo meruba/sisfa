@@ -15,17 +15,18 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <span class="fa fa-user"></span>
-            <%=current_user.username %> <b class="fa fa-angle-down"></b></a>
-            <ul class="dropdown-menu">
-              <li><%= link_to 'Perfil', edit_user_path(current_user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></li>
-              <li class="divider"></li>
-              <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
-            </ul>
-          </li>
-        </ul>
-        <ul class="nav navbar-nav navbar-left">
-          <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, clientes_path)%></li>  
+            <%=current_user.username %> 
+            <b class="fa fa-angle-down"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Perfil', edit_user_path(current_user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></li>
+            <li class="divider"></li>
+            <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
+          </ul>
         </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, clientes_path)%></li>  
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <li class="dropdown">
@@ -45,24 +46,19 @@
         <li><%=link_to("<i class='fa fa-list'></i> Inventario".html_safe, productos_path)%></li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to("<i class='fa fa-ambulance'></i> Proveedores".html_safe, proveedors_path)%>
-        </li> 
-      </li>
-    </ul>
-    <ul class="nav navbar-nav navbar-left">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-file-text-o"></i>
-          Proforma
-          <b class="fa fa-angle-down"></b>
-        </a>
-        <ul class="dropdown-menu">
-          <li><%=link_to("Crear", new_proforma_path)%></li>
-          <li class="divider"></li>
-          <li><%=link_to("Lista Proformas", proformas_path)%></li>
-        </ul>
-      </li>
-    </ul>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-file-text-o"></i>
+            Proforma
+            <b class="fa fa-angle-down"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%=link_to("Crear", new_proforma_path)%></li>
+            <li class="divider"></li>
+            <li><%=link_to("Lista Proformas", proformas_path)%></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
   </div>
-</div>
 </nav>
