@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  relacion: MyString
+  cliente_id: 
+  militar_id: 
+
+two:
+  relacion: MyString
+  cliente_id: 
+  militar_id: 
