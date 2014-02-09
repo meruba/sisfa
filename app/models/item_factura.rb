@@ -48,7 +48,7 @@ class ItemFactura < ActiveRecord::Base
 
   def add_kardex_line
     if self.tipo != "compra"
-      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra )
+      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra, :modulo => self.factura.tipo_venta )
     end
   end
 end
