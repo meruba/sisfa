@@ -71,13 +71,12 @@ class FacturasController < ApplicationController
 	end
 
 	def anular
-		if @factura.anulada
-			@factura.anulada = false
-		else
+		unless @factura.anulada
 			@factura.anulada = true
-		end
+			@factura.rollback_factura
 			@factura.save
 			redirect_to facturas_path, :notice => "Factura Anulada"
+		end
 	end
 
 	def create

@@ -23,6 +23,8 @@ class Cliente < ActiveRecord::Base
 	has_one :paciente
 	has_many :proformas
 	has_many :facturas
+  has_one :cliente_militar
+  has_one :militar, through: :cliente_militar
 
 #method
 

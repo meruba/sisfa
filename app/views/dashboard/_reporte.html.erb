@@ -24,8 +24,8 @@
 			<div class="panel-body">												
 				<h5>Ingrese Fecha:</h5>
 				<%= form_tag dashboard_reportes_cierre_caja_path, method: :get do %>
-				<div class="input-group">
-  				<%= text_field_tag :fecha, params[:fecha],:class =>" datepicker form-control", :placeholder => "Fecha"%>
+				<div class="input-group field">
+  				<%= text_field_tag :fecha, params[:fecha],:class =>" datepicker", :placeholder => "Fecha"%>
 					<span class="input-group-btn">
   					<%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
   				</span>

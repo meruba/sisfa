@@ -12,9 +12,16 @@
 <body>
   <% if current_user %>
   <header>
-    <%= render 'layouts/header' %>
+    <% case current_user.rol %>
+      <% when Rol.administrador %>
+        <%= render 'layouts/navbars/header' %>
+      <% when Rol.vendedor %>
+        <%= render 'layouts/navbars/vendedor' %>
+      <% when Rol.administrador_estadistica %>
+        <%= render 'layouts/navbars/estadistica' %>
+    <% end %>
   </header>
-  <%end%>
+  <%end%> 
   <div role="main">
     <div class="container">
       <%= render 'layouts/flash' %>

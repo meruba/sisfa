@@ -1,0 +1,64 @@
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <%=link_to image_tag("/images/logo1.png", :width=>45, :heigth=>45), "",class: "brand_img"%>
+      <%=link_to("SISFA",root_path, class: "navbar-brand" )%>
+    </div>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="fa fa-user"></span>
+            <%=current_user.username %> 
+            <b class="fa fa-angle-down"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to 'Perfil', edit_user_path(current_user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></li>
+            <li class="divider"></li>
+            <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, clientes_path)%></li>  
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-stack-overflow"></i>
+            Facturación
+            <b class="fa fa-angle-down"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%=link_to("Venta", facturas_venta_path)%></li>
+            <li class="divider"></li>
+            <li><%=link_to("Lista Facturas", facturas_path)%></li>
+          </ul>
+        </li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li><%=link_to("<i class='fa fa-list'></i> Inventario".html_safe, productos_path)%></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-file-text-o"></i>
+            Proforma
+            <b class="fa fa-angle-down"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%=link_to("Crear", new_proforma_path)%></li>
+            <li class="divider"></li>
+            <li><%=link_to("Lista Proformas", proformas_path)%></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

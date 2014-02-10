@@ -8,8 +8,10 @@
     <tr>
       <th>Fecha</th>
       <th>Tipo</th>
+      <th>Módulo (Venta)</th>
       <th>Cantidad</th>
       <th>Precio</th>
+      <th>Observaciones</th>
     </tr>
   </thead>
   <tbody>
@@ -17,8 +19,10 @@
       <tr>
         <td><%= lineakardex.fecha.strftime("%Y-%m-%d") %></td>
         <td><%= lineakardex.tipo %></td>
+        <td><%= lineakardex.modulo %></td>
         <td><%= lineakardex.cantidad.to_i %></td>
         <td><%= lineakardex.v_unitario %></td>
+        <td><%= lineakardex.observaciones %></td>
       </tr>
     <% end %>
   </tbody>

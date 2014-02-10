@@ -61,13 +61,7 @@ def self.item_venta (item_facturas)
 		item.tipo = "venta"
 	end
 end
-	# item_facturas.each do |value, key|
-	# 	producto  = Producto.find("#{key[:producto_id]}")
-	# 	cantidad_item = item_facturas[value][:cantidad].to_f
-	# 	producto.cantidad_disponible -= cantidad_item
-	# 	raise 'error'
-	# 	producto.save
-	# end
+
 def self.aumentar_stock (item_facturas)
 	item_facturas.each do |item|
 		unless item.producto_id.nil?
@@ -76,6 +70,15 @@ def self.aumentar_stock (item_facturas)
 			producto.cantidad_disponible += item.cantidad
 			producto.save
 		end
+	end
+end
+
+def rollback_factura
+	self.item_facturas.each do |item|
+		producto = item.producto
+		producto.cantidad_disponible = producto.cantidad_disponible + item.cantidad
+		Lineakardex.create(:kardex => producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.producto.precio_compra, :observaciones => "Factura anulada" )
+		producto.save
 	end
 end
 
