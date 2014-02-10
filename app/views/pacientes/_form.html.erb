@@ -1,14 +1,7 @@
 <%= nested_form_for @paciente do |f| %>
-<% if @paciente.errors.any? %>
-<div id="error_explanation">
-  <h2><%= pluralize(@paciente.errors.count, "error") %> prohibited this paciente from being saved:</h2>
-  <ul>
-    <% @paciente.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-</div>
-<% end %>
+    <%= f.submit "Guardar", class: "guardar_submit"  %>
+<%= form_errors_for @paciente %>
+
 <%= f.fields_for :cliente do |cliente_params| %>
 <div class="datos-cliente">
   <div class= "form-inline">
@@ -17,8 +10,6 @@
       <%= cliente_params.text_field :nombre %>
       <%= cliente_params.label :numero_de_identificacion %>
       <%= cliente_params.text_field :numero_de_identificacion %>
-<!--       <%= f.label :numero_de_historia_clinica %>
-      <%= f.text_field :n_hclinica %> -->
     </div>
   </div>
 </div>
@@ -76,10 +67,6 @@
       <%= f.label :brigada %>
       <%= f.select(:brigada, ['N34'], {}, { :class => 'form-control' }) %>
     </div>
-  </div>
-  <br />
-  <div class="actions">
-    <%= f.submit "Guardar", class: "guardar_submit"  %>
   </div>
 </div>
 

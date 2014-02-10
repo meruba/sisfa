@@ -82,7 +82,12 @@ class FacturasController < ApplicationController
 
 	def create
 		if params[:factura].include?(:cliente)
-			create_factura_venta
+			respond_to do |format|
+				create_factura_venta
+      	format.pdf do
+      		render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb"
+      	end
+    end
 		else
 			create_factura_compra
 		end 
