@@ -20,7 +20,6 @@ class Cliente < ActiveRecord::Base
 	validates_id :numero_de_identificacion
 # relationships
 	has_one :user
-	has_one :paciente
 	has_many :proformas
 	has_many :facturas
   has_one :cliente_militar
