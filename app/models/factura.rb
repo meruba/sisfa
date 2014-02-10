@@ -82,4 +82,12 @@ def rollback_factura
 	end
 end
 
+def militar_servicio
+	if self.cliente.militar then self.cliente.militar.servicio else "no tiene un militar asosiado" end
+end
+
+def militar_rango
+	if self.cliente.militar then self.cliente.militar.rango else "no tiene un militar asosiado" end
+end
+
 end

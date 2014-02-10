@@ -59,8 +59,8 @@
           <td><%= factura.numero %></td>
           <td><%= factura.cliente.nombre%></td>
           <td><%= factura.cliente.direccion %></td>
-          <td> aki va servicio</td>
-          <td> aki va rango</td>
+          <td><%= factura.militar_servicio %></td>
+          <td><%= factura.militar_rango %></td>
           <td><%= factura.user.username %></td>
           <td><%= factura.created_at.to_s(:db) %></td>
           <td><%= factura.subtotal_12 %></td>
