@@ -19,6 +19,7 @@
 #  proveedor_id         :integer
 #  cliente_id           :integer
 #  user_id              :integer
+#  tipo_venta           :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

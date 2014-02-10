@@ -10,6 +10,9 @@
 #  email                    :string(255)
 #  created_at               :datetime
 #  updated_at               :datetime
+#  sexo                     :string(255)
+#  edad                     :integer
+#  estado_civil             :string(255)
 #
 
 class Cliente < ActiveRecord::Base
