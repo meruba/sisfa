@@ -24,29 +24,6 @@
     <strong>Email:</strong>
     <a href="mailto:"><%= @cliente.email%></a>
   </p>
-  <% if @cliente.paciente %>
-  <legend>Datos Paciente:</legend>
-  <p>
-    <strong>N Historia Clinica:</strong>
-    <%= @cliente.paciente.n_hclinica %>
-  </p>
-  <p>
-    <strong>Tipo de Paciente:</strong>
-    <%= @cliente.paciente.tipo_de_paciente %>
-  </p>
-  <p>
-    <strong>Pertenece a:</strong>
-    <%= @cliente.paciente.pertenece%>
-  </p> 
-  <p>
-    <strong>Grado:</strong>
-    <%= @cliente.paciente.grado%>
-  </p>    
-  <p>
-    <strong>Brigada:</strong>
-    <%= @cliente.paciente.brigada%>
-  </p> 
-  <% end %>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
