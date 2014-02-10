@@ -3,7 +3,6 @@ get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "proveedors/autocomplete"
-get "pacientes/new"
 get "facturas/ventanilla"
 get "facturas/hospitalizacion"
 get "facturas/consulta_externa"
@@ -30,7 +29,6 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     end
   end
   resources :personas
-  resources :pacientes
   resources :clientes
   resources :proveedors
   resources :productos do
