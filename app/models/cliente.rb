@@ -25,6 +25,7 @@ class Cliente < ActiveRecord::Base
 	has_one :user
 	has_many :proformas
 	has_many :facturas
+	has_many :registros
   has_one :cliente_militar
   has_one :militar, through: :cliente_militar
 

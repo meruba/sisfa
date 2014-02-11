@@ -12,7 +12,7 @@ window.Helpers.ButtonsHelper = {
       $(this).addClass("looks_like_button btn btn-primary").html "<i class='fa fa-plus'></i> " + $(this).html()
 
     $(".delete_destroy:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn btn-danger").html "<i class='fa fa-times'></i> " + $(this).html()
+      $(this).addClass("looks_like_button btn btn-sm btn-danger").html "<i class='fa fa-times'></i> " + $(this).html()
 
     $(".editar_edit:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-warning").html "<i class='fa fa-pencil'></i> " + $(this).html()

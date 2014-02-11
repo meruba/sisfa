@@ -3,6 +3,7 @@ class DashboardController < ApplicationController
   include DashboardHelper
   
   def index    
+    estadisticas_dia
   end
 
   def estadisticas_dia
