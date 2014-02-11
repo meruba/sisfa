@@ -22,7 +22,7 @@ private
         (proforma.cliente.nombre),
         (proforma.numero),
         (proforma.total),
-        (link_to '', proforma, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info")
+        (link_to '', proforma, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info") + " " + (link_to '', @view.facturar_proforma_path(proforma), method: :post, data: { confirm: 'Esta seguro?' }, :rel => "tooltip", :title => 'Facturar', class: "ttip fa fa-thumbs-up btn btn-success")
         # (link_to 'Mostrar', @view.show(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
         # (link_to '', @view.show_factura_path(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
       ]

@@ -44,7 +44,7 @@ class ProformasController < ApplicationController
 
 	def facturar
 		@proforma = Proforma.find(params[:id])
-		@factura = @proforma.cliente.facturas.build(:tipo => "venta", :tipo_venta=>"ventanilla")
+		@factura = @proforma.cliente.facturas.build(:tipo => "venta", :tipo_venta=>"ventanilla", :subtotal_0 => @proforma.subtotal_0, :subtotal_12 => @proforma.subtotal_12, :descuento => @proforma.descuento, :iva => @proforma.iva, :total => @proforma.total)
 		@factura.user_id = current_user.id
 		@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
 		@factura.fecha_de_emision = Time.now
@@ -53,8 +53,11 @@ class ProformasController < ApplicationController
 		Factura.item_venta(@factura.item_facturas)
 		if @factura.save
 			Factura.disminuir_stock(@factura.item_facturas)
+			redirect_to facturas_path, :notice => "Factura Creada"
+		else
+			redirect_to proformas_path
+			flash[:error] = 'Error al crear la factura'
 		end
-		redirect_to facturas_index_path
 	end
 
 	private
