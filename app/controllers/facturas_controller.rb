@@ -60,16 +60,7 @@ class FacturasController < ApplicationController
 			format.js
 		end
 	end
-
-	def consulta_externa
-		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"consulta_externa")
-		@factura.item_facturas.build
-		respond_to do |format|
-			# format.html
-			format.js
-		end
-	end
-
+	
 	def anular
 		unless @factura.anulada
 			@factura.anulada = true

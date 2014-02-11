@@ -3,8 +3,7 @@
 	<ul id="tab_ventas" class="nav nav-tabs">
 		<!-- <li class="active"><a href="#diario" data-toggle="tab">Tipo</a></li> -->
 		<li class="active"><%=link_to "Ventanilla",{:controller => 'facturas', :action => 'ventanilla'}, :remote => true, :data => {:toogle => "tab"}  %></li>
-		<li><%=link_to "Hospitalizacion",{:controller => 'facturas', :action => 'hospitalizacion'}, :remote => true, :data => {:toogle => "tab"} %></li>
-		<li><%=link_to("Consulta Externa",{:controller => 'facturas', :action => 'consulta_externa'}, :remote => true, :data => {:toogle => "tab"})%></li>
+		<li><%=link_to "Hospitalizacion",{:controller => 'facturas', :action => 'hospitalizacion'}, :remote => true, :data => {:toogle => "tab"} %></li>		
 	</ul>
 	<div class="tab-content">
 		<%= render "facturas/venta/ventanilla" %>
