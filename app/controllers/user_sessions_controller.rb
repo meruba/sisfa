@@ -12,10 +12,14 @@ class UserSessionsController < ApplicationController
         redirect_to login_path
         flash[:error] = "Usuario suspendido"
       else
-       redirect_to root_path
-       flash[:notice] = "Bienvenido #{current_user.username}"
+        if @user.rol == Rol.administrador_estadistica
+          redirect_to new_registro_path
+        else
+          redirect_to root_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
+        end
       end
-     else
+    else
       flash[:error] = "Usuario o contraseña inválido"
       redirect_to login_path
     end
