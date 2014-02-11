@@ -31,25 +31,26 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :clientes
   resources :proveedors
   resources :registros
+  resources :item_facturas
+  resources :item_proformas
+  resources :item_transferencias
+  resources :transferencias 
+
   resources :productos do
     resources :kardexes, :as => "kardex"
   end
+  
   resources :facturas do
     member do
       post "anular"
     end
   end
-    #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  resources :item_facturas
+
   resources :proformas do
     member do
       post "facturar"
     end
   end
-  resources :item_proformas
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
