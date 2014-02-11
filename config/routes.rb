@@ -44,7 +44,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   #       post 'toggle'
   #     end
   resources :item_facturas
-  resources :proformas
+  resources :proformas do
+    member do
+      post "facturar"
+    end
+  end
   resources :item_proformas
 
   # The priority is based upon order of creation: first created -> highest priority.

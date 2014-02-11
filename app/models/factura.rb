@@ -63,6 +63,10 @@ def self.item_venta (item_facturas)
 	end
 end
 
+def create_items_facturas (item_proformas)
+	
+end
+
 def self.aumentar_stock (item_facturas)
 	item_facturas.each do |item|
 		unless item.producto_id.nil?

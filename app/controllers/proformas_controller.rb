@@ -42,6 +42,20 @@ class ProformasController < ApplicationController
 		end
 	end
 
+	def facturar
+		@proforma = Proforma.find(params[:id])
+		@factura = @proforma.cliente.facturas.build(:tipo => "venta", :tipo_venta=>"ventanilla")
+		@factura.user_id = current_user.id
+		@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
+		@factura.fecha_de_emision = Time.now
+		@factura.fecha_de_vencimiento = Time.now + 30.days
+		@factura.item_facturas = Factura.create_items_facturas(@proforma.item_proformas)
+		Factura.item_venta(@factura.item_facturas)
+		if @factura.save
+			Factura.disminuir_stock(@factura.item_facturas)
+		end
+	end
+
 	private
 
 	def proforma_params
@@ -66,4 +80,5 @@ class ProformasController < ApplicationController
 	def set_proforma
 		@proforma = Proforma.find(params[:id])
 	end
+
 end
