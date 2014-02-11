@@ -1,6 +1,6 @@
 <h1 class= "text-center"><span class="fa fa-bar-chart-o"></span> Estadísticas</h1>
 <ul class="nav nav-tabs" id="tab_estadisticas">
-  <li><%=link_to "Diario",{:controller => 'dashboard', :action => 'estadisticas_dia'}, :remote => true, :data => {:toogle => "tab"} %></li>
+  <li class="active"><%=link_to "Diario",{:controller => 'dashboard', :action => 'estadisticas_dia'}, :remote => true, :data => {:toogle => "tab"} %></li>
   <li><%=link_to "Mes",{:controller => 'dashboard', :action => 'estadisticas_mes'}, :remote => true, :data => {:toogle => "tab"} %></li>
   <li><%=link_to "Reportes",{:controller => 'dashboard', :action => 'generar_reporte'}, :remote => true, :data => {:toogle => "tab"} %></li>
 </ul>
