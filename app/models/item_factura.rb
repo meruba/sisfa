@@ -51,4 +51,5 @@ class ItemFactura < ActiveRecord::Base
       Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra, :modulo => self.factura.tipo_venta )
     end
   end
+
 end

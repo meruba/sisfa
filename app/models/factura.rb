@@ -64,7 +64,12 @@ def self.item_venta (item_facturas)
 end
 
 def create_items_facturas (item_proformas)
-	
+	itemfacturas = []
+	item_proformas.each do |item|
+		itemfactura = Itemfactura.new(:cantidad => item.cantidad, :producto => item.producto, :valor_unitario => item.valor_unitario, :descuento => item.descuento, :total => item.total, :iva => item.iva)
+		itemfacturas << itemfactura
+	end
+	itemfacturas
 end
 
 def self.aumentar_stock (item_facturas)

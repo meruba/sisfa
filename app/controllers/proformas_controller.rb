@@ -54,6 +54,7 @@ class ProformasController < ApplicationController
 		if @factura.save
 			Factura.disminuir_stock(@factura.item_facturas)
 		end
+		redirect_to facturas_index_path
 	end
 
 	private
