@@ -19,6 +19,7 @@
 #  proveedor_id         :integer
 #  cliente_id           :integer
 #  user_id              :integer
+#  tipo_venta           :string(255)
 #
 
 class Factura < ActiveRecord::Base
@@ -80,6 +81,14 @@ def rollback_factura
 		Lineakardex.create(:kardex => producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.producto.precio_compra, :observaciones => "Factura anulada" )
 		producto.save
 	end
+end
+
+def militar_servicio
+	if self.cliente.militar then self.cliente.militar.servicio else "no tiene un militar asosiado" end
+end
+
+def militar_rango
+	if self.cliente.militar then self.cliente.militar.rango else "no tiene un militar asosiado" end
 end
 
 end
