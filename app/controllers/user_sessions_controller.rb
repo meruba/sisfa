@@ -14,6 +14,7 @@ class UserSessionsController < ApplicationController
       else
         if @user.rol == Rol.administrador_estadistica
           redirect_to new_registro_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
         else
           redirect_to root_path
           flash[:notice] = "Bienvenido #{current_user.username}"
