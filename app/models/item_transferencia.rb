@@ -13,4 +13,9 @@
 #
 
 class ItemTransferencia < ActiveRecord::Base
+  belongs_to :transferencia
+  belongs_to :producto
+
+  # validations:
+  validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
 end

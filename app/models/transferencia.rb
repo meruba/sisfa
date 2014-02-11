@@ -15,4 +15,8 @@
 #
 
 class Transferencia < ActiveRecord::Base
+	has_many :item_transferencias
+	has_many :productos, :through => :item_transferencias
+
+	accepts_nested_attributes_for :item_transferencias
 end
