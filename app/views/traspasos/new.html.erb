@@ -1,1 +1,27 @@
-<h1>HELLO</h1>
+<%= nested_form_for @traspaso do |f| %>
+<%= form_errors_for @traspaso %>
+<div class="col-md-7 field">
+	<h3>Tansferencia Interna de Productos</h3>
+	<h6 class="text-muted text-right fecha"></h6>
+	<%= f.text_field :servicio, :placeholder => "Servicio"%>
+	<%= f.fields_for :item_traspaso, :wrapper => false do |item_traspaso| %>
+	<input type="text" class= " autocomplete_producto" placeholder= " ingrese producto" required= true >
+	<%=  item_traspaso.number_field  :cantidad, :placeholder => "0", min: "1", value: 1 %>
+	<% end %>
+</div>
+<!-- datos de impuestos -->
+<div class="col-md-2 col-md-offset-1">
+	<div class="panel panel-default">
+		<div class="panel-heading">
+			<h3 class="panel-title">IMPUESTOS %</h3>
+		</div>
+		<div class="panel-body field">
+			<%= f.label :iva, class: "iva_factura text-right", :readonly => true%>
+			<%= f.text_field :iva, class: "fiva_factura text-right", :readonly => true%>
+			<%= f.label :total, class: "iva_factura text-right", :readonly => true%>
+			<%= f.text_field :total, class: "total_factura text-right", :readonly => true%><br/>
+			<%= f.submit :Guardar, class: "guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
+		</div>
+	</div>
+</div>
+<% end %>
