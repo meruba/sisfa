@@ -33,6 +33,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :registros
   resources :item_facturas
   resources :item_proformas
+  resources :traspasos
+  resources :item_traspasos
 
   resources :productos do
     resources :kardexes, :as => "kardex"
