@@ -22,7 +22,8 @@ class ProductosController < ApplicationController
             :label => producto.nombre,
             :value => producto.nombre,
             :precio_venta => producto.precio_venta,
-            :codigo => producto.codigo
+            :codigo => producto.codigo,
+            :casa_comercial => producto.casa_comercial
           }
         end
         render :json => @productos 

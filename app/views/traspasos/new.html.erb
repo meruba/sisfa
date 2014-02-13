@@ -1,27 +1,54 @@
 <%= nested_form_for @traspaso do |f| %>
-<%= form_errors_for @traspaso %>
-<div class="col-md-7 field">
-	<h3>Tansferencia Interna de Productos</h3>
-	<h6 class="text-muted text-right fecha"></h6>
-	<%= f.text_field :servicio, :placeholder => "Servicio"%>
-	<%= f.fields_for :item_traspaso, :wrapper => false do |item_traspaso| %>
-	<input type="text" class= " autocomplete_producto" placeholder= " ingrese producto" required= true >
-	<%=  item_traspaso.number_field  :cantidad, :placeholder => "0", min: "1", value: 1 %>
-	<% end %>
-</div>
-<!-- datos de impuestos -->
-<div class="col-md-2 col-md-offset-1">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">IMPUESTOS %</h3>
-		</div>
-		<div class="panel-body field">
-			<%= f.label :iva, class: "iva_factura text-right", :readonly => true%>
-			<%= f.text_field :iva, class: "fiva_factura text-right", :readonly => true%>
-			<%= f.label :total, class: "iva_factura text-right", :readonly => true%>
-			<%= f.text_field :total, class: "total_factura text-right", :readonly => true%><br/>
-			<%= f.submit :Guardar, class: "guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
+	<%= form_errors_for @traspaso %>
+	<div class="col-md-7">
+		<legend>Tansferencia Interna de Productos</legend>
+	</div>
+	<div class="container">
+		<div class="row">
+			<div class="col-xs-8">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<div class="panel-title">
+							<div class="row">
+								<div class="col-xs-6">
+									<%= f.text_field :servicio, :placeholder => "Servicio", class: "form-control autocomplete_servicio"%>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-body">
+						<div class="row productos_traspaso">
+							<%= f.fields_for :item_traspaso, :wrapper => false do |item_traspaso| %>
+							<%= render 'item_traspasos/item_traspaso', item_traspaso:item_traspaso %>
+						<% end %>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="text-center">
+								<div class="col-xs-9">
+									<h6 class="text-right">Agreagar Producto?</h6>
+								</div>
+								<div class="col-xs-3">
+									<button type="button" class="btn btn-default btn-sm btn-block">
+										Producto
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="panel-footer">
+						<div class="row text-center">
+							<div class="col-xs-9">
+								<%= f.hidden_field :total, class: "total_traspaso" %>
+								<h4 class="text-right">Total <strong class= "total">$50.00</strong></h4>
+							</div>
+							<div class="col-xs-3">
+								<%= f.submit :Guardar, class: " btn btn-block guardar_submit", data: {disable_with: "Almacenando"}%>			
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
-</div>
 <% end %>

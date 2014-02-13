@@ -9,7 +9,10 @@ class TraspasosController < ApplicationController
 	end
 
 	def create
-		@traspaso = traspaso.create(traspaso_params)
+		@traspaso.numero = Traspaso.last ? Traspaso.last.numero + 1 : 1
+		@traspaso.fecha_emision = Time.now
+		@traspaso.user_id = current_user.id
+		raise 'error'
 		if @traspaso.save
 			redirect_to traspaso_path, :notice => "Transferencia realizada"
 		else
