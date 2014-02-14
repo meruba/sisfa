@@ -60,3 +60,12 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .table-factura tbody tr th{
   padding-right: 8px;
 }
+
+.block-icon{
+  text-align: center;
+  font-size: 30px;
+  background: #1ABC9C;
+  color: #fff;
+  line-height: 70px;
+  margin: 0 auto;
+}
