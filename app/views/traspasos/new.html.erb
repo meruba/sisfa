@@ -18,9 +18,9 @@
 					</div>
 					<div class="panel-body">
 						<div class="row productos_traspaso">
-							<%= f.fields_for :item_traspaso, :wrapper => false do |item_traspaso| %>
-							<%= render 'item_traspasos/item_traspaso', item_traspaso:item_traspaso %>
-						<% end %>
+							<%= f.fields_for :item_traspasos, :wrapper => false do |item_traspaso| %>
+								<%= render 'item_traspasos/item_traspaso', item_traspaso:item_traspaso %>
+							<% end %>
 						</div>
 						<hr>
 						<div class="row">
@@ -29,9 +29,7 @@
 									<h6 class="text-right">Agreagar Producto?</h6>
 								</div>
 								<div class="col-xs-3">
-									<button type="button" class="btn btn-default btn-sm btn-block">
-										Producto
-									</button>
+									<%= f.link_to_add "Producto", :item_traspasos, class: "btn btn-default btn-sm btn-block"%>
 								</div>
 							</div>
 						</div>
@@ -40,6 +38,7 @@
 						<div class="row text-center">
 							<div class="col-xs-9">
 								<%= f.hidden_field :total, class: "total_traspaso" %>
+								<%= f.hidden_field :iva, class: "iva_traspaso" %>
 								<h4 class="text-right">Total <strong class= "total">$00.00</strong></h4>
 							</div>
 							<div class="col-xs-3">
