@@ -2,6 +2,10 @@ window.Helpers ||= {}
 
 window.Helpers.AutocompleteTraspaso = {
   init_autocomplete: ->
+    $(".producto_traspaso").on "click", ->
+      $this = $(this)
+      $this.val("")
+
     $(".producto_traspaso").autocomplete
       minLength: 3
       source: "/productos/autocomplete.json"
@@ -33,16 +37,18 @@ window.Helpers.AutocompleteTraspaso = {
 
   calcular_total_producto: (componente) ->
     cantidad = componente.closest(".productos_traspaso").find(".cantidad").val()
-    valor_unitario = componente.closest(".productos_traspaso").find(".precio-unitario").text()
-    total = componente.closest(".productos_traspaso").find(".total-traspaso")
-    total.val(cantidad * parseInt valor_unitario)
-
+    valor_unitario = componente.closest(".productos_traspaso").find(".precio_unitario").val()    
+    total = cantidad * valor_unitario
+    componente.closest(".productos_traspaso").find(".total_producto").val(total.toFixed(2))
+    
   calcular_valores_factura: ->
     sum = 0
-    $(".total").each ->
-      sum += parseFloat($(this).text())
+    $(".total_producto").each ->
+      sum += parseFloat($(this).val())
     $(".iva_factura").val((sum*0.12).toFixed(2));
-    $(".total-traspaso").val((sum*0.12+sum).toFixed(2));
+    total_final = (sum*0.12+sum).toFixed(2)
+    $(".total_traspaso").val(total_final);
+    $(".total").text("$" + total_final);
 }
 
 jQuery window.Helpers.AutocompleteTraspaso.init
