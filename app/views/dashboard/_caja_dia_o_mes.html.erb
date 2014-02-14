@@ -7,7 +7,6 @@
         <th></th>
         <th>VENTANILLA</th>
         <th>HOSPITALIZACIÓN</th>
-        <th>CONSULTA</th>
         <th>TOTAL</th>
       </tr>
     </thead>
@@ -16,31 +15,26 @@
         <td>Facturas:</td>
         <td><%= @cantidad_ventanilla %></td>
         <td><%= @cantidad_hospitalizacion %></td>
-        <td><%= @cantidad_consultaexterna %></td>
         <td><%= @cantidadfacturas %></td>
       </tr>
       <tr>
         <td>Subtotal:</td>
         <td><%= '%.2f' % @ventanilla_subtotal %></td>
         <td><%= '%.2f' % @hospitalizacion_subtotal %></td>
-        <td><%= '%.2f' % @consultaexterna_subtotal %></td>
         <td><%= '%.2f' % @total_subtotal %></td>
       </tr>
       <tr>
         <td>Iva:</td>
         <td><%= '%.2f' % @ventanilla_iva %></td>
         <td><%= '%.2f' % @hospitalizacion_iva %></td>
-        <td><%= '%.2f' % @consultaexterna_iva %></td>
         <td><%= '%.2f' % @total_iva %></td>
       </tr>
       <tr>
         <td>Total:</td>
         <td><%= @total_ventanilla %></td>
         <td><%= @total_hospitalizacion %></td>
-        <td><%= @total_consultaexterna %></td>
         <td><%= @totalfacturas %></td>
       </tr>
     </tbody>
 </table>
-
 <% end %>
