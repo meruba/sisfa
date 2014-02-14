@@ -11,7 +11,6 @@ class DashboardController < ApplicationController
     estadisticas(Time.now, nil)
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
-    @porcentajedia_consultaexterna = regla_de_tres(@cantidad_consultaexterna, @cantidadfacturas)
   end
 
   def estadisticas_mes
@@ -19,7 +18,6 @@ class DashboardController < ApplicationController
     estadisticas(nil, Time.now)
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
-    @porcentajemes_consultaexterna = regla_de_tres(@cantidad_consultaexterna, @cantidadfacturas)
   end
 
   def generar_reporte
@@ -40,12 +38,10 @@ class DashboardController < ApplicationController
     estadisticas(params[:fecha].to_time, nil)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
-    @consultaexterna_subtotal = sumar_impuesto(@facturas, "consulta_externa", "subtotal_0")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
+    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
     @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
     @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
-    @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
+    @total_iva = @ventanilla_iva + @hospitalizacion_iva
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
   end
 
@@ -53,12 +49,10 @@ class DashboardController < ApplicationController
     estadisticas(Time.now, nil)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
-    @consultaexterna_subtotal = sumar_impuesto(@facturas, "consulta_externa", "subtotal_0")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
+    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
     @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
     @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
-    @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
+    @total_iva = @ventanilla_iva + @hospitalizacion_iva
     respond_to do |format|
       format.html
       format.js
@@ -72,12 +66,10 @@ class DashboardController < ApplicationController
     estadisticas(nil, Time.now)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
-    @consultaexterna_subtotal = sumar_impuesto(@facturas, "consulta_externa", "subtotal_0")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @consultaexterna_subtotal
+    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
     @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
     @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
-    @consultaexterna_iva = sumar_impuesto(@facturas, "consulta_externa", "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva + @consultaexterna_iva
+    @total_iva = @ventanilla_iva + @hospitalizacion_iva
     respond_to do |format|
       format.html
       format.js
@@ -107,12 +99,10 @@ class DashboardController < ApplicationController
 
     @cantidad_ventanilla = cantidad_facturas(@facturas, "ventanilla")
     @total_ventanilla = valor_total_por_facturas(@facturas, "ventanilla")
-    @cantidad_consultaexterna = cantidad_facturas(@facturas, "consulta_externa")
-    @total_consultaexterna = valor_total_por_facturas(@facturas, "consulta_externa")
     @cantidad_hospitalizacion = cantidad_facturas(@facturas, "hospitalizacion")
     @total_hospitalizacion = valor_total_por_facturas(@facturas, "hospitalizacion")
     @totalfacturas = valor_total_facturas(@facturas)
-    @cantidadfacturas = @cantidad_ventanilla + @cantidad_hospitalizacion + @cantidad_consultaexterna
+    @cantidadfacturas = @cantidad_ventanilla + @cantidad_hospitalizacion
   end
 
   def consulta_facturas(query, tipo)
