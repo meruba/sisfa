@@ -6,7 +6,7 @@
 			</div><!-- end panel-heading -->	
 			<div class="panel-body">
 				<%= form_tag dashboard_generar_reporte_path do %>
-				<%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='consulta_externa'>Consulta Externa</option><option value='hospitalizacion'>Hospitalización</option><option value='compra'>Compra</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %> <br />	
+				<%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='hospitalizacion'>Hospitalización</option><option value='compra'>Compra</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %> <br />	
 				<span class="fa fa-calendar"></span>
 				<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio" %><br><br>
 				<span class="fa fa-calendar"></span>

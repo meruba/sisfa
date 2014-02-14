@@ -72,37 +72,7 @@
     </table>
     <h4>Nº Total de Facturas: <%= @search.count%></h4>
     <h4>Nº Total de Venta: <%= '%.2f' % @search.sum(:total)%></h4>
-  <% when "consulta_externa"%>
-    <h3>Reporte de Facturas  de Consulta Externa desde:</h3>
-    <h4><%= @start_date%> hasta <%= @end_date%></h4>
-    <table class="table table-hover table-print">
-      <thead>
-        <tr>
-          <th>Nº Reporte</th>
-          <th>Dependencia</th>
-          <th>Dirección</th>
-          <th>Vendedor</th>
-          <th>Fecha</th>
-          <th>Sub Total</th>
-          <th>IVA</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @search.each do |factura| %>
-        <tr>
-          <td> aki va numero de reporte </td>
-          <td> aki va dependencia</td>
-          <td>Hospital Basico 7 B.I Loja</td>
-          <td><%= factura.user.username %></td>
-          <td><%= factura.created_at.to_s(:db) %></td>
-          <td><%= factura.subtotal_12 %></td>
-          <td><%= factura.iva %></td>
-          <td><%= factura.total %></td>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+    
   <%when "compra"%>
     <h3>Reporte de Facturas  de Compra  desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
