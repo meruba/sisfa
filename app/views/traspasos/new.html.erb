@@ -1,41 +1,41 @@
 <%= nested_form_for @traspaso do |f| %>
-	<%= form_errors_for @traspaso %>
-	<div class="col-md-7">
-		<legend>Tansferencia Interna de Productos</legend>
-	</div>
-	<div class="container">
-		<div class="row">
-			<div class="col-xs-8">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<div class="panel-title">
-							<div class="row">
-								<div class="col-xs-6">
-									<%= f.text_field :servicio, :placeholder => "Servicio", class: "form-control autocomplete_servicio"%>
-								</div>
+<%= form_errors_for @traspaso %>
+<div class="col-md-7">
+	<legend>Tansferencia Interna de Productos</legend>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-xs-8">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<div class="panel-title">
+						<div class="row">
+							<div class="col-xs-6">
+								<%= f.text_field :servicio, :placeholder => "Servicio", class: "form-control autocomplete_servicio"%>
 							</div>
 						</div>
 					</div>
-					<div class="panel-body">
-							<%= f.fields_for :item_traspasos do |b| %>
-								<%= render 'item_traspasos/item_traspaso', f: b %>
-							<% end -%>
-							<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-block"%>
-					</div>
-					<div class="panel-footer">
-						<div class="row text-center">
-							<div class="col-xs-9">
-								<%= f.hidden_field :total, class: "total_traspaso" %>
-								<%= f.hidden_field :iva, class: "iva_traspaso" %>
-								<h4 class="text-right">Total <strong class= "total">$00.00</strong></h4>
-							</div>
-							<div class="col-xs-3">
-								<%= f.submit :Guardar, class: " btn btn-block guardar_submit", data: {disable_with: "Almacenando"}%>			
-							</div>
+				</div>
+				<div class="panel-body">
+					<%= f.fields_for :item_traspasos do |b| %>
+					<%= render 'item_traspasos/item_traspaso', f: b %>
+					<% end -%>
+					<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-block"%>
+				</div>
+				<div class="panel-footer">
+					<div class="row text-center">
+						<div class="col-xs-9">
+							<%= f.hidden_field :total, class: "total_traspaso" %>
+							<%= f.hidden_field :iva, class: "iva_traspaso" %>
+							<h4 class="text-right">Total <strong class= "total">$00.00</strong></h4>
+						</div>
+						<div class="col-xs-3">
+							<%= f.submit :Guardar, class: " btn btn-block guardar_submit", data: {disable_with: "Almacenando"}%>			
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+</div>
 <% end %>
