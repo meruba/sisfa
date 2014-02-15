@@ -30,6 +30,7 @@ class Producto < ActiveRecord::Base
   has_many :item_facturas
   has_one :kardex
   has_many :item_proformas
+  has_many :item_traspasos
 
 #methods
   private
