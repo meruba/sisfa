@@ -24,6 +24,13 @@ class TraspasosController < ApplicationController
 		end
 	end
 
+	def show
+		@traspaso = Traspaso.find(params[:id])
+		respond_to do |format|
+      format.js{ render "show" }
+    end
+	end
+
 	private
 
 	def traspaso_params
