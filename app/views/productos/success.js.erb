@@ -9,7 +9,7 @@
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
-  $(".table-responsive").html('<%= j render 'productos', productos: @productos %>');
+  $(".table-productos").html('<%= j render 'productos', productos: @productos %>');
   window.Helpers.init_datatables();
   window.Helpers.ButtonsHelper.init();
   alertify.success("Producto guardado");

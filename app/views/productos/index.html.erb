@@ -1,6 +1,6 @@
 <%= link_to 'Nuevo', {:controller => 'productos', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 <h1 class="text-center">LISTA DE PRODUCTOS</h1>
 
-<div class="table-responsive">
+<div class="table-responsive table-productos">
   <%= render "productos", productos: @productos %>  
 </div>
