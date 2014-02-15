@@ -18,7 +18,7 @@
 					</div>
 					<div class="panel-body">
 						<div class="row productos_traspaso">
-							<%= f.fields_for :item_traspasos, :wrapper => false do |b| %>
+							<%= f.fields_for :item_traspasos do |b| %>
 								<%= render 'item_traspasos/item_traspaso', f: b %>
 							<% end -%>
 						</div>

@@ -18,6 +18,16 @@
 //= require jquery_nested_form
 //= require alertify
 window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
-  var $tr = $(link).closest('tr');
-  return $(content).insertBefore($tr);
+  var $tr;
+  $tr = $(link).closest("tr");
+  if ($tr.size() > 0) {
+    return $(content).insertBefore($tr);
+  } else {
+    var target = $(link).data('target');
+      if (target) {
+        return $(content).appendTo($(target));
+      } else {
+        return $(content).insertBefore(link);
+      }
+  }
 }
