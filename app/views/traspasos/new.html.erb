@@ -17,22 +17,10 @@
 						</div>
 					</div>
 					<div class="panel-body">
-						<div class="row productos_traspaso">
 							<%= f.fields_for :item_traspasos do |b| %>
 								<%= render 'item_traspasos/item_traspaso', f: b %>
 							<% end -%>
-						</div>
-						<hr>
-						<div class="row">
-							<div class="text-center">
-								<div class="col-xs-9">
-									<h6 class="text-right">Agreagar Producto?</h6>
-								</div>
-								<div class="col-xs-3">
-									<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-block"%>
-								</div>
-							</div>
-						</div>
+							<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-block"%>
 					</div>
 					<div class="panel-footer">
 						<div class="row text-center">
