@@ -5,21 +5,46 @@
 <%= nested_form_for @user, :remote => true do |f| %>
 <div class="modal-body">
   <%= f.fields_for :cliente do |cliente_params| %>
-    <%=  cliente_params.text_field :nombre, :placeholder=>"Nombre", class: "form-control-border"%>
-    <%=  cliente_params.text_field :direccion, :placeholder=>"Dirección", class: "form-control-border"%>
-    <%=  cliente_params.text_field :numero_de_identificacion, :placeholder=>"Número de Identificación", class: "form-control-border"%>
-    <%=  cliente_params.text_field :telefono, :placeholder=>"Teléfono", class: "form-control-border"%>
-    <%=  cliente_params.text_field :email, :placeholder=>"email", class: "form-control-border"%>
-    <% end %> 
-    <br>
-    <legend>Datos de Usuario</legend>
-    <%= f.text_field :username, :placeholder => "Nombre de Usuario", class: "form-control-border" %>
-    <%= f.password_field :password, :placeholder => "Nueva Clave", class: "form-control-border" %>
-    <%= f.password_field :password_confirmation, :placeholder => "Confirmar Clave", class: "form-control-border" %>
-</div>
-  <div class="modal-footer">
-    <%= f.submit 'Guardar', class: "btn btn-success", :remote => true%>
-    <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-    <% end %>
+  <div class="input-icon-sm">
+    <%=cliente_params.text_field :nombre, :placeholder=>"Nombre"%>
+    <i class="fa fa-user"></i>
   </div>
+  <div class="input-icon-sm">
+    <%=  cliente_params.text_field :direccion, :placeholder=>"Dirección"%>
+    <i class="fa fa-map-marker"></i>
+  </div>
+  <div class="input-icon-sm">
+    <%=  cliente_params.text_field :numero_de_identificacion, :placeholder=>"Número de Identificación"%>
+    <i class="fa fa-male"></i>
+  </div>
+
+  <div class="input-icon-sm">
+    <%=  cliente_params.text_field :telefono, :placeholder=>"Teléfono"%>
+    <i class="fa fa-phone"></i>
+  </div>
+  <div class="input-icon-sm">
+    <%=  cliente_params.text_field :email, :placeholder=>"email"%>      
+    <i class="fa fa-envelope"></i>
+  </div>
+  <% end %> 
+  <br>
+  <legend>Datos de Usuario</legend>
+  <div class="input-icon-sm">
+    <%= f.text_field :username, :placeholder => "Nombre de Usuario" %>
+    <i class="fa fa-envelope"></i>
+  </div>
+  <div class="input-icon-sm">
+    <%= f.password_field :password, :placeholder => "Nueva Clave" %>
+    <i class="fa fa-key"></i>
+  </div>
+  <div class="input-icon-sm">
+    <%= f.password_field :password_confirmation, :placeholder => "Confirmar Clave"%>
+    <i class="fa fa-key"></i>
+  </div>
+</div>
+<div class="modal-footer">
+  <%= f.submit 'Guardar', class: "btn btn-success", :remote => true%>
+  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+  <% end %>
+</div>
 
