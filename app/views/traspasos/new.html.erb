@@ -18,9 +18,9 @@
 					</div>
 					<div class="panel-body">
 						<div class="row productos_traspaso">
-							<%= f.fields_for :item_traspasos, :wrapper => false do |item_traspaso| %>
-								<%= render 'item_traspasos/item_traspaso', item_traspaso:item_traspaso %>
-							<% end %>
+							<%= f.fields_for :item_traspasos, :wrapper => false do |b| %>
+								<%= render 'item_traspasos/item_traspaso', f: b %>
+							<% end -%>
 						</div>
 						<hr>
 						<div class="row">
@@ -29,7 +29,7 @@
 									<h6 class="text-right">Agreagar Producto?</h6>
 								</div>
 								<div class="col-xs-3">
-									<%= f.link_to_add "Producto", :item_traspasos, class: "btn btn-default btn-sm btn-block"%>
+									<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-block"%>
 								</div>
 							</div>
 						</div>
