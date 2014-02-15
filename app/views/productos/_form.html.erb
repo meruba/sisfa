@@ -6,19 +6,19 @@
 <div class="modal-body">
 	<div class="field">
 		<%= f.label :nombre %>
-		<%= f.text_field :nombre, required:true %>
+		<%= f.text_field :nombre %>
 		<%= f.label :nombre_generico, "Nombre Genérico" %>
-		<%= f.text_field :nombre_generico, required:true %>
+		<%= f.text_field :nombre_generico %>
 		<%= f.label :cantidad_disponible %>
-		<%= f.number_field :cantidad_disponible, required:true %>
+		<%= f.number_field :cantidad_disponible %>
 		<%= f.label :codigo, "Código" %>
-		<%= f.text_field :codigo, required:true%>
+		<%= f.text_field :codigo %>
 		<%= f.label :Fecha_de_caducidad %>
-		<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker", required:true%>
+		<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker" %>
 		<%= f.label :categoria %>
 		<%= f.text_field :categoria%>
 		<%= f.label :precio_compra, "Precio de compra (sin IVA)"%>
-		<%= f.number_field :precio_compra, required:true, min:0 %>
+		<%= f.number_field :precio_compra, min:0 %>
 		<%= f.label :casa_comercial %>
 		<%= f.text_field :casa_comercial%>
 	</div>
