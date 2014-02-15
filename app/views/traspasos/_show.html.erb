@@ -3,6 +3,38 @@
   <h1 class="modal-title" id="myModalLabel">Información</h1>
 </div>
 <div class="modal-body">
+	 <p>
+    <strong>Dependencia:</strong>
+    <%= @traspaso.servicio%>
+  </p>
+  <p>
+    <strong>Fecha de Emisión:</strong>
+    <%= @traspaso.fecha_emision %>
+  </p>
+  <table class="table table-hover">
+	  <thead class= "well">
+	    <tr>
+	      <th>Producto</th>
+	      <th>Cantidad</th>
+	      <th>Precio</th>
+	      <th>Total</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+	    <% @traspaso.item_traspasos.each do |t| %>
+	      <tr>
+	        <td><%= t.producto.nombre%></td>
+	        <td><%= t.cantidad %></td>
+	        <td>$ <%= t.producto.precio_venta %></td>
+	        <td>$ <%= t.total %></td>
+	      </tr>
+	    <% end %>
+	  </tbody>
+	</table>
+  <h4 class="text-success text-right">
+    <strong>Total: $</strong>
+    <%= @traspaso.total %>
+  </h4>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>

@@ -20,7 +20,7 @@ class TraspasosController < ApplicationController
 		if @traspaso.save
 			redirect_to traspasos_path, :notice => "Transferencia realizada"
 		else
-			flash[:error] = 'Error al realizar traspaso'
+			flash[:error] = 'Error al realizar Transferencia'
 		end
 	end
 

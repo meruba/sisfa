@@ -25,7 +25,7 @@ private
         (traspaso.user.username),
         (traspaso.iva),
         (traspaso.total),
-        (link_to '', traspaso, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info"),
+        (link_to '', traspaso, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info")
       ]
     end 
   end
