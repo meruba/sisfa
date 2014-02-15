@@ -20,6 +20,7 @@ authenticates_with_sorcery!
 #relationships
 	belongs_to :cliente
 	has_many :facturas
+  has_many :traspasos
   has_one :user_rol
   has_one :rol, through: :user_rol
 	accepts_nested_attributes_for :cliente

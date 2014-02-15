@@ -1,7 +1,11 @@
 class TraspasosController < ApplicationController
 
-	def index
-	end
+	 def index
+    respond_to do |format|
+      format.html
+      format.json { render json: TraspasosDatatable.new(view_context) }
+    end
+  end
 
 	def new
 		@traspaso = Traspaso.new
@@ -14,7 +18,7 @@ class TraspasosController < ApplicationController
 		@traspaso.fecha_emision = Time.now
 		@traspaso.user_id = current_user.id
 		if @traspaso.save
-			redirect_to new_traspaso_path, :notice => "Transferencia realizada"
+			redirect_to traspasos_path, :notice => "Transferencia realizada"
 		else
 			flash[:error] = 'Error al realizar traspaso'
 		end
