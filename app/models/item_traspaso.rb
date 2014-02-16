@@ -17,6 +17,15 @@ class ItemTraspaso < ActiveRecord::Base
 	belongs_to :traspaso
 	belongs_to :producto
 
-  # validations:
+  # validations
   validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
+  validate :stock
+	
+	# methods
+	def stock
+	  if self.cantidad > producto.cantidad_disponible
+	  	errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
+	  end
+	end
+
 end
