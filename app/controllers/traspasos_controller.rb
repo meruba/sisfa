@@ -40,10 +40,9 @@ class TraspasosController < ApplicationController
 		:iva,
 		:total,
 		:user_id,
-		:item_traspaso_attributes => [
+		:item_traspasos_attributes => [
 			:cantidad,
 			:valor_unitario,
-			:iva,
 			:total,
 			:producto_id
 		]
