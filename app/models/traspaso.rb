@@ -19,4 +19,16 @@ class Traspaso < ActiveRecord::Base
   belongs_to :user
 
 	accepts_nested_attributes_for :item_traspasos
+
+	#methods
+	item_traspasos = []
+	def self.disminuir_stock (item_traspasos)
+		item_traspasos.each do |item|
+			unless item.producto_id.nil?
+				producto  = Producto.find(item.producto_id)
+				producto.cantidad_disponible -= item.cantidad
+				producto.save
+			end
+		end
+	end
 end
