@@ -444,7 +444,7 @@ module Sorcery::Controller::Submodules::SessionTimeout::InstanceMethods
     if validate_session_without_flash_message
       true
     else
-      redirect_to index_path
+      # redirect_to index_path
       flash[:error] = "Tu Sesión ha expirado" if logged_in
       false
     end
