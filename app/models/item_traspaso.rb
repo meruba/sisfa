@@ -16,7 +16,10 @@
 class ItemTraspaso < ActiveRecord::Base
 	belongs_to :traspaso
 	belongs_to :producto
-
+  
+  #rollbacks
+  after_create :add_kardex_line
+  
   # validations
   validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
   validate :stock
@@ -27,5 +30,9 @@ class ItemTraspaso < ActiveRecord::Base
 	  	errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
 	  end
 	end
+
+  def add_kardex_line
+    Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
+  end
 
 end
