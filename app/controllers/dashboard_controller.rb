@@ -25,7 +25,11 @@ class DashboardController < ApplicationController
       @start_date = params[:fecha_inicial]
       @end_date = params[:fecha_final]
       @tipo_factura = params[:tipo_factura]
-      @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo_venta => params[:tipo_factura]).where(:anulada => false)
+      if @tipo_factura = "compra"
+        @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura])
+      else
+        @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo_venta => params[:tipo_factura]).where(:anulada => false)
+      end
       format.html
       format.pdf do
         render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'  
