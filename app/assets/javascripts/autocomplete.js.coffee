@@ -125,42 +125,12 @@ window.Helpers.AutocompleteHelper = {
         $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
         window.Helpers.AutocompleteHelper.calcular_total_producto($this)
         window.Helpers.AutocompleteHelper.calcular_valores_factura()
-
-  init_autocompleteServicios: ->  
-    $(".autocomplete_servicio").autocomplete
-      minLength: 2
-      source: [
-        "Medicina Interna"
-        "Cardiología"
-        "Ginecología"
-        "Gastroenterología"
-        "Dermatología"
-        "Cardiología"
-        "Rayos X"
-        "Farmacia"
-        "Central de Enfermería"
-        "Estadística"
-        "Financiero"
-        "Traumatología"
-        "Odontología"
-        "Laboratorio Clínico"
-        "Fisiatría"
-        "Pediatría"
-      ]
-      response: (event, ui) ->
-        unless ui.content.length
-          NoExiste =
-            label:  "No Existe este departamento"
-          ui.content.push NoExiste
-        else
-          $("#message").empty()
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
 $(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProductosCompra
-$(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteServicios
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor

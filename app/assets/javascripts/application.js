@@ -17,6 +17,8 @@
 //= require_tree .
 //= require jquery_nested_form
 //= require alertify
+//= require chosen.jquery
+
 window.NestedFormEvents.prototype.insertFields = function(content, assoc, link) {
   var $tr;
   $tr = $(link).closest("tr");

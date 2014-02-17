@@ -13,4 +13,5 @@
  *= require bootstrap
  *= require alertify.core
  *= require alertify.bootstrap
+ *= require chosen
  */
