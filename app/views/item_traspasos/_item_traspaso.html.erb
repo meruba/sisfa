@@ -1,27 +1,29 @@
 <div class="row productos_traspaso">
-	<div class="col-md-2">
-		<div class="block-icon">
-      <i class="fa fa-barcode"></i>
-    </div>
-	</div>
-	<div class="col-md-4">
-		<h4><input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto"  required= true ></h4>
-		<h6 class="casa_comercial text-muted">Casa Comercial</h6>
-		<%=  f.hidden_field :producto_id, class: "producto_id" %>
+	<div class="col-md-6">
+		<div class="col-md-4">
+			<div class="block-icon">
+				<i class="fa fa-barcode"></i>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<h4><input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto"  required= true ></h4>
+			<h6 class="casa_comercial text-muted">Casa Comercial</h6>
+			<%=  f.hidden_field :producto_id, class: "producto_id" %>
+		</div>
 	</div>
 	<div class="col-md-6">
-		<div class="col-md-6 text-muted">
-			<%=  f.text_field  :valor_unitario, class: "precio_unitario ningun-border text-right", value: 0.0, :readonly => true%>
-			<span><strong> x</strong></span>
-		</div>
-		<div class="col-md-4 col-sm-2">
-			<%=  f.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1", value: 1 %>	
-		</div>
-		<div class="col-md-2">
+		<div class="valores">
+			<div class="col-md-6 text-muted">
+				<%=  f.text_field  :valor_unitario, class: "precio_unitario ningun-border text-right", value: 0.0, :readonly => true%>
+				<span><strong> x</strong></span>
+			</div>
+			<div class="col-md-4">
+				<%=  f.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1", value: 1 %>	
+			</div>
+			<div class="col-md-2">
 				<%= f.link_to_remove '', class: "eliminar_item delete_destroy" %>
+			</div>
 		</div>
-	</div>
-	<div class="col-md-6">
 		<div class="col-md-6 text-muted text-right">
 			<small>Precio Total:</small>
 			<%=  f.text_field :total, class: "ningun-border text-right text-muted total_producto", value: 0.0, :readonly => true%>

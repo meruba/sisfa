@@ -19,8 +19,8 @@
 				<div class="panel-body">
 					<%= f.fields_for :item_traspasos do |b| %>
 					<%= render 'item_traspasos/item_traspaso', f: b %>
-					<% end -%>
-					<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-block"%>
+					<% end %>
+					<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm btn-add-traspaso"%>
 				</div>
 				<div class="panel-footer">
 					<div class="row text-center">
