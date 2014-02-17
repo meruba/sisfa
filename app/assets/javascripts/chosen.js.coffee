@@ -1,4 +1,9 @@
-$ ->
-  $(".select-servicio").chosen({
-    placeholder_text_single: "Escoger",
-    })
+window.Helpers ||= {}
+
+window.Helpers.ChosenHelper = {
+  init: ->
+    $(".select-servicio").chosen()
+}
+
+jQuery window.Helpers.ChosenHelper.init
+$(document).on "page:load", window.Helpers.ChosenHelper.init
