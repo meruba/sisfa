@@ -5,12 +5,12 @@
 </div>
 <div class="container">
 	<div class="row">
-		<div class="col-xs-8">
+		<div class="col-md-8">
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<div class="panel-title">
 						<div class="row">
-							<div class="col-xs-6">
+							<div class="col-md-6 col-sm-12">
 								<%= f.select :servicio, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Cardiología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "form-control select-servicio"}%>
 							</div>
 						</div>
@@ -24,12 +24,12 @@
 				</div>
 				<div class="panel-footer">
 					<div class="row text-center">
-						<div class="col-xs-9">
+						<div class="col-md-9">
 							<%= f.hidden_field :total, class: "total_traspaso" %>
 							<%= f.hidden_field :iva, class: "iva_traspaso" %>
 							<h4 class="text-right">Total <strong class= "total">$00.00</strong></h4>
 						</div>
-						<div class="col-xs-3">
+						<div class="col-md-3">
 							<%= f.submit :Guardar, class: " btn btn-block guardar_submit", data: {disable_with: "Almacenando"}%>			
 						</div>
 					</div>
