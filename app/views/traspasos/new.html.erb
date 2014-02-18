@@ -1,9 +1,9 @@
-<%= nested_form_for @traspaso do |f| %>
-<%= form_errors_for @traspaso %>
 <div class="col-md-7">
 	<legend>Tansferencia Interna de Productos</legend>
 </div>
 <div class="container">
+	<%= nested_form_for @traspaso do |f| %>
+	<%= form_errors_for @traspaso %>
 	<div class="row">
 		<div class="col-md-8">
 			<div class="panel panel-default">
@@ -37,8 +37,8 @@
 			</div>
 		</div>
 	</div>
-</div>
-<% end %>
-<div>
-<%= link_to "Todas las transferencias", traspasos_path, class: "atras_back" %>
+	<% end %>
+	<div>
+		<%= link_to "Todas las transferencias", traspasos_path, class: "atras_back" %>
+	</div>
 </div>
