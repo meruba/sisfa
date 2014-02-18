@@ -66,8 +66,8 @@ window.Helpers.AutocompleteHelper = {
     sum = 0
     $(".total").each ->
       sum += parseFloat($(this).val())
-    $(".subtotal_0").val sum
-    $(".subtotal_12").val sum
+    $(".subtotal_0").val sum.toFixed(2)
+    $(".subtotal_12").val sum.toFixed(2)
     $(".descuento_factura").val 0
     $(".iva_factura").val((sum*0.12).toFixed(2));
     $(".total_factura").val((sum*0.12+sum).toFixed(2));

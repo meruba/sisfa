@@ -2,10 +2,6 @@ window.Helpers ||= {}
 
 window.Helpers.AutocompleteTraspaso = {
   init_autocomplete: ->
-    $(".producto_traspaso").on "click", ->
-      $this = $(this)
-      $this.val("")
-
     $(".producto_traspaso").autocomplete
       minLength: 3
       source: "/productos/autocomplete.json"

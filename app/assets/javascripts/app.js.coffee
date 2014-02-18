@@ -14,6 +14,6 @@
 
 # PreventOpeningInNewWindow.init()
 
-$(document).ready ->
-  $("#tab_ventas").bind "contextmenu", (e) ->
-  	false
+$(document).on 'ready page:load',
+-> $("#tab_ventas").bind "contextmenu", (e) ->
+  false
