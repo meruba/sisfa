@@ -61,7 +61,8 @@ class DashboardController < ApplicationController
   end
 
   def liquidaciones
-    estadisticas(nil, params[:fecha].to_time)
+    @fecha = params[:fecha]
+    estadisticas(nil, @fecha.to_time)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
     @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal

@@ -13,4 +13,9 @@ module ApplicationHelper
       end
     end
   end
+
+  def month_name(date)
+    date  = date.to_time
+    date.strftime("%B %Y").upcase
+  end
 end
