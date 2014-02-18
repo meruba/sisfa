@@ -48,5 +48,5 @@ window.Helpers.AutocompleteTraspaso = {
 }
 
 jQuery window.Helpers.AutocompleteTraspaso.init
-$(document).on "page:load", window.Helpers.AutocompleteTraspaso.init_autocomplete
+$(document).on "ready page:load", window.Helpers.AutocompleteTraspaso.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteTraspaso.init_autocomplete

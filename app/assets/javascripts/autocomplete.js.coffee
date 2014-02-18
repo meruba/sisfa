@@ -128,9 +128,9 @@ window.Helpers.AutocompleteHelper = {
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
-$(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocomplete
-$(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
-$(document).on "page:load", window.Helpers.AutocompleteHelper.init_autocompleteProductosCompra
+$(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocomplete
+$(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
+$(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocompleteProductosCompra
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
