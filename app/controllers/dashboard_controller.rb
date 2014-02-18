@@ -38,7 +38,7 @@ class DashboardController < ApplicationController
     end
   end
 
-  def reportes_cierre_caja
+  def reportes_cierre_caja_diario
     estadisticas(params[:fecha].to_time, nil)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
@@ -49,7 +49,15 @@ class DashboardController < ApplicationController
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
   end
 
-  def reportes_cierre_caja_mensual    
+  def reportes_cierre_caja_mensual
+    estadisticas(nil, params[:fecha].to_time)
+    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
+    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
+    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
+    @total_iva = @ventanilla_iva + @hospitalizacion_iva
+    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
   end
 
   def cierre_de_caja_dia

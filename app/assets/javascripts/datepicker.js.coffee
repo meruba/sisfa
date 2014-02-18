@@ -10,7 +10,7 @@ window.Helpers.Datepicker = {
 
 	init_datepicker_month: ->
 	  $(".datepicker_month").datepicker({
-	    format: 'yyyy-mm',
+	    format: 'yyyy-mm-dd',
     	minViewMode: "months",
 	    language: "es",
 	    autoclose: true
