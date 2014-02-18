@@ -7,22 +7,20 @@ window.Helpers.Datepicker = {
 	    language: "es",
 	    autoclose: true
 	  })
+
+	init_datepicker_month: ->
+	  $(".datepicker_month").datepicker({
+	    format: 'yyyy-mm',
+    	minViewMode: "months",
+	    language: "es",
+	    autoclose: true
+	  })
 }
 
 jQuery window.Helpers.Datepicker.init_datepicker
 $(document).on "page:load", window.Helpers.Datepicker.init_datepicker
+$(document).on "page:load", window.Helpers.Datepicker.init_datepicker_month
 $ ->
   $("#myModal").on "shown.bs.modal", ->
     jQuery window.Helpers.Datepicker.init_datepicker
-
-# $ ->
-#   $("#myModal").on "shown.bs.modal", ->
-#     jQuery init_datepicker
-
-# $.fn.extend {
-#   integrateDatepicker: (selector)->
-#     selector = selector || '.datepicker'
-#     $(@).find(selector).datepicker()
-# }
-# $(document).ready () ->
-#   $('body').integrateDatepicker()
+    jQuery window.Helpers.Datepicker.init_datepicker_month
