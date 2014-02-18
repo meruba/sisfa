@@ -14,6 +14,7 @@ get "dashboard/caducados"
 get "dashboard/cierre_de_caja_dia"
 get "dashboard/cierre_de_caja_mes"
 get "dashboard/reportes_cierre_caja"
+get "dashboard/reportes_cierre_caja_mensual"
 get "dashboard/estadisticas_dia"
 get "dashboard/estadisticas_mes"
 # match "dashboard/cierre_de_caja_dia" => "dashboard#cierre_de_caja_dia", via: [:get, :post]

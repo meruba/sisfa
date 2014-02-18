@@ -49,6 +49,9 @@ class DashboardController < ApplicationController
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
   end
 
+  def reportes_cierre_caja_mensual    
+  end
+
   def cierre_de_caja_dia
     estadisticas(Time.now, nil)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
