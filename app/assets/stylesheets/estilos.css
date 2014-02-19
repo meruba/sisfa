@@ -70,6 +70,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
   margin: 0 auto;
 }
 
-.btn-add-traspaso{
+.fix-margin{
   margin-left: 15px;
 }
+
