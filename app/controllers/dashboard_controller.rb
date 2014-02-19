@@ -65,12 +65,17 @@ class DashboardController < ApplicationController
     estadisticas(nil, @fecha.to_time)
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
     @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
     @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva
     @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time,"ventanilla").count()
     @anuladas_hospitalizacion = facturas_anuladas(params[:fecha].to_time,"hospitalizacion").count()
+    transferencias = transferencias(@fecha)
+    @numero_transferencias = transferencias.count()
+    @transferencias_iva = transferencias.sum(:iva)
+    @total_transferencias = transferencias.sum(:total)
+    @total_ventas = @total_hospitalizacion + @total_ventanilla + @total_transferencias
+    @iva_liquidacion = @total_ventas * 0.12
+    @total_liquidacion = @total_ventas + @iva_liquidacion
     # ventas ventanilla
     # ventas hospitalizacion
     # transferencias
@@ -143,5 +148,10 @@ class DashboardController < ApplicationController
 
   def facturas_anuladas(fecha, tipo)
     facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:tipo_venta => tipo).where(:anulada => true)
+  end
+
+  def transferencias(fecha)
+    fecha = fecha.to_time
+    traspasos = Traspaso.where(:created_at => fecha.beginning_of_month..fecha.end_of_month)
   end
 end

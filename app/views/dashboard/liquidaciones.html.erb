@@ -2,7 +2,7 @@
 <h4 class="text-center"> <%= month_name(@fecha) %></h4>
 <div class="row">
 	<h5>Fecha de Impresion:  <span class="fecha_sin_hora"></span></h5>
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<h4>Ventas en ventanilla</h4>	
 		<table class="table">
 			<thead>
@@ -30,7 +30,7 @@
 		<small>Numero de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-4">
 		<h4>Ventas en hospitalizacion</h4>	
 		<table class="table">
 			<thead>
@@ -56,5 +56,72 @@
 		</table>
 		<small>Numero de Facturas Emitidas: <strong><%= @cantidad_hospitalizacion%></strong></small><br/>
 		<small>Numero de Facturas Anuladas: <strong><%= @anuladas_hospitalizacion%></strong></small>
+	</div>
+
+	<div class="col-md-4">
+		<h4>Transferencias</h4>	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Impuestos</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Subtotal:</td>
+					<td><%='%.2f' % @hospitalizacion_subtotal%></td>
+				</tr>
+				<tr>
+					<td>Iva:</td>
+					<td><%= '%.2f' % @transferencias_iva %></td>
+				</tr>
+				<tr>
+					<td><strong>Total:</strong></td>
+					<td><strong><%= '%.2f' % @total_transferencias %></strong></td>
+				</tr>
+			</tbody>
+		</table>
+		<small>Numero de Transferencias: <strong><%= @numero_transferencias%></strong></small>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<h4>Resumen General Ventas</h4>	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Tipo</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Ventanilla:</td>
+					<td><%='%.2f' % @hospitalizacion_subtotal%></td>
+				</tr>
+				<tr>
+					<td>Hospitalizacion:</td>
+					<td><%= '%.2f' % @transferencias_iva %></td>
+				</tr>
+				<tr>
+					<td>Transferencias:</td>
+					<td><%= '%.2f' % @transferencias_iva %></td>
+				</tr>
+				<tr>
+					<td><strong>Total Ventas:</strong></td>
+					<td><%= '%.2f' % @total_ventas %></td>
+				</tr>
+				<tr>
+					<td><strong>Total Iva:</strong></td>
+					<td><%= '%.2f' % @iva_liquidacion %></td>
+				</tr>
+				<tr>
+					<td><strong>Total:</strong></td>
+					<td><%= '%.2f' % @total_liquidacion %></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </div>

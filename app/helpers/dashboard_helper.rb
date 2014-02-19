@@ -29,7 +29,7 @@ module DashboardHelper
         end
       end
     end
-    return '%.2f' %total
+    return total
   end
 
   def valor_total_facturas(facturas)
@@ -39,7 +39,7 @@ module DashboardHelper
           total += factura.total
       end
     end
-    return '%.2f' %total
+    return total
   end
 
   def sumar_impuesto (todas_facturas, tipo_factura, tipo_impuesto)
