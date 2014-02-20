@@ -25,16 +25,16 @@
           <td><%= factura.cliente.nombre%></td>
           <td><%= factura.cliente.direccion %></td>
           <td><%= factura.user.username %></td>
-          <td><%= factura.created_at.to_s(:db) %></td>
-          <td><%= factura.subtotal_12%></td>
-          <td><%= factura.iva%></td>
-          <td><%= factura.total %></td>
+          <td><%= factura.created_at.to_s(:db)%></td>
+          <td><%= redondear(factura.subtotal_12)%></td>
+          <td><%= redondear(factura.iva)%></td>
+          <td><%= redondear(factura.total)%></td>
         </tr>
         <% end %>
       </tbody>
     </table>
     <h4>Nº Total de Facturas: <%= @search.count%> </h4>
-    <h4>Nº Total de Venta: <%= @search.sum(:total)%> </h4>
+    <h4>Nº Total de Venta: <%= redondear(@search.sum(:total))%> </h4>
   <%when "hospitalizacion"%>
     <h3>Reporte de Facturas  de Hospitalización desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
@@ -63,15 +63,15 @@
           <td><%= factura.militar_rango %></td>
           <td><%= factura.user.username %></td>
           <td><%= factura.created_at.to_s(:db) %></td>
-          <td><%= factura.subtotal_12 %></td>
-          <td><%= factura.iva %></td>
-          <td><%= factura.total %></td>
+          <td><%= redondear(factura.subtotal_12) %></td>
+          <td><%= redondear(factura.iva) %></td>
+          <td><%= redondear(factura.total) %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
     <h4>Nº Total de Facturas: <%= @search.count%></h4>
-    <h4>Nº Total de Venta: <%= '%.2f' % @search.sum(:total)%></h4>
+    <h4>Nº Total de Venta: <%= redondear(@search.sum(:total)) %></h4>
     
   <%when "compra"%>
     <h3>Reporte de Facturas  de Compra  desde:</h3>
@@ -97,14 +97,14 @@
           <td><%= factura.proveedor.direccion %></td>
           <td><%= factura.user.username %></td>
           <td><%= factura.created_at.to_s(:db) %></td>
-          <td><%= factura.subtotal_12%></td>
-          <td><%= factura.iva %></td>
-          <td><%= factura.total %></td>
+          <td><%= redondear(factura.subtotal_12)%></td>
+          <td><%= redondear(factura.iva) %></td>
+          <td><%= redondear(factura.total) %></td>
         </tr>
         <% end %>
       </tbody>
     </table>
     <h4>Nº Total de Facturas: <%= @search.count%> </h4>
-    <h4>Nº Total de Compra: <%= '%.2f' % @search.sum(:total)%> </h4>
+    <h4>Nº Total de Compra: <%= redondear(@search.sum(:total)) %> </h4>
   <% end %>
 <% end %>

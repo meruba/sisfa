@@ -19,21 +19,21 @@
       </tr>
       <tr>
         <td>Subtotal:</td>
-        <td><%= '%.2f' % @ventanilla_subtotal %></td>
-        <td><%= '%.2f' % @hospitalizacion_subtotal %></td>
-        <td><%= '%.2f' % @total_subtotal %></td>
+        <td><%= redondear(@ventanilla_subtotal) %></td>
+        <td><%= redondear(@hospitalizacion_subtotal) %></td>
+        <td><%= redondear(@total_subtotal) %></td>
       </tr>
       <tr>
         <td>Iva:</td>
-        <td><%= '%.2f' % @ventanilla_iva %></td>
-        <td><%= '%.2f' % @hospitalizacion_iva %></td>
-        <td><%= '%.2f' % @total_iva %></td>
+        <td><%= redondear(@ventanilla_iva) %></td>
+        <td><%= redondear(@hospitalizacion_iva) %></td>
+        <td><%= redondear(@total_iva) %></td>
       </tr>
       <tr>
         <td>Total:</td>
-        <td><%= @total_ventanilla %></td>
-        <td><%= @total_hospitalizacion %></td>
-        <td><%= @totalfacturas %></td>
+        <td><%= redondear(@total_ventanilla) %></td>
+        <td><%= redondear(@total_hospitalizacion) %></td>
+        <td><strong><%= redondear(@totalfacturas) %></strong></td>
       </tr>
     </tbody>
 </table>

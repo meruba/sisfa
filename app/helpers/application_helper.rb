@@ -18,4 +18,9 @@ module ApplicationHelper
     date  = date.to_time
     date.strftime("%B %Y").upcase
   end
+
+  def redondear(number)
+    redondeo = number_with_precision(number, precision: 2)
+    # numero = "$ " + redondeo
+  end
 end
