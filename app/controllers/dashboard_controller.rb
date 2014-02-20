@@ -142,7 +142,12 @@ class DashboardController < ApplicationController
   end
 
   def consulta_facturas(query, tipo)
-    todasfacturas = Factura.where(:created_at => query).where(:tipo => tipo).where(:anulada => false)
+    case current_user.rol
+    when Rol.administrador
+      todasfacturas = Factura.where(:created_at => query).where(:tipo => tipo).where(:anulada => false)
+    when Rol.vendedor
+      todasfacturas = Factura.where(:created_at => query).where(:user_id => current_user.id).where(:anulada => false)
+    end
     return :json => todasfacturas
   end
 
