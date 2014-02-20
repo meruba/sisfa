@@ -1,3 +1,7 @@
 .table-print thead{
-	background-color: #F5F5F5
+	background-color: #e4e4e4
+}
+
+.table-print tbody{
+	background-color: #fff;
 }
