@@ -41,6 +41,7 @@ window.Helpers.AutocompleteTraspaso = {
     sum = 0
     $(".total_producto").each ->
       sum += parseFloat($(this).val())
+    $(".subtotal_traspaso").val sum.toFixed(2)
     $(".iva_traspaso").val((sum*0.12).toFixed(2));
     total_final = (sum*0.12+sum).toFixed(2)
     $(".total_traspaso").val(total_final);

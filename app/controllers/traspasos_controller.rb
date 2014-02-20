@@ -37,6 +37,7 @@ class TraspasosController < ApplicationController
 		params.require(:traspaso).permit :servicio,
 		:fecha_emision,
 		:numero,
+		:subtotal,
 		:iva,
 		:total,
 		:user_id,
