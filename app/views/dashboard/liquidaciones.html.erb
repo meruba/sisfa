@@ -14,15 +14,15 @@
 			<tbody>
 				<tr>
 					<td>Subtotal:</td>
-					<td><%='%.2f' % @ventanilla_subtotal%></td>
+					<td><%= redondear(@ventanilla_subtotal) %></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= @ventanilla_iva %></td>
+					<td><%= redondear(@ventanilla_iva) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total</strong></td>
-					<td><strong><%= @total_ventanilla %></strong></td>
+					<td><strong><%= redondear(@total_ventanilla) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
@@ -42,15 +42,15 @@
 			<tbody>
 				<tr>
 					<td>Subtotal:</td>
-					<td><%='%.2f' % @hospitalizacion_subtotal%></td>
+					<td><%= redondear(@hospitalizacion_subtotal)%></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= @hospitalizacion_iva %></td>
+					<td><%= redondear(@hospitalizacion_iva) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><strong><%= @total_hospitalizacion %></strong></td>
+					<td><strong><%= redondear(@total_hospitalizacion)%></strong></td>
 				</tr>
 			</tbody>
 		</table>
@@ -70,15 +70,15 @@
 			<tbody>
 				<tr>
 					<td>Subtotal:</td>
-					<td><%='%.2f' % @hospitalizacion_subtotal%></td>
+					<td><%= redondear(@hospitalizacion_subtotal) %></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= '%.2f' % @transferencias_iva %></td>
+					<td><%= redondear(@transferencias_iva) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><strong><%= '%.2f' % @total_transferencias %></strong></td>
+					<td><strong><%= redondear(@total_transferencias) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
@@ -99,27 +99,27 @@
 			<tbody>
 				<tr>
 					<td>Ventanilla:</td>
-					<td><%='%.2f' % @total_ventanilla %></td>
+					<td><%= redondear(@total_ventanilla) %></td>
 				</tr>
 				<tr>
 					<td>Hospitalizacion:</td>
-					<td><%= '%.2f' % @total_hospitalizacion %></td>
+					<td><%= redondear(@total_hospitalizacion) %></td>
 				</tr>
 				<tr>
 					<td>Transferencias:</td>
-					<td><%= '%.2f' % @total_transferencias %></td>
+					<td><%= redondear(@total_transferencias) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><%= '%.2f' % @total_ventas %></td>
+					<td><%= redondear(@total_ventas) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total Iva:</strong></td>
-					<td><%= '%.2f' % @iva_liquidacion %></td>
+					<td><%= redondear(@iva_liquidacion) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><%= '%.2f' % @total_liquidacion %></td>
+					<td><%= redondear(@total_liquidacion) %></td>
 				</tr>
 			</tbody>
 		</table>
