@@ -2,7 +2,46 @@
 <h4 class="text-center"> <%= month_name(@fecha) %></h4>
 <div class="row">
 	<h5 class= "fix-margin"><strong>Fecha de Impresion:  </strong><span class="fecha_sin_hora"></span></h5>
-	<div class="col-md-4">
+
+	<div class="col-md-3">
+		<h4>Resumen General Ventas</h4>	
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Tipo</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Ventanilla:</td>
+					<td><%= redondear(@ventanilla_subtotal) %></td>
+				</tr>
+				<tr>
+					<td>Hospitalizacion:</td>
+					<td><%= redondear(@hospitalizacion_subtotal) %></td>
+				</tr>
+				<tr>
+					<td>Transferencias:</td>
+					<td><%= redondear(@transferencias_subtotal) %></td>
+				</tr>
+				<tr>
+					<td><strong>Total Ventas:</strong></td>
+					<td><%= redondear(@subtotal_ventas) %></td>
+				</tr>
+				<tr>
+					<td><strong>Total Iva:</strong></td>
+					<td><%= redondear(@iva_ventas) %></td>
+				</tr>
+				<tr>
+					<td><strong>Total:</strong></td>
+					<td><%= redondear(@total_ventas) %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+	<div class="col-md-3">
 		<h4>Ventas en ventanilla</h4>	
 		<table class="table">
 			<thead>
@@ -30,7 +69,7 @@
 		<small>Numero de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<h4>Ventas en hospitalizacion</h4>	
 		<table class="table">
 			<thead>
@@ -58,7 +97,7 @@
 		<small>Numero de Facturas Anuladas: <strong><%= @anuladas_hospitalizacion%></strong></small>
 	</div>
 
-	<div class="col-md-4">
+	<div class="col-md-3">
 		<h4>Transferencias</h4>	
 		<table class="table">
 			<thead>
@@ -85,43 +124,47 @@
 		<small>Numero de Transferencias: <strong><%= @numero_transferencias%></strong></small>
 	</div>
 </div>
-
 <div class="row">
-	<div class="col-md-4">
-		<h4>Resumen General Ventas</h4>	
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Tipo</th>
-					<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>Ventanilla:</td>
-					<td><%= redondear(@total_ventanilla) %></td>
-				</tr>
-				<tr>
-					<td>Hospitalizacion:</td>
-					<td><%= redondear(@total_hospitalizacion) %></td>
-				</tr>
-				<tr>
-					<td>Transferencias:</td>
-					<td><%= redondear(@total_transferencias) %></td>
-				</tr>
-				<tr>
-					<td><strong>Total Ventas:</strong></td>
-					<td><%= redondear(@total_ventas) %></td>
-				</tr>
-				<tr>
-					<td><strong>Total Iva:</strong></td>
-					<td><%= redondear(@iva_liquidacion) %></td>
-				</tr>
-				<tr>
-					<td><strong>Total:</strong></td>
-					<td><%= redondear(@total_liquidacion) %></td>
-				</tr>
-			</tbody>
-		</table>
+	<div class="col-md-8">
+		<h4>Listado de Ingreso (Compras)</h4>	
+    <small>Facturas Ingresadas: <strong><%= @compras.count%></strong></small><br/>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nº Factura</th>
+          <th>Proveedor</th>
+          <th>Sub Total</th>
+          <th>IVA</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @compras.each do |factura| %>
+        <tr>
+          <td><%= factura.numero %></td>
+          <td><%= factura.proveedor.nombre_o_razon_social%></td>
+          <td><%= redondear(factura.subtotal_0)%></td>
+          <td><%= redondear(factura.iva) %></td>
+          <td><%= redondear(factura.total) %></td>
+        </tr>
+        <% end %>
+        <tr>
+        	<td></td>
+        	<td><strong>TOTAL:</strong></td>
+        	<td><%= redondear(@compras.sum(:subtotal_0)) %></td>
+        	<td><%= redondear(@compras.sum(:iva)) %></td>
+        	<td><%= redondear(@compras.sum(:total)) %></td>
+        </tr>
+      </tbody>
+    </table>
 	</div>
+</div>
+<div class="row">
+	<h4 class= "fix-margin">Firmas:</h4>
+	<%= form_tag do %>
+	<div class="col-md-3 field">
+		<%= text_field_tag :nombre, params[:nombre], placeholder: "Nombre del Responsable" %>
+		<%= text_field_tag :cargo, params[:cargo], placeholder: "Cargo del Responsable" %>
+	</div>
+	<% end %>
 </div>

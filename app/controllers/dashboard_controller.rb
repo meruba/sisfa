@@ -63,22 +63,26 @@ class DashboardController < ApplicationController
   def liquidaciones
     @fecha = params[:fecha]
     estadisticas(nil, @fecha.to_time)
+    # ventas ventanilla
     @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
     @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
-    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
     @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time,"ventanilla").count()
+    # ventas hospitalizacion
+    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
     @anuladas_hospitalizacion = facturas_anuladas(params[:fecha].to_time,"hospitalizacion").count()
+    # transferencias
     transferencias = transferencias(@fecha)
     @numero_transferencias = transferencias.count()
+    @transferencias_subtotal = transferencias.sum(:subtotal)
     @transferencias_iva = transferencias.sum(:iva)
     @total_transferencias = transferencias.sum(:total)
-    @total_ventas = @total_hospitalizacion + @total_ventanilla + @total_transferencias
-    @iva_liquidacion = @total_ventas * 0.12
-    @total_liquidacion = @total_ventas + @iva_liquidacion
-    # ventas ventanilla
-    # ventas hospitalizacion
-    # transferencias
+    # valores de ventas y transferencias
+    @subtotal_ventas = @hospitalizacion_subtotal + @ventanilla_subtotal + @transferencias_subtotal
+    @iva_ventas = @subtotal_ventas * 0.12
+    @total_ventas = @subtotal_ventas + @iva_ventas
+    #valores factura de compra
+    @compras = facturas_compra(@fecha.to_time)
   end
 
   def cierre_de_caja_dia
@@ -158,5 +162,9 @@ class DashboardController < ApplicationController
   def transferencias(fecha)
     fecha = fecha.to_time
     traspasos = Traspaso.where(:created_at => fecha.beginning_of_month..fecha.end_of_month)
+  end
+
+  def facturas_compra(fecha)
+    facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:tipo => "compra")
   end
 end
