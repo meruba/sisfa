@@ -92,6 +92,7 @@ class ProductosController < ApplicationController
                                      :nombre_generico,
                                      :cantidad_disponible,
                                      :precio_compra,
+                                     :ganancia,
                                      :codigo,
                                      :categoria,
                                      :descripcion,
