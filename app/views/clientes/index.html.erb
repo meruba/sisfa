@@ -1,5 +1,5 @@
 <%= link_to 'Nuevo', new_cliente_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
-<h1 class="text-center">LISTA DE CLIENTES</h1>
+<h1 class="text-center">Lista de Clientes</h1>
 
 <div class=" col-md-10 col-md-offset-1 table-responsive table-clientes">
   <%= render "clientes", clientes: @clientes %>  
