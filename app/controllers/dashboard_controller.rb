@@ -25,7 +25,7 @@ class DashboardController < ApplicationController
     @end_date = params[:fecha_final]
     @tipo_factura = params[:tipo_factura]
     if @tipo_factura == "compra"
-      @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => params[:tipo_factura])
+      @search = Factura.where(:fecha_de_emision => @start_date.to_time.beginning_of_day..@start_date.to_time.end_of_day, :tipo => params[:tipo_factura])
     else
       @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo_venta => params[:tipo_factura]).where(:anulada => false)
     end
