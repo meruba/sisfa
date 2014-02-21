@@ -11,6 +11,7 @@
 </head>
 <body>
   <% if current_user %>
+  <span class= "Whos" hidden><%= current_user.rol.nombre%></span>
   <header>
     <% case current_user.rol %>
       <% when Rol.administrador %>
