@@ -11,6 +11,7 @@
 #  user_id       :integer
 #  created_at    :datetime
 #  updated_at    :datetime
+#  subtotal      :float            not null
 #
 
 class Traspaso < ActiveRecord::Base

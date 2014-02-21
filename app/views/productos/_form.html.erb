@@ -13,12 +13,14 @@
 		<%= f.number_field :cantidad_disponible %>
 		<%= f.label :codigo, "Código" %>
 		<%= f.text_field :codigo %>
-		<%= f.label :Fecha_de_caducidad %>
+		<%= f.label :fecha_de_caducidad %>
 		<%= f.text_field :fecha_de_caducidad, class: "form-control datepicker" %>
 		<%= f.label :categoria %>
 		<%= f.text_field :categoria%>
 		<%= f.label :precio_compra, "Precio de compra (sin IVA)"%>
-		<%= f.text_field :precio_compra %>
+		<%= f.number_field :precio_compra, :step => "any" %>
+		<%= f.label :ganancia, "Ganancia (%)"%>
+		<%= f.number_field :ganancia, :step => "any" %>
 		<%= f.label :casa_comercial %>
 		<%= f.text_field :casa_comercial%>
 	</div>
