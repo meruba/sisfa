@@ -28,6 +28,7 @@ class Producto < ActiveRecord::Base
   validates :nombre, :length => { :maximum => 100 }
  
 #relations
+  has_many :ingreso_productos
   has_many :item_facturas
   has_one :kardex
   has_many :item_proformas
