@@ -27,4 +27,11 @@ class Producto < ActiveRecord::Base
 #nested
   accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true
 
+#methods
+
+  def ultimo_ingreso
+    unless self.ingreso_productos.empty? then self.ingreso_productos.last end
+  end
+
+
 end
