@@ -16,4 +16,5 @@
 
 class IngresoProducto < ActiveRecord::Base
   belongs_to :producto
+  validates :cantidad, :ganancia, :precio_compra, :fecha_caducidad, :presence => true
 end
