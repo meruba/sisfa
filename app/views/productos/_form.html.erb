@@ -4,32 +4,45 @@
 </div>
 <%= nested_form_for @producto, :remote => true do |f| %>
 <div class="modal-body">
-	<div class="field">
-		<%= f.label :nombre %>
-		<%= f.text_field :nombre %>
-		<%= f.label :nombre_generico, "Nombre Genérico" %>
-		<%= f.text_field :nombre_generico %>
-		<%= f.label :codigo, "Código" %>
-		<%= f.text_field :codigo %>
-		<%= f.label :categoria %>
-		<%= f.text_field :categoria%>
-		<%= f.label :casa_comercial %>
-		<%= f.text_field :casa_comercial%>
-		<%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%>
-		<%= f.fields_for :ingreso_productos, :wrap => false do |p| %>
-			<%= f.label :cantidad %>
-	    <%= p.text_field :cantidad %>
-			<%= f.label :fecha_caducidad, "Fecha de Caducidad"%>
-	    <%= p.text_field :fecha_caducidad, :class => "datepicker" %>
-			<%= f.label :lote %>
-	    <%= p.text_field :lote %>
-			<%= f.label :precio_compra, "Precio de Compra"%>
-	    <%= p.text_field :precio_compra %>
-			<%= f.label :ganancia, "Ganancia %" %>
-	    <%= p.number_field :ganancia, :step => "any" %>
-	    <%= p.link_to_remove 'Compra', :class => "delete_destroy" %>
-		<% end %>
-	</div>
+<div class="field">
+	<%= f.label :nombre %>
+	<%= f.text_field :nombre %>
+	<%= f.label :nombre_generico, "Nombre Genérico" %>
+	<%= f.text_field :nombre_generico %>
+	<%= f.label :codigo, "Código" %>
+	<%= f.text_field :codigo %>
+	<%= f.label :categoria %>
+	<%= f.text_field :categoria%>
+	<%= f.label :casa_comercial %>
+	<%= f.text_field :casa_comercial%>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Fecha Caducidad</th>
+				<th>Cantidad</th>
+				<th>Lote</th>
+				<th>P.Compra</th>
+				<th>Ganancia</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= f.fields_for :ingreso_productos, :wrap => false do |p| %>
+				<tr class="fields">
+					<td><%= p.text_field :fecha_caducidad, :class => "datepicker" %></td>
+					<td><%= p.text_field :cantidad %></td>
+					<td><%= p.text_field :lote %></td>
+					<td><%= p.text_field :precio_compra %></td>
+					<td><%= p.number_field :ganancia, :step => "any" %></td>
+					<td><%= p.link_to_remove '', :class => "delete_destroy" %></td>
+				</tr>
+			<% end %>
+			<tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
