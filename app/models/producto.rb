@@ -12,6 +12,9 @@
 
 class Producto < ActiveRecord::Base
 
+#callbacks 
+  after_create :set_kardex
+
 #validations  
   validates :nombre, :presence => true
   validates :nombre, :length => { :maximum => 100 }
@@ -24,7 +27,7 @@ class Producto < ActiveRecord::Base
   has_many :item_traspasos
 
 #nested
-  accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true
+  accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true, reject_if: :all_blank
 
 #methods
 
@@ -32,4 +35,11 @@ class Producto < ActiveRecord::Base
     self.ingreso_productos.last
   end
 
+  def cantidad_disponible
+    unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
+  end
+
+  def set_kardex
+    Kardex.create(:producto => self, :fecha => Time.now)
+  end
 end

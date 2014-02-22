@@ -26,7 +26,7 @@ class IngresoProducto < ActiveRecord::Base
 #callbacks
   before_create :set_precios
   before_update :set_precios
-  after_create :set_kardex
+  after_create :set_entrada_kardex
 
 #methods
   private
@@ -35,7 +35,7 @@ class IngresoProducto < ActiveRecord::Base
     self.precio_venta = precio_compra_iva * self.ganancia/100 + precio_compra_iva
   end
 
-  def set_kardex
-    Kardex.create(:producto => self.producto, :fecha => Time.now)
+  def set_entrada_kardex
+    Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.precio_compra )
   end
 end
