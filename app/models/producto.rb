@@ -22,7 +22,6 @@ class Producto < ActiveRecord::Base
   has_one :kardex
   has_many :item_proformas
   has_many :item_traspasos
-  accepts_nested_attributes_for :ingreso_productos  
 
 #nested
   accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true
