@@ -31,14 +31,11 @@ class Producto < ActiveRecord::Base
 
 #methods
 
-  def ultimo_registro_compra
-    self.ingreso_productos.last
-  end
-
   def cantidad_disponible
     unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
   end
 
+  private
   def set_kardex
     Kardex.create(:producto => self, :fecha => Time.now)
   end
