@@ -90,7 +90,6 @@ class ProductosController < ApplicationController
   def producto_params
     params.require(:producto).permit :nombre,
                                      :nombre_generico,
-                                     :cantidad_disponible,
                                      :precio_compra,
                                      :ganancia,
                                      :codigo,

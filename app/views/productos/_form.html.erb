@@ -16,14 +16,14 @@
 		<%= f.label :casa_comercial %>
 		<%= f.text_field :casa_comercial%>
 		<%= f.fields_for :ingreso_productos do |p| %>
-		<%= f.label :fecha_caducidad, "Fecha de Caducidad"%>
-    <%= p.text_field :fecha_caducidad, :class => "datepicker" %>
-		<%= f.label :lote %>
-    <%= p.text_field :lote %>
-		<%= f.label :precio_compra, "Precio de Compra"%>
-    <%= p.text_field :precio_compra %>
-		<%= f.label :ganancia, "Ganancia %" %>
-    <%= p.number_field :ganancia, :step => "any" %>
+			<%= f.label :fecha_caducidad, "Fecha de Caducidad"%>
+	    <%= p.text_field :fecha_caducidad, :class => "datepicker" %>
+			<%= f.label :lote %>
+	    <%= p.text_field :lote %>
+			<%= f.label :precio_compra, "Precio de Compra"%>
+	    <%= p.text_field :precio_compra %>
+			<%= f.label :ganancia, "Ganancia %" %>
+	    <%= p.number_field :ganancia, :step => "any" %>
 		<% end %>
 	</div>
 </div>
