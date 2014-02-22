@@ -15,7 +15,8 @@
 		<%= f.text_field :categoria%>
 		<%= f.label :casa_comercial %>
 		<%= f.text_field :casa_comercial%>
-		<%= f.fields_for :ingreso_productos do |p| %>
+		<%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%>
+		<%= f.fields_for :ingreso_productos, :wrap => false do |p| %>
 			<%= f.label :cantidad %>
 	    <%= p.text_field :cantidad %>
 			<%= f.label :fecha_caducidad, "Fecha de Caducidad"%>
@@ -26,6 +27,7 @@
 	    <%= p.text_field :precio_compra %>
 			<%= f.label :ganancia, "Ganancia %" %>
 	    <%= p.number_field :ganancia, :step => "any" %>
+	    <%= p.link_to_remove 'Compra', :class => "delete_destroy" %>
 		<% end %>
 	</div>
 </div>

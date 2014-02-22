@@ -101,7 +101,9 @@ class ProductosController < ApplicationController
       :precio_venta,
       :precio_compra,
       :ganancia,
-      :producto_id
+      :producto_id,
+      :_destroy,
+      :id
     ]                                    
   end  
   def set_producto
