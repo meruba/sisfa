@@ -27,14 +27,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<%= f.fields_for :ingreso_productos, :wrap => false do |p| %>
+			<%= f.fields_for :ingreso_productos, :wrapper => false do |p| %>
 				<tr class="fields">
-					<td><%= p.text_field :fecha_caducidad, :class => "datepicker" %></td>
-					<td><%= p.text_field :cantidad %></td>
-					<td><%= p.text_field :lote %></td>
-					<td><%= p.text_field :precio_compra %></td>
-					<td><%= p.number_field :ganancia, :step => "any" %></td>
-					<td><%= p.link_to_remove '', :class => "delete_destroy" %></td>
+					<%= render "ingresos", p: p %>
 				</tr>
 			<% end %>
 			<tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
