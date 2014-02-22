@@ -27,6 +27,9 @@ class Producto < ActiveRecord::Base
   has_many :item_proformas
   has_many :item_traspasos
 
+#nested
+  accepts_nested_attributes_for :ingreso_productos
+
 #methods
   private
   def set_precios
