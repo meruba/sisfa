@@ -21,6 +21,6 @@ has_many :lineakardexes
 belongs_to :producto
 
 def set_first_item
-  Lineakardex.create(:kardex => self, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.producto.ultimo_ingreso.cantidad_para_kardex, :v_unitario => self.producto.precio_compra )
+  Lineakardex.create(:kardex => self, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.producto.cantidad_para_kardex, :v_unitario => self.producto.precio_compra )
 end
 end
