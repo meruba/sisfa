@@ -16,6 +16,8 @@
 		<%= f.label :casa_comercial %>
 		<%= f.text_field :casa_comercial%>
 		<%= f.fields_for :ingreso_productos do |p| %>
+			<%= f.label :cantidad %>
+	    <%= p.text_field :cantidad %>
 			<%= f.label :fecha_caducidad, "Fecha de Caducidad"%>
 	    <%= p.text_field :fecha_caducidad, :class => "datepicker" %>
 			<%= f.label :lote %>
