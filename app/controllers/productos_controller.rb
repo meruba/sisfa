@@ -11,19 +11,16 @@ class ProductosController < ApplicationController
   def autocomplete
     # @producto = Producto.new
     respond_to do |format|
-      format.html {    
-        @productos = Producto.all
-      }
       format.json { 
-        @productos = Producto.where("nombre like ?", "%#{params[:term]}%")
+        @productos = IngresoProducto.includes(:producto).where("productos.nombre like ?", "%#{params[:term]}%")
         @productos = @productos.map do |producto|
           {
-            :id => producto.id,
-            :label => producto.nombre,
-            :value => producto.nombre,
+            :id => producto.producto.id,
+            :label => producto.producto.nombre + "/" + producto.lote ,
+            :value => producto.producto.nombre,
             :precio_venta => producto.precio_venta,
-            :codigo => producto.codigo,
-            :casa_comercial => producto.casa_comercial
+            :codigo => producto.producto.codigo,
+            :casa_comercial => producto.producto.casa_comercial
           }
         end
         render :json => @productos 
