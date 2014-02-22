@@ -27,6 +27,7 @@ class IngresoProducto < ActiveRecord::Base
   before_create :set_precios
   before_update :set_precios
   after_create :set_entrada_kardex
+  before_destroy :set_salida_kardex
 
 #methods
   private
@@ -37,5 +38,9 @@ class IngresoProducto < ActiveRecord::Base
 
   def set_entrada_kardex
     Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.precio_compra )
+  end
+
+  def set_salida_kardex
+    Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.precio_compra, :observaciones => "Eliminado desde producto" )
   end
 end
