@@ -33,6 +33,7 @@ class ProductosController < ApplicationController
 
   def new
     @producto=  Producto.new
+    @producto.ingreso_productos.build
     respond_to do |format|
       format.js{ render "new_or_edit" }
     end
@@ -89,14 +90,19 @@ class ProductosController < ApplicationController
   private 
   def producto_params
     params.require(:producto).permit :nombre,
-                                     :nombre_generico,
-                                     :precio_compra,
-                                     :ganancia,
-                                     :codigo,
-                                     :categoria,
-                                     :descripcion,
-                                     :fecha_de_caducidad,
-                                     :casa_comercial
+    :nombre_generico,
+    :codigo,
+    :categoria,
+    :casa_comercial,
+    :ingreso_productos_attributes => [
+      :lote,
+      :cantidad,
+      :fecha_caducidad,
+      :precio_venta,
+      :precio_compra,
+      :ganancia,
+      :producto_id
+    ]                                    
   end  
   def set_producto
       @producto = Producto.find(params[:id])
