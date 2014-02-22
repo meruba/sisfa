@@ -12,10 +12,6 @@
 
 class Producto < ActiveRecord::Base
 
-#callbacks
-  #before_create :set_precios
-  #after_create :set_kardex
-
 #validations  
   validates :nombre, :presence => true
   validates :nombre, :length => { :maximum => 100 }
@@ -31,14 +27,4 @@ class Producto < ActiveRecord::Base
 #nested
   accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true
 
-#methods
-  private
-  def set_precios
-    precio_compra_iva = self.precio_compra * 0.12 + self.precio_compra
-    self.precio_venta = precio_compra_iva * self.ganancia/100 + precio_compra_iva
-  end
-
-  def set_kardex
-    Kardex.create(:producto => self, :fecha => Time.now)
-  end
 end

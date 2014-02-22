@@ -25,7 +25,9 @@
     <%= @producto.casa_comercial %>
   </p>
   <% unless @producto.ingreso_productos.empty? %>
-  <strong>Detalles del producto:</strong>
+  <p>
+  <legend>Detalles del producto:</legend>
+  </p>
     <% @producto.ingreso_productos.each do |detalle| %>
       <p>
         <strong>Lote:</strong>
