@@ -13,10 +13,6 @@
     <%= @producto.nombre_generico %>
   </p>
   <p>
-    <strong>Descripción:</strong>
-    <%= @producto.descripcion%>
-  </p>
-  <p>
     <strong>Categoría:</strong>
     <%= @producto.categoria %>
   </p>
@@ -25,26 +21,34 @@
     <%= @producto.codigo %>
   </p>
   <p>
-    <strong>Cantidad:</strong>
-    <%= @producto.cantidad_disponible %>
-  </p>
-  <p>
     <strong>Casa comercial:</strong>
     <%= @producto.casa_comercial %>
   </p>
-  <p>
-    <strong>Precio de compra sin IVA:</strong>
-    <%= @producto.precio_compra %>
-  </p>
-  <p>
-    <strong>Precio de venta sin IVA</strong>
-    <%= @producto.precio_venta %>
-  </p>
-  <p>
-    <strong>Fecha de Caducidad:</strong>
-    <%= @producto.fecha_de_caducidad %>
-  </p>
-  
+  <% unless @producto.ingreso_productos.empty? %>
+  <strong>Detalles del producto:</strong>
+    <% @producto.ingreso_productos.each do |detalle| %>
+      <p>
+        <strong>Lote:</strong>
+        <%= detalle.lote %>
+      </p>
+      <p>
+        <strong>Fecha de caducidad:</strong>
+        <%= detalle.fecha_caducidad %>
+      </p>
+      <p>
+        <strong>Precio de compra:</strong>
+        <%= detalle.precio_compra %>
+      </p>
+      <p>
+        <strong>Precio de venta:</strong>
+        <%= detalle.precio_venta %>
+      </p>
+      <p>
+        <strong>Ganancia:</strong>
+        <%= detalle.ganancia %> %
+      </p>
+    <% end %>
+  <% end %>  
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
