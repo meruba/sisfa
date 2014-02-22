@@ -17,4 +17,5 @@
 class IngresoProducto < ActiveRecord::Base
   belongs_to :producto
   validates :cantidad, :ganancia, :precio_compra, :fecha_caducidad, :presence => true
+  validates :cantidad, :precio_compra, :ganancia, :numericality => { :greater_than_or_equal_to => 0}
 end
