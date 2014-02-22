@@ -23,3 +23,5 @@ jQuery ->
   window.Helpers.FormsHelper.init()
 $(document).on "page:load", ->
   window.Helpers.FormsHelper.init()
+$(document).on "nested:fieldAdded", ->
+  window.Helpers.FormsHelper.init()
