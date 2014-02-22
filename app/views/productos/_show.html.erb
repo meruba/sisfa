@@ -3,7 +3,6 @@
   <h1 class="modal-title" id="myModalLabel">Información</h1>
 </div>
 <div class="modal-body">
-  <p id="notice"><%= notice %></p>
   <p>
     <strong>Nombre:</strong>
     <%= @producto.nombre %>
@@ -25,31 +24,31 @@
     <%= @producto.casa_comercial %>
   </p>
   <% unless @producto.ingreso_productos.empty? %>
-  <p>
   <legend>Detalles del producto:</legend>
-  </p>
-    <% @producto.ingreso_productos.each do |detalle| %>
-      <p>
-        <strong>Lote:</strong>
-        <%= detalle.lote %>
-      </p>
-      <p>
-        <strong>Fecha de caducidad:</strong>
-        <%= detalle.fecha_caducidad %>
-      </p>
-      <p>
-        <strong>Precio de compra:</strong>
-        <%= detalle.precio_compra %>
-      </p>
-      <p>
-        <strong>Precio de venta:</strong>
-        <%= detalle.precio_venta %>
-      </p>
-      <p>
-        <strong>Ganancia:</strong>
-        <%= detalle.ganancia %> %
-      </p>
-    <% end %>
+  <table class="table table-hover">
+    <thead class= "well">
+      <tr>
+        <th>Lote</th>
+        <th>Cantidad</th>
+        <th>Fecha de caducidad</th>
+        <th>Precio de compra</th>
+        <th>Precio de venta</th>
+        <th>Ganancia</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @producto.ingreso_productos.each do |detalle| %>
+      <tr>
+        <td><%= detalle.lote %></td>
+        <td><%= detalle.cantidad %></td>
+        <td><%= detalle.fecha_caducidad %></td>
+        <td>$ <%= detalle.precio_compra %></td>
+        <td>$ <%= detalle.precio_venta %></td>
+        <td><%= detalle.ganancia %> % </td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
   <% end %>  
 </div>
 <div class="modal-footer">
