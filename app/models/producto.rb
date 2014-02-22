@@ -28,9 +28,8 @@ class Producto < ActiveRecord::Base
 
 #methods
 
-  def cantidad_para_kardex
-    unless self.ingreso_productos.empty? then self.ingreso_productos.last.cantidad_disponible else 0 end
+  def ultimo_registro_compra
+    self.ingreso_productos.last
   end
-
 
 end

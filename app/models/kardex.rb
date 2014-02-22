@@ -12,15 +12,20 @@
 class Kardex < ActiveRecord::Base
 
 #callbacks
-after_create :set_first_item
+  after_create :set_first_item
 
 #validations
-validates :fecha, :presence => true
-#relations
-has_many :lineakardexes
-belongs_to :producto
+  validates :fecha, :presence => true
 
-def set_first_item
-  Lineakardex.create(:kardex => self, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.producto.cantidad_para_kardex, :v_unitario => self.producto.precio_compra )
-end
+#relations
+  has_many :lineakardexes
+  belongs_to :producto
+
+#methods
+  def set_first_item
+    unless self.producto.ingreso_productos.empty?
+      Lineakardex.create(:kardex => self, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.producto.ultimo_registro_compra.cantidad, :v_unitario => self.producto.ultimo_registro_compra.precio_compra )
+    end
+  end
+
 end
