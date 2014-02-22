@@ -6,7 +6,6 @@
 #  nombre          :string(255)      not null
 #  codigo          :string(255)
 #  categoria       :string(255)
-#  descripcion     :string(255)
 #  casa_comercial  :string(255)
 #  nombre_generico :string(255)
 #
