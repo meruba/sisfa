@@ -75,10 +75,10 @@ end
 
 def rollback_factura
 	self.item_facturas.each do |item|
-		producto = item.producto
-		producto.cantidad_disponible = producto.cantidad_disponible + item.cantidad
-		Lineakardex.create(:kardex => producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.producto.precio_compra, :observaciones => "Factura anulada" )
-		producto.save
+		ingreso_producto = item.ingreso_producto
+		ingreso_producto.cantidad = ingreso_producto.cantidad + item.cantidad
+		Lineakardex.create(:kardex => ingreso_producto.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.ingreso_producto.precio_venta, :observaciones => "Factura anulada" )
+		ingreso_producto.save
 	end
 end
 
