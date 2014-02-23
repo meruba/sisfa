@@ -50,16 +50,14 @@ class ProformasController < ApplicationController
 		@factura.fecha_de_emision = Time.now
 		@factura.fecha_de_vencimiento = Time.now + 30.days
 		@factura.item_facturas = Factura.create_items_facturas(@proforma.item_proformas)
-		Factura.item_venta(@factura.item_facturas)
+		@factura.set_to_item_venta		
 		if @factura.save
-			Factura.disminuir_stock(@factura.item_facturas)
 			redirect_to facturas_path, :notice => "Factura Creada"
 		else
 			redirect_to proformas_path
 			flash[:error] = 'Error al crear la factura'
 		end
 	end
-
 	private
 
 	def proforma_params
