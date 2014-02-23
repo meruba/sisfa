@@ -19,4 +19,7 @@
 //= require nested
 //= require alertify
 //= require chosen.jquery
-
+//= require moment
+//= require jquery.dataTables
+//= require bootstrap-datepicker
+//= require jquery-ui
