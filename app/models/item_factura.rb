@@ -34,7 +34,7 @@ class ItemFactura < ActiveRecord::Base
   # methods
   def stock
     if self.tipo != "compra"
-      if self.cantidad > IngresoProducto.find(self.producto_id).cantidad
+      if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
         errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
       end
     end
@@ -42,13 +42,13 @@ class ItemFactura < ActiveRecord::Base
 
   def valida_descuento
     if self.descuento > self.total
-      errors.add :descuento, "descuento no valido en:" + producto.nombre
+      errors.add :descuento, "descuento no valido en:" + ingreso_producto.producto.nombre
     end
   end
 
   def add_kardex_line
     if self.tipo != "compra"
-      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => IngresoProducto.find(self.producto_entrada_id).precio_venta, :modulo => self.factura.tipo_venta.capitalize )
+      Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.precio_venta, :modulo => self.factura.tipo_venta.capitalize )
     else   
       Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra, :observaciones => "Factura de compra")
     end
@@ -57,7 +57,7 @@ class ItemFactura < ActiveRecord::Base
   private
 
   def disminuir_stock
-    disminuido = IngresoProducto.find(self.producto_entrada_id)
+    disminuido = IngresoProducto.find(self.ingreso_producto_id)
     disminuido.cantidad -= self.cantidad
     disminuido.save
   end

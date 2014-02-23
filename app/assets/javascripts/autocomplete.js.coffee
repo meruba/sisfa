@@ -40,8 +40,7 @@ window.Helpers.AutocompleteHelper = {
           $("#message").empty()
       select: (event, ui) ->
         $this = $(this)
-        $this.closest(".fields").find("td:nth-child(2)").find(".producto_id").val ui.item.id
-        $this.closest(".fields").find("td:nth-child(2)").find(".producto_entrada_id").val ui.item.id_ingreso
+        $this.closest(".fields").find("td:nth-child(2)").find(".ingreso_producto_id").val ui.item.id_ingreso
         $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
         window.Helpers.AutocompleteHelper.calcular_total_producto($this)
         window.Helpers.AutocompleteHelper.calcular_valores_factura()
