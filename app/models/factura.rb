@@ -40,16 +40,6 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality =>
 validates :total, :numericality => { :greater_than => 0 }
 
 #methods
-item_facturas = []
-def self.disminuir_stock (item_facturas)
-	item_facturas.each do |item|
-		unless item.producto_id.nil?
-			producto  = Producto.find(item.producto_id)
-			producto.cantidad_disponible -= item.cantidad
-			producto.save
-		end
-	end
-end
 
 def self.item_compra (item_facturas)
 	item_facturas.each do |item|		
@@ -57,8 +47,8 @@ def self.item_compra (item_facturas)
 	end
 end
 
-def self.item_venta (item_facturas)
-	item_facturas.each do |item|		
+def set_to_item_venta
+	self.item_facturas.each do |item|		
 		item.tipo = "venta"
 	end
 end

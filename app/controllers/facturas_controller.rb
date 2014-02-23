@@ -105,10 +105,8 @@ class FacturasController < ApplicationController
 				@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
 				@factura.fecha_de_emision = Time.now
 				@factura.fecha_de_vencimiento = Time.now + 30.days
-				Factura.item_venta(@factura.item_facturas)
-				if @factura.save
-					Factura.disminuir_stock(@factura.item_facturas)
-				end
+				@factura.set_to_item_venta
+				@factura.save
 			end
 			format.js
 		end
@@ -161,7 +159,8 @@ class FacturasController < ApplicationController
 			:iva,
 			:total,
 			:tipo,
-			:producto_id
+			:producto_id,
+			:producto_entrada_id
 		]
 	end
 

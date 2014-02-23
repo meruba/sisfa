@@ -16,9 +16,10 @@
 #
 
 class ItemFactura < ActiveRecord::Base
+  attr_accessor :producto_entrada_id
   
-  #rollbacks
-  after_create :add_kardex_line
+  #callbacks
+  after_create :add_kardex_line, :disminuir_stock
 
   #relationships
   belongs_to :factura
@@ -48,10 +49,18 @@ class ItemFactura < ActiveRecord::Base
 
   def add_kardex_line
     if self.tipo != "compra"
-      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_venta, :modulo => self.factura.tipo_venta )
+      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => IngresoProducto.find(self.producto_entrada_id).precio_venta, :modulo => self.factura.tipo_venta )
     else   
       Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra, :observaciones => "Factura de compra")
     end
+  end
+
+  private
+
+  def disminuir_stock
+    disminuido = IngresoProducto.find(self.producto_entrada_id)
+    disminuido.cantidad -= self.cantidad
+    disminuido.save
   end
 
 end

@@ -13,14 +13,15 @@ class ProductosController < ApplicationController
     respond_to do |format|
       format.json { 
         @productos = IngresoProducto.includes(:producto).where("productos.nombre like ?", "%#{params[:term]}%")
-        @productos = @productos.map do |producto|
+        @productos = @productos.map do |ingreso|
           {
-            :id => producto.producto.id,
-            :label => producto.producto.nombre + "/" + producto.lote ,
-            :value => producto.producto.nombre,
-            :precio_venta => producto.precio_venta,
-            :codigo => producto.producto.codigo,
-            :casa_comercial => producto.producto.casa_comercial
+            :id => ingreso.producto.id,
+            :label => ingreso.producto.nombre + "/" + ingreso.lote ,
+            :value => ingreso.producto.nombre,
+            :precio_venta => ingreso.precio_venta,
+            :codigo => ingreso.producto.codigo,
+            :casa_comercial => ingreso.producto.casa_comercial,
+            :id_ingreso => ingreso.id
           }
         end
         render :json => @productos 

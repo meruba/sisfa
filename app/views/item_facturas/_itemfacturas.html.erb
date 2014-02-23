@@ -1,11 +1,10 @@
-<!-- <td>
-	<input type="text" class= "form-control-border codigo" readonly= true>
-</td>-->
+
  <td>
 	<input type="text" class= "form-control-border autocomplete_producto" placeholder= " Ingrese producto" required= true >
 </td>
 <td>
   <%= item_factura.hidden_field :producto_id, class: "producto_id"%>
+  <%= item_factura.hidden_field :producto_entrada_id, class: "producto_entrada_id" %>
 	<%=  item_factura.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1", value: 1 %>
 </td>
 <td>
