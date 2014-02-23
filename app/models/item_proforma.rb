@@ -25,6 +25,7 @@ class ItemProforma < ActiveRecord::Base
                                                             :numericality => { :greater_than_or_equal_to => 0 }
                                                    
   validate :valida_descuento
+  validate :stock
 
   # methods
 
@@ -33,4 +34,11 @@ class ItemProforma < ActiveRecord::Base
       errors.add :descuento, "descuento no valido en:" + producto.nombre
     end
   end
+
+  def stock
+    if self.cantidad > IngresoProducto.find(self.producto_id).cantidad
+      errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
+    end
+  end
+
 end

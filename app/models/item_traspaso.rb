@@ -28,7 +28,7 @@ class ItemTraspaso < ActiveRecord::Base
 	
 	# methods
 	def stock
-	  if self.cantidad > producto.cantidad_disponible
+	  if self.cantidad > IngresoProducto.find(self.producto_id).cantidad
 	  	errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
 	  end
 	end
