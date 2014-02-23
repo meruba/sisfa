@@ -27,18 +27,18 @@ class ItemTraspaso < ActiveRecord::Base
 	
 	# methods
 	def stock
-	  if self.cantidad > IngresoProducto.find(self.producto_id).cantidad
-	  	errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
+	  if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
+	  	errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
 	  end
 	end
 
   def add_kardex_line
-    Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => IngresoProducto.find(self.producto_entrada_id).precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
+    Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
   end
 
   private
   def disminuir_stock
-    disminuido = IngresoProducto.find(self.producto_entrada_id)
+    disminuido = IngresoProducto.find(self.ingreso_producto_id)
     disminuido.cantidad -= self.cantidad
     disminuido.save
   end

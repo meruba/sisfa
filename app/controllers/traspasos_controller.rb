@@ -45,8 +45,7 @@ class TraspasosController < ApplicationController
 			:cantidad,
 			:valor_unitario,
 			:total,
-			:producto_id,
-			:producto_entrada_id
+			:ingreso_producto_id
 		]
 	end
 	

@@ -15,8 +15,7 @@ window.Helpers.AutocompleteTraspaso = {
           $("#message").empty()
       select: (event, ui) ->
         $this = $(this)
-        $this.closest(".productos_traspaso").find(".producto_id").val ui.item.id
-        $this.closest(".productos_traspaso").find(".producto_entrada_id").val ui.item.id_ingreso
+        $this.closest(".productos_traspaso").find(".ingreso_producto_id").val ui.item.id_ingreso
         $this.closest(".productos_traspaso").find(".casa_comercial").text ui.item.casa_comercial
         $this.closest(".productos_traspaso").find(".precio_unitario").val ui.item.precio_venta
         window.Helpers.AutocompleteTraspaso.calcular_total_producto($this)

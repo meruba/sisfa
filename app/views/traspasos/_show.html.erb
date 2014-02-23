@@ -23,7 +23,7 @@
 	  <tbody>
 	    <% @traspaso.item_traspasos.each do |t| %>
 	      <tr>
-	        <td><%= t.producto.nombre%></td>
+	        <td><%= t.ingreso_producto.producto.nombre%></td>
 	        <td><%= t.cantidad %></td>
 	        <td>$ <%= t.valor_unitario %></td>
 	        <td>$ <%= t.total %></td>

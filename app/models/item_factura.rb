@@ -35,7 +35,7 @@ class ItemFactura < ActiveRecord::Base
   def stock
     if self.tipo != "compra"
       if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
-        errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
+        errors.add :cantidad, "No hay suficiente stock de: " + ingreso_productoproducto.nombre
       end
     end
   end
