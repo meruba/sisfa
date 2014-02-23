@@ -16,7 +16,6 @@
 #
 
 class ItemFactura < ActiveRecord::Base
-  attr_accessor :producto_entrada_id
   
   #callbacks
   after_create :add_kardex_line, :disminuir_stock

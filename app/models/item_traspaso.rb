@@ -13,7 +13,6 @@
 #
 
 class ItemTraspaso < ActiveRecord::Base
-  attr_accessor :producto_entrada_id
 
 #relacionships
 	belongs_to :traspaso
