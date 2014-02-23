@@ -13,11 +13,14 @@
 #
 
 class ItemTraspaso < ActiveRecord::Base
+  attr_accessor :producto_entrada_id
+
+#relacionships
 	belongs_to :traspaso
 	belongs_to :producto
   
   #rollbacks
-  after_create :add_kardex_line
+  after_create :add_kardex_line, :disminuir_stock
   
   # validations
   validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
@@ -31,7 +34,14 @@ class ItemTraspaso < ActiveRecord::Base
 	end
 
   def add_kardex_line
-    Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
+    Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => IngresoProducto.find(self.producto_entrada_id).precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
+  end
+
+  private
+  def disminuir_stock
+    disminuido = IngresoProducto.find(self.producto_entrada_id)
+    disminuido.cantidad -= self.cantidad
+    disminuido.save
   end
 
 end
