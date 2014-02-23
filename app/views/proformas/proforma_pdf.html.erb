@@ -28,7 +28,7 @@
   <tbody class="text-left">
     <% proforma.item_proformas.each do |item| %>
       <tr>
-        <td><%= item.producto.nombre%></td>
+        <td><%= item.ingreso_producto.producto.nombre%></td>
         <td><%= item.cantidad %></td>
         <td><%= item.valor_unitario %></td>
         <td><%= item.total %></td>

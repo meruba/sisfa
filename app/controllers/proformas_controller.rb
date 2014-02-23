@@ -75,7 +75,7 @@ class ProformasController < ApplicationController
 			:descuento,
 			:iva,
 			:total,
-			:producto_id
+			:ingreso_producto_id
 		]
 	end
 

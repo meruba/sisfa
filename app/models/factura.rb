@@ -56,7 +56,7 @@ end
 def self.create_items_facturas (item_proformas)
 	itemfacturas = []
 	item_proformas.each do |item|
-		itemfactura = ItemFactura.new(:cantidad => item.cantidad, :producto => item.producto, :valor_unitario => item.valor_unitario, :descuento => item.descuento, :total => item.total, :iva => item.iva)
+		itemfactura = ItemFactura.new(:cantidad => item.cantidad, :ingreso_producto => item.ingreso_producto, :valor_unitario => item.valor_unitario, :descuento => item.descuento, :total => item.total, :iva => item.iva)
 		itemfacturas << itemfactura
 	end
 	itemfacturas

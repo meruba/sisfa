@@ -5,7 +5,7 @@
   <input type="text" class= "form-control-border autocomplete_producto" placeholder= " ingrese producto" required= true >
 </td>
 <td>
-  <%= item_proformas.hidden_field :producto_id, class: "producto_id"%>
+  <%=  item_proformas.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
   <%=  item_proformas.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1", value: 1 %>
 </td>
 <td>

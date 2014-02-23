@@ -31,13 +31,13 @@ class ItemProforma < ActiveRecord::Base
 
   def valida_descuento
     if self.descuento > self.total
-      errors.add :descuento, "descuento no valido en:" + producto.nombre
+      errors.add :descuento, "descuento no valido en:" + ingreso_producto.producto.nombre
     end
   end
 
   def stock
-    if self.cantidad > IngresoProducto.find(self.producto_id).cantidad
-      errors.add :cantidad, "No hay suficiente stock de: " + producto.nombre
+    if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
+      errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
     end
   end
 
