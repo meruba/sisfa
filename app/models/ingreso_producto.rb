@@ -17,6 +17,9 @@
 class IngresoProducto < ActiveRecord::Base
   
 #relationships
+  has_many :item_facturas
+  has_many :item_proformas
+  has_many :item_traspasos
   belongs_to :producto
 
 #validations

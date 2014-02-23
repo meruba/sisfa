@@ -21,10 +21,7 @@ class Producto < ActiveRecord::Base
  
 #relations
   has_many :ingreso_productos
-  has_many :item_facturas
   has_one :kardex
-  has_many :item_proformas
-  has_many :item_traspasos
 
 #nested
   accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true, reject_if: :all_blank

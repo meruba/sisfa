@@ -16,7 +16,7 @@
 
 class Traspaso < ActiveRecord::Base
 	has_many :item_traspasos
-	has_many :productos, :through => :item_traspasos
+	has_many :ingreso_productos, :through => :item_traspasos
   belongs_to :user
 
 	accepts_nested_attributes_for :item_traspasos

@@ -23,7 +23,7 @@ class ItemFactura < ActiveRecord::Base
 
   #relationships
   belongs_to :factura
-  belongs_to :producto
+  belongs_to :ingreso_producto
 
 	# validations:
   validates :tipo, :presence => true

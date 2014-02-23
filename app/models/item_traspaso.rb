@@ -17,7 +17,7 @@ class ItemTraspaso < ActiveRecord::Base
 
 #relacionships
 	belongs_to :traspaso
-	belongs_to :producto
+	belongs_to :ingreso_producto
   
   #rollbacks
   after_create :add_kardex_line, :disminuir_stock

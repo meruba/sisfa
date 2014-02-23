@@ -18,7 +18,7 @@ class ItemProforma < ActiveRecord::Base
   
   #relationships
   belongs_to :proforma
-  belongs_to :producto
+  belongs_to :ingreso_producto
 
   # validations:
   validates :cantidad, :valor_unitario, :total, :descuento, :presence => true,

@@ -19,7 +19,7 @@ class Proforma < ActiveRecord::Base
 #relations
 belongs_to :cliente
 has_many :item_proformas
-has_many :productos, :through => :item_proformas
+has_many :ingreso_productos, :through => :item_proformas
 
 #nested
 accepts_nested_attributes_for :item_proformas
