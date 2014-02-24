@@ -3,8 +3,6 @@ get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "proveedors/autocomplete"
-get "facturas/ventanilla"
-get "facturas/hospitalizacion"
 get "facturas/venta"
 get "facturas/compra"
 get "facturas/index_compra"
@@ -37,6 +35,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_proformas
   resources :traspasos
   resources :item_traspasos
+  resources :hospitalizacions
+  resources :item_hospitalizacions
 
   resources :productos do
     resources :kardexes, :as => "kardex"
