@@ -1,13 +1,1 @@
-<div class=" col-md-offset-1 row">
-  <h2 class="text-center">Emisión de Facturas</h2>
-	<ul id="tab_ventas" class="nav nav-tabs">
-		<!-- <li class="active"><a href="#diario" data-toggle="tab">Tipo</a></li> -->
-		<li class="active"><%=link_to "Ventanilla",{:controller => 'facturas', :action => 'ventanilla'}, :remote => true, :data => {:toogle => "tab"}  %></li>
-		<li><%=link_to "Hospitalizacion",{:controller => 'facturas', :action => 'hospitalizacion'}, :remote => true, :data => {:toogle => "tab"} %></li>		
-	</ul>
-	<div class="tab-content">
-		<%= render "facturas/venta/ventanilla" %>
-	</div>
-</div>
-
-<%= javascript_tag "window.Helpers.NavbarVentas.init();" %>
+<%= render "facturas/venta/form" %>
