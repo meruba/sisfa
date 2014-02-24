@@ -1,4 +1,5 @@
-<%= nested_form_for @factura, :remote => true do |f| %>
+<h3 class="text-center">Factura de Venta</h3>
+<%= nested_form_for @factura do |f| %>
 <%= form_errors_for @factura %>
 <div class="col-md-7">
 	<h6 class="text-muted text-right fecha"></h6>
@@ -62,7 +63,6 @@
 						</td>
 						<td>
 							<%= f.hidden_field :tipo %>
-							<%= f.hidden_field :tipo_venta%>
 							<%= f.text_field :subtotal_0, class: "input-noborder subtotal_0 text-right", :readonly => true%>
 							<%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
 							<%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>
