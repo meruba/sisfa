@@ -74,11 +74,11 @@ class FacturasDatatable
     if params[:sSearch].present?
       case @place
       when "compra"
-        facturas = facturas.includes(:proveedor).where("proveedors.nombre_o_razon_social like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
+        facturas = facturas.includes(:proveedor).where("proveedors.nombre_o_razon_social like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%").references(:proveedor)
       when "anulada"
-        facturas = facturas.includes(:cliente).where("clientes.nombre like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
+        facturas = facturas.includes(:cliente).where("clientes.nombre like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%").references(:cliente)
       when "venta"
-        facturas = facturas.includes(:cliente).where("clientes.nombre like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%")
+        facturas = facturas.includes(:cliente).where("clientes.nombre like :search or tipo like :search or numero like :search", search: "%#{params[:sSearch]}%").references(:cliente)
       end
     end
     facturas
