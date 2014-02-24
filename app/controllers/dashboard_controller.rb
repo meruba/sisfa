@@ -3,21 +3,21 @@ class DashboardController < ApplicationController
   include DashboardHelper
   
   def index    
-    estadisticas_dia
+    # estadisticas_dia
   end
 
   def estadisticas_dia
     # porcentaje de ventas dia
-    estadisticas(Time.now, nil)
-    @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
-    @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
+    # estadisticas(Time.now, nil)
+    # @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
+    # @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
   end
 
   def estadisticas_mes
     # porcentaje de ventas mes  
-    estadisticas(nil, Time.now)
-    @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
-    @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
+    # estadisticas(nil, Time.now)
+    # @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
+    # @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
   end
 
   def generar_reporte
@@ -137,12 +137,12 @@ class DashboardController < ApplicationController
       @facturas = consulta_facturas(fecha_mes.beginning_of_month..fecha_mes.end_of_month,"venta")
     end
 
-    @cantidad_ventanilla = cantidad_facturas(@facturas, "ventanilla")
-    @total_ventanilla = valor_total_por_facturas(@facturas, "ventanilla")
-    @cantidad_hospitalizacion = cantidad_facturas(@facturas, "hospitalizacion")
-    @total_hospitalizacion = valor_total_por_facturas(@facturas, "hospitalizacion")
+    # @cantidad_ventanilla = cantidad_facturas(@facturas, "ventanilla")
+    # @total_ventanilla = valor_total_por_facturas(@facturas, "ventanilla")
+    # @cantidad_hospitalizacion = cantidad_facturas(@facturas, "hospitalizacion")
+    # @total_hospitalizacion = valor_total_por_facturas(@facturas, "hospitalizacion")
     @totalfacturas = valor_total_facturas(@facturas)
-    @cantidadfacturas = @cantidad_ventanilla + @cantidad_hospitalizacion
+    # @cantidadfacturas = @cantidad_ventanilla + @cantidad_hospitalizacion
   end
 
   def consulta_facturas(query, tipo)
@@ -156,7 +156,7 @@ class DashboardController < ApplicationController
   end
 
   def facturas_anuladas(fecha, tipo)
-    facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:tipo_venta => tipo).where(:anulada => true)
+    facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:anulada => true)
   end
 
   def transferencias(fecha)
