@@ -24,7 +24,6 @@ class FacturasDatatable
       [
         (factura.cliente.nombre),
         (factura.numero),
-        (factura.tipo_venta),
         (factura.total),
         (factura.user.username),
         (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info") + " " + 
@@ -37,7 +36,6 @@ class FacturasDatatable
       [
         (factura.cliente.nombre),
         (factura.numero),
-        (factura.tipo),
         (factura.total),
         (factura.user.username),
         (link_to '', factura, :remote => true, :rel => 'tooltip','data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info")
