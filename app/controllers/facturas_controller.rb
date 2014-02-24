@@ -25,7 +25,8 @@ class FacturasController < ApplicationController
 	end
 
 	def venta
-		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"ventanilla")
+		@factura = Factura.new(:tipo => "venta")
+		@factura.item_facturas.build		
 	end
 
 	def show
@@ -41,24 +42,6 @@ class FacturasController < ApplicationController
 		# 	format.html
 		# 	format.js
 		# end
-	end
-
-	def ventanilla
-		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"ventanilla")
-		@factura.item_facturas.build
-		respond_to do |format|
-			# format.html
-			format.js
-		end
-	end
-
-	def hospitalizacion
-		@factura = Factura.new(:tipo => "venta", :tipo_venta=>"hospitalizacion")
-		@factura.item_facturas.build
-		respond_to do |format|
-			# format.html
-			format.js
-		end
 	end
 	
 	def anular
@@ -98,17 +81,22 @@ class FacturasController < ApplicationController
 	def create_factura_venta
 		cliente_attrs = params[:factura].delete :cliente
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
-		respond_to do |format|
-			if @cliente.save
-				@factura = @cliente.facturas.build(factura_params)
-				@factura.user_id = current_user.id
-				@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
-				@factura.fecha_de_emision = Time.now
-				@factura.fecha_de_vencimiento = Time.now + 30.days
-				@factura.set_to_item_venta
-				@factura.save
+		if @cliente.save
+			@factura = @cliente.facturas.build(factura_params)
+			@factura.user_id = current_user.id
+			@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
+			@factura.fecha_de_emision = Time.now
+			@factura.fecha_de_vencimiento = Time.now + 30.days
+			@factura.set_to_item_venta
+			if @factura.save
+      	render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
+				# redirect_to proformas_path, :notice => "Factura Guardada"
+			else
+				render 'venta'
+				flash[:error] = 'Error'
 			end
-			format.js
+		else
+			flash[:error] = 'Error en cliente'
 		end
 	end
 
@@ -149,7 +137,6 @@ class FacturasController < ApplicationController
 		:iva,
 		:total,
 		:tipo,
-		:tipo_venta,
 		:user_id,
 		:cliente_id,
 		:item_facturas_attributes => [
