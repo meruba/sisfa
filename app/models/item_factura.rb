@@ -2,17 +2,17 @@
 #
 # Table name: item_facturas
 #
-#  id             :integer          not null, primary key
-#  cantidad       :integer          not null
-#  valor_unitario :float            not null
-#  descuento      :float
-#  iva            :float            not null
-#  total          :float            not null
-#  created_at     :datetime
-#  updated_at     :datetime
-#  producto_id    :integer          not null
-#  factura_id     :integer          not null
-#  tipo           :string(255)
+#  id                  :integer          not null, primary key
+#  cantidad            :integer          not null
+#  valor_unitario      :float            not null
+#  descuento           :float
+#  iva                 :float            not null
+#  total               :float            not null
+#  created_at          :datetime
+#  updated_at          :datetime
+#  factura_id          :integer          not null
+#  tipo                :string(255)
+#  ingreso_producto_id :integer
 #
 
 class ItemFactura < ActiveRecord::Base
@@ -48,7 +48,7 @@ class ItemFactura < ActiveRecord::Base
 
   def add_kardex_line
     if self.tipo != "compra"
-      Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.precio_venta, :modulo => self.factura.tipo_venta.capitalize )
+      Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.precio_venta, :modulo => "Ventanilla" )
     else   
       Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra, :observaciones => "Factura de compra")
     end
