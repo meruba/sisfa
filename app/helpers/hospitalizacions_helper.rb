@@ -1,0 +1,2 @@
+module HospitalizacionsHelper
+end
