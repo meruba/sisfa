@@ -35,9 +35,9 @@
     <% end %>
   </tbody>
 </table>
-<div class="text-right">
-  <h6>SUB: <%= factura.subtotal_0 %></h6>
-  <h6>IVA: <%= factura.iva %></h6>
-  <h6>DESC: <%= factura.descuento %></h6>
-  <h6>TOTAL: <%= factura.total %></h6>
+<div class="text-right impuestos">
+  <small class="imp-factura">SUB: <%= factura.subtotal_0 %></small><br>
+  <small class="imp-factura">IVA: <%= factura.iva %></small><br>
+  <small class="imp-factura">DESC: <%= factura.descuento %></small><br>
+  <small class="imp-factura">TOTAL: <%= factura.total %></small><br>
 </div>
