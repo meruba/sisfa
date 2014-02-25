@@ -1,0 +1,3 @@
+m = $('#content_modal');
+m.html('<%= j(render partial: 'show', locals: {hospitalizacion: @hospitalizacion}) %>');
+window.Helpers.ButtonsHelper.init();
