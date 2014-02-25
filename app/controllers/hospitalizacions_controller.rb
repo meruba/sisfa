@@ -13,6 +13,7 @@ class HospitalizacionsController < ApplicationController
 		if @hospitalizacion.save
 			redirect_to hospitalizacions_path, :notice => "Almacenado"
 		else
+			render 'new'
 			flash[:error] = 'Error al Guardar'
 		end
 	end
@@ -30,11 +31,13 @@ class HospitalizacionsController < ApplicationController
 		params.require(:hospitalizacion).permit :fecha_emision,
 		:numero,
 		:subtotal,
+		:descuento,
 		:iva,
 		:total,
 		:user_id,
 		:item_hospitalizacions_attributes => [
 			:cantidad,
+			:iva,
 			:valor_unitario,
 			:subtotal,
 			:total,
