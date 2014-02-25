@@ -61,15 +61,9 @@ class DashboardController < ApplicationController
 
   def liquidaciones
     @fecha = params[:fecha]
-    estadisticas(nil, @fecha.to_time)
-    # ventas ventanilla
-    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
-    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
-    @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time,"ventanilla").count()
-    # ventas hospitalizacion
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
-    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
-    @anuladas_hospitalizacion = facturas_anuladas(params[:fecha].to_time,"hospitalizacion").count()
+    #ingresos del mes
+    cierres_de_caja("mes", @fecha.to_time)
+    @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time).count()
     # transferencias
     transferencias = transferencias(@fecha)
     @numero_transferencias = transferencias.count()
@@ -181,7 +175,7 @@ class DashboardController < ApplicationController
     return :json => hospitalizados
   end
 
-  def facturas_anuladas(fecha, tipo)
+  def facturas_anuladas(fecha)
     facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:anulada => true)
   end
 
