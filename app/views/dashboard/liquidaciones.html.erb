@@ -1,11 +1,7 @@
-<% if @search.nil? %>
-<h3>No hay ningun resultado</h3>
-<% else %>
 <h2 class="text-center">LIQUIDACION</h2>
 <h4 class="text-center"> <%= month_name(@fecha) %></h4>
 <div class="row">
 	<h5 class= "fix-margin"><strong>Fecha de Impresion:  </strong><span class="fecha_sin_hora"></span></h5>
-
 	<div class="col-md-3">
 		<h4>Resumen General Ventas</h4>	
 		<table class="table">
@@ -170,5 +166,3 @@
 	</div>
 	<% end %>
 </div>
-
-<% end %>
