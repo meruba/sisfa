@@ -19,7 +19,7 @@
               <div class="progress progress">
                 <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
                 aria-valuemin="0" aria-valuemax="100" data-original-title="Remove this user" style="width: <%=@porcentajemes_ventanilla%>%">
-                $ <%=@total_ventanilla%>
+                $ <%=redondear(@total_ventanilla)%>
               </div>
             </div>
           </div>
@@ -31,7 +31,7 @@
             <div class="progress progress">
               <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
               aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentajemes_hospitalizacion%>%">
-              $ <%=@total_hospitalizacion%>
+              $ <%=redondear(@total_hospitalizacion)%>
             </div>
           </div>
         </div>
