@@ -9,15 +9,19 @@ class DashboardController < ApplicationController
   def estadisticas_dia
     # porcentaje de ventas dia
     estadisticas(Time.now, nil)
-    # @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
-    # @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
+    estadisticas_hospitalizados(Time.now, nil)
+    num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+    @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
+    @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
   end
 
   def estadisticas_mes
     # porcentaje de ventas mes  
     estadisticas(nil, Time.now)
-    # @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, @cantidadfacturas)
-    # @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, @cantidadfacturas)
+    estadisticas_hospitalizados(Time.now, nil)
+    num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+    @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
+    @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
   end
 
   def generar_reporte
@@ -87,12 +91,15 @@ class DashboardController < ApplicationController
 
   def cierre_de_caja_dia
     estadisticas(Time.now, nil)
-    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    estadisticas_hospitalizados(Time.now, nil)
+    @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
     @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
-    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
+    @ventanilla_iva = sumar_impuesto(@facturas, "iva")
+    @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
     @total_iva = @ventanilla_iva + @hospitalizacion_iva
+    @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+    @totaldia = @totalfacturas + @totalhospitalizacion
     respond_to do |format|
       format.html
       format.js
@@ -137,9 +144,23 @@ class DashboardController < ApplicationController
       @facturas = consulta_facturas(fecha_mes.beginning_of_month..fecha_mes.end_of_month,"venta")
     end
 
-    @cantidad_ventanilla = cantidad_facturas(@facturas, "venta")
-    @total_ventanilla = valor_total_por_facturas(@facturas, "venta")
-    @totalfacturas = valor_total_facturas(@facturas)
+    @cantidad_ventanilla = cantidad_comprobantes(@facturas)
+    @total_ventanilla = valor_total_por_comprobantes(@facturas)
+    @totalfacturas = valor_total_comprobantes(@facturas)
+  end
+
+  def estadisticas_hospitalizados(dia, mes)
+    fecha_dia = dia
+    fecha_mes = mes
+    if dia
+      @hospitalizados = consulta_hospitalizacion(fecha_dia.beginning_of_day..fecha_dia.end_of_day)
+    else
+      @hospitalizados = consulta_hospitalizacion(fecha_mes.beginning_of_month..fecha_mes.end_of_month)
+    end
+
+    @cantidad_hospitalizacion = cantidad_comprobantes(@hospitalizados)
+    @total_hospitalizacion = valor_total_por_comprobantes(@hospitalizados)
+    @totalhospitalizacion = valor_total_comprobantes(@hospitalizados)
   end
 
   def consulta_facturas(query, tipo)
@@ -150,6 +171,16 @@ class DashboardController < ApplicationController
       todasfacturas = Factura.where(:created_at => query, :user_id => current_user.id, :anulada => false)
     end
     return :json => todasfacturas
+  end
+
+  def consulta_hospitalizacion(query)
+    case current_user.rol
+    when Rol.administrador
+      hospitalizados = Hospitalizacion.where(:created_at => query)
+    when Rol.vendedor
+      hospitalizados = Hospitalizacion.where(:created_at => query, :user_id => current_user.id)
+    end
+    return :json => hospitalizados
   end
 
   def facturas_anuladas(fecha, tipo)

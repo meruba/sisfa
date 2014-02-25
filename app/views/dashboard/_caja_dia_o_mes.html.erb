@@ -15,7 +15,7 @@
         <td>Facturas:</td>
         <td><%= @cantidad_ventanilla %></td>
         <td><%= @cantidad_hospitalizacion %></td>
-        <td><%= @cantidadfacturas %></td>
+        <td><%= @num_comprobantes %></td>
       </tr>
       <tr>
         <td>Subtotal:</td>
@@ -33,7 +33,7 @@
         <td>Total:</td>
         <td><%= redondear(@total_ventanilla) %></td>
         <td><%= redondear(@total_hospitalizacion) %></td>
-        <td><strong><%= redondear(@totalfacturas) %></strong></td>
+        <td><strong><%= redondear(@totaldia) %></strong></td>
       </tr>
     </tbody>
 </table>
