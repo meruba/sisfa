@@ -48,6 +48,8 @@ module DashboardHelper
           sumar += comprobante.iva
         when 'subtotal_0'
           sumar += comprobante.subtotal_0
+        when 'subtotal'
+          sumar += comprobante.subtotal
         when 'subtotal_12'
           sumar += comprobante.subtotal_12
         when 'descuento'
