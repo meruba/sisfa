@@ -18,6 +18,7 @@ class Hospitalizacion < ActiveRecord::Base
 	has_many :item_hospitalizacions
 	has_many :ingreso_productos, :through => :item_hospitalizacions
   belongs_to :user
+  belongs_to :cliente
 
 	accepts_nested_attributes_for :item_hospitalizacions
 
