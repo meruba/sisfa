@@ -4,7 +4,7 @@
     <div class="welli well-sm">
       <div class="row">
         <div class="col-xs-12 col-md-5 text-center info-cierre-caja">
-          <h3 class="total-num">$ <%= redondear(@totalfacturas) %></h3>
+          <h3 class="total-num">$ <%= redondear(@totaldia) %></h3>
           <h5>TOTAL DE HOY</h5>
           <h5 class="fecha_sin_hora"></h5>
           <%= link_to ' Cerrar Caja', dashboard_cierre_de_caja_dia_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>

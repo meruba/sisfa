@@ -10,6 +10,7 @@ class DashboardController < ApplicationController
     # porcentaje de ventas dia
     estadisticas(Time.now, nil)
     estadisticas_hospitalizados(Time.now, nil)
+    @totaldia = @totalfacturas + @totalhospitalizacion
     num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
@@ -19,6 +20,7 @@ class DashboardController < ApplicationController
     # porcentaje de ventas mes  
     estadisticas(nil, Time.now)
     estadisticas_hospitalizados(Time.now, nil)
+    @totalmes = @totalfacturas + @totalhospitalizacion
     num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
@@ -111,12 +113,15 @@ class DashboardController < ApplicationController
 
   def cierre_de_caja_mes
     estadisticas(nil, Time.now)
-    @ventanilla_subtotal = sumar_impuesto(@facturas, "ventanilla", "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@facturas, "hospitalizacion", "subtotal_0")
+    estadisticas_hospitalizados(Time.now, nil)
+    @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
+    @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
     @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas, "ventanilla", "iva")
-    @hospitalizacion_iva = sumar_impuesto(@facturas, "hospitalizacion", "iva")
+    @ventanilla_iva = sumar_impuesto(@facturas, "iva")
+    @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
     @total_iva = @ventanilla_iva + @hospitalizacion_iva
+    @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+    @totaldia = @totalfacturas + @totalhospitalizacion
     respond_to do |format|
       format.html
       format.js
