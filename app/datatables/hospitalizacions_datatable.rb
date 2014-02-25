@@ -20,7 +20,7 @@ private
     hospitalizacion.map do |hospitalizado|
       [
         (hospitalizado.numero),
-        # (hospitalizado.cliente.nombre),
+        (hospitalizado.cliente.nombre),
         (hospitalizado.fecha_emision),
         (hospitalizado.user.username),
         (hospitalizado.subtotal),
