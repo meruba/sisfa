@@ -147,7 +147,7 @@ class DashboardController < ApplicationController
       estadisticas_hospitalizados(fecha, nil)
     else
       estadisticas(nil, fecha)
-      estadisticas_hospitalizados(fecha, nil)
+      estadisticas_hospitalizados(nil, fecha)
     end
     @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
