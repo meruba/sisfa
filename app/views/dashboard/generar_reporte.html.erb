@@ -2,7 +2,7 @@
   <h3>No se encontro ninguna factura</h3>
 <% else %>
   <%case @tipo_factura%>
-    <%when "ventanilla"%>
+    <%when "venta"%>
     <h3>Reporte de Facturas  de Ventanilla  desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
     <table class="table table-hover table-print">
@@ -41,7 +41,7 @@
     <table class="table table-hover table-print">
       <thead>
         <tr>
-          <th>Nº Factura</th>
+          <th>Nº Comprobante</th>
           <th>Cliente</th>
           <th>Dirección</th>
           <th>Servicio</th>
@@ -54,18 +54,18 @@
         </tr>
       </thead>
       <tbody>
-        <% @search.each do |factura| %>
+        <% @search.each do |h| %>
         <tr>
-          <td><%= factura.numero %></td>
-          <td><%= factura.cliente.nombre%></td>
-          <td><%= factura.cliente.direccion %></td>
-          <td><%= factura.militar_servicio %></td>
-          <td><%= factura.militar_rango %></td>
-          <td><%= factura.user.username %></td>
-          <td><%= factura.created_at.to_s(:db) %></td>
-          <td><%= redondear(factura.subtotal_12) %></td>
-          <td><%= redondear(factura.iva) %></td>
-          <td><%= redondear(factura.total) %></td>
+          <td><%= h.numero %></td>
+          <td><%= h.cliente.nombre%></td>
+          <td><%= h.cliente.direccion %></td>
+          <td>ninguno</td>
+          <td>ninguno</td>
+          <td><%= h.user.username %></td>
+          <td><%= h.created_at.to_s(:db) %></td>
+          <td><%= redondear(h.subtotal) %></td>
+          <td><%= redondear(h.iva) %></td>
+          <td><%= redondear(h.total) %></td>
         </tr>
         <% end %>
       </tbody>
