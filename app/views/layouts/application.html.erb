@@ -15,7 +15,7 @@
   <header>
     <% case current_user.rol %>
       <% when Rol.administrador %>
-        <%= render 'layouts/navbars/header' %>
+        <%= render 'layouts/navbars/administrador' %>
       <% when Rol.vendedor %>
         <%= render 'layouts/navbars/vendedor' %>
       <% when Rol.administrador_estadistica %>
