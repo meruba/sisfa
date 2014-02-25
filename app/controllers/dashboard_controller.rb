@@ -48,30 +48,12 @@ class DashboardController < ApplicationController
   end
 
   def reportes_cierre_caja_diario
-    estadisticas(params[:fecha].to_time, nil)
-    estadisticas_hospitalizados(params[:fecha].to_time, nil)
-    @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas, "iva")
-    @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva
-    @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
-    @totaldia = @totalfacturas + @totalhospitalizacion
+    cierres_de_caja("dia", params[:fecha].to_time )
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
   end
 
   def reportes_cierre_caja_mensual
-    estadisticas(nil, params[:fecha].to_time)
-    estadisticas_hospitalizados(nil, params[:fecha].to_time)
-    @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas, "iva")
-    @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva
-    @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
-    @totaldia = @totalfacturas + @totalhospitalizacion
+    cierres_de_caja("mes", params[:fecha].to_time)
     render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
   end
 
@@ -101,7 +83,7 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_dia
-    cierres_de_caja("mes")
+    cierres_de_caja("dia", Time.now)
     respond_to do |format|
       format.html
       format.js
@@ -112,7 +94,7 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_mes
-    cierres_de_caja("dia")
+    cierres_de_caja("mes", Time.now)
     respond_to do |format|
       format.html
       format.js
@@ -159,13 +141,13 @@ class DashboardController < ApplicationController
     @totalhospitalizacion = valor_total_comprobantes(@hospitalizados)
   end
 
-  def cierres_de_caja(periodo)
+  def cierres_de_caja(periodo, fecha)
     if periodo == "dia"
-      estadisticas(Time.now, nil)
-      estadisticas_hospitalizados(Time.now, nil)
+      estadisticas(fecha, nil)
+      estadisticas_hospitalizados(fecha, nil)
     else
-      estadisticas(nil, Time.now)
-      estadisticas_hospitalizados(Time.now, nil)
+      estadisticas(nil, fecha)
+      estadisticas_hospitalizados(fecha, nil)
     end
     @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
     @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
