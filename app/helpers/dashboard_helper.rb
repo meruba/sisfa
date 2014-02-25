@@ -1,65 +1,59 @@
 module DashboardHelper
-	def regla_de_tres (total_tipo_factura, total_facturas)
-    if total_facturas == 0
+	def regla_de_tres (comprobante, total_comprobantes)
+    if total_comprobantes == 0
       porcentaje = 0        
     else
-      porcentaje = (100 * total_tipo_factura)/total_facturas
+      porcentaje = (100 * comprobante)/total_comprobantes
     end
     return porcentaje
   end
 
-  def cantidad_facturas(facturas, tipo_factura)
+  def cantidad_comprobantes(comprobante)
     cantidad = 0
-    facturas.each do |value, key|
-      key.each do |factura|
-        if factura.tipo == tipo_factura
-          cantidad += 1
-        end
+    comprobante.each do |value, key|
+      key.each do |comprobante|
+        cantidad += 1
       end
     end
     return cantidad
   end
 
-  def valor_total_por_facturas(facturas, tipo_factura)
+  def valor_total_por_comprobantes(comprobante)
     total = 0
-    facturas.each do |value, key|
-      key.each do |factura|
-        if factura.tipo == tipo_factura
-          total += factura.total
-        end
+    comprobante.each do |value, key|
+      key.each do |comprobante|
+        total += comprobante.total
       end
     end
     return total
   end
 
-  def valor_total_facturas(facturas)
+  def valor_total_comprobantes(comprobante)
     total = 0
-    facturas.each do |value, key|
-      key.each do |factura|
-          total += factura.total
+    comprobante.each do |value, key|
+      key.each do |comprobante|
+          total += comprobante.total
       end
     end
     return total
   end
 
-  def sumar_impuesto (todas_facturas, tipo_factura, tipo_impuesto)
+  def sumar_impuesto (comprobantes, tipo_impuesto)
     impuesto = tipo_impuesto
     sumar = 0
-    todas_facturas.each do |value, key|
-      key.each do |factura|
-        if factura.tipo == tipo_factura
-          case impuesto
-          when 'iva'
-            sumar += factura.iva
-          when 'subtotal_0'
-            sumar += factura.subtotal_0
-          when 'subtotal_12'
-            sumar += factura.subtotal_12
-          when 'descuento'
-            sumar += factura.descuento
-          end
-          sumar
+    comprobantes.each do |value, key|
+      key.each do |comprobante|
+        case impuesto
+        when 'iva'
+          sumar += comprobante.iva
+        when 'subtotal_0'
+          sumar += comprobante.subtotal_0
+        when 'subtotal_12'
+          sumar += comprobante.subtotal_12
+        when 'descuento'
+          sumar += comprobante.descuento
         end
+        sumar
       end
     end
     return sumar
