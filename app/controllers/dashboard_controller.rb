@@ -32,11 +32,13 @@ class DashboardController < ApplicationController
     @tipo_factura = params[:tipo_factura]
     case @tipo_factura
     when "compra"
-      @search = Factura.where(:fecha_de_emision => @start_date.to_time.beginning_of_day..@start_date.to_time.end_of_day, :tipo => "compra")
+      @search = Factura.where(:fecha_de_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day, :tipo => "compra")
     when "venta"
-      @search = Factura.where(:fecha_de_emision => params[:fecha_inicial]..params[:fecha_final], :tipo => "venta", :anulada => false)
+      @search = Factura.where(:fecha_de_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day, :tipo => "venta", :anulada => false)
     when "hospitalizacion"
-      @search = Hospitalizacion.where(:fecha_emision => params[:fecha_inicial]..params[:fecha_final])
+      @search = Hospitalizacion.where(:fecha_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
+    when "transferencia"
+      @search = Traspaso.where(:fecha_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
     end
     respond_to do |format|
       format.html
