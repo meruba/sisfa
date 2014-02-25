@@ -12,7 +12,7 @@ module DashboardHelper
     cantidad = 0
     facturas.each do |value, key|
       key.each do |factura|
-        if factura.tipo_venta == tipo_factura
+        if factura.tipo == tipo_factura
           cantidad += 1
         end
       end
@@ -24,7 +24,7 @@ module DashboardHelper
     total = 0
     facturas.each do |value, key|
       key.each do |factura|
-        if factura.tipo_venta == tipo_factura
+        if factura.tipo == tipo_factura
           total += factura.total
         end
       end
@@ -47,7 +47,7 @@ module DashboardHelper
     sumar = 0
     todas_facturas.each do |value, key|
       key.each do |factura|
-        if factura.tipo_venta == tipo_factura
+        if factura.tipo == tipo_factura
           case impuesto
           when 'iva'
             sumar += factura.iva
