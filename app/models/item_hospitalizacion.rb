@@ -24,7 +24,7 @@ class ItemHospitalizacion < ActiveRecord::Base
   after_create :add_kardex_line, :disminuir_stock
   
   # validations
-  validates :cantidad, :valor_unitario, :total, :iva, :presence => true, :numericality => { :greater_than => 0 }
+  validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
   validate :stock
 	
 	# methods
