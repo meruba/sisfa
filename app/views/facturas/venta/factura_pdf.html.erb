@@ -1,24 +1,22 @@
 <% factura = Factura.last %>
-<h6>
+<small>
   Cliente: <%= factura.cliente.nombre%>
-</h6>
-<h6>
+</small><br>
+<small>
   RUC/C.I: <%= factura.cliente.numero_de_identificacion%>
-</h6>
-<h6>
+</small><br>
+<small>
   Dirección: <%= factura.cliente.direccion%>
-</h6>
-<h6>
+</small><br>
+<small>
   Loja: <%= factura.fecha_de_emision %>
-</h6>
+</small>
 <table class="table-factura">
   <thead>
     <tr>
       <th>CANT</th>
       <th>PRODUCTO</th>
       <th>V.Unt</th>
-      <th>Iva</th>
-      <th>Desct</th>
       <th>TOTAL</th>
     </tr>
   </thead>
@@ -28,8 +26,6 @@
       <td><%= item.cantidad %></td>
       <td><%= item.ingreso_producto.producto.nombre%></td>
       <td><%= item.valor_unitario %></td>
-      <td>$ <%= item.iva%></td>
-      <td>$ <%= item.descuento%></td>
       <td>$ <%= item.total %></td>
     </tr>
     <% end %>
