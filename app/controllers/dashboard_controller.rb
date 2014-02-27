@@ -140,19 +140,20 @@ class DashboardController < ApplicationController
   def cierres_de_caja(periodo, fecha)
     if periodo == "dia"
       estadisticas(fecha, nil)
-      estadisticas_hospitalizados(fecha, nil)
+      @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
+      @ventanilla_iva = sumar_impuesto(@facturas, "iva")
     else
       estadisticas(nil, fecha)
       estadisticas_hospitalizados(nil, fecha)
+      @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
+      @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
+      @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
+      @ventanilla_iva = sumar_impuesto(@facturas, "iva")
+      @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
+      @total_iva = @ventanilla_iva + @hospitalizacion_iva
+      @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+      @totaldia = @totalfacturas + @totalhospitalizacion
     end
-    @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
-    @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
-    @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
-    @ventanilla_iva = sumar_impuesto(@facturas, "iva")
-    @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
-    @total_iva = @ventanilla_iva + @hospitalizacion_iva
-    @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
-    @totaldia = @totalfacturas + @totalhospitalizacion
   end
 
   def consulta_facturas(query, tipo)
