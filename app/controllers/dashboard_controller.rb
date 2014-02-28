@@ -43,7 +43,7 @@ class DashboardController < ApplicationController
     respond_to do |format|
       format.html
       format.pdf do
-        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte", :orientation => 'Landscape'  
+        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte.html.erb", :orientation => 'Landscape'
       end
       format.js
     end
@@ -51,12 +51,20 @@ class DashboardController < ApplicationController
 
   def reportes_cierre_caja_diario
     cierres_de_caja("dia", params[:fecha].to_time )
-    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
+    if @totalfacturas == 0
+      render :template => "results/not_result"
+    else
+      render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
+    end
   end
 
   def reportes_cierre_caja_mensual
     cierres_de_caja("mes", params[:fecha].to_time)
-    render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
+    if @totalfacturas == 0
+      render :template => "results/not_result"
+    else
+      render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
+    end
   end
 
   def liquidaciones
