@@ -55,7 +55,7 @@ class DashboardController < ApplicationController
 
   def reportes_cierre_caja_diario
     cierres_de_caja("dia", params[:fecha].to_time )
-    if @totalfacturas == 0
+    if @total_ventanilla == 0
       render :template => "results/not_result"
     else
       render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
@@ -64,7 +64,7 @@ class DashboardController < ApplicationController
 
   def reportes_cierre_caja_mensual
     cierres_de_caja("mes", params[:fecha].to_time)
-    if @totalfacturas == 0
+    if @total_ventanilla == 0
       render :template => "results/not_result"
     else
       render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
@@ -88,6 +88,7 @@ class DashboardController < ApplicationController
     @total_ventas = @subtotal_ventas + @iva_ventas
     #valores factura de compra
     @compras = facturas_compra(@fecha.to_time)
+    # @compras = consulta_facturas(@fecha_date.to_time.beginning_of_day..@fecha.to_time.end_of_day, "compra")
   end
 
   def cierre_de_caja_dia
@@ -166,22 +167,22 @@ class DashboardController < ApplicationController
     end
   end
 
-  def consulta_facturas(query, tipo)
+  def consulta_facturas(fecha, tipo)
     case current_user.rol
     when Rol.administrador
-      todasfacturas = Factura.where(:created_at => query, :tipo => tipo, :anulada => false)
+      todasfacturas = Factura.where(:created_at => fecha, :tipo => tipo, :anulada => false)
     when Rol.vendedor
-      todasfacturas = Factura.where(:created_at => query, :user_id => current_user.id, :anulada => false)
+      todasfacturas = Factura.where(:created_at => fecha, :user_id => current_user.id, :anulada => false)
     end
     return :json => todasfacturas
   end
 
-  def consulta_hospitalizacion(query)
+  def consulta_hospitalizacion(fecha)
     case current_user.rol
     when Rol.administrador
-      hospitalizados = Hospitalizacion.where(:created_at => query)
+      hospitalizados = Hospitalizacion.where(:created_at => fecha)
     when Rol.vendedor
-      hospitalizados = Hospitalizacion.where(:created_at => query, :user_id => current_user.id)
+      hospitalizados = Hospitalizacion.where(:created_at => fecha, :user_id => current_user.id)
     end
     return :json => hospitalizados
   end
