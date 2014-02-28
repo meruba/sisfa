@@ -92,22 +92,24 @@
         </tr>
       </thead>
       <tbody>
-        <% @search.each do |factura| %>
-        <tr>
-          <td><%= factura.numero %></td>
-          <td><%= factura.proveedor.nombre_o_razon_social%></td>
-          <td><%= factura.proveedor.direccion %></td>
-          <td><%= factura.user.username %></td>
-          <td><%= factura.created_at.to_s(:db) %></td>
-          <td><%= redondear(factura.subtotal_12)%></td>
-          <td><%= redondear(factura.iva) %></td>
-          <td><%= redondear(factura.total) %></td>
-        </tr>
+      <% @search.each do |value, key|  %>
+        <% key.each do |factura| %>
+          <tr>
+            <td><%= factura.numero %></td>
+            <td><%= factura.proveedor.nombre_o_razon_social %></td>
+            <td><%= factura.proveedor.direccion %></td>
+            <td><%= factura.user.username %></td>
+            <td><%= factura.created_at.to_s(:db) %></td>
+            <td><%= factura.subtotal_0 %></td>
+            <td><%= factura.iva %></td>
+            <td><%= factura.total %></td>
+          </tr>
         <% end %>
+      <% end %>
       </tbody>
     </table>
-    <h4>Nº Total de Facturas: <%= @search.count%> </h4>
-    <h4>Nº Total de Compra: <%= redondear(@search.sum(:total)) %> </h4>
+    <h4>Nº Total de Facturas: <%= @cantidad_compra%> </h4>
+    <h4>Nº Total de Compra: <%= @total_compra %> </h4>
   <%when "transferencia"%>
     <h3>Reporte de Transferencias desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
