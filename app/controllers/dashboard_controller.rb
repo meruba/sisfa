@@ -10,7 +10,7 @@ class DashboardController < ApplicationController
     # porcentaje de ventas dia
     estadisticas(Time.now, nil)
     estadisticas_hospitalizados(Time.now, nil)
-    @totaldia = @totalfacturas + @totalhospitalizacion
+    @totaldia = @total_ventanilla + @total_hospitalizacion
     num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
@@ -20,7 +20,7 @@ class DashboardController < ApplicationController
     # porcentaje de ventas mes  
     estadisticas(nil, Time.now)
     estadisticas_hospitalizados(Time.now, nil)
-    @totalmes = @totalfacturas + @totalhospitalizacion
+    @totalmes = @total_ventanilla + @total_hospitalizacion
     num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
@@ -32,13 +32,17 @@ class DashboardController < ApplicationController
     @tipo_factura = params[:tipo_factura]
     case @tipo_factura
     when "compra"
-      @search = Factura.where(:fecha_de_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day, :tipo => "compra")
+      @search = consulta_facturas(@start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day, "compra")
+      @cantidad_compra = cantidad_comprobantes(@search)
+      @total_compra = valor_total_comprobantes(@search)
     when "venta"
-      @search = Factura.where(:fecha_de_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day, :tipo => "venta", :anulada => false)
+      @search = consulta_facturas(@start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day, "venta")
+      @cantidad_ventanilla = cantidad_comprobantes(@search)
+      @total_ventanilla = valor_total_comprobantes(@search)
     when "hospitalizacion"
-      @search = Hospitalizacion.where(:fecha_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
+      @search = Hospitalizacion.where(:created_at => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
     when "transferencia"
-      @search = Traspaso.where(:fecha_emision => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
+      @search = Traspaso.where(:created_at => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
     end
     respond_to do |format|
       format.html
@@ -127,8 +131,7 @@ class DashboardController < ApplicationController
     end
 
     @cantidad_ventanilla = cantidad_comprobantes(@facturas)
-    @total_ventanilla = valor_total_por_comprobantes(@facturas)
-    @totalfacturas = valor_total_comprobantes(@facturas)
+    @total_ventanilla = valor_total_comprobantes(@facturas)
   end
 
   def estadisticas_hospitalizados(dia, mes)
@@ -141,8 +144,7 @@ class DashboardController < ApplicationController
     end
 
     @cantidad_hospitalizacion = cantidad_comprobantes(@hospitalizados)
-    @total_hospitalizacion = valor_total_por_comprobantes(@hospitalizados)
-    @totalhospitalizacion = valor_total_comprobantes(@hospitalizados)
+    @total_hospitalizacion = valor_total_comprobantes(@hospitalizados)
   end
 
   def cierres_de_caja(periodo, fecha)
@@ -160,7 +162,7 @@ class DashboardController < ApplicationController
       @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
       @total_iva = @ventanilla_iva + @hospitalizacion_iva
       @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
-      @totaldia = @totalfacturas + @totalhospitalizacion
+      @totaldia = @total_ventanilla + @total_hospitalizacion
     end
   end
 
