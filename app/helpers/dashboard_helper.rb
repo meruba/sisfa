@@ -18,16 +18,6 @@ module DashboardHelper
     return cantidad
   end
 
-  def valor_total_por_comprobantes(comprobante)
-    total = 0
-    comprobante.each do |value, key|
-      key.each do |comprobante|
-        total += comprobante.total
-      end
-    end
-    return total
-  end
-
   def valor_total_comprobantes(comprobante)
     total = 0
     comprobante.each do |value, key|
