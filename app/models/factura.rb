@@ -28,6 +28,8 @@ belongs_to :proveedor
 belongs_to :user
 has_many :item_facturas
 has_many :ingreso_productos, :through => :item_facturas
+has_many :itemfacturacompras
+has_many :productos, :through => :itemfacturacompras
 
 #nested
 # accepts_nested_attributes_for :cliente
