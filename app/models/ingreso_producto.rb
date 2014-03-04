@@ -36,12 +36,7 @@ class IngresoProducto < ActiveRecord::Base
 #methods
   private
   def set_precios
-    if self.hasiva
-      precio_compra_iva = self.precio_compra * 0.12 + self.precio_compra
-      self.precio_venta = precio_compra_iva * self.ganancia/100 + precio_compra_iva
-    else
-      self.precio_venta = self.precio_compra * self.ganancia/100 + self.precio_compra
-    end
+    self.precio_venta = self.precio_compra * self.ganancia/100 + self.precio_compra
   end
 
   def set_entrada_kardex
