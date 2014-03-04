@@ -1,4 +1,5 @@
 <h3 class="text-center">Hospitalizacion</h3>
+<div class="row">
 <%= nested_form_for @hospitalizacion do |f| %>
 <%= form_errors_for @hospitalizacion %>
 <div class="col-md-7">
@@ -75,3 +76,7 @@
 	</div>
 </div>
 <% end %>
+</div>
+<div clas ="row">
+		<%= link_to "Registros de hospitalizacion", hospitalizacions_path, class: "atras_back" %>
+</div>
