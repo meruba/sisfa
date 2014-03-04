@@ -25,5 +25,5 @@ class Proveedor < ActiveRecord::Base
 	validates :nombre_o_razon_social, :direccion, :pais, :ciudad, :representante_legal, :length => { :maximum => 100 }
 	validates :codigo, :presence =>true
 #relations
-	has_many :facturas
+	has_many :factura_compras
 end
