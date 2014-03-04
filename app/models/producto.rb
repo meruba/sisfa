@@ -21,7 +21,6 @@ class Producto < ActiveRecord::Base
  
 #relations
   has_many :ingreso_productos
-  has_many :itemfacturacompras
   has_one :kardex
 
 #nested
