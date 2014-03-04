@@ -101,7 +101,8 @@ class ProductosController < ApplicationController
       :ganancia,
       :producto_id,
       :_destroy,
-      :id
+      :id,
+      :hasiva
     ]                                    
   end  
   def set_producto
