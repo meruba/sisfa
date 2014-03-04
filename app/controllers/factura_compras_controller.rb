@@ -1,5 +1,7 @@
 class FacturaComprasController < ApplicationController
+  
   def new
-    FacturaCompra.new
+    @facturacompra = FacturaCompra.new
   end
+
 end

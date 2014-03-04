@@ -1,0 +1,34 @@
+<div class="field">
+  <%= f.label :nombre %>
+  <%= f.text_field :nombre %>
+  <%= f.label :nombre_generico, "Nombre Genérico" %>
+  <%= f.text_field :nombre_generico %>
+  <%= f.label :codigo, "Código" %>
+  <%= f.text_field :codigo %>
+  <%= f.label :categoria %>
+  <%= f.text_field :categoria%>
+  <%= f.label :casa_comercial %>
+  <%= f.text_field :casa_comercial%>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha Caducidad</th>
+        <th>Cantidad</th>
+        <th>Lote</th>
+        <th>P.Compra</th>
+        <th>Ganancia</th>
+        <th>Tiene IVA?</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :ingreso_productos, :wrapper => false do |p| %>
+        <tr class="fields">
+          <%= render "productos/ingresos", p: p %>
+        </tr>
+      <% end %>
+      <tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

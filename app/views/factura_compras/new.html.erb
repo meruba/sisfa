@@ -1,0 +1,58 @@
+<%= nested_form_for @facturacompra, :html => {:class => "new_factura"} do |f| %>
+<%= form_errors_for @facturacompra %>
+<div class="col-md-7">
+  <h6 class="text-muted text-right fecha"></h6>
+  <legend>Proveedor</legend>
+  <%= f.fields_for :proveedor do |proveedor_params| %>
+  <%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>
+  <%=  proveedor_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion_proveedor", :placeholder => "Cédula o RUC" %>
+  <%=  proveedor_params.text_field :nombre_o_razon_social, class: "form-control-border nombre", :placeholder => "Nombre o Razon Social" %>
+  <%=  proveedor_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
+  <%=  proveedor_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
+  <% end %>
+  <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de Factura"%>
+  <legend>Productos</legend>
+  <div class="table-responsive" id="factura">
+        <%= f.fields_for :productos do |item_factura| %>
+          <%= render 'item_facturas/itemfacturacompra', f:item_factura %>
+        <% end %>
+          <%= f.link_to_add "Producto", :productos, :class => "nuevo_new"%>
+  </div>
+</div>
+<!-- datos de impuestos factura -->
+<div class="col-md-2 col-md-offset-1">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">IMPUESTOS %</h3>
+    </div>
+    <div class="panel-body">
+      <table>
+        <thead>
+          <th></th>
+          <th></th>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <h6>Sub 0%:</h6>
+              <h6>Descuento:</h6>
+              <h6>Sub 12%:</h6>
+              <h6>I.V.A:</h6>
+              <h4>TOTAL:</h4>
+            </td>
+            <td>
+              <%= f.text_field :subtotal_0, class: "input-noborder subtotal_0 text-right", :readonly => true%>
+              <%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
+              <%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>
+              <%= f.text_field :iva, class: "input-noborder iva_factura text-right", :readonly => true%>
+              <%= f.text_field :total, class: "input-noborder total_factura text-right", :readonly => true%>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br>
+      <%= f.submit :Guardar, class: "guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
+    </div>
+  </div>
+</div>
+<% end %>
