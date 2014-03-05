@@ -13,8 +13,7 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><span class="fa fa-user">
-                    </span> DATOS DEL PROVEEDOR</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Datos del Proveedor</a>
                   </h4>
                 </div>
                 <div id="collapseOne" class="panel-collapse collapse in">
@@ -33,18 +32,15 @@
               <div class="panel panel-default">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><span class="fa fa-barcode">
-                    </span> PRODUCTOS</a>
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Productos</a>
                   </h4>
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                   <div class="panel-body">
-                    <div class="table-responsive" id="factura">
-                      <%= f.fields_for :productos do |item_factura| %>
-                      <%= render 'item_facturas/itemfacturacompra', f:item_factura %>
-                      <% end %>
-                      <%= f.link_to_add "Producto", :productos, :class => "nuevo_new"%>
-                    </div>
+                    <%= f.fields_for :productos do |item_factura| %>
+                    <%= render 'item_facturas/itemfacturacompra', f:item_factura %>
+                    <% end %>
+                    <%= f.link_to_add "Producto", :productos, :class => "fix-margin nuevo_new"%>
                   </div>
                 </div>
               </div>
@@ -76,6 +72,7 @@
                 <h4>TOTAL:</h4>
               </td>
               <td>
+
                 <%= f.text_field :subtotal_0, class: "input-noborder subtotal_0 text-right", :readonly => true%>
                 <%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
                 <%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>
