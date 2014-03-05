@@ -21,4 +21,12 @@
 class FacturaCompra < ActiveRecord::Base
   has_and_belongs_to_many :productos
   accepts_nested_attributes_for :productos
+  before_save :set_values
+
+
+  def set_values
+    self.user_id = current_user.id
+    self.fecha_de_emision = Time.now
+    self.fecha_de_vencimiento = Time.now + 30.days
+  end
 end

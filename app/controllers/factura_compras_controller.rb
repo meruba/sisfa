@@ -1,36 +1,23 @@
 class FacturaComprasController < ApplicationController
+  before_filter :require_login
+  before_action :set_proveedor, only: :create
   
   def new
     @facturacompra = FacturaCompra.new
   end
 
   def create
-    proveedor_attrs = params[:factura_compra].delete :proveedor
-    @proveedor = proveedor_attrs[:id].present? ? Proveedor.update(proveedor_attrs[:id],proveedor_attrs) : Proveedor.create(proveedor_attrs)
     if @proveedor.save
-      @factura = @proveedor.factura_compras.build(factura_params)
-      @factura.user_id = current_user.id
-      @factura.fecha_de_emision = Time.now
-      @factura.fecha_de_vencimiento = Time.now + 30.days
-      @factura.descuento = 0
-      @factura.iva = 0
-      @factura.total = 0
-      @factura.subtotal_12 = 0
-      @factura.subtotal_0 = 0
-      # Factura.item_compra(@factura.item_facturas)
-        # raise 'error'
-      if @factura.save
-        # Factura.aumentar_stock(@factura.item_facturas)
-        # redirect_to "compra", :notice => "Factura Guardada"
+      @facturacompra = @proveedor.factura_compras.build(factura_params)
+      if @facturacompra.save
         redirect_to facturas_path, :notice => "Factura Guardada"
       else
-        # render "compra"
         flash[:error] = "Error al facturar"
         redirect_to facturas_path
       end
     else
       flash[:error] = 'Errores en Proveedor'
-      @factura.item_facturas.build
+      @facturacompra = @proveedor.factura_compras.build
       render "new"
     end 
   end
@@ -65,5 +52,10 @@ class FacturaComprasController < ApplicationController
         :_destroy
       ]
     ]
+  end
+
+  def set_proveedor
+    proveedor_attrs = params[:factura_compra].delete :proveedor
+    @proveedor = proveedor_attrs[:id].present? ? Proveedor.update(proveedor_attrs[:id],proveedor_attrs) : Proveedor.create(proveedor_attrs)
   end
 end

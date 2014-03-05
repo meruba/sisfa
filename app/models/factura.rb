@@ -62,17 +62,6 @@ def self.create_items_facturas (item_proformas)
 	itemfacturas
 end
 
-def self.aumentar_stock (item_facturas)
-	item_facturas.each do |item|
-		unless item.producto_id.nil?
-			# item.tipo = "compra"
-			producto  = Producto.find(item.producto_id)
-			producto.cantidad_disponible += item.cantidad
-			producto.save
-		end
-	end
-end
-
 def rollback_factura
 	self.item_facturas.each do |item|
 		ingreso_producto = item.ingreso_producto

@@ -54,31 +54,6 @@ class FacturasController < ApplicationController
 	end
 
 	def create
-		if params[:factura].include?(:cliente)
-				create_factura_venta
-		else
-			create_factura_compra
-		end 
-	end
-
-	def update    
-		respond_to do |format|
-      if @factura.update(factura_params)
-        @factura = Factura.all
-        format.html { redirect_to @factura, notice: 'Factura modificada exitosamente' }
-        format.json { render action: 'show', status: :created, location: @factura }
-        # format.js { render "success"}
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @factura.errors, status: :unprocessable_entity }
-        format.js
-      end
-    end		
-	end
-
-	private
-
-	def create_factura_venta
 		cliente_attrs = params[:factura].delete :cliente
 		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
 		if @cliente.save
@@ -100,31 +75,22 @@ class FacturasController < ApplicationController
 		end
 	end
 
-	def create_factura_compra
-		proveedor_attrs = params[:factura].delete :proveedor
-		@proveedor = proveedor_attrs[:id].present? ? Proveedor.update(proveedor_attrs[:id],proveedor_attrs) : Proveedor.create(proveedor_attrs)
-		if @proveedor.save
-			@factura = @proveedor.facturas.build(factura_params)
-			@factura.user_id = current_user.id
-			@factura.fecha_de_emision = Time.now
-			@factura.fecha_de_vencimiento = Time.now + 30.days
-			Factura.item_compra(@factura.item_facturas)
-				# raise 'error'
-			if @factura.save
-				Factura.aumentar_stock(@factura.item_facturas)
-				# redirect_to "compra", :notice => "Factura Guardada"
-				redirect_to facturas_path, :notice => "Factura Guardada"
-			else
-				# render "compra"
-				flash[:error] = "Error al facturar"
-				redirect_to facturas_path
-			end
-		else
-			flash[:error] = 'Errores en Proveedor'
-			@factura.item_facturas.build
-			render "new"
-		end 
+	def update    
+		respond_to do |format|
+      if @factura.update(factura_params)
+        @factura = Factura.all
+        format.html { redirect_to @factura, notice: 'Factura modificada exitosamente' }
+        format.json { render action: 'show', status: :created, location: @factura }
+        # format.js { render "success"}
+      else
+        format.html { render action: 'edit' }
+        format.json { render json: @factura.errors, status: :unprocessable_entity }
+        format.js
+      end
+    end		
 	end
+
+	private
 
 	def factura_params
 		params.require(:factura).permit :numero,
