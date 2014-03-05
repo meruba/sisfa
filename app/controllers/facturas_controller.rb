@@ -20,7 +20,7 @@ class FacturasController < ApplicationController
 	def index_compra
 		respond_to do |format|
 			format.html
-			format.json { render json: FacturasDatatable.new(view_context, "compra") }
+			format.json { render json: FacturasCompraDatatable.new(view_context) }
 		end
 	end
 

@@ -19,6 +19,8 @@
 #
 
 class FacturaCompra < ActiveRecord::Base
+  belongs_to :proveedor
+  belongs_to :user
   has_and_belongs_to_many :productos
   accepts_nested_attributes_for :productos
   before_save :set_values
