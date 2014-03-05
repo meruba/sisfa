@@ -1,13 +1,25 @@
 <div class="field">
-  <%= f.hidden_field :id %>
-  <%= f.label :nombre %>
-  <%= f.text_field :nombre %>
-  <%= f.label :nombre_generico, "Nombre Genérico" %>
-  <%= f.text_field :nombre_generico %>
-  <%= f.label :codigo, "Código" %>
-  <%= f.text_field :codigo %>
-  <%= f.label :categoria %>
-  <%= f.text_field :categoria%>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.hidden_field :id %>
+      <%= f.label :nombre %>
+      <%= f.text_field :nombre %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :nombre_generico, "Nombre Genérico" %>
+      <%= f.text_field :nombre_generico %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.label :codigo, "Código" %>
+      <%= f.text_field :codigo %>
+    </div>
+    <div class="col-md-6">
+      <%= f.label :categoria %>
+      <%= f.text_field :categoria%>
+    </div>
+  </div>
   <%= f.label :casa_comercial %>
   <%= f.text_field :casa_comercial%>
   <table class="table">
