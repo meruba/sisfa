@@ -1,47 +1,59 @@
-<div class="field">
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.hidden_field :id %>
-      <%= f.label :nombre %>
-      <%= f.text_field :nombre %>
+<div class="productos-compras col-md-12">
+  <div class="panel panel-default panel-compra">
+    <div class="panel-heading">
+      <h4 class="panel-title">
+      <%= f.link_to_remove '', :class => "eliminar_item fa fa-times" %>
+        Item Compras<span class="pull-right clickable fa fa-chevron-up"></span>
+      </h4>
     </div>
-    <div class="col-md-6">
-      <%= f.label :nombre_generico, "Nombre Genérico" %>
-      <%= f.text_field :nombre_generico %>
+    <div class="panel-body form-producto">
+      <div class="field">
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.hidden_field :id %>
+            <%= f.label :nombre %>
+            <%= f.text_field :nombre %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :nombre_generico, "Nombre Genérico" %>
+            <%= f.text_field :nombre_generico %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :codigo, "Código" %>
+            <%= f.text_field :codigo %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :categoria %>
+            <%= f.text_field :categoria%>
+          </div>
+        </div>
+        <%= f.label :casa_comercial %>
+        <%= f.text_field :casa_comercial%>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Fecha Caducidad</th>
+              <th>Cantidad</th>
+              <th>Lote</th>
+              <th>P.Compra</th>
+              <th>Ganancia</th>
+              <th>IVA?</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= f.fields_for :ingreso_productos, :wrapper => false do |p| %>
+            <tr class="fields">
+              <%= render "productos/ingresos", p: p %>
+            </tr>
+            <% end %>
+            <tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-6">
-      <%= f.label :codigo, "Código" %>
-      <%= f.text_field :codigo %>
-    </div>
-    <div class="col-md-6">
-      <%= f.label :categoria %>
-      <%= f.text_field :categoria%>
-    </div>
-  </div>
-  <%= f.label :casa_comercial %>
-  <%= f.text_field :casa_comercial%>
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Fecha Caducidad</th>
-        <th>Cantidad</th>
-        <th>Lote</th>
-        <th>P.Compra</th>
-        <th>Ganancia</th>
-        <th>Tiene IVA?</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      <%= f.fields_for :ingreso_productos, :wrapper => false do |p| %>
-        <tr class="fields">
-          <%= render "productos/ingresos", p: p %>
-        </tr>
-      <% end %>
-      <tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+</div>  
