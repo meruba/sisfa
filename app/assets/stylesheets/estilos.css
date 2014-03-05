@@ -80,3 +80,10 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .impuestos{
   height: 30px;
 }
+
+.clickable{
+  cursor: pointer;
+}
+.productos-compras{
+  padding-bottom: 10px;
+}
