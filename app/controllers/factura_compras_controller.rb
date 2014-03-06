@@ -37,8 +37,6 @@ class FacturaComprasController < ApplicationController
     :fecha_de_emision,
     :fecha_de_vencimiento,
     :subtotal_0,
-    :subtotal_12,
-    :descuento,
     :iva,
     :total,
     :tipo,

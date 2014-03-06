@@ -66,15 +66,11 @@
             <tr>
               <td>
                 <h6>Sub 0%:</h6>
-                <h6>Descuento:</h6>
-                <h6>Sub 12%:</h6>
                 <h6>I.V.A:</h6>
                 <h4>TOTAL:</h4>
               </td>
               <td>
                 <%= f.text_field :subtotal_0, class: "input-noborder subtotal_compra text-right", :readonly => true%>
-                <%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
-                <%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>
                 <%= f.text_field :iva, class: "input-noborder iva_compra text-right", :readonly => true%>
                 <%= f.text_field :total, class: "input-noborder total_compra text-right", :readonly => true%>
               </td>
