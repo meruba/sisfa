@@ -9,6 +9,7 @@ class FacturaComprasController < ApplicationController
   def create
     if @proveedor.save
       @facturacompra = @proveedor.factura_compras.build(factura_params)
+      @facturacompra.user_id = current_user.id
       if @facturacompra.save
         redirect_to facturas_path, :notice => "Factura Guardada"
       else

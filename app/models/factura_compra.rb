@@ -27,7 +27,7 @@ class FacturaCompra < ActiveRecord::Base
 
 
   def set_values
-    self.user_id = current_user.id
+    # self.user_id = current_user.id
     self.fecha_de_emision = Time.now
     self.fecha_de_vencimiento = Time.now + 30.days
   end
