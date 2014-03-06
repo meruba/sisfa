@@ -1,6 +1,7 @@
 class FacturasController < ApplicationController
 	before_filter :require_login
 	before_action :set_factura, only: [:show, :anular]
+	before_action :set_cliente, only: :create
 
 #obtiene todas las facturas de venta tipo: ventanilla, consulta externa y hospitalizacion
 	def index
@@ -34,15 +35,6 @@ class FacturasController < ApplicationController
 			format.js
 		end
 	end
-
-	def compra
-		@factura = Factura.new(:tipo => "compra") 
-		@factura.item_facturas.build
-		# respond_to do |format|
-		# 	format.html
-		# 	format.js
-		# end
-	end
 	
 	def anular
 		unless @factura.anulada
@@ -54,18 +46,16 @@ class FacturasController < ApplicationController
 	end
 
 	def create
-		cliente_attrs = params[:factura].delete :cliente
-		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
 		if @cliente.save
 			@factura = @cliente.facturas.build(factura_params)
 			@factura.user_id = current_user.id
-			@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
 			@factura.fecha_de_emision = Time.now
 			@factura.fecha_de_vencimiento = Time.now + 30.days
+			@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
 			@factura.set_to_item_venta
 			if @factura.save
-      	render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
-				# redirect_to proformas_path, :notice => "Factura Guardada"
+      	# render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
+				redirect_to facturas_path, :notice => "Factura Guardada"
 			else
 				render 'venta'
 				flash[:error] = 'Error'
@@ -119,4 +109,9 @@ class FacturasController < ApplicationController
 	def set_factura
 		@factura = Factura.find(params[:id])
 	end
+
+	def set_cliente
+		cliente_attrs = params[:factura].delete :cliente
+		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)    
+  end
 end
