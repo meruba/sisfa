@@ -1,0 +1,22 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3 class="modal-title" id="myModalLabel">Factura<span class="text-right"> Nº<%= @factura.numero%></span></h3>
+</div>
+<div class="modal-body">
+  <p>
+    <strong>Proveedor:</strong>
+    <%= @factura.proveedor.nombre_o_razon_social%>
+  </p>
+  <p>
+    <strong>Fecha de Emisión:</strong>
+    <%= @factura.fecha_de_emision.to_s(:db) %>
+  </p>
+
+  <h4 class="text-success text-right">
+    <strong>Total: $</strong>
+    <%= @factura.total %>
+  </h4>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+</div>

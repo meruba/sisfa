@@ -1,9 +1,16 @@
 class FacturaComprasController < ApplicationController
   before_filter :require_login
+  before_action :set_factura, only: :show
   before_action :set_proveedor, only: :create
   
   def new
     @facturacompra = FacturaCompra.new
+  end
+  
+  def show
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create
@@ -53,6 +60,9 @@ class FacturaComprasController < ApplicationController
         :_destroy
       ]
     ]
+  end
+  def set_factura
+    @factura = FacturaCompra.find(params[:id])
   end
 
   def set_proveedor
