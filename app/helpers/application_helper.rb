@@ -23,4 +23,13 @@ module ApplicationHelper
     redondeo = number_with_precision(number, precision: 2)
     # numero = "$ " + redondeo
   end
+
+  def yes_or_not(boolean)
+    if boolean == true
+      boolean = "si"
+    else
+      boolean = "no"
+    end
+  end
+
 end
