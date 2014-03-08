@@ -1,15 +1,14 @@
-<% factura = Factura.last %>
 <small>
-  Cliente: <%= factura.cliente.nombre%>
+  Cliente: <%= @factura.cliente.nombre%>
 </small><br>
 <small>
-  RUC/C.I: <%= factura.cliente.numero_de_identificacion%>
+  RUC/C.I: <%= @factura.cliente.numero_de_identificacion%>
 </small><br>
 <small>
-  Dirección: <%= factura.cliente.direccion%>
+  Dirección: <%= @factura.cliente.direccion%>
 </small><br>
 <small>
-  Loja: <%= factura.fecha_de_emision %>
+  Loja: <%= @factura.fecha_de_emision %>
 </small>
 <table class="table-factura">
   <thead>
@@ -21,7 +20,7 @@
     </tr>
   </thead>
   <tbody>
-    <% factura.item_facturas.each do |item| %>
+    <% @factura.item_facturas.each do |item| %>
     <tr>
       <td><%= item.cantidad %></td>
       <td><%= item.ingreso_producto.producto.nombre%></td>
@@ -32,8 +31,8 @@
   </tbody>
 </table>
 <div class="text-right impuestos">
-  <small class="imp-factura">SUB: <%= factura.subtotal_0 %></small><br>
-  <small class="imp-factura">IVA: <%= factura.iva %></small><br>
-  <small class="imp-factura">DESC: <%= factura.descuento %></small><br>
-  <small class="imp-factura">TOTAL: <%= factura.total %></small><br>
+  <small class="imp-factura">SUB: <%= @factura.subtotal_0 %></small><br>
+  <small class="imp-factura">IVA: <%= @factura.iva %></small><br>
+  <small class="imp-factura">DESC: <%= @factura.descuento %></small><br>
+  <small class="imp-factura">TOTAL: <%= @factura.total %></small><br>
 </div>

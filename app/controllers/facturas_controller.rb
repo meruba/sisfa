@@ -1,6 +1,6 @@
 class FacturasController < ApplicationController
 	before_filter :require_login
-	before_action :set_factura, only: [:show, :anular]
+	before_action :set_factura, only: [:show, :anular, :imprimir]
 	before_action :set_cliente, only: :create
 
 #obtiene todas las facturas de venta tipo: ventanilla, consulta externa y hospitalizacion
@@ -56,7 +56,6 @@ class FacturasController < ApplicationController
 			@factura.set_to_item_venta
 			if @factura.save
 				redirect_to @factura, :notice => "Factura Guardada"
-      	render :pdf => "factura", :target => '_blank', :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
 			else
 				render 'venta'
 				flash[:error] = 'Error'
@@ -79,6 +78,10 @@ class FacturasController < ApplicationController
         format.js
       end
     end		
+	end
+
+	def imprimir
+		render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
 	end
 
 	private

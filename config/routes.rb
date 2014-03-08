@@ -45,6 +45,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :facturas do
     member do
       post "anular"
+      get "imprimir"
     end
   end
 
