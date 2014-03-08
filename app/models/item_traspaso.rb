@@ -33,7 +33,7 @@ class ItemTraspaso < ActiveRecord::Base
 	end
 
   def add_kardex_line
-    Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
+    Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
   end
 
   private
