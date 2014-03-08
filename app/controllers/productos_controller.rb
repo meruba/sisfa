@@ -18,7 +18,7 @@ class ProductosController < ApplicationController
             :id => ingreso.producto.id,
             :label => ingreso.producto.nombre + "/" + ingreso.lote ,
             :value => ingreso.producto.nombre,
-            :precio_venta => ingreso.precio_venta,
+            :precio_venta => ingreso.producto.precio_venta,
             :codigo => ingreso.producto.codigo,
             :casa_comercial => ingreso.producto.casa_comercial,
             :id_ingreso => ingreso.id
