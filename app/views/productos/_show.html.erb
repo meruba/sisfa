@@ -23,6 +23,18 @@
     <strong>Casa comercial:</strong>
     <%= @producto.casa_comercial %>
   </p>
+  <p>
+    <strong>Precio de compra:</strong>
+    <%= @producto.precio_compra %>
+  </p>
+  <p>
+    <strong>Precio de venta:</strong>
+    <%= @producto.precio_venta %>
+  </p>
+  <p>
+    <strong>Ganancia:</strong>
+    <%= @producto.ganancia %>
+  </p>
   <% unless @producto.ingreso_productos.empty? %>
   <legend>Detalles del producto:</legend>
   <table class="table table-hover">
@@ -31,9 +43,6 @@
         <th>Lote</th>
         <th>Cantidad</th>
         <th>Fecha de caducidad</th>
-        <th>Precio de compra</th>
-        <th>Precio de venta</th>
-        <th>Ganancia</th>
       </tr>
     </thead>
     <tbody>
@@ -42,9 +51,6 @@
         <td><%= detalle.lote %></td>
         <td><%= detalle.cantidad %></td>
         <td><%= detalle.fecha_caducidad %></td>
-        <td>$ <%= detalle.precio_compra %></td>
-        <td>$ <%= detalle.precio_venta %></td>
-        <td><%= detalle.ganancia %> % </td>
       </tr>
       <% end %>
     </tbody>

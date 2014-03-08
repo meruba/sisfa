@@ -17,10 +17,12 @@
 class Producto < ActiveRecord::Base
 
 #callbacks 
+  before_create :set_precios
+  before_update :set_precios
   after_create :set_kardex
 
 #validations  
-  validates :nombre, :presence => true
+  validates :nombre, :ganancia, :precio_compra, :presence => true
   validates :nombre, :length => { :maximum => 100 }
  
 #relations
@@ -40,5 +42,9 @@ class Producto < ActiveRecord::Base
   private
   def set_kardex
     Kardex.create(:producto => self, :fecha => Time.now)
+  end
+
+  def set_precios
+    self.precio_venta = self.precio_compra * self.ganancia/100 + self.precio_compra
   end
 end

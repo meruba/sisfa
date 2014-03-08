@@ -15,15 +15,18 @@
 	<%= f.text_field :categoria%>
 	<%= f.label :casa_comercial %>
 	<%= f.text_field :casa_comercial%>
+	<%= f.label :precio_compra, "Precio de compra" %>
+	<%= f.number_field :precio_compra,:placeholder => "0.00", min: "0", step: "any"%>
+	<%= f.label :ganancia %>
+	<%= f.number_field :ganancia, :placeholder => "0.00", min: "0", :step => "any" %>
+	<%= f.label :hasiva, "Tiene IVA?" %>
+	<%= f.check_box :hasiva %>
 	<table class="table">
 		<thead>
 			<tr>
 				<th>Fecha Caducidad</th>
 				<th>Cantidad</th>
 				<th>Lote</th>
-				<th>P.Compra</th>
-				<th>Ganancia</th>
-				<th>Tiene IVA?</th>
 				<th></th>
 			</tr>
 		</thead>

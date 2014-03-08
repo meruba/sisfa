@@ -92,17 +92,17 @@ class ProductosController < ApplicationController
     :codigo,
     :categoria,
     :casa_comercial,
+    :precio_venta,
+    :precio_compra,
+    :ganancia,
+    :hasiva,
     :ingreso_productos_attributes => [
       :lote,
       :cantidad,
       :fecha_caducidad,
-      :precio_venta,
-      :precio_compra,
-      :ganancia,
       :producto_id,
       :_destroy,
       :id,
-      :hasiva
     ]                                    
   end  
   def set_producto
