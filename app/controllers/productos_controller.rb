@@ -12,7 +12,7 @@ class ProductosController < ApplicationController
     # @producto = Producto.new
     respond_to do |format|
       format.json { 
-        @productos = IngresoProducto.includes(:producto).where("productos.nombre like ?", "%#{params[:term]}%").references(:producto)
+        @productos = IngresoProducto.includes(:producto).where("cantidad != 0 and productos.nombre like ?", "%#{params[:term]}%").references(:producto)
         @productos = @productos.map do |ingreso|
           {
             :id => ingreso.producto.id,
