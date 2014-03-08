@@ -54,7 +54,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 .table-factura thead tr th{
-  padding-right: 35px;
+  padding-right: 38px;
 }
 
 .table-factura tbody tr td{
