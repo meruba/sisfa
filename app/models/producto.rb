@@ -8,6 +8,10 @@
 #  categoria       :string(255)
 #  casa_comercial  :string(255)
 #  nombre_generico :string(255)
+#  precio_compra   :decimal(4, 2)    not null
+#  precio_venta    :decimal(4, 2)    not null
+#  ganancia        :decimal(4, 2)    not null
+#  hasiva          :boolean          default(FALSE)
 #
 
 class Producto < ActiveRecord::Base
