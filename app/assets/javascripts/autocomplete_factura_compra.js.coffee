@@ -21,10 +21,11 @@ window.Helpers.AutocompleteCompraHelper = {
 
     $(".eliminar_item_producto").on "click", ->
       $this = $(this)
-      $this.closest(".fields_producto").remove()
       window.Helpers.AutocompleteCompraHelper.calcular_total_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_items_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_productos_factura_compra()
+      $this.closest(".fields_producto").remove()
+      console.log 'bye'
 
     $(".eliminar_item_compra").on "click", ->
       $this = $(this)
