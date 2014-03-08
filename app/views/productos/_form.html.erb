@@ -5,22 +5,43 @@
 <%= nested_form_for @producto, :remote => true do |f| %>
 <div class="modal-body">
 <div class="field">
-	<%= f.label :nombre %>
-	<%= f.text_field :nombre %>
-	<%= f.label :nombre_generico, "Nombre Genérico" %>
-	<%= f.text_field :nombre_generico %>
-	<%= f.label :codigo, "Código" %>
-	<%= f.text_field :codigo %>
-	<%= f.label :categoria %>
-	<%= f.text_field :categoria%>
-	<%= f.label :casa_comercial %>
-	<%= f.text_field :casa_comercial%>
-	<%= f.label :precio_compra, "Precio de compra" %>
-	<%= f.number_field :precio_compra,:placeholder => "0.00", min: "0", step: "any"%>
-	<%= f.label :ganancia %>
-	<%= f.number_field :ganancia, :placeholder => "0.00", min: "0", :step => "any" %>
-	<%= f.label :hasiva, "Tiene IVA?" %>
-	<%= f.check_box :hasiva %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.hidden_field :id %>
+            <%= f.label :nombre %>
+            <%= f.text_field :nombre, :class => "nombre_producto"%>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :nombre_generico, "Nombre Genérico" %>
+            <%= f.text_field :nombre_generico %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.label :codigo, "Código" %>
+            <%= f.text_field :codigo %>
+          </div>
+          <div class="col-md-6">
+            <%= f.label :categoria %>
+            <%= f.text_field :categoria%>
+          </div>
+        </div>
+        <%= f.label :casa_comercial %>
+        <%= f.text_field :casa_comercial%>
+        <div class="row">
+          <div class="col-md-4">
+            <%= f.label :precio_compra, "Precio de compra" %>
+            <%= f.number_field :precio_compra,:class => "precio_compra", :placeholder => "0.00", min: "0", step: "any"%>
+          </div>
+          <div class="col-md-4">
+            <%= f.label :ganancia %>
+            <%= f.number_field :ganancia, :placeholder => "0.00", min: "0", :step => "any" %>
+          </div>
+          <div class="col-md-4 text-center">
+            <%= f.label :hasiva, "Tiene IVA?" %>
+            <%= f.check_box :hasiva %>
+          </div>
+        </div>
 	<table class="table">
 		<thead>
 			<tr>
