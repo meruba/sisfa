@@ -10,8 +10,6 @@
 #  fecha_de_emision     :datetime
 #  fecha_de_vencimiento :datetime
 #  subtotal_0           :float            not null
-#  subtotal_12          :float            not null
-#  descuento            :float            not null
 #  iva                  :float            not null
 #  total                :float            not null
 #  created_at           :datetime
