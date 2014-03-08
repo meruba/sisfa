@@ -32,6 +32,7 @@ class FacturasController < ApplicationController
 
 	def show
 		respond_to do |format|
+			format.html
 			format.js
 		end
 	end
@@ -54,8 +55,8 @@ class FacturasController < ApplicationController
 			@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
 			@factura.set_to_item_venta
 			if @factura.save
-      	# render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
-				redirect_to facturas_path, :notice => "Factura Guardada"
+				redirect_to @factura, :notice => "Factura Guardada"
+      	render :pdf => "factura", :target => '_blank', :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
 			else
 				render 'venta'
 				flash[:error] = 'Error'

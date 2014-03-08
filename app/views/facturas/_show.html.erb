@@ -3,47 +3,7 @@
   <h3 class="modal-title" id="myModalLabel">Factura<span class="text-right"> Nº<%= @factura.numero%></span></h3>
 </div>
 <div class="modal-body">
-  <!-- <p id="notice"><%= notice %></p> -->
-  <% if  @factura.cliente.nil?%>
-  <p>
-    <strong>Proveedor:</strong>
-    <%= @factura.proveedor.nombre_o_razon_social%>
-  </p>
-  <% else %>
-  <p>
-    <strong>Cliente:</strong>
-    <%= @factura.cliente.nombre%>
-  </p>
-  <% end %>
-  <p>
-    <strong>Fecha de Emisión:</strong>
-    <%= @factura.fecha_de_emision.to_s(:db) %>
-  </p>
-  <table class="table table-hover">
-    <thead class= "well">
-      <tr>
-        <th>Producto</th>
-        <th>Cantidad</th>
-        <th>Precio</th>
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @factura.item_facturas.each do |item| %>
-      <tr>
-        <td><%= item.ingreso_producto.producto.nombre%></td>
-        <td><%= item.cantidad %></td>
-        <td>$ <%= item.valor_unitario %></td>
-        <td>$ <%= item.total %></td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-  <h4 class="text-success text-right">
-    <strong>Total: $</strong>
-    <%= @factura.total %>
-  </h4>
-</div>
+  <%= render "factura" %>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 </div>
