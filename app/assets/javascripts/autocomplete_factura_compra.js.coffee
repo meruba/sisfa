@@ -12,10 +12,10 @@ window.Helpers.AutocompleteCompraHelper = {
       window.Helpers.AutocompleteCompraHelper.total_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_productos_factura_compra()
 
-    $(".nombre_producto").on "input", ->
-      $this = $(this)
-      texto = $this.val()
-      $this.closest(".fields").find(".nombre_item").text(texto + " $")
+    # $(".nombre_producto").on "input", ->
+    #   $this = $(this)
+    #   texto = $this.val()
+    #   $this.closest(".fields").find(".nombre_item").text(texto + " $")
 
     $(".eliminar_item_producto").on "click", ->
       $this = $(this)
@@ -28,7 +28,29 @@ window.Helpers.AutocompleteCompraHelper = {
       $this.closest(".fields").remove()
       window.Helpers.AutocompleteCompraHelper.total_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_productos_factura_compra()
-  
+
+    $(".nombre_producto").autocomplete
+      minLength: 3
+      source: "/productos/autocomplete.json"
+      response: (event, ui) ->
+        unless ui.content.length
+          NoExiste =
+            id: "vacio"
+            label: "No existe: #{event.target.value}"
+          ui.content.push NoExiste
+        else
+          $("#message").empty()
+      select: (event, ui) ->
+        $this = $(this)
+        $this.closest(".fields").find(".nombre_item").text($this.val() + " $")
+        $this.closest(".fields").find(".nombre_generico").val ui.item.nombre_generico
+        $this.closest(".fields").find(".codigo").val ui.item.codigo
+        $this.closest(".fields").find(".categoria").val ui.item.categoria
+        $this.closest(".fields").find(".casa_comercial").val ui.item.casa_comercial
+        $this.closest(".fields").find(".precio_compra").val ui.item.precio_compra
+        $this.closest(".fields").find(".ganancia").val ui.item.ganancia
+
+
   total_producto: (componente) ->
     sum = 0
     componente.closest(".fields").find(".fields_producto").find(".cantidad_producto").each ->
@@ -45,6 +67,7 @@ window.Helpers.AutocompleteCompraHelper = {
     $(".subtotal_compra").val sum.toFixed(2)
     $(".iva_compra").val((sum*0.12).toFixed(2));
     $(".total_compra").val((sum*0.12+sum).toFixed(2));
+
 }
 
 jQuery window.Helpers.AutocompleteCompraHelper.init
