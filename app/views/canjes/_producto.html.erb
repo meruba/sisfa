@@ -1,9 +1,5 @@
-<div class="modal-header">
-	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h3 class="modal-title" id="myModalLabel">Nuevo Producto</h3>
-</div>
-<%= nested_form_for @producto, :remote => true do |f| %>
-<div class="modal-body">
+
+<%= nested_form_for @producto do |f| %>
 <div class="field">
         <div class="row">
           <div class="col-md-6">
@@ -42,30 +38,28 @@
             <%= f.check_box :hasiva %>
           </div>
         </div>
-	<table class="table">
-		<thead>
-			<tr>
-				<th>Fecha Caducidad</th>
-				<th>Cantidad</th>
-				<th>Lote</th>
-				<th></th>
-			</tr>
-		</thead>
-		<tbody>
-			<%= f.fields_for :ingreso_productos, :wrapper => false do |p| %>
-				<tr class="fields">
-					<%= render "productos/ingresos", p: p %>
-				</tr>
-			<% end %>
-			<tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
-			</tr>
-		</tbody>
-	</table>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Fecha Caducidad</th>
+        <th>Cantidad</th>
+        <th>Lote</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= f.fields_for :ingreso_productos, :wrapper => false do |p| %>
+        <tr class="fields">
+          <%= render "productos/ingresos", p: p %>
+        </tr>
+      <% end %>
+      <tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
+      </tr>
+    </tbody>
+  </table>
 </div>
 
-</div>
-<div class="modal-footer">
-	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-	<%= f.submit 'Guardar', class: "btn btn-primary"%>
-</div>
+
+  <%= f.submit 'Guardar', class: "btn btn-primary"%>
+
 <% end %>
