@@ -48,14 +48,14 @@ class FacturaComprasController < ApplicationController
       :codigo,
       :categoria,
       :casa_comercial,
+      :precio_compra,
+      :ganancia,
+      :hasiva,
       :ingreso_productos_attributes => [
         :lote,
         :fecha_caducidad,
-        :cantidad,
-        :precio_compra,
-        :ganancia,
-        :hasiva,
-        :_destroy
+        :cantidad
+        # :_destroy
       ]
     ]
   end
