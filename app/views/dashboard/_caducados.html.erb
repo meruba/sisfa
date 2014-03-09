@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="container">
   <div class="row">
     <h3 class="fix-margin">Productos Por Caducar</h3>
@@ -19,5 +20,14 @@
       </div>
     </div>
     <% end %>
+=======
+<div class="row">
+  <% @caducados.each do |caduco|  %>
+  <div class="caducados">
+    <h4><%= caduco.producto.nombre %></h4>
+    <h4><%= caduco.cantidad %></h4>
+    <h4><%= caduco.fecha_caducidad %></h4>
+    <%= link_to "Canje", nuevo_canje_path(caduco), :class => "btn btn-info" %>
+>>>>>>> 397374b68ce67f79c7c43f196994a77b962fb6ad
   </div>
 </div>
