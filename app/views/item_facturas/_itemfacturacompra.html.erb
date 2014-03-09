@@ -16,21 +16,21 @@
           </div>
           <div class="col-md-6">
             <%= f.label :nombre_generico, "Nombre Genérico" %>
-            <%= f.text_field :nombre_generico %>
+            <%= f.text_field :nombre_generico, :class => "nombre_generico" %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <%= f.label :codigo, "Código" %>
-            <%= f.text_field :codigo %>
+            <%= f.text_field :codigo, :class => "codigo" %>
           </div>
           <div class="col-md-6">
             <%= f.label :categoria %>
-            <%= f.text_field :categoria%>
+            <%= f.text_field :categoria, :class => "categoria"%>
           </div>
         </div>
         <%= f.label :casa_comercial %>
-        <%= f.text_field :casa_comercial%>
+        <%= f.text_field :casa_comercial, :class => "casa_comercial" %>
         <div class="row">
           <div class="col-md-4">
             <%= f.label :precio_compra, "Precio de compra" %>
@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-4">
             <%= f.label :ganancia %>
-            <%= f.number_field :ganancia, :placeholder => "0.00", min: "0", :step => "any" %>
+            <%= f.number_field :ganancia, :class=> "ganancia", :placeholder => "0.00", min: "0", :step => "any" %>
           </div>
           <div class="col-md-4 text-center">
             <%= f.label :hasiva, "Tiene IVA?" %>

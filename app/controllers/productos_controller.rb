@@ -19,10 +19,14 @@ class ProductosController < ApplicationController
             :label => ingreso.producto.nombre + "/" + ingreso.lote ,
             :value => ingreso.producto.nombre,
             :precio_venta => ingreso.producto.precio_venta,
+            :precio_compra => ingreso.producto.precio_compra,
+            :ganancia => ingreso.producto.ganancia,
             :codigo => ingreso.producto.codigo,
             :casa_comercial => ingreso.producto.casa_comercial,
+            :categoria => ingreso.producto.categoria,
             :id_ingreso => ingreso.id,
-            :iva => ingreso.producto.hasiva
+            :iva => ingreso.producto.hasiva,
+            :nombre_generico => ingreso.producto.nombre_generico
           }
         end
         render :json => @productos 
