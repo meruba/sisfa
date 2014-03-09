@@ -114,10 +114,13 @@ class DashboardController < ApplicationController
   end
 
   def caducados
+    @caducados = IngresoProducto.where(:fecha_caducidad =>Time.now.end_of_day..Time.now.months_since(4)).where("cantidad != '0'")
     respond_to do |format|
-      format.json { render json: ProductosDatatable.new(view_context, "caducados") }
+      # format.json { render json: ProductosDatatable.new(view_context, "caducados") }
+      format.html
+      format.js
     end
-    # @caducados = Producto.where(:fecha_de_caducidad =>Time.now.end_of_day..Time.now.months_since(4))    
+    # @caducados = Producto.where(:fecha_de_caducidad =>Time.now.end_of_day..Time.now.months_since(4))
   end
 
   private
