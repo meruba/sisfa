@@ -2,3 +2,21 @@
 
 <strong><%= @ingresoproducto.producto.nombre %></strong> <small><%= @ingresoproducto.producto.casa_comercial %></small>
 
+<div class="canje_form">
+  <%= select_tag :tipo_canje, "<option value='mismo_producto'>Mismo producto</option><option value='nuevoproducto'>Nuevo producto</option>".html_safe, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
+
+  <div class="mismo_producto_wrapper">
+    Formulario para entrada producto
+  </div>
+
+  <div class="nuevo_producto_wrapper" style="display: none;">
+   formulario producto nuevo
+  </div>
+
+  <%= javascript_tag do %>
+    $(function (){
+      window.Helpers.SelectCanje.init();
+    });
+  <% end %>
+
+</div>
