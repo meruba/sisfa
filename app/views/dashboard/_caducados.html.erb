@@ -8,7 +8,7 @@
           <div class="caption">
             <h5>Hacer Canje</h5>
             <i class ="fa fa-share-square-o fa-2x"></i><br/>
-            <a href="" class="label label-default">Devolver</a>       
+            <%= link_to "Canje", nuevo_canje_path(caduco), :class => "label label-default" %>
           </div>
           <span class="fa-3x"><%= caduco.producto.nombre.chr.upcase %></span>
         </div>
