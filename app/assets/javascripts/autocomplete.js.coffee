@@ -42,6 +42,12 @@ window.Helpers.AutocompleteHelper = {
         $this = $(this)
         $this.closest(".fields").find("td:nth-child(2)").find(".ingreso_producto_id").val ui.item.id_ingreso
         $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
+        if ui.item.iva == true
+          precio_venta = ui.item.precio_venta
+          iva_producto = precio_venta * 0.12
+          precio_sin_iva = precio_venta - iva_producto
+          $this.closest(".fields").find("td:nth-child(5)").find(".iva").val iva_producto.toFixed(2)
+          $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val precio_sin_iva.toFixed(2)
         window.Helpers.AutocompleteHelper.calcular_total_producto($this)
         window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
