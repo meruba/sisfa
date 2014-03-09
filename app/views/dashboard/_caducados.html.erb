@@ -4,7 +4,7 @@
     <h4><%= caduco.producto.nombre %></h4>
     <h4><%= caduco.cantidad %></h4>
     <h4><%= caduco.fecha_caducidad %></h4>
-    <button class = "btn  btn-info">CANJE</button>
+    <%= link_to "Canje", nuevo_canje_path(caduco), :class => "btn btn-info" %>
   </div>
   <% end %>
 </div>
