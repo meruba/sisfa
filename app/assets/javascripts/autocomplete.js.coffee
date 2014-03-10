@@ -42,12 +42,13 @@ window.Helpers.AutocompleteHelper = {
         $this = $(this)
         $this.closest(".fields").find("td:nth-child(2)").find(".ingreso_producto_id").val ui.item.id_ingreso
         $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
+        $this.closest(".fields").find("td:nth-child(8)").find(".hasiva").val ui.item.iva
         if ui.item.iva == true
           precio_venta = ui.item.precio_venta
           iva_producto = precio_venta * 0.12
-          precio_sin_iva = precio_venta - iva_producto
+          # precio_sin_iva = precio_venta - iva_producto
           $this.closest(".fields").find("td:nth-child(5)").find(".iva").val iva_producto.toFixed(2)
-          $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val precio_sin_iva.toFixed(2)
+          # $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
         window.Helpers.AutocompleteHelper.calcular_total_producto($this)
         window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
@@ -61,11 +62,23 @@ window.Helpers.AutocompleteHelper = {
       $this.closest(".fields").remove()
       window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
+  calcular_iva: (componente) -> 
+    cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
+    valor_unitario = componente.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val()    
+    iva_producto = valor_unitario * 0.12
+    console.log iva_producto
+    componente.closest(".fields").find("td:nth-child(5)").find(".iva").val((cantidad * iva_producto).toFixed(2))
+
   calcular_total_producto: (componente) ->
     cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
     valor_unitario = componente.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val()
+    hasiva = componente.closest(".fields").find("td:nth-child(8)").find(".hasiva").val()
+    console.log hasiva
+    if hasiva == "true"
+      iva_producto = valor_unitario * 0.12
+      componente.closest(".fields").find("td:nth-child(5)").find(".iva").val((cantidad * iva_producto).toFixed(2))
     total = componente.closest(".fields").find("td:nth-child(6)").find(".total")
-    total.val(cantidad * valor_unitario)
+    total.val((cantidad * valor_unitario).toFixed(2))
 
   calcular_valores_factura: ->
     sum = 0
