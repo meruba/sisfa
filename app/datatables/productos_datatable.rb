@@ -1,9 +1,8 @@
 class ProductosDatatable
   delegate :params, :link_to, :h, to: :@view
 
-  def initialize(view, place)
+  def initialize(view)
     @view = view
-    @place = place
   end
 
   def as_json(options = {})
@@ -35,22 +34,12 @@ private
   end
 
   def fetch_productos
-    case @place
-      when "caducados"
-        productos = Producto.where(:fecha_de_caducidad =>Time.now.end_of_day..Time.now.months_since(4)).order("#{sort_column} #{sort_direction}")
-        productos = productos.page(page).per_page(per_page)
-        if params[:sSearch].present?
-          productos = productos.where("nombre like :search or codigo like :search or categoria like :search", search: "%#{params[:sSearch]}%")
-        end
-        productos
-      when "todos"
-        productos = Producto.order("#{sort_column} #{sort_direction}")
-        productos = productos.page(page).per_page(per_page)
-        if params[:sSearch].present?
-          productos = productos.where("nombre like :search or codigo like :search or categoria like :search", search: "%#{params[:sSearch]}%")
-        end
-        productos
+    productos = Producto.order("#{sort_column} #{sort_direction}")
+    productos = productos.page(page).per_page(per_page)
+    if params[:sSearch].present?
+      productos = productos.where("nombre like :search or codigo like :search or categoria like :search", search: "%#{params[:sSearch]}%")
     end
+    productos
   end
 
   def page
