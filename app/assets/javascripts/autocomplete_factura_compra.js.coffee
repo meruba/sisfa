@@ -31,7 +31,7 @@ window.Helpers.AutocompleteCompraHelper = {
 
     $(".nombre_producto").autocomplete
       minLength: 3
-      source: "/productos/autocomplete.json"
+      source: "/productos/autocomplete_producto_compra.json"
       select: (event, ui) ->
         $this = $(this)
         # $this.closest(".fields").find(".producto_id").val ui.item.id

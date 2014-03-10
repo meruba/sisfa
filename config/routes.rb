@@ -2,6 +2,7 @@ Sisfa::Application.routes.draw do
 get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
+get "productos/autocomplete_producto_compra"
 get "proveedors/autocomplete"
 get "facturas/venta"
 get "facturas/index_compra"

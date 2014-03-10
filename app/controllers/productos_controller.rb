@@ -16,22 +16,40 @@ class ProductosController < ApplicationController
         @productos = @productos.map do |ingreso|
           {
             :id => ingreso.producto.id,
-            :label => ingreso.producto.nombre + "/" + ingreso.lote ,
+            :label => ingreso.producto.nombre + "/" + "LT:" + ingreso.lote ,
             :value => ingreso.producto.nombre,
             :precio_venta => ingreso.producto.precio_venta,
-            :precio_compra => ingreso.producto.precio_compra,
-            :ganancia => ingreso.producto.ganancia,
-            :codigo => ingreso.producto.codigo,
-            :casa_comercial => ingreso.producto.casa_comercial,
-            :categoria => ingreso.producto.categoria,
             :id_ingreso => ingreso.id,
-            :iva => ingreso.producto.hasiva,
-            :nombre_generico => ingreso.producto.nombre_generico
+            :iva => ingreso.producto.hasiva
           }
         end
         render :json => @productos 
       }
     end    
+  end
+
+  def autocomplete_producto_compra
+    respond_to do |format|
+      format.json { 
+        @productos = Producto.where("nombre like ?", "%#{params[:term]}%")
+        @productos = @productos.map do |producto|
+          {
+            :id => producto.id,
+            :label => producto.nombre,
+            :value => producto.nombre,
+            :precio_venta => producto.precio_venta,
+            :precio_compra => producto.precio_compra,
+            :ganancia => producto.ganancia,
+            :codigo => producto.codigo,
+            :casa_comercial => producto.casa_comercial,
+            :categoria => producto.categoria,
+            :iva => producto.hasiva,
+            :nombre_generico => producto.nombre_generico
+          }
+        end
+        render :json => @productos 
+      }
+    end  
   end
 
   def new
