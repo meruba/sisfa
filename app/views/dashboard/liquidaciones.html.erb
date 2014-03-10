@@ -1,7 +1,7 @@
-<h2 class="text-center">LIQUIDACION</h2>
+<h2 class="text-center">LIQUIDACIÓN</h2>
 <h4 class="text-center"> <%= month_name(@fecha) %></h4>
 <div class="row">
-	<h5 class= "fix-margin"><strong>Fecha de Impresion:  </strong><span class="fecha_sin_hora"></span></h5>
+	<h5 class= "fix-margin"><strong>Fecha de Impresión:  </strong><span class="fecha_sin_hora"></span></h5>
 	<div class="col-md-3">
 		<h4>Resumen General Ventas</h4>	
 		<table class="table">
@@ -17,7 +17,7 @@
 					<td><%= redondear(@ventanilla_subtotal) %></td>
 				</tr>
 				<tr>
-					<td>Hospitalizacion:</td>
+					<td>Hospitalización:</td>
 					<td><%= redondear(@hospitalizacion_subtotal) %></td>
 				</tr>
 				<tr>
@@ -64,12 +64,12 @@
 				</tr>
 			</tbody>
 		</table>
-		<small>Numero de Facturas Emitidas: <strong><%= @cantidad_ventanilla%></strong></small><br/>
-		<small>Numero de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
+		<small>Número de Facturas Emitidas: <strong><%= @cantidad_ventanilla%></strong></small><br/>
+		<small>Número de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
 	</div>
 
 	<div class="col-md-3">
-		<h4>Ventas por hospitalizacion</h4>	
+		<h4>Ventas por hospitalización</h4>	
 		<table class="table">
 			<thead>
 				<tr>
@@ -119,7 +119,7 @@
 				</tr>
 			</tbody>
 		</table>
-		<small>Numero de Transferencias: <strong><%= @numero_transferencias%></strong></small>
+		<small>Número de Transferencias: <strong><%= @numero_transferencias%></strong></small>
 	</div>
 </div>
 <div class="row">
