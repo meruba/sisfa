@@ -32,14 +32,6 @@ window.Helpers.AutocompleteCompraHelper = {
     $(".nombre_producto").autocomplete
       minLength: 3
       source: "/productos/autocomplete.json"
-      response: (event, ui) ->
-        unless ui.content.length
-          NoExiste =
-            id: "vacio"
-            label: "No existe: #{event.target.value}"
-          ui.content.push NoExiste
-        else
-          $("#message").empty()
       select: (event, ui) ->
         $this = $(this)
         # $this.closest(".fields").find(".producto_id").val ui.item.id
