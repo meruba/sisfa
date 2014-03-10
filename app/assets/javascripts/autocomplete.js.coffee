@@ -50,30 +50,31 @@ window.Helpers.AutocompleteHelper = {
           $this.closest(".fields").find("td:nth-child(5)").find(".iva").val iva_producto.toFixed(2)
           # $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
         window.Helpers.AutocompleteHelper.calcular_total_producto($this)
+        window.Helpers.AutocompleteHelper.sumar_iva()
         window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
     $(".cantidad").on "input", ->
       $this = $(this)
       window.Helpers.AutocompleteHelper.calcular_total_producto($this)
+      window.Helpers.AutocompleteHelper.sumar_iva()
       window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
     $(".eliminar_item").on "click", ->
       $this = $(this)
       $this.closest(".fields").remove()
+      window.Helpers.AutocompleteHelper.sumar_iva()      
       window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
-  calcular_iva: (componente) -> 
-    cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
-    valor_unitario = componente.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val()    
-    iva_producto = valor_unitario * 0.12
-    console.log iva_producto
-    componente.closest(".fields").find("td:nth-child(5)").find(".iva").val((cantidad * iva_producto).toFixed(2))
+  sumar_iva: -> 
+    sum = 0
+    $(".iva").each ->
+      sum += parseFloat($(this).val())
+    $(".iva_factura").val(sum.toFixed(2));
 
   calcular_total_producto: (componente) ->
     cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
     valor_unitario = componente.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val()
     hasiva = componente.closest(".fields").find("td:nth-child(8)").find(".hasiva").val()
-    console.log hasiva
     if hasiva == "true"
       iva_producto = valor_unitario * 0.12
       componente.closest(".fields").find("td:nth-child(5)").find(".iva").val((cantidad * iva_producto).toFixed(2))
@@ -87,7 +88,7 @@ window.Helpers.AutocompleteHelper = {
     $(".subtotal_0").val sum.toFixed(2)
     $(".subtotal_12").val sum.toFixed(2)
     $(".descuento_factura").val 0
-    $(".iva_factura").val((sum*0.12).toFixed(2));
+    # $(".iva_factura").val((sum*0.12).toFixed(2));
     $(".total_factura").val((sum*0.12+sum).toFixed(2));
 
   init_autocompleteProveedor: ->
