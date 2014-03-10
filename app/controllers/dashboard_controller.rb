@@ -84,7 +84,7 @@ class DashboardController < ApplicationController
     @total_transferencias = transferencias.sum(:total)
     # valores de ventas y transferencias
     @subtotal_ventas = @hospitalizacion_subtotal + @ventanilla_subtotal + @transferencias_subtotal
-    @iva_ventas = @subtotal_ventas * 0.12
+    @iva_ventas = @ventanilla_iva + @hospitalizacion_iva + @transferencias_iva
     @total_ventas = @subtotal_ventas + @iva_ventas
     #valores factura de compra
     @compras = facturas_compra(@fecha.to_time)
@@ -201,6 +201,6 @@ class DashboardController < ApplicationController
   end
 
   def facturas_compra(fecha)
-    facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:tipo => "compra")
+    facturas = FacturaCompra.where(:created_at => fecha.beginning_of_month..fecha.end_of_month)
   end
 end
