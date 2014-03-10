@@ -17,7 +17,7 @@
         <th>Producto</th>
         <th>Cantidad</th>
         <th>Precio</th>
-        <th>Iva</th>
+        <th>Iva?</th>
         <th>Total</th>
       </tr>
     </thead>
@@ -27,9 +27,10 @@
         <td><%= p.nombre%></td>
         <% p.ingreso_productos.each do |i|  %>
           <td><%= i.cantidad %>/LT:<%=i.lote%></td>
-          <td><%= i.precio_compra %></td>
-          <td><%= yes_or_not(i.hasiva) %></td>
         <% end %>
+        <td><%= p.precio_compra%></td>
+        <td><%= yes_or_not(p.hasiva)%></td>
+        <td></td>
       </tr>
       <% end %>
     </tbody>
