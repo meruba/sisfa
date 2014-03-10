@@ -34,6 +34,9 @@ class FacturasController < ApplicationController
 		respond_to do |format|
 			format.html
 			format.js
+			format.pdf do
+				render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
+      end
 		end
 	end
 	
@@ -79,11 +82,7 @@ class FacturasController < ApplicationController
       end
     end		
 	end
-
-	def imprimir
-		render :pdf => "factura", :layout => 'report.html', :template => "facturas/venta/factura_pdf.html.erb", :page_size => "A6"
-	end
-
+	
 	private
 
 	def factura_params

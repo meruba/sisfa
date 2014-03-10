@@ -3,5 +3,5 @@
 		<h3>Nº Factura: <%= @factura.numero%></h3>
 		<%= render "factura" %>
 	</div>
-	<%= link_to "Imprimir", imprimir_factura_path(@factura), :target => '_blank', :class => "btn btn-info" %>
+	<%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-info", :target => "_blank"} %>
 </div>
