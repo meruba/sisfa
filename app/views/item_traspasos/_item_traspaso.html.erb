@@ -1,32 +1,28 @@
-<div class="row productos_traspaso">
-	<div class="col-md-6">
-		<div class="col-md-4">
-			<div class="block-icon">
-				<i class="fa fa-barcode"></i>
-			</div>
-		</div>
-		<div class="col-md-8">
-			<h4><input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto"  required= true ></h4>
-			<h6 class="casa_comercial text-muted">Casa Comercial</h6>
-			<%=  f.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
-		</div>
+<td>
+	<div class="block-icon">
+		<i class="fa fa-barcode"></i>
 	</div>
-	<div class="col-md-6">
-		<div class="valores">
-			<div class="col-md-6 text-muted">
-				<%=  f.text_field  :valor_unitario, class: "precio_unitario ningun-border text-right", value: 0.0, :readonly => true%>
-				<span><strong> x</strong></span>
-			</div>
-			<div class="col-md-4">
-				<%=  f.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1", value: 1 %>	
-			</div>
-			<div class="col-md-2">
-				<%= f.link_to_remove '', class: "eliminar_item delete_destroy" %>
-			</div>
-		</div>
-		<div class="col-md-6 text-muted text-right">
-			<small>Precio Total:</small>
-			<%=  f.text_field :total, class: "ningun-border text-right text-muted total_producto", value: 0.0, :readonly => true%>
-		</div>
-	</div>
-</div>
+	<td class ="col-md-3">
+		<input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto"  required= true >
+		<h6 class="casa_comercial text-muted">Casa Comercial</h6>
+		<%=  f.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
+		<input type="text" class="hasiva hidden">
+	</td>
+</td>
+<td>
+	<%=  f.text_field  :valor_unitario, class: "precio_unitario text-muted ningun-border", :placeholder  => "0.0",:readonly => true%>
+	<!-- <span><strong> x</strong></span> -->
+</td>
+<td>
+	<input type="text" class= "ningun-border text-muted iva" placeholder = "0.0" readonly="readonly">
+</td>
+<td>
+	<%=  f.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1", value: 1 %>	
+</td>
+<td>
+	<%=  f.text_field :total, class: "ningun-border total_producto", value: 0.0, :readonly => true%>
+</td>
+<td>
+	<%= f.link_to_remove '', class: "eliminar_item delete_destroy" %>
+</td>
+<td><input type="text" class="hasiva hidden"></td>

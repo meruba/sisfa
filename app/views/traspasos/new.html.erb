@@ -17,10 +17,29 @@
 					</div>
 				</div>
 				<div class="panel-body">
-					<%= f.fields_for :item_traspasos do |b| %>
-					<%= render 'item_traspasos/item_traspaso', f: b %>
-					<% end %>
-					<%= f.link_to_add "Producto", :item_traspasos, :class => "btn btn-default btn-sm fix-margin"%>
+					<table class="table">
+						<thead class = "text-center">
+							<th>Image</th>
+							<th>Producto</th>
+							<th>V.Unit</th>
+							<th>Iva</th>
+							<th>Cantidad</th>
+							<th>Total</th>		
+							<th></th>		
+						</thead>
+						<tbody>
+							<%= f.fields_for :item_traspasos, :wrapper => false do |b| %>
+							<tr class="fields productos_traspaso">
+								<%= render 'item_traspasos/item_traspaso', f: b %>
+								<% end %>
+							</tr>
+							<tr>
+								<td>
+									<%= f.link_to_add "Producto", :item_traspasos, :class => "nuevo_new"%>
+								</td>
+							</tr>
+						</tbody>
+					</table>
 				</div>
 				<div class="panel-footer">
 					<div class="row text-center">

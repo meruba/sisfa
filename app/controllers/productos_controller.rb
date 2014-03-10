@@ -20,7 +20,8 @@ class ProductosController < ApplicationController
             :value => ingreso.producto.nombre,
             :precio_venta => ingreso.producto.precio_venta,
             :id_ingreso => ingreso.id,
-            :iva => ingreso.producto.hasiva
+            :iva => ingreso.producto.hasiva,
+            :casa_comercial => ingreso.producto.casa_comercial
           }
         end
         render :json => @productos 
