@@ -15,7 +15,7 @@
         <h4><%= caduco.producto.nombre %></h4>
         <h5>Cantidad: <%= caduco.cantidad %></h5>
         <h5>Fecha: <%= caduco.fecha_caducidad %></h5>
-        <h6 class ="text-muted">El producto se caducara en: 120 dias</h6>
+        <h6 class ="text-muted">El producto se caducara en: <%=(caduco.fecha_caducidad - @hoy ).to_i%> dias</h6>
       </div>
     </div>
     <% end %>
