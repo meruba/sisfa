@@ -102,41 +102,11 @@ window.Helpers.AutocompleteHelper = {
           $(".nombre").val ui.item.nombre_o_razon_social
           $(".direccion").val ui.item.direccion
           $(".telefono").val ui.item.telefono
-
-  init_autocompleteProductosCompra: ->  
-    $(".autocomplete_producto_compra").autocomplete
-      minLength: 3
-      source: "/productos/autocomplete.json"
-      response: (event, ui) ->
-        unless ui.content.length
-          addNewProducto =
-            id: "vacio"
-            label:  "Agregar: #{event.target.value}"
-            producto: event.target.value
-          ui.content.push addNewProducto
-        else
-          $("#message").empty()
-      select: (event, ui) ->
-        if ui.item.id == "vacio"
-          $.getScript "/productos/new"
-          $('#myModal').modal
-            remote: ""
-          $('#myModal').on "shown.bs.modal", ->
-            $('#producto_nombre').val(ui.item.producto)
-        else
-        $this = $(this)
-        $this.closest(".fields").find("td:nth-child(2)").find(".producto_id").val ui.item.id
-        # $this.closest(".fields").find("td:nth-child(1)").find(".codigo").val ui.item.codigo
-        $this.closest(".fields").find("td:nth-child(3)").find(".valor_unitario").val ui.item.precio_venta
-        window.Helpers.AutocompleteHelper.calcular_total_producto($this)
-        window.Helpers.AutocompleteHelper.calcular_valores_factura()
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
 $(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
-$(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocompleteProductosCompra
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
-$(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProductosCompra
