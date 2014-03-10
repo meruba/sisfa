@@ -40,4 +40,4 @@ $(document).on "click", ".btn-add", (event) ->
 
 $(document).on "click", ".btn-remove", (event) ->
   event.preventDefault()
-  $(this).closest(".form-group").remove()
+  $(this).closest(".field").remove()
