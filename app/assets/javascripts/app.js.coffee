@@ -29,3 +29,15 @@ $(document).on "click", ".panel-heading span.clickable", (e) ->
     $this.removeClass "panel-collapsed"
     $this.removeClass("fa fa-chevron-down").addClass "fa fa-chevron-up"
   return
+
+$(document).on "click", ".btn-add", (event) ->
+  event.preventDefault()
+  field = $(this).closest(".field")
+  field_new = field.clone()
+  $(this).toggleClass("btn-default").toggleClass("btn-add").toggleClass("btn-danger").toggleClass("btn-remove").html "–"
+  field_new.find("input").val ""
+  field_new.insertAfter field
+
+$(document).on "click", ".btn-remove", (event) ->
+  event.preventDefault()
+  $(this).closest(".form-group").remove()

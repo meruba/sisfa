@@ -161,6 +161,7 @@
 	<h4 class= "fix-margin">Firmas:</h4>
 	<%= form_tag do %>
 	<div class="col-md-3 field">
+		<span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span><br>	
 		<%= text_field_tag :nombre, params[:nombre], placeholder: "Nombre del Responsable" %>
 		<%= text_field_tag :cargo, params[:cargo], placeholder: "Cargo del Responsable" %>
 	</div>
