@@ -20,11 +20,8 @@ window.Helpers.ButtonsHelper = {
     $(".atras_back:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-default").html "<i class='fa fa-chevron-left'></i> " + $(this).html()
 
-    $(".cancel_button:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn btn-inverse").html "<i class='icon-remove icon-white'></i> " + $(this).html()
-
-    $(".pencil_button:not(.looks_like_button)").each ->
-      $(this).addClass("looks_like_button btn").html "<i class='icon-pencil'></i> " + $(this).html()
+    $(".print_button:not(.looks_like_button)").each ->
+      $(this).addClass("looks_like_button btn btn-info").html "<i class='fa fa-print'></i> " + $(this).html()
 }
 
 jQuery window.Helpers.ButtonsHelper.init
