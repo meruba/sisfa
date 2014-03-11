@@ -12,6 +12,7 @@
       <th>Producto</th>
       <th>Cantidad</th>
       <th>Precio</th>
+      <th>Iva</th>
       <th>Total</th>
     </tr>
   </thead>
@@ -21,6 +22,7 @@
       <td><%= item.ingreso_producto.producto.nombre%></td>
       <td><%= item.cantidad %></td>
       <td>$ <%= item.valor_unitario %></td>
+      <td>$ <%= item.iva %></td>
       <td>$ <%= item.total %></td>
     </tr>
     <% end %>
