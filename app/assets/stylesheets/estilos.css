@@ -83,3 +83,11 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .productos-compras{
   padding-bottom: 15px;
 }
+
+.page-break { display:block; clear:both; page-break-after:always; }
+
+.shadow2 {
+  padding: 30px 0;
+  background-color: #FFF;
+  -webkit-box-shadow: 3px 3px 5px 3px #ccc;
+}
