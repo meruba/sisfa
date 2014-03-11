@@ -9,5 +9,5 @@
 
 class FacturaComprasProducto < ActiveRecord::Base
   belongs_to :producto
-  belongs_to :factura
+  belongs_to :factura_compra
 end
