@@ -18,6 +18,8 @@ class IngresoProducto < ActiveRecord::Base
   has_many :item_proformas
   has_many :item_traspasos
   belongs_to :producto
+  has_many :antiguos, :foreign_key => 'antiguo_id', :class_name => "Canje"
+  has_many :nuevos, :foreign_key => 'nuevo_id', :class_name => "Canje"
 
 #validations
   validates :cantidad, :fecha_caducidad, :presence => true

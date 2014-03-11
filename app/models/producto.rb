@@ -29,6 +29,7 @@ class Producto < ActiveRecord::Base
   has_many :ingreso_productos
   has_one :kardex
   has_one :factura_compras_producto
+  has_many :canjes
 
 #nested
   accepts_nested_attributes_for :ingreso_productos, :allow_destroy => true, reject_if: :all_blank
