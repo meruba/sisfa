@@ -1,7 +1,6 @@
 class CanjesController < ApplicationController
   def nuevo
     @actual = IngresoProducto.find(params[:id])
-    @ingresoproducto = IngresoProducto.new
-    @producto = Producto.new
+    @canje = Canje.new
   end
 end

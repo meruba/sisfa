@@ -3,20 +3,82 @@
 <strong><%= @actual.producto.nombre %></strong> <small><%= @actual.producto.casa_comercial %></small>
 
 <div class="canje_form">
-  <%= select_tag :tipo_canje, "<option value='mismo_producto'>Mismo producto</option><option value='nuevoproducto'>Nuevo producto</option>".html_safe, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
-
+  <%= nested_form_for @canje do |f| %>
+  <%= f.select :tipo, "<option value='mismo_producto'>Mismo producto</option><option value='nuevoproducto'>Nuevo producto</option>".html_safe, {}, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
   <div class="mismo_producto_wrapper">
-    <%= render "ingreso" %>
+    <%= f.fields_for :entrada_nueva do |nueva_params| %>
+      <%= nueva_params.text_field  :hola %>
+    <% end %>
   </div>
-
-  <div class="nuevo_producto_wrapper" style="display: none;">
-   <%= render "producto" %>
+  <div class="nuevo_producto_wrapper" style="display: none;"> 
+    <%= f.fields_for :producto do |producto_params| %>
+      <div class="field">
+        <div class="row">
+          <div class="col-md-6">
+            <%= producto_params.hidden_field :id %>
+            <%= producto_params.label :nombre %>
+            <%= producto_params.text_field :nombre, :class => "nombre_producto"%>
+          </div>
+          <div class="col-md-6">
+            <%= producto_params.label :nombre_generico, "Nombre Genérico" %>
+            <%= producto_params.text_field :nombre_generico %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <%= producto_params.label :codigo, "Código" %>
+            <%= producto_params.text_field :codigo %>
+          </div>
+          <div class="col-md-6">
+            <%= producto_params.label :categoria %>
+            <%= producto_params.text_field :categoria%>
+          </div>
+        </div>
+        <%= producto_params.label :casa_comercial %>
+        <%= producto_params.text_field :casa_comercial%>
+        <div class="row">
+          <div class="col-md-4">
+            <%= producto_params.label :precio_compra, "Precio de compra" %>
+            <%= producto_params.number_field :precio_compra,:class => "precio_compra", :placeholder => "0.00", min: "0", step: "any"%>
+          </div>
+          <div class="col-md-4">
+            <%= producto_params.label :ganancia %>
+            <%= producto_params.number_field :ganancia, :placeholder => "0.00", min: "0", :step => "any" %>
+          </div>
+          <div class="col-md-4 text-center">
+            <%= producto_params.label :hasiva, "Tiene IVA?" %>
+            <%= producto_params.check_box :hasiva %>
+          </div>
+        </div>
+        <table class="table">
+        <thead>
+          <tr>
+            <th>Fecha Caducidad</th>
+            <th>Cantidad</th>
+            <th>Lote</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <%= producto_params.fields_for :ingreso_productos, :wrapper => false do |p| %>
+            <tr class="fields">
+              <%= render "productos/ingresos", p: p %>
+            </tr>
+          <% end %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  <% end %>
 
   <%= javascript_tag do %>
     $(function (){
       window.Helpers.SelectCanje.init();
     });
+  <% end %>
+
+  <%= f.submit 'Guardar', class: "btn btn-primary"%>
   <% end %>
 
 </div>
