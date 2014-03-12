@@ -19,7 +19,7 @@ class DashboardController < ApplicationController
   def estadisticas_mes
     # porcentaje de ventas mes  
     estadisticas(nil, Time.now)
-    estadisticas_hospitalizados(Time.now, nil)
+    estadisticas_hospitalizados(nil, Time.now)
     @totalmes = @total_ventanilla + @total_hospitalizacion
     num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
@@ -44,6 +44,7 @@ class DashboardController < ApplicationController
     when "transferencia"
       @search = Traspaso.where(:created_at => @start_date.to_time.beginning_of_day..@end_date.to_time.end_of_day)
     end
+    
     respond_to do |format|
       format.html
       format.pdf do
@@ -73,22 +74,30 @@ class DashboardController < ApplicationController
 
   def liquidaciones
     @fecha = params[:fecha]
-    #ingresos del mes
-    cierres_de_caja("mes", @fecha.to_time)
-    @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time).count()
-    # transferencias
-    transferencias = transferencias(@fecha)
-    @numero_transferencias = transferencias.count()
-    @transferencias_subtotal = transferencias.sum(:subtotal)
-    @transferencias_iva = transferencias.sum(:iva)
-    @total_transferencias = transferencias.sum(:total)
-    # valores de ventas y transferencias
-    @subtotal_ventas = @hospitalizacion_subtotal + @ventanilla_subtotal + @transferencias_subtotal
-    @iva_ventas = @ventanilla_iva + @hospitalizacion_iva + @transferencias_iva
-    @total_ventas = @subtotal_ventas + @iva_ventas
-    #valores factura de compra
-    @compras = facturas_compra(@fecha.to_time)
-    # @compras = consulta_facturas(@fecha_date.to_time.beginning_of_day..@fecha.to_time.end_of_day, "compra")
+    unless @fecha.to_time > Time.now
+      cierres_de_caja("mes", @fecha.to_time)
+      @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time).count()
+      # transferencias
+      transferencias = transferencias(@fecha)
+      @numero_transferencias = transferencias.count()
+      @transferencias_subtotal = transferencias.sum(:subtotal)
+      @transferencias_iva = transferencias.sum(:iva)
+      @total_transferencias = transferencias.sum(:total)
+      # valores de ventas y transferencias
+      @subtotal_ventas = @hospitalizacion_subtotal + @ventanilla_subtotal + @transferencias_subtotal
+      @iva_ventas = @ventanilla_iva + @hospitalizacion_iva + @transferencias_iva
+      @total_ventas = @subtotal_ventas + @iva_ventas
+      #valores factura de compra
+      @compras = facturas_compra(@fecha.to_time)
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render :pdf => "liquidaciones", :locals => { :fecha => @fecha }, :layout => 'report.html', :template => "dashboard/liquidaciones.html.erb", :orientation => 'Landscape'
+        end
+      end
+    else
+      render :template => "results/not_result"
+    end
   end
 
   def cierre_de_caja_dia
