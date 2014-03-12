@@ -43,9 +43,9 @@ class ProformasController < ApplicationController
   
 	def facturar
 		@proforma = Proforma.find(params[:id])
-		@factura = @proforma.cliente.facturas.build(:tipo => "venta", :tipo_venta=>"ventanilla", :subtotal_0 => @proforma.subtotal_0, :subtotal_12 => @proforma.subtotal_12, :descuento => @proforma.descuento, :iva => @proforma.iva, :total => @proforma.total)
+		@factura = @proforma.cliente.facturas.build(:tipo => "venta", :subtotal_0 => @proforma.subtotal_0, :subtotal_12 => @proforma.subtotal_12, :descuento => @proforma.descuento, :iva => @proforma.iva, :total => @proforma.total)
 		@factura.user_id = current_user.id
-		@factura.numero = Factura.where.not(:tipo => 'compra').last ? Factura.where.not(:tipo => 'compra').last.numero + 1 : 1
+		@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
 		@factura.fecha_de_emision = Time.now
 		@factura.fecha_de_vencimiento = Time.now + 30.days
 		@factura.item_facturas = Factura.create_items_facturas(@proforma.item_proformas)
