@@ -2,7 +2,7 @@
 	<legend>Tansferencia Interna de Productos</legend>
 </div>
 <div class="container">
-	<%= nested_form_for @traspaso do |f| %>
+	<%= nested_form_for @traspaso, :remote => true do |f| %>
 	<%= form_errors_for @traspaso %>
 	<div class="row">
 		<div class="col-md-8">

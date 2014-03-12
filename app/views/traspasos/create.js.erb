@@ -1,0 +1,14 @@
+<%- if @traspaso.errors.any? %>
+  <%- @traspaso.errors.full_messages.each do |msg|%>
+      alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $.getScript("/traspasos/<%= @traspaso.id%>");
+  $('#myModal').modal({
+    remote: ""
+  });
+  $('#myModal').on("shown.bs.modal", function() {
+    $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info" href="/traspasos/<%= @traspaso.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')
+  });
+  alertify.success("Proforma Guardada");
+<%- end %>
