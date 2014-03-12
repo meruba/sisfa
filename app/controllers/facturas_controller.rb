@@ -50,21 +50,15 @@ class FacturasController < ApplicationController
 	end
 
 	def create
-		if @cliente.save
-			@factura = @cliente.facturas.build(factura_params)
-			@factura.user_id = current_user.id
-			@factura.fecha_de_emision = Time.now
-			@factura.fecha_de_vencimiento = Time.now + 30.days
-			@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
-			@factura.set_to_item_venta
-			if @factura.save
-				redirect_to @factura, :notice => "Factura Guardada"
-			else
-				render 'venta'
-				flash[:error] = 'Error'
+		respond_to do |format|
+			if @cliente.save
+				@factura = @cliente.facturas.build(factura_params)
+				@factura.user_id = current_user.id
+				@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
+				@factura.set_to_item_venta
+				@factura.save
 			end
-		else
-			flash[:error] = 'Error en cliente'
+  			format.js
 		end
 	end
 
