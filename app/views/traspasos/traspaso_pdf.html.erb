@@ -1,0 +1,53 @@
+<p>
+	<strong>Emitido por:</strong>
+	<%= @traspaso.user.username%>
+</p>
+<p>
+	<strong>Dependencia:</strong>
+	<%= @traspaso.servicio%>
+</p>
+<p>
+	<strong>Fecha de Emisión:</strong>
+	<%= @traspaso.fecha_emision %>
+</p>
+
+<table class="table table-bordered">
+	<thead class="well">
+		<tr>
+			<th>Producto</th>
+			<th>Cantidad</th>
+			<th>Precio</th>
+			<th>Iva</th>
+			<th>Total</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @traspaso.item_traspasos.each do |item| %>
+		<tr>
+			<td><%= item.ingreso_producto.producto.nombre%></td>
+			<td><%= item.cantidad %></td>
+			<td><%= item.valor_unitario %></td>
+			<td><%= item.iva%></td>
+			<td class="text-right"><%= item.total %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<div class="row text-right">
+	<div class="col-xs-2 col-xs-offset-8">
+		<p>
+			<strong>
+				Sub Total : <br>
+				IVA : <br>
+				Total : <br>
+			</strong>
+		</p>
+	</div>
+	<div class="col-xs-2">
+		<strong>
+			$ <%= @traspaso.subtotal %><br>
+			$ <%= @traspaso.iva %><br>
+			$ <%= @traspaso.total %><br>
+		</strong>
+	</div>
+</div>
