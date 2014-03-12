@@ -40,13 +40,6 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality =>
 validates :total, :numericality => { :greater_than => 0 }
 
 #methods
-
-def self.item_compra (item_facturas)
-	item_facturas.each do |item|		
-		item.tipo = "compra"
-	end
-end
-
 def set_to_item_venta
 	self.item_facturas.each do |item|		
 		item.tipo = "venta"
