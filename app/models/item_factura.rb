@@ -33,10 +33,13 @@ class ItemFactura < ActiveRecord::Base
 
   # methods
   def stock
-    if self.tipo != "compra"
+    sin_id = IngresoProducto.find_by_id(self.ingreso_producto_id).nil?
+    if sin_id == false
       if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
-        errors.add :cantidad, "No hay suficiente stock de: " + ingreso_productoproducto.nombre
+      errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
       end
+    else
+      errors.add :ingreso_producto_id, "Tienes items en blanco"
     end
   end
 
@@ -47,11 +50,7 @@ class ItemFactura < ActiveRecord::Base
   end
 
   def add_kardex_line
-    if self.tipo != "compra"
-      Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Ventanilla" )
-    else   
-      Lineakardex.create(:kardex => self.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.producto.precio_compra, :observaciones => "Factura de compra")
-    end
+    Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Ventanilla" )
   end
 
   private
