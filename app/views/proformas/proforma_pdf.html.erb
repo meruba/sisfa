@@ -1,43 +1,61 @@
-<% proforma = Proforma.last %>
-  <div class="text-center">
-    <%= wicked_pdf_image_tag "/images/logo1.png"%>
-    <h3>HOSPITAL BASICO 7 B.I LOJA</h3>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>
+      <%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %>
+      HOSPITAL BASICO 7 B.I<h3>
+      <h6>Direccion: Colon entre Bolivar y Bernardo Valdivieso</h6>
+      <h6>Telefono: (07) 257-0254</h6>
+      <h6>Correo: hb7loja2012@gmail.com</h6>
+    </div>
+    <div class="col-xs-6 text-right">
+      <h3>PROFORMA #<%= @proforma.numero%></h3>
+      <h4>Cliente: <%= @proforma.cliente.nombre%></h4>
+      <p>
+        C.I: <%= @proforma.cliente.numero_de_identificacion%><br>
+        Direccion: <%= @proforma.cliente.direccion%><br>
+        Telefono: <%= @proforma.cliente.telefono%><br>
+      </p>
+    </div>
   </div>
-<h4><strong>Proforma Nº <%= proforma.numero%></strong></h4>
-  <p>
-    <strong>Cliente:</strong>
-    <%= proforma.cliente.nombre%>
-  </p>
-  <p>
-    <strong>Numero de Identificación:</strong>
-    <%= proforma.cliente.numero_de_identificacion%>
-  </p>
-  <p>
-    <strong>Fecha de Emisión:</strong>
-    <%= proforma.fecha_emision %>
-  </p>
-    <table class="table table-hover">
-  <thead class= "well">
-    <tr>
-      <th>Producto</th>
-      <th>Cantidad</th>
-      <th>Precio</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  <tbody class="text-left">
-    <% proforma.item_proformas.each do |item| %>
+  <table class="table table-bordered">
+    <thead class="well">
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Iva</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @proforma.item_proformas.each do |item| %>
       <tr>
         <td><%= item.ingreso_producto.producto.nombre%></td>
         <td><%= item.cantidad %></td>
         <td><%= item.valor_unitario %></td>
-        <td><%= item.total %></td>
+        <td><%= item.iva %></td>
+        <td class="text-right"><%= item.total %></td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-  <h4 class="text-right">
-    <strong>Total: $
-    <%= proforma.total %>
-    </strong>
-  </h4>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row text-right">
+    <div class="col-xs-2 col-xs-offset-8">
+      <p>
+        <strong>
+          Sub Total : <br>
+          IVA : <br>
+          Total : <br>
+        </strong>
+      </p>
+    </div>
+    <div class="col-xs-2">
+      <strong>
+        $ <%= @proforma.subtotal_0 %><br>
+        $ <%= @proforma.iva %><br>
+        $ <%= @proforma.total %><br>
+      </strong>
+    </div>
+  </div>
+</div>
