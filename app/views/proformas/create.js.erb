@@ -1,0 +1,20 @@
+<%- if @cliente.errors.any? %>
+  <%- @cliente.errors.full_messages.each do |msg|%>
+    alertify.error("Cliente: <%=j msg %>");
+  <%- end %>
+<%- else %>
+  <%- if @proforma.errors.any? %>
+    <%- @proforma.errors.full_messages.each do |msg|%>
+      alertify.error("<%=j msg %>");
+    <%- end %>
+  <%- else %>
+  $.getScript("/proformas/<%= @proforma.id%>");
+  $('#myModal').modal({
+    remote: ""
+  });
+  $('#myModal').on("shown.bs.modal", function() {
+    $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info" href="/proformas/<%= @proforma.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')
+  });
+    alertify.success("Proforma Guardada");
+  <%- end %>
+<%- end %>

@@ -1,4 +1,4 @@
-<%= nested_form_for @proforma do |f| %>
+<%= nested_form_for @proforma, :remote => true do |f| %>
 <%= form_errors_for @proforma %>
 <div class="col-md-7">
   <h6 class="text-muted text-right fecha"></h6>
