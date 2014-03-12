@@ -23,6 +23,7 @@
 
 class Factura < ActiveRecord::Base
 #relations
+before_save :set_values
 belongs_to :cliente
 belongs_to :proveedor
 belongs_to :user
@@ -34,12 +35,18 @@ has_many :ingreso_productos, :through => :item_facturas
 #nested
 # accepts_nested_attributes_for :cliente
 accepts_nested_attributes_for :item_facturas
+
 #valitations
-validates :numero, :fecha_de_emision, :fecha_de_vencimiento, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presence =>true
+validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presence =>true
 validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality => true, :numericality => { :greater_than_or_equal_to => 0 }
 validates :total, :numericality => { :greater_than => 0 }
 
 #methods
+def set_values
+  self.fecha_de_emision = Time.now
+  self.fecha_de_vencimiento = Time.now + 30.days
+end
+
 def set_to_item_venta
 	self.item_facturas.each do |item|		
 		item.tipo = "venta"
