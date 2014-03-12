@@ -10,6 +10,7 @@
 #  updated_at          :datetime
 #  traspaso_id         :integer
 #  ingreso_producto_id :integer
+#  iva                 :float
 #
 
 class ItemTraspaso < ActiveRecord::Base
@@ -23,14 +24,20 @@ class ItemTraspaso < ActiveRecord::Base
   
   # validations
   validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
+  validates :iva, :presence => true
   validate :stock
 	
 	# methods
-	def stock
-	  if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
-	  	errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
-	  end
-	end
+  def stock
+    sin_id = IngresoProducto.find_by_id(self.ingreso_producto_id).nil?
+    if sin_id == false
+      if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
+      errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
+      end
+    else
+      errors.add :ingreso_producto_id, "Tienes items en blanco"
+    end
+  end
 
   def add_kardex_line
     Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )

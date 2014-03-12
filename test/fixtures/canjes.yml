@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: canjes
+#
+#  id          :integer          not null, primary key
+#  antiguo_id  :integer
+#  nuevo_id    :integer
+#  producto_id :integer
+#  fecha       :datetime
+#  created_at  :datetime
+#  updated_at  :datetime
+#  tipo        :string(255)
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the

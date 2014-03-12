@@ -3,7 +3,7 @@
 		<i class="fa fa-barcode"></i>
 	</div>
 	<td class ="col-md-3">
-		<input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto"  required= true >
+		<input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto">
 		<h6 class="casa_comercial text-muted">Casa Comercial</h6>
 		<%=  f.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
 		<input type="text" class="hasiva hidden">
@@ -11,10 +11,9 @@
 </td>
 <td>
 	<%=  f.text_field  :valor_unitario, class: "precio_unitario text-muted ningun-border", :placeholder  => "0.0",:readonly => true%>
-	<!-- <span><strong> x</strong></span> -->
 </td>
 <td>
-	<input type="text" class= "ningun-border text-muted iva" placeholder = "0.0" readonly="readonly">
+	<%=  f.text_field  :iva, class: "ningun-border text-muted iva", :placeholder  => "0.0",:readonly => true%>
 </td>
 <td>
 	<%=  f.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1", value: 1 %>	
