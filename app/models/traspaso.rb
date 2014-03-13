@@ -23,7 +23,7 @@ class Traspaso < ActiveRecord::Base
 	accepts_nested_attributes_for :item_traspasos
 
 	#validations
-  validates :servicio, :user_id, :numero, :iva, :total,:fecha_emision, presence: true
+  validates :servicio, :user_id, :numero, :iva, :total,:fecha_emision, :entregado_a, presence: true
   validates :total, :numericality => { :greater_than_or_equal_to => 0}
   validates :numero, :numericality => { only_integer: true }
 
