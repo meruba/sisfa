@@ -5,7 +5,7 @@
     <div class="col-md-4">
       <div class="blockquote-box blockquote-danger clearfix">
         <div class="thumbnail square pull-left">
-          <div class="caption">
+          <div class="caption only-admin">
             <h5>Hacer Canje</h5>
             <i class ="fa fa-share-square-o fa-2x"></i><br/>
             <%= link_to "Canje", nuevo_canje_path(caduco), :class => "label label-default" %>
@@ -14,6 +14,7 @@
         </div>
         <h4><%= caduco.producto.nombre %></h4>
         <h5>Cantidad: <%= caduco.cantidad %></h5>
+        <h5>Casa Comercial: <%= caduco.producto.casa_comercial %></h5>
         <h5>Fecha: <%= caduco.fecha_caducidad %></h5>
         <h6 class ="text-muted">El producto se caducará en: <strong class="days"><%=(caduco.fecha_caducidad - @hoy ).to_i%></strong> dias</h6>
       </div>
