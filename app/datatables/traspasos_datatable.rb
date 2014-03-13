@@ -21,11 +21,12 @@ private
       [
         (traspaso.numero),
         (traspaso.servicio),
-        (traspaso.fecha_emision),
         (traspaso.user.username),
-        (traspaso.subtotal),
-        (traspaso.iva),
-        (traspaso.total),
+        (traspaso.entregado_a),
+        (traspaso.fecha_emision),
+        # (traspaso.subtotal),
+        # (traspaso.iva),
+        # (traspaso.total),
         (link_to '', traspaso, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info")
       ]
     end 

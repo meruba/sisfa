@@ -48,6 +48,7 @@ class TraspasosController < ApplicationController
 		:iva,
 		:total,
 		:user_id,
+		:entregado_a,
 		:item_traspasos_attributes => [
 			:cantidad,
 			:valor_unitario,
