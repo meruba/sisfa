@@ -41,6 +41,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :canjes do
     member do
       get "nuevo"
+      post "save_nuevo" 
     end
   end
   resources :productos do
