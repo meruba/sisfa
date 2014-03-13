@@ -2,6 +2,7 @@ class ProveedorsController < ApplicationController
 	# GET /proveedor
   # GET /proveedors.json
   before_filter :require_login
+  before_filter :suspendido
   before_action :set_proveedor, only: [:show, :edit, :update]
   
   def index

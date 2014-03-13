@@ -1,5 +1,6 @@
 class DashboardController < ApplicationController
   before_filter :require_login
+  before_filter :suspendido
   include DashboardHelper
   
   def index    
