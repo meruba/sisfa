@@ -12,6 +12,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  subtotal      :float            not null
+#  entregado_a   :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
