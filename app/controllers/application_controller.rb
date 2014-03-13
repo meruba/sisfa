@@ -15,4 +15,11 @@ class ApplicationController < ActionController::Base
   	redirect_to login_url, :alert => "Necesitas Iniciar Sesión"
   end
 
+  def suspendido
+    if current_user.suspendido
+        logout
+        redirect_to login_path
+        flash[:error] = "Usuario suspendido"
+    end
+  end
 end

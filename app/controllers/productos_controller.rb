@@ -1,5 +1,6 @@
 class ProductosController < ApplicationController
 	before_filter :require_login
+  before_filter :suspendido
   before_action :set_producto, only: [:show, :edit, :update]
   def index
     respond_to do |format|
