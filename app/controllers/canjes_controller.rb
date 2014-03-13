@@ -11,8 +11,6 @@ class CanjesController < ApplicationController
     lote = mismo_producto[:lote]
     fecha = mismo_producto[:fecha_caducida]
   	@canje.antiguo_id = @actual.id
-  	@canje.producto_id = @actual.producto.id
-  	@canje.fecha = Time.now
   	@canje.tipo = "Mismo producto"
   	if @canje.save
   		redirect_to productos_path
