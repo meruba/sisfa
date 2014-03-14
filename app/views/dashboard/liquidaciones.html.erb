@@ -1,8 +1,8 @@
 <h2 class="text-center">LIQUIDACIÓN</h2>
 <h4 class="text-center"> <%= month_name(@fecha) %></h4>
-<div class="row">
+<div class="row  page-break">
 	<h5 class= "fix-margin"><strong>Fecha de Impresión:  </strong><span class="fecha_sin_hora"></span></h5>
-	<div class="col-md-3">
+	<div class="col-md-3 col-xs-3">
 		<h4>Resumen General Ventas</h4>	
 		<table class="table">
 			<thead>
@@ -40,7 +40,7 @@
 		</table>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-3 col-xs-3">
 		<h4>Ventas en ventanilla</h4>	
 		<table class="table">
 			<thead>
@@ -68,7 +68,7 @@
 		<small>Número de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-3 col-xs-3">
 		<h4>Ventas por hospitalización</h4>	
 		<table class="table">
 			<thead>
@@ -95,7 +95,7 @@
 		<small>Reportes Emitidos: <strong><%= @cantidad_hospitalizacion%></strong></small>
 	</div>
 
-	<div class="col-md-3">
+	<div class="col-md-3 col-xs-3">
 		<h4>Transferencias</h4>	
 		<table class="table">
 			<thead>
@@ -122,7 +122,7 @@
 		<small>Número de Transferencias: <strong><%= @numero_transferencias%></strong></small>
 	</div>
 </div>
-<div class="row">
+<div class="row page-break">
 	<div class="col-md-8">
 		<h4>Listado de Ingreso (Compras)</h4>	
 		<small>Facturas Ingresadas: <strong><%= @compras.count%></strong></small><br/>
@@ -167,3 +167,4 @@
 	</div>
 	<% end %>
 </div>
+<%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-info", :target => "_blank"} %>
