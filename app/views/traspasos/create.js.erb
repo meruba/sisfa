@@ -10,5 +10,5 @@
   $('#myModal').on("shown.bs.modal", function() {
     $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info" href="/traspasos/<%= @traspaso.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')
   });
-  alertify.success("Proforma Guardada");
+  alertify.success("Factura Guardada");
 <%- end %>
