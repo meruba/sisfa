@@ -12,10 +12,10 @@ window.Helpers.AutocompleteCompraHelper = {
       window.Helpers.AutocompleteCompraHelper.total_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_productos_factura_compra()
 
-    # $(".nombre_producto").on "input", ->
-    #   $this = $(this)
-    #   texto = $this.val()
-    #   $this.closest(".fields").find(".nombre_item").text(texto + " $")
+    $(".nombre_producto").blur "input", ->
+      $this = $(this)
+      texto = $this.val()
+      $this.closest(".fields").find(".nombre_item").text(texto + " $")
 
     $(".eliminar_item_producto").on "click", ->
       $this = $(this)
@@ -36,7 +36,7 @@ window.Helpers.AutocompleteCompraHelper = {
         $this = $(this)
         # $this.closest(".fields").find(".producto_id").val ui.item.id
         $(".producto_id").val ui.item.id
-        $this.closest(".fields").find(".nombre_item").text($this.val() + " $")
+        # $this.closest(".fields").find(".nombre_item").text($this.val() + " $")
         $this.closest(".fields").find(".nombre_generico").val ui.item.nombre_generico
         $this.closest(".fields").find(".codigo").val ui.item.codigo
         $this.closest(".fields").find(".categoria").val ui.item.categoria
