@@ -11,48 +11,29 @@
         </div>
         <div class="col-xs-12 col-md-7">
           <div class="row">
-            <!-- Total Ventanilla-->
-            <div class="col-xs-4 col-md-4 text-left">
-              <span>Ventanilla</span>
-            </div>
-            <div class="col-xs-8 col-md-8">
-              <div class="progress progress">
-                <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="20"
-                aria-valuemin="0" aria-valuemax="100" data-original-title="Remove this user" style="width: <%=@porcentajedia_ventanilla%>%">
-                $ <%=redondear(@total_ventanilla)%>
-              </div>
-            </div>
-          </div>
-          <!-- Total hospitalizacion-->
-          <div class="col-xs-4 col-md-4 text-left">
-            <span>Hospitalización</span>
-          </div>
-          <div class="col-xs-8 col-md-8">
-            <div class="progress progress">
-              <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="20"
-              aria-valuemin="0" aria-valuemax="100" style="width: <%=@porcentajedia_hospitalizacion%>%">
-              $ <%=redondear(@total_hospitalizacion)%>
-            </div>
-          </div>
-        </div>
-        <!-- Total-->
-        <div class="col-xs-4 col-md-4 text-left">
-          <span>Total %:</span>
-        </div>
-        <div class="col-xs-8 col-md-8">
-          <div class="progress progress">
-            <div class="progress-bar progress-bar-success" style="width:  <%=@porcentajedia_ventanilla%>%"><%=@porcentajedia_ventanilla%>%
-            </div>
-            <div class="progress-bar progress-bar-warning" style="width:  <%=@porcentajedia_hospitalizacion%>%"><%=@porcentajedia_hospitalizacion%>%
-            </div>
-            <div class="progress-bar progress-bar-info" style="width:  <%=@porcentajedia_consultaexterna%>%"><%=@porcentajedia_consultaexterna%>%
+            <div class="col-sm-12">
+              <span>Ventanilla: $<%=redondear(@total_ventanilla)%></span>
+              <span class="text-right"><strong><%=@porcentajedia_ventanilla%>%</strong></span> 
+              <div class="progress progress-sm charts-venta">
+                <div style="width: <%=@porcentajedia_ventanilla%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info"></div>
+              </div><!-- progress -->
+
+              <span>Hospitalizacion: $<%=redondear(@total_hospitalizacion)%></span>
+              <span class="text-right"><strong><%=@porcentajedia_hospitalizacion%>%</strong></span> 
+              <div class="progress progress-sm charts-venta">
+                <div style="width:<%=@porcentajedia_hospitalizacion%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"></div>
+              </div><!-- progress -->
+              <span>Transferencias $<%=redondear(@total_transferencia)%></span>
+              <span class="text-right"><strong><%=@porcentajedia_transferencia%>%</strong></span>
+              <div class="progress progress-sm charts-venta">
+                <div style="width: <%=@porcentajedia_transferencia%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-danger"></div>
+              </div><!-- progress -->
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
 </div>
 </div>
 <!-- </div> -->
