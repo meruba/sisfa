@@ -23,14 +23,11 @@
 
 class Factura < ActiveRecord::Base
 #relations
-before_save :set_values
 belongs_to :cliente
 belongs_to :proveedor
 belongs_to :user
 has_many :item_facturas
 has_many :ingreso_productos, :through => :item_facturas
-# has_many :factura_compras_productos
-# has_many :productos, :through => :factura_compras_productos
 
 #nested
 # accepts_nested_attributes_for :cliente
@@ -42,24 +39,34 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality =>
 validates :total, :numericality => { :greater_than => 0 }
 
 #methods
-def set_values
-  self.fecha_de_emision = Time.now
+
+def set_factura_values
+	self.fecha_de_emision = Time.now
   self.fecha_de_vencimiento = Time.now + 30.days
-end
-
-def set_to_item_venta
-	self.item_facturas.each do |item|		
-		item.tipo = "venta"
+  self.numero = Factura.last ? Factura.last.numero + 1 : 1
+	subtotal = 0
+	subtotal_0 = 0
+	subtotal_12 = 0
+	self.item_facturas.each do |item|
+		unless item.ingreso_producto_id.nil?
+			ingreso = IngresoProducto.find item.ingreso_producto_id
+			cantidad = item.cantidad
+			item.tipo = "venta"
+			subtotal = subtotal + ingreso.producto.precio_venta * cantidad
+			if ingreso.producto.hasiva == true
+				subtotal_12 = subtotal_12 + ingreso.producto.precio_venta * cantidad
+			else
+				subtotal_0 = subtotal_0 + ingreso.producto.precio_venta * cantidad
+			end
+		end
 	end
-end
-
-def self.create_items_facturas (item_proformas)
-	itemfacturas = []
-	item_proformas.each do |item|
-		itemfactura = ItemFactura.new(:cantidad => item.cantidad, :ingreso_producto => item.ingreso_producto, :valor_unitario => item.valor_unitario, :descuento => item.descuento, :total => item.total, :iva => item.iva)
-		itemfacturas << itemfactura
-	end
-	itemfacturas
+	self.iva = subtotal_12 * 0.12
+	self.iva = self.iva.round(2)
+	self.subtotal_0 = subtotal_0
+	self.subtotal_12 = subtotal_12
+	self.total = subtotal_0 + subtotal_12 + self.iva
+	self.total = self.total.round(2)
+	self.descuento = 0
 end
 
 def rollback_factura
