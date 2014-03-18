@@ -34,13 +34,18 @@ window.Helpers.AutocompleteCompraHelper = {
       source: "/productos/autocomplete_producto_compra.json"
       select: (event, ui) ->
         $this = $(this)
+        $this.prop("disabled", true)
         # $this.closest(".fields").find(".producto_id").val ui.item.id
         $(".producto_id").val ui.item.id
         # $this.closest(".fields").find(".nombre_item").text($this.val() + " $")
         $this.closest(".fields").find(".nombre_generico").val ui.item.nombre_generico
+        $this.closest(".fields").find(".nombre_generico").prop("disabled", true)
         $this.closest(".fields").find(".codigo").val ui.item.codigo
+        $this.closest(".fields").find(".codigo").prop("disabled", true)
         $this.closest(".fields").find(".categoria").val ui.item.categoria
+        $this.closest(".fields").find(".categoria").prop("disabled", true)
         $this.closest(".fields").find(".casa_comercial").val ui.item.casa_comercial
+        $this.closest(".fields").find(".casa_comercial").prop("disabled", true)
         $this.closest(".fields").find(".precio_compra").val ui.item.precio_compra
         $this.closest(".fields").find(".ganancia").val ui.item.ganancia
 

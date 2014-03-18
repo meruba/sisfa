@@ -37,7 +37,7 @@ class ProductosController < ApplicationController
         @productos = @productos.map do |producto|
           {
             :id => producto.id,
-            :label => producto.nombre,
+            :label => producto.nombre + " / " + producto.casa_comercial ,
             :value => producto.nombre,
             :precio_venta => producto.precio_venta,
             :precio_compra => producto.precio_compra,
