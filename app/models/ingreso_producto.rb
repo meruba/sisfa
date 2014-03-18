@@ -17,6 +17,7 @@ class IngresoProducto < ActiveRecord::Base
   has_many :item_facturas
   has_many :item_proformas
   has_many :item_traspasos
+  has_many :item_hospitalizacion
   belongs_to :producto
   has_many :antiguos, :foreign_key => 'antiguo_id', :class_name => "Canje"
   has_many :nuevos, :foreign_key => 'nuevo_id', :class_name => "Canje"
