@@ -19,8 +19,7 @@ class HospitalizacionsController < ApplicationController
 		if @cliente.save
 			@hospitalizacion = @cliente.hospitalizacions.build(hospitalizacion_params)
 			@hospitalizacion.user_id = current_user.id
-			@hospitalizacion.numero = Hospitalizacion.last ? Hospitalizacion.last.numero + 1 : 1
-			@hospitalizacion.fecha_emision = Time.now
+			@hospitalizacion.set_hospitalizacion_values
 			if @hospitalizacion.save
 				redirect_to hospitalizacions_path, :notice => "Almacenado"
 			else
