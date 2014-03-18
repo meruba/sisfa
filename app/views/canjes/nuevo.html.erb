@@ -8,7 +8,7 @@
   <div class="mismo_producto_wrapper">
     <%= f.fields_for :entrada_nueva do |nueva_params| %>
       <%= nueva_params.text_field  :lote, :class=> "form-control", :placeholder => "nuevo lote" %>
-      <%= nueva_params.text_field  :fecha_caducidad, :class=> "form-control", :placeholder => "fecha de caducidad" %>
+      <%= nueva_params.text_field  :fecha_caducidad, :class=> "form-control datepicker", :placeholder => "fecha de caducidad" %>
     <% end %>
   </div>
   <div class="nuevo_producto_wrapper" style="display: none;"> 
