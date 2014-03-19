@@ -17,6 +17,7 @@
 	      <th>Producto</th>
 	      <th>Cantidad</th>
 	      <th>Precio</th>
+	      <th>Iva</th>
 	      <th>Total</th>
 	    </tr>
 	  </thead>
@@ -26,12 +27,17 @@
 	        <td><%= t.ingreso_producto.producto.nombre%></td>
 	        <td><%= t.cantidad %></td>
 	        <td>$ <%= t.valor_unitario %></td>
+	        <td>$ <%= t.iva %></td>
 	        <td>$ <%= t.total %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
 	</table>
   <h4 class="text-success text-right">
+    <strong>Iva: $</strong>
+    <%= @hospitalizacion.iva %>
+    <strong>Subtotal: $</strong>
+    <%= @hospitalizacion.subtotal %>
     <strong>Total: $</strong>
     <%= @hospitalizacion.total %>
   </h4>
