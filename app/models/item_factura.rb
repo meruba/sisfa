@@ -26,10 +26,10 @@ class ItemFactura < ActiveRecord::Base
 
 	# validations:
   validates :tipo, :presence => true
-  validates :cantidad, :valor_unitario, :total, :descuento, :presence => true,
+  validates :cantidad, :valor_unitario, :total, :presence => true,
                                                             :numericality => { :greater_than_or_equal_to => 0 }
   validate :stock                                                            
-  validate :valida_descuento
+  # validate :valida_descuento
 
   # methods
   def stock
