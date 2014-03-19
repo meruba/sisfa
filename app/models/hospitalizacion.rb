@@ -38,4 +38,32 @@ class Hospitalizacion < ActiveRecord::Base
 			end
 		end
 	end
+
+	def set_hospitalizacion_values
+		self.fecha_emision = Time.now
+		self.numero = Hospitalizacion.last ? Hospitalizacion.last.numero + 1 : 1
+		subtotal = 0
+		iva = 0
+		self.item_hospitalizacions.each do |item|
+			unless item.ingreso_producto_id.nil?
+				ingreso = IngresoProducto.find item.ingreso_producto_id
+				cantidad = item.cantidad #obtiene la cantidad del producto
+				item.valor_unitario = ingreso.producto.precio_venta #asigna el valor del item
+				item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
+				total_item = item.total
+				subtotal = subtotal + total_item # suma los totales de los items
+				if ingreso.producto.hasiva == true
+					item.iva = (ingreso.producto.precio_venta * 0.12).round(2)
+				else
+					item.iva = 0
+				end
+				iva = iva + item.iva #suma iva de los productos
+			end
+		end
+		self.iva = iva.round(2)
+		self.subtotal = subtotal
+		self.total = self.subtotal + self.iva
+		self.total = self.total.round(2)
+		self.descuento = 0
+	end
 end

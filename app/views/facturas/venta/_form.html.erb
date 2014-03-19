@@ -53,22 +53,26 @@
 					<th></th>
 				</thead>
 				<tbody>
+					<%= f.hidden_field :tipo %>
 					<tr>
-						<td>
-							<h6>Sub 0%:</h6>
-							<h6>Descuento:</h6>
-							<h6>Sub 12%:</h6>
-							<h6>I.V.A:</h6>
-							<h4>TOTAL:</h4>
-						</td>
-						<td>
-							<%= f.hidden_field :tipo %>
-							<%= f.text_field :subtotal_0, class: "input-noborder subtotal_0 text-right", :readonly => true%>
-							<%= f.text_field :descuento, class: "input-noborder descuento_factura text-right", :readonly => true%>
-							<%= f.text_field :subtotal_12, class: "input-noborder subtotal_12 text-right",:readonly => true%>
-							<%= f.text_field :iva, class: "input-noborder iva_factura text-right", :readonly => true%>
-							<%= f.text_field :total, class: "input-noborder total_factura text-right", :readonly => true%>
-						</td>
+						<td class ="text-left">Sub 0%: </td>
+						<td class ="text-center subtotal_0">0.0</td>
+					</tr>
+					<tr>
+						<td class ="text-left">Sub 12%: </td>
+						<td class ="text-right subtotal_12">0.0</td>
+					</tr>
+					<tr>
+						<td class ="text-left">Desc: </td>
+						<td class ="text-right descuento_factura">0.0</td>
+					</tr>
+					<tr>
+						<td class ="text-left">IVA: </td>
+						<td class ="text-right iva_factura">0.0</td>
+					</tr>
+					<tr>
+						<td class ="text-left">TOTAL: </td>
+						<td class ="text-right total_factura">0.0</td>
 					</tr>
 				</tbody>
 			</table>

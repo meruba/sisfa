@@ -55,8 +55,7 @@ class FacturasController < ApplicationController
 			if @cliente.save
 				@factura = @cliente.facturas.build(factura_params)
 				@factura.user_id = current_user.id
-				@factura.numero = Factura.last ? Factura.last.numero + 1 : 1
-				@factura.set_to_item_venta
+				@factura.set_factura_values
 				@factura.save
 			end
   			format.js
@@ -81,15 +80,7 @@ class FacturasController < ApplicationController
 	private
 
 	def factura_params
-		params.require(:factura).permit :numero,
-		:observacion,
-		:fecha_de_emision,
-		:fecha_de_vencimiento,
-		:subtotal_0,
-		:subtotal_12,
-		:descuento,
-		:iva,
-		:total,
+		params.require(:factura).permit :observacion,
 		:tipo,
 		:user_id,
 		:cliente_id,

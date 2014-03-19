@@ -79,11 +79,11 @@ window.Helpers.AutocompleteHelper = {
       sum += parseFloat($(this).val())
     $(".iva").each ->
       sum_iva += parseFloat($(this).val())
-    $(".subtotal_0").val sum.toFixed(2)
-    $(".subtotal_12").val sum.toFixed(2)
-    $(".descuento_factura").val 0
-    $(".iva_factura").val(sum_iva.toFixed(2));
-    $(".total_factura").val((sum+sum_iva).toFixed(2));
+    $(".subtotal_0").text sum.toFixed(2)
+    $(".subtotal_12").text sum.toFixed(2)
+    $(".descuento_factura").text 0
+    $(".iva_factura").text(sum_iva.toFixed(2));
+    $(".total_factura").text((sum+sum_iva).toFixed(2));
 
   init_autocompleteProveedor: ->
     $(".numero_de_identificacion_proveedor").autocomplete

@@ -3,7 +3,7 @@ module DashboardHelper
     if total_comprobantes == 0
       porcentaje = 0        
     else
-      porcentaje = (100 * comprobante)/total_comprobantes
+      porcentaje = (100.0 * comprobante)/total_comprobantes
     end
     return porcentaje
   end

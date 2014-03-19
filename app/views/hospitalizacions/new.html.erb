@@ -2,7 +2,7 @@
 <div class="row">
 <%= nested_form_for @hospitalizacion do |f| %>
 <%= form_errors_for @hospitalizacion %>
-<div class="col-md-7">
+<div class="col-md-6">
 	<h6 class="text-muted text-right fecha"></h6>
 	<h6 class="text-muted text-right">Vendedor: <%= current_user.username%></h6>
 	<!-- formulario datos del cliente -->
@@ -21,7 +21,6 @@
 					<th class="col-sm-4">Producto</th>
 					<th>Cantidad</th>
 					<th>V.Unit</th>
-					<th>Descuento</th>
 					<th>I.V.A.</th>
 					<th>Total</th>
 					<th></th>

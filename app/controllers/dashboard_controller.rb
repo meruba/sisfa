@@ -11,20 +11,24 @@ class DashboardController < ApplicationController
     # porcentaje de ventas dia
     estadisticas(Time.now, nil)
     estadisticas_hospitalizados(Time.now, nil)
+    estadisticas_transferencias(Time.now, nil)
     @totaldia = @total_ventanilla + @total_hospitalizacion
-    num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+    num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion + @cantidad_transferencia
     @porcentajedia_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
     @porcentajedia_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
+    @porcentajedia_transferencia = regla_de_tres(@cantidad_transferencia, num_comprobantes)
   end
 
   def estadisticas_mes
     # porcentaje de ventas mes  
     estadisticas(nil, Time.now)
     estadisticas_hospitalizados(nil, Time.now)
-    @totalmes = @total_ventanilla + @total_hospitalizacion
-    num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
+    estadisticas_transferencias(nil, Time.now)
+    @totalmes = @total_ventanilla + @total_hospitalizacion + @total_transferencia
+    num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion + @cantidad_transferencia
     @porcentajemes_ventanilla = regla_de_tres(@cantidad_ventanilla, num_comprobantes)
     @porcentajemes_hospitalizacion = regla_de_tres(@cantidad_hospitalizacion, num_comprobantes)
+    @porcentajemes_transferencia = regla_de_tres(@cantidad_transferencia, num_comprobantes)    
   end
 
   def generar_reporte
@@ -162,6 +166,18 @@ class DashboardController < ApplicationController
     @total_hospitalizacion = valor_total_comprobantes(@hospitalizados)
   end
 
+  def estadisticas_transferencias(dia, mes)
+    fecha_dia = dia
+    fecha_mes = mes
+    if dia
+      @transferencias = consulta_transferencias(fecha_dia.beginning_of_day..fecha_dia.end_of_day)
+    else
+      @transferencias = consulta_transferencias(fecha_mes.beginning_of_month..fecha_mes.end_of_month)
+    end
+    @cantidad_transferencia = cantidad_comprobantes(@transferencias)
+    @total_transferencia = valor_total_comprobantes(@transferencias)
+  end
+
   def cierres_de_caja(periodo, fecha)
     if periodo == "dia"
       estadisticas(fecha, nil)
@@ -199,6 +215,16 @@ class DashboardController < ApplicationController
       hospitalizados = Hospitalizacion.where(:created_at => fecha, :user_id => current_user.id)
     end
     return :json => hospitalizados
+  end
+
+  def consulta_transferencias(fecha)
+    case current_user.rol
+    when Rol.administrador
+      transferencias = Traspaso.where(:created_at => fecha)
+    when Rol.vendedor
+      transferencias = Traspaso.where(:created_at => fecha, :user_id => current_user.id)
+    end
+    return :json => transferencias
   end
 
   def facturas_anuladas(fecha)
