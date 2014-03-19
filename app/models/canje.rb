@@ -14,38 +14,22 @@
 
 class Canje < ActiveRecord::Base
   #relationships
-    belongs_to :entrada_antigua, :class_name => "IngresoProducto"
-    belongs_to :entrada_nueva, :class_name => "IngresoProducto"
+    belongs_to :antiguo, :class_name => "IngresoProducto"
+    belongs_to :nuevo, :class_name => "IngresoProducto"
     belongs_to :producto
 
 #validations
 	# validates :fecha, :tipo, :presence =>true
 	
 #callbacks
-  after_create :set_values
-  after_save :set_salida_kardex, :update_producto
+  after_create :set_lineas_kardex
 
 #methods
   private
 
-  def find_ingreso
-		ingreso = IngresoProducto.find(self.antiguo_id)
+  def set_lineas_kardex
+    Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
+    Lineakardex.create(:kardex => self.nuevo.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.nuevo.cantidad, :v_unitario => self.nuevo.producto.precio_compra, :observaciones => "Producto Canjeado")
   end
 
-	def set_values
-  	ingreso = find_ingreso()
-	  self.fecha = Time.now
-  	self.producto_id = ingreso.producto.id
-	end
-
-  def set_salida_kardex
-  	ingreso = find_ingreso()
-    Lineakardex.create(:kardex => ingreso.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => ingreso.cantidad, :v_unitario => ingreso.producto.precio_compra, :observaciones => "Producto Caducado")
-  end
-
-  def update_producto
-  	ingreso = find_ingreso()
-    IngresoProducto.create(:producto_id => ingreso.producto.id, :cantidad => ingreso.cantidad, :fecha_caducidad => "2015/06/23", :lote => "234")
-    ingreso.update(:cantidad => '0')
-  end
 end

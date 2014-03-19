@@ -11,8 +11,8 @@ class CanjesController < ApplicationController
       mismo_producto = params[:canje].delete :entrada_nueva
       ingreso = IngresoProducto.new(:lote => mismo_producto[:lote], :fecha_caducidad => mismo_producto[:fecha_caducidad], :producto => @actual.producto, :cantidad => @actual.cantidad)
       if ingreso.save
-        @canje.antiguo_id = @actual.id
-        @canje.nuevo_id = ingreso.id
+        @canje.antiguo = @actual
+        @canje.nuevo = ingreso
         @canje.save
         @actual.cantidad = 0
         @actual.save
