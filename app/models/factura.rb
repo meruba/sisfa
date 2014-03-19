@@ -47,21 +47,26 @@ def set_factura_values
 	subtotal = 0
 	subtotal_0 = 0
 	subtotal_12 = 0
+	iva = 0
 	self.item_facturas.each do |item|
 		unless item.ingreso_producto_id.nil?
 			ingreso = IngresoProducto.find item.ingreso_producto_id
 			cantidad = item.cantidad
 			item.tipo = "venta"
-			subtotal = subtotal + ingreso.producto.precio_venta * cantidad
+			item.valor_unitario = ingreso.producto.precio_venta #asigna el valor del item
+			item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
+			# subtotal = subtotal + item.total
 			if ingreso.producto.hasiva == true
-				subtotal_12 = subtotal_12 + ingreso.producto.precio_venta * cantidad
+				subtotal_12 = subtotal_12 + item.total
+				item.iva = (ingreso.producto.precio_venta * 0.12).round(2)
 			else
-				subtotal_0 = subtotal_0 + ingreso.producto.precio_venta * cantidad
+				subtotal_0 = subtotal_0 + item.total
+				item.iva = 0
 			end
+			iva = iva + item.iva #suma iva de los productos
 		end
 	end
-	self.iva = subtotal_12 * 0.12
-	self.iva = self.iva.round(2)
+	self.iva = iva.round(2)
 	self.subtotal_0 = subtotal_0
 	self.subtotal_12 = subtotal_12
 	self.total = subtotal_0 + subtotal_12 + self.iva

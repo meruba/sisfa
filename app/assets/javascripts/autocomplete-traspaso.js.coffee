@@ -28,7 +28,7 @@ window.Helpers.AutocompleteTraspaso = {
         window.Helpers.AutocompleteTraspaso.calcular_total_producto($this)
         window.Helpers.AutocompleteTraspaso.calcular_valores_factura()
 
-    $(".cantidad").on "input", ->
+    $(".cantidad_transferencia").on "input", ->
       $this = $(this)
       window.Helpers.AutocompleteTraspaso.calcular_total_producto($this)
       window.Helpers.AutocompleteTraspaso.calcular_valores_factura()
@@ -39,7 +39,7 @@ window.Helpers.AutocompleteTraspaso = {
       window.Helpers.AutocompleteTraspaso.calcular_valores_factura()
 
   calcular_total_producto: (componente) ->
-    cantidad = componente.closest(".productos_traspaso").find(".cantidad").val()
+    cantidad = componente.closest(".productos_traspaso").find(".cantidad_transferencia").val()
     valor_unitario = componente.closest(".productos_traspaso").find(".precio_unitario").val()
     hasiva = componente.closest(".productos_traspaso").find("td:nth-child(8)").find(".hasiva").val()
     if hasiva == "true"
