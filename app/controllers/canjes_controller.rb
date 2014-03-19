@@ -7,17 +7,20 @@ class CanjesController < ApplicationController
 
   def save_nuevo
     @canje = Canje.new
-    mismo_producto = params[:canje].delete :entrada_nueva
-    lote = mismo_producto[:lote]
-    fecha = mismo_producto[:fecha_caducida]
-  	@canje.antiguo_id = @actual.id
-  	@canje.tipo = "Mismo producto"
-  	if @canje.save
-  		redirect_to productos_path
-      flash[:notice] = 'Canje Realizado'
-  	else
-  		raise
-  	end
+    if params[:canje][:tipo] == "mismo_producto"
+      mismo_producto = params[:canje].delete :entrada_nueva
+      ingreso = IngresoProducto.new(:lote => mismo_producto[:lote], :fecha_caducidad => mismo_producto[:fecha_caducidad], :producto => @actual.producto, :cantidad => @actual.cantidad)
+      if ingreso.save
+        @canje.antiguo_id = @actual.id
+        @canje.nuevo_id = ingreso.id
+        @canje.save
+        @actual.cantidad = 0
+        @actual.save
+        redirect_to productos_path
+        flash[:notice] = 'Canje Realizado'
+      end
+    else
+    end
   end
 
   private
