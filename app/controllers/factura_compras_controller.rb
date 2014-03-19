@@ -44,6 +44,7 @@ class FacturaComprasController < ApplicationController
     :user_id,
     :cliente_id,
     :productos_attributes => [
+      :id,
       :nombre,
       :nombre_generico,
       :codigo,
@@ -55,8 +56,8 @@ class FacturaComprasController < ApplicationController
       :ingreso_productos_attributes => [
         :lote,
         :fecha_caducidad,
-        :cantidad
-        # :_destroy
+        :cantidad,
+        :id
       ]
     ]
   end
