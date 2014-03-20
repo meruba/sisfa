@@ -5,9 +5,6 @@ class DashboardController < ApplicationController
   
   def index    
     estadisticas_dia
-    # @precios = Producto.select('cantidad').collect { |p| p.cantidad }
-    # all = Producto.includes(:ingreso_producto).where("ingreso_producto != 0")
-# raise
   end
 
   def estadisticas_dia
@@ -84,7 +81,7 @@ class DashboardController < ApplicationController
     @fecha = params[:fecha]
     unless @fecha.to_time > Time.now
       cierres_de_caja("mes", @fecha.to_time)
-      @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time).count()
+      @anuladas_ventanilla = Factura.where(:created_at => @fecha.to_time.beginning_of_month..@fecha.to_time.end_of_month).where(:anulada => true).count()
       # transferencias
       transferencias = transferencias(@fecha)
       @numero_transferencias = transferencias.count()
@@ -231,10 +228,6 @@ class DashboardController < ApplicationController
       transferencias = Traspaso.where(:created_at => fecha, :user_id => current_user.id)
     end
     return :json => transferencias
-  end
-
-  def facturas_anuladas(fecha)
-    facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:anulada => true)
   end
 
   def transferencias(fecha)
