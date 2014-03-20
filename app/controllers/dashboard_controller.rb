@@ -5,6 +5,9 @@ class DashboardController < ApplicationController
   
   def index    
     estadisticas_dia
+    # @precios = Producto.select('cantidad').collect { |p| p.cantidad }
+    # all = Producto.includes(:ingreso_producto).where("ingreso_producto != 0")
+# raise
   end
 
   def estadisticas_dia
@@ -186,14 +189,17 @@ class DashboardController < ApplicationController
     else
       estadisticas(nil, fecha)
       estadisticas_hospitalizados(nil, fecha)
+      estadisticas_transferencias(nil, fecha)
       @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
       @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
-      @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
+      @transferencia_subtotal = sumar_impuesto(@transferencias, "subtotal")
+      @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @transferencia_subtotal
       @ventanilla_iva = sumar_impuesto(@facturas, "iva")
       @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
-      @total_iva = @ventanilla_iva + @hospitalizacion_iva
+      @transferencia_iva = sumar_impuesto(@transferencias, "iva")
+      @total_iva = @ventanilla_iva + @hospitalizacion_iva + @transferencia_iva
       @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
-      @totaldia = @total_ventanilla + @total_hospitalizacion
+      @totaldia = @total_ventanilla + @total_hospitalizacion + @total_transferencia
     end
   end
 
