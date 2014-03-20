@@ -38,7 +38,9 @@
                 <div id="collapseTwo" class="panel-collapse collapse">
                   <div class="panel-body">
                     <%= f.fields_for :productos do |item_factura| %>
-                    <%= render 'item_facturas/itemfacturacompra', f:item_factura %>
+                      <%= item_factura.fields_for :producto do |b| %>
+                        <%= render 'item_facturas/itemfacturacompra', f:b %>
+                      <% end %>
                     <% end %>
                     <%= f.link_to_add "Producto", :productos, :class => "fix-margin nuevo_new"%>
                   </div>

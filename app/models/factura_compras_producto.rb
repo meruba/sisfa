@@ -10,4 +10,5 @@
 class FacturaComprasProducto < ActiveRecord::Base
   belongs_to :producto
   belongs_to :factura_compra
+  accepts_nested_attributes_for :producto
 end

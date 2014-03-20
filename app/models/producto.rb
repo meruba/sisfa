@@ -28,7 +28,8 @@ class Producto < ActiveRecord::Base
 #relations
   has_many :ingreso_productos
   has_one :kardex
-  has_one :factura_compras_producto
+  has_many :factura_compras_productos
+  has_many :factura_compras, :through => :factura_compras_productos
   has_many :canjes
 
 #nested
