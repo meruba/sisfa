@@ -27,7 +27,7 @@
             <td><%= factura.cliente.nombre %></td>
             <td><%= factura.cliente.direccion %></td>
             <td><%= factura.user.username %></td>
-            <td><%= factura.created_at.to_s(:db) %></td>
+            <td><%= local_date(factura.created_at,"datetime") %></td>
             <td><%= factura.subtotal_0 %></td>
             <td><%= factura.iva %></td>
             <td><%= factura.total %></td>
@@ -36,15 +36,15 @@
       <% end %>
       </tbody>
     </table>
-    <h4>Nº Total de Facturas: <%= @cantidad_ventanilla%> </h4>
+    <h4>Facturas Emitidas: <%= @cantidad_ventanilla%> </h4>
     <h4>Total de Venta: <%= redondear(@total_ventanilla) %> </h4>
   <%when "hospitalizacion"%>
-    <h3>Reporte de Facturas  de Hospitalización desde:</h3>
+    <h3>Reporte de Ventas de Hospitalización desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
     <table class="table table-hover table-print">
       <thead>
         <tr>
-          <th>Nº Comprobante</th>
+          <th>Nº</th>
           <th>Cliente</th>
           <th>Dirección</th>
           <th>Servicio</th>
@@ -65,7 +65,7 @@
           <td>ninguno</td>
           <td>ninguno</td>
           <td><%= h.user.username %></td>
-          <td><%= h.created_at.to_s(:db) %></td>
+          <td><%= local_date(h.created_at,"datetime") %></td>
           <td><%= redondear(h.subtotal) %></td>
           <td><%= redondear(h.iva) %></td>
           <td><%= redondear(h.total) %></td>
@@ -73,9 +73,9 @@
         <% end %>
       </tbody>
     </table>
-    <h4>Nº Total de Facturas: <%= @search.count%></h4>
-    <h4>Nº Total de Venta: <%= redondear(@search.sum(:total)) %></h4>
-    <%when "compra"%>
+    <h4>Comprobantes Emitidos: <%= @search.count%></h4>
+    <h4>Total de Venta: <%= redondear(@search.sum(:total)) %></h4>
+  <%when "compra"%>
     <h3>Reporte de Facturas  de Compra  desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
     <table class="table table-hover table-print">
@@ -99,7 +99,7 @@
             <td><%= factura.proveedor.nombre_o_razon_social %></td>
             <td><%= factura.proveedor.direccion %></td>
             <td><%= factura.user.username %></td>
-            <td><%= factura.created_at.to_s(:db) %></td>
+            <td><%= local_date(factura.created_at,"datetime") %></td>
             <td><%= factura.subtotal_0 %></td>
             <td><%= factura.iva %></td>
             <td><%= factura.total %></td>
@@ -108,8 +108,8 @@
       <% end %>
       </tbody>
     </table>
-    <h4>Nº Total de Facturas: <%= @cantidad_compra%> </h4>
-    <h4>Nº Total de Compra: <%= @total_compra %> </h4>
+    <h4>Comprobantes Ingressados: <%= @cantidad_compra%> </h4>
+    <h4>Total de Compras: <%= @total_compra %> </h4>
   <%when "transferencia"%>
     <h3>Reporte de Transferencias desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
@@ -117,9 +117,10 @@
       <thead>
         <tr>
           <th>Nº</th>
-          <th>Servicio</th>
-          <th>Registrado por</th>
-          <th>Fecha</th>
+          <th>Tansferencia a</th>
+          <th>Emitido por</th>
+          <th>Entregado a</th>
+          <th>Fecha y Hora</th>
           <th>Sub Total</th>
           <th>IVA</th>
           <th>Total</th>
@@ -131,7 +132,8 @@
           <td><%= t.numero %></td>
           <td><%= t.servicio%></td>
           <td><%= t.user.username %></td>
-          <td><%= t.created_at.to_s(:db) %></td>
+          <td><%= t.entregado_a%></td>
+          <td><%= local_date(t.created_at,"datetime") %></td>
           <td><%= redondear(t.subtotal)%></td>
           <td><%= redondear(t.iva) %></td>
           <td><%= redondear(t.total) %></td>
@@ -139,7 +141,7 @@
         <% end %>
       </tbody>
     </table>
-    <h4>Nº Total de Transferencias: <%= @search.count%> </h4>
-    <h4>Nº Total de Compra: <%= redondear(@search.sum(:total)) %></h4>
+    <h4>Total de Transferencias: <%= @search.count%> </h4>
+    <h4>Total de Venta: <%= redondear(@search.sum(:total)) %></h4>
     <% end %>
 <% end %>
