@@ -55,12 +55,12 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.fields_for :factura_compras_productos, :wrapper => false do |item| %>
+            <%= f.fields_for :ingreso_productos, :wrapper => false do |item| %>
             <tr class="fields_producto">
               <%= render "productos/ingresos", p: item %>
             </tr>
             <% end %>
-            <tr><td><%= f.link_to_add "Compra", :factura_compras_productos, :class => "nuevo_new"%></td>
+            <tr><td><%= f.link_to_add "Compra", :ingreso_productos, :class => "nuevo_new"%></td>
             </tr>
           </tbody>
         </table>

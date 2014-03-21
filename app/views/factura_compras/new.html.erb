@@ -37,12 +37,12 @@
                 </div>
                 <div id="collapseTwo" class="panel-collapse collapse">
                   <div class="panel-body">
-                    <%= f.fields_for :productos do |item_factura| %>
-                      <%= item_factura.fields_for :producto do |b| %>
-                        <%= render 'item_facturas/itemfacturacompra', f:b %>
+                    <%= f.fields_for :factura_compras_productos do |item_factura| %>
+                      <%= item_factura.fields_for :producto do |producto| %>
+                        <%= render 'item_facturas/itemfacturacompra', f:producto %>
                       <% end %>
                     <% end %>
-                    <%= f.link_to_add "Producto", :productos, :class => "fix-margin nuevo_new"%>
+                    <%= f.link_to_add "Producto", :factura_compras_productos, :class => "fix-margin nuevo_new"%>
                   </div>
                 </div>
               </div>
