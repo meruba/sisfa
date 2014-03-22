@@ -1,45 +1,116 @@
-<div class="col-md-10 col-md-offset-1">
-  <h2 class= "text-center"> 
-    <span class ="fa fa-paperclip"></span>
-    Ficha de Registro Medico
-  </h2>
-  <div class="row form-group">
-    <div class="col-xs-12">
-      <ul class="nav nav-pills nav-justified thumbnail setup-panel">
-        <li class="active"><a href="#step-1">
-          <span class ="fa fa-user-md fa-2x"></span>
-          <p class="list-group-item-text">Datos del Paciente</p>
-        </a></li>
-        <li class="disabled"><a hre f="#step-2">
-          <span class ="fa fa-sitemap fa-2x"></span>
-          <p class="list-group-item-text">Informacion de Reparto Militar</p>
-        </a></li>
-        <li class="disabled"><a href="#step-3">
-          <span class ="fa fa-th-list fa-2x"></span>
-          <p class="list-group-item-text">Informacion Adicional</p>
-        </a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="row setup-content" id="step-1">
-    <div class="col-xs-12">
-      <div class="col-md-12 shadow">
-        <%= render 'registros/paciente/civil'%><br>
-        <button id="activate-step-2" class="btn btn-primary">Siguiente</button>
+<div class="container">
+  <div class="col-md-10 col-md-offset-1">
+    <div class="row form-group">
+      <div class="col-xs-12">
+        <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+          <li class="active"><a href="#step-1">
+            <span class ="fa fa-user-md fa-2x"></span>
+            <p class="list-group-item-text">Datos del Paciente</p>
+          </a></li>
+          <li class="disabled"><a href="#step-2">
+            <span class ="fa fa-sitemap fa-2x"></span>
+            <p class="list-group-item-text">Informacion de Reparto Militar</p>
+          </a></li>
+          <li class="active"><a href="#step-3">
+            <span class ="fa fa-th-list fa-2x"></span>
+            <p class="list-group-item-text">Informacion Adicional</p>
+          </a></li>
+        </ul>
       </div>
     </div>
-  </div>
-  <div class="row setup-content" id="step-2">
-    <div class="col-xs-12">
-      <div class="col-md-12 well">
-        <h1 class="text-center"> STEP 2</h1>
+    <div class="row setup-content" id="step-1">
+      <div class="col-xs-12">
+        <div class="col-md-12 shadow">
+          <%= render 'registros/paciente/civil'%><br>
+          <button id="activate-step-2" class="btn btn-primary">Siguiente</button>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="row setup-content" id="step-3">
-    <div class="col-xs-12">
-      <div class="col-md-12 well">
-        <h1 class="text-center"> STEP 3</h1>
+    <div class="row setup-content" id="step-2">
+      <div class="col-xs-12">
+        <div class="col-md-12 shadow">
+          <%= form_tag do %>
+          <div class="row">
+            <div class="col-md-3">
+              <%= label_tag :estado, "Estado:"%><br>
+              <span>Activo</span>
+              <%= check_box_tag :activo %>
+              <span>Pasivo</span>
+              <%= check_box_tag :pasivo %>
+            </div>
+            <div class="col-md-4">
+              <%= label_tag :pertenece_a, "Pertenece a:"%><br>
+              <span>Ejercito</span>
+              <%= check_box_tag :estado_civil %>
+              <span>Aviacion</span>
+              <%= check_box_tag :estado_civil %>
+              <span>Marina</span>
+              <%= check_box_tag :estado_civil %>
+            </div>
+            <div class="col-md-3">
+              <%= label_tag :grado, "Grado:"%>
+              <%= text_field_tag :grado, "",:placeholder => "Ejm: SGNT",:class => "form-control"%>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag :isfa, "Codigo:"%>
+              <%= text_field_tag :isfa,"",:placeholder => "Ejm: 7475", :class => "form-control"%>            
+            </div>
+          </div>
+          <h4>Informacion de Recinto</h4>
+          <div class="row">
+            <div class="col-md-3">
+              <%= label_tag :jefe_reparto, "Jefe de Reparto"%>
+              <%= text_field_tag :jefe_reparto, params[:jefe_reparto], :placeholder => "Ejm: Crnl. Juan Alban" ,:class => "form-control"%>
+            </div>
+            <div class="col-md-3">
+              <%= label_tag :ciudad, "Ciudad:"%>
+              <%= text_field_tag :ciudad, params[:ciudad], :placeholder => "Ejm: Loja", :class => "form-control"%>
+            </div>
+            <div class="col-md-3">
+              <%= label_tag :provincia, "Provincia:"%>
+              <%= text_field_tag :provincia, params[:provincia],:placeholder => "Ejm: Loja", :class => "form-control"%>   
+            </div>
+            <div class="col-md-3">
+              <%= label_tag :direccion, "Ubicacion:"%>
+              <%= text_field_tag :direccion, params[:direccion],:placeholder => "Ejm: 18Nov-Catacocha", :class => "form-control"%>   
+            </div>
+          </div>  
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <div class="row setup-content" id="step-3">
+      <div class="col-xs-12">
+        <div class="col-md-12 shadow">
+          <%= form_tag do %>
+          <h4>Informacion del Familiar</h4>
+          <div class="row">
+            <div class="col-md-4">
+              <%= label_tag :familiar, "Familiar Cercano:"%>
+              <%= text_field_tag :familiar, "",:placeholder => "Ejm: Sra. Julia",:class => "form-control"%>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag :relacion, "Relacion:"%>
+              <%= text_field_tag :relacion,"",:placeholder => "Ejm: Madre", :class => "form-control"%>            
+            </div>
+            <div class="col-md-3">
+              <%= label_tag :domicilio, "Domicilio"%>
+              <%= text_field_tag :domicilio, params[:domicilio],:placeholder => "Ejm: 18Nov-Catacocha", :class => "form-control"%>   
+              
+            </div>
+            <div class="col-md-3">
+              <%= label_tag :telefono, "Telefono:"%>
+              <%= text_field_tag :telefono, params[:telefono], :placeholder => "Ejm: 232424", :class => "form-control"%>
+            </div>
+          </div><br>
+          <div class="row">
+            <div class="col-md-6">
+              <%= label_tag :observacion, "Observacion:"%>
+              <%= text_area_tag :observacion, params[:observacion], :class => "form-control"%>   
+            </div>
+          </div>  
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
