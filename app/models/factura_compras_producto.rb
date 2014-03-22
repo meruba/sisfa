@@ -8,7 +8,7 @@
 #
 
 class FacturaComprasProducto < ActiveRecord::Base
-  belongs_to :producto, inverse_of: :factura_compras_productos
+  belongs_to :producto
   validates_presence_of :producto
   belongs_to :factura_compra
   accepts_nested_attributes_for :producto
