@@ -8,7 +8,17 @@
 #
 
 class FacturaComprasProducto < ActiveRecord::Base
-  belongs_to :producto
+  belongs_to :producto, inverse_of: :factura_compras_productos
+  validates_presence_of :producto
   belongs_to :factura_compra
   accepts_nested_attributes_for :producto
+
+  before_validation :set_selected_producto
+
+  private
+  def set_selected_producto
+    if producto_id && producto_id != '0'
+      self.producto = Producto.find(producto_id)
+    end
+  end
 end

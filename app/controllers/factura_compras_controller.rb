@@ -44,21 +44,23 @@ class FacturaComprasController < ApplicationController
     :tipo,
     :user_id,
     :cliente_id,
-    :productos_attributes => [
-      :id,
-      :nombre,
-      :nombre_generico,
-      :codigo,
-      :categoria,
-      :casa_comercial,
-      :precio_compra,
-      :ganancia,
-      :hasiva,
-      :ingreso_productos_attributes => [
-        :lote,
-        :fecha_caducidad,
-        :cantidad,
-        :id
+    :factura_compras_productos_attributes => [
+      :producto_attributes => [
+        :id,
+        :nombre,
+        :nombre_generico,
+        :codigo,
+        :categoria,
+        :casa_comercial,
+        :precio_compra,
+        :ganancia,
+        :hasiva,
+        :ingreso_productos_attributes => [
+          :lote,
+          :fecha_caducidad,
+          :cantidad,
+          :id
+        ]
       ]
     ]
   end
