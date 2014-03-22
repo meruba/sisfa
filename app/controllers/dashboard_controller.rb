@@ -81,7 +81,7 @@ class DashboardController < ApplicationController
     @fecha = params[:fecha]
     unless @fecha.to_time > Time.now
       cierres_de_caja("mes", @fecha.to_time)
-      @anuladas_ventanilla = facturas_anuladas(params[:fecha].to_time).count()
+      @anuladas_ventanilla = Factura.where(:created_at => @fecha.to_time.beginning_of_month..@fecha.to_time.end_of_month).where(:anulada => true).count()
       # transferencias
       transferencias = transferencias(@fecha)
       @numero_transferencias = transferencias.count()
@@ -186,14 +186,17 @@ class DashboardController < ApplicationController
     else
       estadisticas(nil, fecha)
       estadisticas_hospitalizados(nil, fecha)
+      estadisticas_transferencias(nil, fecha)
       @ventanilla_subtotal = sumar_impuesto(@facturas, "subtotal_0")
       @hospitalizacion_subtotal = sumar_impuesto(@hospitalizados, "subtotal")
-      @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal
+      @transferencia_subtotal = sumar_impuesto(@transferencias, "subtotal")
+      @total_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @transferencia_subtotal
       @ventanilla_iva = sumar_impuesto(@facturas, "iva")
       @hospitalizacion_iva = sumar_impuesto(@hospitalizados, "iva")
-      @total_iva = @ventanilla_iva + @hospitalizacion_iva
+      @transferencia_iva = sumar_impuesto(@transferencias, "iva")
+      @total_iva = @ventanilla_iva + @hospitalizacion_iva + @transferencia_iva
       @num_comprobantes = @cantidad_ventanilla + @cantidad_hospitalizacion
-      @totaldia = @total_ventanilla + @total_hospitalizacion
+      @totaldia = @total_ventanilla + @total_hospitalizacion + @total_transferencia
     end
   end
 
@@ -225,10 +228,6 @@ class DashboardController < ApplicationController
       transferencias = Traspaso.where(:created_at => fecha, :user_id => current_user.id)
     end
     return :json => transferencias
-  end
-
-  def facturas_anuladas(fecha)
-    facturas = Factura.where(:created_at => fecha.beginning_of_month..fecha.end_of_month).where(:anulada => true)
   end
 
   def transferencias(fecha)

@@ -32,4 +32,16 @@ module ApplicationHelper
     end
   end
 
+  def local_date(date, tipo)
+    case tipo
+    when tipo = "date"
+      date = date.strftime("%Y-%m-%d")
+    when tipo = "datetime"
+      date = date.strftime("%Y-%m-%d | %H:%M:%S")
+    when tipo = "time"
+      date = date.strftime("%H:%M:%S")
+    end
+      date 
+  end
+
 end

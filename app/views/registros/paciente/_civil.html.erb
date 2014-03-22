@@ -1,0 +1,62 @@
+<%= form_tag do %>
+<div class="row">
+	<div class="col-xs-12">
+		<div class="col-md-6 col-xs-6">
+			<%= label_tag :cedula, "Cedula de Identidad:"%>
+			<%= text_field_tag :cedula, params[:cedula], :class => "form-control-border numero_de_identificacion", placeholder: "Cedula de Identidad "%>
+			<h5><strong>Nombres Completos: </strong>Lenin Israel Capa Medina</h5>
+			<h5><strong>Direccion actual: </strong>Cipres y Catamayo (12-22)</h5>
+			<h5><strong>Telefonos: </strong>099999999</h5>
+		</div>
+		<div class="col-md-6 col-xs-6 text-right text-muted">
+			<h4><strong>N Historia Clinica</strong> #4546</h4>
+			<h5>Fecha de Admision: <%= local_date(Time.now, "date") %></h5>
+			<h5>Hora de Ingreso: <%= local_date(Time.now, "time")%>
+			</h5>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 line">
+		<%= label_tag :sexo, "Sexo:"%><br>
+		<i class ="fa fa-male"></i>
+    <%= check_box_tag :masculino %>
+		<i class ="fa fa-female"></i>
+    <%= check_box_tag :femenino %>
+	</div>
+	<div class="col-md-5 line">
+		<%= label_tag :estado_civil, "Estado Civil:"%><br>
+		<span>Soltero</span>
+    <%= check_box_tag :estado_civil %>
+		<span>Casado</span>
+    <%= check_box_tag :estado_civil %>
+    <span>Union Libre</span>
+    <%= check_box_tag :estado_civil %>
+    <span>Divorciado(a)</span>
+    <%= check_box_tag :estado_civil %>
+	</div>
+	<div class="col-md-4 line">
+		<%= label_tag :motivo_ingreso, "Ingreso por:"%><br>
+		<span>Medicina</span>
+    <%= check_box_tag :motivo_ingreso %>
+		<span>Quirofano</span>
+    <%= check_box_tag :motivo_ingreso %>
+    <span>Hemond</span>
+    <%= check_box_tag :motivo_ingreso %>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md-3 line">
+		<%= label_tag :edad, "Edad:"%>
+		<%= text_field_tag :edad, params[:edad], :placeholder => "ingresar" ,:class => "ningun-border"%>
+	</div>
+	<div class="col-md-5 line">
+		<%= label_tag :especialidad, "Especialidad:"%>
+		<%= text_field_tag :especialidad, params[:especialidad], :placeholder => "ingresar", :class => "ningun-border"%>
+	</div>
+	<div class="col-md-4 line">
+		<%= label_tag :fecha_nacimiento, "Fecha de Nacimiento:"%>
+		<%= text_field_tag :fecha_nacimiento, params[:fecha_nacimiento],:placeholder => "2000/01/12", :class => "ningun-border"%>		
+	</div>
+</div>
+<% end %>

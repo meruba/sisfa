@@ -7,6 +7,7 @@
         <th></th>
         <th>VENTANILLA</th>
         <th>HOSPITALIZACIÓN</th>
+        <th>TRANSFERENCIA</th>
         <th>TOTAL</th>
       </tr>
     </thead>
@@ -15,24 +16,28 @@
         <td>Facturas:</td>
         <td><%= @cantidad_ventanilla %></td>
         <td><%= @cantidad_hospitalizacion %></td>
+        <td><%= @cantidad_transferencia %></td>
         <td><%= @num_comprobantes %></td>
       </tr>
       <tr>
         <td>Subtotal:</td>
         <td><%= redondear(@ventanilla_subtotal) %></td>
         <td><%= redondear(@hospitalizacion_subtotal) %></td>
+        <td><%= redondear(@transferencia_subtotal) %></td>
         <td><%= redondear(@total_subtotal) %></td>
       </tr>
       <tr>
         <td>Iva:</td>
         <td><%= redondear(@ventanilla_iva) %></td>
         <td><%= redondear(@hospitalizacion_iva) %></td>
+        <td><%= redondear(@transferencia_iva) %></td>
         <td><%= redondear(@total_iva) %></td>
       </tr>
       <tr>
         <td>Total:</td>
         <td><%= redondear(@total_ventanilla) %></td>
         <td><%= redondear(@total_hospitalizacion) %></td>
+        <td><%= redondear(@total_transferencia) %></td>
         <td><strong><%= redondear(@totaldia) %></strong></td>
       </tr>
     </tbody>

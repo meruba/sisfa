@@ -1,0 +1,22 @@
+<%= nested_form_for @registro do |f| %>
+<%= form_errors_for @registro %>
+<div class="field">
+  <!-- formulario datos del cliente -->
+  <%= f.fields_for :cliente do |cliente_params| %>
+  <%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+  <%=  cliente_params.text_field :numero_de_identificacion, class: "numero_de_identificacion", :placeholder => "Cédula o RUC" %>
+  <%=  cliente_params.text_field :nombre, class: "nombre", :placeholder => "Nombres Apellidos" %>
+  <%=  cliente_params.text_field :direccion, class: "direccion", :placeholder => "Dirección"%>
+  <%=  cliente_params.text_field :telefono, class: "telefono", :placeholder => "Teléfono"%>
+  <%=  cliente_params.fields_for :militar do |militar| %>
+  <%= militar.text_field :grado, :placeholder => "Grado"%>
+  <%= militar.text_field :servicio, :placeholder => "Servicio"%>
+  <% end %>
+  <% end %>
+  <%= f.text_field :n_hclinica, placeholder: "N Historia Clinica" %>
+  <%= f.text_field :fecha_de_ingreso, class: "datepicker", placeholder: "Fecha de ingreso" %>
+  <%= f.text_field :especialidad, placeholder: "especialidad" %>
+  <%= f.submit :Guardar, class: "guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
+
+</div>
+<% end %>

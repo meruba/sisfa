@@ -47,11 +47,13 @@
     </thead>
     <tbody>
       <% @producto.ingreso_productos.each do |detalle| %>
+      <% unless detalle.cantidad == 0 %>
       <tr>
         <td><%= detalle.lote %></td>
         <td><%= detalle.cantidad %></td>
         <td><%= detalle.fecha_caducidad %></td>
       </tr>
+      <% end %>
       <% end %>
     </tbody>
   </table>
