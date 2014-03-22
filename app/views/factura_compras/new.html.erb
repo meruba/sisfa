@@ -41,8 +41,8 @@
                       <%= item_factura.fields_for :producto do |producto| %>
                         <%= render 'item_facturas/itemfacturacompra', f:producto %>
                       <% end %>
+                      <%= item_factura.link_to_add "Producto", :producto, :class => "fix-margin nuevo_new"%>
                     <% end %>
-                    <%= f.link_to_add "Producto", :factura_compras_productos, :class => "fix-margin nuevo_new"%>
                   </div>
                 </div>
               </div>
