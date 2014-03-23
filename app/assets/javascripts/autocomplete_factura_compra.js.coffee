@@ -12,11 +12,6 @@ window.Helpers.AutocompleteCompraHelper = {
       window.Helpers.AutocompleteCompraHelper.total_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_productos_factura_compra()
 
-    $(".nombre_producto").blur "input", ->
-      $this = $(this)
-      texto = $this.val()
-      $this.closest(".fields").find(".nombre_item").text(texto + " $")
-
     $(".eliminar_item_producto").on "click", ->
       $this = $(this)
       $this.closest(".fields_producto").remove()
@@ -29,6 +24,7 @@ window.Helpers.AutocompleteCompraHelper = {
       window.Helpers.AutocompleteCompraHelper.total_producto($this)
       window.Helpers.AutocompleteCompraHelper.suma_productos_factura_compra()
 
+  producto_compra_init: ->
     $(".nombre_producto").autocomplete
       minLength: 3
       source: "/productos/autocomplete_producto_compra.json"
@@ -49,7 +45,11 @@ window.Helpers.AutocompleteCompraHelper = {
         $this.closest(".fields").find(".precio_compra").val ui.item.precio_compra
         $this.closest(".fields").find(".ganancia").val ui.item.ganancia
 
-
+    $(".nombre_producto").blur "input", ->
+      $this = $(this)
+      texto = $this.val()
+      $this.closest(".fields").find(".nombre_item").text(texto + " $")
+      
   total_producto: (componente) ->
     sum = 0
     componente.closest(".fields").find(".fields_producto").find(".cantidad_producto").each ->
@@ -71,5 +71,7 @@ window.Helpers.AutocompleteCompraHelper = {
 
 jQuery window.Helpers.AutocompleteCompraHelper.init
 $(document).on "ready page:load", window.Helpers.AutocompleteCompraHelper.init_autocomple
+$(document).on "ready page:load", window.Helpers.AutocompleteCompraHelper.producto_compra_init
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteCompraHelper.init_autocomplete
+$(document).on "nested:fieldAdded", window.Helpers.AutocompleteCompraHelper.producto_compra_init
