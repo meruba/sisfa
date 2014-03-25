@@ -1,47 +1,57 @@
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h1 class="modal-title" id="myModalLabel">Información</h1>
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h1 class="modal-title" id="myModalLabel">Información</h1>
 </div>
 <div class="modal-body">
-	 <p>
-    <strong>Paciente:</strong>
-    <%= @hospitalizacion.cliente.nombre%>
-  </p>
-  <p>
-    <strong>Fecha de Emisión:</strong>
-    <%= @hospitalizacion.fecha_emision %>
-  </p>
-  <table class="table table-hover">
-	  <thead class= "well">
-	    <tr>
-	      <th>Producto</th>
-	      <th>Cantidad</th>
-	      <th>Precio</th>
-	      <th>Iva</th>
-	      <th>Total</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <% @hospitalizacion.item_hospitalizacions.each do |t| %>
-	      <tr>
-	        <td><%= t.ingreso_producto.producto.nombre%></td>
-	        <td><%= t.cantidad %></td>
-	        <td>$ <%= t.valor_unitario %></td>
-	        <td>$ <%= t.iva %></td>
-	        <td>$ <%= t.total %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
+	<p>
+		<strong>Paciente:</strong>
+		<%= @hospitalizacion.cliente.nombre%>
+	</p>
+	<p>
+		<strong>Fecha de Emisión:</strong>
+		<%= @hospitalizacion.fecha_emision %>
+	</p>
+	<table class="table table-hover">
+		<thead class= "well">
+			<tr>
+				<th>Producto</th>
+				<th>Cantidad</th>
+				<th>Precio</th>
+				<th>Iva</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @hospitalizacion.item_hospitalizacions.each do |t| %>
+			<tr>
+				<td><%= t.ingreso_producto.producto.nombre%></td>
+				<td><%= t.cantidad %></td>
+				<td>$ <%= t.valor_unitario %></td>
+				<td>$ <%= t.iva %></td>
+				<td>$ <%= t.total %></td>
+			</tr>
+			<% end %>
+		</tbody>
 	</table>
-  <h4 class="text-success text-right">
-    <strong>Iva: $</strong>
-    <%= @hospitalizacion.iva %>
-    <strong>Subtotal: $</strong>
-    <%= @hospitalizacion.subtotal %>
-    <strong>Total: $</strong>
-    <%= @hospitalizacion.total %>
-  </h4>
+	<div class="row">
+		<div class="col-xs-2 col-xs-offset-8">
+			<p>
+				<strong>
+					Subtotal: <br>
+					IVA: <br>
+					Total: <br>
+				</strong>
+			</p>
+		</div>
+		<div class="col-xs-2">
+			<strong>
+				$ <%= @hospitalizacion.subtotal %><br>
+				$ <%= @hospitalizacion.iva %><br>
+				$ <%= @hospitalizacion.total %><br>
+			</strong>
+		</div>
+	</div>
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
 </div>
