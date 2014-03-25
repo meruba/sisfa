@@ -1,7 +1,7 @@
 class FacturasController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
-	before_action :set_factura, only: [:show, :anular, :imprimir]
+	before_action :set_factura, only: [:show, :anular, :imprimir, :anulado]
 	before_action :set_cliente, only: :create
 
 #obtiene todas las facturas de venta tipo: ventanilla, consulta externa y hospitalizacion
@@ -42,8 +42,15 @@ class FacturasController < ApplicationController
 	end
 	
 	def anular
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def anulado
 		unless @factura.anulada
 			@factura.anulada = true
+			@factura.razon_anulada = params[:razon]
 			@factura.rollback_factura
 			@factura.save
 			redirect_to facturas_path, :notice => "Factura Anulada"

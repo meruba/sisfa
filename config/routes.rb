@@ -49,7 +49,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
 
   resources :facturas do
     member do
-      post "anular"
+      get "anular"
+      post "anulado"
     end
   end
 
