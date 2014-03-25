@@ -7,3 +7,12 @@ before_script:
   - cp config/database.yml.example config/database.yml
   - mysql -e 'create database sisfa_test'
   - rake db:migrate
+
+notifications:
+  email:
+    recipients:
+      - fabrifloresg@gmail.com
+      - leviskp87@gmail.com
+      - betitos2309@gmail.com
+    on_success: [never]
+    on_failure: [always]
