@@ -26,7 +26,7 @@ class FacturasController < ApplicationController
 		end
 	end
 
-	def venta
+	def new
 		@factura = Factura.new(:tipo => "venta")
 		@factura.item_facturas.build		
 	end
@@ -55,7 +55,6 @@ class FacturasController < ApplicationController
 			if @cliente.save
 				@factura = @cliente.facturas.build(factura_params)
 				@factura.user_id = current_user.id
-				@factura.set_factura_values
 				@factura.save
 			end
   			format.js

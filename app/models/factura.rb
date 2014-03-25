@@ -38,6 +38,8 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presenc
 validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality => true, :numericality => { :greater_than_or_equal_to => 0 }
 validates :total, :numericality => { :greater_than => 0 }
 
+#callbacks
+before_validation :set_factura_values
 #methods
 
 def set_factura_values
