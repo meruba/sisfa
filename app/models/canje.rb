@@ -29,7 +29,6 @@ class Canje < ActiveRecord::Base
 
   def set_lineas_kardex
     Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
-    Lineakardex.create(:kardex => self.nuevo.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.nuevo.cantidad, :v_unitario => self.nuevo.producto.precio_compra, :observaciones => "Producto Canjeado")
   end
 
 end
