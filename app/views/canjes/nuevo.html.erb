@@ -13,7 +13,7 @@
   </div>
   <div class="nuevo_producto_wrapper" style="display: none;"> 
     <%= f.fields_for :producto do |producto_params| %>
-      <div class="field">
+      <div class="field fields">
         <div class="row">
           <div class="col-md-6">
             <%= producto_params.hidden_field :id %>
@@ -22,21 +22,21 @@
           </div>
           <div class="col-md-6">
             <%= producto_params.label :nombre_generico, "Nombre Genérico" %>
-            <%= producto_params.text_field :nombre_generico %>
+            <%= producto_params.text_field :nombre_generico, :class => "nombre_generico" %>
           </div>
         </div>
         <div class="row">
           <div class="col-md-6">
             <%= producto_params.label :codigo, "Código" %>
-            <%= producto_params.text_field :codigo %>
+            <%= producto_params.text_field :codigo, :class => "codigo" %>
           </div>
           <div class="col-md-6">
             <%= producto_params.label :categoria %>
-            <%= producto_params.text_field :categoria%>
+            <%= producto_params.text_field :categoria, :class => "categoria"%>
           </div>
         </div>
         <%= producto_params.label :casa_comercial %>
-        <%= producto_params.text_field :casa_comercial%>
+        <%= producto_params.text_field :casa_comercial, :class => "casa_comercial"%>
         <div class="row">
           <div class="col-md-4">
             <%= producto_params.label :precio_compra, "Precio de compra" %>
