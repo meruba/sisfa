@@ -2,6 +2,7 @@ class ProformasController < ApplicationController
 	before_filter :require_login
   before_filter :suspendido
   before_action :set_proforma, only: [:show]
+  before_action :set_cliente, only: :create
 
 	def index
 		respond_to do |format|
@@ -13,10 +14,6 @@ class ProformasController < ApplicationController
 	def new
 		@proforma = Proforma.new
 		@proforma.item_proformas.build
-		respond_to do |format|
-      format.html
-      format.js
-    end
 	end
 
 	def show
@@ -30,8 +27,6 @@ class ProformasController < ApplicationController
 
   def create
   respond_to do |format|
-  	cliente_attrs = params[:proforma].delete :cliente
-  	@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
   		if @cliente.save
   			@proforma = @cliente.proformas.build(proforma_params)
   			@proforma.numero = Proforma.last ? Proforma.last.numero + 1 : 1
@@ -82,5 +77,10 @@ class ProformasController < ApplicationController
 	def set_proforma
 		@proforma = Proforma.find(params[:id])
 	end
+
+  def set_cliente
+    cliente_attrs = params[:proforma].delete :cliente
+    @cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
+  end
 
 end
