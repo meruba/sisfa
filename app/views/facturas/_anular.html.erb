@@ -1,15 +1,15 @@
 <div class="modal-header">
-  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h3 class="modal-title" id="myModalLabel">Anular Factura<span class="text-right"> Nº<%= @factura.numero%></span></h3>
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3 class="modal-title" id="myModalLabel">Anular Factura<span class="text-right"> Nº<%= @factura.numero%></span></h3>
 </div>
+<%= form_tag anulado_factura_path do %>
 <div class="modal-body ">
-  <%= form_tag anulado_factura_path do %>
-    <%= label_tag :razon %>
-    <%= text_field_tag :razon, params[:razon], :required => true, class: "form-control" %>
-    <%= submit_tag "Anular", :remote => true, data: {disable_with: "Anulando..."}, class: "btn btn-danger" %>
-  <% end %>
-  <%= render "factura" %>
+	<%= label_tag :razon, "Porque desea anular esta factura?" %>
+	<%= text_area_tag :razon, params[:razon], :required => true, class: "form-control", :placeholder => "Ejm: Producto facturado equivocado" %>
+
 </div>
 <div class="modal-footer">
-  <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= submit_tag "Anular", :remote => true, data: {disable_with: "Anulando..."}, class: "btn btn-danger" %>
 </div>
+<% end %>
