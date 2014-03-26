@@ -21,10 +21,10 @@ class ItemProforma < ActiveRecord::Base
   belongs_to :ingreso_producto
 
   # validations:
-  validates :cantidad, :valor_unitario, :total, :descuento, :presence => true,
+  validates :cantidad, :valor_unitario, :total, :presence => true,
                                                             :numericality => { :greater_than_or_equal_to => 0 }
                                                    
-  validate :valida_descuento
+  # validate :valida_descuento
   validate :stock
 
 

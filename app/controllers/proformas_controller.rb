@@ -25,17 +25,15 @@ class ProformasController < ApplicationController
 		end
 	end
 
-  def create
-  respond_to do |format|
-  		if @cliente.save
-  			@proforma = @cliente.proformas.build(proforma_params)
-  			@proforma.numero = Proforma.last ? Proforma.last.numero + 1 : 1
-  			@proforma.fecha_emision = Time.now
-  			@proforma.save
-      end
-  		format.js
-  	end
-  end
+	def create
+		respond_to do |format|
+			if @cliente.save
+				@proforma = @cliente.proformas.build(proforma_params)
+				@proforma.save
+			end
+			format.js
+		end
+	end
   
 	def facturar
 		@proforma = Proforma.find(params[:id])
