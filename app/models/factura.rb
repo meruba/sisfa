@@ -19,6 +19,7 @@
 #  proveedor_id         :integer
 #  cliente_id           :integer
 #  user_id              :integer
+#  razon_anulada        :string(255)
 #
 
 class Factura < ActiveRecord::Base

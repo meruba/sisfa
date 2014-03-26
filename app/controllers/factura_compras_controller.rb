@@ -42,8 +42,9 @@ class FacturaComprasController < ApplicationController
     :total,
     :tipo,
     :user_id,
-    :cliente_id,
+    :proveedor_id,
     :factura_compras_productos_attributes => [
+      :producto_id,
       :producto_attributes => [
         :id,
         :nombre,
