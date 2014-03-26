@@ -76,6 +76,15 @@ def set_factura_values
 	self.descuento = 0
 end
 
+def self.create_items_facturas (item_proformas)
+	itemfacturas = []
+	item_proformas.each do |item|
+		itemfactura = ItemFactura.new(:cantidad => item.cantidad, :ingreso_producto => item.ingreso_producto, :valor_unitario => item.valor_unitario, :descuento => item.descuento, :total => item.total, :iva => item.iva)
+		itemfacturas << itemfactura
+	end
+	itemfacturas
+end
+
 def rollback_factura
 	self.item_facturas.each do |item|
 		ingreso_producto = item.ingreso_producto
