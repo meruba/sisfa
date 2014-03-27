@@ -4,21 +4,20 @@ class FacturasController < ApplicationController
 	before_action :set_factura, only: [:show, :anular, :imprimir, :anulado]
 	before_action :set_cliente, only: :create
 
-#obtiene todas las facturas de venta tipo: ventanilla, consulta externa y hospitalizacion
 	def index
 		respond_to do |format|
 			format.html
 			format.json { render json: FacturasDatatable.new(view_context, "venta") }
 		end
 	end
-#obtiene todas las facturas que han sido anuladas
+
 	def index_anulada
 		respond_to do |format|
 			format.html
 			format.json { render json: FacturasDatatable.new(view_context, "anulada") }
 		end
 	end
-# obtiene todas las facturas de compra
+
 	def index_compra
 		respond_to do |format|
 			format.html
@@ -49,10 +48,7 @@ class FacturasController < ApplicationController
 
 	def anulado
 		unless @factura.anulada
-			@factura.anulada = true
-			@factura.razon_anulada = params[:razon]
-			@factura.rollback_factura
-			@factura.save
+			@factura.anular_factura(params[:razon])
 			redirect_to facturas_path, :notice => "Factura Anulada"
 		end
 	end

@@ -95,6 +95,13 @@ def rollback_factura
 	end
 end
 
+def anular_factura(razon)
+	self.anulada = true
+	self.razon_anulada = razon
+	self.rollback_factura
+	self.save
+end
+
 def militar_servicio
 	if self.cliente.militar then self.cliente.militar.servicio else "no tiene un militar asosiado" end
 end
