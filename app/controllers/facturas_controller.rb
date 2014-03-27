@@ -60,27 +60,11 @@ class FacturasController < ApplicationController
 	def create
 		respond_to do |format|
 			if @cliente.save
-				@factura = @cliente.facturas.build(factura_params)
-				@factura.user_id = current_user.id
+				@factura = @cliente.facturas.build(factura_params.merge(user_id: current_user.id))
 				@factura.save
 			end
   			format.js
 		end
-	end
-
-	def update    
-		respond_to do |format|
-      if @factura.update(factura_params)
-        @factura = Factura.all
-        format.html { redirect_to @factura, notice: 'Factura modificada exitosamente' }
-        format.json { render action: 'show', status: :created, location: @factura }
-        # format.js { render "success"}
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @factura.errors, status: :unprocessable_entity }
-        format.js
-      end
-    end		
 	end
 	
 	private
@@ -88,7 +72,6 @@ class FacturasController < ApplicationController
 	def factura_params
 		params.require(:factura).permit :observacion,
 		:tipo,
-		:user_id,
 		:cliente_id,
 		:item_facturas_attributes => [
 			:cantidad,
