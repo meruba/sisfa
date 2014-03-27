@@ -8,33 +8,21 @@ class CanjesController < ApplicationController
   def save_nuevo
     @canje = Canje.new
     if params[:canje][:tipo] == "mismo_producto"
-      mismo_producto = params[:canje].delete :entrada_nueva
-      ingreso = IngresoProducto.new(:lote => mismo_producto[:lote], :fecha_caducidad => mismo_producto[:fecha_caducidad], :producto => @actual.producto, :cantidad => @actual.cantidad)
-      if ingreso.save
-        @canje.antiguo = @actual
-        @canje.nuevo = ingreso
-        @canje.save
-        @actual.cantidad = 0
-        @actual.save
+      producto = params[:canje].delete :entrada_nueva
+      if producto[:fecha_caducidad].empty? or producto[:lote].empty?
         redirect_to productos_path
-        flash[:notice] = 'Canje Realizado'
+        flash[:error] = 'Tienes campos en blanco'
       end
+      @canje.mismo_producto(producto, @actual)
+      @canje.save
+      redirect_to productos_path
+      flash[:notice] = 'Canje Realizado'
     else
-      producto_attr = params[:canje].delete :producto
-      producto = Producto.find(producto_attr[:id])
-      producto.ingreso_productos.create(
-        :fecha_caducidad => producto_attr[:ingreso_productos][:fecha_caducidad],
-        :cantidad => producto_attr[:ingreso_productos][:cantidad],
-        :lote => producto_attr[:ingreso_productos][:lote]
-        )
-      if producto.save
-        @canje.antiguo = @actual
-        @canje.save
-        @actual.cantidad = 0
-        @actual.save
-        redirect_to productos_path
-        flash[:notice] = 'Canje Realizado'
-      end
+      nuevo_producto = params[:canje].delete :producto
+      @canje.otro_producto(nuevo_producto, @actual)
+      @canje.save
+      redirect_to productos_path
+      flash[:notice] = 'Canje Realizado'
     end
   end
 

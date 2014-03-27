@@ -23,7 +23,7 @@ class IngresoProducto < ActiveRecord::Base
   has_many :nuevos, :foreign_key => 'nuevo_id', :class_name => "Canje"
 
 #validations
-  validates :cantidad, :fecha_caducidad, :presence => true
+  validates :cantidad, :lote, :fecha_caducidad, :presence => true
   validates :cantidad, :numericality => { :greater_than_or_equal_to => 0}
 
 #callbacks
