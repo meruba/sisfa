@@ -1,7 +1,7 @@
 class FacturaComprasController < ApplicationController
   before_filter :require_login
   before_action :set_factura, only: :show
-  before_action :set_proveedor, only: :create
+  before_action :set_proveedor, :save_producto, only: :create
   
   def new
     @facturacompra = FacturaCompra.new
@@ -73,4 +73,20 @@ class FacturaComprasController < ApplicationController
     @proveedor = proveedor_attrs[:id].present? ? Proveedor.update(proveedor_attrs[:id],proveedor_attrs) : Proveedor.create(proveedor_attrs)
   end
 
+  def save_producto  
+    items = params[:factura_compra][:factura_compras_productos_attributes]
+    items.each do |value, producto|
+      producto  = params[:factura_compra][:factura_compras_productos_attributes][value][:producto_attributes]
+      if producto[:id].empty?
+        #es nuevo producto
+        Producto.create(producto)
+        raise 'error'
+      else
+        #ya existe este producto
+        ingreso_attr = producto[:ingreso_productos_attributes]
+        save = Producto.update(producto[:id],ingreso_attr)
+        raise 'error'
+      end
+    end
+  end
 end
