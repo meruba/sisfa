@@ -30,6 +30,21 @@ class Cliente < ActiveRecord::Base
   has_one :cliente_militar
   has_one :militar, through: :cliente_militar
 
-#method
+#methods
+	
+	def self.autocomplete(params)
+		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%")
+    clientes = clientes.map do |cliente|
+      {
+        :id => cliente.id,
+        :label => cliente.numero_de_identificacion + " / " + cliente.nombre,
+        :value => cliente.numero_de_identificacion,
+        :nombre => cliente.nombre,
+        :direccion => cliente.direccion,
+        :telefono => cliente.telefono
+      }
+    end
+    clientes 
+	end
 
 end
