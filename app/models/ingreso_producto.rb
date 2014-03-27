@@ -31,6 +31,23 @@ class IngresoProducto < ActiveRecord::Base
   before_destroy :set_salida_kardex
 
 #methods
+
+  def self.autocomplete(params)
+    productos = IngresoProducto.includes(:producto).where("cantidad != 0 and productos.nombre like ?", "%#{params}%").references(:producto)
+    productos = productos.map do |ingreso|
+    {
+      :id => ingreso.producto.id,
+      :label => ingreso.producto.nombre + "/" + "Lote:" + ingreso.lote ,
+      :value => ingreso.producto.nombre,
+      :precio_venta => ingreso.producto.precio_venta,
+      :id_ingreso => ingreso.id,
+      :iva => ingreso.producto.hasiva,
+      :casa_comercial => ingreso.producto.casa_comercial
+    }
+    end
+    productos
+  end
+
   private
 
   def set_entrada_kardex

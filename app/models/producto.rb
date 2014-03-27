@@ -37,6 +37,26 @@ class Producto < ActiveRecord::Base
 
 #methods
 
+  def self.autocomplete_producto_compra(params)
+    productos = Producto.where("nombre like ?", "%#{params}%")
+    productos = productos.map do |producto|
+    {
+      :id => producto.id,
+      :label => producto.nombre + " / " + producto.casa_comercial ,
+      :value => producto.nombre,
+      :precio_venta => producto.precio_venta,
+      :precio_compra => producto.precio_compra,
+      :ganancia => producto.ganancia,
+      :codigo => producto.codigo,
+      :casa_comercial => producto.casa_comercial,
+      :categoria => producto.categoria,
+      :iva => producto.hasiva,
+      :nombre_generico => producto.nombre_generico
+    }
+    end
+    productos 
+  end
+
   def cantidad_disponible
     unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
   end

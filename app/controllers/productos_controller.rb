@@ -2,6 +2,7 @@ class ProductosController < ApplicationController
 	before_filter :require_login
   before_filter :suspendido
   before_action :set_producto, only: [:show, :edit, :update]
+  
   def index
     respond_to do |format|
       format.html
@@ -10,47 +11,14 @@ class ProductosController < ApplicationController
   end
 
   def autocomplete
-    # @producto = Producto.new
     respond_to do |format|
-      format.json { 
-        @productos = IngresoProducto.includes(:producto).where("cantidad != 0 and productos.nombre like ?", "%#{params[:term]}%").references(:producto)
-        @productos = @productos.map do |ingreso|
-          {
-            :id => ingreso.producto.id,
-            :label => ingreso.producto.nombre + "/" + "LT:" + ingreso.lote ,
-            :value => ingreso.producto.nombre,
-            :precio_venta => ingreso.producto.precio_venta,
-            :id_ingreso => ingreso.id,
-            :iva => ingreso.producto.hasiva,
-            :casa_comercial => ingreso.producto.casa_comercial
-          }
-        end
-        render :json => @productos 
-      }
+      format.json { render :json => IngresoProducto.autocomplete(params[:term]) }
     end    
   end
 
   def autocomplete_producto_compra
     respond_to do |format|
-      format.json { 
-        @productos = Producto.where("nombre like ?", "%#{params[:term]}%")
-        @productos = @productos.map do |producto|
-          {
-            :id => producto.id,
-            :label => producto.nombre + " / " + producto.casa_comercial ,
-            :value => producto.nombre,
-            :precio_venta => producto.precio_venta,
-            :precio_compra => producto.precio_compra,
-            :ganancia => producto.ganancia,
-            :codigo => producto.codigo,
-            :casa_comercial => producto.casa_comercial,
-            :categoria => producto.categoria,
-            :iva => producto.hasiva,
-            :nombre_generico => producto.nombre_generico
-          }
-        end
-        render :json => @productos 
-      }
+      format.json { render :json => Producto.autocomplete_producto_compra(params[:term]) }
     end  
   end
 
@@ -61,11 +29,13 @@ class ProductosController < ApplicationController
       format.js{ render "new_or_edit" }
     end
   end
+
   def show
     respond_to do |format|
       format.js
     end
   end
+  
   def edit
     respond_to do |format|
       format.js{ render "new_or_edit" }
@@ -75,42 +45,20 @@ class ProductosController < ApplicationController
   def create
     @producto = Producto.new(producto_params)
     respond_to do |format|
-      if @producto.save
-        @productos = Producto.all
-        format.html { redirect_to @producto, notice: 'Producto guardado' }
-        format.json { render action: 'show', status: :created, location: @producto }
-        format.js{
-          render "success"
-        }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @producto.errors, status: :unprocessable_entity }
-        format.js{
-          render "success"
-        }
-      end
+      @producto.save
+      format.js{ render "success" }
     end
   end
 
   def update
     respond_to do |format|
-      if @producto.update(producto_params)
-        @productos = Producto.all
-        format.html { redirect_to @producto, notice: 'Producto was successfully updated.' }
-        format.json { render action: 'show', status: :created, location: @producto }
-        format.js { render "success"}
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @producto.errors, status: :unprocessable_entity }
-        format.js{
-          render "success"
-        }
-      end
+      @producto.update(producto_params)
+        format.js{ render "success" }
     end
   end
 
-
   private 
+  
   def producto_params
     params.require(:producto).permit :nombre,
     :nombre_generico,
@@ -130,7 +78,8 @@ class ProductosController < ApplicationController
       :id,
     ]                                    
   end  
+  
   def set_producto
       @producto = Producto.find(params[:id])
-    end
+  end
 end
