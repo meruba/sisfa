@@ -20,6 +20,21 @@ class CanjesController < ApplicationController
         flash[:notice] = 'Canje Realizado'
       end
     else
+      producto_attr = params[:canje].delete :producto
+      producto = Producto.find(producto_attr[:id])
+      producto.ingreso_productos.create(
+        :fecha_caducidad => producto_attr[:ingreso_productos][:fecha_caducidad],
+        :cantidad => producto_attr[:ingreso_productos][:cantidad],
+        :lote => producto_attr[:ingreso_productos][:lote]
+        )
+      if producto.save
+        @canje.antiguo = @actual
+        @canje.save
+        @actual.cantidad = 0
+        @actual.save
+        redirect_to productos_path
+        flash[:notice] = 'Canje Realizado'
+      end
     end
   end
 

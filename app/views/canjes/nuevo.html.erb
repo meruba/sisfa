@@ -16,7 +16,7 @@
       <div class="field fields">
         <div class="row">
           <div class="col-md-6">
-            <%= producto_params.hidden_field :id %>
+            <%= producto_params.hidden_field :id, :class => "producto_id" %>
             <%= producto_params.label :nombre %>
             <%= producto_params.text_field :nombre, :class => "nombre_producto"%>
           </div>
