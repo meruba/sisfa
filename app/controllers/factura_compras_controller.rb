@@ -76,16 +76,18 @@ class FacturaComprasController < ApplicationController
   def save_producto  
     items = params[:factura_compra][:factura_compras_productos_attributes]
     items.each do |value, producto|
-      producto  = params[:factura_compra][:factura_compras_productos_attributes][value][:producto_attributes]
+      producto  = params[:factura_compra][:factura_compras_productos_attributes][value].delete :producto_attributes
       if producto[:id].empty?
         #es nuevo producto
+        producto.delete("_destroy")
         Producto.create(producto)
-        raise 'error'
       else
         #ya existe este producto
-        ingreso_attr = producto[:ingreso_productos_attributes]
-        save = Producto.update(producto[:id],ingreso_attr)
-        raise 'error'
+        ingreso_attr = producto.delete :ingreso_productos_attributes
+        ingreso_attr.each do |value, ingreso| #agrega ingreso al producto
+          IngresoProducto.create(:producto_id => producto[:id], :fecha_caducidad => ingreso[:fecha_caducidad],
+            :lote => ingreso[:lote], :cantidad => ingreso[:cantidad])
+        end
       end
     end
   end
