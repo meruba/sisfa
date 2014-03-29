@@ -1,4 +1,4 @@
-class FacturasController < ApplicationController
+class FacturasController < NeedClientController
 	before_filter :require_login
 	before_filter :suspendido
 	before_action :set_factura, only: [:show, :anular, :imprimir, :anulado]
@@ -83,10 +83,5 @@ class FacturasController < ApplicationController
 	def set_factura
 		@factura = Factura.find(params[:id])
 	end
-
-	def set_cliente
-		cliente_attrs = params[:factura].delete :cliente
-		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)    
-  end
 
 end

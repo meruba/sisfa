@@ -1,4 +1,4 @@
-class ProformasController < ApplicationController
+class ProformasController < NeedClientController
 	before_filter :require_login
   before_filter :suspendido
   before_action :set_proforma, only: [:show]
@@ -75,10 +75,5 @@ class ProformasController < ApplicationController
 	def set_proforma
 		@proforma = Proforma.find(params[:id])
 	end
-
-  def set_cliente
-    cliente_attrs = params[:proforma].delete :cliente
-    @cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
-  end
 
 end

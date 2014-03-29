@@ -1,5 +1,6 @@
-class HospitalizacionsController < ApplicationController
+class HospitalizacionsController < NeedClientController
 	before_filter :suspendido
+	before_action :set_cliente, only: :create
 
 	def index
     respond_to do |format|
@@ -14,8 +15,6 @@ class HospitalizacionsController < ApplicationController
 	end
 
 	def create
-		cliente_attrs = params[:hospitalizacion].delete :cliente
-		@cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
 		if @cliente.save
 			@hospitalizacion = @cliente.hospitalizacions.build(hospitalizacion_params)
 			@hospitalizacion.user_id = current_user.id
@@ -58,5 +57,5 @@ class HospitalizacionsController < ApplicationController
 			:ingreso_producto_id
 		]
 	end
-	
+
 end
