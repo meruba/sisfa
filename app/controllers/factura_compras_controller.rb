@@ -5,7 +5,7 @@ class FacturaComprasController < ApplicationController
   
   def new
     @facturacompra = FacturaCompra.new
-    @facturacompra.factura_compras_productos.build.build_producto
+    @facturacompra.factura_compras_productos.build
   end
   
   def show
