@@ -1,51 +1,43 @@
-<div class="row">
-  <legend>Ingreso de Compras</legend> 
-</div>
+<legend>Ingreso de Compras</legend> 
 <div class="row">
   <%= nested_form_for @facturacompra, :html => {:class => "new_factura"} do |f| %>
   <%= form_errors_for @facturacompra %>
   <div class="col-md-7">
     <div class="row">
-      <div class="facturacompra">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="panel-group" id="accordion">
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Datos del Proveedor</a>
-                  </h4>
-                </div>
-                <div id="collapseOne" class="panel-collapse collapse in">
-                  <div class="panel-body">
-                    <%= f.fields_for :proveedor do |proveedor_params| %>
-                    <%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>
-                    <%=  proveedor_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion_proveedor", :placeholder => "Cédula o RUC" %>
-                    <%=  proveedor_params.text_field :nombre_o_razon_social, class: "form-control-border nombre", :placeholder => "Nombre o Razon Social" %>
-                    <%=  proveedor_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
-                    <%=  proveedor_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
-                    <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de Factura"%>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
-              <div class="panel panel-default">
-                <div class="panel-heading">
-                  <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Productos</a>
-                  </h4>
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                  <div class="panel-body">
-                    <%= f.fields_for :factura_compras_productos do |item_factura| %>
-                      <%= item_factura.fields_for :producto do |producto| %>
-                        <%= render 'item_facturas/itemfacturacompra', f:producto %>
-                      <% end %>
-                      <%= item_factura.link_to_add "Producto", :producto, :class => "fix-margin nuevo_new"%>
-                    <% end %>
-                  </div>
-                </div>
-              </div>
+      <div class="panel-group" id="accordion">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"> Datos del Proveedor</a>
+            </h4>
+          </div>
+          <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">
+              <%= f.fields_for :proveedor do |proveedor_params| %>
+              <%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>
+              <%=  proveedor_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion_proveedor", :placeholder => "Cédula o RUC" %>
+              <%=  proveedor_params.text_field :nombre_o_razon_social, class: "form-control-border nombre", :placeholder => "Nombre o Razon Social" %>
+              <%=  proveedor_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
+              <%=  proveedor_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
+              <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de Factura"%>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">Productos</a>
+            </h4>
+          </div>
+          <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+              <%= f.fields_for :factura_compras_productos do |item_factura| %>
+              <%= item_factura.fields_for :producto do |producto| %>
+              <%= render 'item_facturas/itemfacturacompra', f:producto %>
+              <% end %>
+              <%= item_factura.link_to_add "Producto", :producto, :class => "fix-margin nuevo_new"%>
+              <% end %>
             </div>
           </div>
         </div>
