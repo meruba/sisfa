@@ -21,8 +21,7 @@ class FacturaComprasController < ApplicationController
       if @facturacompra.save
         redirect_to facturas_path, :notice => "Factura Guardada"
       else
-        flash[:error] = "Error al facturar"
-        redirect_to facturas_path
+        render "new"
       end
     else
       flash[:error] = 'Errores en Proveedor'
