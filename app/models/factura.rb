@@ -32,7 +32,7 @@ has_many :ingreso_productos, :through => :item_facturas
 
 #nested
 # accepts_nested_attributes_for :cliente
-accepts_nested_attributes_for :item_facturas
+accepts_nested_attributes_for :item_facturas, :cliente
 
 #valitations
 validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :total, :presence =>true
@@ -42,6 +42,13 @@ validates :total, :numericality => { :greater_than => 0 }
 #callbacks
 before_validation :set_factura_values
 #methods
+
+def cliente_attributes=(attributes)
+	if attributes['id'].present?
+    self.cliente = Cliente.find(attributes['id'])
+  end
+  super
+end
 
 def set_factura_values
 	self.fecha_de_emision = Time.now

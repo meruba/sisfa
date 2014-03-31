@@ -1,8 +1,7 @@
-class FacturasController < NeedClientController
+class FacturasController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
 	before_action :set_factura, only: [:show, :anular, :imprimir, :anulado]
-	before_action :set_cliente, only: :create
 
 	def index
 		respond_to do |format|
@@ -26,8 +25,9 @@ class FacturasController < NeedClientController
 	end
 
 	def new
-		@factura = Factura.new(:tipo => "venta")
-		@factura.item_facturas.build		
+		@factura = Factura.new
+		@factura.item_facturas.build
+		@factura.build_cliente		
 	end
 
 	def show
@@ -55,12 +55,10 @@ class FacturasController < NeedClientController
 
 	def create
 		respond_to do |format|
-			if @cliente.save
-				@factura = @cliente.facturas.build(factura_params.merge(user_id: current_user.id))
+				@factura = Factura.new(factura_params.merge(user_id: current_user.id, tipo: "venta"))
 				@factura.save
+				format.js
 			end
-  			format.js
-		end
 	end
 	
 	private
@@ -69,6 +67,13 @@ class FacturasController < NeedClientController
 		params.require(:factura).permit :observacion,
 		:tipo,
 		:cliente_id,
+		:cliente_attributes => [
+			:id,
+			:nombre,
+			:direccion,
+			:telefono,
+			:numero_de_identificacion
+		],
 		:item_facturas_attributes => [
 			:cantidad,
 			:valor_unitario,
