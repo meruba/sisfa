@@ -5,6 +5,10 @@
 #  id                :integer          not null, primary key
 #  factura_compra_id :integer
 #  producto_id       :integer
+#  cantidad          :float            not null
+#  valor_unitario    :float            not null
+#  iva               :float            not null
+#  total             :float            not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
