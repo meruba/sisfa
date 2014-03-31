@@ -3,7 +3,7 @@
 	<h4 class="modal-title" id="myModalLabel">VENTAS DE HOY</h4>
 </div>
 <div class="modal-body">
-	<% if  @total_ventanilla == 0%>
+	<% if  @ventanilla_cantidad == 0%>
 	<h3>No has facturado nada Aun!..</h3>
 	<% else %>
 	<div class="row">
@@ -11,12 +11,12 @@
 			<div class="today-total">
 				<div class = "hoy">
 					<h6 class="text-muted">TOTAL DEL DIA</h6>
-					<h1 class="total-num">$ <%= redondear(@total_ventanilla) %></h1>
+					<h1 class="total-num">$ <%= redondear(@ventanilla_total) %></h1>
 				</div>
 				<div class="numbers col-xs-12 text-center">
 					<div class="col-md-4 col-xs-4">
 						<span class="text-muted"><small>Emitidas</small></span>
-						<strong><%= @cantidad_ventanilla %></strong>
+						<strong><%= @ventanilla_cantidad%></strong>
 					</div>
 					<div class="col-md-4 col-xs-4">
 						<span class="text-muted"><small>Subtotal</small></span>

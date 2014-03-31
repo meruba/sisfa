@@ -22,19 +22,19 @@
 				</tr>
 				<tr>
 					<td>Transferencias:</td>
-					<td><%= redondear(@transferencias_subtotal) %></td>
+					<td><%= redondear(@transferencia_subtotal) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><%= redondear(@subtotal_ventas) %></td>
+					<td><%= redondear(@comprobantes_subtotal) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total Iva:</strong></td>
-					<td><%= redondear(@iva_ventas) %></td>
+					<td><%= redondear(@comprobantes_iva) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><%= redondear(@total_ventas) %></td>
+					<td><%= redondear(@comprobantes_total) %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -60,11 +60,11 @@
 				</tr>
 				<tr>
 					<td><strong>Total</strong></td>
-					<td><strong><%= redondear(@total_ventanilla) %></strong></td>
+					<td><strong><%= redondear(@ventanilla_total) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
-		<small>Número de Facturas Emitidas: <strong><%= @cantidad_ventanilla%></strong></small><br/>
+		<small>Número de Facturas Emitidas: <strong><%= @ventanilla_cantidad%></strong></small><br/>
 		<small>Número de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
 	</div>
 
@@ -88,11 +88,11 @@
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><strong><%= redondear(@total_hospitalizacion)%></strong></td>
+					<td><strong><%= redondear(@hospitalizacion_total)%></strong></td>
 				</tr>
 			</tbody>
 		</table>
-		<small>Reportes Emitidos: <strong><%= @cantidad_hospitalizacion%></strong></small>
+		<small>Reportes Emitidos: <strong><%= @hospitalizacion_cantidad%></strong></small>
 	</div>
 
 	<div class="col-md-3 col-xs-3">
@@ -107,25 +107,25 @@
 			<tbody>
 				<tr>
 					<td>Subtotal:</td>
-					<td><%= redondear(@transferencias_subtotal) %></td>
+					<td><%= redondear(@transferencia_subtotal) %></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= redondear(@transferencias_iva) %></td>
+					<td><%= redondear(@transferencia_iva) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><strong><%= redondear(@total_transferencias) %></strong></td>
+					<td><strong><%= redondear(@transferencia_total) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
-		<small>Número de Transferencias: <strong><%= @numero_transferencias%></strong></small>
+		<small>Número de Transferencias: <strong><%= @transferencia_cantidad%></strong></small>
 	</div>
 </div>
 <div class="row page-break">
 	<div class="col-md-8">
 		<h4>Listado de Ingreso (Compras)</h4>	
-		<small>Facturas Ingresadas: <strong><%= @compras.count%></strong></small><br/>
+		<small>Facturas Ingresadas: <strong><%= @compras_cantidad%></strong></small><br/>
 		<table class="table">
 			<thead>
 				<tr>
@@ -137,7 +137,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<% @compras.each do |factura| %>
+				<% @compra.each do |factura| %>
 				<tr>
 					<td><%= factura.numero %></td>
 					<td><%= factura.proveedor.nombre_o_razon_social%></td>
@@ -149,9 +149,9 @@
 				<tr>
 					<td></td>
 					<td><strong>TOTAL:</strong></td>
-					<td><%= redondear(@compras.sum(:subtotal_0)) %></td>
-					<td><%= redondear(@compras.sum(:iva)) %></td>
-					<td><%= redondear(@compras.sum(:total)) %></td>
+					<td><%= redondear(@compra_subtotal) %></td>
+					<td><%= redondear(@compra_iva) %></td>
+					<td><%= redondear(@compra_total) %></td>
 				</tr>
 			</tbody>
 		</table>

@@ -23,11 +23,11 @@
 			</tr>
 			<tr>
 				<td><strong>Total</strong></td>
-				<td><strong><%= redondear(@total_ventanilla) %></strong></td>
+				<td><strong><%= redondear(@ventanilla_total) %></strong></td>
 			</tr>
 		</tbody>
 	</table>
-	<small>Facturas Emitidas: <strong><%= @cantidad_ventanilla%></strong></small>
+	<small>Facturas Emitidas: <strong><%= @cantidad%></strong></small>
 </div>
 <h5 class="fix-margin text-center">Resumen de Facturas</h5>
 <div class="col-md-8">
@@ -42,16 +42,14 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @facturas.each do |value, key|  %>
-			<% key.each do |factura| %>
+			<% @facturas.each do |factura|  %>
 			<tr>
 				<td><%= factura.numero %></td>
 				<td><%= factura.cliente.nombre %></td>
-				<td><%= factura.subtotal_0 %></td>
+				<td><%= factura.subtotal_12 %></td>
 				<td><%= factura.iva %></td>
 				<td><%= factura.total %></td>
 			</tr>
-			<% end %>
 			<% end %>
 		</tbody>
 	</table>

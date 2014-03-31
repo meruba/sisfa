@@ -20,8 +20,7 @@
         </tr>
       </thead>
       <tbody>
-      <% @search.each do |value, key|  %>
-        <% key.each do |factura| %>
+      <% @facturas.each do |factura|  %>
           <tr>
             <td><%= factura.numero %></td>
             <td><%= factura.cliente.nombre %></td>
@@ -32,12 +31,11 @@
             <td><%= factura.iva %></td>
             <td><%= factura.total %></td>
           </tr>
-        <% end %>
       <% end %>
       </tbody>
     </table>
-    <h4>Facturas Emitidas: <%= @cantidad_ventanilla%> </h4>
-    <h4>Total de Venta: <%= redondear(@total_ventanilla) %> </h4>
+    <h4>Facturas Emitidas: <%= @ventanilla_cantidad%> </h4>
+    <h4>Total de Venta: <%= redondear(@ventanilla_total) %> </h4>
   <%when "hospitalizacion"%>
     <h3>Reporte de Ventas de Hospitalización desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
@@ -57,7 +55,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @search.each do |h| %>
+        <% @hospitalizacion.each do |h| %>
         <tr>
           <td><%= h.numero %></td>
           <td><%= h.cliente.nombre%></td>
@@ -73,8 +71,8 @@
         <% end %>
       </tbody>
     </table>
-    <h4>Comprobantes Emitidos: <%= @search.count%></h4>
-    <h4>Total de Venta: <%= redondear(@search.sum(:total)) %></h4>
+    <h4>Comprobantes Emitidos: <%= @hospitalizacion_cantidad%></h4>
+    <h4>Total de Venta: <%= redondear(@hospitalizacion_total) %></h4>
   <%when "compra"%>
     <h3>Reporte de Facturas  de Compra  desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
@@ -92,8 +90,7 @@
         </tr>
       </thead>
       <tbody>
-      <% @search.each do |value, key|  %>
-        <% key.each do |factura| %>
+      <% @compra.each do |factura|  %>
           <tr>
             <td><%= factura.numero %></td>
             <td><%= factura.proveedor.nombre_o_razon_social %></td>
@@ -104,12 +101,11 @@
             <td><%= factura.iva %></td>
             <td><%= factura.total %></td>
           </tr>
-        <% end %>
       <% end %>
       </tbody>
     </table>
-    <h4>Comprobantes Ingressados: <%= @cantidad_compra%> </h4>
-    <h4>Total de Compras: <%= @total_compra %> </h4>
+    <h4>Comprobantes Ingressados: <%= @compra_cantidad%> </h4>
+    <h4>Total de Compras: <%= redondear(@compra_total) %> </h4>
   <%when "transferencia"%>
     <h3>Reporte de Transferencias desde:</h3>
     <h4><%= @start_date%> hasta <%= @end_date%></h4>
@@ -127,7 +123,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @search.each do |t| %>
+        <% @traspaso.each do |t| %>
         <tr>
           <td><%= t.numero %></td>
           <td><%= t.servicio%></td>
@@ -141,7 +137,7 @@
         <% end %>
       </tbody>
     </table>
-    <h4>Total de Transferencias: <%= @search.count%> </h4>
-    <h4>Total de Venta: <%= redondear(@search.sum(:total)) %></h4>
+    <h4>Total de Transferencias: <%= @transferencia_cantidad%> </h4>
+    <h4>Total de Venta: <%= redondear(@transferencia_total) %></h4>
     <% end %>
 <% end %>

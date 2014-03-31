@@ -1,4 +1,4 @@
-<% if  @totalfacturas == 0  and @totalhospitalizacion == 0 %>
+<% if  @ventanilla_cantidad == 0  and @hospitalizacion_cantidad == 0 %>
   <h3>No has facturado nada Aun!..</h3>
 <% else %>
 <table class="table table-hover table-print">
@@ -13,32 +13,32 @@
     </thead>
     <tbody>
       <tr>
-        <td>Facturas:</td>
-        <td><%= @cantidad_ventanilla %></td>
-        <td><%= @cantidad_hospitalizacion %></td>
-        <td><%= @cantidad_transferencia %></td>
-        <td><%= @num_comprobantes %></td>
+        <td>Comprobantes:</td>
+        <td><%= @ventanilla_cantidad %></td>
+        <td><%= @hospitalizacion_cantidad %></td>
+        <td><%= @transferencia_cantidad %></td>
+        <td><%= @comprobantes_cantidad %></td>
       </tr>
       <tr>
         <td>Subtotal:</td>
         <td><%= redondear(@ventanilla_subtotal) %></td>
         <td><%= redondear(@hospitalizacion_subtotal) %></td>
         <td><%= redondear(@transferencia_subtotal) %></td>
-        <td><%= redondear(@total_subtotal) %></td>
+        <td><%= redondear(@comprobantes_subtotal) %></td>
       </tr>
       <tr>
         <td>Iva:</td>
         <td><%= redondear(@ventanilla_iva) %></td>
         <td><%= redondear(@hospitalizacion_iva) %></td>
         <td><%= redondear(@transferencia_iva) %></td>
-        <td><%= redondear(@total_iva) %></td>
+        <td><%= redondear(@comprobantes_iva) %></td>
       </tr>
       <tr>
         <td>Total:</td>
-        <td><%= redondear(@total_ventanilla) %></td>
-        <td><%= redondear(@total_hospitalizacion) %></td>
-        <td><%= redondear(@total_transferencia) %></td>
-        <td><strong><%= redondear(@totaldia) %></strong></td>
+        <td><%= redondear(@ventanilla_total) %></td>
+        <td><%= redondear(@hospitalizacion_total) %></td>
+        <td><%= redondear(@transferencia_total) %></td>
+        <td><strong><%= redondear(@comprobantes_total) %></strong></td>
       </tr>
     </tbody>
 </table>
