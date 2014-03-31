@@ -24,14 +24,6 @@ module ApplicationHelper
     # numero = "$ " + redondeo
   end
 
-  def yes_or_not(boolean)
-    if boolean == true
-      boolean = "si"
-    else
-      boolean = "no"
-    end
-  end
-
   def local_date(date, tipo)
     case tipo
     when tipo = "date"
