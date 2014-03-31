@@ -1,4 +1,5 @@
 class TraspasosController < ApplicationController
+  before_filter :require_login
   before_filter :suspendido
 
 	 def index
@@ -19,10 +20,7 @@ class TraspasosController < ApplicationController
 
 	def create
 		respond_to do |format|
-			@traspaso = Traspaso.new(traspaso_params)
-			@traspaso.numero = Traspaso.last ? Traspaso.last.numero + 1 : 1
-			@traspaso.fecha_emision = Time.now
-			@traspaso.user_id = current_user.id
+			@traspaso = Traspaso.new(traspaso_params.merge(user_id: current_user.id))
 			@traspaso.save
   		format.js
 		end	

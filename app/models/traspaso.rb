@@ -27,8 +27,10 @@ class Traspaso < ActiveRecord::Base
   validates :total, :numericality => { :greater_than_or_equal_to => 0}
   validates :numero, :numericality => { only_integer: true }
 
+  #callbacks
+  before_validation :set_transpaso_values
+  
 	#methods
-	item_traspasos = []
 	def self.disminuir_stock (item_traspasos)
 		item_traspasos.each do |item|
 			unless item.producto_id.nil?
@@ -38,4 +40,9 @@ class Traspaso < ActiveRecord::Base
 			end
 		end
 	end
+
+  def set_transpaso_values
+    self.numero = Traspaso.last ? Traspaso.last.numero + 1 : 1
+    self.fecha_emision = Time.now
+  end
 end
