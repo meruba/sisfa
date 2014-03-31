@@ -1,10 +1,10 @@
 class FacturaComprasController < ApplicationController
   before_filter :require_login
   before_action :set_factura, only: :show
-  before_action :set_proveedor, only: :create
   
   def new
     @facturacompra = FacturaCompra.new
+    @facturacompra.build_proveedor
     @facturacompra.factura_compras_productos.build.build_producto
   end
   
@@ -15,22 +15,16 @@ class FacturaComprasController < ApplicationController
   end
 
   def create
-    if @proveedor.save
-      @facturacompra = @proveedor.factura_compras.build(factura_params)
-      @facturacompra.user_id = current_user.id
+      @facturacompra = FacturaCompra.new(factura_params.merge(user_id: current_user.id))
       if @facturacompra.save
         redirect_to facturas_path, :notice => "Factura Guardada"
       else
-        render "new"
+        render action: "new"
       end
-    else
-      flash[:error] = 'Errores en Proveedor'
-      @facturacompra = @proveedor.factura_compras.build(factura_params)
-      render "new"
-    end 
   end
 
   private
+  
   def factura_params
     params.require(:factura_compra).permit :numero,
     :observacion,
@@ -42,6 +36,13 @@ class FacturaComprasController < ApplicationController
     :tipo,
     :user_id,
     :proveedor_id,
+    :proveedor_attributes => [
+      :id,
+      :nombre_o_razon_social,
+      :direccion,
+      :telefono,
+      :numero_de_identificacion
+    ],
     :factura_compras_productos_attributes => [
       :producto_id,
       :producto_attributes => [
@@ -63,13 +64,9 @@ class FacturaComprasController < ApplicationController
       ]
     ]
   end
+
   def set_factura
     @factura = FacturaCompra.find(params[:id])
-  end
-
-  def set_proveedor
-    proveedor_attrs = params[:factura_compra].delete :proveedor
-    @proveedor = proveedor_attrs[:id].present? ? Proveedor.update(proveedor_attrs[:id],proveedor_attrs) : Proveedor.create(proveedor_attrs)
   end
 
 end

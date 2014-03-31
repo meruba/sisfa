@@ -21,12 +21,17 @@ class FacturaCompra < ActiveRecord::Base
   belongs_to :user
   has_many :factura_compras_productos
   has_many :productos, :through => :factura_compras_productos
-  accepts_nested_attributes_for :factura_compras_productos
+  accepts_nested_attributes_for :factura_compras_productos, :proveedor
   before_save :set_values
 
+  def proveedor_attributes=(attributes)
+    if attributes['id'].present?
+      self.proveedor = Proveedor.find(attributes['id'])
+    end
+    super
+  end
 
   def set_values
-    # self.user_id = current_user.id
     self.fecha_de_emision = Time.now
     self.fecha_de_vencimiento = Time.now + 30.days
   end
