@@ -31,7 +31,7 @@ gem 'jbuilder', '~> 1.2'
 gem "sorcery"
 
 # form
-gem "nested_form"
+gem "nested_form", :git => "git://github.com/fabricioflores/nested_form.git"
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

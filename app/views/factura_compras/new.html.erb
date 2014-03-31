@@ -36,9 +36,8 @@
                 <%= item_factura.fields_for :producto do |producto| %>
                   <%= render 'item_facturas/itemfacturacompra', f:producto %>
                 <% end %>
-                <%= item_factura.link_to_add "Producto", :producto, :class => "fix-margin nuevo_new", data: { disable_with: 'Producto agregado' }%>
               <% end %>
-              <%= f.link_to_add "Item", :factura_compras_productos, :class => "fix-margin nuevo_new"%>
+              <%= f.link_to_add_hmt "Item", :producto, :factura_compras_productos, :class => "fix-margin nuevo_new"%>
             </div>
           </div>
         </div>
