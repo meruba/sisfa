@@ -1,6 +1,6 @@
-class HospitalizacionsController < NeedClientController
+class HospitalizacionsController < ApplicationController
+	before_filter :require_login
 	before_filter :suspendido
-	before_action :set_cliente, only: :create
 
 	def index
     respond_to do |format|
@@ -12,21 +12,15 @@ class HospitalizacionsController < NeedClientController
 	def new
 		@hospitalizacion = Hospitalizacion.new
 		@hospitalizacion.item_hospitalizacions.build
+		@hospitalizacion.build_cliente
 	end
 
 	def create
-		if @cliente.save
-			@hospitalizacion = @cliente.hospitalizacions.build(hospitalizacion_params)
-			@hospitalizacion.user_id = current_user.id
-			@hospitalizacion.set_hospitalizacion_values
-			if @hospitalizacion.save
-				redirect_to hospitalizacions_path, :notice => "Almacenado"
-			else
-				render 'new'
-				flash[:error] = 'Error al Guardar'
-			end
+		@hospitalizacion = Hospitalizacion.new(hospitalizacion_params.merge(user_id: current_user.id))
+		if @hospitalizacion.save
+			redirect_to hospitalizacions_path, :notice => "Almacenado"
 		else
-			flash[:error] = 'Error en cliente'
+			render action: 'new'
 		end
 	end
 
@@ -48,6 +42,13 @@ class HospitalizacionsController < NeedClientController
 		:total,
 		:user_id,
 		:cliente_id,
+		:cliente_attributes => [
+			:id,
+			:nombre,
+			:direccion,
+			:telefono,
+			:numero_de_identificacion
+		],
 		:item_hospitalizacions_attributes => [
 			:cantidad,
 			:iva,

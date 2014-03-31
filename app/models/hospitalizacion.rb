@@ -21,14 +21,25 @@ class Hospitalizacion < ActiveRecord::Base
   belongs_to :user
   belongs_to :cliente
 
-	accepts_nested_attributes_for :item_hospitalizacions
+	accepts_nested_attributes_for :item_hospitalizacions, :cliente
 
 	#validations
   validates :user_id, :numero, :iva, :total, :subtotal, :fecha_emision, presence: true
   validates :subtotal, :total, :numericality => { :greater_than_or_equal_to => 0}
   validates :numero, :numericality => { only_integer: true }
 
+  #callbacks
+  
+  before_validation :set_hospitalizacion_values 
 	#methods
+
+	def cliente_attributes=(attributes)
+		if attributes['id'].present?
+	    self.cliente = Cliente.find(attributes['id'])
+	  end
+	  super
+	end
+
 	def self.disminuir_stock (item_hospitalizacions)
 		item_hospitalizacions.each do |item|
 			unless item.producto_id.nil?
