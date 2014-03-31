@@ -10,13 +10,14 @@ class CanjesController < ApplicationController
     if params[:canje][:tipo] == "mismo_producto"
       producto = params[:canje].delete :entrada_nueva
       if producto[:fecha_caducidad].empty? or producto[:lote].empty?
-        redirect_to productos_path
+        render action: "new"
         flash[:error] = 'Tienes campos en blanco'
+      else
+        @canje.mismo_producto(producto, @actual)
+        @canje.save
+        redirect_to productos_path
+        flash[:notice] = 'Canje Realizado'
       end
-      @canje.mismo_producto(producto, @actual)
-      @canje.save
-      redirect_to productos_path
-      flash[:notice] = 'Canje Realizado'
     else
       nuevo_producto = params[:canje].delete :producto
       @canje.otro_producto(nuevo_producto, @actual)

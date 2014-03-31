@@ -37,23 +37,30 @@ class Canje < ActiveRecord::Base
   end
 
   def otro_producto(attrs, producto_a_canjear)
-    producto = Producto.find(attrs[:id])
-    producto.ingreso_productos.create(
-      :fecha_caducidad => attrs[:ingreso_productos][:fecha_caducidad],
-      :cantidad => attrs[:ingreso_productos][:cantidad],
-      :lote => attrs[:ingreso_productos][:lote]
-      )
-    self.antiguo = producto_a_canjear
-    self.nuevo = producto.ingreso_productos.last
-    Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
-    producto_a_canjear.cantidad = 0
-    producto_a_canjear.save
+    unless attrs[:id].blank?
+      producto = Producto.find(attrs[:id])
+    else
+      producto = Producto.create(
+        :nombre => attrs[:nombre],
+        :nombre_generico => attrs[:nombre_generico],
+        :codigo => attrs[:codigo],
+        :categoria => attrs[:categoria],
+        :casa_comercial => attrs[:casa_comercial],
+        :precio_compra => attrs[:precio_compra],
+        :ganancia => attrs[:ganancia],
+        :hasiva => attrs[:hasiva]
+        )
+    end
+      producto.ingreso_productos.create(
+        :fecha_caducidad => attrs[:ingreso_productos][:fecha_caducidad],
+        :cantidad => attrs[:ingreso_productos][:cantidad],
+        :lote => attrs[:ingreso_productos][:lote]
+        )
+      self.antiguo = producto_a_canjear
+      self.nuevo = producto.ingreso_productos.last
+      Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
+      producto_a_canjear.cantidad = 0
+      producto_a_canjear.save
   end
-
-  # private
-
-  # def set_lineas_kardex
-  #   Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
-  # end
 
 end
