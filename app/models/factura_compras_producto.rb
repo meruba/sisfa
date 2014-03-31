@@ -19,14 +19,11 @@ class FacturaComprasProducto < ActiveRecord::Base
   #nested attributes
     accepts_nested_attributes_for :producto
   
-  #callbacks
-    before_validation :set_selected_producto
-
   #methods
-    private
-    def set_selected_producto
-      if producto_id && producto_id != '0'
-        self.producto = Producto.find(producto_id)
+    def producto_attributes=(attributes)
+      if attributes['id'].present?
+        self.producto = Producto.find(attributes['id'])
       end
+      super
     end
 end

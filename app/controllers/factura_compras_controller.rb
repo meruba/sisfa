@@ -1,11 +1,11 @@
 class FacturaComprasController < ApplicationController
   before_filter :require_login
   before_action :set_factura, only: :show
-  before_action :set_proveedor, :save_producto, only: :create
+  before_action :set_proveedor, only: :create
   
   def new
     @facturacompra = FacturaCompra.new
-    @facturacompra.factura_compras_productos.build
+    @facturacompra.factura_compras_productos.build.build_producto
   end
   
   def show
@@ -25,7 +25,7 @@ class FacturaComprasController < ApplicationController
       end
     else
       flash[:error] = 'Errores en Proveedor'
-      @facturacompra = @proveedor.factura_compras.build
+      @facturacompra = @proveedor.factura_compras.build(factura_params)
       render "new"
     end 
   end
@@ -72,22 +72,4 @@ class FacturaComprasController < ApplicationController
     @proveedor = proveedor_attrs[:id].present? ? Proveedor.update(proveedor_attrs[:id],proveedor_attrs) : Proveedor.create(proveedor_attrs)
   end
 
-  def save_producto  
-    items = params[:factura_compra][:factura_compras_productos_attributes]
-    items.each do |value, producto|
-      producto  = params[:factura_compra][:factura_compras_productos_attributes][value].delete :producto_attributes
-      if producto[:id].empty?
-        #es nuevo producto
-        producto.delete("_destroy")
-        Producto.create(producto)
-      else
-        #ya existe este producto
-        ingreso_attr = producto.delete :ingreso_productos_attributes
-        ingreso_attr.each do |value, ingreso| #agrega ingreso al producto
-          IngresoProducto.create(:producto_id => producto[:id], :fecha_caducidad => ingreso[:fecha_caducidad],
-            :lote => ingreso[:lote], :cantidad => ingreso[:cantidad])
-        end
-      end
-    end
-  end
 end
