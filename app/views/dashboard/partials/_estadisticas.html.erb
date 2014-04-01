@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-sm-12">
+    <span>Ventanilla: $<%=redondear(@total_facturas)%></span>
+    <span class="text-right"><strong><%=redondear(@porcentaje_ventanilla)%>%</strong></span> 
+    <div class="progress progress-sm charts-venta">
+      <div style="width: <%=@porcentaje_ventanilla%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info"></div>
+    </div><!-- progress -->
+    <span>Hospitalizacion: $<%=redondear(@total_hospitalizacion)%></span>
+    <span class="text-right"><strong><%=redondear(@porcentaje_hospitalizacion)%>%</strong></span> 
+    <div class="progress progress-sm charts-venta">
+      <div style="width:<%=@porcentaje_hospitalizacion%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"></div>
+    </div><!-- progress -->
+    <span>Transferencias $<%=redondear(@total_transferencia)%></span>
+    <span class="text-right"><strong><%=redondear(@porcentaje_transferencia)%>%</strong></span>
+    <div class="progress progress-sm charts-venta">
+      <div style="width: <%=@porcentaje_transferencia%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-danger"></div>
+    </div><!-- progress -->
+  </div>
+</div>
