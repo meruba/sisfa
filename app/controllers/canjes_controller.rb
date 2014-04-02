@@ -1,11 +1,11 @@
 class CanjesController < ApplicationController
-  before_action :set_ingreso, only: [:nuevo, :save_nuevo]
+  before_action :find_ingreso, only: [:new, :create]
 
-  def nuevo
+  def new
     @canje = Canje.new
   end
 
-  def save_nuevo
+  def create
     @canje = Canje.new
     if params[:canje][:tipo] == "mismo_producto"
       producto = params[:canje].delete :entrada_nueva
@@ -28,7 +28,7 @@ class CanjesController < ApplicationController
   end
 
   private
-  def set_ingreso
-  	@actual = IngresoProducto.find(params[:id])
+  def find_ingreso
+  	@ingreso = IngresoProducto.find(params[:ingreso_producto_id])
   end
 end

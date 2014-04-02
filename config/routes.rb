@@ -26,6 +26,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
       post "suspender"
     end
   end
+  resources :ingreso_productos do
+    resources :canjes
+  end
   resources :personas
   resources :clientes
   resources :proveedors
@@ -37,12 +40,6 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :hospitalizacions
   resources :item_hospitalizacions
   resources :factura_compras
-  resources :canjes do
-    member do
-      get "nuevo"
-      post "save_nuevo" 
-    end
-  end
   resources :productos do
     resources :kardexes, :as => "kardex"
   end

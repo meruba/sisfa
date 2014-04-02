@@ -1,12 +1,12 @@
 <h2 class= "text-center"><span class="fa fa-exchange"></span> Canje de Productos</h2>
 <div class="canjes col-md-offset-2">
   <div class="col-md-2 text-center">
-    <h3><strong><%= @actual.producto.nombre %></strong></h3>
+    <h3><strong><%= @ingreso.producto.nombre %></strong></h3>
     <h3 class="text-danger total-num">20</h3>
-    <small class="text-muted">Casa Comercial: <%= @actual.producto.casa_comercial %></small>
+    <small class="text-muted">Casa Comercial: <%= @ingreso.producto.casa_comercial %></small>
   </div>
   <div class="canje_form col-md-6">
-    <%= nested_form_for @canje, :url => {:action => "save_nuevo"} do |f| %>
+    <%= nested_form_for [@ingreso, @canje] do |f| %>
     <br>
     <%= f.select :tipo, "<option value='mismo_producto'>Mismo producto</option><option value='nuevoproducto'>Nuevo producto</option>".html_safe, {}, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
     <div class="mismo_producto_wrapper">
