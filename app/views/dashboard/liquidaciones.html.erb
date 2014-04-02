@@ -123,9 +123,9 @@
 	</div>
 </div>
 <div class="row page-break">
-	<div class="col-md-8">
+	<div class="col-md-7">
 		<h4>Listado de Ingreso (Compras)</h4>	
-		<small>Facturas Ingresadas: <strong><%= @compras_cantidad%></strong></small><br/>
+		<small>Facturas Ingresadas: <strong><%= @compra_cantidad%></strong></small><br/>
 		<table class="table">
 			<thead>
 				<tr>
@@ -155,6 +155,33 @@
 				</tr>
 			</tbody>
 		</table>
+	</div>
+	<div class="col-md-5">
+		<h4>Productos Canjeados</h4>	
+		<small>Canjes Realizados: <strong><%= @canjes_cantidad%></strong></small><br/>
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Canje de</th>
+					<th>Por</th>
+					<th>Cantidad</th>
+					<th>P. Salida</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @canjes.each do |canje| %>
+				<tr>
+					<td><%= canje.antiguo.producto.nombre%></td>
+					<td><%= canje.nuevo.producto.nombre %></td>
+					<td><%= canje.cantidad %></td>
+					<td><%= canje.precio_salida %></td>
+					<td><%= canje.total %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+		<small>* Estos valores estan incluidos en el <strong>total</strong> del inventario</small>
 	</div>
 </div>
 <div class="row">
