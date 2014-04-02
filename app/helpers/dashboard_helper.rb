@@ -81,7 +81,7 @@ module DashboardHelper
 
   def liquidacion(tiempo)
     query_reports(tiempo)
-    @canjes = Canje.where(:created_at => Time.now.beginning_of_month...Time.now.end_of_month)
+    @canjes = Canje.where(:created_at => tiempo)
     @canjes_cantidad = @canjes.count()
   end
 end
