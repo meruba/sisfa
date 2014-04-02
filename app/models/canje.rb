@@ -21,10 +21,17 @@ class Canje < ActiveRecord::Base
 #validations
 	validates :fecha, :tipo, :presence =>true
 
+# nested
+  accepts_nested_attributes_for :nuevo, :producto
+
 #callbacks
-  # after_create :set_lineas_kardex
+  before_validation :set_values
 
 #methods
+
+  def set_values
+    self.fecha = Time.now
+  end
 
   def mismo_producto(attrs, producto_a_canjear)
     ingreso = IngresoProducto.new(:lote => attrs[:lote], :fecha_caducidad => attrs[:fecha_caducidad], :producto => producto_a_canjear.producto, :cantidad => producto_a_canjear.cantidad)
