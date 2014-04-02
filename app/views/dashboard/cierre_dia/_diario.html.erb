@@ -1,39 +1,15 @@
-<!-- <div class="container"> -->
 <div class="row">
   <div class="col-xs-12 col-md-7  estadisticas">
-    <div class="welli well-sm">
-      <div class="row">
-        <div class="col-xs-6 col-md-5 text-center info-cierre-caja">
-          <h3 class="total-num">$ <%= redondear(@total_facturas) %></h3>
-          <h5>TOTAL DE HOY</h5>
-          <h5 class="fecha_sin_hora"></h5>
-          <%= link_to ' Cerrar Caja', dashboard_cierre_de_caja_dia_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
-        </div>
-        <div class="col-xs-6 col-md-7">
-          <div class="row">
-            <div class="col-sm-12">
-              <span>Ventanilla: $<%=redondear(@total_facturas)%></span>
-              <span class="text-right"><strong><%=redondear(@porcentaje_ventanilla)%>%</strong></span> 
-              <div class="progress progress-sm charts-venta">
-                <div style="width: <%=@porcentaje_ventanilla%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-info"></div>
-              </div><!-- progress -->
-
-              <span>Hospitalizacion: $<%=redondear(@total_hospitalizacion)%></span>
-              <span class="text-right"><strong><%=redondear(@porcentaje_hospitalizacion)%>%</strong></span> 
-              <div class="progress progress-sm charts-venta">
-                <div style="width:<%=@porcentaje_hospitalizacion%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-success"></div>
-              </div><!-- progress -->
-              <span>Transferencias $<%=redondear(@total_transferencia)%></span>
-              <span class="text-right"><strong><%=redondear(@porcentaje_transferencia)%>%</strong></span>
-              <div class="progress progress-sm charts-venta">
-                <div style="width: <%=@porcentaje_transferencia%>%" aria-valuemax="100" aria-valuemin="0" aria-valuenow="40" role="progressbar" class="progress-bar progress-bar-danger"></div>
-              </div><!-- progress -->
-            </div>
-          </div>
-        </div>
+    <div class="row">
+      <div class="col-xs-6 col-md-5 text-center info-cierre-caja">
+        <h3 class="total-num">$ <%= redondear(@total_facturas) %></h3>
+        <h5>TOTAL DE HOY</h5>
+        <h5 class="fecha_sin_hora"></h5>
+        <%= link_to ' Cerrar Caja', dashboard_cierre_de_caja_dia_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
+      </div>
+      <div class="col-xs-6 col-md-7">
+        <%= render 'dashboard/partials/estadisticas'%>
       </div>
     </div>
   </div>
 </div>
-</div>
-<!-- </div> -->
