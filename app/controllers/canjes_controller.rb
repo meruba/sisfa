@@ -13,14 +13,14 @@ class CanjesController < ApplicationController
         render action: "new"
         flash[:error] = 'Tienes campos en blanco'
       else
-        @canje.mismo_producto(producto, @actual)
+        @canje.mismo_producto(producto, @ingreso)
         @canje.save
         redirect_to productos_path
         flash[:notice] = 'Canje Realizado'
       end
     else
       nuevo_producto = params[:canje].delete :producto
-      @canje.otro_producto(nuevo_producto, @actual)
+      @canje.otro_producto(nuevo_producto, @ingreso)
       @canje.save
       redirect_to productos_path
       flash[:notice] = 'Canje Realizado'

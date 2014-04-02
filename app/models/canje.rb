@@ -31,6 +31,8 @@ class Canje < ActiveRecord::Base
     ingreso.save
     self.antiguo = producto_a_canjear
     self.nuevo = ingreso
+    self.tipo = "mismo producto"
+    self.fecha = Time.now
     Lineakardex.create(:kardex => producto_a_canjear.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => producto_a_canjear.cantidad, :v_unitario => producto_a_canjear.producto.precio_compra, :observaciones => "Producto Canjeado")
     producto_a_canjear.cantidad = 0
     producto_a_canjear.save  
@@ -58,6 +60,8 @@ class Canje < ActiveRecord::Base
         )
       self.antiguo = producto_a_canjear
       self.nuevo = producto.ingreso_productos.last
+      self.tipo = "otro producto"
+      self.fecha = Time.now
       Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
       producto_a_canjear.cantidad = 0
       producto_a_canjear.save
