@@ -11,7 +11,7 @@
     <br>
     <%= f.select :tipo, "<option value='mismo_producto'>Mismo producto</option><option value='nuevoproducto'>Nuevo producto</option>".html_safe, {}, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
     <div class="mismo_producto_wrapper">
-      <%= f.fields_for :entrada_nueva do |nueva_params| %>
+      <%= f.fields_for :nuevo do |nueva_params| %>
       <%= nueva_params.text_field  :lote, :class=> "form-control", :placeholder => "nuevo lote" %>
       <%= nueva_params.text_field  :fecha_caducidad, :class=> "form-control datepicker", :placeholder => "fecha de caducidad" %>
       <% end %>

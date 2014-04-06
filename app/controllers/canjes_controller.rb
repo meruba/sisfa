@@ -4,27 +4,18 @@ class CanjesController < ApplicationController
 
   def new
     @canje = Canje.new
+    @canje.build_nuevo
+    @canje.build_producto
+    @canje.build_producto.ingreso_productos.build
   end
 
   def create
-    @canje = Canje.new(canje_params)
-      if params[:canje][:tipo] == "mismo_producto"
-        producto = params[:canje].delete :entrada_nueva
-        if producto[:fecha_caducidad].empty? or producto[:lote].empty?
-          render action: "new"
-          flash[:error] = 'Tienes campos en blanco'
-        else
-          @canje.mismo_producto(producto, @ingreso)
-          @canje.save
-          redirect_to productos_path
-          flash[:notice] = 'Canje Realizado'
-        end
-      else
-        nuevo_producto = params[:canje].delete :producto
-        @canje.otro_producto(nuevo_producto, @ingreso)
-        @canje.save
-        redirect_to productos_path
-        flash[:notice] = 'Canje Realizado'
+    @canje = Canje.new(canje_params.merge(:antiguo_id => @ingreso.id))
+    if @canje.save
+      redirect_to productos_path
+      flash[:notice] = 'Canje Realizado'
+    else
+      render "new"
     end
   end
 
