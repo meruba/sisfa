@@ -19,10 +19,11 @@ class Canje < ActiveRecord::Base
     belongs_to :producto
 
 #validations
-	validates :fecha, :tipo, :presence =>true, :if => :changing_with_same
+	validates :fecha, :tipo, :presence =>true
 
 # nested
-  accepts_nested_attributes_for :nuevo, :producto
+  accepts_nested_attributes_for :nuevo, :reject_if => :changing_with_other
+  accepts_nested_attributes_for :producto, :reject_if => :changing_with_same
 
 #callbacks
   before_validation :set_values
@@ -31,6 +32,10 @@ class Canje < ActiveRecord::Base
   
   def changing_with_same
     self.tipo == "mismo_producto"
+  end
+
+  def changing_with_other
+    self.tipo == "otro_producto"
   end
 
   def nuevo_attributes=(attributes)
