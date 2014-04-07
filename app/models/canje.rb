@@ -51,6 +51,8 @@ class Canje < ActiveRecord::Base
   def producto_attributes=(attributes)
     if attributes['id'].present?
       self.producto = Producto.find(attributes['id'])
+    else
+      self.producto = Producto.create(attributes)
     end
     super
   end
@@ -58,14 +60,12 @@ class Canje < ActiveRecord::Base
   private
 
   def set_values
-    self.antiguo = IngresoProducto.find(self.antiguo_id)
     self.fecha = Time.now
     self.cantidad = self.antiguo.cantidad
     self.precio_salida = self.antiguo.producto.precio_compra
-    self.total = self.precio_salida
+    self.total = self.precio_salida * self.cantidad
     Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")     
     self.antiguo.cantidad = 0
     self.antiguo.save 
   end
-
 end
