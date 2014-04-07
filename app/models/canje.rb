@@ -19,7 +19,7 @@ class Canje < ActiveRecord::Base
     belongs_to :producto
 
 #validations
-	validates :fecha, :tipo, :presence =>true
+	validates :fecha, :tipo, :presence =>true, :if => :changing_with_same
 
 # nested
   accepts_nested_attributes_for :nuevo, :reject_if => :changing_with_other
