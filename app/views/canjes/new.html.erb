@@ -9,7 +9,7 @@
     <%= nested_form_for [@ingreso, @canje] do |f| %>
     <%= form_errors_for @canje %>
     <br>
-    <%= f.select :tipo, "<option value='mismo_producto'>Mismo producto</option><option value='nuevoproducto'>Nuevo producto</option>".html_safe, {}, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
+    <%= f.select :tipo, "<option value='mismo_producto'>Mismo producto</option><option value='otro_producto'>Nuevo producto</option>".html_safe, {}, { :class => "col-md-4 form-control selecttag select_tipo_canje" } %>
     <div class="mismo_producto_wrapper">
       <%= f.fields_for :nuevo do |nueva_params| %>
       <%= nueva_params.text_field  :lote, :class=> "form-control", :placeholder => "nuevo lote" %>
