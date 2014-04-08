@@ -1,40 +1,30 @@
 <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-  <h1 class="modal-title" id="myModalLabel">Información</h1>
+  <h2 class="modal-title" id="myModalLabel"><%= @producto.nombre %></h2>
 </div>
 <div class="modal-body">
-  <p>
-    <strong>Nombre:</strong>
-    <%= @producto.nombre %>
-  </p>
-  <p>
-    <strong>Nombre genérico:</strong>
-    <%= @producto.nombre_generico %>
-  </p>
-  <p>
-    <strong>Categoría:</strong>
-    <%= @producto.categoria %>
-  </p>
-  <p>
-    <strong>Código:</strong>
-    <%= @producto.codigo %>
-  </p>
-  <p>
-    <strong>Casa comercial:</strong>
-    <%= @producto.casa_comercial %>
-  </p>
-  <p>
-    <strong>Precio de compra:</strong>
-    <%= @producto.precio_compra %>
-  </p>
-  <p>
-    <strong>Precio de venta:</strong>
-    <%= @producto.precio_venta %>
-  </p>
-  <p>
-    <strong>Ganancia:</strong>
-    <%= @producto.ganancia %>
-  </p>
+  <div class="row">
+    <div class="col-md-6">
+      <strong>Nombre genérico:</strong>
+      <%= @producto.nombre_generico %><br>
+      <strong>Casa comercial:</strong>
+      <%= @producto.casa_comercial %><br>
+      <strong>Categoría:</strong>
+      <%= @producto.categoria %><br>
+      <strong>Código:</strong>
+      <%= @producto.codigo %>
+    </div>
+    <div class="col-md-6">
+      <strong>Precio de compra:</strong>
+      <%= @producto.precio_compra %><br>
+      <strong>Precio de venta:</strong>
+      <%= @producto.precio_venta %><br>
+      <strong>Ganancia:</strong>
+      <%= @producto.ganancia %><br>
+      <strong>Incluye iva:</strong>
+      <%= @producto.hasiva%>
+    </div>
+  </div>
   <% unless @producto.ingreso_productos.empty? %>
   <legend>Detalles del producto:</legend>
   <table class="table table-hover">
@@ -61,5 +51,4 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-  <%= link_to 'Editar', edit_producto_path(producto), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "editar_edit"}%>
 </div>
