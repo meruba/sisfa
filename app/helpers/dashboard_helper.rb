@@ -26,14 +26,19 @@ module DashboardHelper
       @total_hospitalizacion = Hospitalizacion.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :user_id => current_user.id).sum(:total)
       @total_transferencia = Traspaso.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :user_id => current_user.id).sum(:total)
     end
-    total = @total_facturas + @total_hospitalizacion + @total_transferencia
-    @porcentaje_ventanilla = regla_de_tres(@total_facturas, total)
-    @porcentaje_hospitalizacion = regla_de_tres(@total_hospitalizacion, total)
-    @porcentaje_transferencia = regla_de_tres(@total_transferencia, total)
+    @total = @total_facturas + @total_hospitalizacion + @total_transferencia
+    @porcentaje_ventanilla = regla_de_tres(@total_facturas, @total)
+    @porcentaje_hospitalizacion = regla_de_tres(@total_hospitalizacion, @total)
+    @porcentaje_transferencia = regla_de_tres(@total_transferencia, @total)
   end
 
   def caja_dia(tiempo)
-    @facturas = Factura.where(:created_at => tiempo, :anulada => false)
+    case current_user.rol
+    when Rol.administrador
+      @facturas = Factura.where(:created_at => tiempo, :anulada => false)
+    when Rol.vendedor
+      @facturas = Factura.where(:created_at => tiempo, :anulada => false, :user_id => current_user.id)
+    end
     values = @facturas.select('SUM(total) total_ventanilla , SUM(subtotal_12) as total_sub_0, SUM(iva) as total_iva')
     values = values.collect { |p| [p.total_ventanilla,p.total_sub_0, p.total_iva]}
     values = nil_0(values)
@@ -64,7 +69,7 @@ module DashboardHelper
     @comprobantes_cantidad = @ventanilla_cantidad + @hospitalizacion_cantidad + @transferencia_cantidad
     @comprobantes_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @transferencia_subtotal
     @comprobantes_iva = @ventanilla_iva + @hospitalizacion_iva + @transferencia_iva
-    @comprobantes_total = @ventanilla_total + @hospitalizacion_total + @transferencia_iva
+    @comprobantes_total = @ventanilla_total + @hospitalizacion_total + @transferencia_total
   end
 
   def query_reports(tiempo)
