@@ -51,8 +51,6 @@ class Canje < ActiveRecord::Base
   def producto_attributes=(attributes)
     if attributes['id'].present?
       self.producto = Producto.find(attributes['id'])
-    else
-      self.producto = Producto.create(attributes)
     end
     super
   end
