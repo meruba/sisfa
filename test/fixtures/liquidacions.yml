@@ -1,0 +1,37 @@
+# == Schema Information
+#
+# Table name: liquidacions
+#
+#  id                       :integer          not null, primary key
+#  iva_ventanilla           :float            default(0.0)
+#  iva_hospitalizacion      :float            default(0.0)
+#  iva_traspaso             :float            default(0.0)
+#  iva_compra               :float            default(0.0)
+#  subtotal_ventanilla      :float            default(0.0)
+#  subtotal_hospitalizacion :float            default(0.0)
+#  subtotal_traspaso        :float            default(0.0)
+#  subtotal_compra          :float            default(0.0)
+#  total_ventanilla         :float            default(0.0)
+#  total_hospitalizacion    :float            default(0.0)
+#  total_traspaso           :float            default(0.0)
+#  total_compra             :float            default(0.0)
+#  emitidos_ventanilla      :integer          default(0)
+#  emitidos_hospitalizacion :integer          default(0)
+#  emitidos_traspaso        :integer          default(0)
+#  emitidos_compra          :integer          default(0)
+#  fecha                    :date
+#  created_at               :datetime
+#  updated_at               :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value
