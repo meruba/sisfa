@@ -39,6 +39,8 @@ module DashboardHelper
     when Rol.vendedor
       @facturas = Factura.where(:created_at => tiempo, :anulada => false, :user_id => current_user.id)
     end
+    @primera_factura = @facturas.first
+    @ultima_factura = @facturas.last
     values = @facturas.select('SUM(total) total_ventanilla , SUM(subtotal_12) as total_sub_0, SUM(iva) as total_iva')
     values = values.collect { |p| [p.total_ventanilla,p.total_sub_0, p.total_iva]}
     values = nil_0(values)

@@ -31,10 +31,8 @@
 		</div>
 		<div class="col-md-6 col-xs-10 text-muted">
 			<blockquote>
-				<h6><i class= "fa fa-clock-o"></i> Primera Factura: 16:00 am</h6>
-				<h6><i class= "fa fa-clock-o"></i> Ultima Factura: 20:00 am</h6>
-				<h6><i class= "fa fa-clock-o"></i> Ultima Factura: 20:00 am</h6>
-				<h6><i class= "fa fa-clock-o"></i> Ultima Factura: 20:00 am</h6>
+				<h6><i class= "fa fa-clock-o"></i> Primera Factura: <%= local_date(@primera_factura.created_at,"time")%></h6>
+				<h6><i class= "fa fa-clock-o"></i> Ultima Factura: <%= local_date(@ultima_factura.created_at,"time")%></h6>
 			</blockquote>
 		</div>
 	</div>
