@@ -61,6 +61,10 @@ class Producto < ActiveRecord::Base
     unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
   end
 
+  def dinero
+    dinero = self.precio_compra * cantidad_disponible
+  end
+
   private
   def set_kardex
     Kardex.create(:producto => self, :fecha => Time.now)

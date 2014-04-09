@@ -29,6 +29,7 @@ class Traspaso < ActiveRecord::Base
 
   #callbacks
   before_validation :set_transpaso_values
+  after_save :add_liquidacion
   
 	#methods
 	def self.disminuir_stock (item_traspasos)
@@ -45,4 +46,8 @@ class Traspaso < ActiveRecord::Base
     self.numero = Traspaso.last ? Traspaso.last.numero + 1 : 1
     self.fecha_emision = Time.now
   end
+
+	def add_liquidacion
+		Liquidacion.add_traspaso(self)
+	end
 end

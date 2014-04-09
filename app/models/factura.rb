@@ -41,6 +41,9 @@ validates :total, :numericality => { :greater_than => 0 }
 
 #callbacks
 before_validation :set_factura_values
+
+after_save :add_liquidacion
+
 #methods
 
 def cliente_attributes=(attributes)
@@ -107,6 +110,10 @@ def anular_factura(razon)
 	self.razon_anulada = razon
 	self.rollback_factura
 	self.save
+end
+
+def add_liquidacion
+	Liquidacion.add_factura(self)
 end
 
 def militar_servicio

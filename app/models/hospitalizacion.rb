@@ -29,7 +29,7 @@ class Hospitalizacion < ActiveRecord::Base
   validates :numero, :numericality => { only_integer: true }
 
   #callbacks
-  
+	after_save :add_liquidacion
   before_validation :set_hospitalizacion_values 
 	#methods
 
@@ -77,4 +77,9 @@ class Hospitalizacion < ActiveRecord::Base
 		self.total = self.total.round(2)
 		self.descuento = 0
 	end
+
+	def add_liquidacion
+		Liquidacion.add_hospitalizacion(self)
+	end
+
 end
