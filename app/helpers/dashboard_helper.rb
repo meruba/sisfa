@@ -51,42 +51,32 @@ module DashboardHelper
   end
 
   def caja_mes(tiempo)
-    caja_dia(tiempo)
-    @hospitalizacion = Hospitalizacion.where(:created_at => tiempo)
-    hospitalizacion = @hospitalizacion.select('SUM(total) total_hospitalizacion , SUM(subtotal) as total_sub, SUM(iva) as total_iva')
-    @hospitalizacion_cantidad = @hospitalizacion.count()
-    hospitalizacion = hospitalizacion.collect { |p| [p.total_hospitalizacion,p.total_sub, p.total_iva]}
-    hospitalizacion = nil_0(hospitalizacion)
-    @hospitalizacion_total = hospitalizacion[0]
-    @hospitalizacion_subtotal = hospitalizacion[1]
-    @hospitalizacion_iva = hospitalizacion[2]
-    @traspaso = Traspaso.where(:created_at => tiempo)
-    @transferencia_cantidad = @traspaso.count()   
-    traspaso = @traspaso.select('SUM(total) total_traspaso , SUM(subtotal) as total_sub, SUM(iva) as total_iva')
-    traspaso = traspaso.collect { |p| [p.total_traspaso,p.total_sub, p.total_iva]}
-    traspaso = nil_0(traspaso)
-    @transferencia_total = traspaso[0]
-    @transferencia_subtotal = traspaso[1]
-    @transferencia_iva = traspaso[2]
-    @comprobantes_cantidad = @ventanilla_cantidad + @hospitalizacion_cantidad + @transferencia_cantidad
-    @comprobantes_subtotal = @ventanilla_subtotal + @hospitalizacion_subtotal + @transferencia_subtotal
-    @comprobantes_iva = @ventanilla_iva + @hospitalizacion_iva + @transferencia_iva
-    @comprobantes_total = @ventanilla_total + @hospitalizacion_total + @transferencia_total
+    @liquidacion = Liquidacion.where(:fecha => tiempo).first
   end
 
-  def query_reports(tiempo)
-    caja_mes(tiempo)
-    @compra = FacturaCompra.where(:created_at => tiempo)
-    compra = @compra.select('SUM(total) total_compra , SUM(subtotal_0) as total_sub, SUM(iva) as total_iva')
-    @compra_cantidad = @compra.count()
-    compra = compra.collect { |p| [p.total_compra,p.total_sub, p.total_iva]}
-    compra = nil_0(compra)
-    @compra_total = compra[0]
-    @compra_subtotal = compra[1]
-    @compra_iva = compra[2]
+  def query_reports(tiempo, tipo)
+    case tipo
+    when "ventanilla"
+      @facturas = Factura.where(:created_at => tiempo)
+      @facturas_cantidad = @facturas.count()
+      @facturas_total = @facturas.sum(:total)
+    when "hospitalizacion"
+      @hospitalizacion = Hospitalizacion.where(:created_at => tiempo)
+      @hospitalizacion_cantidad = @hospitalizacion.count()
+      @hospitalizacion_total = @hospitalizacion.sum(:total)
+    when "transferencia"
+      @traspaso = Traspaso.where(:created_at => tiempo)
+      @transferencia_cantidad = @traspaso.count()
+      @transferencia_total = @traspaso.sum(:total)
+    when "compra"    
+      @compra = FacturaCompra.where(:created_at => tiempo)
+      @compra_cantidad = @compra.count() 
+      @compra_total = @compra.sum(:total)
+    end
   end
 
   def liquidacion(tiempo)
     @liquidacion = Liquidacion.where(:fecha => tiempo).first
+    # falta agregar inventarios y canje
   end
 end

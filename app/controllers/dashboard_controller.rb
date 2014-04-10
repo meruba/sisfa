@@ -21,7 +21,7 @@ class DashboardController < ApplicationController
     @tipo_factura = params[:tipo_factura] 
     respond_to do |format|
       format.html{
-        query_reports(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+        query_reports(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day, @tipo_factura)
       }
       format.pdf do
         render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte.html.erb", :orientation => 'Landscape'
@@ -40,8 +40,8 @@ class DashboardController < ApplicationController
   end
 
   def reportes_cierre_caja_mensual
-    caja_mes(params[:fecha].to_time.beginning_of_month..params[:fecha].to_time.end_of_month)
-    if @ventanilla_cantidad == 0
+    @liquidacion = Liquidacion.where(:fecha => params[:fecha]).first
+    if @liquidacion.nil?
       render :template => "results/not_result"
     else
       render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_mes.html.erb"
@@ -50,8 +50,8 @@ class DashboardController < ApplicationController
 
   def liquidaciones
     @fecha = params[:fecha]
-    unless @fecha.to_time > Time.now
-      liquidacion(params[:fecha])
+    liquidacion(@fecha)
+    unless @fecha.to_time > Time.now or @liquidacion.nil?
       respond_to do |format|
         format.html
         format.pdf do
@@ -75,7 +75,7 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_mes
-    caja_mes(Time.now.beginning_of_month..Time.now.end_of_month)
+    caja_mes(Time.now.beginning_of_month.to_date)
     respond_to do |format|
       format.html
       format.js
