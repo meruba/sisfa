@@ -57,7 +57,6 @@ def set_factura_values
 	self.fecha_de_emision = Time.now
   self.fecha_de_vencimiento = Time.now + 30.days
   self.numero = Factura.last ? Factura.last.numero + 1 : 1
-	subtotal = 0
 	subtotal_0 = 0
 	subtotal_12 = 0
 	iva = 0
@@ -68,7 +67,6 @@ def set_factura_values
 			item.tipo = "venta"
 			item.valor_unitario = ingreso.producto.precio_venta #asigna el valor del item
 			item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
-			# subtotal = subtotal + item.total
 			if ingreso.producto.hasiva == true
 				subtotal_12 = subtotal_12 + item.total
 				item.iva = (ingreso.producto.precio_venta * 0.12).round(2)
