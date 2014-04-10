@@ -22,13 +22,20 @@ class IngresoProducto < ActiveRecord::Base
   has_many :antiguos, :foreign_key => 'antiguo_id', :class_name => "Canje"
   has_many :nuevos, :foreign_key => 'nuevo_id', :class_name => "Canje"
 
-#validations
-  validates :cantidad, :lote, :fecha_caducidad, :presence => true
-  validates :cantidad, :numericality => { :greater_than_or_equal_to => 0}
-
 #callbacks
   after_create :set_entrada_kardex
   before_destroy :set_salida_kardex
+
+#validations
+  validates :cantidad, :lote, :fecha_caducidad, :presence => true
+  validates :cantidad, :numericality => { :greater_than_or_equal_to => 0}
+  validate :validate_fecha_caducidad
+
+  def validate_fecha_caducidad
+    if self.fecha_caducidad < Time.now.months_since(4)
+      errors.add :fecha_caducidad, "Fecha de caducidad no válida"
+    end
+  end
 
 #methods
 
