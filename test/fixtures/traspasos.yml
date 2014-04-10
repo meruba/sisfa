@@ -13,6 +13,7 @@
 #  updated_at    :datetime
 #  subtotal      :float            not null
 #  entregado_a   :string(255)
+#  subtotal_12   :float            not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
