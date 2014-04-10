@@ -51,7 +51,7 @@ class DashboardController < ApplicationController
   def liquidaciones
     @fecha = params[:fecha]
     unless @fecha.to_time > Time.now
-      liquidacion(params[:fecha].to_time.beginning_of_month..params[:fecha].to_time.end_of_month)
+      liquidacion(params[:fecha])
       respond_to do |format|
         format.html
         format.pdf do

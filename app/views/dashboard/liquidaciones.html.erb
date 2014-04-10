@@ -7,39 +7,30 @@
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Tipo</th>
+					<th>Impuestos</th>
 					<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td>Ventanilla:</td>
-					<td><%= redondear(@ventanilla_subtotal) %></td>
+					<td>Subtotal 12:</td>
+					<td><%= redondear(@liquidacion.subtotal12_venta) %></td>
 				</tr>
 				<tr>
-					<td>Hospitalización:</td>
-					<td><%= redondear(@hospitalizacion_subtotal) %></td>
+					<td>Subtotal 0:</td>
+					<td><%= redondear(@liquidacion.subtotal_venta) %></td>
 				</tr>
 				<tr>
-					<td>Transferencias:</td>
-					<td><%= redondear(@transferencia_subtotal) %></td>
+					<td>IVA:</td>
+					<td><%= redondear(@liquidacion.iva_venta) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><%= redondear(@comprobantes_subtotal) %></td>
-				</tr>
-				<tr>
-					<td><strong>Total Iva:</strong></td>
-					<td><%= redondear(@comprobantes_iva) %></td>
-				</tr>
-				<tr>
-					<td><strong>Total:</strong></td>
-					<td><%= redondear(@comprobantes_total) %></td>
+					<td><strong><%= redondear(@liquidacion.total_venta) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-
 	<div class="col-md-3 col-xs-3">
 		<h4>Ventas en ventanilla</h4>	
 		<table class="table">
@@ -51,23 +42,26 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Subtotal:</td>
-					<td><%= redondear(@ventanilla_subtotal) %></td>
+					<td>Subtotal 12:</td>
+					<td><%= redondear(@liquidacion.subtotal12_ventanilla) %></td>
+				</tr>
+				<tr>
+					<td>Subtotal 0:</td>
+					<td><%= redondear(@liquidacion.subtotal_ventanilla) %></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= redondear(@ventanilla_iva) %></td>
+					<td><%= redondear(@liquidacion.iva_ventanilla) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total</strong></td>
-					<td><strong><%= redondear(@ventanilla_total) %></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_ventanilla) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
-		<small>Número de Facturas Emitidas: <strong><%= @ventanilla_cantidad%></strong></small><br/>
-		<small>Número de Facturas Anuladas: <strong><%= @anuladas_ventanilla%></strong></small>
+		<small>Número de Facturas Emitidas: <strong><%= @liquidacion.emitidos_ventanilla%></strong></small><br/>
+		<small>Número de Facturas Anuladas: <strong>?</strong></small>
 	</div>
-
 	<div class="col-md-3 col-xs-3">
 		<h4>Ventas por hospitalización</h4>	
 		<table class="table">
@@ -79,22 +73,25 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Subtotal:</td>
-					<td><%= redondear(@hospitalizacion_subtotal)%></td>
+					<td>Subtotal 12:</td>
+					<td><%= redondear(@liquidacion.subtotal12_hospitalizacion)%></td>
+				</tr>	
+				<tr>
+					<td>Subtotal 0:</td>
+					<td><%= redondear(@liquidacion.subtotal_hospitalizacion)%></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= redondear(@hospitalizacion_iva) %></td>
+					<td><%= redondear(@liquidacion.iva_hospitalizacion) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><strong><%= redondear(@hospitalizacion_total)%></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_hospitalizacion)%></strong></td>
 				</tr>
 			</tbody>
 		</table>
-		<small>Reportes Emitidos: <strong><%= @hospitalizacion_cantidad%></strong></small>
+		<small>Reportes Emitidos: <strong><%=@liquidacion.emitidos_hospitalizacion%></strong></small>
 	</div>
-
 	<div class="col-md-3 col-xs-3">
 		<h4>Transferencias</h4>	
 		<table class="table">
@@ -106,92 +103,53 @@
 			</thead>
 			<tbody>
 				<tr>
-					<td>Subtotal:</td>
-					<td><%= redondear(@transferencia_subtotal) %></td>
+					<td>Subtotal 12:</td>
+					<td><%= redondear(@liquidacion.subtotal12_traspaso) %></td>
+				</tr>
+				<tr>
+					<td>Subtotal 0:</td>
+					<td><%= redondear(@liquidacion.subtotal_traspaso) %></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
-					<td><%= redondear(@transferencia_iva) %></td>
+					<td><%= redondear(@liquidacion.iva_traspaso) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><strong><%= redondear(@transferencia_total) %></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_traspaso) %></strong></td>
 				</tr>
 			</tbody>
 		</table>
-		<small>Número de Transferencias: <strong><%= @transferencia_cantidad%></strong></small>
+		<small>Número de Transferencias: <strong><%= @liquidacion.emitidos_traspaso%></strong></small>
 	</div>
 </div>
 <div class="row page-break">
-	<div class="col-md-7">
-		<h4>Listado de Ingreso (Compras)</h4>	
-		<small>Facturas Ingresadas: <strong><%= @compra_cantidad%></strong></small><br/>
+	<div class="col-md-6">
+		<h4>Listado de Ingreso (Compras)</h4>
 		<table class="table">
 			<thead>
 				<tr>
-					<th>Nº Factura</th>
-					<th>Proveedor</th>
-					<th>Sub Total</th>
-					<th>IVA</th>
+					<th>Impuestos</th>
 					<th>Total</th>
 				</tr>
 			</thead>
 			<tbody>
-				<% @compra.each do |factura| %>
 				<tr>
-					<td><%= factura.numero %></td>
-					<td><%= factura.proveedor.nombre_o_razon_social%></td>
-					<td><%= redondear(factura.subtotal_0)%></td>
-					<td><%= redondear(factura.iva) %></td>
-					<td><%= redondear(factura.total) %></td>
+					<td>Subtotal 0:</td>
+					<td><%= @liquidacion.subtotal_compra%></td>
 				</tr>
-				<% end %>
 				<tr>
-					<td></td>
-					<td><strong>TOTAL:</strong></td>
-					<td><%= redondear(@compra_subtotal) %></td>
-					<td><%= redondear(@compra_iva) %></td>
-					<td><%= redondear(@compra_total) %></td>
+					<td>IVA:</td>
+					<td><%= @liquidacion.iva_compra %></td>
+				</tr>
+				<tr>
+					<td><strong>Total Ventas:</strong></td>
+					<td><%= @liquidacion.total_compra %></td>
 				</tr>
 			</tbody>
 		</table>
-	</div>
-	<div class="col-md-5">
-		<h4>Productos Canjeados</h4>	
-		<small>Canjes Realizados: <strong><%= @canjes_cantidad%></strong></small><br/>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Canje de</th>
-					<th>Por</th>
-					<th>Cantidad</th>
-					<th>P. Salida</th>
-					<th>Total</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @canjes.each do |canje| %>
-				<tr>
-					<td><%= canje.antiguo.producto.nombre%></td>
-					<td><%= canje.nuevo.producto.nombre %></td>
-					<td><%= canje.cantidad %></td>
-					<td><%= canje.precio_salida %></td>
-					<td><%= canje.total %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-		<small>* Estos valores estan incluidos en el <strong>total</strong> del inventario</small>
+		<small>Facturas Ingresadas: <strong><%= @liquidacion.emitidos_compra%></strong></small><br/>
 	</div>
 </div>
-<div class="row">
-	<h4 class= "fix-margin">Firmas:</h4>
-	<%= form_tag do %>
-	<div class="col-md-3 field">
-		<span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+</button></span><br>	
-		<%= text_field_tag :nombre, params[:nombre], placeholder: "Nombre del Responsable" %>
-		<%= text_field_tag :cargo, params[:cargo], placeholder: "Cargo del Responsable" %>
-	</div>
-	<% end %>
-</div>
+<br>
 <%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-info", :target => "_blank"} %>
