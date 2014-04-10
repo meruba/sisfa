@@ -8,31 +8,46 @@
   Dirección: <%= @factura.cliente.direccion%>
 </small><br>
 <small>
-  Loja: <%= @factura.fecha_de_emision %>
+  Fecha: <%= local_date(@factura.fecha_de_emision,"date") %>
 </small>
-<table class="table-factura">
-  <thead>
-    <tr>
-      <th>CANT</th>
-      <th>PRODUCTO</th>
-      <th>V.Unt</th>
-      <th>TOTAL</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @factura.item_facturas.each do |item| %>
-    <tr>
-      <td><%= item.cantidad %></td>
-      <td><%= item.ingreso_producto.producto.nombre%></td>
-      <td><%= item.valor_unitario %></td>
-      <td>$ <%= item.total %></td>
-    </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="text-right impuestos">
-  <small class="imp-factura">SUB: <%= @factura.subtotal_0 %></small><br>
-  <small class="imp-factura">IVA: <%= @factura.iva %></small><br>
-  <small class="imp-factura">DESC: <%= @factura.descuento %></small><br>
-  <small class="imp-factura">TOTAL: <%= @factura.total %></small><br>
+<div class="factura">
+  <table class="table-factura">
+    <thead>
+      <tr>
+        <th>CANT</th>
+        <th>PRODUCTO</th>
+        <th>V.Unt</th>
+        <th>IVA</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @factura.item_facturas.each do |item| %>
+      <tr>
+        <td><%= item.cantidad %></td>
+        <td><%= item.ingreso_producto.producto.nombre%></td>
+        <td><%= item.iva %></td>
+        <td><%= item.valor_unitario %></td>
+        <td>$ <%= item.total %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <small>Sub 12%:</small><br>
+          <small>Sub 0%:</small><br>
+          <small>IVA:</small><br>
+          <small>TOTAL:</small><br>
+        </td>
+        <td>
+          <small>$ <%= @factura.subtotal_12 %></small><br>
+          <small>$ <%= @factura.subtotal_0 %></small><br>
+          <small>$ <%= @factura.iva %></small><br>
+          <small>$ <%= @factura.total%></small><br>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </div>
