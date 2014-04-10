@@ -2,25 +2,18 @@
 	<div class="block-icon">
 		<i class="fa fa-barcode"></i>
 	</div>
-	<td class ="col-md-3">
-		<input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto">
-		<h6 class="casa_comercial text-muted">Casa Comercial</h6>
-		<%=  f.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
-		<input type="text" class="hasiva hidden">
-	</td>
 </td>
 <td>
-	<%=  f.text_field  :valor_unitario, class: "precio_unitario text-muted ningun-border", :placeholder  => "0.0",:readonly => true%>
+	<input type="text" class= "form-control-border producto_traspaso" placeholder = "Ingrese Producto">
+	<h6 class="casa_comercial text-muted">Casa Comercial</h6>
+	<%=  f.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
 </td>
-<td>
-	<%=  f.text_field  :iva, class: "ningun-border text-muted iva", :placeholder  => "0.0",:readonly => true%>
-</td>
+<td class ="precio_unitario text-muted">0.0</td>
+<td class ="iva text-muted">0.0</td>
 <td>
 	<%=  f.number_field  :cantidad, class: "form-control cantidad_transferencia", :placeholder => "0", min: "1", value: 1 %>	
 </td>
-<td>
-	<%=  f.text_field :total, class: "ningun-border total_producto", value: 0.0, :readonly => true%>
-</td>
+<td class ="total_producto">0.0</td>
 <td>
 	<%= f.link_to_remove '', class: "eliminar_item delete_destroy" %>
 </td>
