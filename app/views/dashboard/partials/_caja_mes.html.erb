@@ -14,31 +14,39 @@
     <tbody>
       <tr>
         <td>Emitidos:</td>
-        <td><%= @ventanilla_cantidad %></td>
-        <td><%= @hospitalizacion_cantidad %></td>
-        <td><%= @transferencia_cantidad %></td>
-        <td><%= @comprobantes_cantidad %></td>
+        <td><%= @liquidacion.emitidos_ventanilla%></td>
+        <td><%= @liquidacion.emitidos_hospitalizacion %></td>
+        <td><%= @liquidacion.emitidos_traspaso %></td>
+        <td><%= @liquidacion.emitidos_ventanilla + @liquidacion.emitidos_hospitalizacion + @liquidacion.emitidos_traspaso
+        %></td>
       </tr>
       <tr>
-        <td>Subtotal:</td>
-        <td><%= redondear(@ventanilla_subtotal) %></td>
-        <td><%= redondear(@hospitalizacion_subtotal) %></td>
-        <td><%= redondear(@transferencia_subtotal) %></td>
-        <td><%= redondear(@comprobantes_subtotal) %></td>
+        <td>Subt 12%:</td>
+        <td><%= redondear(@liquidacion.subtotal12_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.subtotal12_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.subtotal12_traspaso) %></td>
+        <td><%= redondear(@liquidacion.subtotal12_venta) %></td>
+      </tr>
+      <tr>
+        <td>Subt 0%:</td>
+        <td><%= redondear(@liquidacion.subtotal_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.subtotal_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.subtotal_traspaso) %></td>
+        <td><%= redondear(@liquidacion.subtotal_venta) %></td>
       </tr>
       <tr>
         <td>Iva:</td>
-        <td><%= redondear(@ventanilla_iva) %></td>
-        <td><%= redondear(@hospitalizacion_iva) %></td>
-        <td><%= redondear(@transferencia_iva) %></td>
-        <td><%= redondear(@comprobantes_iva) %></td>
+        <td><%= redondear(@liquidacion.iva_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.iva_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.iva_traspaso) %></td>
+        <td><%= redondear(@liquidacion.iva_venta) %></td>
       </tr>
       <tr>
         <td>Total:</td>
-        <td><%= redondear(@ventanilla_total) %></td>
-        <td><%= redondear(@hospitalizacion_total) %></td>
-        <td><%= redondear(@transferencia_total) %></td>
-        <td><strong><%= redondear(@comprobantes_total) %></strong></td>
+        <td><%= redondear(@liquidacion.total_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.total_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.total_traspaso) %></td>
+        <td><strong><%= redondear(@liquidacion.total_venta) %></strong></td>
       </tr>
     </tbody>
 </table>
