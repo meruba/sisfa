@@ -13,6 +13,7 @@
 #  updated_at    :datetime
 #  subtotal      :float            not null
 #  entregado_a   :string(255)
+#  subtotal_12   :float            not null
 #
 
 class Traspaso < ActiveRecord::Base
@@ -45,6 +46,30 @@ class Traspaso < ActiveRecord::Base
   def set_transpaso_values
     self.numero = Traspaso.last ? Traspaso.last.numero + 1 : 1
     self.fecha_emision = Time.now
+		subtotal = 0
+		subtotal_12 = 0
+		iva = 0
+		self.item_traspasos.each do |item|
+			unless item.ingreso_producto_id.nil?
+				ingreso = IngresoProducto.find item.ingreso_producto_id
+				cantidad = item.cantidad #obtiene la cantidad del producto
+				item.valor_unitario = ingreso.producto.precio_venta #asigna el valor del item
+				item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
+				if ingreso.producto.hasiva == true
+					subtotal_12 = subtotal_12 + item.total
+					item.iva = (ingreso.producto.precio_venta * 0.12).round(2)
+				else
+					subtotal = subtotal + item.total
+					item.iva = 0
+				end
+				iva = iva + item.iva #suma iva de los productos
+			end
+		end
+		self.iva = iva.round(2)
+		self.subtotal = subtotal
+		self.subtotal_12 = subtotal_12
+		self.total = self.subtotal + self.subtotal_12 + self.iva
+		self.total = self.total.round(2)
   end
 
 	def add_liquidacion
