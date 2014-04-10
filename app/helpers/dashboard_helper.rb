@@ -41,13 +41,14 @@ module DashboardHelper
     end
     @primera_factura = @facturas.first
     @ultima_factura = @facturas.last
-    values = @facturas.select('SUM(total) total_ventanilla , SUM(subtotal_12) as total_sub_0, SUM(iva) as total_iva')
-    values = values.collect { |p| [p.total_ventanilla,p.total_sub_0, p.total_iva]}
+    values = @facturas.select('SUM(total) total_ventanilla , SUM(subtotal_0) as total_sub_0, SUM(subtotal_12) as total_sub_12, SUM(iva) as total_iva')
+    values = values.collect { |p| [p.total_ventanilla,p.total_sub_0, p.total_sub_12, p.total_iva]}
     values = nil_0(values)
     @ventanilla_cantidad = @facturas.count()
     @ventanilla_total = values[0]
     @ventanilla_subtotal = values[1]
-    @ventanilla_iva = values[2]
+    @ventanilla_subtotal12 = values[2]
+    @ventanilla_iva = values[3]
   end
 
   def caja_mes(tiempo)

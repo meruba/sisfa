@@ -86,7 +86,7 @@ class Liquidacion < ActiveRecord::Base
 			:total_ventanilla => b.total_ventanilla + f.total,
 			:emitidos_ventanilla => b.emitidos_ventanilla + 1,
 			:iva_venta => b.iva_venta + f.iva,
-			:subtotal_venta => b.subtotal_venta + f.subtotal,
+			:subtotal_venta => b.subtotal_venta + f.subtotal_0,
 			:subtotal12_venta => b.subtotal12_venta + f.subtotal_12,
 			:total_venta => b.total_venta +  f.total
 			)
