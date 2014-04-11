@@ -14,7 +14,8 @@
           <th>Dirección</th>
           <th>Vendedor</th>
           <th>Fecha</th>
-          <th>Sub Total</th>
+          <th>Sub 12%</th>
+          <th>Sub 0%</th>
           <th>IVA</th>
           <th>Total</th>
         </tr>
@@ -27,6 +28,7 @@
             <td><%= factura.cliente.direccion %></td>
             <td><%= factura.user.username %></td>
             <td><%= local_date(factura.created_at,"datetime") %></td>
+            <td><%= factura.subtotal_12 %></td>
             <td><%= factura.subtotal_0 %></td>
             <td><%= factura.iva %></td>
             <td><%= factura.total %></td>
@@ -49,7 +51,8 @@
           <th>Rango</th>
           <th>Vendedor</th>
           <th>Fecha</th>
-          <th>Sub Total</th>
+          <th>Sub 12%</th>
+          <th>Sub 0%</th>
           <th>IVA</th>
           <th>Total</th>
         </tr>
@@ -64,6 +67,7 @@
           <td>ninguno</td>
           <td><%= h.user.username %></td>
           <td><%= local_date(h.created_at,"datetime") %></td>
+          <td><%= redondear(h.subtotal_12) %></td>
           <td><%= redondear(h.subtotal) %></td>
           <td><%= redondear(h.iva) %></td>
           <td><%= redondear(h.total) %></td>
@@ -117,7 +121,8 @@
           <th>Emitido por</th>
           <th>Entregado a</th>
           <th>Fecha y Hora</th>
-          <th>Sub Total</th>
+          <th>Sub 12%</th>
+          <th>Sub 0%</th>
           <th>IVA</th>
           <th>Total</th>
         </tr>
@@ -130,6 +135,7 @@
           <td><%= t.user.username %></td>
           <td><%= t.entregado_a%></td>
           <td><%= local_date(t.created_at,"datetime") %></td>
+          <td><%= redondear(t.subtotal_12)%></td>
           <td><%= redondear(t.subtotal)%></td>
           <td><%= redondear(t.iva) %></td>
           <td><%= redondear(t.total) %></td>

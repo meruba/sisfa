@@ -14,7 +14,11 @@
 		</thead>
 		<tbody>
 			<tr>
-				<td>Subtotal:</td>
+				<td>Subtotal 12%:</td>
+				<td><%= redondear(@ventanilla_subtotal12) %></td>
+			</tr>			
+			<tr>
+				<td>Subtotal 0%:</td>
 				<td><%= redondear(@ventanilla_subtotal) %></td>
 			</tr>
 			<tr>
@@ -27,7 +31,6 @@
 			</tr>
 		</tbody>
 	</table>
-	<small>Facturas Emitidas: <strong><%= @cantidad%></strong></small>
 </div>
 <h5 class="fix-margin text-center">Resumen de Facturas</h5>
 <div class="col-md-8">
@@ -36,7 +39,8 @@
 			<tr>
 				<th>Numero</th>
 				<th>Cliente</th>
-				<th>Subtotal</th>
+				<th>Sub 12%</th>
+				<th>Sub 0%</th>
 				<th>Iva</th>
 				<th>Total</th>
 			</tr>
@@ -47,6 +51,7 @@
 				<td><%= factura.numero %></td>
 				<td><%= factura.cliente.nombre %></td>
 				<td><%= factura.subtotal_12 %></td>
+				<td><%= factura.subtotal_0 %></td>
 				<td><%= factura.iva %></td>
 				<td><%= factura.total %></td>
 			</tr>
