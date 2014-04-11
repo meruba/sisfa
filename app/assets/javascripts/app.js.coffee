@@ -17,6 +17,9 @@
 $(document).on 'ready page:load',
 -> $("#tab_estadisticas").bind "contextmenu", (e) ->
   false
+  
+$(document).on 'ready page:load',
+-> $('body').css('background-color','#F3F3F3')
 
 $(document).on "click", ".panel-heading span.clickable", (e) ->
   $this = $(this)

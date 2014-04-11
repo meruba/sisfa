@@ -11,6 +11,9 @@ window.Helpers.ButtonsHelper = {
     $(".nuevo_new:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-primary").html "<i class='fa fa-plus'></i> " + $(this).html()
 
+    $(".nuevo_new_default:not(.looks_like_button)").each ->
+      $(this).addClass("looks_like_button btn btn-default").html "<i class='fa fa-plus'></i> " + $(this).html()
+
     $(".delete_destroy:not(.looks_like_button)").each ->
       $(this).addClass("looks_like_button btn btn-sm btn-danger").html "<i class='fa fa-times'></i> " + $(this).html()
 
