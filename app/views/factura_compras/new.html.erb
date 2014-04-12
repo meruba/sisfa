@@ -1,9 +1,15 @@
-<legend>Ingreso de Compras</legend> 
-<div class="row">
-  <%= nested_form_for @facturacompra, :html => {:class => "new_factura"} do |f| %>
-  <%= form_errors_for @facturacompra %>
-  <div class="col-md-7">
-    <div class="row">
+<div class="row col-md-10 shadow col-md-offset-1">
+  <div class="col-md-12">
+    <div class="title-gris-head">
+      <span><i class="fa fa-file-text-o"></i></span>
+      <h3>Factura de Compra</h3>
+      <span class="rev-combo pull-right fecha_sin_hora"></span>
+    </div>
+  </div>
+  <div class="comprobante">
+    <%= nested_form_for @facturacompra, :html => {:class => "new_factura"} do |f| %>
+    <%= form_errors_for @facturacompra %>
+    <div class="col-md-8">
       <div class="panel-group" id="accordion">
         <div class="panel panel-default">
           <div class="panel-heading">
@@ -13,14 +19,22 @@
           </div>
           <div id="collapseOne" class="panel-collapse collapse in">
             <div class="panel-body">
-              <%= f.fields_for :proveedor do |proveedor_params| %>
-              <%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>
-              <%=  proveedor_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion_proveedor", :placeholder => "Cédula o RUC" %>
-              <%=  proveedor_params.text_field :nombre_o_razon_social, class: "form-control-border nombre", :placeholder => "Nombre o Razon Social" %>
-              <%=  proveedor_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
-              <%=  proveedor_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
-              <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de Factura"%>
-              <% end %>
+              <div class="row-fix-div">
+                <div class="col-md-3 icon-proveedor-center">
+                  <i class="fa fa-ambulance fa-4x"></i><br>
+                  <small>proveedor</small>
+                </div>
+                <div class = "col-md-8">
+                  <%= f.fields_for :proveedor do |proveedor_params| %>
+                  <%=  proveedor_params.hidden_field :id, class: "proveedor_id" %>
+                  <%=  proveedor_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion_proveedor", :placeholder => "Cédula o RUC" %>
+                  <%=  proveedor_params.text_field :nombre_o_razon_social, class: "form-control-border nombre", :placeholder => "Nombre o Razon Social" %>
+                  <%=  proveedor_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
+                  <%=  proveedor_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
+                  <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de Factura", required: true%>
+                  <% end %>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -33,9 +47,9 @@
           <div id="collapseTwo" class="panel-collapse collapse">
             <div class="panel-body">
               <%= f.fields_for :factura_compras_productos do |item_factura| %>
-                <%= item_factura.fields_for :producto do |producto| %>
-                  <%= render 'item_facturas/itemfacturacompra', f:producto %>
-                <% end %>
+              <%= item_factura.fields_for :producto do |producto| %>
+              <%= render 'item_facturas/itemfacturacompra', f:producto %>
+              <% end %>
               <% end %>
               <%= f.link_to_add_hmt "Item", :producto, :factura_compras_productos, :class => "fix-margin nuevo_new"%>
             </div>
@@ -43,38 +57,24 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- datos de impuestos factura -->
-  <div class="col-md-2 col-md-offset-1">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">IMPUESTOS %</h3>
+    <!-- datos de impuestos factura -->
+    <div class="col-md-4">
+      <div class="form-group">
+        <div class="row-fix-div">
+          <div class="col-xs-6">
+            <h4>Subtotal 0%: </h4>
+            <h4>Iva 12%: </h4>
+            <h4>TOTAL: </h4>
+          </div>
+          <div class="col-xs-6 text-right">
+            <%= f.text_field :subtotal_0, class: "input-noborder subtotal_compra text-right", :readonly => true%>
+            <%= f.text_field :iva, class: "input-noborder iva_compra text-right", :readonly => true%>
+            <%= f.text_field :total, class: "input-noborder total_compra text-right", :readonly => true%>
+          </div>
+        </div>
       </div>
-      <div class="panel-body">
-        <table>
-          <thead>
-            <th></th>
-            <th></th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>
-                <h6>Sub 0%:</h6>
-                <h6>I.V.A:</h6>
-                <h4>TOTAL:</h4>
-              </td>
-              <td>
-                <%= f.text_field :subtotal_0, class: "input-noborder subtotal_compra text-right", :readonly => true%>
-                <%= f.text_field :iva, class: "input-noborder iva_compra text-right", :readonly => true%>
-                <%= f.text_field :total, class: "input-noborder total_compra text-right", :readonly => true%>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br>
-        <%= f.submit :Guardar, class: "guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
-      </div>
+      <%= f.submit :Guardar, class: "btn btn-block btn-info", data: {disable_with: "Almacenando"}%>
     </div>
+    <% end %>
   </div>
-  <% end %>
 </div>
