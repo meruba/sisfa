@@ -1,0 +1,55 @@
+//Colors titles
+$blue-color: #2DC1E6
+$blue-color-shadow: rgba(37, 173, 207, 0.5)
+$green-color: #4BBC65
+$green-color-shadow: #2AB265
+
+.comprobante
+  padding-top: 25px
+
+.icon-center
+  text-align: center
+  color: #fff
+  padding: 15px
+
+.title-blue-head
+  background: $blue-color
+  -webkit-border-radius: 4px 4px 0px 0px
+  border-radius: 4px 4px 0px 0px
+  color: #fff
+  line-height: 50px
+  span
+    background: $blue-color-shadow
+    padding: 16px
+    -webkit-border-radius: 4px 0px 0px 0px
+    border-radius: 4px 0px 0px 0px
+    i
+      font-size: 18px
+  h3
+    display: inline
+    padding: 0 10px
+    font-size: 16px
+    font-weight: 300
+  span.rev-combo
+    background: $blue-color-shadow
+    padding: 16px
+    line-height: normal
+    -webkit-border-radius: 0px 4px 0px 0px
+    border-radius: 0px 4px 0px 0px
+
+.title-green-head
+  @extend .title-blue-head
+  background: $green-color
+  span
+    background: $green-color-shadow
+  span.rev-combo
+    background: $green-color-shadow
+
+.icon-client-center
+  @extend .icon-center
+  background: $blue-color
+
+.icon-paciente-center
+  @extend .icon-center
+  background: $green-color
+

@@ -1,49 +1,11 @@
 /*flat headers*/
-.title-head {
-    background: #2DC1E6;        
-    -webkit-border-radius: 4px 4px 0px 0px;
-    border-radius: 4px 4px 0px 0px;
-    color: #fff;
-    line-height: 50px;
-}
-
-.title-head span {
-    background: rgba(37, 173, 207, 0.5);
-    padding: 16px;
-    -webkit-border-radius: 4px 0px 0px 0px;
-    border-radius: 4px 0px 0px 0px;
-}
-
-.title-head span i {
-    font-size: 18px;
-}
-
-.title-head h3 {
-    display: inline;
-    padding: 0 10px;
-    font-size: 16px;
-    font-weight: 300;
-}
-
-.title-head span.rev-combo {
-    background: rgba(37, 173, 207, 0.5);
-    padding: 16px;
-    line-height: normal;
-    -webkit-border-radius: 0px 4px 0px 0px;
-    border-radius: 0px 4px 0px 0px;
-}
 /*---------------------------*/
 
 .comprobante{
     padding-top: 25px;
 }
 
-.icon-center{
-  text-align: center;
-  background: #2DC1E6;
-  color: #fff;
-  padding: 15px;
-}
+
 
 /*divs del mismo tamano en una fila*/
 .row-fix-div {
