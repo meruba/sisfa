@@ -1,87 +1,93 @@
-<h3 class="text-center">Hospitalización</h3>
-<div class="row">
-<%= nested_form_for @hospitalizacion do |f| %>
-<%= form_errors_for @hospitalizacion %>
-<div class="col-md-6">
-	<h6 class="text-muted text-right fecha"></h6>
-	<h6 class="text-muted text-right">Vendedor: <%= current_user.username%></h6>
-	<!-- formulario datos del cliente -->
-	<%= f.fields_for :cliente do |cliente_params| %>
-	<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
-	<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cédula o RUC" %>
-	<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
-	<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
-	<%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
-	<% end %>
-	<!-- item factura -->
-	<div class="table-responsive">
-		<table class="table" id="factura">
-			<thead>
-				<tr>
-					<th class="col-sm-4">Producto</th>
-					<th>Cantidad</th>
-					<th>V.Unit</th>
-					<th>I.V.A.</th>
-					<th>Total</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-				<%= f.fields_for :item_hospitalizacions, :wrapper => false do |item| %>
-				<tr class="fields">
-					<%= render 'item_hospitalizacions/item_hospitalizacion', item:item %>
-				</tr>
-				<% end %>
-				<tr>
-					<td><%= f.link_to_add "Producto", :item_hospitalizacions, :class => "nuevo_new"%>
-					</td>
-				</tr>
-			</tbody>
-		</table>
-	</div>
-</div>
-<!-- datos de impuestos factura -->
-<div class="col-md-2 col-md-offset-1">
-	<div class="panel panel-default">
-		<div class="panel-heading">
-			<h3 class="panel-title">IMPUESTOS %</h3>
-		</div>
-		<div class="panel-body">
-			<table>
-				<thead>
-					<th></th>
-					<th></th>
-				</thead>
-				<tbody>
-					<tr>
-						<td class ="text-left">Sub 0%: </td>
-						<td class ="text-center subtotal_0">0.0</td>
-					</tr>
-					<tr>
-						<td class ="text-left">Sub 12%: </td>
-						<td class ="text-right subtotal_12">0.0</td>
-					</tr>
-					<tr>
-						<td class ="text-left">Desc: </td>
-						<td class ="text-right descuento_factura">0.0</td>
-					</tr>
-					<tr>
-						<td class ="text-left">IVA: </td>
-						<td class ="text-right iva_factura">0.0</td>
-					</tr>
-					<tr>
-						<td class ="text-left">TOTAL: </td>
-						<td class ="text-right total_factura">0.0</td>
-					</tr>
-				</tbody>
-			</table>
-			<br>
-			<%= f.submit :Guardar, class: "guardar_factura guardar_submit btn-block", data: {disable_with: "Almacenando"}%>
+<div class="row col-md-10 shadow col-md-offset-1">
+	<div class="col-md-12">
+		<div class="title-green-head">
+			<span><i class="fa fa-file-text-o"></i></span>
+			<h3>Hospitalizados</h3>
+			<span class="rev-combo pull-right fecha_sin_hora"></span>
 		</div>
 	</div>
+	<div class="comprobante">
+		<%= nested_form_for @hospitalizacion do |f| %>
+		<%= form_errors_for @hospitalizacion %>
+		<div class="col-md-8">
+			<div class="row-fix-div">
+				<div class="col-md-3 icon-paciente-center">
+					<i class="fa fa-user-md fa-4x"></i><br>
+					<small>paciente</small>
+				</div>
+				<div class="col-md-8">
+					<%= f.fields_for :cliente do |cliente_params| %>
+					<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+					<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cédula o RUC" %>
+					<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
+					<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
+					<%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
+					<% end %>
+				</div>
+			</div>
+			<!-- item factura -->
+			<div class="table-responsive">
+				<table class="table" id="factura">
+					<thead>
+						<tr>
+							<th class="col-sm-4">Producto</th>
+							<th>Cantidad</th>
+							<th>V.Unit</th>
+							<th>I.V.A.</th>
+							<th>Total</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<%= f.fields_for :item_hospitalizacions, :wrapper => false do |item| %>
+						<tr class="fields">
+							<%= render 'item_hospitalizacions/item_hospitalizacion', item:item %>
+						</tr>
+						<% end %>
+						<tr>
+							<td><%= f.link_to_add "Producto", :item_hospitalizacions, :class => "nuevo_new_default"%>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<!-- datos de impuestos factura -->
+		<div class="col-md-4">
+			<div class="form-group">
+				<div class="row">
+					<div class="col-xs-6">
+						<h4>Subtotal 12%: </h4>
+					</div>
+					<div class="col-xs-6 text-right">
+						<h4 class="subtotal_12">00.00 </h4>
+					</div>
+					<div class="col-xs-6">
+						<h4>Subtotal 0%: </h4>
+					</div>
+					<div class="col-xs-6 text-right">
+						<h4 class="subtotal_0">00.00 </h4>
+					</div>
+					<div class="col-xs-6">
+						<h4>Iva 12%: </h4>
+					</div>
+					<div class="col-xs-6 text-right">
+						<h4 class="iva_factura">00.00 </h4>
+					</div>
+					<div class="col-xs-6">
+						<h4>TOTAL: </h4>
+					</div>
+					<div class="col-xs-6 text-right">
+						<h4 class="total_factura">00.00 </h4>
+					</div>
+				</div>
+			</div>
+			<%= f.submit :Guardar, class: "btn btn-block btn-success", data: {disable_with: "Almacenando"}%>
+		</div>
+		<% end %>
+	</div>
+	<div class ="col-md-3 col-md-offset-10">
+		<%= link_to "Ver Registros", hospitalizacions_path, class: "atras_back" %>
+	</div>
 </div>
-<% end %>
-</div>
-<div clas ="row">
-		<%= link_to "Registros de hospitalizacion", hospitalizacions_path, class: "atras_back" %>
-</div>
+
