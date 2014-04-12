@@ -3,6 +3,8 @@ $blue-color: #2DC1E6
 $blue-color-shadow: rgba(37, 173, 207, 0.5)
 $green-color: #4BBC65
 $green-color-shadow: #2AB265
+$grey-color: #E2E6E7
+$grey-color-shadow: #CFD6D5
 
 .comprobante
   padding-top: 25px
@@ -45,6 +47,15 @@ $green-color-shadow: #2AB265
   span.rev-combo
     background: $green-color-shadow
 
+.title-gris-head
+  @extend .title-blue-head
+  background: $grey-color
+  color: inherit
+  span
+    background: $grey-color-shadow
+  span.rev-combo
+    background: $grey-color-shadow
+
 .icon-client-center
   @extend .icon-center
   background: $blue-color
@@ -53,3 +64,8 @@ $green-color-shadow: #2AB265
   @extend .icon-center
   background: $green-color
 
+.icon-proveedor-center
+  @extend .icon-center
+  background: $grey-color
+  color: inherit
+  padding: 25px

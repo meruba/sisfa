@@ -18,8 +18,7 @@
   border: 0;
   width: 100%;
   border-bottom: 1px solid #cccccc;
-  padding-top: 2px;
-  /*background-color: #e7e7e7;*/
+  padding-top: 8px;
 }
 
 .form-control-border:focus {
