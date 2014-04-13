@@ -5,6 +5,8 @@ $green-color: #4BBC65
 $green-color-shadow: #2AB265
 $grey-color: #E2E6E7
 $grey-color-shadow: #CFD6D5
+$red-color: #d9534f
+$red-color-shadow: #D14641
 
 .comprobante
   padding-top: 25px
@@ -27,6 +29,8 @@ $grey-color-shadow: #CFD6D5
     border-radius: 4px 0px 0px 0px
     i
       font-size: 18px
+      a
+        color: #fff
   h3
     display: inline
     padding: 0 10px
@@ -56,6 +60,14 @@ $grey-color-shadow: #CFD6D5
   span.rev-combo
     background: $grey-color-shadow
 
+.title-red-head
+  @extend .title-blue-head
+  background: $red-color
+  span
+    background: $red-color-shadow
+  span.rev-combo
+    background: $red-color-shadow
+
 .icon-client-center
   @extend .icon-center
   background: $blue-color
@@ -69,3 +81,7 @@ $grey-color-shadow: #CFD6D5
   background: $grey-color
   color: inherit
   padding: 25px
+
+.icon-transferencia-center
+  @extend .icon-center
+  background: $red-color

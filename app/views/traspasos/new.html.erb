@@ -1,64 +1,59 @@
-<div class="col-md-7">
-	<legend>Tansferencia Interna de Productos</legend>
-</div>
-<div class="container">
-	<%= nested_form_for @traspaso, :remote => true do |f| %>
-	<%= form_errors_for @traspaso %>
-	<div class="row">
-		<div class="col-md-8">
-			<div class="panel panel-default">
-				<div class="panel-heading">
-					<div class="panel-title">
-						<div class="row">
-							<div class="col-md-6 col-sm-12">
-								<%= f.select :servicio, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio"}%>
-							</div>
-							<div class ="col-md-6">
-								<%= f.text_field :entregado_a, :class => "form-control",:placeholder => "Entregado a:" %>
-							</div>
-						</div>
-					</div>
+<div class="row col-md-8 shadow col-md-offset-1">
+	<div class="col-md-12">
+		<div class="title-red-head">
+			<span>
+				<i><%= link_to "", traspasos_path, title:'Ver Transferencias', class: "ttip fa fa-file-text-o" %></i>
+			</span>
+			<h3>Transferencia Interna</h3>
+			<span class="rev-combo pull-right fecha_sin_hora"></span>
+		</div>
+	</div>
+	<div class="comprobante">
+		<%= nested_form_for @traspaso, :remote => true do |f| %>
+		<%= form_errors_for @traspaso %>
+		<div class="col-md-12">
+			<div class="tr">
+				<div class="col-md-3 col-xs-3 icon-transferencia-center">
+					<i class="fa fa-exchange fa-4x"></i><br>
+					<small>transferencia</small>
 				</div>
-				<div class="panel-body">
-					<table class="table">
-						<thead class = "text-center">
-							<th>Image</th>
-							<th>Producto</th>
-							<th>V.Unit</th>
-							<th>Iva</th>
-							<th>Cantidad</th>
-							<th>Total</th>		
-							<th></th>		
-						</thead>
-						<tbody>
-							<%= f.fields_for :item_traspasos, :wrapper => false do |b| %>
-							<tr class="fields productos_traspaso">
-								<%= render 'item_traspasos/item_traspaso', f: b %>
-								<% end %>
-							</tr>
-							<tr>
-								<td>
-									<%= f.link_to_add "Producto", :item_traspasos, :class => "nuevo_new"%>
-								</td>
-							</tr>
-						</tbody>
-					</table>
+				<div class="col-md-8 col-xs-8">
+					<small class="text-muted">Emitido por: <%= current_user.username%></small>
+					<%= f.select :servicio, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+					<%= f.text_field :entregado_a, :class => "form-control",:placeholder => "Entregado a:" %>
 				</div>
-				<div class="panel-footer">
-					<div class="row text-center">
-						<div class="col-md-9">
-							<h4 class="text-right">Total <strong class= "total">$00.00</strong></h4>
-						</div>
-						<div class="col-md-3">
-							<%= f.submit :Guardar, class: " btn btn-block guardar_submit", data: {disable_with: "Almacenando"}%>			
-						</div>
-					</div>
+			</div><br>
+			<div class="table-responsive">
+				<table class="table">
+					<thead class = "text-center">
+						<th class="col-md-5">Producto</th>
+						<th>V.Unit</th>
+						<th>Iva</th>
+						<th>Cantidad</th>
+						<th>Total</th>		
+						<th></th>		
+					</thead>
+					<tbody>
+						<%= f.fields_for :item_traspasos, :wrapper => false do |b| %>
+						<tr class="fields productos_traspaso">
+							<%= render 'item_traspasos/item_traspaso', f: b %>
+							<% end %>
+						</tr>
+						<tr>
+							<td>
+								<%= f.link_to_add "Producto", :item_traspasos, :class => "nuevo_new_default"%>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="col-md-9">
+					<h4 class="text-right">Total <strong class= "total">$00.00</strong></h4>
+				</div>
+				<div class="col-md-3">
+					<%= f.submit :Guardar, class: " btn btn-block btn-info", data: {disable_with: "Almacenando"}%>			
 				</div>
 			</div>
 		</div>
 	</div>
-	<% end %>
-	<div>
-		<%= link_to "Todas las transferencias", traspasos_path, class: "atras_back" %>
-	</div>
 </div>
+<% end %>
