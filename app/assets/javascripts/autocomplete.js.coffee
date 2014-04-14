@@ -75,12 +75,18 @@ window.Helpers.AutocompleteHelper = {
   calcular_valores_factura: ->
     sum = 0
     sum_iva = 0
+    sum_12 = 0
+    sum_0 = 0
     $(".total_item").each ->
       sum += parseFloat($(this).text())
     $(".iva").each ->
       sum_iva += parseFloat($(this).text())
-    $(".subtotal_0").text sum.toFixed(2)
-    $(".subtotal_12").text sum.toFixed(2)
+      if $(this).text() != "0.0"
+        sum_12 += parseFloat($(this).closest(".fields").find("td:nth-child(5)").text())
+      else
+        sum_0 += parseFloat($(this).closest(".fields").find("td:nth-child(5)").text())
+    $(".subtotal_0").text sum_0.toFixed(2)
+    $(".subtotal_12").text sum_12.toFixed(2)
     $(".descuento_factura").text 0
     $(".iva_factura").text(sum_iva.toFixed(2));
     $(".total_factura").text((sum+sum_iva).toFixed(2));
