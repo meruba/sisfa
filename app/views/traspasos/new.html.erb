@@ -2,7 +2,7 @@
 	<div class="col-md-12">
 		<div class="title-red-head">
 			<span>
-				<i><%= link_to "", traspasos_path, title:'Ver Transferencias', class: "ttip fa fa-file-text-o" %></i>
+				<i><%= link_to "", traspasos_path, title:'Ver Transferencias', class: "ttip fa fa-list" %></i>
 			</span>
 			<h3>Transferencia Interna</h3>
 			<span class="rev-combo pull-right fecha_sin_hora"></span>
@@ -18,9 +18,10 @@
 					<small>transferencia</small>
 				</div>
 				<div class="col-md-8 col-xs-8">
-					<small class="text-muted">Emitido por: <%= current_user.username%></small>
+					<%= f.text_field :entregado_a, :class => "form-control selecttag",:placeholder => "Entregado a:" %>
 					<%= f.select :servicio, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
-					<%= f.text_field :entregado_a, :class => "form-control",:placeholder => "Entregado a:" %>
+					<h6 class="text-muted">Emitido por: <%= current_user.username%></h6>
+
 				</div>
 			</div><br>
 			<div class="table-responsive">
