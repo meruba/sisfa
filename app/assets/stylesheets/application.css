@@ -14,6 +14,7 @@
  *= require alertify.core
  *= require alertify.bootstrap
  *= require chosen
+ *= require chosen-bootstrap
  *= require jquery.dataTables
  *= require jquery.dataTables_themeroller 
  *= require datepicker
