@@ -34,10 +34,25 @@
     <% end %>
   </tbody>
 </table>
-  <h4 class="text-success text-right">
-    <strong>Total: $</strong>
-    <%= @proforma.total %>
-  </h4>
+<div class="row">
+  <div class="col-xs-2 col-xs-offset-8">
+    <p>
+      <strong>
+        Sub 12%: <br>
+        Sub 0%: <br>
+        IVA: <br>
+        Total: <br>
+      </strong>
+    </p>
+  </div>
+  <div class="col-xs-2">
+    <strong>
+      $ <%= @proforma.subtotal_12 %><br>
+      $ <%= @proforma.subtotal_0 %><br>
+      $ <%= @proforma.iva %><br>
+      $ <%= @proforma.total %><br>
+    </strong>
+  </div>
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
