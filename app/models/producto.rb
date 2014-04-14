@@ -65,6 +65,14 @@ class Producto < ActiveRecord::Base
     dinero = self.precio_compra * cantidad_disponible
   end
 
+  def self.grouped_by_casa
+    agrupados = []
+    Producto.group("casa_comercial").each do |agrupado|
+      agrupados << {:cantidad => agrupado.cantidad_disponible, :casa_comercial => agrupado.casa_comercial}
+    end
+    agrupados
+  end
+
   private
   def set_kardex
     Kardex.create(:producto => self, :fecha => Time.now)
