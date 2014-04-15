@@ -39,20 +39,27 @@ body
 .modal-dialog
   border-radius: 10px !important
 
-.btn-info
+.btn-info, .btn-primary, .btn-success, .btn-warning, .btn-danger, .btn-default
   border-radius: 0px !important
 
-.btn-primary
-  border-radius: 0px !important
-
-.btn-success
-  border-radius: 0px !important
-
-.btn-warning
-  border-radius: 0px !important
-
-.btn-danger
-  border-radius: 0px !important
-
-.btn-default
-  border-radius: 0px !important
+.values-inline
+  padding: 15px 0
+  color: #74829C
+  ul
+    padding: 0
+    margin: 0
+    display: inline-block
+    width: 100%
+    li
+      display: inline-block
+      width: 32%
+      text-align: center
+      border-right: 1px solid #e6e6e6
+      display: inline-block
+      h5
+        margin: 0 0 5px 0
+        text-transform: uppercase
+        font-weight: 300
+      a!
+      &:last-child
+        border-right: none
