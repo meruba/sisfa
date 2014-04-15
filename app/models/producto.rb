@@ -61,8 +61,12 @@ class Producto < ActiveRecord::Base
     unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
   end
 
-  def dinero
+  def dinero_compra
     dinero = self.precio_compra * cantidad_disponible
+  end
+
+  def dinero_venta
+    dinero = self.precio_venta * self.kardex.cantidad_vendidos
   end
 
   def self.grouped_by_casa
