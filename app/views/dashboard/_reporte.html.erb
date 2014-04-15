@@ -6,11 +6,15 @@
 			</div><!-- end panel-heading -->	
 			<div class="panel-body">
 				<%= form_tag dashboard_generar_reporte_path, method: :get do %>
-				<%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='hospitalizacion'>Hospitalización</option><option value='transferencia'>Transferencias</option><option value='compra'>Compra</option>".html_safe, { :class => "col-md-4 form-control selecttag" } %> <br />	
-				<span class="fa fa-calendar"></span>
-				<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio", :required => true %><br><br>
-				<span class="fa fa-calendar"></span>
-				<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "Fecha final", :required => true %><br><br>
+				<%= select_tag :tipo_factura, "<option value='ventanilla'>Ventanilla</option><option value='hospitalizacion'>Hospitalización</option><option value='transferencia'>Transferencias</option><option value='compra'>Compra</option>".html_safe, { :class => "form-control selecttag" } %>
+				<div class="input-icon-sm">
+					<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio", :required => true %>
+					<i class="fa fa-calendar"></i>
+				</div>
+				<div class="input-icon-sm">
+					<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "Fecha final", :required => true %>
+					<i class="fa fa-calendar"></i>
+				</div>
 				<%= submit_tag "Imprimir", :class => "btn btn-block btn-info", format: :pdf%>
 				<% end %>
 			</div>
