@@ -1,25 +1,9 @@
-# PreventOpeningInNewWindow = {
-#   init: ->
-#     $(document).on "click", (e) ->
-#       if e.ctrlKey or e.metaKey
-#         e.preventDefault()
-#         $(e.target).trigger("click")
-#         false
-#     $(document).on "contextmenu", (e) ->
-#       e.preventDefault()
-#       false
-# }
-
-# window.Helpers = {}
-
-# PreventOpeningInNewWindow.init()
-
 $(document).on 'ready page:load',
 -> $("#tab_estadisticas").bind "contextmenu", (e) ->
   false
   
-$(document).on 'ready page:load',
--> $('body').css('background-color','#F3F3F3')
+# $(document).on 'ready page:load',
+# -> $('body').css('background-color','#F3F3F3')
 
 $(document).on "click", ".panel-heading span.clickable", (e) ->
   $this = $(this)
