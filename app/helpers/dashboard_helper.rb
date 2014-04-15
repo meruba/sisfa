@@ -20,11 +20,11 @@ module DashboardHelper
     when Rol.administrador
       @total_facturas = Factura.where(:created_at => tiempo, :anulada => false).sum(:total)
       @total_hospitalizacion = Hospitalizacion.where(:created_at => tiempo).sum(:total)
-      @total_transferencia = Traspaso.where(:created_at => Time.now.beginning_of_day..Time.zone.now).sum(:total)
+      @total_transferencia = Traspaso.where(:created_at => tiempo).sum(:total)
     when Rol.vendedor
       @total_facturas = Factura.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :anulada => false, :user_id => current_user.id).sum(:total)
       @total_hospitalizacion = Hospitalizacion.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :user_id => current_user.id).sum(:total)
-      @total_transferencia = Traspaso.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :user_id => current_user.id).sum(:total)
+      @total_transferencia = Traspaso.where(:created_at => tiempo, :user_id => current_user.id).sum(:total)
     end
     @total = @total_facturas + @total_hospitalizacion + @total_transferencia
     @porcentaje_ventanilla = regla_de_tres(@total_facturas, @total)
