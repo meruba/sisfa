@@ -1,32 +1,55 @@
-<legend>Kardex de <%= @producto.nombre%></legend>
-
-<h4>Stock actual</h4>
-<p> <%= @producto.cantidad_disponible.to_i %> </p>
-
-<table class="data-table-without-json table-bordered">
-  <thead>
-    <tr>
-      <th>Fecha</th>
-      <th>Tipo</th>
-      <th>Módulo (Venta)</th>
-      <th>Cantidad</th>
-      <th>Precio</th>
-      <th>Observaciones</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @lineaskardex.each do |lineakardex| %>
-      <tr>
-        <td><%= lineakardex.fecha.strftime("%Y-%m-%d") %></td>
-        <td><%= lineakardex.tipo %></td>
-        <td><%= lineakardex.modulo %></td>
-        <td><%= lineakardex.cantidad.to_i %></td>
-        <td><%= lineakardex.v_unitario %></td>
-        <td><%= lineakardex.observaciones %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<div class="actions">
-  <%= link_to "todos los productos", productos_path, :class => "atras_back" %>
+<div class="col-md-10 col-md-offset-1 shadow">
+  <div class="title-blue-head">
+    <span>
+      <i>
+        <%= link_to "",  productos_path, title:'Todos los Productos', class: "ttip fa fa-list" %>
+      </i>
+    </span>
+    <h3>Kardex de <%= @producto.nombre%></h3>
+  </div>
+  <section class="panel">
+    <footer class="values-inline">
+      <ul>
+        <li class="active">
+          <h4>Stock</h4>
+          <%= @producto.cantidad_disponible.to_i %>
+        </li>
+        <li>
+          <h4>Dinero Compra</h4>
+          $<%= @producto.dinero_compra() %>
+        </li>
+        <li>
+          <h4>Dinero Venta</h4>
+          $<%= @producto.dinero_venta() %>
+        </li>
+      </ul>
+    </footer>
+    <legend></legend>
+    <div class="kardex" id="flip-scroll">
+      <table class="data-table-without-json table-bordered">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Módulo</th>
+            <th>Cantidad</th>
+            <th>Precio</th>
+            <th>Observaciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @lineaskardex.each do |lineakardex| %>
+          <tr>
+            <td><%= lineakardex.fecha.strftime("%Y-%m-%d") %></td>
+            <td><%= lineakardex.tipo %></td>
+            <td><%= lineakardex.modulo %></td>
+            <td><%= lineakardex.cantidad.to_i %></td>
+            <td><%= lineakardex.v_unitario %></td>
+            <td><%= lineakardex.observaciones %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </section>
 </div>
