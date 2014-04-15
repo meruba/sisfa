@@ -2,10 +2,10 @@
   <div class="col-md-12">
     <div class="title-blue-head">
       <span>
-        <i><%= link_to "", proformas_path, title:'Ver Facturas', class: "ttip fa fa-list" %></i>
+        <i><%= link_to "", proformas_path, title:'Ver Proformas', class: "ttip fa fa-list" %></i>
       </span>
       <h3>Proforma</h3>
-      <span class="rev-combo pull-right fecha"></span>
+      <span class="rev-combo pull-right fecha_sin_hora"></span>
     </div>
   </div>
   <div class="comprobante">
@@ -33,7 +33,7 @@
         <table class="table" id="proforma">
           <thead>
             <tr>
-              <th class="col-sm-4">Producto</th>
+              <th>Producto</th>
               <th>Cantidad</th>
               <th>V.Unit</th>
               <th>I.V.A.</th>
@@ -48,7 +48,7 @@
             </tr>
             <% end %>
             <tr>
-              <td><%= f.link_to_add "Producto", :item_proformas, :class => "nuevo_new"%>
+              <td><%= f.link_to_add "Producto", :item_proformas, :class => "nuevo_new_default"%>
               </td>
             </tr>
           </tbody>
