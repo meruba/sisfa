@@ -14,6 +14,7 @@
 #  total                :float            not null
 #  created_at           :datetime
 #  updated_at           :datetime
+#  subtotal_12          :float            default(0.0)
 #
 
 class FacturaCompra < ActiveRecord::Base
