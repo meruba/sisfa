@@ -72,7 +72,7 @@ class Producto < ActiveRecord::Base
   def self.grouped_by_casa
     agrupados = []
     Producto.group("casa_comercial").each do |agrupado|
-      agrupados << {:cantidad => agrupado.cantidad_disponible, :casa_comercial => agrupado.casa_comercial}
+      agrupados << {:cantidad => agrupado.cantidad_disponible, :casa_comercial => agrupado.casa_comercial, :inversion => agrupado.precio_compra * agrupado.cantidad_disponible }
     end
     agrupados
   end

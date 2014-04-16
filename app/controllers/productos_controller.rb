@@ -57,6 +57,10 @@ class ProductosController < ApplicationController
     end
   end
 
+  def inventario
+    @inventario = Producto.grouped_by_casa
+  end
+
   private 
   
   def producto_params

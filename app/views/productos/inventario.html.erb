@@ -1,0 +1,21 @@
+<div class="col-md-10 col-md-offset-1">
+  <legend>Inventario</legend>
+<table class="table table-print">
+<thead>
+  <tr>
+    <th>Casa comercial</th>
+    <th>Cantidad</th>
+    <th>Inversion</th>
+  </tr>
+</thead>
+<tbody>
+  <% @inventario.each do |i|  %>
+  <tr>
+    <td><%= i[:casa_comercial] %></td>
+    <td><%= i[:cantidad] %></td>
+    <td>$ <%= i[:inversion] %></td>
+  </tr>
+  <% end %>
+</tbody>
+</table>
+</div>
