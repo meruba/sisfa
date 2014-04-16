@@ -5,18 +5,18 @@
 <%= form_for(@proveedor, :remote => true) do |f| %>
 <div class="modal-body">
   <div class= "field">
-    <%= f.label :Nombre %>
+    <%= f.label :Representante_Legal %>
+    <%= f.text_field :representante_legal, class: "datepicker", required:true%>
+    <%= f.label :Identificación, "Numero de Identificacion" %>
+    <%= f.text_field :numero_de_identificacion, required:true%>
+    <%= f.label :Nombre, "Nombre de la Empresa" %>
     <%= f.text_field :nombre_o_razon_social, required:true %>
     <%= f.label :Dirección %>
     <%= f.text_field :direccion%>
-    <%= f.label :Identificación %>
-    <%= f.text_field :numero_de_identificacion, required:true%>
     <%= f.label :Teléfono %>
     <%= f.text_field :telefono%>
     <%= f.label :Código %>
     <%= f.text_field :codigo, required:true%>
-    <%= f.label :Representante_Legal %>
-    <%= f.text_field :representante_legal, class: "form-control datepicker", required:true%>
     <%= f.label :País %>
     <%= f.text_field :pais%>
     <%= f.label :Ciudad %>
