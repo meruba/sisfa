@@ -31,7 +31,8 @@ class DashboardController < ApplicationController
   end
 
   def reportes_cierre_caja_diario
-    caja_dia(params[:fecha].to_time.beginning_of_day..params[:fecha].to_time.end_of_day)
+    @fecha = params[:fecha]
+    caja_dia(@fecha.to_time.beginning_of_day..@fecha.to_time.end_of_day)
     if @ventanilla_cantidad == 0
       render :template => "results/not_result"
     else
@@ -40,7 +41,8 @@ class DashboardController < ApplicationController
   end
 
   def reportes_cierre_caja_mensual
-    @liquidacion = Liquidacion.where(:fecha => params[:fecha]).first
+    @fecha = params[:fecha]
+    @liquidacion = Liquidacion.where(:fecha => @fecha).first
     if @liquidacion.nil?
       render :template => "results/not_result"
     else
@@ -64,6 +66,7 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_dia
+    @fecha = Time.now
     caja_dia(Time.now.beginning_of_day..Time.zone.now)
     respond_to do |format|
       format.html
@@ -75,7 +78,8 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_mes
-    caja_mes(Time.now.beginning_of_month.to_date)
+    @fecha = Time.now.beginning_of_month.to_date
+    caja_mes(@fecha)
     respond_to do |format|
       format.html
       format.js
