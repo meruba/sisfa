@@ -64,11 +64,13 @@
       <div class="form-group">
         <div class="row-fix-div">
           <div class="col-xs-6">
+            <h4>Subtotal12%: </h4>
             <h4>Subtotal 0%: </h4>
             <h4>Iva 12%: </h4>
             <h4>TOTAL: </h4>
           </div>
           <div class="col-xs-6 text-right">
+            <%= f.text_field :subtotal_12, class: "input-noborder subtotal12_compra text-right", :readonly => true%>
             <%= f.text_field :subtotal_0, class: "input-noborder subtotal_compra text-right", :readonly => true%>
             <%= f.text_field :iva, class: "input-noborder iva_compra text-right", :readonly => true%>
             <%= f.text_field :total, class: "input-noborder total_compra text-right", :readonly => true%>

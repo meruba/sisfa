@@ -27,13 +27,17 @@ class IngresoProducto < ActiveRecord::Base
   before_destroy :set_salida_kardex
 
 #validations
-  validates :cantidad, :lote, :fecha_caducidad, :presence => true
+  validates :cantidad, :lote, :presence => true
   validates :cantidad, :numericality => { :greater_than_or_equal_to => 0}
   validate :validate_fecha_caducidad
 
   def validate_fecha_caducidad
-    if self.fecha_caducidad < Time.now.months_since(4)
-      errors.add :fecha_caducidad, "Fecha de caducidad no válida"
+    if self.fecha_caducidad.nil?
+      errors.add :fecha_caducidad, "Fecha de caducidad no ingresada"
+    else
+      if self.fecha_caducidad < Time.now.months_since(4)
+        errors.add :fecha_caducidad, "Fecha de caducidad debe ser mayor a 4 meses de la fecha actual"
+      end
     end
   end
 

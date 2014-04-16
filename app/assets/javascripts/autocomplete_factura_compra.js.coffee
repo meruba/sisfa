@@ -61,11 +61,23 @@ window.Helpers.AutocompleteCompraHelper = {
 
   suma_productos_factura_compra: ->
     sum = 0
+    sum_iva = 0
+    sum_12 = 0
+    sum_0 = 0
     $(".total_item").each ->
       sum += parseFloat($(this).text())
-    $(".subtotal_compra").val sum.toFixed(2)
-    $(".iva_compra").val((sum*0.12).toFixed(2));
-    $(".total_compra").val((sum*0.12+sum).toFixed(2));
+    $(".hasiva").each ->
+      precio = parseFloat($(this).closest(".fields").find(".total_item").text())
+      unless $(this).is(':checked')
+        sum_0 += precio
+      else
+        iva_producto = precio * 0.12
+        sum_iva += iva_producto
+        sum_12 += (precio - iva_producto)
+    $(".subtotal12_compra").val sum_12.toFixed(2)
+    $(".subtotal_compra").val sum_0.toFixed(2)
+    $(".iva_compra").val sum_iva.toFixed(2);
+    $(".total_compra").val sum.toFixed(2);
 
 }
 
