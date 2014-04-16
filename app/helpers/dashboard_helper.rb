@@ -58,7 +58,7 @@ module DashboardHelper
   def query_reports(tiempo, tipo)
     case tipo
     when "ventanilla"
-      @facturas = Factura.where(:created_at => tiempo)
+      @facturas = Factura.where(:created_at => tiempo, :anulada => false)
       @facturas_cantidad = @facturas.count()
       @facturas_total = @facturas.sum(:total)
     when "hospitalizacion"
