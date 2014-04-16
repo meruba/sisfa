@@ -22,7 +22,10 @@ class FacturaCompra < ActiveRecord::Base
   has_many :factura_compras_productos
   has_many :productos, :through => :factura_compras_productos
   accepts_nested_attributes_for :factura_compras_productos, :proveedor
+  
+  #callbacks
   before_save :set_values
+  after_save :add_liquidacion
 
   def proveedor_attributes=(attributes)
     if attributes['id'].present?
@@ -34,5 +37,9 @@ class FacturaCompra < ActiveRecord::Base
   def set_values
     self.fecha_de_emision = Time.now
     self.fecha_de_vencimiento = Time.now + 30.days
+  end
+
+  def add_liquidacion
+    Liquidacion.add_compra(self)
   end
 end

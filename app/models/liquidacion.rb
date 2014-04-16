@@ -122,4 +122,24 @@ class Liquidacion < ActiveRecord::Base
 			)
 		end
 	end
+
+	def self.add_compra(c)
+		b = self.where(:fecha => c.fecha_de_emision.to_date.beginning_of_month).first
+		if b.nil? == true
+			self.create(
+			:iva_compra => c.iva, 
+			:subtotal_compra => c.subtotal_0,
+			:total_compra => c.total,
+			:emitidos_compra => 1,
+			:fecha => Time.now.beginning_of_month,
+			)
+		else
+			self.update(b,
+			:iva_compra => b.iva_traspaso + c.iva, 
+			:subtotal_compra => b.subtotal_compra + c.subtotal_0,
+			:total_compra => b.total_compra + c.total,
+			:emitidos_compra => b.emitidos_compra + 1,
+			)
+		end
+	end
 end
