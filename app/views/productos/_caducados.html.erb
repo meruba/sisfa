@@ -1,0 +1,28 @@
+<% if @caducados.empty? == true %>
+<div class="col-md-4 col-md-offset-4 text-success text-center">
+  <h3>No tienes productos caducados</h3>
+  <span class="fa fa-smile-o fa-5x"></span>
+</div>
+<% else %>
+<div class="col-md-10 col-md-offset-1">
+  <h3 class= "text-muted fix-margin"> <i class ="fa fa-exclamation"></i> Por favor contacta a tu proveedor</h3>
+  <% @caducados.each do |caduco|  %>
+  <div class="col-md-6">
+    <div class="blockquote-box blockquote-danger clearfix">
+      <div class="thumbnail square pull-left">
+        <div class="caption only-admin">
+          <h5>Hacer Canje</h5>
+          <i class ="fa fa-share-square-o fa-2x"></i><br/>
+          <%= link_to "Canje", new_ingreso_producto_canje_path(caduco), :class => "label label-default" %>
+        </div>
+        <span class="fa-3x"><%= caduco.producto.nombre.chr.upcase %></span>
+      </div>
+      <h4><%= caduco.producto.nombre %> /  <%= caduco.producto.casa_comercial %></h4>
+      <h5>Cantidad: <%= caduco.cantidad %></h5>
+      <h5>Fecha: <%= caduco.fecha_caducidad %></h5>
+      <h6 class ="text-muted">El producto se caducará en: <strong class="days"><%=(caduco.fecha_caducidad - @hoy ).to_i%></strong> dias</h6>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>

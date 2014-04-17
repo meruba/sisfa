@@ -2,6 +2,7 @@ class ProductosController < ApplicationController
 	before_filter :require_login
   before_filter :suspendido
   before_action :set_producto, only: [:show, :edit, :update]
+  before_action :find_caducados, only: [:caducado, :alerta]
   
   def index
     respond_to do |format|
@@ -61,6 +62,15 @@ class ProductosController < ApplicationController
     @inventario = Producto.grouped_by_casa
   end
 
+  def caducado
+  end
+
+  def alerta
+    if @caducados.empty? == true
+      redirect_to root_path
+    end    
+  end
+
   private 
   
   def producto_params
@@ -85,5 +95,10 @@ class ProductosController < ApplicationController
   
   def set_producto
       @producto = Producto.find(params[:id])
+  end
+
+  def find_caducados
+    @caducados = IngresoProducto.where(:fecha_caducidad =>Time.now.end_of_day..Time.now.months_since(4)).where("cantidad != '0'")
+    @hoy = Date.today    
   end
 end
