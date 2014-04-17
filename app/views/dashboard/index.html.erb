@@ -1,13 +1,12 @@
 <h1 class= "text-center"><span class="fa fa-bar-chart-o"></span> Estadísticas</h1>
 <ul class="nav nav-tabs" id="tab_estadisticas">
-  <li class="active"><%=link_to "Diario",{:controller => 'dashboard', :action => 'estadisticas_dia'}, :remote => true, :data => {:toogle => "tab"} %></li>
-  <li><%=link_to "Mes",{:controller => 'dashboard', :action => 'estadisticas_mes'}, :remote => true, :data => {:toogle => "tab"} %></li>
-  <li><%=link_to "Reportes",{:controller => 'dashboard', :action => 'generar_reporte'}, :remote => true, :data => {:toogle => "tab"}, :class => "only-admin" %></li>
-  <li><%=link_to "Caducados",{:controller => 'dashboard', :action => 'caducados'}, :remote => true, :data => {:toogle => "tab"}, :class => "on" %></li>
+	<li class="active"><%=link_to "Diario",{:controller => 'dashboard', :action => 'estadisticas_dia'}, :remote => true, :data => {:toogle => "tab"} %></li>
+	<li><%=link_to "Mes",{:controller => 'dashboard', :action => 'estadisticas_mes'}, :remote => true, :data => {:toogle => "tab"} %></li>
+	<li><%=link_to "Reportes",{:controller => 'dashboard', :action => 'generar_reporte'}, :remote => true, :data => {:toogle => "tab"}, :class => "only-admin" %></li>
 </ul>
 
 <div class="tab-content">
-  <%= render "dashboard/cierre_dia/diario"%>
+	<%= render "dashboard/cierre_dia/diario"%>
 </div>
 
 <%= javascript_tag "window.Helpers.NavbarVentas.init_estadisticas();" %>
