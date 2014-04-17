@@ -16,7 +16,7 @@ class UserSessionsController < ApplicationController
           redirect_to new_registro_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         else
-          redirect_to root_path
+          redirect_to productos_alerta_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         end
       end

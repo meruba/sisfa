@@ -48,7 +48,17 @@
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to("<i class='fa fa-list'></i> Inventario".html_safe, productos_path)%></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-stack-overflow"></i>
+            Productos
+            <b class="fa fa-angle-down"></b>
+          </a>
+          <ul class="dropdown-menu">
+            <li><%=link_to("Inventario", productos_path)%></li>
+            <li><%=link_to("Caducados", productos_caducado_path)%></li>
+          </ul>
+        </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to("<i class='fa fa-ambulance'></i> Proveedores".html_safe, proveedors_path)%></li>
