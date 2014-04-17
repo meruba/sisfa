@@ -66,7 +66,7 @@ class Producto < ActiveRecord::Base
   end
 
   def dinero_venta
-    dinero = self.precio_venta * self.kardex.cantidad_vendidos
+    dinero = self.precio_venta * (self.kardex.cantidad_inicial - cantidad_disponible) 
   end
 
   def self.grouped_by_casa
