@@ -57,6 +57,15 @@ class Producto < ActiveRecord::Base
     productos 
   end
 
+  def ingreso_productos_attributes=(attributes)
+    cantidad = 0
+    attributes.each do |value,key|
+      cantidad = cantidad + key[:cantidad].to_f
+    end
+    self.stock = cantidad
+    super
+  end
+
   def cantidad_disponible
     unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
   end

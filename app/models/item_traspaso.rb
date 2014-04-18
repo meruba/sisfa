@@ -48,6 +48,7 @@ class ItemTraspaso < ActiveRecord::Base
     disminuido = IngresoProducto.find(self.ingreso_producto_id)
     disminuido.cantidad -= self.cantidad
     disminuido.save
+    self.ingreso_producto.producto.update(:stock  => self.ingreso_producto.producto.stock - self.cantidad)
   end
 
 end
