@@ -1,0 +1,46 @@
+<h3>Reporte de Transferencias desde:</h3>
+<h4><%= @start_date%> hasta <%= @end_date%></h4>
+<div class="table-responsive">
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº</th>
+        <th>Tansferencia a</th>
+        <th>Emitido por</th>
+        <th>Entregado a</th>
+        <th>Fecha y Hora</th>
+        <th>Sub 12%</th>
+        <th>Sub 0%</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @traspaso.each do |t| %>
+      <tr>
+        <td><%= t.numero %></td>
+        <td><%= t.servicio%></td>
+        <td><%= t.user.username %></td>
+        <td><%= t.entregado_a%></td>
+        <td><%= local_date(t.created_at,"datetime") %></td>
+        <td><%= redondear(t.subtotal_12)%></td>
+        <td><%= redondear(t.subtotal)%></td>
+        <td><%= redondear(t.iva) %></td>
+        <td><%= redondear(t.total) %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong><%= redondear(@transferencia_subtotal_12) %></strong></td>
+        <td><strong><%= redondear(@transferencia_subtotal) %></strong></td>
+        <td><strong><%= redondear(@transferencia_iva) %></strong></td>
+        <td><strong><%= redondear(@transferencia_total) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4>Total de Transferencias: <%= @transferencia_cantidad%> </h4>

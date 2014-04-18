@@ -1,0 +1,52 @@
+<h3>Reporte de Ventas de Hospitalización desde:</h3>
+<h4><%= @start_date%> hasta <%= @end_date %></h4>
+<div class="table-responsive">
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº</th>
+        <th>Cliente</th>
+        <th>Dirección</th>
+        <th>Servicio</th>
+        <th>Rango</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Sub 12%</th>
+        <th>Sub 0%</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hospitalizacion.each do |h| %>end_date
+      <tr>
+        <td><%= h.numero %></td>
+        <td><%= h.cliente.nombre%></td>
+        <td><%= h.cliente.direccion %></td>
+        <td>ninguno</td>
+        <td>ninguno</td>
+        <td><%= h.user.username %></td>
+        <td><%= local_date(h.created_at,"datetime") %></td>
+        <td><%= redondear(h.subtotal_12) %></td>
+        <td><%= redondear(h.subtotal) %></td>
+        <td><%= redondear(h.iva) %></td>
+        <td><%= redondear(h.total) %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong><%= redondear(@hospitalizacion_subtotal_12) %></strong></td>
+        <td><strong><%= redondear(@hospitalizacion_subtotal) %></strong></td>
+        <td><strong><%= redondear(@hospitalizacion_iva) %></strong></td>
+        <td><strong><%= redondear(@hospitalizacion_total) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4>Comprobantes Emitidos: <%= @hospitalizacion_cantidad%></h4>
