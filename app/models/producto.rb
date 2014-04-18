@@ -62,20 +62,16 @@ class Producto < ActiveRecord::Base
     attributes.each do |value,key|
       cantidad = cantidad + key[:cantidad].to_f
     end
-    self.stock = cantidad
+    self.stock = self.stock + cantidad
     super
   end
 
-  def cantidad_disponible
-    unless self.ingreso_productos.empty? then self.ingreso_productos.sum(:cantidad) else 0 end
-  end
-
   def dinero_compra
-    dinero = self.precio_compra * cantidad_disponible
+    dinero = self.precio_compra * self.stock
   end
 
   def dinero_venta
-    dinero = self.precio_venta * (self.kardex.cantidad_inicial - cantidad_disponible) 
+    dinero = self.precio_venta * self.kardex.cantidad_salida 
   end
 
   def self.grouped_by_casa

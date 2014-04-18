@@ -23,7 +23,7 @@ class Kardex < ActiveRecord::Base
 		lineas = self.lineakardexes.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month)
 	end
 
-	def cantidad_inicial
-		cantidad = self.lineakardexes.first.cantidad
+	def cantidad_salida
+		cantidad = self.lineakardexes.where(:tipo => "Salida", :created_at => Time.now.beginning_of_month..Time.now.end_of_month).sum(:cantidad)
 	end
 end

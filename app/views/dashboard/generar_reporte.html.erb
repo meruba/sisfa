@@ -1,15 +1,11 @@
 <%= link_to ' Imprimir', {:format => :pdf} , {:target => "_blank"} %>
-<% if @search == 0 %>
-  <h3>No se encontro ninguna factura</h3>
-<% else %>
-  <%case @tipo_factura%>
-    <%when "ventanilla"%>
-      <%=  render "dashboard/reportes/facturas"%>
-    <%when "hospitalizacion"%>
-      <%=  render "dashboard/reportes/hospitalizaciones"%>
-    <%when "transferencia"%>
-      <%=  render "dashboard/reportes/transferencias"%>
-    <%when "compra"%>
-      <%=  render "dashboard/reportes/compras"%>
-  <% end %>
+<%case @tipo_factura%>
+  <%when "ventanilla"%>
+    <%=  render "dashboard/reportes/facturas"%>
+  <%when "hospitalizacion"%>
+    <%=  render "dashboard/reportes/hospitalizaciones"%>
+  <%when "transferencia"%>
+    <%=  render "dashboard/reportes/transferencias"%>
+  <%when "compra"%>
+    <%=  render "dashboard/reportes/compras"%>
 <% end %>
