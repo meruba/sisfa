@@ -12,7 +12,6 @@
 #  precio_venta    :decimal(4, 2)    not null
 #  ganancia        :decimal(4, 2)    not null
 #  hasiva          :boolean          default(FALSE)
-#  stock           :integer          default(0), not null
 #
 
 class Producto < ActiveRecord::Base
@@ -61,7 +60,11 @@ class Producto < ActiveRecord::Base
   def ingreso_productos_attributes=(attributes)
     cantidad = 0
     attributes.each do |value,key|
-      cantidad = cantidad + key[:cantidad].to_f
+      if key[:id]
+        cantidad = 0 #is update
+      else
+        cantidad = cantidad + key[:cantidad].to_f
+      end
     end
     self.stock = self.stock + cantidad
     super

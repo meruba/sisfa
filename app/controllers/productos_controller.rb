@@ -59,7 +59,8 @@ class ProductosController < ApplicationController
   end
 
   def inventario
-    @inventario = Producto.grouped_by_casa
+    # @inventario = Producto.includes(:ingreso_productos).where("ingreso_productos.cantidad != 0").references(:ingreso_productos)
+    @inventario = Producto.where("stock != 0")
   end
 
   def caducado
