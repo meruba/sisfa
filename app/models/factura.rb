@@ -56,7 +56,7 @@ end
 def set_factura_values
 	self.fecha_de_emision = Time.now
   self.fecha_de_vencimiento = Time.now + 30.days
-  self.numero = Factura.last ? Factura.last.numero + 1 : 1
+  self.numero = Factura.last ? Factura.last.numero + 1 : Emisor.numero_inicial
 	subtotal_0 = 0
 	subtotal_12 = 0
 	iva = 0

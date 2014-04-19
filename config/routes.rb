@@ -1,4 +1,6 @@
 Sisfa::Application.routes.draw do
+  resources :emisors
+
 get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"

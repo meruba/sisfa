@@ -14,7 +14,7 @@
 #  total                :float            not null
 #  created_at           :datetime
 #  updated_at           :datetime
-#  subtotal_12          :float            default(0.0)
+#  subtotal_12          :float
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

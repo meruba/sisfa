@@ -30,7 +30,7 @@
 #  iva_venta                  :float            default(0.0)
 #  total_venta                :float            default(0.0)
 #  subtotal12_compra          :float            default(0.0)
-#  anulados_ventanilla        :float            default(0.0)
+#  anulados_ventanilla        :integer          default(0)
 #
 
 class Liquidacion < ActiveRecord::Base

@@ -12,6 +12,7 @@
 #  precio_venta    :decimal(4, 2)    not null
 #  ganancia        :decimal(4, 2)    not null
 #  hasiva          :boolean          default(FALSE)
+#  stock           :integer          default(0), not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

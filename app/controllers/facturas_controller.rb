@@ -2,6 +2,7 @@ class FacturasController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
 	before_action :set_factura, only: [:show, :anular, :imprimir, :anulado]
+	before_action :validates_last_factura, only: :new
 
 	def index
 		respond_to do |format|
@@ -87,6 +88,13 @@ class FacturasController < ApplicationController
 
 	def set_factura
 		@factura = Factura.find(params[:id])
+	end
+
+	def validates_last_factura
+		unless Emisor.numero_inicial
+			redirect_to new_emisor_path
+			flash[:error] = "Primero debes configurar tu aplicación!"
+		end
 	end
 
 end
