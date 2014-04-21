@@ -22,7 +22,8 @@ class Cliente < ActiveRecord::Base
 	validates :numero_de_identificacion, :uniqueness => true
 	validates_id :numero_de_identificacion, :message => "Cédula incorrecta"
 # relationships
-	has_one :user
+  has_one :user
+	has_one :paciente
 	has_many :proformas
 	has_many :facturas
 	has_many :registros

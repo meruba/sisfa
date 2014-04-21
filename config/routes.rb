@@ -19,7 +19,9 @@ get "dashboard/reportes_cierre_caja_diario"
 get "dashboard/reportes_cierre_caja_mensual"
 get "dashboard/estadisticas_dia"
 get "dashboard/estadisticas_mes"
-# match "dashboard/cierre_de_caja_dia" => "dashboard#cierre_de_caja_dia", via: [:get, :post]
+get "pacientes/civil"
+get "pacientes/militar"
+get "pacientes/familiar"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -33,7 +35,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :ingreso_productos do
     resources :canjes
   end
-  resources :personas
+  resources :pacientes
   resources :clientes
   resources :proveedors
   resources :registros
