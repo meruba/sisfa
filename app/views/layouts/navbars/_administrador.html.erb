@@ -23,6 +23,8 @@
             <li><%= link_to 'Ver Usuarios', users_path %></li>
             <li><%=link_to("Nuevo Usuario", new_user_path)%></li>
             <li class="divider"></li>
+            <li><%=link_to("Configurar sistema", edit_emisor_path(Emisor.first))%></li>
+            <li class="divider"></li>
             <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
           </ul>
         </li>

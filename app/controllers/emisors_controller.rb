@@ -1,21 +1,29 @@
 class EmisorsController < ApplicationController
   def new
-    unless Emisor.any?
-      @emisor = Emisor.new
-    else
-      @emisor = Emisor.first
-    end
+    @emisor = Emisor.new
   end
-  alias_method :edit, :new
+  
+  def edit
+    @emisor = Emisor.first
+  end
 
   def create
-    if Emisor.any?
-      respond_with Emisor.update(Emisor.id, emisor_params)
+    @emisor = Emisor.new(emisor_params)
+    if @emisor.save
+      redirect_to facturas_path, :notice => "Parámetros configurados correctamente"
     else
-      respond_with :api, Emisor.create(emisor_params)
+      render action: "new"
     end
   end
-  alias_method :update, :create
+
+  def update
+    @emisor = Emisor.first
+    if @emisor.update(emisor_params)
+      redirect_to facturas_path, :notice => "Parámetros configurados correctamente"
+    else
+      render action: "edit"
+    end
+  end
 
   private
   
