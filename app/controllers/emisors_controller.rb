@@ -17,4 +17,11 @@ class EmisorsController < ApplicationController
   end
   alias_method :update, :create
 
+  private
+  
+  def emisor_params
+    params.require(:emisor).permit(:ruc,
+      :nombre_establecimiento,
+      :numero_inicial_factura)  
+  end
 end
