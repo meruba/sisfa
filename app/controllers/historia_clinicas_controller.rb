@@ -1,0 +1,2 @@
+class HistoriaClinicasController < ApplicationController
+end
