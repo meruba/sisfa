@@ -14,6 +14,7 @@
 #
 
 class Registro < ActiveRecord::Base
-	belongs_to :cliente
-	accepts_nested_attributes_for :cliente
+	#relations
+	belongs_to :historia_clinica
+
 end
