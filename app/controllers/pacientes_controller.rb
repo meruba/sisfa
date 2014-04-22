@@ -15,21 +15,29 @@ class PacientesController < ApplicationController
 	def militar
 		@paciente= Paciente.new(:tipo => "militar")
 		@paciente.build_cliente
+		@paciente.build_informacion_adicional_paciente
 	end
 
 	def familiar
 		@paciente= Paciente.new(:tipo => "familiar")
 		@paciente.build_cliente
+		@paciente.build_informacion_adicional_paciente
+
 	end
 
 	def civil
 		@paciente= Paciente.new(:tipo => "civil")
 		@paciente.build_cliente
+		@paciente.build_informacion_adicional_paciente
 	end
 
 	def create
 		@paciente = Paciente.new(paciente_params)
-		@paciente.save
+		if @paciente.save
+			redirect_to clientes_path, :notice => "Almacenado"
+		else
+			render action: 'new'
+		end
 	end
 
 	def update
@@ -58,6 +66,17 @@ class PacientesController < ApplicationController
 				:sexo,
 				:edad,
 				:estado_civil
-			]		
+			],
+			:informacion_adicional_paciente_attributes => [
+				:ciudad,
+				:provincia,
+				:canton,
+				:jefe_de_reparto,
+				:familiar_cercano,
+				:familiar_direccion,
+				:familiar_telefono,
+				:observacion,
+				:paciente_id
+			]
 	end
 end
