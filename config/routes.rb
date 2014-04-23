@@ -4,6 +4,7 @@ Sisfa::Application.routes.draw do
 get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
+get "historia_clinicas/autocomplete"
 get "productos/autocomplete_producto_compra"
 get "productos/inventario"
 get "productos/caducado"

@@ -6,6 +6,12 @@ class HistoriaClinicasController < ApplicationController
       format.json { render json: HistoriaClinicasDatatable.new(view_context) }
     end
   end
+    
+   def autocomplete
+    respond_to do |format|
+      format.json { render :json => HistoriaClinica.autocomplete(params[:term]) }
+    end
+  end
 
 	def new
 		@historia = HistoriaClinica.new
