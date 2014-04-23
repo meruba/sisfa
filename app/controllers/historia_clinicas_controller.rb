@@ -1,5 +1,12 @@
 class HistoriaClinicasController < ApplicationController
 	
+  def index
+    respond_to do |format|
+      format.html
+      format.json { render json: HistoriaClinicasDatatable.new(view_context) }
+    end
+  end
+
 	def new
 		@historia = HistoriaClinica.new
 		@historia.registros.build
@@ -11,7 +18,7 @@ class HistoriaClinicasController < ApplicationController
 	def create	
 		@historia = HistoriaClinica.new(historia_clinica_params.merge(fecha: Time.now))
 		if @historia.save
-			redirect_to clientes_path, :notice => "Historia Clinica Almacenada"
+			redirect_to historia_clinicas_path, :notice => "Historia Clinica Almacenada"
 		else
 			render action: 'new'
 		end
