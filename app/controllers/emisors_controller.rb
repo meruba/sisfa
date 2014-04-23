@@ -4,7 +4,12 @@ class EmisorsController < ApplicationController
   end
   
   def edit
-    @emisor = Emisor.first
+    if Emisor.first
+      @emisor = Emisor.first
+    else
+      redirect_to action: "new"
+    end
+    
   end
 
   def create
