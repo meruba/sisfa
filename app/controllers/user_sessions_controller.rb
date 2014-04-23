@@ -13,7 +13,7 @@ class UserSessionsController < ApplicationController
         flash[:error] = "Usuario suspendido"
       else
         if @user.rol == Rol.administrador_estadistica
-          redirect_to new_registro_path
+          redirect_to new_historia_clinica_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         else
           redirect_to productos_alerta_path

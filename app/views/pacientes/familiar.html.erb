@@ -1,0 +1,23 @@
+<h1>Familiar</h1>
+<div class="form-militar">
+	<div class="col-md-8">
+		<%= nested_form_for @paciente do |f| %>
+		<%= form_errors_for @paciente %>
+		<%= render "pacientes/forms/datos_cliente", f:f  %>
+		<legend>Informacion Militar</legend>
+		<div class="militar field">
+			<div class="col-md-6">
+				<%= f.label :parentesco %>
+				<%= f.text_field :parentesco, placeholder: "parentesco" %>
+			</div>
+			<div class="col-md-6">
+				<%= f.label :codigo_issfa %>
+				<%= f.text_field :codigo_issfa, placeholder: "Codigo ISSFA" %>
+			</div>
+		</div>
+		<legend>Informacion Adicional</legend>
+		<%= render "pacientes/forms/informacion_adicional", f:f  %>
+		<%= f.submit :guardar, class: "btn btn-success" %>
+		<% end %>
+	</div>
+</div>

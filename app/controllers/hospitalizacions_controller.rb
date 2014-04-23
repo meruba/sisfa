@@ -27,8 +27,11 @@ class HospitalizacionsController < ApplicationController
 	def show
 		@hospitalizacion = Hospitalizacion.find(params[:id])
 		respond_to do |format|
-      format.js{ render "show" }
-    end
+			format.js{ render "show" }
+			format.pdf do
+				render :pdf => "hospitalizacion", :layout => 'report.html', :template => "hospitalizacions/hospitalizacion_pdf.html.erb"
+			end
+		end
 	end
 
 	private

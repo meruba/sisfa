@@ -6,7 +6,6 @@ class RegistrosController < ApplicationController
 
 	def new
 		@registro = Registro.new
-		@registro.build_cliente
 	end
 
 	def create

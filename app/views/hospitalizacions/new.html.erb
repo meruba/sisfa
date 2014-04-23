@@ -20,6 +20,7 @@
 				<div class="col-md-8">
 					<%= f.fields_for :cliente do |cliente_params| %>
 					<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+					<input type = "text" class = "form-control-border numero_de_hclinica" placeholder = "N Historia Clinica">
 					<%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border numero_de_identificacion", :placeholder => "Cédula o RUC" %>
 					<%=  cliente_params.text_field :nombre, class: "form-control-border nombre", :placeholder => "Nombres Apellidos" %>
 					<%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
