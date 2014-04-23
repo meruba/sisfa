@@ -53,7 +53,10 @@ class HistoriaClinicasController < ApplicationController
 				:observacion,
 				:paciente_id
 			]
+		],
+		:registros_attributes => [
+			:especialidad,
+			:medico_asignado
 		]
 	end
-
 end
