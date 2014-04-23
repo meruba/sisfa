@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6">
+      <h3>
+      <%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %>
+      HOSPITAL BASICO 7 B.I<h3>
+      <h6>Direccion: Colon entre Bolivar y Bernardo Valdivieso</h6>
+      <h6>Telefono: (07) 257-0254</h6>
+      <h6>Correo: hb7loja2012@gmail.com</h6>
+    </div>
+    <div class="col-xs-6 text-right">
+      <h3>REPORTE #<%= @hospitalizacion.numero%></h3>
+      <h4>Paciente: <%= @hospitalizacion.cliente.nombre%></h4>
+      <p>
+        C.I: <%= @hospitalizacion.cliente.numero_de_identificacion%><br>
+        Direccion: <%= @hospitalizacion.cliente.direccion%><br>
+        Telefono: <%= @hospitalizacion.cliente.telefono%><br>
+      </p>
+    </div>
+  </div>
+  <table class="table table-bordered">
+    <thead class="well">
+      <tr>
+        <th>Producto</th>
+        <th>Cantidad</th>
+        <th>Precio</th>
+        <th>Iva</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hospitalizacion.item_hospitalizacions.each do |item| %>
+      <tr>
+        <td><%= item.ingreso_producto.producto.nombre%></td>
+        <td><%= item.cantidad %></td>
+        <td><%= item.valor_unitario %></td>
+        <td><%= item.iva %></td>
+        <td class="text-right"><%= item.total %></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="row text-right">
+    <div class="col-xs-2 col-xs-offset-8">
+      <p>
+        <strong>
+          Sub 12%: <br>
+          Sub 0%: <br>
+          IVA : <br>
+          Total : <br>
+        </strong>
+      </p>
+    </div>
+    <div class="col-xs-2">
+      <strong>
+        $ <%= @hospitalizacion.subtotal_12 %><br>
+        $ <%= @hospitalizacion.subtotal %><br>
+        $ <%= @hospitalizacion.iva %><br>
+        $ <%= @hospitalizacion.total %><br>
+      </strong>
+    </div>
+  </div>
+</div>
