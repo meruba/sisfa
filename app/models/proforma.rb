@@ -33,6 +33,13 @@ validates :total, :numericality => { :greater_than => 0 }
 before_validation :set_proforma_values
 
 #methods
+def cliente_attributes=(attributes)
+	if attributes['id'].present?
+		self.cliente = Cliente.find(attributes['id'])
+	end
+	super
+end
+
 def set_proforma_values
 	self.fecha_emision = Time.now
   self.numero = Proforma.last ? Proforma.last.numero + 1 : 1
@@ -64,6 +71,4 @@ def set_proforma_values
 	self.total = self.total.round(2)
 	self.descuento = 0
 end
-
-
 end
