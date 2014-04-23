@@ -111,7 +111,13 @@ def anular_factura(razon)
 end
 
 def add_liquidacion
-	Liquidacion.add_factura(self)
+	total = 0
+	self.item_facturas.each do |item|
+		ingreso = IngresoProducto.find item.ingreso_producto_id
+		total = total + (ingreso.producto.precio_compra * item.cantidad).round(2)
+		#obtine el total de la venta sin ganacia
+	end
+	Liquidacion.add_factura(self, total)
 end
 
 end
