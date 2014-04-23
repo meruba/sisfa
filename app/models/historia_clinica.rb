@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: historia_clinicas
+#
+#  id          :integer          not null, primary key
+#  numero      :integer
+#  fecha       :date
+#  paciente_id :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class HistoriaClinica < ActiveRecord::Base
 
 #validations
