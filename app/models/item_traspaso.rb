@@ -32,7 +32,7 @@ class ItemTraspaso < ActiveRecord::Base
     sin_id = IngresoProducto.find_by_id(self.ingreso_producto_id).nil?
     if sin_id == false
       if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
-      errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
+      errors.add :cantidad, "Stock insuficiente de: " + ingreso_producto.producto.nombre + " / " + ingreso_producto.cantidad.to_s
       end
     else
       errors.add :ingreso_producto_id, "Tienes items en blanco"

@@ -30,7 +30,7 @@ class ItemHospitalizacion < ActiveRecord::Base
 	# methods
 	def stock
 	  if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
-	  	errors.add :cantidad, "No hay suficiente stock de: " + ingreso_producto.producto.nombre
+      errors.add :cantidad, "Stock insuficiente de: " + ingreso_producto.producto.nombre + " / " + ingreso_producto.cantidad.to_s
 	  end
 	end
 
