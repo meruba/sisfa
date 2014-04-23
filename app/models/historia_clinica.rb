@@ -10,7 +10,8 @@ class HistoriaClinica < ActiveRecord::Base
 
 #callbacks
 before_validation :set_values
-
+	
+	#methods
 	def set_values
 		self.registros.each do |f|
 			f.fecha_de_ingreso = Time.now
@@ -29,5 +30,21 @@ before_validation :set_values
 			self.paciente.codigo_issfa = ""
 		end
 	end
+	end
+	
+	def self.autocomplete(params)
+		historias = HistoriaClinica.where("numero like ?", "%#{params}%")
+    historias = historias.map do |historia|
+      {
+        :id => historia.paciente.cliente.id,
+        :label => historia.numero.to_s+ " / " + historia.paciente.cliente.nombre,
+        :value => historia.numero.to_s,
+        :numero_de_identificacion => historia.paciente.cliente.numero_de_identificacion,
+        :nombre => historia.paciente.cliente.nombre,
+        :direccion => historia.paciente.cliente.direccion,
+        :telefono => historia.paciente.cliente.telefono
+      }
+    end
+    historias 
 	end
 end
