@@ -5,9 +5,11 @@ window.Helpers.SelectPaciente = {
     switch $this.val()
       when "militar"
         $wrapper.find(".familiar_wrapper").fadeOut()
+        $wrapper.find(".civil_wrapper").fadeOut()
         $wrapper.find(".militar_wrapper").fadeIn()
       when "familiar"
         $wrapper.find(".militar_wrapper").fadeOut()
+        $wrapper.find(".civil_wrapper").fadeOut()
         $wrapper.find(".familiar_wrapper").fadeIn()
       when "civil"
         $wrapper.find(".militar_wrapper").fadeOut()
