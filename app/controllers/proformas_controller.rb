@@ -1,4 +1,4 @@
-class ProformasController < NeedClientController
+class ProformasController < ApplicationController
 	before_filter :require_login
   before_filter :suspendido
   before_action :set_proforma, only: [:show]
