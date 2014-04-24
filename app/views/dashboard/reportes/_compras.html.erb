@@ -34,10 +34,10 @@
       <td></td>
       <td></td>
       <td></td>
-      <td><strong><%= @compra_subtotal_12 %></strong></td>
-      <td><strong><%= @compra_subtotal_0 %></strong></td>
-      <td><strong><%= @compra_iva %></strong></td>
-      <td><strong><%= @compra_total %></strong></td>
+      <td><strong><%= redondear(@compra_subtotal_12) %></strong></td>
+      <td><strong><%= redondear(@compra_subtotal_0) %></strong></td>
+      <td><strong><%= redondear(@compra_iva) %></strong></td>
+      <td><strong><%= redondear(@compra_total) %></strong></td>
     </tr>
   </tbody>
 </table>

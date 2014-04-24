@@ -35,10 +35,10 @@
         <td></td>
         <td></td>
         <td></td>
-        <td><strong><%= @facturas_subtotal_12 %></strong></td>
-        <td><strong><%= @facturas_subtotal_0 %></strong></td>
-        <td><strong><%= @facturas_iva %></strong></td>
-        <td><strong><%= @facturas_total %></strong></td>
+        <td><strong><%= redondear(@facturas_subtotal_12)%></strong></td>
+        <td><strong><%= redondear(@facturas_subtotal_0) %></strong></td>
+        <td><strong><%= redondear(@facturas_iva) %></strong></td>
+        <td><strong><%= redondear(@facturas_total) %></strong></td>
       </tr>
     </tbody>
   </table>

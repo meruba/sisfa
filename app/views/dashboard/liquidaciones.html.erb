@@ -22,7 +22,7 @@
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><strong><%= @liquidacion.total_sin_iva_venta %></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_sin_iva_venta) %></strong></td>
 				</tr>
 				<tr>
 					<td>IVA:</td>
@@ -55,7 +55,7 @@
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><strong><%= @liquidacion.total_sin_iva_ventanilla %></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_sin_iva_ventanilla) %></strong></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
@@ -89,7 +89,7 @@
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><strong><%= @liquidacion.total_sin_iva_hospitalizacion %></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_sin_iva_hospitalizacion) %></strong></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
@@ -123,7 +123,7 @@
 				</tr>
 				<tr>
 					<td><strong>Total Ventas:</strong></td>
-					<td><strong><%= @liquidacion.total_sin_iva_traspaso %></strong></td>
+					<td><strong><%= redondear(@liquidacion.total_sin_iva_traspaso) %></strong></td>
 				</tr>
 				<tr>
 					<td>Iva:</td>
@@ -163,11 +163,11 @@
 				</tr>
 				<tr>
 					<td>IVA:</td>
-					<td><%= @liquidacion.iva_compra %></td>
+					<td><%= redondear(@liquidacion.iva_compra) %></td>
 				</tr>
 				<tr>
 					<td><strong>Total:</strong></td>
-					<td><%= @liquidacion.total_compra %></td>
+					<td><%= redondear(@liquidacion.total_compra) %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -189,11 +189,11 @@
 				</tr>
 				<tr>
 					<td>(+) Compras</td>
-					<td><%= @liquidacion.total_sin_iva_compra %></td>
+					<td><%= redondear(@liquidacion.total_sin_iva_compra) %></td>
 				</tr>
 				<tr>
 					<td>(-) Costo de Venta</td>
-					<td><%= @liquidacion.costo_venta %></td>
+					<td><%= redondear(@liquidacion.costo_venta) %></td>
 				</tr>
 				<tr>
 					<td><strong>Saldo Final</strong></td>
@@ -214,11 +214,11 @@
 			<tbody>
 				<tr>
 					<td>Total Ventas:</td>
-					<td><%= @liquidacion.total_sin_iva_venta %></td>
+					<td><%= redondear(@liquidacion.total_sin_iva_venta) %></td>
 				</tr>
 				<tr>
 					<td>(-) Costo Venta</td>
-					<td><%= @liquidacion.costo_venta %></td>
+					<td><%= redondear(@liquidacion.costo_venta) %></td>
 				</tr>
 				<tr>
 					<td>TOTAL</td>
