@@ -1,6 +1,6 @@
 <h3 class="text-center">REPORTE DE CIERRE DE CAJA:</h3>
 <div class="fix-margin">
-	<h5>Fecha: <%= @fecha %></h5>
+	<h5>Fecha: <%= local_date(@fecha, "date") %></h5>
 	<h5>Usuario: <%= current_user.username %></h5>
 	<h5>Rol: <%= current_user.rol.nombre %></h5>
 </div>

@@ -31,8 +31,8 @@ class DashboardController < ApplicationController
   end
 
   def reportes_cierre_caja_diario
-    @fecha = params[:fecha]
-    caja_dia(@fecha.to_time.beginning_of_day..@fecha.to_time.end_of_day)
+    @fecha = params[:fecha].to_time
+    caja_dia(@fecha.beginning_of_day..@fecha.end_of_day)
     if @ventanilla_cantidad == 0
       render :template => "results/not_result"
     else
@@ -57,7 +57,7 @@ class DashboardController < ApplicationController
       respond_to do |format|
         format.html
         format.pdf do
-          render :pdf => "liquidaciones", :locals => { :fecha => @fecha }, :layout => 'report.html', :template => "dashboard/liquidaciones.html.erb", :orientation => 'Landscape'
+          render :pdf => "liquidaciones", :locals => { :fecha => @fecha }, :layout => 'report.html', :template => "dashboard/liquidaciones.html.erb"
         end
       end
     else
