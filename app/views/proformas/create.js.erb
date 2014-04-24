@@ -1,8 +1,4 @@
-<%- if @cliente.errors.any? %>
-  <%- @cliente.errors.full_messages.each do |msg|%>
-    alertify.error("Cliente: <%=j msg %>");
-  <%- end %>
-<%- else %>
+
   <%- if @proforma.errors.any? %>
     <%- @proforma.errors.full_messages.each do |msg|%>
       alertify.error("<%=j msg %>");
@@ -17,4 +13,3 @@
   });
     alertify.success("Proforma Guardada");
   <%- end %>
-<%- end %>

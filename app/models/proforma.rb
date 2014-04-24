@@ -22,7 +22,7 @@ has_many :item_proformas
 has_many :ingreso_productos, :through => :item_proformas
 
 #nested
-accepts_nested_attributes_for :item_proformas
+accepts_nested_attributes_for :item_proformas, :cliente
 
 #valitations
 validates :numero, :subtotal_0, :subtotal_12, :iva, :total, :presence =>true
