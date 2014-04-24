@@ -98,8 +98,10 @@ def rollback_factura
 	self.item_facturas.each do |item|
 		ingreso_producto = item.ingreso_producto
 		ingreso_producto.cantidad = ingreso_producto.cantidad + item.cantidad
+		ingreso_producto.producto.stock = ingreso_producto.producto.stock + item.cantidad #suma al stock si se anula
 		Lineakardex.create(:kardex => ingreso_producto.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.ingreso_producto.producto.precio_venta, :observaciones => "Factura anulada" )
 		ingreso_producto.save
+		ingreso_producto.producto.save
 	end
 end
 
@@ -111,15 +113,13 @@ def anular_factura(razon)
 end
 
 def add_liquidacion
-	Liquidacion.add_factura(self)
-end
-
-def militar_servicio
-	if self.cliente.militar then self.cliente.militar.servicio else "no tiene un militar asosiado" end
-end
-
-def militar_rango
-	if self.cliente.militar then self.cliente.militar.rango else "no tiene un militar asosiado" end
+	total = 0
+	self.item_facturas.each do |item|
+		ingreso = IngresoProducto.find item.ingreso_producto_id
+		total = total + (ingreso.producto.precio_compra * item.cantidad).round(2)
+		#obtine el total de la venta sin ganacia
+	end
+	Liquidacion.add_factura(self, total)
 end
 
 end

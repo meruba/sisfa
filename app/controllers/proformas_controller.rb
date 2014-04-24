@@ -1,8 +1,7 @@
 class ProformasController < ApplicationController
 	before_filter :require_login
   before_filter :suspendido
-  before_action :set_proforma, only: [:show]
-  before_action :set_cliente, only: :create
+	before_action :set_proforma, only: [:show]
 
 	def index
 		respond_to do |format|
@@ -14,6 +13,7 @@ class ProformasController < ApplicationController
 	def new
 		@proforma = Proforma.new
 		@proforma.item_proformas.build
+		@proforma.build_cliente
 	end
 
 	def show
@@ -27,10 +27,8 @@ class ProformasController < ApplicationController
 
 	def create
 		respond_to do |format|
-			if @cliente.save
-				@proforma = @cliente.proformas.build(proforma_params)
-				@proforma.save
-			end
+			@proforma = Proforma.new(proforma_params)
+			@proforma.save
 			format.js
 		end
 	end
@@ -54,14 +52,14 @@ class ProformasController < ApplicationController
 	private
 
 	def proforma_params
-		params.require(:proforma).permit :numero,
-		:fecha_emision,
-		:subtotal_0,
-		:subtotal_12,
-		:descuento,
-		:iva,
-		:total,
-		:cliente_id,
+		params.require(:proforma).permit :cliente_id,
+		:cliente_attributes => [
+			:id,
+			:nombre,
+			:direccion,
+			:telefono,
+			:numero_de_identificacion
+		],
 		:item_proformas_attributes => [
 			:cantidad,
 			:valor_unitario,

@@ -82,7 +82,13 @@ class Hospitalizacion < ActiveRecord::Base
 	end
 
 	def add_liquidacion
-		Liquidacion.add_hospitalizacion(self)
+		total = 0
+		self.item_hospitalizacions.each do |item|
+			ingreso = IngresoProducto.find item.ingreso_producto_id
+			total = total + (ingreso.producto.precio_compra * item.cantidad).round(2)
+			#obtine el total de la venta sin ganacia
+		end
+		Liquidacion.add_hospitalizacion(self, total)
 	end
 
 end

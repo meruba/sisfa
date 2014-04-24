@@ -13,6 +13,7 @@
 #  sexo                     :string(255)
 #  edad                     :integer
 #  estado_civil             :string(255)
+#  fecha_de_nacimiento      :date
 #
 
 class Cliente < ActiveRecord::Base
