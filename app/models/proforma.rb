@@ -56,7 +56,7 @@ def set_proforma_values
 			# subtotal = subtotal + item.total
 			if ingreso.producto.hasiva == true
 				subtotal_12 = subtotal_12 + item.total
-				item.iva = (ingreso.producto.precio_venta * 0.12).round(2)
+				item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12)).round(2)
 			else
 				subtotal_0 = subtotal_0 + item.total
 				item.iva = 0
