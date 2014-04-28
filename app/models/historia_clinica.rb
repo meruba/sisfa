@@ -23,11 +23,18 @@ class HistoriaClinica < ActiveRecord::Base
 #callbacks
 before_validation :set_values
 	
-	#methods
+#methods
+	def paciente_attributes=(attributes)
+		if attributes[:cliente_attributes][:id].present?
+			self.paciente = Paciente.new(:cliente_id => attributes[:cliente_attributes][:id])
+		end
+		super
+	end
+
 	def set_values
 		self.registros.each do |f|
 			f.fecha_de_ingreso = Time.now
-		end	
+		end
 		if self.paciente.tipo == "familiar"
 			self.paciente.estado = ""
 			self.paciente.grado = ""

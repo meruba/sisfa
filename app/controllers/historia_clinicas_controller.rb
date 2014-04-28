@@ -16,8 +16,8 @@ class HistoriaClinicasController < ApplicationController
 	def new
 		@historia = HistoriaClinica.new
 		@historia.registros.build
-    @historia.build_paciente
-    @historia.paciente.build_cliente
+    # @historia.build_paciente
+    @historia.build_paciente.build_cliente
 		@historia.paciente.build_informacion_adicional_paciente
 	end
 
