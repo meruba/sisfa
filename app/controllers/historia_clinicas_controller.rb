@@ -1,5 +1,7 @@
 class HistoriaClinicasController < ApplicationController
 	
+	before_action :set_historia, only: [:show]
+
   def index
     respond_to do |format|
       format.html
@@ -21,6 +23,10 @@ class HistoriaClinicasController < ApplicationController
 		@historia.paciente.build_informacion_adicional_paciente
 	end
 
+	def show
+		
+	end
+	
 	def create	
 		@historia = HistoriaClinica.new(historia_clinica_params.merge(fecha: Time.now))
 		if @historia.save
@@ -71,5 +77,9 @@ class HistoriaClinicasController < ApplicationController
 			:especialidad,
 			:medico_asignado
 		]
+	end
+
+	def set_historia
+		@historia = HistoriaClinica.find(params[:id])
 	end
 end
