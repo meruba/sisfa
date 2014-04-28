@@ -1,48 +1,41 @@
 class RegistrosController < ApplicationController
+  before_action :find_historia
 
-	def index
-		
-	end
+  def index
+    @registros = Registro.all
+  end
+  
+  def new
+    @registro = Registro.new
+  end
 
-	def new
-		@registro = Registro.new
-	end
-
-	def create
-    # @registro = Registro.new(registro_params)
-    cliente_attrs = params[:registro].delete :cliente_attributes
-    militar = cliente_attrs.delete :militar
-    @cliente = cliente_attrs[:id].present? ? Cliente.update(cliente_attrs[:id],cliente_attrs) : Cliente.create(cliente_attrs)
-    if @cliente.save
-      @registro = @cliente.registros.build(registro_params)
-      if @registro.save
-        redirect_to registros_path, :notice => "Paciente Guardado"
-      else
-        flash[:error] = "Error"
-        redirect_to registros_path
-      end
+  def create
+    @registro = Registro.new(registro_params.merge(:fecha_de_ingreso => Time.now))
+    @registro.historia_clinica = @historia
+    if @registro.save
+      redirect_to historia_clinicas_path
+      flash[:notice] = 'Almacenado nuevo registro'
     else
-    	flash[:error] = "Error"
-      redirect_to registros_path
+      render "new"
     end
-	end
+  end
 
-	private
+  private
 
-	def registro_params
-    params.require(:registro).permit :n_hclinica, 
-    																:fecha_de_ingreso,
-    																:fecha_de_salida,
-    																:especialidad,
-    																:medico_asignado,
-    																:cliente_attributes => [
-                                      :nombre,
-                                      :numero_de_identificacion,
-                                      :direccion,
-                                      :telefono,
-                                      :email,
-                                      :created_at,
-                                      :updated_at
-                                    ]
-	end
+  def registro_params
+    params.require(:registro).permit :historia_clinica_id,
+      :fecha_de_ingreso,
+      :fecha_de_salida,
+      :especialidad,
+      :medico_asignado,
+      :diagnostico_ingreso,
+      :diagnostico_salida,
+      :discapacidad,
+      :dias_hospitalizacion
+  end
+
+  def find_historia
+    @historia = HistoriaClinica.find(params[:historia_clinica_id])
+  end
+
 end

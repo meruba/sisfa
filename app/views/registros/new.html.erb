@@ -1,0 +1,11 @@
+<h3>Paciente: <%= @historia.paciente.cliente.nombre %> </h3>
+<h3>Nuevo Registro</h3>
+<%= form_for [@historia, @registro] do |f| %>
+<div class="field">
+	<%= f.label :especialidad %>
+	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+	<%= f.label :medico_asignado %>
+	<%= f.text_field :medico_asignado %>
+</div>
+<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<% end %>

@@ -37,10 +37,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :canjes
   end
   resources :pacientes
-  resources :historia_clinicas
+  resources :historia_clinicas do
+    resources :registros
+  end
   resources :clientes
   resources :proveedors
-  resources :registros
   resources :item_facturas
   resources :item_proformas
   resources :traspasos
