@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">H.Clinica</Data></Cell>
+        <Cell><Data ss:Type="String">F.Ingreso</Data></Cell>
+        <Cell><Data ss:Type="String">F.Salida</Data></Cell>
+        <Cell><Data ss:Type="String">Especialidad</Data></Cell>
+        <Cell><Data ss:Type="String">Medico</Data></Cell>
+        <Cell><Data ss:Type="String">Dias</Data></Cell>
+        <Cell><Data ss:Type="String">Grado</Data></Cell>
+        <Cell><Data ss:Type="String">Unidad</Data></Cell>
+        <Cell><Data ss:Type="String">Apellido y Nombre</Data></Cell>
+        <Cell><Data ss:Type="String">C.I</Data></Cell>
+        <Cell><Data ss:Type="String">Edad</Data></Cell>
+        <Cell><Data ss:Type="String">Fecha de nacimiento</Data></Cell>
+        <Cell><Data ss:Type="String">Nacionalidad</Data></Cell>
+        <Cell><Data ss:Type="String">Etnia</Data></Cell>
+        <Cell><Data ss:Type="String">Discapacidad</Data></Cell>
+        <Cell><Data ss:Type="String">Direccion</Data></Cell>
+        <Cell><Data ss:Type="String">Diag. Ingreso</Data></Cell>
+        <Cell><Data ss:Type="String">Diag. Salida</Data></Cell>
+      </Row>
+    <% @registros.each do |r| %>
+      <Row>
+        <Cell><Data ss:Type="Number"><%= r.paciente.n_hclinica %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= local_date(r.fecha_de_ingreso, "date")%></Data></Cell>
+        <Cell><Data ss:Type="String"><%= local_date(r.fecha_de_salida, "date") %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.especialidad %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.medico_asignado %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= r.dias_hospitalizacion %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.paciente.grado %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.paciente.unidad %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.paciente.cliente.nombre %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= r.paciente.cliente.numero_de_identificacion %></Data></Cell>
+        <Cell><Data ss:Type="Number"><%= r.paciente.cliente.edad %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.paciente.cliente.fecha_de_nacimiento%></Data></Cell>
+        <Cell><Data ss:Type="String">ECUADOR</Data></Cell>
+        <Cell><Data ss:Type="String">MESTIZA</Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.discapacidad %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.paciente.cliente.direccion %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.diagnostico_ingreso %></Data></Cell>
+        <Cell><Data ss:Type="String"><%= r.diagnostico_salida %></Data></Cell>
+      </Row>
+    <% end %>
+    </Table>
+  </Worksheet>
+</Workbook>

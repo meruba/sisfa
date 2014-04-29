@@ -1,0 +1,40 @@
+<h1>Reporte de Hospitalizados</h1>
+<h4>Desde: <%= @start_date%> hasta <%= @end_date %></h4>
+<p>
+  Descargar:
+  <%= link_to "Excel", registros_reporte_path(params.merge(format: 'xls')) %>
+</p>
+<div class="table-responsive">
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>H. Clinica</th>
+        <th>F. Ingreso</th>
+        <th>F. Salida</th>
+        <th>Dias</th>
+        <th>Grado</th>
+        <th>Unidad</th>
+        <th>Apellido y Nombre</th>
+        <th>C.I</th>
+        <th>Edad</th>
+        <th>Fecha Nacimiento</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @registros.each do |r| %>
+      <tr>
+        <td><%= r.paciente.n_hclinica %></td>
+        <td><%= local_date(r.fecha_de_ingreso, "date") %></td>
+        <td><%= local_date(r.fecha_de_salida, "date") %></td>
+        <td><%= r.dias_hospitalizacion %></td>
+        <td><%= r.paciente.grado %></td>
+        <td><%= r.paciente.unidad %></td>
+        <td><%= r.paciente.cliente.nombre %></td>
+        <td><%= r.paciente.cliente.numero_de_identificacion %></td>
+        <td><%= r.paciente.cliente.edad %></td>
+        <td><%= r.paciente.cliente.fecha_de_nacimiento%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

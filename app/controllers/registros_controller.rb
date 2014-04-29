@@ -3,20 +3,16 @@ class RegistrosController < ApplicationController
   before_action :set_registro, only: [:edit, :update]
 
   def index
-    @registros = Registro.where(:fecha_de_salida => nil)
+    @registros = Registro.includes(:paciente).where(:fecha_de_salida => nil).references(:paciente)
   end
 
   def reporte
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
+    @registros = Registro.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
     respond_to do |format|
-      format.html{
-        Registro.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
-      }
-      format.pdf do
-        render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/generar_reporte.html.erb", :orientation => 'Landscape'
-      end
-      format.js
+      format.html
+      format.xls
     end
   end
 
