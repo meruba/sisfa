@@ -1,0 +1,18 @@
+<div class="row info-paciente">
+	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
+	<ul class="cbp_tmtimeline">
+		<% @paciente.registros.each do |r|  %>
+		<li>
+			<time class="cbp_tmtime"><span><%= local_date(r.fecha_de_ingreso, "time")%></span> <span><%= local_date(r.fecha_de_ingreso, "date") %></span></time>
+			<div class="cbp_tmicon fa-calendar"></div>
+			<div class="cbp_tmlabel">
+				<small>DIAGNOSTICO FINAL</small>
+				<h3><%= r.diagnostico_salida %></h3>
+				<p>INTERNADO EN: <%= r.especialidad %></p>
+				<p>MEDICO: <%= r.medico_asignado %></p>
+				<p>SISTOMAS: <%= r.diagnostico_ingreso %></p>
+			</div>
+		</li>
+		<% end %>
+	</ul>
+</div>
