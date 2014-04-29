@@ -9,15 +9,38 @@
 #  medico_asignado      :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
-#  historia_clinica_id  :integer
 #  diagnostico_ingreso  :string(255)
 #  diagnostico_salida   :string(255)
 #  discapacidad         :string(255)
 #  dias_hospitalizacion :integer
+#  paciente_id          :integer
 #
 
 class Registro < ActiveRecord::Base
 	#relations
-	belongs_to :historia_clinica
+	belongs_to :paciente
+
+	#callbacks	
+  before_update :set_dias
+
+  #validations
+  validates :fecha_de_ingreso, :medico_asignado, :presence => true
+
+  validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
+
+  # def validate_update
+  # 	if self.diagnostico_ingreso.nil? or self.diagnostico_salida.nil? or self.fecha_de_salida.nil?
+
+  # 	end
+  # end
+
+	#methods
+	def set_dias
+		self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i
+	end
+
+	def self.reporte(inicio, final)
+		registros = Registro.where(created_at: inicio..final)
+	end
 
 end
