@@ -34,6 +34,7 @@
 #  total_sin_iva_ventanilla      :float            default(0.0)
 #  total_sin_iva_hospitalizacion :float            default(0.0)
 #  total_sin_iva_traspaso        :float            default(0.0)
+#  total_sin_iva_compra          :float            default(0.0)
 #  total_sin_iva_venta           :float            default(0.0)
 #  saldo_anterior                :float            default(0.0)
 #  saldo_final                   :float            default(0.0)
