@@ -1,5 +1,11 @@
 <h2 class="text-center">LIQUIDACIÓN</h2>
 <h4 class="text-center"> <%= month_name(@fecha) %></h4>
+<% unless request.format.to_sym == :pdf %>
+<p>
+  Descargar:
+  <%= link_to "PDF", dashboard_liquidaciones_path(params.merge(format: 'pdf')) %>
+</p>
+<% end %>
 <div class="row  page-break">
 	<h5 class= "fix-margin"><strong>Fecha de Impresión:  </strong><span class="fecha_sin_hora"></span></h5>
 	<div class="col-md-3 col-xs-6">
@@ -228,5 +234,3 @@
 		</table>
 	</div>
 </div>
-<br>
-<%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-info", :target => "_blank"} %>
