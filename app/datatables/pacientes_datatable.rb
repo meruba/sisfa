@@ -8,7 +8,7 @@ class PacientesDatatable
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: Cliente.count,
+      iTotalRecords: pacientes.count,
       iTotalDisplayRecords: pacientes.total_entries,
       aaData: data
     }
@@ -19,11 +19,12 @@ private
   def data
     pacientes.map do |paciente|
       [
+        (paciente.n_hclinica),        
         (paciente.cliente.nombre),
         (paciente.cliente.numero_de_identificacion),
-        # (paciente.cliente.direccion),
-        (paciente.n_hclinica),        
-        (link_to '', @view.edit_paciente_path(paciente), class: "ttip mostrar fa fa-eye btn btn-info"),
+        (paciente.tipo),
+        (link_to '', paciente, :rel => 'tooltip', :title => 'Ver Ficha', class: "ttip fa fa-eye btn btn-info") + " " +
+        (link_to '', @view.new_paciente_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success"})
       ]
     end 
   end
@@ -36,7 +37,7 @@ private
     pacientes = Paciente.order("#{sort_column} #{sort_direction}")
     pacientes = pacientes.page(page).per_page(per_page)
     if params[:sSearch].present?
-      pacientes = pacientes.where("n_hclinica like :search", search: "%#{params[:sSearch]}%")
+      pacientes = pacientes.includes(:cliente).where("n_hclinica like :search or clientes.nombre like :search or clientes.numero_de_identificacion like :search", search: "%#{params[:sSearch]}%").references(:cliente)
     end
     pacientes
   end

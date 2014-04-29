@@ -1,7 +1,11 @@
 class PacientesController < ApplicationController
+	before_action :set_paciente, only: [:show]
 
 	def index
-		@all = Paciente.all
+		respond_to do |format|
+      format.html
+      format.json { render json: PacientesDatatable.new(view_context) }
+    end
 	end
 
 	def show
@@ -9,28 +13,11 @@ class PacientesController < ApplicationController
 
 	def new
 		@paciente= Paciente.new
-		@paciente.build_cliente
-	end
-
-	def militar
-		@paciente= Paciente.new(:tipo => "militar")
+		@paciente.registros.build
 		@paciente.build_cliente
 		@paciente.build_informacion_adicional_paciente
 	end
-
-	def familiar
-		@paciente= Paciente.new(:tipo => "familiar")
-		@paciente.build_cliente
-		@paciente.build_informacion_adicional_paciente
-
-	end
-
-	def civil
-		@paciente= Paciente.new(:tipo => "civil")
-		@paciente.build_cliente
-		@paciente.build_informacion_adicional_paciente
-	end
-
+	
 	def create
 		@paciente = Paciente.new(paciente_params)
 		if @paciente.save
@@ -51,6 +38,7 @@ class PacientesController < ApplicationController
 
 	def paciente_params
 		params.require(:paciente).permit :tipo,
+			:n_hclinica,
 			:grado,
 			:estado,
 			:codigo_issfa,
@@ -59,6 +47,7 @@ class PacientesController < ApplicationController
 			:parentesco,
 			:cliente_attributes => [
 				:id,
+				:fecha_de_nacimiento,
 				:nombre,
 				:direccion,
 				:telefono,
@@ -77,6 +66,14 @@ class PacientesController < ApplicationController
 				:familiar_telefono,
 				:observacion,
 				:paciente_id
+			],
+			:registros_attributes => [
+				:especialidad,
+				:medico_asignado
 			]
+	end
+
+	def set_paciente
+		@paciente = Paciente.find(params[:id])
 	end
 end

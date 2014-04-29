@@ -24,7 +24,7 @@ private
         (historia.paciente.cliente.numero_de_identificacion),
         (historia.paciente.tipo),
         (link_to '', historia, :rel => 'tooltip', :title => 'Ver Ficha', class: "ttip fa fa-eye btn btn-info") + " " +
-        (link_to '', @view.new_historia_clinica_registro_path(historia),:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success")
+        (link_to '', @view.new_historia_clinica_registro_path(historia),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success"})
       ]
     end 
   end
