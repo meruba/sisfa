@@ -34,7 +34,7 @@ module ApplicationHelper
       when tipo = "datetime"
         date = date.strftime("%Y-%m-%d | %H:%M:%S")
       when tipo = "time"
-        date = date.strftime("%H:%M:%S")
+        date = date.strftime("%H:%M")
       end
     end
     date 
