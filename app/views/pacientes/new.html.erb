@@ -1,0 +1,26 @@
+<div class="historia_form">
+	<%= nested_form_for @paciente do |f| %>
+	<%= form_errors_for @paciente %>
+	<%= f.label :n_hclinica, "Historia Clinica #"%>
+	<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
+	<%= f.label :tipo, "Tipo de Paciente"%>
+	<%= f.select :tipo, "<option value='militar'>Militar</option><option value='familiar'>Familiar</option><option value='civil'>Civil</option>".html_safe, {}, { :class => "form-control select_paciente" } %>
+	<%= render "pacientes/forms/datos_cliente", f:f  %>
+	<div class="militar_wrapper">
+		<%= render "pacientes/forms/datos_militar", f:f  %>
+		<%= render "pacientes/forms/informacion_adicional_militar", f:f  %>
+	</div>
+	<div class="familiar_wrapper" style="display: none;">
+		<%= render "pacientes/forms/datos_familiar", f:f  %>
+		<%= render "pacientes/forms/informacion_adicional", f:f  %>
+	</div>
+	<div class="civil_wrapper" style="display: none;">
+		<%= render "pacientes/forms/informacion_adicional", f:f  %>
+	</div>
+	<%= render "registros/registros", f:f  %>
+	<%= javascript_tag do %>
+	$(function (){window.Helpers.SelectPaciente.init();});
+	<% end %>
+	<%= f.submit :guardar, class: "btn btn-success" %>
+	<% end %>
+</div>

@@ -1,0 +1,19 @@
+<h3>Registro de Salida</h3>
+<h4>Paciente: <%= @paciente.cliente.nombre %></h4>
+<h4>T. Paciente: <%= @paciente.tipo %></h4>
+<h4>Fecha de Ingreso: <%= @registro.fecha_de_ingreso.to_date%></h4>
+<%= form_for [@historia, @registro] do |f| %>
+<div class="field">
+	<%= f.label :fecha_de_salida%>
+	<%= f.text_field :fecha_de_salida, class: "datepicker", placeholder: "2014-09-24" %>
+	<%= f.label :discapacidad%>
+	<%= f.text_field :discapacidad, class: "form-control",placeholder: "Ejm: Miopia"  %>
+	<%= f.label :diagnostico_ingreso%>
+	<%= f.text_area :diagnostico_ingreso, class: "form-control",placeholder: "Ejm: dolor de cabeza, fiebre, mareos, etc."  %>
+	<small class="text-muted">* Por favor separe con una "," cada sintoma</small><br>
+	<%= f.label :diagnostico_salida %>
+	<%= f.text_area :diagnostico_salida, class: "form-control", placeholder: "Ejm: migrana, presion alta, etc"%>
+	<small class="text-muted">* Por favor separe con una "," cada sintoma</small> 
+</div>
+<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<% end %>

@@ -1,0 +1,4 @@
+m = $('#content_modal');
+m.html('<%= j(render partial: 'form_new', locals: {registro: @registro}) %>');
+window.Helpers.ButtonsHelper.init();
+window.Helpers.FormsHelper.init()

@@ -1,1 +1,12 @@
-<h1>libro diario</h1>
+<h3 class="text-center">Pacientes Hospitalizados</h3>
+<% @registros.each do |r|  %>
+<div class="col-md-3">
+	<strong><%= r.paciente.cliente.nombre%></strong><br>
+	<small>T. Paciente: <%= r.paciente.tipo %></small><br>
+	<small>H Clinica: <%= r.paciente.n_hclinica%></small><br>
+	<small>F. Entrada: <%= r.fecha_de_ingreso.to_date%></small><br>
+	<%= link_to	"Registrar Salida", edit_paciente_registro_path(r.paciente, r)  %>
+</div>
+<% end %>
+</div>
+

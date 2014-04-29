@@ -34,14 +34,14 @@
             <b class="fa fa-angle-down"></b>
           </a>
           <ul class="dropdown-menu">
-            <li><%=link_to("Crear", new_historia_clinica_path)%></li>
+            <li><%=link_to("Crear", new_paciente_path)%></li>
             <li class="divider"></li>
-            <li><%=link_to("Lista de Pacientes", historia_clinicas_path)%></li>
+            <li><%=link_to("Lista de Pacientes", pacientes_path)%></li>
           </ul>
         </li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to "Libro Diario"%></li>
+        <li><%=link_to "Libro Diario", registros_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to "Reportes"%></li>

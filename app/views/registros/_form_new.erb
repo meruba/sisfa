@@ -1,0 +1,19 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3 class="modal-title" id="myModalLabel">Nuevo registro</h3>
+</div>
+<%= form_for [@paciente, @registro], :remote => true do |f| %>
+<div class="modal-body">
+	<h4>Paciente: <%= @paciente.cliente.nombre%> </h4>
+	<div class="field">
+		<%= f.label :especialidad %>
+		<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Central de Enfermería","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+		<%= f.label :medico_asignado %>
+		<%= f.text_field :medico_asignado %>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= f.submit 'Guardar', class: "btn btn-primary", :remote => true %>
+</div>
+<% end %>
