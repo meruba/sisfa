@@ -1,4 +1,3 @@
-<%= link_to ' Imprimir', {:format => :pdf} , {:target => "_blank"} %>
 <%case @tipo_factura%>
   <%when "ventanilla"%>
     <%=  render "dashboard/reportes/facturas"%>
