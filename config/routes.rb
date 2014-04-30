@@ -47,6 +47,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :hospitalizacions
   resources :item_hospitalizacions
   resources :factura_compras
+  resources :turnos
   resources :productos do
     resources :kardexes, :as => "kardex"
   end
