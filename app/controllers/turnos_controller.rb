@@ -14,7 +14,7 @@ class TurnosController < ApplicationController
 	def create
 		@turno = Turno.new(turno_params)
 		respond_to do |format|
-			@registro.save
+			@turno.save
 			format.js { render "success" }
 		end
 	end
