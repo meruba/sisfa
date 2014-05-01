@@ -1,4 +1,21 @@
 <h1>Importar productos</h1>
+
+<p>Debe ser un archivo de Excel (xls o xlsx. La primera fila debe ser el nombre de las columnas.</p>
+
+<ul>
+  <li><strong>id:</strong> No obligatorio. Número sin decimales.</li>
+  <li><strong>nombre:</strong> Obligatorio. Texto</li>
+  <li><strong>categoria:</strong> No obligatorio. Texto</li>
+  <li><strong>casa_comercial:</strong> Obligatorio. Texto</li>
+  <li><strong>nombre_generico:</strong> No obligatorio. Texto</li>
+  <li><strong>precio_compra:</strong> Obligatorio. Número con dos decimales</li>
+  <li><strong>ganancia:</strong> Obligatorio. Número con dos decimales</li>
+  <li><strong>has_iva:</strong> Tiene I.V.A.? Obligatorio. Booleano (1 o 0)</li>
+</ul>
+
+<p>Si el archivo tiene la columna <strong>id</strong> se actualizará el producto que corresponda y no se creará uno nuevo</p>
+
+
 <%= form_for @productimport do |f| %>
 
   <%= form_errors_for @productimport %>

@@ -38,8 +38,8 @@ class ProductImport
     (2..spreadsheet.last_row).map do |i|
       row = Hash[[header,spreadsheet.row(i)].transpose]
       parameters = ActionController::Parameters.new(row.to_hash)
-      producto = Producto.find_by_id(row[:id]) || Producto.new
-      producto.attributes = parameters.permit(:nombre, :codigo, :categoria, :casa_comercial, :nombre_generico, :precio_compra)
+      producto = Producto.find_by_id(parameters[:id]) || Producto.new
+      producto.attributes = parameters.permit(:nombre, :codigo, :categoria, :casa_comercial, :nombre_generico, :precio_compra, :ganancia)
       producto
     end
   end

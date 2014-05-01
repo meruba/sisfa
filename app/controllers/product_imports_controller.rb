@@ -8,8 +8,7 @@ class ProductImportsController < ApplicationController
   def create
     @productimport = ProductImport.new(productos_import_params)
     if @productimport.save
-      redirect_to productos_path
-      flash[:success] = "Productos importados!"
+      redirect_to productos_path, :notice => "Productos importados"
     else
       render :new
     end
