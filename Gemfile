@@ -51,6 +51,7 @@ gem 'id_ecuador'
 #generate files pdf
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
+gem 'roo'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
