@@ -1,0 +1,29 @@
+$red-color: #CE5C5B
+$green-color: #4bbc65
+
+.turno
+  background: $red-color
+  color: #fff
+
+.atendidos  
+  background: #fff
+  text-align: center
+  margin-bottom: 10px
+  .fa
+    color: $green-color
+    padding-top: 12px
+    font-size: 25px
+  .paciente
+    border-right: 1px dashed #e7e7e7
+    border-left: 1px dashed #e7e7e7
+    h4
+      margin-bottom: 1px
+  .hora
+    padding-top: 8px
+    font-size: 25px
+    font-weight: bold
+
+.pendientes
+  @extend .atendidos
+  .fa
+    color: $red-color
