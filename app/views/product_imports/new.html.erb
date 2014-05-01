@@ -1,0 +1,10 @@
+<h1>Importar productos</h1>
+<%= form_for @productimport do |f| %>
+
+  <%= form_errors_for @productimport %>
+
+  <div class="field">
+    <%= f.file_field :file, :required => true %>
+  </div>
+  <div class="action"><%= f.submit "Importar", :data => {:disable_with => "Importando..."} %></div>
+<% end %>
