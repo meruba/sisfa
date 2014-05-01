@@ -35,7 +35,7 @@ class Cliente < ActiveRecord::Base
 #methods
 	
 	def self.autocomplete(params)
-		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%")
+		clientes = Cliente.includes(:paciente).where("numero_de_identificacion like ?", "%#{params}%").references(:paciente)
     clientes = clientes.map do |cliente|
       {
         :id => cliente.id,
@@ -43,7 +43,9 @@ class Cliente < ActiveRecord::Base
         :value => cliente.numero_de_identificacion,
         :nombre => cliente.nombre,
         :direccion => cliente.direccion,
-        :telefono => cliente.telefono
+        :telefono => cliente.telefono,
+        :paciente_id => cliente.paciente.id,
+        :n_hclinica => cliente.paciente.n_hclinica
       }
     end
     clientes 

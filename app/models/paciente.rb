@@ -30,6 +30,7 @@ class Paciente < ActiveRecord::Base
 	#validation
 	validates :tipo, :presence => true
   validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
+  validates :n_hclinica, :uniqueness =>  true
 
 #methods
 	def cliente_attributes=(attributes)
