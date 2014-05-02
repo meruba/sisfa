@@ -26,7 +26,8 @@ private
         (hospitalizado.subtotal),
         (hospitalizado.iva),
         (hospitalizado.total),
-        (link_to '', hospitalizado, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info")
+        (link_to '', hospitalizado, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info") + " " +
+        (link_to '', @view.edit_hospitalizacion_path(hospitalizado), :rel=> 'tooltip', :title=>'Editar', class: "ttip editar fa fa-edit btn btn-warning")
       ]
     end 
   end

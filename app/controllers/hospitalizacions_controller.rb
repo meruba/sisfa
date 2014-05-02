@@ -24,6 +24,10 @@ class HospitalizacionsController < ApplicationController
 		end
 	end
 
+	def edit
+		
+	end
+
 	def show
 		@hospitalizacion = Hospitalizacion.find(params[:id])
 		respond_to do |format|
