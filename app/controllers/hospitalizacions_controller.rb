@@ -1,6 +1,7 @@
 class HospitalizacionsController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
+	before_filter :is_editable, :only => :edit
 
 	def index
     respond_to do |format|
@@ -57,6 +58,7 @@ class HospitalizacionsController < ApplicationController
 			:numero_de_identificacion
 		],
 		:item_hospitalizacions_attributes => [
+			:id,
 			:cantidad,
 			:iva,
 			:valor_unitario,
@@ -64,6 +66,13 @@ class HospitalizacionsController < ApplicationController
 			:total,
 			:ingreso_producto_id
 		]
+	end
+
+	def is_editable
+		@hospitalizacion = Hospitalizacion.find(params[:id])
+		if @hospitalizacion.dado_de_alta
+			redirect_to hospitalizacions_path, :notice => "Ya se ha dado de alta! No es posible editar"
+		end
 	end
 
 end

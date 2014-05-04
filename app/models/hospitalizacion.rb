@@ -14,6 +14,7 @@
 #  updated_at    :datetime
 #  descuento     :float
 #  subtotal_12   :float            not null
+#  dado_de_alta  :boolean          default(FALSE)
 #
 
 class Hospitalizacion < ActiveRecord::Base
@@ -22,7 +23,8 @@ class Hospitalizacion < ActiveRecord::Base
   belongs_to :user
   belongs_to :cliente
 
-	accepts_nested_attributes_for :item_hospitalizacions, :cliente
+	accepts_nested_attributes_for :item_hospitalizacions, :allow_destroy => true
+	accepts_nested_attributes_for :cliente
 
 	#validations
   validates :user_id, :numero, :iva, :total, :subtotal, :subtotal_12, :fecha_emision, presence: true
