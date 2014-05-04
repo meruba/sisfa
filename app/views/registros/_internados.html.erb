@@ -1,20 +1,25 @@
-<div class="row form-group">
-  <% @registros.each do |r|  %>    
-  <div class="col-xs-6 col-md-3">
-    <div class="panel panel-default">
-      <div class="panel-body internado">
-        <small><strong>H.C #<%=r.paciente.n_hclinica%></strong> </small>
-        <h4><strong><%=r.paciente.cliente.nombre%></strong></h4>
-        <p>
-          Fecha de Ingreso: <%=local_date(r.fecha_de_ingreso, "date")%><br>
-          Tipo paciente: <%=r.paciente.tipo%>
-        </p>
+<div class="row">
+  <ul class="hospitalizados">
+    <% @registros.each do |r|  %>
+    <li class= "col-md-3">
+      <div class="hospitalizado">
+        <h4>
+          <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
+          <span><%= link_to "", edit_paciente_registro_path(r.paciente, r), class: "pull-right fa fa-arrow-circle-o-right"%>
+          </span>
+        </h4>
+        <h4 class="text-center name">
+          <strong> <%=r.paciente.cliente.nombre%></strong>
+        </h4>
+        <h1><%=r.paciente.n_hclinica%></h1>
+        <h6 class="text-center">HISTORIA CLINICA</h6>
+        <h6 class="text-center">ATENDIDO: DR.JUAN MALDONADO</h6>
+        <h6 class="tiempo text-muted">
+          <span><%=local_date(r.fecha_de_ingreso, "date")%></span>
+          <span class="pull-right clickable"><%= time_ago_in_words(r.fecha_de_ingreso)%></span>
+        </h6>
       </div>
-      <div class="panel-footer text-center">
-        <small>Registrar salida</small>
-        <%= link_to "", edit_paciente_registro_path(r.paciente, r), class: "fa fa-arrow-circle-right"%>  
-      </div>
-    </div>
-  </div>
-  <% end %> 
+    </li>
+    <% end %> 
+  </ul>
 </div>
