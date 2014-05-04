@@ -16,6 +16,8 @@
 
 class ItemHospitalizacion < ActiveRecord::Base
 
+  attr_accessor :descripcion
+
 #relacionships
 	belongs_to :hospitalizacion
 	belongs_to :ingreso_producto
@@ -28,6 +30,12 @@ class ItemHospitalizacion < ActiveRecord::Base
   validate :stock
 	
 	# methods
+
+  def descripcion
+    if self.ingreso_producto
+      self.ingreso_producto.producto.nombre
+    end
+  end
 	def stock
 	  if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
       errors.add :cantidad, "Stock insuficiente de: " + ingreso_producto.producto.nombre + " / " + ingreso_producto.cantidad.to_s

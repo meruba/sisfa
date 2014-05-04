@@ -14,6 +14,7 @@
 #  updated_at    :datetime
 #  descuento     :float
 #  subtotal_12   :float            not null
+#  dado_de_alta  :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
