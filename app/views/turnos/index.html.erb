@@ -11,14 +11,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="internados">
-			<div class="col-md-6">
-				<h4><strong>Atendidos</strong></h4>
-				<%= render 'atendidos'%>
-			</div>
-			<div class="col-md-6">
-				<h4><strong>Pendientes</strong></h4>
-				<%= render 'pendientes'%>
+		<div id="turnos-hoy">
+			<div id="turnos">
+				<div class="column left first col-md-6">
+					<h4>Atendidos</h4>
+					<%= render 'atendidos'%>
+				</div>
+				<div class="column left col-md-6">
+					<h4>Pendientes</h4>
+					<%= render 'pendientes'%>
+				</div>
+				<div class="clearer">&nbsp;</div>
 			</div>
 		</div>
 	</div>

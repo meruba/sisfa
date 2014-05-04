@@ -1,12 +1,16 @@
 class TurnosController < ApplicationController
+	
+	before_action :set_turno, only: [:atendido]
+
 	def index
-		@turnos = Turno.all
+		@no_atendidos = Turno.where(:atendido => false)
+		@atendidos = Turno.where(:atendido => true)
 	end
 
 	def new
 		@turno = Turno.new
 		respond_to do |format|
-      format.html
+			format.html
 			format.js
 		end
 	end
@@ -20,7 +24,13 @@ class TurnosController < ApplicationController
 	end
 
 	def atendido
-		
+		if @turno.atendido
+			@turno.atendido = false
+		else
+			@turno.atendido = true
+		end
+		@turno.save
+		render :text => "cambio"
 	end
 
 	private
@@ -31,5 +41,9 @@ class TurnosController < ApplicationController
 		:doctor,
 		:atendido,
 		:paciente_id	
+	end
+
+	def set_turno
+		@turno = Turno.find(params[:id])
 	end
 end
