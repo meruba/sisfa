@@ -25,7 +25,7 @@ class HospitalizacionsController < ApplicationController
 	end
 
 	def edit
-		
+		@hospitalizacion = Hospitalizacion.find(params[:id])
 	end
 
 	def show
