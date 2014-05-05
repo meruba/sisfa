@@ -8,6 +8,12 @@ class PacientesController < ApplicationController
     end
 	end
 
+	def autocomplete
+    respond_to do |format|
+      format.json { render :json => Paciente.autocomplete(params[:term]) }
+    end
+  end
+
 	def show
 	end
 

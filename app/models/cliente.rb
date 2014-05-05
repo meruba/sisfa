@@ -43,9 +43,7 @@ class Cliente < ActiveRecord::Base
         :value => cliente.numero_de_identificacion,
         :nombre => cliente.nombre,
         :direccion => cliente.direccion,
-        :telefono => cliente.telefono,
-        :paciente_id => cliente.paciente.id,
-        :n_hclinica => cliente.paciente.n_hclinica
+        :telefono => cliente.telefono
       }
     end
     clientes 
