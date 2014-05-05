@@ -21,7 +21,7 @@ class PacientesController < ApplicationController
 	def create
 		@paciente = Paciente.new(paciente_params)
 		if @paciente.save
-			redirect_to clientes_path, :notice => "Almacenado"
+			redirect_to pacientes_path, :notice => "Almacenado"
 		else
 			render action: 'new'
 		end

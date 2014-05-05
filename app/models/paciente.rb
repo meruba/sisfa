@@ -28,7 +28,7 @@ class Paciente < ActiveRecord::Base
 	before_validation :set_values
 
 	#validation
-	validates :tipo, :presence => true
+	validates :tipo, :n_hclinica, :presence => true
   validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
   validates :n_hclinica, :uniqueness =>  true
 

@@ -51,7 +51,7 @@ private
   end
 
   def sort_column
-    columns = %w[n_hclinica]
+    columns = %w[n_hclinica cliente_id]
     columns[params[:iSortCol_0].to_i]
   end
 
