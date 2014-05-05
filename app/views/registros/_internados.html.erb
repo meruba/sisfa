@@ -13,7 +13,7 @@
         </h4>
         <h1><%=r.paciente.n_hclinica%></h1>
         <h6 class="text-center">HISTORIA CLINICA</h6>
-        <h6 class="text-center">ATENDIDO: DR.JUAN MALDONADO</h6>
+        <h6 class="text-center"><%=r.medico_asignado%></h6>
         <h6 class="tiempo text-muted">
           <span><%=local_date(r.fecha_de_ingreso, "date")%></span>
           <span class="pull-right clickable"><%= time_ago_in_words(r.fecha_de_ingreso)%></span>

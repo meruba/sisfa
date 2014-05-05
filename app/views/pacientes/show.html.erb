@@ -5,12 +5,12 @@
 	<div class="container">
 		<div class="col-md-5 row-fix-div">
 			<div class="col-md-4 text-center">
-				<span class ="fa fa-male fa-5x"></span><br>
+				<span class ="genero-icon fa fa-male fa-5x"></span><br>
 				<small>paciente</small>
 			</div>
 			<div class="col-md-8">
 				<h4><strong><%= (@paciente.cliente.nombre).upcase%></strong></h4>
-				<small><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
+				<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
 				<small><strong>EDAD:</strong>
 					<%= Time.now.year - @paciente.cliente.fecha_de_nacimiento.year %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
 				</small><br>
