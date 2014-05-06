@@ -4,10 +4,14 @@
 	<%= f.label :n_hclinica, "Historia Clinica #"%>
 	<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
 	<%= f.hidden_field :tipo %>
-	<%= render "pacientes/forms/datos_cliente", f:f  %>
-	<%= render "pacientes/forms/datos_militar", f:f  %>
-	<%= render "pacientes/forms/informacion_adicional_militar", f:f  %>
-	<%= render "registros/registros", f:f  %>
-	<%= f.submit :guardar, class: "btn btn-success" %>
+	<div class="col-md-3">
+		<%= render "registros/registros", f:f  %>
+		<%= f.submit :Guardar, class: "btn btn-success btn-block" %>
+	</div>
+	<div class="col-md-9">
+		<%= render "pacientes/forms/datos_cliente", f:f  %>
+		<%= render "pacientes/forms/datos_militar", f:f  %>
+		<%= render "pacientes/forms/informacion_adicional", f:f  %>
+	</div>
 	<% end %>
 </div>

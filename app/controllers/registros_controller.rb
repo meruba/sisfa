@@ -3,7 +3,7 @@ class RegistrosController < ApplicationController
   before_action :set_registro, only: [:edit, :update]
 
   def index
-    @registros = Registro.includes(:paciente).where(:fecha_de_salida => nil).references(:paciente)
+    @registros = Registro.includes(:paciente).where(:tipo => "Hospitalizacion").references(:paciente)
   end
 
   def reporte
@@ -49,6 +49,7 @@ class RegistrosController < ApplicationController
 
   def registro_params
     params.require(:registro).permit :historia_clinica_id,
+      :tipo,
       :fecha_de_ingreso,
       :fecha_de_salida,
       :especialidad,

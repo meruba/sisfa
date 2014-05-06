@@ -72,7 +72,7 @@ class PacientesController < ApplicationController
 				:estado_civil
 			],
 			:informacion_adicional_paciente_attributes => [
-				:ciudad,
+				:parroquia,
 				:provincia,
 				:canton,
 				:jefe_de_reparto,

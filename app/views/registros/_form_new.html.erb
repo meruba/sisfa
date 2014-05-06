@@ -13,10 +13,12 @@
 <% end %>
 <br>
 	<div class="field">
-		<%= f.label :especialidad %>
-		<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Central de Enfermería","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
-		<%= f.label :medico_asignado %>
-		<%= f.text_field :medico_asignado %>
+	<%= f.label :tipo, "Ingreso Por" %>
+	<%= f.select(:tipo, ['Hospitalizacion','Consulta Externa', 'Emergencia'], {}, { :class => 'form-control' }) %>
+	<%= f.label :especialidad %>
+	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+	<%= f.label :medico_asignado %>
+	<%= f.text_field :medico_asignado %>
 	</div>
 </div>
 <div class="modal-footer">

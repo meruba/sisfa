@@ -31,7 +31,7 @@
         <td><%= r.paciente.unidad %></td>
         <td><%= r.paciente.cliente.nombre %></td>
         <td><%= r.paciente.cliente.numero_de_identificacion %></td>
-        <td><%= r.paciente.cliente.edad %></td>
+        <td><%= Time.now.year - r.paciente.cliente.fecha_de_nacimiento.year%></td>
         <td><%= r.paciente.cliente.fecha_de_nacimiento%></td>
       </tr>
       <% end %>

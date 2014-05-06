@@ -1,10 +1,10 @@
-<legend>Informacion Familiar</legend>
+<legend>2. Informacion Familiar - Militar</legend>
 <div class="militar field">
-	<div class="col-md-6">
-		<%= f.label :parentesco %>
-		<%= f.select(:parentesco, ['Hijo','Hija','Esposo'], {}, { :class => 'form-control' }) %>
+	<div class="col-md-4">
+		<%= f.label :parentesco, "Parentesco Militar" %>
+		<%= f.select(:parentesco, ['Hijo','Hija','Esposo', 'Esposa', 'Madre', 'Padre'], {}, { :class => 'form-control' }) %>
 	</div>
-	<div class="col-md-6">
+	<div class="col-md-4">
 		<%= f.label :codigo_issfa %>
 		<%= f.text_field :codigo_issfa, placeholder: "Codigo ISSFA" %>
 	</div>
