@@ -1,6 +1,7 @@
 <div class="modal-header">
   <h3 class="modal-title" id="myModalLabel"> Historia Clinica # <%= @paciente.n_hclinica %></h3>
 </div>
+<%= form_for [@paciente, @registro], :remote => true do |f| %>
 <div class="modal-body">
 <% case @paciente.tipo %>
 <% when "civil"%>
@@ -11,7 +12,6 @@
 <%= render "registros/informacion/familiar" %>
 <% end %>
 <br>
-<%= form_for [@paciente, @registro], :remote => true do |f| %>
 	<div class="field">
 		<%= f.label :especialidad %>
 		<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Central de Enfermería","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>

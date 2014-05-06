@@ -45,20 +45,6 @@ class Paciente < ActiveRecord::Base
 		self.registros.each do |f|
 			f.fecha_de_ingreso = Time.now
 		end
-		if self.tipo == "familiar"
-			self.estado = ""
-			self.grado = ""
-			self.pertenece_a = ""
-			self.unidad = ""
-		else if self.tipo == "civil"
-			self.estado = ""
-			self.grado = ""
-			self.pertenece_a = ""
-			self.unidad = ""
-			self.parentesco = ""
-			self.codigo_issfa = ""
-		end
-	end
 	end
 
 	def self.autocomplete(params)
@@ -75,4 +61,5 @@ class Paciente < ActiveRecord::Base
     end
     pacientes 
   end
+
 end

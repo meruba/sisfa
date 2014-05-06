@@ -27,14 +27,21 @@ class Registro < ActiveRecord::Base
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
 
-  validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
+  validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update, :if => :update_from_paciente
 
 	#methods
 	def set_dias
-		self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i
+		unless self.fecha_de_salida.nil?
+			self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i		
+		end
 	end
 
 	def self.reporte(fecha)
 		registros = Registro.includes(:paciente).where(created_at: fecha).references(:paciente)
 	end
+
+	def update_from_paciente
+		self.dias_hospitalizacion.nil? == true #solo se calcula una vez editado un registro
+	end
 end
+

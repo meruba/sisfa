@@ -1,8 +1,5 @@
-<h3>Registro de Salida</h3>
-<h4>Paciente: <%= @paciente.cliente.nombre %></h4>
-<h4>T. Paciente: <%= @paciente.tipo %></h4>
-<h4>Fecha de Ingreso: <%= @registro.fecha_de_ingreso.to_date%></h4>
 <%= form_for [@historia, @registro] do |f| %>
+<%= form_errors_for @registro %>
 <div class="field">
 	<%= f.label :fecha_de_salida%>
 	<%= f.text_field :fecha_de_salida, class: "datepicker", placeholder: "2014-09-24" %>
