@@ -1,5 +1,6 @@
 class PacientesController < ApplicationController
-	before_action :set_paciente, only: [:show]
+	before_action :set_paciente, only: [:show, :edit, :update]
+	before_action :new_paciente, only: [:civil, :militar, :familiar]
 
 	def index
 		respond_to do |format|
@@ -14,14 +15,19 @@ class PacientesController < ApplicationController
     end
   end
 
-	def show
+	def civil
+		@paciente.tipo = "civil"
+	end
+		
+	def militar
+		@paciente.tipo = "militar"
 	end
 
-	def new
-		@paciente= Paciente.new
-		@paciente.registros.build
-		@paciente.build_cliente
-		@paciente.build_informacion_adicional_paciente
+	def familiar
+		@paciente.tipo = "familiar"
+	end
+
+	def show
 	end
 	
 	def create
@@ -32,11 +38,14 @@ class PacientesController < ApplicationController
 			render action: 'new'
 		end
 	end
+	
+	def edit
+	end
 
 	def update
 		respond_to do |format|
-			@paciente.update(cliente_params)
-			format.js { render "success"}
+			@paciente.update(paciente_params)
+			format.json { respond_with_bip(@paciente) }
 		end
 	end
 
@@ -81,5 +90,12 @@ class PacientesController < ApplicationController
 
 	def set_paciente
 		@paciente = Paciente.find(params[:id])
+	end
+
+	def new_paciente
+		@paciente= Paciente.new
+		@paciente.registros.build
+		@paciente.build_cliente
+		@paciente.build_informacion_adicional_paciente
 	end
 end

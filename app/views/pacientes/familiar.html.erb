@@ -1,0 +1,13 @@
+<div class="historia_form">
+	<%= nested_form_for @paciente do |f| %>
+	<%= form_errors_for @paciente %>
+	<%= f.label :n_hclinica, "Historia Clinica #"%>
+	<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
+	<%= f.hidden_field :tipo %>
+	<%= render "pacientes/forms/datos_cliente", f:f  %>
+	<%= render "pacientes/forms/datos_familiar", f:f  %>
+	<%= render "pacientes/forms/informacion_adicional", f:f  %>
+	<%= render "registros/registros", f:f  %>
+	<%= f.submit :guardar, class: "btn btn-success" %>
+	<% end %>
+</div>

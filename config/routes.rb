@@ -22,6 +22,9 @@ get "dashboard/estadisticas_dia"
 get "dashboard/estadisticas_mes"
 get "registros/reporte"
 get "pacientes/autocomplete"
+get "pacientes/civil"
+get "pacientes/militar"
+get "pacientes/familiar"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -49,6 +52,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_hospitalizacions
   resources :factura_compras
   resources :product_imports
+  resources :informacion_adicional_pacientes, :only => [:edit, :update]
   resources :productos do
     resources :kardexes, :as => "kardex"
   end

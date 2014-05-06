@@ -9,7 +9,7 @@
 				<small>paciente</small>
 			</div>
 			<div class="col-md-8">
-				<h4><strong><%= (@paciente.cliente.nombre).upcase%></strong></h4>
+				<h4><strong><%= best_in_place @paciente.cliente, :nombre %></strong></h4>
 				<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
 				<small><strong>EDAD:</strong>
 					<%= Time.now.year - @paciente.cliente.fecha_de_nacimiento.year %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
@@ -25,7 +25,7 @@
 		</div>
 		<div class="col-md-3 col-xs-6">
 			<small class="text-muted">CONTACTO/RELACION</small><br>
-			<span><strong><%= (@paciente.informacion_adicional_paciente.familiar_cercano).upcase%></strong></span><br>
+			<span><strong><%= best_in_place @paciente.informacion_adicional_paciente, :familiar_cercano%></strong></span><br>
 			<i class="fa fa-map-marker"></i> <%= @paciente.informacion_adicional_paciente.familiar_direccion%><br/>
 			<i class="fa fa-phone"></i> <%= @paciente.informacion_adicional_paciente.familiar_telefono%><br/>
 		</div>
