@@ -1,0 +1,36 @@
+<div class="row">
+	<div class="row-fix-div">
+		<div class="col-md-1 text-center">
+			<span class ="genero-icon fa fa-male fa-5x"></span><br>
+			<small>paciente</small>
+		</div>
+		<div class="col-md-6">
+			<h4><strong><%= @paciente.cliente.nombre %></strong></h4>
+			<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
+			<small><strong>EDAD:</strong>
+				<%= Time.now.year - @paciente.cliente.fecha_de_nacimiento.year %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
+			</small><br>
+			<small><strong>NACIONALIDAD:</strong>ECUATORIANO</small>
+		</div>
+		<div class="col-md-5 col-xs-6">
+			<small class="text-muted">LOCALIZACION</small><br>
+			<i class="fa fa-map-marker"></i> <%= best_in_place @paciente.cliente, :direccion %><br/>
+			<i class="fa fa-phone"></i> <%= best_in_place @paciente.cliente, :telefono %><br/>
+			<i class="fa fa-envelope malito"></i> <%= best_in_place @paciente.cliente, :email%><br/>
+		</div>
+	</div><br>
+	<div class="col-md-4 col-xs-6">
+		<small class="text-muted">NACIONALIDAD</small><br>
+		<span>Provincia:</span> <%= best_in_place @paciente.informacion_adicional_paciente, :provincia %><br/>
+		<span>Ciudad:</span> <%= best_in_place @paciente.informacion_adicional_paciente, :ciudad %><br/>
+		<span>Canton:</span> <%= best_in_place @paciente.informacion_adicional_paciente, :canton%><br/>
+	</div>
+		<div class="col-md-4 col-xs-6">
+		<small class="text-muted">DATOS MILITAR</small><br>
+		<span>Estado:</span> <%= best_in_place @paciente, :estado, type: :select, collection: [["Activo", "Activo"], ["Pasivo", "Pasivo"]] %><br/>
+		<span>Grado:</span> <%= best_in_place @paciente, :grado, type: :select, collection: [["GNRL", "GNRL"], ["CRNL", "CRNL"], ["TNTE", "TNTE"]] %><br/>
+		<span>Pertenece a:</span> <%= best_in_place @paciente, :codigo_issfa, type: :select, collection: [["Ejercito", "Ejercito"], ["Marina", "Marina"], ["Aviacion", "Aviacion"]] %><br/>
+		<span>Unidad:</span> <%= best_in_place @paciente, :unidad %><br/>
+		<span>Codigo ISSFA:</span> <%= best_in_place @paciente, :codigo_issfa %><br/>
+	</div>
+</div>

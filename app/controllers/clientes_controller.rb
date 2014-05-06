@@ -47,6 +47,7 @@ class ClientesController < ApplicationController
     respond_to do |format|
       @cliente.update(cliente_params)
       format.js { render "success"}
+      format.json { respond_with_bip(@cliente) }
     end
   end
 

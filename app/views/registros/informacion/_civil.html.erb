@@ -1,0 +1,34 @@
+<div class="row">
+	<div class="row-fix-div">
+		<div class="col-md-1 text-center">
+			<span class ="genero-icon fa fa-male fa-5x"></span><br>
+			<small>paciente</small>
+		</div>
+		<div class="col-md-6">
+			<h4><strong><%= @paciente.cliente.nombre %></strong></h4>
+			<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
+			<small><strong>EDAD:</strong>
+				<%= Time.now.year - @paciente.cliente.fecha_de_nacimiento.year %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
+			</small><br>
+			<small><strong>NACIONALIDAD:</strong>ECUATORIANO</small>
+		</div>
+		<div class="col-md-5 col-xs-6">
+			<small class="text-muted">LOCALIZACION</small><br>
+			<i class="fa fa-map-marker"></i> <%= best_in_place @paciente.cliente, :direccion %><br/>
+			<i class="fa fa-phone"></i> <%= best_in_place @paciente.cliente, :telefono %><br/>
+			<i class="fa fa-envelope malito"></i> <%= best_in_place @paciente.cliente, :email%><br/>
+		</div>
+	</div><br>
+	<div class="col-md-6 col-xs-6">
+		<small class="text-muted">NACIONALIDAD</small><br>
+		<span>Provincia:</span> <%= best_in_place @paciente.informacion_adicional_paciente, :provincia %><br/>
+		<span>Ciudad:</span> <%= best_in_place @paciente.informacion_adicional_paciente, :ciudad %><br/>
+		<span>Canton:</span> <%= best_in_place @paciente.informacion_adicional_paciente, :canton%><br/>
+	</div>
+	<div class="col-md-6 col-xs-6">
+		<small class="text-muted">CONTACTO/RELACION</small><br>
+		<span><strong><%= best_in_place @paciente.informacion_adicional_paciente, :familiar_cercano%></strong></span><br>
+		<i class="fa fa-map-marker"></i> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_direccion %><br/>
+		<i class="fa fa-phone"></i> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_telefono %><br/>
+	</div>
+</div>
