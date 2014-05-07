@@ -1,11 +1,11 @@
 <div class="row">
   <ul class="hospitalizados">
     <% @registros.each do |r|  %>
-    <li class= "col-md-3">
+    <li class= "col-md-3 list" data-id="<%= r.id%>">
       <div class="hospitalizado">
         <h4>
           <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
-          <span><%= link_to "", edit_paciente_registro_path(r.paciente, r), class: "pull-right fa fa-arrow-circle-o-right"%>
+          <span><%= link_to "", edit_paciente_registro_path(r.paciente, r), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "pull-right fa fa-arrow-circle-o-right"}%>
           </span>
         </h4>
         <h4 class="text-center name">
