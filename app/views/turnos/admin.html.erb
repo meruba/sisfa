@@ -1,0 +1,28 @@
+<div class="col-md-10 col-md-offset-1">
+	<div class="row turno">
+		<h2 class="fix-margin">Turnos de Hoy</h2>
+	</div>
+	<div class="row info-paciente">
+		<div class="search">
+			<div class="well well-sm">
+				<strong>Acciones: </strong>
+				<div class="btn-group">
+					<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
+				</div>
+			</div>
+		</div>
+		<div id="turnos-hoy">
+			<div id="turnos">
+				<div class="column left first col-md-6">
+					<h4>Atendidos</h4>
+					<%= render 'atendidos'%>
+				</div>
+				<div class="column left col-md-6">
+					<h4>Pendientes</h4>
+					<%= render 'pendientes'%>
+				</div>
+				<div class="clearer">&nbsp;</div>
+			</div>
+		</div>
+	</div>
+</div>
