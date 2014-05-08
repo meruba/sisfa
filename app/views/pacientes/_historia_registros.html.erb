@@ -1,7 +1,7 @@
 <div class="row info-paciente">
 	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
 	<ul class="cbp_tmtimeline">
-		<% @paciente.registros.each do |r|  %>
+		<% @paciente.registros.hospitalizacion.each do |r|  %>
 		<li>
 			<time class="cbp_tmtime"><span><%= local_date(r.fecha_de_ingreso, "time")%></span> <span><%= local_date(r.fecha_de_ingreso, "date") %></span></time>
 			<div class="cbp_tmicon fa-calendar"></div>

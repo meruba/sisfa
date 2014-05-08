@@ -53,11 +53,11 @@ class Turno < ActiveRecord::Base
 		end
 	end
 
-	def self.last_turno(doctor_id)
-		turno = Turno.where(:doctor_id => doctor_id, :fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
+	def self.last_turno
+		turno = Turno.where(:fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
 	end
 
-	def self.turnos_today(doctor_id)
-		turnos = Turno.where(:doctor_id => doctor_id, :fecha => Time.now.beginning_of_day..Time.now.end_of_day)
+	def self.turnos_today
+		turnos = Turno.includes(:paciente).where(:fecha => Time.now.beginning_of_day..Time.now.end_of_day).references(:paciente)
 	end
 end

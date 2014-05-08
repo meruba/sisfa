@@ -20,7 +20,7 @@ class DoctorsController < ApplicationController
 	end
 
 	def turnos_dia
-		@turnos = Turno.turnos_today(params[:id])
+		@turnos = Turno.turnos_today
 	end
 
   def autocomplete

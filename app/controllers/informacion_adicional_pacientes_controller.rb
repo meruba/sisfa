@@ -11,11 +11,14 @@ class InformacionAdicionalPacientesController < ApplicationController
 
 	private
 	def informacion_params
-		params.require(:informacion_adicional_paciente).permit :ciudad,
+		params.require(:informacion_adicional_paciente).permit :parroquia,
 		:provincia,
 		:canton,
+		:nacionalidad,
+		:raza,
 		:jefe_de_reparto,
 		:familiar_cercano,
+		:familiar_parentesco,
 		:familiar_direccion,
 		:familiar_telefono,
 		:observacion,

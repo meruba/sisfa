@@ -75,7 +75,10 @@ class PacientesController < ApplicationController
 				:parroquia,
 				:provincia,
 				:canton,
+				:raza,
+				:nacionalidad,
 				:jefe_de_reparto,
+				:familiar_parentesco,
 				:familiar_cercano,
 				:familiar_direccion,
 				:familiar_telefono,
@@ -84,7 +87,8 @@ class PacientesController < ApplicationController
 			],
 			:registros_attributes => [
 				:especialidad,
-				:medico_asignado
+				:medico_asignado,
+				:tipo
 			]
 	end
 

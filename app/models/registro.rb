@@ -41,12 +41,17 @@ class Registro < ActiveRecord::Base
 		end
 	end
 
+	def update_from_paciente
+		self.dias_hospitalizacion.nil? == false #solo se calcula una vez editado un registro
+	end
+
+	#class methods
 	def self.reporte(fecha)
 		registros = Registro.includes(:paciente).where(:tipo => "Hospitalizacion", fecha_de_salida: fecha).references(:paciente)
 	end
 
-	def update_from_paciente
-		self.dias_hospitalizacion.nil? == false #solo se calcula una vez editado un registro
+	def self.hospitalizacion
+		registros = Registro.where(:tipo => "Hospitalizacion")
 	end
 end
 

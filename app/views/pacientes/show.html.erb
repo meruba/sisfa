@@ -25,7 +25,8 @@
 		</div>
 		<div class="col-md-3 col-xs-6">
 			<small class="text-muted">CONTACTO/RELACION</small><br>
-			<span><strong><%= @paciente.informacion_adicional_paciente.familiar_cercano%></strong></span><br>
+			<span><strong><%= @paciente.informacion_adicional_paciente.familiar_cercano%> /
+				<small class="text-muted"><%= @paciente.informacion_adicional_paciente.familiar_parentesco%></small></strong></span><br>
 			<i class="fa fa-map-marker"></i> <%= @paciente.informacion_adicional_paciente.familiar_direccion%><br/>
 			<i class="fa fa-phone"></i> <%= @paciente.informacion_adicional_paciente.familiar_telefono%><br/>
 		</div>
