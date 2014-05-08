@@ -1,0 +1,6 @@
+<h3>Turnos del Doctor:</h3>
+<% @turnos.each do |t| %>
+<%= t.numero %>
+<%= t.paciente.cliente.nombre %>
+<%= local_date(t.hora,"time") %>
+<% end %>

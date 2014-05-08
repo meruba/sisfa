@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row turno">
+		<h2 class="fix-margin">Control de Turnos</h2>
+	</div>
+	<div class="row info-paciente">
+		<div class="search">
+			<div class="well well-sm">
+				<strong>Acciones: </strong>
+				<div class="btn-group">
+				</div>
+			</div>
+			<div>
+				<% @doctores.each do |d|  %>
+				<div class="ra">
+					<h3><%= d.nombre %></h3>
+					<small><%= d.especialidad %></small>
+					<%= link_to "turnos", turnos_dia_doctor_path(d) %>
+				</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
