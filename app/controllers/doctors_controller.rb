@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
-	# before_action :set_doctor, only: [:show, :edit, :update, :destroy]
+	before_action :set_doctor, only: [:show, :edit, :update, :destroy, :turnos_dia]
 
 	def index
 		@doctores = Doctor.all
@@ -20,7 +20,7 @@ class DoctorsController < ApplicationController
 	end
 
 	def turnos_dia
-		@turnos = Turno.turnos_today
+		@turnos = @doctor.turnos.turnos_today
 	end
 
   def autocomplete
