@@ -6,6 +6,6 @@
 	<%= f.label :especialidad %>
 	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
 	<%= f.label :medico_asignado %>
-	<%= f.text_field :medico_asignado %>
+	<%= f.text_field :medico_asignado, class: "doctor_autocomplete" %>
 </div>
 <% end %>

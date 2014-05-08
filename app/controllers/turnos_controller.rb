@@ -3,8 +3,13 @@ class TurnosController < ApplicationController
 	before_action :set_turno, only: [:atendido]
 
 	def index
+		@doctores = Doctor.turnos_doctores
+		# raise
+	end
+
+	def admin_turnos
 		@no_atendidos = Turno.where(:atendido => false)
-		@atendidos = Turno.where(:atendido => true)
+		@atendidos = Turno.where(:atendido => true)		
 	end
 
 	def new
@@ -38,9 +43,11 @@ class TurnosController < ApplicationController
 	def turno_params
 		params.require(:turno).permit :fecha,
 		:hora,
-		:doctor,
+		:doctor_a_cargo,
+		:numero,
 		:atendido,
-		:paciente_id	
+		:paciente_id,
+		:doctor_id
 	end
 
 	def set_turno

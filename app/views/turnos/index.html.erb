@@ -1,6 +1,6 @@
-<div class="col-md-10 col-md-offset-1">
+<div class="container">
 	<div class="row turno">
-		<h2 class="fix-margin">Turnos de Hoy</h2>
+		<h2 class="fix-margin">Emision de Turnos</h2>
 	</div>
 	<div class="row info-paciente">
 		<div class="search">
@@ -11,18 +11,22 @@
 				</div>
 			</div>
 		</div>
-		<div id="turnos-hoy">
-			<div id="turnos">
-				<div class="column left first col-md-6">
-					<h4>Atendidos</h4>
-					<%= render 'atendidos'%>
-				</div>
-				<div class="column left col-md-6">
-					<h4>Pendientes</h4>
-					<%= render 'pendientes'%>
-				</div>
-				<div class="clearer">&nbsp;</div>
+		<% @doctores.each do |d|  %>
+		<div class=" col-md-6 row-fix-div atendidos" data-id = "<%=d[:id]%>">
+			<div class="row col-md-2 col-xs-2 hora">
+				<span class="t_emitidos"><%= d[:turnos_emitidos]%></span>
+				<h6>emitidos</h6>
 			</div>
-		</div>
+			<div class="row col-md-8 col-xs-8 paciente">
+				<h4><%=d[:nombre]%></h4>
+				<small><%= d[:especialidad]%></small>
+			</div>
+			<div class="row col-md-2 col-xs-2 hora">
+				<span class="t_disponibles"><%= d[:turnos_disponibles] %></span>
+				<h6>disponibles</h6>
+			</div>
+		</div> 
+		<% end %>
 	</div>
 </div>
+

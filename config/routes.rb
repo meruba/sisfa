@@ -25,6 +25,8 @@ get "pacientes/autocomplete"
 get "pacientes/civil"
 get "pacientes/militar"
 get "pacientes/familiar"
+get "doctors/autocomplete"
+get "doctors/control_turno"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -53,6 +55,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :factura_compras
   resources :product_imports
   resources :informacion_adicional_pacientes, :only => [:edit, :update]
+  resources :doctors do
+    member do
+      get "turnos_dia"
+    end
+  end
   resources :productos do
     resources :kardexes, :as => "kardex"
   end
@@ -73,8 +80,10 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :turnos do
     member do
       get "atendido"
+      get "siguiente_dia"
     end
   end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
