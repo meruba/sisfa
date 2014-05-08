@@ -21,6 +21,12 @@ class DoctorsController < ApplicationController
 
 	def turnos_dia
 		@turnos = @doctor.turnos.turnos_today
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
+			end
+		end
 	end
 
   def autocomplete

@@ -1,0 +1,25 @@
+<h3 class="text-center">LISTA DE TURNOS: <%= @doctor.nombre%></h3>
+<h4 class="text-center">Fecha: <%=Time.now.to_date %></h4>
+<table class="table table-print">
+	<thead>
+		<tr>
+			<th># Turno</th>
+			<th>Paciente</th>
+			<th>Hora</th>
+			<th>Asistencia</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @turnos.each do |t| %>
+		<tr>
+			<td><%= t.numero %></td>
+			<td><%= t.paciente.cliente.nombre %></td>
+			<td><%= local_date(t.hora,"time") %></td>
+			<td>-----------------</td>
+		</tr>			
+		<% end %>
+	</tbody>
+</table>
+<strong>NOTA:</strong>
+<h5 class="text-muted">1. En caso de no presentarse a tiempo pasara al ultimo lugar</h5>
+<h5 class="text-muted">2. Si no ha sido atendido, su turno se postergara para el dia de manana</h5>
