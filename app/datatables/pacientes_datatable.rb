@@ -34,7 +34,7 @@ private
   end
 
   def fetch_pacientes
-    pacientes = Paciente.order("#{sort_column} #{sort_direction}")
+    pacientes = Paciente.includes(:cliente).order("#{sort_column} #{sort_direction}")
     pacientes = pacientes.page(page).per_page(per_page)
     if params[:sSearch].present?
       pacientes = pacientes.includes(:cliente).where("n_hclinica like :search or clientes.nombre like :search or clientes.numero_de_identificacion like :search", search: "%#{params[:sSearch]}%").references(:cliente)

@@ -1,5 +1,5 @@
 class PacientesController < ApplicationController
-	before_action :set_paciente, only: [:show, :edit, :update]
+	before_action :set_paciente, only: [:edit, :update]
 	before_action :new_paciente, only: [:civil, :militar, :familiar]
 
 	def index
@@ -28,6 +28,7 @@ class PacientesController < ApplicationController
 	end
 
 	def show
+		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:id]).references(:cliente, :informacion_adicional_paciente).first
 	end
 	
 	def create
