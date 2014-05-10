@@ -26,7 +26,6 @@ get "pacientes/civil"
 get "pacientes/militar"
 get "pacientes/familiar"
 get "doctors/autocomplete"
-get "doctors/control_turno"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -58,6 +57,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :doctors do
     member do
       get "turnos_dia"
+      get "turnos_manana"
     end
   end
   resources :productos do

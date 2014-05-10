@@ -1,6 +1,6 @@
 class TurnosController < ApplicationController
 	
-	before_action :set_turno, only: [:atendido]
+	before_action :set_turno, only: [:atendido, :siguiente_dia]
 
 	def index
 		@doctores = Doctor.turnos_doctores
@@ -29,13 +29,24 @@ class TurnosController < ApplicationController
 	end
 
 	def atendido
-		if @turno.atendido
-			@turno.atendido = false
-		else
+		unless @turno.atendido
 			@turno.atendido = true
+		else
+			@turno.atendido = false
 		end
 		@turno.save
-		render :text => "cambio"
+		# render :text => "cambio"
+		redirect_to doctors_control_turno_path, :notice => "Almacenado"
+	end
+
+	def siguiente_dia
+		@nuevo_turno = Turno.new
+		@nuevo_turno.paciente_id = @turno.paciente_id
+		@nuevo_turno.doctor_id = @turno.doctor_id
+		@nuevo_turno.doctor_a_cargo = @turno.doctor_a_cargo
+		@nuevo_turno.hora = @turno.hora
+		@nuevo_turno.save
+		redirect_to doctors_path, :notice => "Almacenado"
 	end
 
 	private

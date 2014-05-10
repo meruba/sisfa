@@ -19,6 +19,7 @@
 #  diagnostico_sec_egreso1 :string(255)
 #  diagnostico_sec_egreso2 :string(255)
 #  codigo_cie              :string(255)
+#  especialidad_egreso     :string(255)
 #
 
 class Registro < ActiveRecord::Base

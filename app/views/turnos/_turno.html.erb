@@ -10,8 +10,6 @@
 		<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
 		<input type="text" class="identificacion", placeholder="Ejm: 1105000903">
 		<%= f.hidden_field :paciente_id, class: "paciente_id" %>
-		<%= f.label :hora%>
-		<%= f.text_field :hora, placeholder: "Ejm: 14:00" %>
 		<%= f.label :doctor_a_cargo, "Doctor Asignado"%>
     <%= f.text_field :doctor_a_cargo, class: "doctor_autocomplete"%>
 		<%= f.hidden_field :doctor_id, class: "doctor_id"%>

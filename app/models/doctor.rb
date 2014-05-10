@@ -2,11 +2,12 @@
 #
 # Table name: doctors
 #
-#  id           :integer          not null, primary key
-#  nombre       :string(255)
-#  especialidad :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id             :integer          not null, primary key
+#  nombre         :string(255)
+#  especialidad   :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  cantidad_turno :integer          default(16)
 #
 
 class Doctor < ActiveRecord::Base
@@ -14,7 +15,7 @@ class Doctor < ActiveRecord::Base
 	has_many :turnos
 	
 	#	validations
-	validates :nombre, :especialidad, :presence => true
+	validates :nombre, :especialidad, :cantidad_turno, :presence => true
 
 	#methods
 	
@@ -39,11 +40,16 @@ class Doctor < ActiveRecord::Base
 			doctores << {
 				:nombre =>doctor.nombre, 
 				:turnos_emitidos => num_turnos,
-				:turnos_disponibles => 16 - num_turnos,
+				:turnos_disponibles => doctor.cantidad_turno - num_turnos,
 				:especialidad => doctor.especialidad,
 				:id => doctor.id
 				}
 		end
 		doctores
 	end
+
+	def self.doctor_has_turnos_today
+		doctores = Doctor.includes(:turnos).where("turnos.fecha = '%#{Time.now.beginning_of_day..Time.now.end_of_day}%'").references(:turnos)
+	end
+
 end

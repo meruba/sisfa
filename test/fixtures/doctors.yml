@@ -2,11 +2,12 @@
 #
 # Table name: doctors
 #
-#  id           :integer          not null, primary key
-#  nombre       :string(255)
-#  especialidad :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id             :integer          not null, primary key
+#  nombre         :string(255)
+#  especialidad   :string(255)
+#  created_at     :datetime
+#  updated_at     :datetime
+#  cantidad_turno :integer          default(16)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

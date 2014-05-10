@@ -1,7 +1,7 @@
 class DoctorsController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
-	before_action :set_doctor, only: [:show, :edit, :update, :destroy, :turnos_dia]
+	before_action :set_doctor, only: [:show, :edit, :update, :destroy, :turnos_dia, :turnos_manana]
 
 	def index
 		@doctores = Doctor.all
@@ -17,10 +17,21 @@ class DoctorsController < ApplicationController
 
 	def control_turno
 		@doctores = Doctor.all
+		# @doctores = Doctor.doctor_has_turnos_today		
 	end
 
 	def turnos_dia
 		@turnos = @doctor.turnos.turnos_today
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
+			end
+		end
+	end
+
+	def turnos_manana
+		@turnos = @doctor.turnos.turnos_tomorrow
 		respond_to do |format|
 			format.html
 			format.pdf do
@@ -43,7 +54,7 @@ class DoctorsController < ApplicationController
 		if @doctor.save
 			redirect_to doctors_path, :notice => "Almacenado"
 		else
-			render action: 'new'
+			render action: 'index'
 		end
 	end
 
@@ -67,6 +78,6 @@ class DoctorsController < ApplicationController
 	end
 
 	def doctor_params
-		params.require(:doctor).permit(:nombre, :especialidad)
+		params.require(:doctor).permit(:nombre, :especialidad, :cantidad_turno)
 	end
 end

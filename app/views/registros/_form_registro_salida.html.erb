@@ -10,6 +10,8 @@
 		<%= f.select(:discapacidad, ['Ninguna','Discapacidad fisica','Discapacidad intelectual','Discapacidad mental','Discapacidad auditiva','Discapacidad visual','Otra'], {}, { :class => 'form-control' }) %>
 		<%= f.label :condicion_egreso%>
 		<%= f.select(:condicion_egreso, ['Vivo','Fallecido menos de 48 horas','Fallecido mas de 48 horas'], {}, { :class => 'form-control' }) %>
+		<%= f.label :especialidad_egreso%>
+		<%= f.select(:especialidad_egreso, ['Cardilogía','Cardilogía Toráxica','Dermatlogía', 'Endocrinología', 'Gastroenterología', 'Infectología', 'Nefrología', 'Neumología', 'Neurología clínica', 'Oftalmología', 'Otorrinolaringología', 'Psiquiatría', 'Oncología', 'Hematología', 'Reumatología', 'Complicaciones y discapacidades', 'Unidad de cuidados intensivos', 'Cirugía pediátrica', 'Neurocirugía', 'Cirugía plástica', 'Cirugía vascular', 'Cirugía maxilo facial', 'Proctología', 'Traumatología', 'Urología', 'Unidad de quemados', 'Ginecología - obstetricia', 'Neonatología ó Pediatría', 'Otra'], {}, { :class => 'select-egreso form-control' }) %>
 		<%= f.label :diagnostico_ingreso%>
 		<%= f.text_field :diagnostico_ingreso, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
 		<%= f.label :diagnostico_salida, "Diagnostico Egreso" %>

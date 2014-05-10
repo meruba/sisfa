@@ -1,4 +1,5 @@
 m = $('#content_modal');
 m.html('<%= j(render partial: 'form_registro_salida', locals: {registro: @registro}) %>');
 window.Helpers.ButtonsHelper.init();
-window.Helpers.FormsHelper.init()
+window.Helpers.FormsHelper.init();
+window.Helpers.ChosenHelper.init_whit_modal();
