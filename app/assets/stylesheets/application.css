@@ -11,7 +11,7 @@
  *= require_self
  *= require_tree .
  *= require bootstrap
- *= require font-awesome/css
+ *= require font-awsome/css/font-awesome
  *= require alertify.core
  *= require alertify.bootstrap
  *= require chosen
