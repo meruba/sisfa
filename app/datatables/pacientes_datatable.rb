@@ -23,8 +23,8 @@ private
         (paciente.cliente.nombre),
         (paciente.cliente.numero_de_identificacion),
         (paciente.tipo),
-        (link_to '', paciente, :rel => 'tooltip', :title => 'Ver Ficha', class: "ttip fa fa-eye btn btn-info") + " " +
-        (link_to '', @view.new_paciente_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success"})
+        (link_to '', @view.new_paciente_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success"})+" "+
+        (link_to '', paciente, :rel => 'tooltip', :title => 'Ver Ficha', class: "ttip fa fa-eye btn btn-info")
       ]
     end 
   end
@@ -34,7 +34,7 @@ private
   end
 
   def fetch_pacientes
-    pacientes = Paciente.order("#{sort_column} #{sort_direction}")
+    pacientes = Paciente.includes(:cliente).order("#{sort_column} #{sort_direction}")
     pacientes = pacientes.page(page).per_page(per_page)
     if params[:sSearch].present?
       pacientes = pacientes.includes(:cliente).where("n_hclinica like :search or clientes.nombre like :search or clientes.numero_de_identificacion like :search", search: "%#{params[:sSearch]}%").references(:cliente)
@@ -51,7 +51,7 @@ private
   end
 
   def sort_column
-    columns = %w[n_hclinica]
+    columns = %w[n_hclinica cliente_id]
     columns[params[:iSortCol_0].to_i]
   end
 

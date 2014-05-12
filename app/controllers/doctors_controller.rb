@@ -1,0 +1,83 @@
+class DoctorsController < ApplicationController
+	before_filter :require_login
+	before_filter :suspendido
+	before_action :set_doctor, only: [:show, :edit, :update, :destroy, :turnos_dia, :turnos_manana]
+
+	def index
+		@doctores = Doctor.all
+		@doctor = Doctor.new
+	end
+
+	def show
+	end
+
+	def new
+		@doctor = Doctor.new
+	end
+
+	def control_turno
+		@doctores = Doctor.all
+		# @doctores = Doctor.doctor_has_turnos_today		
+	end
+
+	def turnos_dia
+		@turnos = @doctor.turnos.turnos_today
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
+			end
+		end
+	end
+
+	def turnos_manana
+		@turnos = @doctor.turnos.turnos_tomorrow
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
+			end
+		end
+	end
+
+  def autocomplete
+    respond_to do |format|
+      format.json { render :json => Doctor.autocomplete(params[:term]) }
+    end
+  end
+
+	def edit
+	end
+
+	def create
+		@doctor = Doctor.new(doctor_params)
+		if @doctor.save
+			redirect_to doctors_path, :notice => "Almacenado"
+		else
+			render action: 'index'
+		end
+	end
+
+	def update
+		@doctor.update(doctor_params)
+		@doctor.save
+		redirect_to doctors_path
+	end
+
+	def destroy
+		@doctor.destroy
+		respond_to do |format|
+			format.html { redirect_to doctors_url }
+		end
+	end
+
+	private
+
+	def set_doctor
+		@doctor = Doctor.find(params[:id])
+	end
+
+	def doctor_params
+		params.require(:doctor).permit(:nombre, :especialidad, :cantidad_turno)
+	end
+end

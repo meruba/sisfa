@@ -1,20 +1,18 @@
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h3 class="modal-title" id="myModalLabel">Nuevo registro</h3>
+	<h3 class="modal-title" id="myModalLabel">Nuevo Turno</h3>
 </div>
 <%= form_for @turno, :remote => true do |f| %>
 <div class="modal-body">
 	<div class="field">
+		<small class="text-muted"> * Los turnos se emitiran para el dia de manana</small>
 		<h4>Turno a: <strong class="nombre_paciente"></strong> </h4>
 		<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
 		<input type="text" class="identificacion", placeholder="Ejm: 1105000903">
 		<%= f.hidden_field :paciente_id, class: "paciente_id" %>
-		<%= f.label :fecha%>
-		<%= f.text_field :fecha, class: "datepicker", placeholder: "Ejm: 2015-02-23" %>
-		<%= f.label :hora%>
-		<%= f.text_field :hora, placeholder: "Ejm: 14:00" %>
-		<%= f.label :doctor%>
-		<%= f.text_field :doctor%>
+		<%= f.label :doctor_a_cargo, "Doctor Asignado"%>
+    <%= f.text_field :doctor_a_cargo, class: "doctor_autocomplete"%>
+		<%= f.hidden_field :doctor_id, class: "doctor_id"%>
 	</div>
 </div>
 <div class="modal-footer">

@@ -1,15 +1,11 @@
 <legend>Informacion Hospital</legend>
 <%= f.fields_for :registros do |f| %>
 <div class="field">
-	<div class="militar">
-		<div class="col-md-6">
-			<%= f.label :especialidad %>
-			<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
-		</div>
-		<div class="col-md-6">
-			<%= f.label :medico_asignado %>
-			<%= f.text_field :medico_asignado %>
-		</div>
-	</div>
+	<%= f.label :tipo, "Ingreso Por" %>
+	<%= f.select(:tipo, ['Hospitalizacion','Consulta Externa', 'Emergencia'], {}, { :class => 'form-control' }) %>
+	<%= f.label :especialidad %>
+	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+	<%= f.label :medico_asignado %>
+	<%= f.text_field :medico_asignado, class: "doctor_autocomplete" %>
 </div>
 <% end %>

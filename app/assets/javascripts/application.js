@@ -24,3 +24,4 @@
 //= require jquery.dataTables
 //= require bootstrap-datepicker
 //= require jquery-ui
+//= require best_in_place

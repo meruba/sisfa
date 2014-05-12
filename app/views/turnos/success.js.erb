@@ -11,5 +11,8 @@
   $('.modal-backdrop').remove();
   alertify.success("Turno Almacenado");  
   window.Helpers.ButtonsHelper.init();
-  window.Helpers.FormsHelper.init()
+  window.Helpers.FormsHelper.init();
+  $this = $('.atendidos[data-id= <%=@turno.doctor.id %>]');
+  $this.find('.t_emitidos').text('<%=@turno.numero %>');
+  $this.find('.t_disponibles').text('<%= 16 - @turno.numero %>');
 <%- end %>

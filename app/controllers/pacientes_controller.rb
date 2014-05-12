@@ -1,5 +1,6 @@
 class PacientesController < ApplicationController
-	before_action :set_paciente, only: [:show]
+	before_action :set_paciente, only: [:edit, :update]
+	before_action :new_paciente, only: [:civil, :militar, :familiar]
 
 	def index
 		respond_to do |format|
@@ -8,29 +9,44 @@ class PacientesController < ApplicationController
     end
 	end
 
-	def show
+	def autocomplete
+    respond_to do |format|
+      format.json { render :json => Paciente.autocomplete(params[:term]) }
+    end
+  end
+
+	def civil
+		@paciente.tipo = "civil"
+	end
+		
+	def militar
+		@paciente.tipo = "militar"
 	end
 
-	def new
-		@paciente= Paciente.new
-		@paciente.registros.build
-		@paciente.build_cliente
-		@paciente.build_informacion_adicional_paciente
+	def familiar
+		@paciente.tipo = "familiar"
+	end
+
+	def show
+		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:id]).references(:cliente, :informacion_adicional_paciente).first
 	end
 	
 	def create
 		@paciente = Paciente.new(paciente_params)
 		if @paciente.save
-			redirect_to clientes_path, :notice => "Almacenado"
+			redirect_to pacientes_path, :notice => "Almacenado"
 		else
 			render action: 'new'
 		end
 	end
+	
+	def edit
+	end
 
 	def update
 		respond_to do |format|
-			@paciente.update(cliente_params)
-			format.js { render "success"}
+			@paciente.update(paciente_params)
+			format.json { respond_with_bip(@paciente) }
 		end
 	end
 
@@ -57,10 +73,13 @@ class PacientesController < ApplicationController
 				:estado_civil
 			],
 			:informacion_adicional_paciente_attributes => [
-				:ciudad,
+				:parroquia,
 				:provincia,
 				:canton,
+				:raza,
+				:nacionalidad,
 				:jefe_de_reparto,
+				:familiar_parentesco,
 				:familiar_cercano,
 				:familiar_direccion,
 				:familiar_telefono,
@@ -69,11 +88,19 @@ class PacientesController < ApplicationController
 			],
 			:registros_attributes => [
 				:especialidad,
-				:medico_asignado
+				:medico_asignado,
+				:tipo
 			]
 	end
 
 	def set_paciente
 		@paciente = Paciente.find(params[:id])
+	end
+
+	def new_paciente
+		@paciente= Paciente.new
+		@paciente.registros.build
+		@paciente.build_cliente
+		@paciente.build_informacion_adicional_paciente
 	end
 end

@@ -1,26 +1,19 @@
+<legend>2. Datos Militar</legend>
 <div class="field">
-	<div class="militar">
-		<div class="col-md-6">
-			<%= f.label :estado %>
-			<%= f.select(:estado, ['Activo','Pasivo'], {}, { :class => 'form-control' }) %>
-		</div>
-		<div class="col-md-6">
-			<%= f.label :grado %>
-			<%= f.select(:grado, ['GNRL','SGTO','CRNL','TNTE'], {}, { :class => 'form-control' }) %>
-		</div>
+	<div class="col-md-4">
+		<%= f.label :estado %>
+		<%= f.select(:estado, ['Activo','Pasivo'], {}, { :class => 'form-control' }) %>
+		<%= f.label :grado %>
+		<%= f.select(:grado, ['GNRL','SGTO','CRNL','TNTE'], {}, { :class => 'form-control' }) %>
 	</div>
-	<div class="militar">
-		<div class="col-md-4">
-			<%= f.label :pertenece_a %>
-			<%= f.select(:pertenece_a, ['Ejercito','Aviacion','Marina'], {}, { :class => 'form-control' }) %>
-		</div>
-		<div class="col-md-4">
-			<%= f.label :unidad %>
-			<%= f.text_field :unidad, placeholder: "Unidad" %>
-		</div>
-		<div class="col-md-4">
-			<%= f.label :codigo_issfa %>
-			<%= f.text_field :codigo_issfa, placeholder: "Codigo ISSFA" %>
-		</div>
+	<div class="col-md-4">
+		<%= f.label :pertenece_a %>
+		<%= f.select(:pertenece_a, ['Ejercito','Aviacion','Marina'], {}, { :class => 'form-control' }) %>
+		<%= f.label :unidad %>
+		<%= f.text_field :unidad, placeholder: "Unidad" %>
+	</div>
+	<div class="col-md-4">
+		<%= f.label :codigo_issfa %>
+		<%= f.text_field :codigo_issfa, placeholder: "Codigo ISSFA" %>
 	</div>
 </div>

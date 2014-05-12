@@ -1,0 +1,18 @@
+<%- if @registro.errors.any? %>
+  $('#content_modal').html('<%= escape_javascript(render('form_registro_salida')) %>');
+  window.Helpers.ButtonsHelper.init();
+  window.Helpers.FormsHelper.init()
+  <%- @registro.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModal").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  window.Helpers.ButtonsHelper.init();
+  window.Helpers.FormsHelper.init()
+  alertify.success("Registro guardado");
+  $('.list[data-id= <%=@registro.id %>]').slideUp(3000, function(){
+    $(this).remove();
+  });
+<%- end %>

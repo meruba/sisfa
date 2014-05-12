@@ -28,7 +28,7 @@ class Paciente < ActiveRecord::Base
 	before_validation :set_values
 
 	#validation
-	validates :tipo, :presence => true
+	validates :tipo, :n_hclinica, :presence => true
   validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
   validates :n_hclinica, :uniqueness =>  true
 
@@ -45,19 +45,21 @@ class Paciente < ActiveRecord::Base
 		self.registros.each do |f|
 			f.fecha_de_ingreso = Time.now
 		end
-		if self.tipo == "familiar"
-			self.estado = ""
-			self.grado = ""
-			self.pertenece_a = ""
-			self.unidad = ""
-		else if self.tipo == "civil"
-			self.estado = ""
-			self.grado = ""
-			self.pertenece_a = ""
-			self.unidad = ""
-			self.parentesco = ""
-			self.codigo_issfa = ""
-		end
 	end
-	end
+
+	def self.autocomplete(params)
+    pacientes = Paciente.includes(:cliente).where("clientes.numero_de_identificacion like ?", "%#{params}%").references(:cliente)
+    pacientes = pacientes.map do |paciente|
+      {
+        :id => paciente.id,
+        :label => paciente.cliente.numero_de_identificacion + " / " + paciente.cliente.nombre,
+        :value => paciente.cliente.numero_de_identificacion,
+        :nombre => paciente.cliente.nombre,
+        :cliente_id => paciente.cliente.id,
+        :n_hclinica => paciente.n_hclinica
+      }
+    end
+    pacientes 
+  end
+
 end

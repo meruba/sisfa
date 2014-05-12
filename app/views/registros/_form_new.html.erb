@@ -1,0 +1,28 @@
+<div class="modal-header">
+  <h3 class="modal-title" id="myModalLabel"> Historia Clinica # <%= @paciente.n_hclinica %></h3>
+</div>
+<%= form_for [@paciente, @registro], :remote => true do |f| %>
+<div class="modal-body">
+<% case @paciente.tipo %>
+<% when "civil"%>
+<%= render "registros/informacion/civil" %>
+<% when "militar"%>
+<%= render "registros/informacion/militar" %>
+<% when "familiar"%>
+<%= render "registros/informacion/familiar" %>
+<% end %>
+<br>
+	<div class="field">
+	<%= f.label :tipo, "Ingreso Por" %>
+	<%= f.select(:tipo, ['Hospitalizacion','Consulta Externa', 'Emergencia'], {}, { :class => 'form-control' }) %>
+	<%= f.label :especialidad %>
+	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+	<%= f.label :medico_asignado %>
+	<%= f.text_field :medico_asignado %>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= f.submit 'Guardar', class: "btn btn-primary", :remote => true %>
+</div>
+<% end %>

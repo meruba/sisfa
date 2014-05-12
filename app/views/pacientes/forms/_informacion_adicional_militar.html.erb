@@ -1,10 +1,10 @@
-<legend>Informacion de Recinto</legend>
+<legend>Informacion Adicional</legend>
 <%= f.fields_for :informacion_adicional_paciente do |info| %>
 <div class="field">
 	<div class="informacion">
 		<div class="col-md-4">
-			<%=  info.label :ciudad%>
-			<%=  info.text_field :ciudad, :placeholder => "ciudad" %>
+			<%=  info.label :parroquia%>
+			<%=  info.text_field :parroquia, :placeholder => "parroquia" %>
 		</div>
 		<div class="col-md-4">
 			<%=  info.label :provincia%>

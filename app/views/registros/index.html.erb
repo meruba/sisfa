@@ -6,6 +6,19 @@
     <div class="well well-sm">
       <strong>Generar Reporte:</strong>
       <div class="btn-group">
+        <div class="panel-body">
+          <%= form_tag registros_reporte_path, method: :get do %>
+          <div class="col-md-4">
+            <%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", placeholder: "Fecha de inicio", :required => true %>
+          </div>
+          <div class="col-md-4">
+            <%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", placeholder: "Fecha final", :required => true %>
+          </div>
+          <div class="col-md-2">
+            <%= submit_tag "Ir", :class => "btn btn-block btn-info"%>
+          </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

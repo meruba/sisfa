@@ -1,12 +1,17 @@
-<% @turnos.each do |t|  %>
-<div class=" col-sx-12 row-fix-div atendidos">
-	<div class="row col-md-2 col-xs-2"><span class="fa fa-dot-circle-o"></span></div>
-	<div class="row col-md-8 col-xs-8 paciente">
-		<h4><%=t.paciente.cliente.nombre%></h4>
-		<small class="text-muted">CITA: <%=t.doctor%></small>
-	</div>
-	<div class="row col-md-2 col-xs-2 hora">
-		<span><%=local_date(t.hora, "time")%></span>
-	</div>
-</div> 
-<% end %> 
+<ul class="sortable-list" id="atendido">
+	<% @atendidos.each do |t|  %>
+	<li class="sortable-item" data-id = "<%=t.id%>">
+		<div class=" col-sx-12 row-fix-div atendidos" data-atendido ="<%=t.atendido%>">
+			<div class="row col-md-2 col-xs-2"><span class="fa fa-dot-circle-o"></span></div>
+			<div class="row col-md-8 col-xs-8 paciente">
+				<h4><%=t.paciente.cliente.nombre%></h4>
+				<small class="text-muted">CITA: <%=t.doctor_a_cargo%></small>
+			</div>
+			<div class="row col-md-2 col-xs-2 hora">
+				<span><%=local_date(t.hora, "time")%></span>
+			</div>
+		</div> 
+	</li>
+	<% end %>
+</ul>
+

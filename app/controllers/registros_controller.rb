@@ -3,7 +3,7 @@ class RegistrosController < ApplicationController
   before_action :set_registro, only: [:edit, :update]
 
   def index
-    @registros = Registro.includes(:paciente).where(:fecha_de_salida => nil).references(:paciente)
+    @registros = Registro.includes(:paciente).where(:tipo => "Hospitalizacion", :fecha_de_salida => nil).references(:paciente)
   end
 
   def reporte
@@ -34,21 +34,24 @@ class RegistrosController < ApplicationController
   end
 
   def edit
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def update
     respond_to do |format|
-      if @registro.update(registro_params)
-        format.html { redirect_to pacientes_path, notice: 'Salida Registrada' }
-      else
-        format.html { render action: 'edit'}
-      end
+      @registro.update(registro_params)
+      format.js { render "salida"}
+      format.json { respond_with_bip(@registro) }
     end
   end
   private
 
   def registro_params
     params.require(:registro).permit :historia_clinica_id,
+      :tipo,
       :fecha_de_ingreso,
       :fecha_de_salida,
       :especialidad,
@@ -56,7 +59,11 @@ class RegistrosController < ApplicationController
       :diagnostico_ingreso,
       :diagnostico_salida,
       :discapacidad,
-      :dias_hospitalizacion
+      :dias_hospitalizacion,
+      :diagnostico_sec_egreso1,
+      :diagnostico_sec_egreso2,
+      :condicion_egreso,
+      :codigo_cie
   end
 
   def find_paciente

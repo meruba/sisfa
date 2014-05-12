@@ -52,7 +52,10 @@ gem 'id_ecuador'
 gem 'wkhtmltopdf-binary'
 gem 'wicked_pdf'
 gem 'roo'
-gem 'rails_12factor', group: :production
+
+# edit in place
+gem 'best_in_place', github: 'aaronchi/best_in_place'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

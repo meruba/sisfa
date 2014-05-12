@@ -21,6 +21,11 @@ get "dashboard/reportes_cierre_caja_mensual"
 get "dashboard/estadisticas_dia"
 get "dashboard/estadisticas_mes"
 get "registros/reporte"
+get "pacientes/autocomplete"
+get "pacientes/civil"
+get "pacientes/militar"
+get "pacientes/familiar"
+get "doctors/autocomplete"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -48,6 +53,13 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_hospitalizacions
   resources :factura_compras
   resources :product_imports
+  resources :informacion_adicional_pacientes, :only => [:edit, :update]
+  resources :doctors do
+    member do
+      get "turnos_dia"
+      get "turnos_manana"
+    end
+  end
   resources :productos do
     resources :kardexes, :as => "kardex"
   end
@@ -62,6 +74,13 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :proformas do
     member do
       post "facturar"
+    end
+  end
+  
+  resources :turnos do
+    member do
+      get "atendido"
+      get "siguiente_dia"
     end
   end
 

@@ -28,3 +28,11 @@ $(document).on "click", ".btn-add", (event) ->
 $(document).on "click", ".btn-remove", (event) ->
   event.preventDefault()
   $(this).closest(".field").remove()
+
+$(document).on 'ready page:load',
+-> $(".tipo").each ->
+    tipo =  $(this).text()
+    switch tipo
+      when "MILITAR" then $(this).css("color","#94D5AD")
+      when "CIVIL" then $(this).css("color","#2dc1e6")
+      when "FAMILIAR" then $(this).css("color","#E77666")
