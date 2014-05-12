@@ -6,7 +6,7 @@ rvm:
 before_script:
   - cp config/database.yml.example config/database.yml
   - mysql -e 'create database sisfa_test'
-  - rake db:migrate
+  - bundle exec rake db:migrate
 
 notifications:
   email:
