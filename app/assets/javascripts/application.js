@@ -17,6 +17,7 @@
 //= require_tree .
 //= require jquery_nested_form
 //= require nested
+//= require nested2
 //= require alertify
 //= require chosen.jquery
 //= require moment
