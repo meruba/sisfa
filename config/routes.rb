@@ -26,6 +26,7 @@ get "pacientes/civil"
 get "pacientes/militar"
 get "pacientes/familiar"
 get "doctors/autocomplete"
+get "doctors/imprimir_listado"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"

@@ -12,7 +12,6 @@
         <th>F. Ingreso</th>
         <th>F. Salida</th>
         <th>Dias</th>
-        <th>Tipo</th>
         <th>Apellido y Nombre</th>
         <th>C.I</th>
         <th>Edad</th>
@@ -26,7 +25,6 @@
         <td><%= local_date(r.fecha_de_ingreso, "date") %></td>
         <td><%= local_date(r.fecha_de_salida, "date") %></td>
         <td><%= r.dias_hospitalizacion %></td>
-        <td><%= r.tipo %></td>
         <td><%= r.paciente.cliente.nombre %></td>
         <td><%= r.paciente.cliente.numero_de_identificacion %></td>
         <td><%= Time.now.year - r.paciente.cliente.fecha_de_nacimiento.year%></td>

@@ -7,7 +7,7 @@ window.Helpers.AutocompleteDoctor = {
       source: "/doctors/autocomplete.json"
       select: (event, ui) ->
         $(".doctor_id").val ui.item.id
-        $(".nombre").val ui.item.nombre
+        $(".doctor_nombre").val ui.item.nombre
 }
 
 jQuery window.Helpers.AutocompleteDoctor.init

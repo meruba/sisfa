@@ -1,0 +1,14 @@
+<%- if @doctor.errors.any? %>
+  $('#content_modal').html('<%= escape_javascript(render('doctors/partials/form')) %>');
+  window.Helpers.FormsHelper.init()
+  <%- @doctor.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModal").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $(".doctores").html('<%= j render 'doctors/partials/doctors', doctores: @doctores %>');
+  window.Helpers.FormsHelper.init()
+  alertify.success("Doctor modificado");
+<%- end %>

@@ -7,16 +7,16 @@
       <strong>Generar Reporte:</strong>
       <div class="btn-group">
         <div class="panel-body">
-          <%= form_tag registros_reporte_path, method: :get do %>
-          <div class="col-md-4">
+          <%= form_tag registros_reporte_path, :class => "form-inline", method: :get do %>
+          <div class="form-group">
+            <%= label_tag :fecha_inicial, nil, class: "sr-only"  %>
             <%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", placeholder: "Fecha de inicio", :required => true %>
           </div>
-          <div class="col-md-4">
+          <div class="form-group">
+            <%= label_tag :fecha_final, nil,class: "sr-only"  %>
             <%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", placeholder: "Fecha final", :required => true %>
           </div>
-          <div class="col-md-2">
-            <%= submit_tag "Ir", :class => "btn btn-block btn-info"%>
-          </div>
+            <%= submit_tag "Ir", :class => "btn btn-info"%>
           <% end %>
         </div>
       </div>

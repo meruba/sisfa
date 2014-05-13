@@ -1,6 +1,0 @@
-<h3>TURNOS: <%= @doctor.nombre%></h3>
-<% @turnos.each do |t|  %>
-<div class=" col-sx-12 row-fix-div">
-	<h4><%= t.numero %> / <%=t.paciente.cliente.nombre%> / <%=local_date(t.hora, "time")%></h4><br>
-</div> 
-<% end %>

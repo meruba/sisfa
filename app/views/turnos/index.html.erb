@@ -3,7 +3,7 @@
 		<h2 class="fix-margin">Emision de Turnos</h2>
 	</div>
 	<div class="row info-paciente">
-		<div class="search">
+		<div class="acciones">
 			<div class="well well-sm">
 				<strong>Acciones: </strong>
 				<div class="btn-group">
@@ -11,22 +11,24 @@
 				</div>
 			</div>
 		</div>
-		<% @doctores.each do |d|  %>
-		<div class=" col-md-6 row-fix-div atendidos" data-id = "<%=d[:id]%>">
-			<div class="row col-md-2 col-xs-2 hora">
-				<span class="t_emitidos"><%= d[:turnos_emitidos]%></span>
-				<h6>emitidos</h6>
-			</div>
-			<div class="row col-md-8 col-xs-8 paciente">
-				<h4><%=d[:nombre]%></h4>
-				<small><%= d[:especialidad]%></small>
-			</div>
-			<div class="row col-md-2 col-xs-2 hora">
-				<span class="t_disponibles"><%= d[:turnos_disponibles] %></span>
-				<h6>disponibles</h6>
-			</div>
-		</div> 
-		<% end %>
+		<ul class="doctores">
+			<% @doctores.each do |d|  %>
+			<li class= "list col-md-6">
+				<div class="row-fix-div control-turno" data-id = "<%=d[:id]%>">
+					<div class="row col-md-2 col-xs-2 turnos-emitidos">
+						<span class="t_emitidos"><%= d[:turnos_emitidos]%></span>
+						<h6>emitidos</h6>
+					</div>
+					<div class="row col-md-8 col-xs-8 paciente">
+						<h4><%=d[:nombre]%></h4>
+						<small><%= d[:especialidad]%></small>
+					</div>
+					<div class="row col-md-2 col-xs-2 turnos-disponibles">
+						<span class="t_disponibles"><%= d[:turnos_disponibles] %></span>
+						<h6>disponibles</h6>
+					</div>
+				</div> 
+				<% end %>
+			</li>
+		</ul>
 	</div>
-</div>
-

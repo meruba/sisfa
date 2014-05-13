@@ -1,0 +1,17 @@
+<div class="modal-header">
+	<h3 class="modal-title" id="myModalLabel">Doctor</h3>
+</div>
+<%= form_for @doctor, :remote => true do |f| %>
+<div class="modal-body">
+	<%= f.label :nombre%>
+	<%= f.text_field :nombre, class: "form-control", placeholder: "Nombre" %>
+	<%= f.label :especialidad%>
+	<%= f.text_field :especialidad, class: "form-control", placeholder: "Especialidad" %>
+	<%= f.label :cantidad_turno%>
+	<%= f.text_field :cantidad_turno, class: "form-control", placeholder: "Cantidad de turnos" %>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= f.submit 'Guardar', class: "btn btn-primary", :remote => true %>
+</div>
+<% end %>

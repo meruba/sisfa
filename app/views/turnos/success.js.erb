@@ -1,7 +1,8 @@
 <%- if @turno.errors.any? %>
   $('#content_modal').html('<%= escape_javascript(render('turno')) %>');
-  window.Helpers.ButtonsHelper.init();
-  window.Helpers.FormsHelper.init()
+  window.Helpers.FormsHelper.init();
+  window.Helpers.AutocompletePaciente.init_autocomplete();
+  window.Helpers.AutocompleteDoctor.init_autocomplete();
   <%- @turno.errors.full_messages.each do |msg|%>
     alertify.error("<%=j msg %>");
   <%- end %>
@@ -10,9 +11,10 @@
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
   alertify.success("Turno Almacenado");  
-  window.Helpers.ButtonsHelper.init();
   window.Helpers.FormsHelper.init();
-  $this = $('.atendidos[data-id= <%=@turno.doctor.id %>]');
+  window.Helpers.AutocompletePaciente.init_autocomplete();
+  window.Helpers.AutocompleteDoctor.init_autocomplete();
+  $this = $('.control-turno[data-id= <%=@turno.doctor.id %>]');
   $this.find('.t_emitidos').text('<%=@turno.numero %>');
-  $this.find('.t_disponibles').text('<%= 16 - @turno.numero %>');
+  $this.find('.t_disponibles').text('<%= @turno.doctor.cantidad_turno - @turno.numero %>');
 <%- end %>

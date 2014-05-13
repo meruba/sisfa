@@ -28,12 +28,14 @@ class Turno < ActiveRecord::Base
 
 	#methos
 	def doctor_limit_turnos
+		unless self.doctor_id.nil?
 		doctor = Doctor.find(self.doctor_id)
 		ultimo = doctor.turnos.last
 		unless ultimo.nil?
 			if ultimo.numero >= doctor.cantidad_turno #limita segun el numero de turnos x doctor
 				errors.add :numero, "Turnos llenos para:" + self.doctor_a_cargo
 			end
+		end
 		end
 	end
 
@@ -53,7 +55,7 @@ class Turno < ActiveRecord::Base
 			self.hora = ultimo.hora + (15*60) #aumenta 15 minuto a partir del ultimo turno
 		else
 			self.numero = 1
-			self.hora = Time.now.beginning_of_day + (510*60) #510x60 = 8:30 am
+			self.hora = Time.now.tomorrow.beginning_of_day + (510*60) #510x60 = 8:30 am
 
 		end
 	end
@@ -69,5 +71,4 @@ class Turno < ActiveRecord::Base
 	def self.turnos_tomorrow
 		turno = Turno.includes(:paciente).where(:fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).references(:paciente)
 	end
-	
 end

@@ -5,7 +5,6 @@ class DoctorsController < ApplicationController
 
 	def index
 		@doctores = Doctor.all
-		@doctor = Doctor.new
 	end
 
 	def show
@@ -13,17 +12,17 @@ class DoctorsController < ApplicationController
 
 	def new
 		@doctor = Doctor.new
-	end
-
-	def control_turno
-		@doctores = Doctor.all
-		# @doctores = Doctor.doctor_has_turnos_today		
+    respond_to do |format|
+      format.js{ render "new_or_edit" }
+    end
 	end
 
 	def turnos_dia
+		@fecha = Time.now.to_date
 		@turnos = @doctor.turnos.turnos_today
 		respond_to do |format|
 			format.html
+			format.js
 			format.pdf do
 				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
 			end
@@ -31,11 +30,24 @@ class DoctorsController < ApplicationController
 	end
 
 	def turnos_manana
+		@fecha = Time.now.tomorrow.to_date
 		@turnos = @doctor.turnos.turnos_tomorrow
 		respond_to do |format|
 			format.html
+			format.js
 			format.pdf do
-				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
+				render :pdf => "turnos de manana", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
+			end
+		end
+	end
+
+	def imprimir_listado
+		@fecha = Time.now.to_date
+		@lista = Doctor.list_turnos_all_doctor
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render :pdf => "turnos doctores", :layout => 'report.html', :template => "doctors/imprimir_listado.pdf.erb"
 			end
 		end
 	end
@@ -47,22 +59,32 @@ class DoctorsController < ApplicationController
   end
 
 	def edit
+		respond_to do |format|
+      format.js { render "new_or_edit"}
+    end
 	end
 
 	def create
 		@doctor = Doctor.new(doctor_params)
-		if @doctor.save
-			redirect_to doctors_path, :notice => "Almacenado"
-		else
-			render action: 'index'
-		end
+    respond_to do |format|
+      @doctor.save
+      format.js { 
+				@doctores = Doctor.all
+      	render "success"
+      }
+    end
 	end
 
-	def update
-		@doctor.update(doctor_params)
-		@doctor.save
-		redirect_to doctors_path
-	end
+  def update
+    respond_to do |format|
+      @doctor.update(doctor_params)
+      format.html
+      format.js { 
+				@doctores = Doctor.all
+      	render "success"
+      }
+    end
+  end
 
 	def destroy
 		@doctor.destroy

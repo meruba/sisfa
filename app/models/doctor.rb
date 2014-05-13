@@ -16,7 +16,7 @@ class Doctor < ActiveRecord::Base
 	
 	#	validations
 	validates :nombre, :especialidad, :cantidad_turno, :presence => true
-
+	validates :cantidad_turno, :numericality => { :greater_than => 0 }
 	#methods
 	
 	def self.autocomplete(params)
@@ -52,4 +52,17 @@ class Doctor < ActiveRecord::Base
 		doctores = Doctor.includes(:turnos).where("turnos.fecha = '%#{Time.now.beginning_of_day..Time.now.end_of_day}%'").references(:turnos)
 	end
 
+	def self.list_turnos_all_doctor
+		doctores = []
+		Doctor.includes(:turnos).each do |doctor|
+			turno = doctor.turnos.turnos_today
+			unless turno.compact.empty?
+				doctores << {
+					:nombre =>doctor.nombre, 
+					:turnos => turno
+				}
+			end
+		end
+		doctores
+	end
 end

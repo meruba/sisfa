@@ -10,9 +10,13 @@ class RegistrosController < ApplicationController
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
     @registros = Registro.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
-    respond_to do |format|
-      format.html
-      format.xls
+    if @registros.empty?
+      render :template => "results/not_result"
+    else
+      respond_to do |format|
+        format.html
+        format.xls
+      end
     end
   end
 
