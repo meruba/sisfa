@@ -28,14 +28,31 @@ $green-color: #4bbc65
   .fa
     color: $red-color
 
-.sortable-list
+//.sortable-list
+.list-turnos
   background-color: #F5f5f5
   list-style: none
   margin: 0
   padding: 20px
 
-.sortable-item
+// .sortable-item
+.item-turno
   background-color: #FFF
-  cursor: move
+  // cursor: move
   margin-bottom: 5px
   text-align: center
+
+.list-modal
+  background-color: #fafafa
+
+.control-turno
+  @extend .atendidos
+  .turnos-emitidos
+    span
+      font-size: 25px
+      font-weight: bold
+    h6
+      margin-top: 2px
+
+.turnos-disponibles
+  @extend .turnos-emitidos
