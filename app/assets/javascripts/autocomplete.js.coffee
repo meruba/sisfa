@@ -56,11 +56,6 @@ window.Helpers.AutocompleteHelper = {
       window.Helpers.AutocompleteHelper.calcular_total_producto($this)
       window.Helpers.AutocompleteHelper.calcular_valores_factura()
 
-    $(".eliminar_item").on "click", ->
-      $this = $(this)
-      $this.closest(".fields").remove()
-      window.Helpers.AutocompleteHelper.calcular_valores_factura()
-
   calcular_total_producto: (componente) ->
     cantidad = componente.closest(".fields").find("td:nth-child(2)").find(".cantidad").val()
     valor_unitario = componente.closest(".fields").find("td:nth-child(3)").text()
@@ -124,3 +119,4 @@ $(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocom
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
+$(document).on "nested:fieldRemoved", window.Helpers.AutocompleteHelper.calcular_valores_factura
