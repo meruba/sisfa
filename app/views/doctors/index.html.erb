@@ -3,18 +3,21 @@
 		<h2 class="fix-margin">Administracion Doctores</h2>
 	</div>
 	<div class="row info-paciente">
-		<div class="acciones">
-			<div class="well well-sm">
-				<strong>Acciones: </strong>
-				<div class="btn-group">
+		<div class="row acciones">
+			<div class="col-md-4">
 				<%= link_to 'Nuevo', new_doctor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
+				<%= link_to ' Listado de hoy',doctors_imprimir_listado_path(:format => :pdf), class: "print_button btn-xs", :target => "_blank" %>	
+			</div>		
+			<div class="col-md-3 col-md-offset-5">
+				<div class="input-icon-sm icon-addon addon-sm">
+					<input type="search" id="input-search" class="form-control" placeholder="Buscar Doctor..." ><i class="fa fa-search"></i>
+					<i class="fa fa-search"></i>
 				</div>
-					<%= link_to ' Listado de hoy',doctors_imprimir_listado_path(:format => :pdf), class: "print_button btn-xs"%>			
 			</div>
 		</div>
-		<ul class="doctores">
+		<legend>Doctores Registrados</legend>
+		<ul class="doctores searchable-container">
 			<%= render "doctors/partials/doctors"%>
 		</ul>
 	</div>	
 </div>
-

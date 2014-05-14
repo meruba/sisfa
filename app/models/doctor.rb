@@ -7,7 +7,8 @@
 #  especialidad   :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  cantidad_turno :integer          default(16)
+#  cantidad_turno :integer
+#  suspendido     :boolean          default(FALSE)
 #
 
 class Doctor < ActiveRecord::Base
@@ -35,7 +36,7 @@ class Doctor < ActiveRecord::Base
 
 	def self.turnos_doctores
 		doctores = []
-		Doctor.includes(:turnos).each do |doctor|
+		Doctor.includes(:turnos).where(:suspendido => false).each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
 				:nombre =>doctor.nombre, 

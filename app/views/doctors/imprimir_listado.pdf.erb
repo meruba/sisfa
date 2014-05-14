@@ -16,7 +16,11 @@
 			<tr>
 				<td><%= turno.numero %></td>
 				<td><%= turno.paciente.cliente.nombre %></td>
+				<% if turno.numero >= 15 %>
+				<td>--:--</td>
+				<% else %>
 				<td><%= local_date(turno.hora,"time") %></td>
+				<% end %>
 				<td>-----------------</td>
 			</tr>			
 			<% end %>

@@ -1,14 +1,17 @@
 class DoctorsController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
-	before_action :set_doctor, only: [:show, :edit, :update, :destroy, :turnos_dia, :turnos_manana]
+	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender]
 
 	def index
 		@doctores = Doctor.all
 	end
 
-	def show
-	end
+	def autocomplete
+    respond_to do |format|
+      format.json { render :json => Doctor.autocomplete(params[:term]) }
+    end
+  end
 
 	def new
 		@doctor = Doctor.new
@@ -51,11 +54,15 @@ class DoctorsController < ApplicationController
 			end
 		end
 	end
-
-  def autocomplete
-    respond_to do |format|
-      format.json { render :json => Doctor.autocomplete(params[:term]) }
+  
+  def suspender
+    if @doctor.suspendido
+      @doctor.suspendido = false
+    else
+      @doctor.suspendido = true
     end
+    @doctor.save
+    redirect_to doctors_path, :notice => "Doctor modificado"    
   end
 
 	def edit
@@ -100,6 +107,6 @@ class DoctorsController < ApplicationController
 	end
 
 	def doctor_params
-		params.require(:doctor).permit(:nombre, :especialidad, :cantidad_turno)
+		params.require(:doctor).permit(:nombre, :especialidad, :cantidad_turno, :suspendido)
 	end
 end
