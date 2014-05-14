@@ -1,16 +1,49 @@
-<div class="historia_form">
+<div class="info-paciente">
 	<%= nested_form_for @paciente do |f| %>
 	<%= form_errors_for @paciente %>
-	<%= f.label :n_hclinica, "Historia Clinica #"%>
-	<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
-	<%= f.hidden_field :tipo %>
 	<div class="col-md-3">
-		<%= render "registros/registros", f:f  %>
-		<%= f.submit :Guardar, class: "btn btn-success btn-block" %>
+		<%= f.label :n_hclinica, "Historia Clinica #"%>
+		<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
+		<%= f.hidden_field :tipo %>
 	</div>
-	<div class="col-md-9">
-		<%= render "pacientes/forms/datos_cliente", f:f  %>
-		<%= render "pacientes/forms/informacion_adicional", f:f  %>
+	<%= render "pacientes/forms/registro", f:f  %>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div id="rootwizard">
+		<div class="navbar">
+			<div class="navbar-inner">
+				<div class="containers">
+					<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+						<li><a href="#tab1" data-toggle="tab">
+							<span class ="fa fa-user-md fa-2x"></span>
+							<p class="list-group-item-text">Datos del Paciente</p>
+						</a></li>
+						<li><a href="#tab3" data-toggle="tab">
+							<span class ="fa fa-th-list fa-2x"></span>
+							<p class="list-group-item-text">Informacion Adicional</p>
+						</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="tab-content row">
+			<div class="tab-pane" id="tab1">
+				<%= render "pacientes/forms/datos_cliente", f:f  %>
+			</div>
+			<div class="tab-pane" id="tab3">
+				<%= render "pacientes/forms/informacion_adicional", f:f  %>
+				<%= f.submit :Guardar, class: "btn btn-success" %>
+			</div>
+		</div> 
+		<% end %>
+		<ul class="pager wizard">
+			<li class="previous first clickable" style="display:none;"><a>Primero</a></li>
+			<li class="previous clickable"><a>Anterior</a></li>
+			<li class="next last clickable" style="display:none;"><a>Ultimo</a></li>
+			<li class="next clickable"><a>Siguiente</a></li>
+		</ul>
 	</div>
-	<% end %>
+
 </div>

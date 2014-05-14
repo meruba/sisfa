@@ -1,11 +1,10 @@
 <%= f.fields_for :informacion_adicional_paciente do |info| %>
-<legend>3. Informacion Adicional</legend>
 <div class="field">
 	<div class="col-md-4">
 		<%=  info.label :nacionalidad%>
 		<%=  info.select(:nacionalidad, ['Ecuatoriano','Extranjero'], {}, { :class => 'form-control' }) %>
 		<%=info.label :raza %>
-		<%=info.select :raza, options_for_select(["Indigena","Afroecuatoriano/Afrodesenciende","Negro","Mulato","Montubio","Mestizo","Blanco","Otro"]), {}, { class: "select-servicio form-control"}%>
+		<%=info.select :raza, options_for_select(["Indigena","Afroecuatoriano/Afrodesenciende","Negro","Mulato","Montubio","Mestizo","Blanco","Otro"]), {}, { class: "form-control"}%>
 	</div>
 	<div class="col-md-4">
 		<%=  info.label :provincia%>
@@ -17,7 +16,7 @@
 		<%=  info.label :parroquia%>
 		<%=  info.text_field :parroquia, :placeholder => "parroquia" %>
 	</div>
-	<legend>4. Informacion Familiar Cercano</legend>
+	<legend>Informacion Familiar Cercano</legend>
 	<div class="col-md-4">
 		<%=  info.label :familiar_cercano%>
 		<%=  info.text_field :familiar_cercano, :placeholder => "Nombre Familiar Cercano"%>
