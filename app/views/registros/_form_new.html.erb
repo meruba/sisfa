@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h3 class="modal-title" id="myModalLabel"> Historia Clinica # <%= @paciente.n_hclinica %></h3>
+  <h3 class="modal-title" id="myModalLabel"><%= @paciente.cliente.nombre %></h3>
 </div>
 <%= form_for [@paciente, @registro], :remote => true do |f| %>
 <div class="modal-body">

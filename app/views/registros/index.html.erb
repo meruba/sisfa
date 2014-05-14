@@ -16,11 +16,15 @@
             <%= label_tag :fecha_final, nil,class: "sr-only"  %>
             <%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", placeholder: "Fecha final", :required => true %>
           </div>
-            <%= submit_tag "Ir", :class => "btn btn-info"%>
+          <%= submit_tag "Ir", :class => "btn btn-info"%>
           <% end %>
         </div>
       </div>
     </div>
+  </div>
+  <div class="input-icon-sm icon-addon addon-sm">
+    <input type="search" id="input-search" class="form-control" placeholder="Buscar Paciente..." ><i class="fa fa-search"></i>
+    <i class="fa fa-search"></i>
   </div>
   <div class="internados">
     <%= render 'internados'  %>
