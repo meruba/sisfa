@@ -17,18 +17,6 @@ $(document).on "click", ".panel-heading span.clickable", (e) ->
     $this.removeClass("fa fa-chevron-down").addClass "fa fa-chevron-up"
   return
 
-$(document).on "click", ".btn-add", (event) ->
-  event.preventDefault()
-  field = $(this).closest(".field")
-  field_new = field.clone()
-  $(this).toggleClass("btn-default").toggleClass("btn-add").toggleClass("btn-danger").toggleClass("btn-remove").html "–"
-  field_new.find("input").val ""
-  field_new.insertAfter field
-
-$(document).on "click", ".btn-remove", (event) ->
-  event.preventDefault()
-  $(this).closest(".field").remove()
-
 $(document).on 'ready page:load',
 -> $(".tipo").each ->
     tipo =  $(this).text()
@@ -36,3 +24,14 @@ $(document).on 'ready page:load',
       when "MILITAR" then $(this).css("color","#94D5AD")
       when "CIVIL" then $(this).css("color","#2dc1e6")
       when "FAMILIAR" then $(this).css("color","#E77666")
+
+$ ->
+  $("#input-search").on "keyup", ->
+    rex = new RegExp($(this).val(), "i")
+    $(".searchable-container .items").hide()
+    $(".searchable-container .items").filter(->
+      rex.test $(this).text()
+    ).show()
+
+$(document).on "ready page:load", ->
+  $("#rootwizard").bootstrapWizard()
