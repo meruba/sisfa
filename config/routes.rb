@@ -55,10 +55,12 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :factura_compras
   resources :product_imports
   resources :informacion_adicional_pacientes, :only => [:edit, :update]
+  resources :turnos
   resources :doctors do
     member do
       get "turnos_dia"
       get "turnos_manana"
+      post "suspender"
     end
   end
   resources :productos do
@@ -78,13 +80,6 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     end
   end
   
-  resources :turnos do
-    member do
-      get "atendido"
-      get "siguiente_dia"
-    end
-  end
-
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

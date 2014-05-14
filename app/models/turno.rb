@@ -24,9 +24,8 @@ class Turno < ActiveRecord::Base
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
-	validate :doctor_limit_turnos, :paciente_has_one_turno
+	validate :doctor_suspendido, :doctor_limit_turnos, :paciente_has_one_turno
 
-	#methos
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?
 		doctor = Doctor.find(self.doctor_id)
@@ -40,16 +39,24 @@ class Turno < ActiveRecord::Base
 	end
 
 	def paciente_has_one_turno
-		turnos = Turno.where(:paciente_id => self.paciente_id, :fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
+		turnos = Turno.where(:paciente_id => self.paciente_id, :doctor_id => self.doctor_id, :fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
 		unless turnos.nil?
-			errors.add :paciente_id, "Ya tiene asignado un turno"					
+			errors.add :paciente_id, "Ya tiene asignado un turno"	
 		end		
 	end
 
+	def doctor_suspendido
+		doctor = Doctor.find(self.doctor_id)
+		if doctor.suspendido
+				errors.add :doctor_id, "El:" + doctor.nombre + " No esta disponible"
+		end		
+	end
+
+	#methos
 	def set_values
 		self.atendido = false
 		self.fecha = Time.now.tomorrow.beginning_of_day #fecha para el proximo dia
-		ultimo = Turno.where(:doctor_id => self.doctor_id).last
+		ultimo = Turno.where(:doctor_id => self.doctor_id, :fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
 		unless ultimo.nil?
 			self.numero = ultimo.numero + 1
 			self.hora = ultimo.hora + (15*60) #aumenta 15 minuto a partir del ultimo turno
@@ -60,6 +67,7 @@ class Turno < ActiveRecord::Base
 		end
 	end
 
+	#class methods
 	def self.last_turno
 		turno = Turno.where(:fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
 	end

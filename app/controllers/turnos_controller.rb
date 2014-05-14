@@ -4,12 +4,6 @@ class TurnosController < ApplicationController
 
 	def index
 		@doctores = Doctor.turnos_doctores
-		# raise
-	end
-
-	def admin_turnos
-		@no_atendidos = Turno.where(:atendido => false)
-		@atendidos = Turno.where(:atendido => true)		
 	end
 
 	def new
@@ -26,27 +20,6 @@ class TurnosController < ApplicationController
 			@turno.save
 			format.js { render "success" }
 		end
-	end
-
-	def atendido
-		unless @turno.atendido
-			@turno.atendido = true
-		else
-			@turno.atendido = false
-		end
-		@turno.save
-		# render :text => "cambio"
-		redirect_to doctors_control_turno_path, :notice => "Almacenado"
-	end
-
-	def siguiente_dia
-		@nuevo_turno = Turno.new
-		@nuevo_turno.paciente_id = @turno.paciente_id
-		@nuevo_turno.doctor_id = @turno.doctor_id
-		@nuevo_turno.doctor_a_cargo = @turno.doctor_a_cargo
-		@nuevo_turno.hora = @turno.hora
-		@nuevo_turno.save
-		redirect_to doctors_path, :notice => "Almacenado"
 	end
 
 	private
