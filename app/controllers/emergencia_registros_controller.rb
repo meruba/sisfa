@@ -1,0 +1,2 @@
+class EmergenciaRegistrosController < ApplicationController
+end
