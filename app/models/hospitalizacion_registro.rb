@@ -48,11 +48,11 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
 	#class methods
 	def self.reporte(fecha)
-		registros = Registro.includes(:paciente).where(:tipo => "Hospitalizacion", fecha_de_salida: fecha).references(:paciente)
+		registros = HospitalizacionRegistro.includes(:paciente).where(fecha_de_salida: fecha).references(:paciente)
 	end
 
-	def self.hospitalizacion
-		registros = Registro.where(:tipo => "Hospitalizacion")
-	end
+	# def self.hospitalizacion
+	# 	registros = HospitalizacionRegistro.where(:tipo => "Hospitalizacion")
+	# end
 end
 

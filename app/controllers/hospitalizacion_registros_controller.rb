@@ -3,7 +3,7 @@ class HospitalizacionRegistrosController < ApplicationController
   before_action :set_registro, only: [:edit, :update]
 
   def index
-    @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:tipo => "Hospitalizacion", :fecha_de_salida => nil).references(:paciente => :cliente)
+    @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_salida => nil).references(:paciente => :cliente)
   end
 
   def reporte
