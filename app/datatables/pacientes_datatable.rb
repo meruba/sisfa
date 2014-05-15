@@ -23,7 +23,7 @@ private
         (paciente.cliente.nombre),
         (paciente.cliente.numero_de_identificacion),
         (paciente.tipo),
-        (link_to '', @view.new_paciente_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success"})+" "+
+        (link_to '', @view.new_paciente_hospitalizacion_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Nuevo Registro', class: "ttip fa fa-folder-open btn btn-success"})+" "+
         (link_to '', paciente, :rel => 'tooltip', :title => 'Ver Ficha', class: "ttip fa fa-eye btn btn-info")
       ]
     end 

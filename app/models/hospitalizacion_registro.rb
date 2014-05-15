@@ -22,7 +22,7 @@
 #  especialidad_egreso     :string(255)
 #
 
-class Registro < ActiveRecord::Base
+class HospitalizacionRegistro < ActiveRecord::Base
 	#relations
 	belongs_to :paciente
 

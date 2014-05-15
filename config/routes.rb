@@ -20,7 +20,7 @@ get "dashboard/reportes_cierre_caja_diario"
 get "dashboard/reportes_cierre_caja_mensual"
 get "dashboard/estadisticas_dia"
 get "dashboard/estadisticas_mes"
-get "registros/reporte"
+get "hospitalizacion_registros/reporte"
 get "pacientes/autocomplete"
 get "pacientes/civil"
 get "pacientes/militar"
@@ -41,11 +41,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :canjes
   end
   resources :pacientes do
-    resources :registros
+    resources :hospitalizacion_registros
   end
   resources :clientes
   resources :proveedors
-  resources :registros
+  resources :hospitalizacion_registros
   resources :item_facturas
   resources :item_proformas
   resources :traspasos

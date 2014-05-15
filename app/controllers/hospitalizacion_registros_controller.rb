@@ -1,15 +1,15 @@
-class RegistrosController < ApplicationController
+class HospitalizacionRegistrosController < ApplicationController
   before_action :find_paciente, only: [:new, :create, :edit]
   before_action :set_registro, only: [:edit, :update]
 
   def index
-    @registros = Registro.includes(:paciente => :cliente).where(:tipo => "Hospitalizacion", :fecha_de_salida => nil).references(:paciente => :cliente)
+    @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:tipo => "Hospitalizacion", :fecha_de_salida => nil).references(:paciente => :cliente)
   end
 
   def reporte
     @start_date = params[:fecha_inicial]
     @end_date = params[:fecha_final]
-    @registros = Registro.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+    @registros = HospitalizacionRegistro.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
     if @registros.empty?
       render :template => "results/not_result"
     else
@@ -21,7 +21,7 @@ class RegistrosController < ApplicationController
   end
 
   def new
-    @registro = Registro.new
+    @registro = HospitalizacionRegistro.new
     respond_to do |format|
       format.html
       format.js
@@ -29,7 +29,7 @@ class RegistrosController < ApplicationController
   end
 
   def create
-    @registro = Registro.new(registro_params.merge(:fecha_de_ingreso => Time.now))
+    @registro = HospitalizacionRegistro.new(registro_params.merge(:fecha_de_ingreso => Time.now))
     @registro.paciente = @paciente
     respond_to do |format|
       @registro.save
@@ -75,6 +75,6 @@ class RegistrosController < ApplicationController
   end
 
   def set_registro
-    @registro = Registro.find(params[:id])
+    @registro = HospitalizacionRegistro.find(params[:id])
   end
 end

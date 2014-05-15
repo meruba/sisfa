@@ -42,9 +42,6 @@ class Paciente < ActiveRecord::Base
 
 	def set_values
 		self.fecha_hclinica = Time.now
-		self.registros.each do |f|
-			f.fecha_de_ingreso = Time.now
-		end
 	end
 
 	def self.autocomplete(params)

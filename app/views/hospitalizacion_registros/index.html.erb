@@ -7,7 +7,7 @@
       <strong>Generar Reporte:</strong>
       <div class="btn-group">
         <div class="panel-body">
-          <%= form_tag registros_reporte_path, :class => "form-inline", method: :get do %>
+          <%= form_tag hospitalizacion_registros_reporte_path, :class => "form-inline", method: :get do %>
           <div class="form-group">
             <%= label_tag :fecha_inicial, nil, class: "sr-only"  %>
             <%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", placeholder: "Fecha de inicio", :required => true %>

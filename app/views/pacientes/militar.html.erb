@@ -1,16 +1,9 @@
 <div class="info-paciente">
 <%= nested_form_for @paciente do |f| %>
 <%= form_errors_for @paciente %>
-<div class="col-md-3">
   <%= f.label :n_hclinica, "Historia Clinica #"%>
   <%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
   <%= f.hidden_field :tipo %>
-</div>
-<%= render "pacientes/forms/registro", f:f  %>
-<br>
-<br>
-<br>
-<br>
 <div id="rootwizard">
   <div class="navbar">
     <div class="navbar-inner">

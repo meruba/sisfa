@@ -85,11 +85,6 @@ class PacientesController < ApplicationController
 				:familiar_telefono,
 				:observacion,
 				:paciente_id
-			],
-			:registros_attributes => [
-				:especialidad,
-				:medico_asignado,
-				:tipo
 			]
 	end
 
@@ -99,7 +94,7 @@ class PacientesController < ApplicationController
 
 	def new_paciente
 		@paciente= Paciente.new
-		@paciente.registros.build
+		# @paciente.registros.build
 		@paciente.build_cliente
 		@paciente.build_informacion_adicional_paciente
 	end
