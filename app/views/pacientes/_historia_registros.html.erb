@@ -1,16 +1,21 @@
 <div class="row info-paciente">
 	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
 	<ul class="cbp_tmtimeline">
-		<% @paciente.registros.hospitalizacion.each do |r|  %>
+		<% @paciente.condicions.each do |r|  %>
 		<li>
-			<time class="cbp_tmtime"><span><%= local_date(r.fecha_de_ingreso, "time")%></span> <span><%= local_date(r.fecha_de_ingreso, "date") %></span></time>
+			<time class="cbp_tmtime">
+				<span><%= local_date(r.created_at, "date")%></span>
+			</time>
 			<div class="cbp_tmicon fa-calendar"></div>
 			<div class="cbp_tmlabel">
-				<small>DIAGNOSTICO FINAL</small>
-				<h3><%= r.diagnostico_salida %></h3>
-				<p>Diagnosticos: <%= r.diagnostico_ingreso %>, <%= r.diagnostico_sec_egreso1%>,<%= r.diagnostico_sec_egreso2 %></p>
-				<p>MEDICO: <%= r.medico_asignado %></p>
-				<p>Discapacidad: <%= r.discapacidad %></p>
+				<small>DIAGNOSTICO</small>
+				<h3><%= r.diagnostico_1%> / <%= r.motivo_de_consulta%></h3>
+				<h4>Enfermedad: <%= r.enfermedad_actual %></h4>
+				<p>Medico: <%= r.medico_asignado %></p>
+				<h5><strong>SIGNOS VITALES</strong></h5>
+				<p><span class="fa fa-stethoscope"></span> Presion Arterial: <%= r.presion_arterial %></p>
+				<p><span class="fa fa-heart"></span> Pulso: <%= r.pulso %> x min </p>
+				<p><span class="fa fa-signal"></span> Temperatura: <%= r.temperatura %> °C</p>
 			</div>
 		</li>
 		<% end %>
