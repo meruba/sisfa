@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: registros
+# Table name: hospitalizacion_registros
 #
 #  id                      :integer          not null, primary key
 #  fecha_de_ingreso        :datetime         not null
@@ -14,12 +14,12 @@
 #  discapacidad            :string(255)
 #  dias_hospitalizacion    :integer
 #  paciente_id             :integer
-#  tipo                    :string(255)
 #  condicion_egreso        :string(255)
 #  diagnostico_sec_egreso1 :string(255)
 #  diagnostico_sec_egreso2 :string(255)
 #  codigo_cie              :string(255)
 #  especialidad_egreso     :string(255)
+#  doctor_id               :integer
 #
 
 class HospitalizacionRegistro < ActiveRecord::Base

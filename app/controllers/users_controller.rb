@@ -68,6 +68,7 @@ class UsersController < ApplicationController
                                     :password_confirmation,
                                     :suspendido,
                                     :cliente_attributes => [
+                                      :id,
                                       :nombre,
                                       :numero_de_identificacion,
                                       :direccion,

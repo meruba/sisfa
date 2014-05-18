@@ -6,9 +6,10 @@
       <div class="panel-body field">
         <h3 class= "text-center">Crear Usuarios</h3>
         <%= f.fields_for :cliente do |cliente_params| %>
-        <%=  cliente_params.text_field :nombre, :placeholder => "Nombres Apellidos" %>
+        <%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+        <%=  cliente_params.text_field :nombre, class: " nombre", :placeholder => "Nombres Apellidos" %>
         <br>
-        <%=cliente_params.text_field :numero_de_identificacion, :placeholder=> "C.I O RUC"%>
+        <%=cliente_params.text_field :numero_de_identificacion, class: " numero_de_identificacion", :placeholder=> "C.I O RUC"%>
         <% end %>
         <br>
         <%= f.text_field :username, :placeholder => "Nombre de Usuario" %>

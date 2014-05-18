@@ -14,6 +14,7 @@
 #  edad                     :integer
 #  estado_civil             :string(255)
 #  fecha_de_nacimiento      :date
+#  doctor_id                :integer
 #
 
 class Cliente < ActiveRecord::Base
@@ -24,13 +25,12 @@ class Cliente < ActiveRecord::Base
 	validates_id :numero_de_identificacion, :message => "Cédula incorrecta"
 # relationships
   has_one :user
-	has_one :paciente
+  has_one :paciente
+	has_one :doctor
 	has_many :proformas
 	has_many :facturas
 	has_many :registros
 	has_many :hospitalizacions
-  has_one :cliente_militar
-  has_one :militar, through: :cliente_militar
 
 #methods
 	
