@@ -1,0 +1,28 @@
+<div class="info-paciente">
+	<h3>Pacientes Por Emergencia</h3>
+	<ul class="list-turnos">
+		<% @pacientes.each do |t|  %>
+		<li class="item-turnos">
+			<div class=" col-sx-12 row-fix-div atendidos">
+				<div class="row col-md-2 col-xs-2 hora"><span>E</span></div>
+				<div class="row col-md-8 col-xs-8 paciente">
+					<h4 <%= 'style= text-decoration:line-through;' if t.registrado %> >
+						<%=t.paciente.cliente.nombre%>
+					</h4>
+					<small><%= t.paciente.tipo %></small>
+					<small><%= t.registrado %></small>
+				</div>
+				<div class="row col-md-2 col-xs-2">
+					<% if t.registrado %>
+					<span class= "fa fa-check"></span>
+					<%= link_to "ver", paciente_emergencia_registro_path(t.paciente, t) %>
+					<% else %>
+					<%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Salida', class: "ttip pull-right fa fa-arrow-circle-o-right"} %>	
+					<% end %>		
+				</div>
+			</div> 
+		</li>
+		<% end %>
+	</ul>
+</div>
+

@@ -1,0 +1,51 @@
+<h3 class="text-center"><strong>Paciente: </strong><%= @paciente.cliente.nombre  %></h3>
+<%= form_for [@paciente, @emergencia] do |f| %>
+  <%= form_errors_for @emergencia %>
+<div class="col-md-6">
+<h3>Condicion del Paciente</h3>
+<%= f.fields_for :condicion do |c| %>
+	<%= c.label :motivo_de_consulta%>
+	<%= c.text_field :motivo_de_consulta, class: "form-control" %>
+	<%= c.label :antecedentes_personales%>
+	<%= c.text_area :antecedentes_personales, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :antecedentes_familiares%>
+	<%= c.text_area :antecedentes_familiares, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :enfermedad_actual%>
+	<%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :revision_organos_sistema%>
+	<%= c.text_area :revision_organos_sistema, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :presion_arterial%>
+	<%= c.text_field :presion_arterial, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :pulso%>
+	<%= c.text_field :pulso, class: "form-control",placeholder: "Ejm:CERVICODORSALGIA"  %>
+	<%= c.label :temperatura%>
+	<%= c.text_field :temperatura, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :examen_fisico%>
+	<%= c.text_area :examen_fisico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+		<%= c.label :diagnostico_1%>
+	<%= c.text_field :diagnostico_1, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :diagnostico_2%>
+	<%= c.text_field :diagnostico_2, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :planes%>
+	<%= c.text_area :planes, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+<% end %>
+</div>
+<div class="col-md-6">
+	<h3>Ficha de Registro Medico</h3>
+	<%= f.label :tipo_usuario%>
+	<%= f.select(:tipo_usuario, ['S.A','S.P','ASP','CTPO','DERECHOHAB','CONVENIO','PARTICULAR'], {}, { :class => 'form-control' }) %>
+	<%= f.label :grupos_etareos%>
+	<%= f.select(:grupos_etareos, ['DE 1 AÑO','1-4 AÑOS','5-9 AÑOS','10-14 AÑOS','15-19 AÑOS','20-49 AÑOS','50-64 AÑOS','65 AÑOS +'], {}, { :class => 'form-control' }) %>
+	<%= f.label :atencion%>
+	<%= f.select(:atencion, ['CLINICO','QUIRURJICO','OBSTETRICO','TRAUMATOLOGIA'], {}, { :class => 'form-control' }) %>
+	<%= f.label :causa%>
+	<%= f.select(:causa, ['ACCIDENTE','ENVENENAMIENTO','VIOLENCIA','OTRAS'], {}, { :class => 'form-control' }) %>
+	<%= f.label :destino%>
+	<%= f.select(:destino, ['ALTA','CONSULTA EXTERNA','OBSERVACION','INTERNAMIENTO','TR. OTR. INST. SAL.','TR. OTR. INST. NO M'], {}, { :class => 'form-control' }) %>
+	<%= f.label :diagnostico%>
+	<%= f.text_field :diagnostico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= f.label :condicion_salir%>
+	<%= f.select(:condicion_salir, ['VIVO','MUERTO'], {}, { :class => 'form-control' }) %>
+</div>
+<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<% end %>

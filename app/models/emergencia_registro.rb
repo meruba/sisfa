@@ -21,4 +21,37 @@
 #
 
 class EmergenciaRegistro < ActiveRecord::Base
+	#relations
+	belongs_to :paciente
+	belongs_to :doctor
+	belongs_to :condicion
+	accepts_nested_attributes_for :condicion
+
+	#callbacks
+	before_update :set_values
+	# after_update :registrado
+
+  #validations
+  validates :nombre_medico, :presence => true
+  validates :atencion, :causa, :diagnostico, :condicion_salir, :presence => true, :on => :update
+
+	#methods
+	# def registrado
+	# 	self.registrado = true
+	# end
+
+	def set_values
+		self.condicion.paciente_id = self.paciente_id
+		self.condicion.doctor_id = self.doctor_id
+		self.condicion.medico_asignado = self.nombre_medico
+		self.condicion.save
+	end
+
+	def self.pacientes_emergencia
+		pacientes = EmergenciaRegistro.includes(:paciente).where(:registrado => false).references(:paciente)
+	end
+
+	def self.pacientes_emergencia_alta
+		pacientes = EmergenciaRegistro.includes(:paciente).where(:registrado => true).references(:paciente)
+	end
 end

@@ -1,0 +1,17 @@
+<%- if @emergencia.errors.any? %>
+  $('#content_modal').html('<%= escape_javascript(render('form_new')) %>');
+  window.Helpers.ButtonsHelper.init();
+  window.Helpers.FormsHelper.init()
+  <%- @emergencia.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModal").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $(".table-historias").html('<%= j render 'pacientes/pacientes', emergencias: @emergencias %>');
+  window.Helpers.init_datatables();
+  window.Helpers.ButtonsHelper.init();
+  window.Helpers.FormsHelper.init()
+  alertify.success("Registro guardado");
+<%- end %>
