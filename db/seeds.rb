@@ -5,7 +5,7 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-%w(Administrador Enfermera Vendedor Administrador_Estadística Administrador_Farmacia Administrador_Enfermería).each do |nombre|
+%w(Administrador Enfermera Vendedor Administrador_Estadística Administrador_Farmacia Administrador_Enfermería Doctor).each do |nombre|
   Rol.create(nombre: nombre)
 end
 cliente = Cliente.create(nombre: "Fabricio Flores", numero_de_identificacion: "1104015936")

@@ -2,7 +2,7 @@
 <li class= "col-md-4 list items">
 	<div class="doctor">
 		<h5>
-			<span><strong <%= 'style= text-decoration:line-through;' if doctor.suspendido %>><%=  doctor.nombre %></strong></span>
+			<span><strong <%= 'style= text-decoration:line-through;' if doctor.suspendido %>><%=  doctor.cliente.nombre %></strong></span>
 			<span>
 				<%= link_to "", doctor, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle pull-right text-muted",:rel=> 'tooltip', :title=>'Eliminar' %>
 			</span>
@@ -16,7 +16,8 @@
 		<h5><%= doctor.especialidad  %> / <span class="text-muted">Atiende: <%=  doctor.cantidad_turno %> turnos</span></h5>
 		<p>Turnos:
 			<small><%= link_to "Hoy",turnos_dia_doctor_path(doctor),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small> |
-			<small><%= link_to "Mañana",turnos_manana_doctor_path(doctor),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small>
+			<small><%= link_to "Mañana",turnos_manana_doctor_path(doctor),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small>|
+			<small><%= link_to "EMER", pacientes_emergencia_doctor_path(doctor)%></small>
 		</p>
 	</div>
 </li>

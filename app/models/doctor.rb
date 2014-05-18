@@ -3,7 +3,6 @@
 # Table name: doctors
 #
 #  id             :integer          not null, primary key
-#  nombre         :string(255)
 #  especialidad   :string(255)
 #  created_at     :datetime
 #  updated_at     :datetime
@@ -13,21 +12,24 @@
 
 class Doctor < ActiveRecord::Base
 	#relations
+	belongs_to :cliente
 	has_many :turnos
+	has_many :emergencia_registros
+	accepts_nested_attributes_for :cliente
 	
 	#	validations
-	validates :nombre, :especialidad, :cantidad_turno, :presence => true
+	validates :especialidad, :cantidad_turno, :presence => true
 	validates :cantidad_turno, :numericality => { :greater_than => 0 }
 	#methods
 	
 	def self.autocomplete(params)
-		doctores = Doctor.where("nombre like ?", "%#{params}%")
+		doctores = Doctor.includes(:cliente).where("nombre like ?", "%#{params}%").references(:cliente)
     doctores = doctores.map do |doctor|
       {
         :id => doctor.id,
-        :label => doctor.nombre + " / " + doctor.especialidad,
-        :value => doctor.nombre,
-        :nombre => doctor.nombre,
+        :label => doctor.cliente.nombre + " / " + doctor.especialidad,
+        :value => doctor.cliente.nombre,
+        :nombre => doctor.cliente.nombre,
         :especialidad => doctor.especialidad
       }
     end
@@ -39,7 +41,7 @@ class Doctor < ActiveRecord::Base
 		Doctor.includes(:turnos).where(:suspendido => false).each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
-				:nombre =>doctor.nombre, 
+				:nombre =>doctor.cliente.nombre, 
 				:turnos_emitidos => num_turnos,
 				:turnos_disponibles => doctor.cantidad_turno - num_turnos,
 				:especialidad => doctor.especialidad,
@@ -59,7 +61,7 @@ class Doctor < ActiveRecord::Base
 			turno = doctor.turnos.turnos_today
 			unless turno.compact.empty?
 				doctores << {
-					:nombre =>doctor.nombre, 
+					:nombre =>doctor.cliente.nombre, 
 					:turnos => turno
 				}
 			end
