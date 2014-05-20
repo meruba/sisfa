@@ -1,0 +1,57 @@
+<h3 class="text-center"><strong>Paciente: </strong><%= @turno.paciente.cliente.nombre  %></h3>
+<%= form_for [@turno, @consulta] do |f| %>
+<%= form_errors_for @consulta %>
+<div class="col-md-6">
+	<h3>Condicion del Paciente</h3>
+	<%= f.fields_for :condicion do |c| %>
+	<%= c.label :motivo_de_consulta%>
+	<%= c.text_field :motivo_de_consulta, class: "form-control" %>
+	<%= c.label :antecedentes_personales%>
+	<%= c.text_area :antecedentes_personales, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :antecedentes_familiares%>
+	<%= c.text_area :antecedentes_familiares, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :enfermedad_actual%>
+	<%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :revision_organos_sistema%>
+	<%= c.text_area :revision_organos_sistema, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :presion_arterial%>
+	<%= c.text_field :presion_arterial, class: "form-control",placeholder: "Ejm: 23"  %>
+	<%= c.label :pulso%>
+	<%= c.text_field :pulso, class: "form-control",placeholder: "Ejm: 80"  %>
+	<%= c.label :temperatura%>
+	<%= c.text_field :temperatura, class: "form-control",placeholder: "Ejm: 28"  %>
+	<%= c.label :examen_fisico%>
+	<%= c.text_area :examen_fisico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :diagnostico_1%>
+	<%= c.text_field :diagnostico_1, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :diagnostico_2%>
+	<%= c.text_field :diagnostico_2, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.label :planes%>
+	<%= c.text_area :planes, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<% end %>
+</div>
+<div class="col-md-6">
+	<h3>Ficha de Registro Medico</h3>
+	<%= f.label :inicio_atencion%>
+	<%= f.text_field :inicio_atencion, class: 'form-control'%>
+	<%= f.label :fin_atencion%>
+	<%= f.text_field :fin_atencion, class: 'form-control'%>
+	<%= f.label :horas_trabajadas%>
+	<%= f.text_field :horas_trabajadas, class: 'form-control'%>
+	<%= f.label :tipo_de_atencion%>
+	<%= f.select(:tipo_de_atencion, ['Primera','Subsecuente','Interconsulta Realizada'], {}, { :class => 'form-control' }) %>
+	<%= f.label :grupos_de_edad%>
+	<%= f.select(:grupos_de_edad, ['DE 1 AÑO','1-4 AÑOS','5-9 AÑOS','10-14 AÑOS','15-19 AÑOS','20-49 AÑOS','50-64 AÑOS','65 AÑOS +'], {}, { :class => 'form-control' }) %>
+	<%= f.label :diagnostico_sindrome%>
+	<%= f.text_field :diagnostico_sindrome, class: 'form-control'%>
+	<%= f.label :codigo_cie%>
+	<%= f.text_field :codigo_cie, class: 'form-control' %>
+	<%= f.label :condicion_diagnostico%>
+	<%= f.select(:condicion_diagnostico, ['Presuntivo/Sospechoso','Definitivo/Inicial/Confirmado','Definitivo/Control'], {}, { :class => 'form-control' }) %>	
+	<%= f.label :ordenes%>
+	<%= f.select(:ordenes, ['Interconsulta Solicitada','Referencia'], {}, { :class => 'form-control' }) %>
+	<%= f.label :certificado_medico%>
+	<%= f.check_box :certificado_medico %>
+</div>
+<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<% end %>

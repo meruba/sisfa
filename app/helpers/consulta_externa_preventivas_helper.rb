@@ -1,0 +1,2 @@
+module ConsultaExternaPreventivasHelper
+end

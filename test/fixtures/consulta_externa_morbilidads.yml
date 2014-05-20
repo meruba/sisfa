@@ -1,0 +1,35 @@
+# == Schema Information
+#
+# Table name: consulta_externa_morbilidads
+#
+#  id                    :integer          not null, primary key
+#  condicion_id          :integer
+#  paciente_id           :integer
+#  doctor_id             :integer
+#  nombre_medico         :string(255)
+#  tipo_de_atencion      :string(255)
+#  grupos_de_edad        :string(255)
+#  diagnostico_sindrome  :string(255)
+#  codigo_cie            :string(255)
+#  condicion_diagnostico :string(255)
+#  ordenes               :string(255)
+#  certificado_medico    :boolean
+#  inicio_atencion       :time
+#  fin_atencion          :time
+#  horas_trabajadas      :time
+#  created_at            :datetime
+#  updated_at            :datetime
+#  turno_id              :integer
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value
