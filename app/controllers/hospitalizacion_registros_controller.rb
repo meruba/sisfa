@@ -29,7 +29,7 @@ class HospitalizacionRegistrosController < ApplicationController
   end
 
   def create
-    @registro = HospitalizacionRegistro.new(registro_params.merge(:fecha_de_ingreso => Time.now))
+    @registro = HospitalizacionRegistro.new(hospitalizacion_registro_params.merge(:fecha_de_ingreso => Time.now))
     @registro.paciente = @paciente
     respond_to do |format|
       @registro.save
@@ -46,16 +46,15 @@ class HospitalizacionRegistrosController < ApplicationController
 
   def update
     respond_to do |format|
-      @registro.update(registro_params)
+      @registro.update(hospitalizacion_registro_params)
       format.js { render "salida"}
       format.json { respond_with_bip(@registro) }
     end
   end
   private
 
-  def registro_params
-    params.require(:registro).permit :historia_clinica_id,
-      :tipo,
+  def hospitalizacion_registro_params
+    params.require(:hospitalizacion_registro).permit :historia_clinica_id,
       :fecha_de_ingreso,
       :fecha_de_salida,
       :especialidad,

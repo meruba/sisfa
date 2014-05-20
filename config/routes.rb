@@ -45,6 +45,12 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :hospitalizacion_registros
     resources :emergencia_registros
   end
+
+  resources :turnos do
+    resources :consulta_externa_morbilidads
+    resources :consulta_externa_preventivas
+  end
+
   resources :clientes
   resources :proveedors
   resources :hospitalizacion_registros
@@ -57,15 +63,12 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :factura_compras
   resources :product_imports
   resources :informacion_adicional_pacientes, :only => [:edit, :update]
-  resources :turnos
   resources :revisions
   resources :doctors do
     member do
       get "pacientes_emergencia"
       get "turnos_dia"
       get "turnos_manana"
-      # post "add_account"
-      # match "add_account", via: [:get, :post]
       post "suspender"
     end
   end

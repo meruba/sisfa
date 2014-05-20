@@ -2,7 +2,7 @@
 <h4>Desde: <%= @start_date%> hasta <%= @end_date %></h4>
 <p>
   Descargar:
-  <%= link_to "Excel", registros_reporte_path(params.merge(format: 'xls')) %>
+  <%= link_to "Excel", hospitalizacion_registros_reporte_path(params.merge(format: 'xls')) %>
 </p>
 <div class="table-responsive">
   <table class="table table-hover table-print">

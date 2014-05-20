@@ -25,6 +25,9 @@
 class Condicion < ActiveRecord::Base
 	#relations
 	has_one :emergencia_registro
+	has_one :consulta_externa_morbilidad
+	has_one :consulta_externa_preventiva
 	belongs_to :paciente
+	belongs_to :doctor_id
   validates :motivo_de_consulta, :enfermedad_actual, :pulso, :presion_arterial, :temperatura, :presence => true
 end

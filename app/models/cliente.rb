@@ -14,7 +14,6 @@
 #  edad                     :integer
 #  estado_civil             :string(255)
 #  fecha_de_nacimiento      :date
-#  doctor_id                :integer
 #
 
 class Cliente < ActiveRecord::Base

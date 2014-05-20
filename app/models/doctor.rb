@@ -8,14 +8,20 @@
 #  updated_at     :datetime
 #  cantidad_turno :integer
 #  suspendido     :boolean          default(FALSE)
+#  cliente_id     :integer
 #
 
 class Doctor < ActiveRecord::Base
 	#relations
 	belongs_to :cliente
-	has_many :turnos
+	# has_many :turnos
 	has_many :emergencia_registros
+	# has_many :consulta_externa_morbilidads
+	has_many :turnos
+	has_many :consulta_externa_morbilidads, :through => :turnos
+	has_many :consulta_externa_preventivas, :through => :turnos
 	accepts_nested_attributes_for :cliente
+
 	
 	#	validations
 	validates :especialidad, :cantidad_turno, :presence => true

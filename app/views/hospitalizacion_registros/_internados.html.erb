@@ -3,7 +3,7 @@
   <div class="hospitalizado items">
     <h4>
       <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
-      <span><%= link_to "", edit_paciente_registro_path(r.paciente, r), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "pull-right fa fa-arrow-circle-o-right"}%>
+      <span><%= link_to "", edit_paciente_hospitalizacion_registro_path(r.paciente, r), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "pull-right fa fa-arrow-circle-o-right"}%>
       </span>
     </h4>
     <h4 class="text-center name">

@@ -18,13 +18,15 @@ class Turno < ActiveRecord::Base
 	#relations
 	belongs_to :paciente
 	belongs_to :doctor
+	has_one :consulta_externa_morbilidad
+	has_one :consulta_externa_preventiva
 
 	#callbacks
 	before_create :set_values
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
-	validate :doctor_suspendido, :doctor_limit_turnos, :paciente_has_one_turno
+	validate :doctor_suspendido, :doctor_limit_turnos, :paciente_has_one_turno, on: :save
 
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?

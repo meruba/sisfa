@@ -1,87 +1,106 @@
-<h3>Bienvenido Dr(a): <%= @doctor.cliente.nombre%></h3>
-<div class="info-paciente">
-	<div class="col-md-6">
-		<h5>Pacientes para el dia de Hoy</h5>
-		<ul class="list-turnos">
-			<% if @turnos_hoy.empty? %>
-			<div class="text-center text-muted">
-				<span class= "fa fa-ticket fa-2x"></span>
-				<h5>No hay turnos registrados</h5>		
+<div class="row">
+	<div class="doctors-left col-md-3">
+		<div class="doctor-profile">
+			<div class="profile-text text-center">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+				</span>
+				<h1 class="profile-name"><%= @doctor.cliente.nombre%></h1>
+				<span class="profile-title"><%= @doctor.especialidad %></span>
 			</div>
-			<% end %>
-			<% @turnos_hoy.each do |t|  %>
-			<li class="item-turnos">
-				<div class=" col-sx-12 row-fix-div atendidos">
-					<div class="row col-md-2 col-xs-2 hora"><span><%= t.numero %></span></div>
-					<div class="row col-md-8 col-xs-8 paciente">
-						<h4><%=t.paciente.cliente.nombre%></h4>
-					</div>
-					<div class="row col-md-2 col-xs-2 hora">
-						<% if t.numero >= 15 %>
-						<span>00:00</span>
-						<% else %>
-						<span><%=local_date(t.hora, "time")%></span>
-						<% end %>
-					</div>
-				</div> 
-			</li>
-			<% end %>
-		</ul>
-	</div>
-	<div class="col-md-6">
-		<h5>Pacientes para el dia de manana</h5>
-		<ul class="list-turnos">
-			<% if @turnos_manana.empty? %>
-			<div class="text-center text-muted">
-				<span class= "fa fa-ticket fa-2x"></span>
-				<h5>No hay turnos registrados</h5>		
+			<div class="values-inline">
+				<ul clas= "hg col-xs-12">
+					<li><a href="#"><i class="fa fa-heart"></i> 150</a></li>
+					<li><a href="#"><i class="fa fa-users"></i> 200</a></li>
+					<li><a href="#"><i class="fa fa-building-o"></i> 80</a></li>
+				</ul>
 			</div>
-			<% end %>
-			<% @turnos_manana.each do |t|  %>
-			<li class="item-turnos">
-				<div class=" col-sx-12 row-fix-div atendidos">
-					<div class="row col-md-2 col-xs-2 hora"><span><%= t.numero %></span></div>
-					<div class="row col-md-8 col-xs-8 paciente">
-						<h4><%=t.paciente.cliente.nombre%></h4>
-					</div>
-					<div class="row col-md-2 col-xs-2 hora">
-						<% if t.numero >= 15 %>
-						<span>00:00</span>
-						<% else %>
-						<span><%=local_date(t.hora, "time")%></span>
-						<% end %>
-					</div>
-				</div> 
-			</li>
-			<% end %>
-		</ul>
+		</div>
+		<br>
+		<div class="co-xs-12">
+			<ul class="list-turnos">
+				<h5 class= "text-muted"> TURNOS DE MANANA</h5>
+				<% if @turnos_manana.empty? %>
+				<div class="text-center text-muted">
+					<span class= "fa fa-ticket fa-2x"></span>
+					<h5>No hay turnos registrados</h5>		
+				</div>
+				<% end %>
+				<% @turnos_manana.each do |t|  %>
+				<li class="item-turnos">
+					<div class=" col-sx-12 row-fix-div atendidos">
+						<div class="row col-md-8 col-xs-8 paciente">
+							<h4><%=t.paciente.cliente.nombre%></h4>
+						</div>
+						<div>
+							<% if t.atendido %>
+							<span class= "fa fa-check"></span>
+							<% else %>
+							<%= link_to "Morbilidad",new_turno_consulta_externa_morbilidad_path(t)%>
+							<%= link_to "Preventiva",new_turno_consulta_externa_preventiva_path(t)%>
+							<% end %>	
+						</div>
+					</div> 
+				</li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
-	<div class="co-xs-12">
-		<h4>Pacientes Por Emergencia</h4>
-		<ul class="list-turnos">
-			<% @pacientes.each do |t|  %>
-			<li class="item-turnos">
-				<div class=" col-sx-12 row-fix-div atendidos">
-					<div class="row col-md-2 col-xs-2 hora"><span>E</span></div>
-					<div class="row col-md-8 col-xs-8 paciente">
-						<h4 <%= 'style= text-decoration:line-through;' if t.registrado %> >
-							<%=t.paciente.cliente.nombre%>
-						</h4>
-						<small><%= t.paciente.tipo %></small>
-						<small><%= t.registrado %></small>
-					</div>
-					<div class="row col-md-2 col-xs-2">
-						<% if t.registrado %>
-						<span class= "fa fa-check"></span>
-						<%= link_to "ver", paciente_emergencia_registro_path(t.paciente, t) %>
-						<% else %>
-						<%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Salida', class: "ttip pull-right fa fa-arrow-circle-o-right"} %>	
-						<% end %>		
-					</div>
-				</div> 
-			</li>
-			<% end %>
-		</ul>
+	<div class="info-paciente col-md-7">
+		<div class="co-xs-12">
+			<h4>Pacientes para el dia de Hoy</h4>
+			<ul class="list-turnos">
+				<% if @turnos_hoy.empty? %>
+				<div class="text-center text-muted">
+					<span class= "fa fa-ticket fa-2x"></span>
+					<h5>No hay turnos registrados</h5>		
+				</div>
+				<% end %>
+				<% @turnos_hoy.each do |t|  %>
+				<li class="item-turnos">
+					<div class=" col-sx-12 row-fix-div atendidos">
+						<div class="row col-md-2 col-xs-2 hora"><span><%= t.numero %></span></div>
+						<div class="row col-md-8 col-xs-8 paciente">
+							<h4><%=t.paciente.cliente.nombre%></h4>
+							<small><%= t.paciente.tipo %></small>
+						</div>
+						<div class="row col-md-2 col-xs-2 hora">
+							<% if t.numero >= 15 %>
+							<span>00:00</span>
+							<% else %>
+							<span><%=local_date(t.hora, "time")%></span>
+							<% end %>
+						</div>
+					</div> 
+				</li>
+				<% end %>
+			</ul>
+		</div>
+		<div class="co-xs-12">
+			<h4 class="text-danger">Pacientes Por Emergencia</h4>
+			<ul class="list-turnos">
+				<% @pacientes.each do |t|  %>
+				<li class="item-turnos">
+					<div class=" col-sx-12 row-fix-div atendidos">
+						<div class="row col-md-2 col-xs-2 hora"><span>E</span></div>
+						<div class="row col-md-8 col-xs-8 paciente">
+							<h4 <%= 'style= text-decoration:line-through;' if t.registrado %> >
+								<%=t.paciente.cliente.nombre%>
+							</h4>
+							<small><%= t.paciente.tipo %></small>
+						</div>
+						<div class="row col-md-2 col-xs-2">
+							<% if t.registrado %>
+							<!-- <span class= "fa fa-check"></span> -->
+							<%= link_to "", paciente_emergencia_registro_path(t.paciente, t), class: "fa fa-eye" %>
+							<% else %>
+							<%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Salida', class: "ttip pull-right fa fa-arrow-circle-o-right"} %>	
+							<% end %>		
+						</div>
+					</div> 
+				</li>
+				<% end %>
+			</ul>
+		</div>
 	</div>
 </div>
-

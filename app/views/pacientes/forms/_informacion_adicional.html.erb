@@ -2,9 +2,9 @@
 <div class="field">
 	<div class="col-md-4">
 		<%=  info.label :nacionalidad%>
-		<%=  info.select(:nacionalidad, ['Ecuatoriano','Extranjero'], {}, { :class => 'form-control' }) %>
+		<%=  info.select(:nacionalidad, ['Ecuatoriano','Colombiano','Peruano','Otro'], {}, { :class => 'form-control' }) %>
 		<%=info.label :raza %>
-		<%=info.select :raza, options_for_select(["Indigena","Afroecuatoriano/Afrodesenciende","Negro","Mulato","Montubio","Mestizo","Blanco","Otro"]), {}, { class: "form-control"}%>
+		<%=info.select :raza, options_for_select(["Mestizo","Mulato","Indigena","Afroecuatoriano/Afrodesenciende","Negro","Montubio","Blanco","Otro"]), {}, { class: "form-control"}%>
 	</div>
 	<div class="col-md-4">
 		<%=  info.label :provincia%>
