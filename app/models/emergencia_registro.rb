@@ -28,22 +28,23 @@ class EmergenciaRegistro < ActiveRecord::Base
 	accepts_nested_attributes_for :condicion
 
 	#callbacks
+	before_create :calculate_values
 	before_update :set_values
-	# after_update :registrado
 
   #validations
   validates :nombre_medico, :presence => true
   validates :atencion, :causa, :diagnostico, :condicion_salir, :presence => true, :on => :update
 
 	#methods
-	# def registrado
-	# 	self.registrado = true
-	# end
+	def calculate_values
+		self.grupos_etareos = edad_paciente(self.paciente.cliente.fecha_de_nacimiento)
+	end
 
 	def set_values
 		self.condicion.paciente_id = self.paciente_id
 		self.condicion.doctor_id = self.doctor_id
 		self.condicion.medico_asignado = self.nombre_medico
+		self.condicion.tipo_registro = "Emergencia"
 		self.condicion.save
 	end
 
@@ -53,5 +54,31 @@ class EmergenciaRegistro < ActiveRecord::Base
 
 	def self.pacientes_emergencia_alta
 		pacientes = EmergenciaRegistro.includes(:paciente).where(:registrado => true).references(:paciente)
+	end
+
+	private
+	def edad_paciente(date)
+		birthday = date
+		now = Time.now.utc.to_date
+		age = now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
+		case 
+		when age == 1
+			categoria = '1 AÑO'
+		when age > 0 && age < 5
+			categoria = '1-4 AÑOS'
+		when age > 4 && age < 10
+			categoria = '5-9 AÑOS'
+		when age >9 && age < 15
+			categoria = '10-14 AÑOS'
+		when age >14  && age < 20
+			categoria = '15-19 AÑOS'
+		when age > 19 && age < 50
+			categoria = '20-49 AÑOS'
+		when age > 49 && age < 65
+			categoria = '50-64 AÑOS'
+		when age > 65
+			categoria = '65 AÑOS +'
+		end
+		categoria
 	end
 end
