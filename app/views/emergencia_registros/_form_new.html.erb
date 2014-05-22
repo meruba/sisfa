@@ -7,7 +7,7 @@
 	<%= f.label :especialidad %>
 	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
 	<%= f.label :nombre_medico %>
-	<%= f.text_field :nombre_medico, class: "doctor_autocomplete" %>
+	<%= f.text_field :nombre_medico, class: "doctor_autocomplete", placeholder: "Ejm: Juan Perez" %>
 	<%= f.hidden_field :doctor_id, class: "doctor_id" %>
 	</div>
 </div>

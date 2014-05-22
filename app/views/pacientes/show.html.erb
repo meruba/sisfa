@@ -5,7 +5,11 @@
 	<div class="container">
 		<div class="col-md-5 row-fix-div">
 			<div class="col-md-4 text-center">
-				<span class ="genero-icon fa fa-male fa-5x"></span><br>
+				<% if @paciente.cliente.sexo == "Femenino" %>
+				<span class ="fa fa-female fa-5x"></span><br>
+				<% else %>
+				<span class ="fa fa-male fa-5x"></span><br>				
+				<% end %>
 				<small>paciente</small>
 			</div>
 			<div class="col-md-8">
