@@ -20,6 +20,7 @@
 #  planes                   :string(255)
 #  created_at               :datetime
 #  updated_at               :datetime
+#  tipo_registro            :string(255)
 #
 
 class Condicion < ActiveRecord::Base
@@ -28,6 +29,6 @@ class Condicion < ActiveRecord::Base
 	has_one :consulta_externa_morbilidad
 	has_one :consulta_externa_preventiva
 	belongs_to :paciente
-	belongs_to :doctor_id
+	belongs_to :doctor
   validates :motivo_de_consulta, :enfermedad_actual, :pulso, :presion_arterial, :temperatura, :presence => true
 end
