@@ -1,0 +1,26 @@
+<% unless @pacientes.empty?  %>
+<% raise %>
+<h4 class="fa fa-plus-square text-danger"> Emergencia</h4>
+<ul class="list-group">
+	<% @pacientes.each do |t|  %>
+	<li class="list-group-item item-turnos">
+		<ul class="list-inline text-center">
+			<li class=" col-md-2 col-xs-2 datos-turno"><spam>E</spam></li>
+			<li class=" col-md-8 col-xs-8 border-lines">
+				<h4 <%= 'style= text-decoration:line-through;' if t.registrado %> >
+					<%=t.paciente.cliente.nombre%>
+				</h4>
+			</li>
+		</ul>
+		<span class="show-menu">
+			<span class="fa fa-chevron-right"></span>
+		</span>
+		<ul class="list-group-submenu">
+			<li class="list-group-submenu-item"><%= link_to '', t.paciente, :rel => 'tooltip', :title => 'Historia Clinica', :target => "_blank", class: "fa fa-h-square"%></li>
+			<li class="list-group-submenu-item info"><span class="fa fa-eye"></span></li>
+			<li class="list-group-submenu-item success"><%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Diagnostico', class: "fa fa-check"} %></li>
+		</ul>
+	</li>
+	<% end %>
+</ul>
+<% end %>

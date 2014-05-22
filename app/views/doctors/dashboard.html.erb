@@ -16,7 +16,17 @@
 				</ul>
 			</div>
 		</div>
-		<br>
+	</div>
+	<div class="doctor-pacientes col-md-6">
+		<div class="row turnos-hoy">
+			<%= render "doctors/partials/emergencia"  %>
+		</div>
+		<div class="row turnos-hoy">
+			<h4 class="fa fa-sun-o "> Pacientes del dia</h4>
+			<%= render "doctors/partials/turnos_hoy"  %>
+		</div>
+	</div>
+	<div class="col-md-3">
 		<div class="co-xs-12">
 			<ul class="list-turnos">
 				<h5 class= "text-muted"> TURNOS DE MANANA</h5>
@@ -30,72 +40,7 @@
 				<li class="item-turnos">
 					<div class=" col-sx-12 row-fix-div atendidos">
 						<div class="row col-md-8 col-xs-8 paciente">
-							<h4><%=t.paciente.cliente.nombre%></h4>
-						</div>
-						<div>
-							<% if t.atendido %>
-							<span class= "fa fa-check"></span>
-							<% else %>
-							<%= link_to "Morbilidad",new_turno_consulta_externa_morbilidad_path(t)%>
-							<%= link_to "Preventiva",new_turno_consulta_externa_preventiva_path(t)%>
-							<% end %>	
-						</div>
-					</div> 
-				</li>
-				<% end %>
-			</ul>
-		</div>
-	</div>
-	<div class="info-paciente col-md-7">
-		<div class="co-xs-12">
-			<h4>Pacientes para el dia de Hoy</h4>
-			<ul class="list-turnos">
-				<% if @turnos_hoy.empty? %>
-				<div class="text-center text-muted">
-					<span class= "fa fa-ticket fa-2x"></span>
-					<h5>No hay turnos registrados</h5>		
-				</div>
-				<% end %>
-				<% @turnos_hoy.each do |t|  %>
-				<li class="item-turnos">
-					<div class=" col-sx-12 row-fix-div atendidos">
-						<div class="row col-md-2 col-xs-2 hora"><span><%= t.numero %></span></div>
-						<div class="row col-md-8 col-xs-8 paciente">
-							<h4><%=t.paciente.cliente.nombre%></h4>
-							<small><%= t.paciente.tipo %></small>
-						</div>
-						<div class="row col-md-2 col-xs-2 hora">
-							<% if t.numero >= 15 %>
-							<span>00:00</span>
-							<% else %>
-							<span><%=local_date(t.hora, "time")%></span>
-							<% end %>
-						</div>
-					</div> 
-				</li>
-				<% end %>
-			</ul>
-		</div>
-		<div class="co-xs-12">
-			<h4 class="text-danger">Pacientes Por Emergencia</h4>
-			<ul class="list-turnos">
-				<% @pacientes.each do |t|  %>
-				<li class="item-turnos">
-					<div class=" col-sx-12 row-fix-div atendidos">
-						<div class="row col-md-2 col-xs-2 hora"><span>E</span></div>
-						<div class="row col-md-8 col-xs-8 paciente">
-							<h4 <%= 'style= text-decoration:line-through;' if t.registrado %> >
-								<%=t.paciente.cliente.nombre%>
-							</h4>
-							<small><%= t.paciente.tipo %></small>
-						</div>
-						<div class="row col-md-2 col-xs-2">
-							<% if t.registrado %>
-							<!-- <span class= "fa fa-check"></span> -->
-							<%= link_to "", paciente_emergencia_registro_path(t.paciente, t), class: "fa fa-eye" %>
-							<% else %>
-							<%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Salida', class: "ttip pull-right fa fa-arrow-circle-o-right"} %>	
-							<% end %>		
+							<small><%=t.paciente.cliente.nombre%></small>
 						</div>
 					</div> 
 				</li>
@@ -104,3 +49,4 @@
 		</div>
 	</div>
 </div>
+
