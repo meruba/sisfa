@@ -1,5 +1,5 @@
 class ConsultaExternaMorbilidadsController < ApplicationController
-	before_action :find_turno, only: [:new, :create, :edit, :show, :update]
+	before_action :find_turno, only: [:new, :create, :edit, :update]
 	before_action :set_consulta, only: [:edit, :update, :show]
 
 	def new
@@ -8,7 +8,7 @@ class ConsultaExternaMorbilidadsController < ApplicationController
 	end
 
 	def create
-		@consulta = ConsultaExternaMorbilidad.new(consulta_registro_params.merge(registrado: true))
+		@consulta = ConsultaExternaMorbilidad.new(consulta_registro_params)
 		@consulta.doctor = @turno.doctor
 		@consulta.nombre_medico = @turno.doctor.cliente.nombre
 		@consulta.paciente = @turno.paciente

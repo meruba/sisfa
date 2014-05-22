@@ -33,11 +33,9 @@
 <div class="col-md-6">
 	<h3>Ficha de Registro Medico</h3>
 	<%= f.label :inicio_atencion%>
-	<%= f.text_field :inicio_atencion, class: 'form-control'%>
+	<%= f.text_field :inicio_atencion, class: 'time-picker form-control', id: "input_from"%>
 	<%= f.label :fin_atencion%>
-	<%= f.text_field :fin_atencion, class: 'form-control'%>
-	<%= f.label :horas_trabajadas%>
-	<%= f.text_field :horas_trabajadas, class: 'form-control'%>
+	<%= f.text_field :fin_atencion, class: 'time-picker form-control', id: "input_to"%>
 	<%= f.label :tipo_de_atencion%>
 	<%= f.select(:tipo_de_atencion, ['Primera','Subsecuente','Interconsulta Realizada'], {}, { :class => 'form-control' }) %>
 	<%= f.label :grupos_de_edad%>
@@ -49,9 +47,11 @@
 	<%= f.label :condicion_diagnostico%>
 	<%= f.select(:condicion_diagnostico, ['Presuntivo/Sospechoso','Definitivo/Inicial/Confirmado','Definitivo/Control'], {}, { :class => 'form-control' }) %>	
 	<%= f.label :ordenes%>
-	<%= f.select(:ordenes, ['Interconsulta Solicitada','Referencia'], {}, { :class => 'form-control' }) %>
-	<%= f.label :certificado_medico%>
-	<%= f.check_box :certificado_medico %>
+	<%= f.select(:ordenes, ['Interconsulta Solicitada','Referencia'], {}, { :class => 'form-control' }) %><br>
+	<%= f.label :certificado_medico, "Tiene certificado medico: "%>
+	<%= f.check_box :certificado_medico, class: "col-md-offset-4"%>
+	<span></span>
 </div>
-<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<br>
+<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
 <% end %>

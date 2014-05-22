@@ -33,9 +33,16 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 
 
 	#callbacks
+	before_create :calculate_values
 	after_save :set_values
 
 	#methods
+	def calculate_values
+		horas = self.fin_atencion - self.inicio_atencion
+		self.horas_trabajadas = Time.now.beginning_of_day + horas.to_i - 5.hour #config local zone -5
+		# raise
+	end
+
 	def set_values
 		self.condicion.paciente_id = self.paciente_id
 		# self.condicion.doctor_id = self.doctor_id

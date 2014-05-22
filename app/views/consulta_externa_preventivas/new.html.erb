@@ -47,13 +47,13 @@
 	<%= f.label :partos%>
 	<%= f.check_box :partos %>
 	<%= f.label :post_partos%>
-	<%= f.check_box :post_partos %>
+	<%= f.check_box :post_partos %><br>
 	<%= f.label :planificacion_familiar%>
 	<%= f.select(:planificacion_familiar, ['DIU','G.O','OTROS'], {}, { :class => 'form-control' }) %>
 	<%= f.label :doc%>
 	<%= f.select(:doc, ['Cervico Uterino','Mamario'], {}, { :class => 'form-control' }) %>
 	<%= f.label :grupos_de_edad%>
-	<%= f.select(:grupos_de_edad, ['DE 1 AÑO','1-4 AÑOS','5-9 AÑOS','10-14 AÑOS','15-19 AÑOS','20-49 AÑOS','50-64 AÑOS','65 AÑOS +'], {}, { :class => 'form-control' }) %>
+	<%= f.select(:grupos_de_edad, ['DE 1 AÑO','1-4 AÑOS','5-9 AÑOS','10-14 AÑOS','15-19 AÑOS','20-49 AÑOS','50-64 AÑOS','65 AÑOS +'], {}, { :class => 'form-control' }) %><br>
 	<%= f.label :trabajadora_sexual%>
 	<%= f.check_box :trabajadora_sexual %>
 	<%= f.label :certificado_medico%>
