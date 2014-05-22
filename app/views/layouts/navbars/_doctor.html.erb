@@ -9,7 +9,7 @@
       </button>
       <%=link_to image_tag("/images/logo1.png", :width=>45, :heigth=>45), "",class: "brand_img"%>
       <ul class="nav navbar-nav navbar-left">
-        <a class="navbar-brand" href="#">SISFA</a>
+        <%=link_to("SISFA",doctors_dashboard_path, class: "navbar-brand" )%>
       </ul>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -26,15 +26,6 @@
             <li><%=link_to("Salir", logout_path)%></li>
           </ul>
         </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to("Turnos", turnos_path)%></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to("Doctores", doctors_path)%></li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to "Libro Diario", hospitalizacion_registros_path %></li>
       </ul>
     </div>
   </div>

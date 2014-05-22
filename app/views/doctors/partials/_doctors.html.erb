@@ -16,8 +16,7 @@
 		<h5><%= doctor.especialidad  %> / <span class="text-muted">Atiende: <%=  doctor.cantidad_turno %> turnos</span></h5>
 		<p>Turnos:
 			<small><%= link_to "Hoy",turnos_dia_doctor_path(doctor),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small> |
-			<small><%= link_to "Mañana",turnos_manana_doctor_path(doctor),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small>|
-			<small><%= link_to "EMER", pacientes_emergencia_doctor_path(doctor)%></small>
+			<small><%= link_to "Mañana",turnos_manana_doctor_path(doctor),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small>
 		</p>
 	</div>
 </li>
