@@ -17,8 +17,8 @@
 #  certificado_medico     :boolean
 #  trabajadora_sexual     :boolean
 #  grupos_de_edad         :string(255)
-#  inicio_atencion        :time
-#  fin_atencion           :time
+#  inicio_atencion        :datetime
+#  fin_atencion           :datetime
 #  horas_trabajadas       :time
 #  created_at             :datetime
 #  updated_at             :datetime
