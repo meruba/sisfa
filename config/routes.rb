@@ -47,11 +47,12 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   end
 
   resources :turnos do
-    resources :consulta_externa_morbilidads
-    resources :consulta_externa_preventivas
+    resources :consulta_externa_morbilidads, :only => [:new, :create]
+    resources :consulta_externa_preventivas, :only => [:new, :create]
   end
 
   resources :clientes
+  resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
   resources :hospitalizacion_registros
   resources :item_facturas
