@@ -3,16 +3,14 @@
 	<span class= "fa fa-ticket fa-2x"></span>
 	<h5>No hay turnos registrados</h5>		
 </div>
-<% end %>
+<% else %>
 <ul class="list-group">
 	<% @turnos_hoy.each do |t|  %>
-	<li class="list-group-item item-turnos">
+	<li class="list-group-item item-turnos" <%= 'style= background-color:#7CC576;color:#fff;' if t.atendido %>>
 		<ul class="list-inline text-center">
 			<li class=" col-md-2 col-xs-2 datos-turno"><span><%= t.numero %></span></li>
 			<li class=" col-md-8 col-xs-8 border-lines">
-				<h4 <%= 'style= text-decoration:line-through;' if t.atendido %> >
-					<%=t.paciente.cliente.nombre%>
-				</h4>
+				<h4><%=t.paciente.cliente.nombre%></h4>
 			</li>
 			<li class=" col-md-2 col-xs-2 text-center datos-turno">
 				<% if t.numero >= 15 %>
@@ -22,6 +20,7 @@
 				<% end %>
 			</li>
 		</ul>
+		<% unless t.atendido %>
 		<span class="show-menu">
 			<span class="fa fa-chevron-right"></span>
 		</span>
@@ -30,6 +29,8 @@
 			<li class="list-group-submenu-item danger"><%= link_to 'P', new_turno_consulta_externa_preventiva_path(t), :rel => 'tooltip', :title => 'Consulta Preventiva'%></li>
 			<li class="list-group-submenu-item success"><%= link_to "M", new_turno_consulta_externa_morbilidad_path(t), { :rel=> 'tooltip', :title=>'Consulta Morbilidad'} %></li>
 		</ul>
+		<% end %>
 	</li>
 	<% end %>
 </ul>
+<% end %>
