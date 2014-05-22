@@ -33,13 +33,11 @@
 <div class="col-md-6">
 	<h3>Ficha de Registro Medico</h3>
 	<%= f.label :inicio_atencion%>
-	<%= f.text_field :inicio_atencion, class: 'time-picker form-control', id: "input_from"%>
+	<%= f.text_field :inicio_atencion, class: 'form-control', id: "input_from"%>
 	<%= f.label :fin_atencion%>
-	<%= f.text_field :fin_atencion, class: 'time-picker form-control', id: "input_to"%>
+	<%= f.text_field :fin_atencion, class: 'form-control', id: "input_to"%>
 	<%= f.label :tipo_de_atencion%>
 	<%= f.select(:tipo_de_atencion, ['Primera','Subsecuente','Interconsulta Realizada'], {}, { :class => 'form-control' }) %>
-	<%= f.label :grupos_de_edad%>
-	<%= f.select(:grupos_de_edad, ['DE 1 AÑO','1-4 AÑOS','5-9 AÑOS','10-14 AÑOS','15-19 AÑOS','20-49 AÑOS','50-64 AÑOS','65 AÑOS +'], {}, { :class => 'form-control' }) %>
 	<%= f.label :diagnostico_sindrome%>
 	<%= f.text_field :diagnostico_sindrome, class: 'form-control'%>
 	<%= f.label :codigo_cie%>

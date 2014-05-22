@@ -34,8 +34,6 @@
 	<h3>Ficha de Registro Medico</h3>
 	<%= f.label :tipo_usuario%>
 	<%= f.select(:tipo_usuario, ['S.A','S.P','ASP','CTPO','DERECHOHAB','CONVENIO','PARTICULAR'], {}, { :class => 'form-control' }) %>
-	<%= f.label :grupos_etareos%>
-	<%= f.select(:grupos_etareos, ['DE 1 AÑO','1-4 AÑOS','5-9 AÑOS','10-14 AÑOS','15-19 AÑOS','20-49 AÑOS','50-64 AÑOS','65 AÑOS +'], {}, { :class => 'form-control' }) %>
 	<%= f.label :atencion%>
 	<%= f.select(:atencion, ['CLINICO','QUIRURJICO','OBSTETRICO','TRAUMATOLOGIA'], {}, { :class => 'form-control' }) %>
 	<%= f.label :causa%>
