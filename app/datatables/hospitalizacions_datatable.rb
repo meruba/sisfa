@@ -27,7 +27,8 @@ private
         (hospitalizado.iva),
         (hospitalizado.total),
         (link_to '', hospitalizado, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info") + " " +
-        (link_to '', @view.edit_hospitalizacion_path(hospitalizado), :rel=> 'tooltip', :title=>'Editar', class: "ttip editar fa fa-edit btn btn-warning")
+        (link_to '', @view.edit_hospitalizacion_path(hospitalizado), :rel=> 'tooltip', :title=>'Editar', class: "ttip editar fa fa-edit btn btn-warning") + " " +
+        (link_to '', @view.dar_de_alta_hospitalizacion_path(hospitalizado), method: :post, data: { confirm: '¿Estás seguro? Esta acción es irreversible' }, :rel=> 'tooltip', :title=>'Dar de alta', class: "ttip editar fa fa-edit btn")
       ]
     end 
   end

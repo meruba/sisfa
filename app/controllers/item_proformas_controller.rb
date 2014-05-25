@@ -1,2 +1,0 @@
-class ItemProformasController < ApplicationController
-end

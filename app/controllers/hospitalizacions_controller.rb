@@ -1,7 +1,8 @@
 class HospitalizacionsController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
-	before_filter :is_editable, :only => :edit
+	before_filter :is_editable, :only => [:edit, :update]
+	before_filter :find_hospitalizacion, :only => [:edit, :update, :show, :dar_de_alta]
 
 	def index
     respond_to do |format|
@@ -26,16 +27,32 @@ class HospitalizacionsController < ApplicationController
 	end
 
 	def edit
-		@hospitalizacion = Hospitalizacion.find(params[:id])
+	end
+
+	def update
+		if @hospitalizacion.update(hospitalizacion_params)
+			redirect_to hospitalizacions_path, :notice => "Actualizado"
+		else
+			render action: "edit"
+		end
 	end
 
 	def show
-		@hospitalizacion = Hospitalizacion.find(params[:id])
 		respond_to do |format|
 			format.js{ render "show" }
 			format.pdf do
 				render :pdf => "hospitalizacion", :layout => 'report.html', :template => "hospitalizacions/hospitalizacion_pdf.html.erb"
 			end
+		end
+	end
+
+	def dar_de_alta
+		unless @hospitalizacion.dado_de_alta
+			@hospitalizacion.dado_de_alta = true
+			@hospitalizacion.save
+			redirect_to hospitalizacions_path, :notice => "Dado de alta!"
+		else
+			redirect_to hospitalizacions_path, :notice => "Ya fue dado de alta anteriormente"
 		end
 	end
 
@@ -66,6 +83,10 @@ class HospitalizacionsController < ApplicationController
 			:total,
 			:ingreso_producto_id
 		]
+	end
+
+	def find_hospitalizacion
+		@hospitalizacion = Hospitalizacion.find(params[:id])
 	end
 
 	def is_editable
