@@ -1,5 +1,5 @@
 class PacientesController < ApplicationController
-	before_action :set_paciente, only: [:edit, :update]
+	before_action :set_paciente, only: [:edit, :update, :destroy]
 	before_action :new_paciente, only: [:civil, :militar, :familiar]
 
 	def index
@@ -27,6 +27,10 @@ class PacientesController < ApplicationController
 		@paciente.tipo = "familiar"
 	end
 
+	def view_edit
+		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente).first
+	end
+
 	def show
 		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:id]).references(:cliente, :informacion_adicional_paciente).first
 	end
@@ -50,6 +54,13 @@ class PacientesController < ApplicationController
 		end
 	end
 
+	def destroy
+		@paciente.destroy
+		respond_to do |format|
+			format.html { redirect_to pacientes_url }
+		end
+	end
+
 	private
 
 	def paciente_params
@@ -61,6 +72,7 @@ class PacientesController < ApplicationController
 			:pertenece_a,
 			:unidad,
 			:parentesco,
+			:jefe_de_reparto,
 			:cliente_attributes => [
 				:id,
 				:fecha_de_nacimiento,
@@ -78,7 +90,6 @@ class PacientesController < ApplicationController
 				:canton,
 				:raza,
 				:nacionalidad,
-				:jefe_de_reparto,
 				:familiar_parentesco,
 				:familiar_cercano,
 				:familiar_direccion,
