@@ -20,9 +20,9 @@
 
 class Paciente < ActiveRecord::Base
 	belongs_to :cliente
-	has_many :condicions
-	has_many :turnos
-	has_one :informacion_adicional_paciente
+	has_many :condicions, dependent: :destroy
+	has_many :turnos, dependent: :destroy
+	has_one :informacion_adicional_paciente, dependent: :destroy
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 	
 	#callbacks

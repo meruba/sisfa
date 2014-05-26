@@ -18,7 +18,10 @@ class TurnosController < ApplicationController
 		@turno = Turno.new(turno_params)
 		respond_to do |format|
 			@turno.save
-			format.js { render "success" }
+			format.js { 
+				@doctores = Doctor.turnos_doctores
+				render "success" 
+			}
 		end
 	end
 

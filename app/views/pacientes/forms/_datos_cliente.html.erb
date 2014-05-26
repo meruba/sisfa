@@ -13,7 +13,7 @@
 		<%=  cliente_params.label :telefono%>
 		<%=  cliente_params.text_field :telefono, class: "telefono", :placeholder => "Teléfono"%>
 		<%=  cliente_params.label :estado_civil%>
-		<%= cliente_params.select(:estado_civil, ['Soltero','Casado','Divorciado','Union Libre'], {}, { :class => 'form-control' }) %>
+		<%= cliente_params.select(:estado_civil, ['Soltero','Casado','Divorciado','Union Libre', 'Viudo'], {}, { :class => 'form-control' }) %>
 		<%=  cliente_params.label :sexo%>
 		<%= cliente_params.select(:sexo, ['Masculino','Femenino'], {}, { :class => 'form-control' }) %>
 	</div>

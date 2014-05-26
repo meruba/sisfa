@@ -44,6 +44,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :pacientes do
     resources :hospitalizacion_registros
     resources :emergencia_registros
+    get "view_edit"
   end
 
   resources :turnos do
