@@ -51,13 +51,25 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 		self.condicion.save
 		self.turno.update(:atendido => true)
 	end
-
 	private
 	def edad_paciente(date)
 		birthday = date
+		y=(Date.today.year) - (birthday.year)
+		m=(Date.today.month)-(birthday.month)
+		d=(Date.today.day)-(birthday.day)
+
 		now = Time.now.utc.to_date
 		age = now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
-		case 
+
+		case
+		when m==0 && age == 0
+			if y==0
+				categoria = 'MENOR DE 1 MES'
+			end
+		when m>0 && age == 0
+			if y==0
+				categoria = '1-11 MESES'
+			end
 		when age == 1
 			categoria = '1 AÑO'
 		when age > 0 && age < 5
@@ -76,5 +88,6 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 			categoria = '65 AÑOS +'
 		end
 		categoria
+		# raise
 	end
 end
