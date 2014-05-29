@@ -1,4 +1,7 @@
 <h3 class="text-center"><strong>Paciente: </strong><%= @turno.paciente.cliente.nombre  %></h3>
+<h5 class="fix-margin"><strong>Discapacida?:</strong> <%= best_in_place @turno.paciente, :discapacidad, type: :select, collection: [["SI", "SI"], ["NO", "NO"]] %> 
+	..<span class="fa fa-pencil text-info"></span>
+</h5>
 <%= form_for [@turno, @consulta] do |f| %>
 <%= form_errors_for @consulta %>
 <div class="col-md-6">
@@ -23,7 +26,7 @@
 	<%= c.label :examen_fisico%>
 	<%= c.text_area :examen_fisico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
 	<%= c.label :diagnostico_1%>
-	<%= c.text_field :diagnostico_1, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+	<%= c.text_field :diagnostico_1, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
 	<%= c.label :diagnostico_2%>
 	<%= c.text_field :diagnostico_2, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
 	<%= c.label :planes%>
@@ -32,10 +35,6 @@
 </div>
 <div class="col-md-6">
 	<h3>Ficha de Registro Medico</h3>
-	<%= f.label :inicio_atencion%>
-	<%= f.text_field :inicio_atencion, class: 'form-control', id: "input_from"%>
-	<%= f.label :fin_atencion%>
-	<%= f.text_field :fin_atencion, class: 'form-control', id: "input_to"%>
 	<%= f.label :tipo_de_atencion%>
 	<%= f.select(:tipo_de_atencion, ['Primera','Subsecuente','Interconsulta Realizada'], {}, { :class => 'form-control' }) %>
 	<%= f.label :diagnostico_sindrome%>
@@ -46,9 +45,15 @@
 	<%= f.select(:condicion_diagnostico, ['Presuntivo/Sospechoso','Definitivo/Inicial/Confirmado','Definitivo/Control'], {}, { :class => 'form-control' }) %>	
 	<%= f.label :ordenes%>
 	<%= f.select(:ordenes, ['Interconsulta Solicitada','Referencia'], {}, { :class => 'form-control' }) %><br>
-	<%= f.label :certificado_medico, "Tiene certificado medico: "%>
-	<%= f.check_box :certificado_medico, class: "col-md-offset-4"%>
-	<span></span>
+	<%= f.label :certificado_medico, "Certificado medico?"%>
+	<div class="input-group">
+		<div id="radioBtn" class="btn-group">
+			<a class="btn btn-info btn-sm notActive" data-toggle="certificado_medico" data-title= 1 >SI</a>
+			<a class="btn btn-info btn-sm active" data-toggle="certificado_medico" data-title= 0>NO</a>
+		</div>
+		<%= f.hidden_field :certificado_medico, id: "certificado_medico"  %>
+	</div>
+	<br>
 </div>
 <br>
 <%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>

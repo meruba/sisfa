@@ -17,8 +17,6 @@
 #  certificado_medico     :boolean
 #  trabajadora_sexual     :boolean
 #  grupos_de_edad         :string(255)
-#  inicio_atencion        :datetime
-#  fin_atencion           :datetime
 #  horas_trabajadas       :time
 #  created_at             :datetime
 #  updated_at             :datetime
@@ -41,8 +39,6 @@ class ConsultaExternaPreventiva < ActiveRecord::Base
 
 	#methods
 	def calculate_values
-		horas = self.fin_atencion - self.inicio_atencion
-		self.horas_trabajadas = Time.now.beginning_of_day + horas.to_i - 5.hour #config local zone -5
 		self.grupos_de_edad = edad_paciente(self.paciente.cliente.fecha_de_nacimiento)
 	end
 
@@ -58,11 +54,22 @@ class ConsultaExternaPreventiva < ActiveRecord::Base
 	private
 	def edad_paciente(date)
 		birthday = date
+		y=(Date.today.year) - (birthday.year)
+		m=(Date.today.month)-(birthday.month)
+		d=(Date.today.day)-(birthday.day)
+
 		now = Time.now.utc.to_date
 		age = now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
-		case 
-		when age == 1
-			categoria = '1 AÑO'
+
+		case
+		when m==0 && age == 0
+			if y==0
+				categoria = 'MENOR DE 1 MES'
+			end
+		when m>0 && age == 0
+			if y==0
+				categoria = '1-11 MESES'
+			end
 		when age > 0 && age < 5
 			categoria = '1-4 AÑOS'
 		when age > 4 && age < 10

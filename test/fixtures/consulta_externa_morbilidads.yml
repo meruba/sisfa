@@ -14,8 +14,6 @@
 #  condicion_diagnostico :string(255)
 #  ordenes               :string(255)
 #  certificado_medico    :boolean
-#  inicio_atencion       :datetime
-#  fin_atencion          :datetime
 #  horas_trabajadas      :time
 #  created_at            :datetime
 #  updated_at            :datetime

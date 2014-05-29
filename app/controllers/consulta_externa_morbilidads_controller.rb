@@ -13,11 +13,10 @@ class ConsultaExternaMorbilidadsController < ApplicationController
 		@consulta.nombre_medico = @turno.doctor.cliente.nombre
 		@consulta.paciente = @turno.paciente
 		@consulta.turno = @turno
-		# raise
 		if @consulta.save
 			redirect_to doctors_dashboard_path, :notice => "Almacenado"
 		else
-			redirect_to doctors_dashboard_path
+			render 'new'
 		end
 	end
 	

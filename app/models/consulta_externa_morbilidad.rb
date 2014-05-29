@@ -14,8 +14,6 @@
 #  condicion_diagnostico :string(255)
 #  ordenes               :string(255)
 #  certificado_medico    :boolean
-#  inicio_atencion       :datetime
-#  fin_atencion          :datetime
 #  horas_trabajadas      :time
 #  created_at            :datetime
 #  updated_at            :datetime
@@ -38,8 +36,6 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 
 	#methods
 	def calculate_values
-		horas = self.fin_atencion - self.inicio_atencion
-		self.horas_trabajadas = Time.now.beginning_of_day + horas.to_i - 5.hour #config local zone -5
 		self.grupos_de_edad = edad_paciente(self.paciente.cliente.fecha_de_nacimiento)
 	end
 
@@ -51,6 +47,11 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 		self.condicion.save
 		self.turno.update(:atendido => true)
 	end
+	
+	def self.today
+		consultas = ConsultaExternaMorbilidad.includes(paciente: [:informacion_adicional_paciente,:cliente]).where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day).references(paciente: [:informacion_adicional_paciente,:cliente])
+	end
+
 	private
 	def edad_paciente(date)
 		birthday = date
@@ -70,8 +71,6 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 			if y==0
 				categoria = '1-11 MESES'
 			end
-		when age == 1
-			categoria = '1 AÑO'
 		when age > 0 && age < 5
 			categoria = '1-4 AÑOS'
 		when age > 4 && age < 10
@@ -88,6 +87,5 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 			categoria = '65 AÑOS +'
 		end
 		categoria
-		# raise
 	end
 end
