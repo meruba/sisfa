@@ -26,15 +26,10 @@ class JornadaMorbilidadsController < ApplicationController
 	end
 
 	def reporte
-		@start_date = params[:fecha_inicial]
-		@end_date = params[:fecha_final]
-		@registros = JornadaMorbilidad.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
-		if @registros.empty? == true
-			render :template => "results/not_result"
-		else
-			respond_to do |format|
-				format.xls
-			end
+		@registros = JornadaMorbilidad.reporte(params[:fecha].to_time.beginning_of_day..params[:fecha].to_time.end_of_day)
+		respond_to do |format|
+			format.html
+			format.xls
 		end
 	end
 
