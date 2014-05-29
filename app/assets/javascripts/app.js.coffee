@@ -32,6 +32,12 @@ $ ->
     $(".searchable-container .items").filter(->
       rex.test $(this).text()
     ).show()
+$ ->
+  $(".enfermedad").autocomplete
+    minLength: 2
+    source: "/enfermedads/autocomplete.json"
+    select: (event, ui) ->
+      $(".codigo_enfermedad").val ui.item.codigo
 
 $(document).on "ready page:load", ->
   #form_wizard
