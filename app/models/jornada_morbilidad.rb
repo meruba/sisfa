@@ -110,6 +110,10 @@ class JornadaMorbilidad < ActiveRecord::Base
 		self.total_referencia             = valores[42]
 		self.total_certificado_medico     = valores[43]
 	end
+	#class methods
+	def self.reporte(fecha)
+		registros = JornadaMorbilidad.includes(doctor: [:cliente]).where(:created_at => fecha).references(doctor: [:cliente])
+	end
 
 	def self.was_send
 		jornada = JornadaMorbilidad.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day).last

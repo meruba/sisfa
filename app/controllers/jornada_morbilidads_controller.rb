@@ -24,7 +24,20 @@ class JornadaMorbilidadsController < ApplicationController
 			redirect_to doctors_dashboard_path
 		end
 	end
-	
+
+	def reporte
+		@start_date = params[:fecha_inicial]
+		@end_date = params[:fecha_final]
+		@registros = JornadaMorbilidad.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+		if @registros.empty? == true
+			render :template => "results/not_result"
+		else
+			respond_to do |format|
+				format.xls
+			end
+		end
+	end
+
 	private
 	def jornada_morbilidad_params
 		params.require(:jornada_morbilidad).permit :doctor_id,

@@ -28,6 +28,7 @@ get "pacientes/familiar"
 get "doctors/autocomplete"
 get "doctors/imprimir_listado"
 get "doctors/dashboard"
+get "jornada_morbilidads/reporte"
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
