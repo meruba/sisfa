@@ -67,6 +67,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :informacion_adicional_pacientes, :only => [:edit, :update]
   resources :revisions
   resources :doctors do
+    resources :jornada_morbilidads
     member do
       get "pacientes_emergencia"
       get "turnos_dia"

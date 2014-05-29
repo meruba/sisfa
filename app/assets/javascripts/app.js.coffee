@@ -49,3 +49,10 @@ $(document).on "ready page:load", ->
     min: [9,0]
     max: [14,30]
     )
+  #select check
+  $("#radioBtn a").on "click", ->
+    sel = $(this).data("title")
+    tog = $(this).data("toggle")
+    $("#" + tog).prop "value", sel
+    $("a[data-toggle=\"" + tog + "\"]").not("[data-title=\"" + sel + "\"]").removeClass("active").addClass "notActive"
+    $("a[data-toggle=\"" + tog + "\"][data-title=\"" + sel + "\"]").removeClass("notActive").addClass "active"

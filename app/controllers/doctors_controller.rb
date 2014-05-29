@@ -11,8 +11,8 @@ class DoctorsController < ApplicationController
 		@doctor = current_user.cliente.doctor
 		@turnos_hoy = @doctor.turnos.turnos_today
 		@turnos_manana = @doctor.turnos.turnos_tomorrow
-		@fecha = Time.now.to_date
 		@pacientes = @doctor.emergencia_registros
+		@enviado = @doctor.jornada_morbilidads.was_send
 	end
 
 	def autocomplete
@@ -83,7 +83,7 @@ class DoctorsController < ApplicationController
     redirect_to doctors_path, :notice => "Doctor modificado"    
   end
 
-  def add_account
+  def jornada_morbilidad
   	
   end
 

@@ -16,6 +16,7 @@ class Doctor < ActiveRecord::Base
 	belongs_to :cliente
 	# has_many :turnos
 	has_many :emergencia_registros
+	has_many :jornada_morbilidads
 	# has_many :consulta_externa_morbilidads
 	has_many :turnos
 	has_many :consulta_externa_morbilidads, :through => :turnos
