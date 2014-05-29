@@ -7,9 +7,8 @@ class HospitalizacionRegistrosController < ApplicationController
   end
 
   def reporte
-    @start_date = params[:fecha_inicial]
-    @end_date = params[:fecha_final]
-    @registros = HospitalizacionRegistro.reporte(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+    @fecha = params[:fecha]
+    @registros = HospitalizacionRegistro.reporte(params[:fecha].to_time.beginning_of_month..params[:fecha].to_time.end_of_month)
     if @registros.empty?
       render :template => "results/not_result"
     else

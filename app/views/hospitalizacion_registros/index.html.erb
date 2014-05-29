@@ -2,30 +2,25 @@
   <h2 class="fix-margin">Pacientes Hospitalizados</h2>
 </div>
 <div class="row info-paciente">
-  <div class="search">
-    <div class="well well-sm">
-      <strong>Generar Reporte:</strong>
-      <div class="btn-group">
-        <div class="panel-body">
-          <%= form_tag hospitalizacion_registros_reporte_path, :class => "form-inline", method: :get do %>
-          <div class="form-group">
-            <%= label_tag :fecha_inicial, nil, class: "sr-only"  %>
-            <%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", placeholder: "Fecha de inicio", :required => true %>
-          </div>
-          <div class="form-group">
-            <%= label_tag :fecha_final, nil,class: "sr-only"  %>
-            <%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", placeholder: "Fecha final", :required => true %>
-          </div>
-          <%= submit_tag "Ir", :class => "btn btn-info"%>
-          <% end %>
-        </div>
+  <div class="row">
+    <div class="col-md-3">
+      <%= form_tag hospitalizacion_registros_reporte_path, method: :get do %>
+      <div class="input-group field fix-margin">
+        <%= text_field_tag :fecha, params[:fecha],:class =>"datepicker_month", :placeholder => "Reporte: Ingrese mes", :required => true%>
+        <span class="input-group-btn">
+          <%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
+        </span>
+      </div>
+      <% end %>
+    </div>
+    <div class="col-md-3 col-md-offset-6">
+      <div class="input-icon-sm icon-addon addon-sm">
+        <input type="search" id="input-search" class="form-control" placeholder="Buscar Paciente..." ><i class="fa fa-search"></i>
+        <i class="fa fa-search"></i>
       </div>
     </div>
   </div>
-  <div class="input-icon-sm icon-addon addon-sm">
-    <input type="search" id="input-search" class="form-control" placeholder="Buscar Paciente..." ><i class="fa fa-search"></i>
-    <i class="fa fa-search"></i>
-  </div>
+  <legend class="fix-margin"><i class="fa fa-hospital-o"></i> Internados</legend>
   <div class="internados">
     <%= render 'internados'  %>
   </div>

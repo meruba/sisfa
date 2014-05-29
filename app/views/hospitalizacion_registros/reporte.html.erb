@@ -1,5 +1,5 @@
 <h1>Reporte de Hospitalizados</h1>
-<h4>Desde: <%= @start_date%> hasta <%= @end_date %></h4>
+<h4>MES: <%= month_name(@fecha) %></h4>
 <p>
   Descargar:
   <%= link_to "Excel", hospitalizacion_registros_reporte_path(params.merge(format: 'xls')) %>
