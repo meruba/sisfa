@@ -62,69 +62,83 @@ class JornadaMorbilidad < ActiveRecord::Base
 
 	def set_values
 		horas = self.fin_atencion - self.inicio_atencion
-		self.horas_trabajadas = Time.now.beginning_of_day + horas.to_i - 5.hour #config local zone -5
+		self.horas_trabajadas = Time.now.beginning_of_day + horas.to_i #config local zone -5
 		consultas = ConsultaExternaMorbilidad.where(:doctor_id => self.doctor, :created_at => Time.now.beginning_of_day..Time.zone.now)
 		valores = calculate(consultas)
-		self.total_hombre = valores[0]
-    self.total_mujer = valores[1]
-    self.total_blanco = valores[2]
-    self.total_mestizo = valores[3]
-    self.total_afroecuatoriano = valores[4]
-    self.total_indigena = valores[5]
-    self.total_montubio = valores[6]
-    self.total_colombiano = valores[7]
-    self.total_peruano = valores[8]
-    self.total_otra_nacionalidad = valores[9]
-    self.total_iess = valores[0]
-    self.total_issfa = valores[0]
-    self.total_ispol = valores[0]
-    self.total_otros_seguros = valores[0]
-		# values = [ejerct, avcn, marn,civil, mil_activo, mil_pasivo, mil_aspirante, mil_conscripto, fam,const_primera, const_sub, const_intc,edad_1, edad_1_4, edad_5_9, edad_10_14, edad_15_19, edad_20_49, edad_50_64, edad_65,condc_presuntivo, condc_confirmado, condc_control,ordn_intc, ordn_ref, certificado]
-    self.total_terrestre             = valores[10]		
-    self.total_aerea                 = valores[11]
-    self.total_naval                 = valores[12]
-    self.total_activo                = valores[0]
-    self.total_pasivo                = valores[0]
-    self.total_aspirante             = valores[0]
-    self.total_conscripto            = valores[0]
-    self.total_activo_familiar       = valores[0]
-    self.total_pasivo_familiar       = valores[0]
-    self.total_derecho_hab           = valores[0]
-    self.total_civilies              = valores[0]
-    self.total_atencion_primera      = valores[0]
-    self.total_atencion_subsecuente  = valores[0]
-    self.total_atencion_interconsulta= valores[0]
-    self.total_memor_1_mes           = valores[0]
-    self.total_memor_1_11_mes        = valores[0]
-    self.total_1_4_anios             = valores[0]
-    self.total_5_9_anios             = valores[0]
-    self.total_10_44_anios           = valores[0]
-    self.total_15_19_anios           = valores[0]
-    self.total_20_49_anios           = valores[0]
-    self.total_50_64_anios           = valores[0]
-    self.total_65_anios              = valores[0]
-    self.total_presuntivo            = valores[0]
-    self.total_inicial               = valores[0]
-    self.total_control               = valores[0]
-    self.total_interconsulta         = valores[0]
-    self.total_referencia            = valores[0]
-    self.total_certificado_medico    = valores[0]
-		raise
+		self.total_discapacitados 				= valores[0]
+		self.total_hombre 								= valores[1]
+		self.total_mujer 									= valores[2]
+		self.total_blanco 								= valores[3]
+		self.total_mestizo 								= valores[4]
+		self.total_afroecuatoriano 				= valores[5]
+		self.total_indigena 							= valores[6]
+		self.total_montubio 							= valores[7]
+		self.total_colombiano 						= valores[8]
+		self.total_peruano 								= valores[9]
+		self.total_otra_nacionalidad 			= valores[10]
+		self.total_issfa 									= valores[11]
+		self.total_iess 									= valores[12]
+		self.total_ispol 									= valores[13]
+		self.total_otros_seguros 					= valores[14]
+		self.total_terrestre              = valores[15]		
+		self.total_aerea                  = valores[16]
+		self.total_naval                  = valores[17]
+		self.total_civilies               = valores[18]
+		self.total_activo                 = valores[19]
+		self.total_pasivo                 = valores[20]
+		self.total_aspirante              = valores[21]
+		self.total_conscripto             = valores[22]
+		self.total_activo_familiar        = valores[23]
+		self.total_pasivo_familiar        = valores[24]
+		self.total_derecho_hab            = valores[25]
+		self.total_atencion_primera       = valores[26]
+		self.total_atencion_subsecuente   = valores[27]
+		self.total_atencion_interconsulta = valores[28]
+		self.total_memor_1_mes            = valores[29]
+		self.total_memor_1_11_mes         = valores[30]
+		self.total_1_4_anios              = valores[31]
+		self.total_5_9_anios              = valores[32]
+		self.total_10_44_anios            = valores[33]
+		self.total_15_19_anios            = valores[34]
+		self.total_20_49_anios            = valores[35]
+		self.total_50_64_anios            = valores[36]
+		self.total_65_anios               = valores[37]
+		self.total_presuntivo             = valores[38]
+		self.total_inicial                = valores[39]
+		self.total_control                = valores[40]
+		self.total_interconsulta          = valores[41]
+		self.total_referencia             = valores[42]
+		self.total_certificado_medico     = valores[43]
+	end
+
+	def self.was_send
+		jornada = JornadaMorbilidad.where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day).last
+		if jornada.nil?
+			enviado = false
+		else
+			enviado = true
+		end			
+		enviado
 	end
 
 	private
 
 	def calculate(consultas)
-		m, f = 0,0
-		blanco, mestz, afro, indg, montb = 0,0,0,0
+		discpd, m, f = 0,0,0
+		blanco, mestz, afro, indg, montb = 0,0,0,0,0
 		colbn, prn, otro_ncl = 0,0,0
+		issfa,iess,isspol,otros_seguro = 0,0,0,0
 		ejerct, avcn, marn = 0,0,0
 		civil, mil_activo, mil_pasivo, mil_aspirante, mil_conscripto, fam_activo, fam_pasivo, fam_der = 0,0,0,0,0,0,0,0
 		const_primera, const_sub, const_intc = 0,0,0
-		edad_1, edad_1_4, edad_5_9, edad_10_14, edad_15_19, edad_20_49, edad_50_64, edad_65 = 0,0,0,0,0,0,0,0
+		edad_1_mes,edad_1_11_meses,edad_1_4, edad_5_9, edad_10_14, edad_15_19, edad_20_49, edad_50_64, edad_65 = 0,0,0,0,0,0,0,0,0,0
 		condc_presuntivo, condc_confirmado, condc_control = 0,0,0		
 		ordn_intc, ordn_ref, certificado = 0,0,0
 		consultas.each do |c|
+			#total discapacidad
+			if c.paciente.discapacidad == "SI"
+				discpd += 1
+			end
 			#total sexo
 			if c.paciente.cliente.sexo == "Masculino"
 				m = m + 1
@@ -152,6 +166,17 @@ class JornadaMorbilidad < ActiveRecord::Base
 				prn += 1
 			when "Otro"
 				otro_ncl += 1
+			end
+			#total afiliado
+			case c.paciente.afiliado
+			when "ISSFA"
+				issfa += 1
+			when "IESS"
+				iess += 1
+			when "ISSPOL"
+				isspol += 1
+			when "OTROS"
+				otros_seguro += 1
 			end
 			#total fuerza
 			case c.paciente.pertenece_a
@@ -183,7 +208,7 @@ class JornadaMorbilidad < ActiveRecord::Base
 					fam_activo += 1
 				when "Pasivo"
 					fam_pasivo += 1
-				when "Derecho hab"
+				when "Derecho Hab"
 					fam_der += 1
 				end
 			end
@@ -198,8 +223,10 @@ class JornadaMorbilidad < ActiveRecord::Base
 			end
 			#total edad
 			case c.grupos_de_edad
-			when "1 AÑO"
-				edad_1 += 1
+			when "MENOR DE 1 MES"
+				edad_1_mes +=1
+			when "1-11 MESES"
+				edad_1_11_meses += 1
 			when "1-4 AÑOS"
 				edad_1_4 += 1
 			when "5-9 AÑOS"
@@ -235,7 +262,6 @@ class JornadaMorbilidad < ActiveRecord::Base
 				certificado += 1
 			end
 		end
-		values = [m,f,blanco,mestz,afro,indg,montb,colbn,prn,otro_ncl,ejerct, avcn, marn,civil, mil_activo, mil_pasivo, mil_aspirante, mil_conscripto, fam,const_primera, const_sub, const_intc,edad_1, edad_1_4, edad_5_9, edad_10_14, edad_15_19, edad_20_49, edad_50_64, edad_65,condc_presuntivo, condc_confirmado, condc_control,ordn_intc, ordn_ref, certificado]
-		# raise
+		valores = [discpd,m,f,blanco,mestz,afro,indg,montb,colbn,prn,otro_ncl,issfa,iess,isspol,otros_seguro,ejerct,avcn,marn,civil, mil_activo, mil_pasivo, mil_aspirante,mil_conscripto,fam_activo,fam_pasivo,fam_der,const_primera, const_sub, const_intc,edad_1_mes,edad_1_11_meses,edad_1_4,edad_5_9,edad_10_14,edad_15_19,edad_20_49,edad_50_64,edad_65,condc_presuntivo,condc_confirmado,condc_control,ordn_intc,ordn_ref,certificado]
 	end
 end

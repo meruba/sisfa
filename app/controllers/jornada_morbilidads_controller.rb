@@ -1,10 +1,18 @@
 class JornadaMorbilidadsController < ApplicationController
-	before_action :find_doctor, only: [:new, :create, :edit, :update]
+	before_action :find_doctor, only: [:index, :new, :create, :edit, :update]
+	
+	def index
+		@jornadas = @doctor.jornada_morbilidads
+	end
 
 	def new
-		@jornada = JornadaMorbilidad.new		
-		@consultas = @doctor.consulta_externa_morbilidads
-		# raise
+		@enviado = @doctor.jornada_morbilidads.was_send
+		if @enviado == false
+			@jornada = JornadaMorbilidad.new
+			@consultas = @doctor.consulta_externa_morbilidads.today
+		else
+			render :template => "results/was_send"
+		end
 	end
 
 	def create
@@ -22,50 +30,7 @@ class JornadaMorbilidadsController < ApplicationController
 		params.require(:jornada_morbilidad).permit :doctor_id,
 		:inicio_atencion,
 		:fin_atencion,
-		:horas_trabajadas,
-		:total_hombre,
-		:total_mujer,
-		:total_blanco,
-		:total_mestizo,
-		:total_afroecuatoriano,
-		:total_indigena,
-		:total_montubio,
-		:total_colombiano,
-		:total_peruano,
-		:total_otra_nacionalidad,
-		:total_iess,
-		:total_issfa,
-		:total_ispol,
-		:total_otros_seguros,
-		:total_aerea,
-		:total_naval,
-		:total_terrestre,
-		:total_activo,
-		:total_pasivo,
-		:total_aspirante,
-		:total_conscripto,
-		:total_activo_familiar,
-		:total_pasivo_familiar,
-		:total_derecho_hab,
-		:total_civilies,
-		:total_atencion_primera,
-		:total_atencion_subsecuente,
-		:total_atencion_interconsulta,
-		:total_memor_1_mes,
-		:total_memor_1_11_mes,
-		:total_1_4_anios,
-		:total_5_9_anios,
-		:total_10_44_anios,
-		:total_15_19_anios,
-		:total_20_49_anios,
-		:total_50_64_anios,
-		:total_65_anios,
-		:total_presuntivo,
-		:total_inicial,
-		:total_control,
-		:total_interconsulta,
-		:total_referencia,
-		:total_certificado_medico
+		:horas_trabajadas
 	end
 
 	def find_doctor

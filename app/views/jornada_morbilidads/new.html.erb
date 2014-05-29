@@ -1,54 +1,44 @@
 <h3 class="text-center"><strong>DOCTOR: </strong><%= @doctor.cliente.nombre  %></h3>
-<div class="col-md-6">
-	<%= form_for [@doctor, @jornada] do |f| %>
-	<%= form_errors_for @jornada %>
-	<ul class="list-inline">
-		<li>
-			<%= f.label :inicio_atencion%>
-			<%= f.text_field :inicio_atencion, class: 'form-control', id: "input_from"%>
-		</li>
-		<li>
-			<%= f.label :fin_atencion%>
-			<%= f.text_field :fin_atencion, class: 'form-control', id: "input_to"%></li>
-		</ul>
-		<table class="table table-print">
-			<thead>
-				<tr>
-					<th>H.Clinica</th>
-					<th>sexo</th>
-					<th>etnia</th>
-					<th>nacionalidad</th>
-					<th>afiliado</th>
-					<th>Fuerza</th>
-					<th>tipo</th>
-					<th>Atencion</th>
-					<th>edad</th>
-					<th>Codigo</th>
-					<th>Condicion</th>
-					<th>Ordenes</th>
-					<th>Certificado</th>
-				</tr>
-			</thead>
-			<tbody>
-				<% @consultas.each do |c| %>
-				<tr>
-					<td><%= c.paciente.n_hclinica  %></td>
-					<td><%= c.paciente.cliente.sexo  %></td>
-					<td><%= c.paciente.informacion_adicional_paciente.raza  %></td>
-					<td><%= c.paciente.informacion_adicional_paciente.nacionalidad  %></td>
-					<td>ISSFA</td>
-					<td><%= c.paciente.pertenece_a  %></td>
-					<td><%= c.paciente.tipo  %></td>
-					<td><%= c.tipo_de_atencion  %></td>
-					<td><%= c.grupos_de_edad  %></td>
-					<td><%= c.codigo_cie  %></td>
-					<td><%= c.condicion_diagnostico  %></td>
-					<td><%= c.ordenes  %></td>
-					<td><%= c.certificado_medico  %></td>
-				</tr>
-				<% end %>
-			</tbody>
-		</table>
-		<%= f.submit 'Enviar', class: "btn btn-success"%>
+<%= form_for [@doctor, @jornada] do |f| %>
+<%= form_errors_for @jornada %>
+<ul class="list-inline">
+	<li>
+		<%= f.label :inicio_atencion%>
+		<%= f.text_field :inicio_atencion, class: 'form-control', id: "input_from"%>
+	</li>
+	<li>
+		<%= f.label :fin_atencion%>
+		<%= f.text_field :fin_atencion, class: 'form-control', id: "input_to"%>
+	</li>
+	<li>
+		<%= f.submit 'Enviar', class: "btn btn-success"%>			
+	</li>
+</ul>
+<% end %>
+<h3>Pacientes de hoy </h3>
+<div id="flip-scroll">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>H.Clinica</th>
+			<th>Paciente</th>
+			<th>Diagnostico</th>
+			<th>Codigo</th>			
+			<th>Condicion</th>
+			<th>Ordenes</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @consultas.each do |c| %>
+		<tr>
+			<td><%= c.paciente.n_hclinica  %></td>
+			<td><%= c.paciente.cliente.nombre  %></td>
+			<td><%= c.diagnostico_sindrome  %></td>
+			<td><%= c.codigo_cie  %></td>
+			<td><%= c.condicion_diagnostico  %></td>
+			<td><%= c.ordenes%></td>
+		</tr>
 		<% end %>
-	</div>
+	</tbody>
+</table>
+</div>
