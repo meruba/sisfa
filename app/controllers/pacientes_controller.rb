@@ -21,10 +21,12 @@ class PacientesController < ApplicationController
 		
 	def militar
 		@paciente.tipo = "militar"
+		@paciente.afiliado = "ISSFA"
 	end
 
 	def familiar
 		@paciente.tipo = "familiar"
+		@paciente.afiliado = "ISSFA"
 	end
 
 	def view_edit
@@ -73,6 +75,8 @@ class PacientesController < ApplicationController
 			:unidad,
 			:parentesco,
 			:jefe_de_reparto,
+			:afiliado,
+			:discapacidad,
 			:cliente_attributes => [
 				:id,
 				:fecha_de_nacimiento,

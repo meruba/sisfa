@@ -16,6 +16,8 @@
 #  n_hclinica      :integer
 #  fecha_hclinica  :date
 #  jefe_de_reparto :string(255)
+#  afiliado        :string(255)
+#  discapacidad    :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

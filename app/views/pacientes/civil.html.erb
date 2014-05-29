@@ -1,9 +1,37 @@
 <div class="info-paciente">
 	<%= nested_form_for @paciente do |f| %>
 	<%= form_errors_for @paciente %>
-	<%= f.label :n_hclinica, "Historia Clinica #"%>
-	<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
-	<%= f.hidden_field :tipo %><br>
+	<div class="row">
+		<div class="col-md-4">
+			<%= f.label :n_hclinica, "Historia Clinica #"%>
+			<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
+			<%= f.hidden_field :tipo %><br>
+		</div>
+		<div class="col-md-4">
+			<%= f.label :afiliado%>
+			<div class="input-group">
+				<div id="radioBtn" class="btn-group">
+					<a class="btn btn-info btn-sm active" data-toggle="afiliado" data-title="ninguno">NINGUNO</a>
+					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="IESS">IESS</a>
+					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="ISSPOL">ISSPOL</a>
+					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="OTROS">OTROS SEGUROS</a>
+				</div>
+				<%= f.hidden_field :afiliado, id: "afiliado", value: "ninguno"  %>
+			</div>
+			<br>
+		</div>
+		<div class="col-md-4">
+			<%= f.label :discapacidad, "Discapacidad?"%>
+			<div class="input-group">
+				<div id="radioBtn" class="btn-group">
+					<a class="btn btn-info btn-sm notActive" data-toggle="discapacidad" data-title="SI">SI</a>
+					<a class="btn btn-info btn-sm active" data-toggle="discapacidad" data-title="NO">NO</a>
+				</div>
+				<%= f.hidden_field :discapacidad, id: "afiliado", value: "NO"  %>
+			</div>
+			<br>
+		</div>
+	</div>
 	<div id="rootwizard">
 		<div class="navbar">
 			<div class="navbar-inner">
@@ -36,5 +64,4 @@
 			<li class="next clickable"><a>Siguiente</a></li>
 		</ul>
 	</div>
-
 </div>
