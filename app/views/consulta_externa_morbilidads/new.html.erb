@@ -5,33 +5,7 @@
 <%= form_for [@turno, @consulta] do |f| %>
 <%= form_errors_for @consulta %>
 <div class="col-md-6">
-	<h3>Condicion del Paciente</h3>
-	<%= f.fields_for :condicion do |c| %>
-	<%= c.label :motivo_de_consulta%>
-	<%= c.text_field :motivo_de_consulta, class: "form-control" %>
-	<%= c.label :antecedentes_personales%>
-	<%= c.text_area :antecedentes_personales, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :antecedentes_familiares%>
-	<%= c.text_area :antecedentes_familiares, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :enfermedad_actual%>
-	<%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :revision_organos_sistem, "Revision Actual de Organos y Sistema"%>
-	<%= c.text_area :revision_organos_sistema, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :presion_arterial%>
-	<%= c.text_field :presion_arterial, class: "form-control",placeholder: "Ejm: 23"  %>
-	<%= c.label :pulso%>
-	<%= c.text_field :pulso, class: "form-control",placeholder: "Ejm: 80"  %>
-	<%= c.label :temperatura%>
-	<%= c.text_field :temperatura, class: "form-control",placeholder: "Ejm: 28"  %>
-	<%= c.label :examen_fisico%>
-	<%= c.text_area :examen_fisico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :diagnostico_1%>
-	<%= c.text_field :diagnostico_1, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :diagnostico_2%>
-	<%= c.text_field :diagnostico_2, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :planes%>
-	<%= c.text_area :planes, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<% end %>
+	<%= render "condicion/condicion_paciente", f:f %>
 </div>
 <div class="col-md-6">
 	<h3>Ficha de Registro Medico</h3>
