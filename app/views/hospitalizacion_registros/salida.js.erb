@@ -12,7 +12,7 @@
   window.Helpers.ButtonsHelper.init();
   window.Helpers.FormsHelper.init()
   alertify.success("Registro guardado");
-  $('.list[data-id= <%=@registro.id %>]').slideUp(3000, function(){
+  $('#<%=@registro.id %>').slideUp(2000, function(){
     $(this).remove();
   });
 <%- end %>

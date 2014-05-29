@@ -1,6 +1,6 @@
 <section class="main searchable-container">
   <% @registros.each do |r|  %>
-  <div class="hospitalizado items">
+  <div class="hospitalizado items" id='<%=r.id%>'>
     <h4>
       <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
       <span><%= link_to "", edit_paciente_hospitalizacion_registro_path(r.paciente, r), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "pull-right fa fa-arrow-circle-o-right"}%>

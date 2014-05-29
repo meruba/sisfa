@@ -9,9 +9,7 @@
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
-  $(".table-historias").html('<%= j render 'pacientes/pacientes', registros: @registros %>');
-  window.Helpers.init_datatables();
   window.Helpers.ButtonsHelper.init();
   window.Helpers.FormsHelper.init()
-  alertify.success("Registro guardado");
+  alertify.success("Paciente Hospitalizado");
 <%- end %>
