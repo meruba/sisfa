@@ -6,10 +6,6 @@
 <%= f.fields_for :condicion do |c| %>
 	<%= c.label :motivo_de_consulta%>
 	<%= c.text_field :motivo_de_consulta, class: "form-control" %>
-	<%= c.label :antecedentes_personales%>
-	<%= c.text_area :antecedentes_personales, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :antecedentes_familiares%>
-	<%= c.text_area :antecedentes_familiares, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
 	<%= c.label :enfermedad_actual%>
 	<%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
 	<%= c.label :revision_organos_sistema%>

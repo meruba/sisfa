@@ -2,10 +2,6 @@
 <%= f.fields_for :condicion do |c| %>
 <%= c.label :motivo_de_consulta%>
 <%= c.text_field :motivo_de_consulta, class: "form-control" %>
-<%= c.label :antecedentes_personales%>
-<%= c.text_area :antecedentes_personales, class: "form-control"%>
-<%= c.label :antecedentes_familiares%>
-<%= c.text_area :antecedentes_familiares, class: "form-control" %>
 <%= c.label :enfermedad_actual%>
 <%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: DIABETIS"  %>
 <%= c.label :revision_organos_sistema%>
@@ -18,10 +14,12 @@
 <%= c.text_field :temperatura, class: "form-control",placeholder: "Ejm: 28"  %>
 <%= c.label :examen_fisico%>
 <%= c.text_area :examen_fisico, class: "form-control"%>
-<%= c.label :diagnostico_1%>
-<%= c.text_field :diagnostico_1, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-<%= c.label :diagnostico_2%>
-<%= c.text_field :diagnostico_2, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
+<label>Diagnostico 1 C.I.E: <strong class="codigo_cie"></strong></label>
+<%= c.text_field :diagnostico_1, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+<%= c.hidden_field :codigo_cie_1, class: "codigo_cie"%>
+<label>Diagnostico 2 C.I.E: <strong class="codigo_cie"></strong></label>
+<%= c.text_field :diagnostico_2, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+<%= c.hidden_field :codigo_cie_2, class: "codigo_cie"%>
 <%= c.label :planes%>
 <%= c.text_area :planes, class: "form-control"  %>
 <% end %>

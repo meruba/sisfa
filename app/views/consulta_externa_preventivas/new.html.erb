@@ -1,34 +1,36 @@
-<h3 class="text-center"><strong>Paciente: </strong><%= @turno.paciente.cliente.nombre  %></h3>
-<h5 class="fix-margin"><strong>Discapacida?:</strong> <%= best_in_place @turno.paciente, :discapacidad, type: :select, collection: [["SI", "SI"], ["NO", "NO"]] %> 
-	..<span class="fa fa-pencil text-info"></span>
-</h5>
-<%= form_for [@turno, @consulta] do |f| %>
-<%= form_errors_for @consulta %>
-<div class="col-md-6">
-	<%= render "condicion/condicion_paciente", f:f %>
+<div class="row title-history">
+	<h1 class="fix-margin">Consulta Ext. Preventiva</h1>
 </div>
-<div class="col-md-6">
-	<h3>Ficha de Registro Medico</h3>
-	<%= f.label :atencion_preventiva%>
-	<%= f.select(:atencion_preventiva, ['Mujeres','Niños','Niños adolecentes y Adultos'], {}, { :class => 'form-control' }) %>
-	<%= f.label :tipo_de_atencion%>
-	<%= f.select(:tipo_de_atencion, ['Primera','Subcecuente'], {}, { :class => 'form-control' }) %>
-	<%= f.label :planificacion_familiar%>
-	<%= f.select(:planificacion_familiar, ['DIU','G.O','OTROS'], {}, { :class => 'form-control' }) %>
-	<% if @turno.paciente.cliente.sexo == "Femenino" %>
-	<%= f.label :prenatal%>
-	<%= f.select(:prenatal, ['10-19 años','20-49 años'], {}, { :class => 'form-control' }) %>
-	<%= f.label :doc%>
-	<%= f.select(:doc, ['Cervico Uterino','Mamario'], {}, { :class => 'form-control' }) %>
-	<%= f.label :partos%>
-	<%= f.check_box :partos %><br>
-	<%= f.label :post_partos%>
-	<%= f.check_box :post_partos %><br>
-	<%= f.label :trabajadora_sexual%>
-	<%= f.check_box :trabajadora_sexual %><br>
+<div class="row info-paciente">
+	<%= render "pacientes/informacion_consulta"  %>
+	<%= form_for [@turno, @consulta] do |f| %>
+	<%= form_errors_for @consulta %>
+	<div class="col-md-6">
+		<%= render "condicion/condicion_paciente", f:f %>
+	</div>
+	<div class="col-md-6">
+		<h3>Ficha de Registro Medico</h3>
+		<%= f.label :atencion_preventiva%>
+		<%= f.select(:atencion_preventiva, ['Mujeres','Niños','Niños adolecentes y Adultos'], {}, { :class => 'form-control' }) %>
+		<%= f.label :tipo_de_atencion%>
+		<%= f.select(:tipo_de_atencion, ['Primera','Subcecuente'], {}, { :class => 'form-control' }) %>
+		<%= f.label :planificacion_familiar%>
+		<%= f.select(:planificacion_familiar, ['DIU','G.O','OTROS'], {}, { :class => 'form-control' }) %>
+		<% if @turno.paciente.cliente.sexo == "Femenino" %>
+		<%= f.label :prenatal%>
+		<%= f.select(:prenatal, ['10-19 años','20-49 años'], {}, { :class => 'form-control' }) %>
+		<%= f.label :doc%>
+		<%= f.select(:doc, ['Cervico Uterino','Mamario'], {}, { :class => 'form-control' }) %><br>
+		<%= f.label :partos%>
+		<%= f.check_box :partos %>
+		<%= f.label :post_partos%>
+		<%= f.check_box :post_partos %>
+		<%= f.label :trabajadora_sexual%>
+		<%= f.check_box :trabajadora_sexual %>
+		<% end %>
+		<%= f.label :certificado_medico%>
+		<%= f.check_box :certificado_medico %>
+	</div>
+	<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
 	<% end %>
-	<%= f.label :certificado_medico%>
-	<%= f.check_box :certificado_medico %>
 </div>
-<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
-<% end %>
