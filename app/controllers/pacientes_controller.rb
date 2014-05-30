@@ -77,6 +77,8 @@ class PacientesController < ApplicationController
 			:jefe_de_reparto,
 			:afiliado,
 			:discapacidad,
+			:antecedentes_personales,
+			:antecedentes_familiares,
 			:cliente_attributes => [
 				:id,
 				:fecha_de_nacimiento,

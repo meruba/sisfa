@@ -32,12 +32,6 @@ $ ->
     $(".searchable-container .items").filter(->
       rex.test $(this).text()
     ).show()
-$ ->
-  $(".enfermedad").autocomplete
-    minLength: 2
-    source: "/enfermedads/autocomplete.json"
-    select: (event, ui) ->
-      $(".codigo_enfermedad").val ui.item.codigo
 
 $(document).on "ready page:load", ->
   #form_wizard
@@ -62,3 +56,11 @@ $(document).on "ready page:load", ->
     $("#" + tog).prop "value", sel
     $("a[data-toggle=\"" + tog + "\"]").not("[data-title=\"" + sel + "\"]").removeClass("active").addClass "notActive"
     $("a[data-toggle=\"" + tog + "\"][data-title=\"" + sel + "\"]").removeClass("notActive").addClass "active"
+  #autocomlete enfermedad
+  $(".enfermedad").autocomplete
+    minLength: 2
+    source: "/enfermedads/autocomplete.json"
+    select: (event, ui) ->
+      $this = $(this)
+      $(this).prev().prev().find(".codigo_cie").text ui.item.codigo
+      $(this).next().val ui.item.codigo
