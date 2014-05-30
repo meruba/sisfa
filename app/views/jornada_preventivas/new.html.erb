@@ -1,0 +1,42 @@
+<h3 class="text-center"><strong>DOCTOR: </strong><%= @doctor.cliente.nombre  %></h3>
+<%= form_for [@doctor, @jornada] do |f| %>
+<%= form_errors_for @jornada %>
+<ul class="list-inline">
+	<li>
+		<%= f.label :inicio_atencion%>
+		<%= f.text_field :inicio_atencion, class: 'form-control', id: "input_from"%>
+	</li>
+	<li>
+		<%= f.label :fin_atencion%>
+		<%= f.text_field :fin_atencion, class: 'form-control', id: "input_to"%>
+	</li>
+	<li>
+		<%= f.submit 'Enviar', class: "btn btn-success"%>			
+	</li>
+</ul>
+<% end %>
+<h3>Pacientes de hoy </h3>
+<div id="flip-scroll">
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>H.Clinica</th>
+			<th>Paciente</th>
+			<th>Atencion</th>
+			<th>Atencion preventiva</th>			
+			<th>Planificacion Familiar</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @consultas.each do |c| %>
+		<tr>
+			<td><%= c.paciente.n_hclinica  %></td>
+			<td><%= c.paciente.cliente.nombre  %></td>
+			<td><%= c.tipo_de_atencion  %></td>
+			<td><%= c.atencion_preventiva  %>
+			<td><%= c.planificacion_familiar  %>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
