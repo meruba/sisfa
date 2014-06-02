@@ -13,6 +13,7 @@ class DoctorsController < ApplicationController
 		@turnos_manana = @doctor.turnos.turnos_tomorrow
 		@pacientes = @doctor.emergencia_registros
 		@enviado = @doctor.jornada_morbilidads.was_send
+		@enviado_preventiva = @doctor.jornada_preventivas.was_send
 	end
 
 	def autocomplete

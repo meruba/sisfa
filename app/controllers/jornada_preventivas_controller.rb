@@ -19,7 +19,7 @@ class JornadaPreventivasController < ApplicationController
 		@jornada = JornadaPreventiva.new(jornada_preventiva_params)
 		@jornada.doctor = @doctor
 		if @jornada.save
-			redirect_to doctors_dashboard_path, :notice => "Almacenado"
+			redirect_to doctors_dashboard_path, :notice => "Reporte enviado"
 		else
 			redirect_to doctors_dashboard_path
 		end

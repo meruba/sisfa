@@ -30,6 +30,8 @@ get "doctors/imprimir_listado"
 get "doctors/dashboard"
 get "jornada_morbilidads/reporte"
 get "enfermedads/autocomplete"
+get "jornada_preventivas/reporte"
+
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
@@ -71,6 +73,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :revisions
   resources :doctors do
     resources :jornada_morbilidads
+    resources :jornada_preventivas
     member do
       get "pacientes_emergencia"
       get "turnos_dia"

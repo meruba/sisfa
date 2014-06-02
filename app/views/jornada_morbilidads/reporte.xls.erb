@@ -27,7 +27,6 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">terrestre</Data></Cell>
       <Cell><Data ss:Type="String">aerea</Data></Cell>
       <Cell><Data ss:Type="String">naval</Data></Cell>
-      <Cell><Data ss:Type="String">civil</Data></Cell>
       <Cell><Data ss:Type="String">militar activo</Data></Cell>
       <Cell><Data ss:Type="String">militar pasivo</Data></Cell>
       <Cell><Data ss:Type="String">aspirante</Data></Cell>
@@ -35,6 +34,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="String">familiar activo </Data></Cell>
       <Cell><Data ss:Type="String">familiar pasivo</Data></Cell>
       <Cell><Data ss:Type="String">derecho hab</Data></Cell>
+      <Cell><Data ss:Type="String">civil</Data></Cell>
       <Cell><Data ss:Type="String">atencion primera</Data></Cell>
       <Cell><Data ss:Type="String">atencion subsecuente</Data></Cell>
       <Cell><Data ss:Type="String">atencion interconsulta</Data></Cell>
@@ -76,7 +76,6 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="Number"><%= r.total_terrestre%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_aerea%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_naval%></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= r.total_civilies%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_activo%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_pasivo%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_aspirante%></Data></Cell>
@@ -84,6 +83,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="Number"><%= r.total_activo_familiar%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_pasivo_familiar%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_derecho_hab%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_civilies%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_atencion_primera%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_atencion_subsecuente%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_atencion_interconsulta%></Data></Cell>
@@ -102,7 +102,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="Number"><%= r.total_interconsulta %></Data></Cell>   
       <Cell><Data ss:Type="Number"><%= r.total_referencia %></Data></Cell>   
       <Cell><Data ss:Type="Number"><%= r.total_certificado_medico %></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= local_date(r.horas_trabajadas, "time") %></Data></Cell>
+      <Cell><Data ss:Type="Double"><%= local_date(r.horas_trabajadas, "time") %></Data></Cell>
     </Row>
     <% end %>
   </Table>

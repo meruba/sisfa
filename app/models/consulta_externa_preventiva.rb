@@ -50,6 +50,11 @@ class ConsultaExternaPreventiva < ActiveRecord::Base
 		self.condicion.save
 		self.turno.update(:atendido => true)
 	end
+	
+	#method class
+	def self.today
+		consultas = ConsultaExternaPreventiva.includes(paciente: [:informacion_adicional_paciente,:cliente]).where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day).references(paciente: [:informacion_adicional_paciente,:cliente])
+	end
 
 	private
 	def edad_paciente(date)

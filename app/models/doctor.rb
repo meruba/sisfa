@@ -14,15 +14,13 @@
 class Doctor < ActiveRecord::Base
 	#relations
 	belongs_to :cliente
-	# has_many :turnos
 	has_many :emergencia_registros
 	has_many :jornada_morbilidads
-	# has_many :consulta_externa_morbilidads
+	has_many :jornada_preventivas
 	has_many :turnos
 	has_many :consulta_externa_morbilidads, :through => :turnos
 	has_many :consulta_externa_preventivas, :through => :turnos
 	accepts_nested_attributes_for :cliente
-
 	
 	#	validations
 	validates :especialidad, :cantidad_turno, :presence => true

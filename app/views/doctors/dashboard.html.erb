@@ -29,7 +29,7 @@
 					<h5>No hay turnos registrados</h5>		
 				</div>
 				<% else %>
-								<% @turnos_manana.each do |t|  %>
+				<% @turnos_manana.each do |t|  %>
 				<li class="item-turnos">
 					<div class="text-center atendidos">
 						<small><%=t.paciente.cliente.nombre%></small>
