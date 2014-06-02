@@ -57,7 +57,7 @@ class Turno < ActiveRecord::Base
 	#methos
 	def set_values
 		self.atendido = false
-		self.fecha = Time.now.tomorrow.beginning_of_day #fecha para el proximo dia
+		self.fecha = Time.now.beginning_of_day #fecha para el proximo dia
 		ultimo = Turno.where(:doctor_id => self.doctor_id, :fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
 		unless ultimo.nil?
 			self.numero = ultimo.numero + 1

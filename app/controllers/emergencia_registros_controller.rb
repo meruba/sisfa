@@ -40,7 +40,7 @@ class EmergenciaRegistrosController < ApplicationController
 		respond_to do |format|
 			if @emergencia.update(emergencia_registro_params.merge(registrado: true))
 				# redirect_to doctors_path
-        format.html { redirect_to doctors_path, notice: 'Registro Almacenado' }
+        format.html { redirect_to doctors_dashboard_path, notice: 'Emergencia Almacenada' }
       else
         format.html { render action: 'edit' }
 			end

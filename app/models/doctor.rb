@@ -17,6 +17,7 @@ class Doctor < ActiveRecord::Base
 	has_many :emergencia_registros
 	has_many :jornada_morbilidads
 	has_many :jornada_preventivas
+	has_many :emergencia_parte_mensuals
 	has_many :turnos
 	has_many :consulta_externa_morbilidads, :through => :turnos
 	has_many :consulta_externa_preventivas, :through => :turnos

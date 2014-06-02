@@ -30,6 +30,7 @@ class EmergenciaRegistro < ActiveRecord::Base
 	#callbacks
 	before_create :calculate_values
 	before_update :set_values
+	after_update :add_parte_mensual
 
   #validations
   validates :nombre_medico, :presence => true
@@ -54,6 +55,10 @@ class EmergenciaRegistro < ActiveRecord::Base
 
 	def self.pacientes_emergencia_alta
 		pacientes = EmergenciaRegistro.includes(:paciente).where(:registrado => true).references(:paciente)
+	end
+
+	def add_parte_mensual
+		EmergenciaParteMensual.add_emergencia(self)
 	end
 
 	private

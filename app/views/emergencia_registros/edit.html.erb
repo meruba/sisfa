@@ -2,28 +2,30 @@
 	<h2 class="fix-margin">Registro de Emergencia</h2>
 </div>
 <div class="row info-paciente">
-<h3 class="fix-margin"><strong>Paciente: </strong><%= @paciente.cliente.nombre  %></h3>
-<%= form_for [@paciente, @emergencia] do |f| %>
-<%= form_errors_for @emergencia %>
-<div class="col-md-6">
-	<%= render "condicion/condicion_paciente", f:f %>
-</div>
-<div class="col-md-6">
-	<h3>Ficha de Registro Medico</h3>
-	<%= f.label :tipo_usuario%>
-	<%= f.select(:tipo_usuario, ['S.A','S.P','ASP','CTPO','DERECHOHAB','CONVENIO','PARTICULAR'], {}, { :class => 'form-control' }) %>
-	<%= f.label :atencion%>
-	<%= f.select(:atencion, ['CLINICO','QUIRURJICO','OBSTETRICO','TRAUMATOLOGIA'], {}, { :class => 'form-control' }) %>
-	<%= f.label :causa%>
-	<%= f.select(:causa, ['ACCIDENTE','ENVENENAMIENTO','VIOLENCIA','OTRAS'], {}, { :class => 'form-control' }) %>
-	<%= f.label :destino%>
-	<%= f.select(:destino, ['ALTA','CONSULTA EXTERNA','OBSERVACION','INTERNAMIENTO','TR. OTR. INST. SAL.','TR. OTR. INST. NO M'], {}, { :class => 'form-control' }) %>
-	<%= f.label :diagnostico%>
-	<%= f.text_field :diagnostico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= f.label :condicion_salir%>
-	<%= f.select(:condicion_salir, ['VIVO','MUERTO'], {}, { :class => 'form-control' }) %>
-</div>
-<br>
-<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
-<% end %>
+	<h3 class="fix-margin"><strong>Paciente: </strong><%= @paciente.cliente.nombre  %></h3>
+	<%= form_for [@paciente, @emergencia] do |f| %>
+	<%= form_errors_for @emergencia %>
+	<div class="col-md-6">
+		<%= render "condicion/condicion_paciente", f:f %>
+	</div>
+	<div class="col-md-6">
+		<h3>Ficha de Registro Medico</h3>
+		<% if @paciente.tipo == "civil" %>
+		<%= f.label :tipo_usuario, "Tipo civil"%>
+		<%= f.select(:tipo_usuario, ['CONVENIO','PARTICULAR'], {}, { :class => 'form-control' }) %>
+		<% end %>
+		<%= f.label :atencion%>
+		<%= f.select(:atencion, ['CLINICO','QUIRURJICO','OBSTETRICO','TRAUMATOLOGIA'], {}, { :class => 'form-control' }) %>
+		<%= f.label :causa%>
+		<%= f.select(:causa, ['ACCIDENTE','ENVENENAMIENTO','VIOLENCIA','OTRAS'], {}, { :class => 'form-control' }) %>
+		<%= f.label :destino%>
+		<%= f.select(:destino, ['ALTA','CONSULTA EXTERNA','OBSERVACION','INTERNAMIENTO','TR. OTR. INST. SAL.','TR. OTR. INST. NO M'], {}, { :class => 'form-control' }) %>
+		<%= f.label :diagnostico%>
+		<%= f.text_field :diagnostico, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+		<%= f.label :condicion_salir%>
+		<%= f.select(:condicion_salir, ['VIVO','MUERTO'], {}, { :class => 'form-control' }) %>
+	</div>
+	<br>
+	<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
+	<% end %>
 </div>
