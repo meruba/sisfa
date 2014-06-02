@@ -9,6 +9,11 @@
 				<span class="profile-title"><%= @doctor.especialidad %></span>
 			</div>
 		</div>
+		<div class="note info-paciente text-muted">
+			<h4><i>"Recuerda enviar tus reportes al final de tu jornada de trabajo"</i></h4>
+			<span><%=link_to("Morbilidad",new_doctor_jornada_morbilidad_path(@doctor), class: "label label-success")%></span>
+			<span><%=link_to("Preventiva",new_doctor_jornada_morbilidad_path(@doctor), class: "label label-info")%></span>
+		</div>
 	</div>
 	<div class="doctor-pacientes col-md-6">
 		<div class="row turnos-hoy">

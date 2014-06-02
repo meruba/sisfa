@@ -27,8 +27,20 @@
 		</span>
 		<ul class="list-group-submenu">
 			<li class="list-group-submenu-item"><%= link_to '', t.paciente, :rel => 'tooltip', :title => 'Historia Clinica', :target => "_blank", class: "fa fa-h-square"%></li>
-			<li class="list-group-submenu-item danger"><%= link_to 'P', new_turno_consulta_externa_preventiva_path(t), :rel => 'tooltip', :title => 'Consulta Preventiva'%></li>
-			<li class="list-group-submenu-item success"><%= link_to "M", new_turno_consulta_externa_morbilidad_path(t), { :rel=> 'tooltip', :title=>'Consulta Morbilidad'} %></li>
+			<li class="list-group-submenu-item info">
+				<% unless @enviado_preventiva %>
+				<%= link_to 'P', new_turno_consulta_externa_preventiva_path(t), :rel => 'tooltip', :title => 'Consulta Preventiva'%>
+				<% else %>
+				<span class="fa fa-rocket"></span>
+				<% end %>
+			</li>
+			<li class="list-group-submenu-item success">
+				<% unless @enviado%>
+				<%= link_to "M", new_turno_consulta_externa_morbilidad_path(t), { :rel=> 'tooltip', :title=>'Consulta Morbilidad'} %>
+				<% else %>
+				<span class="fa fa-rocket"></span>
+				<% end %>
+			</li>
 		</ul>
 		<% end %>
 		<% end %>
