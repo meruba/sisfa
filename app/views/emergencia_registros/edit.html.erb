@@ -1,30 +1,12 @@
-<h3 class="text-center"><strong>Paciente: </strong><%= @paciente.cliente.nombre  %></h3>
+<div class="row turno">
+	<h2 class="fix-margin">Registro de Emergencia</h2>
+</div>
+<div class="row info-paciente">
+<h3 class="fix-margin"><strong>Paciente: </strong><%= @paciente.cliente.nombre  %></h3>
 <%= form_for [@paciente, @emergencia] do |f| %>
-  <%= form_errors_for @emergencia %>
+<%= form_errors_for @emergencia %>
 <div class="col-md-6">
-<h3>Condicion del Paciente</h3>
-<%= f.fields_for :condicion do |c| %>
-	<%= c.label :motivo_de_consulta%>
-	<%= c.text_field :motivo_de_consulta, class: "form-control" %>
-	<%= c.label :enfermedad_actual%>
-	<%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :revision_organos_sistema%>
-	<%= c.text_area :revision_organos_sistema, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :presion_arterial%>
-	<%= c.text_field :presion_arterial, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :pulso%>
-	<%= c.text_field :pulso, class: "form-control",placeholder: "Ejm:CERVICODORSALGIA"  %>
-	<%= c.label :temperatura%>
-	<%= c.text_field :temperatura, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :examen_fisico%>
-	<%= c.text_area :examen_fisico, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-		<%= c.label :diagnostico_1%>
-	<%= c.text_field :diagnostico_1, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :diagnostico_2%>
-	<%= c.text_field :diagnostico_2, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-	<%= c.label :planes%>
-	<%= c.text_area :planes, class: "form-control",placeholder: "Ejm: CERVICODORSALGIA"  %>
-<% end %>
+	<%= render "condicion/condicion_paciente", f:f %>
 </div>
 <div class="col-md-6">
 	<h3>Ficha de Registro Medico</h3>
@@ -41,5 +23,7 @@
 	<%= f.label :condicion_salir%>
 	<%= f.select(:condicion_salir, ['VIVO','MUERTO'], {}, { :class => 'form-control' }) %>
 </div>
-<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<br>
+<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
 <% end %>
+</div>

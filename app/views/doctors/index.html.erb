@@ -8,10 +8,20 @@
 				<%= link_to 'Nuevo', new_doctor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 				<%= link_to ' Listado de hoy',doctors_imprimir_listado_path(:format => :pdf), class: "print_button", :target => "_blank" %>	
 			</div>
-			<div class="col-md-3  col-md-offset-5">
+			<div class="col-md-3">
 				<%= form_tag jornada_morbilidads_reporte_path(:format => 'xls'), method: :get do %>
 				<div class="input-group field fix-margin">
-					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte: Ingrese dia", :required => true%>
+					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte morbilidad", :required => true%>
+					<span class="input-group-btn">
+						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+					</span>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-md-3  col-md-offset-2">
+				<%= form_tag jornada_preventivas_reporte_path(:format => 'xls'), method: :get do %>
+				<div class="input-group field fix-margin">
+					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte preventiva", :required => true%>
 					<span class="input-group-btn">
 						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
 					</span>

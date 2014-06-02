@@ -15,7 +15,7 @@
 		</span>
 		<ul class="list-group-submenu">
 			<li class="list-group-submenu-item"><%= link_to '', t.paciente, :rel => 'tooltip', :title => 'Historia Clinica', :target => "_blank", class: "fa fa-h-square"%></li>
-			<li class="list-group-submenu-item success"><%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Diagnostico', class: "fa fa-check"} %></li>
+			<li class="list-group-submenu-item danger"><%= link_to "", edit_paciente_emergencia_registro_path(t.paciente, t), { :rel=> 'tooltip', :title=>'Llenar Diagnostico', class: "fa fa-plus-square"} %></li>
 		</ul>	
 		<% end %>
 	</li>
