@@ -4,7 +4,6 @@ class EmergenciaRegistrosController < ApplicationController
 
 	def index
 		@emergencia = EmergenciaRegistro.all
-		# @emergencias = Emergencia.includes(:paciente => :cliente).all.references(:paciente => :cliente)
 	end
 
 	def new

@@ -49,12 +49,8 @@ class EmergenciaRegistro < ActiveRecord::Base
 		self.condicion.save
 	end
 
-	def self.pacientes_emergencia
-		pacientes = EmergenciaRegistro.includes(:paciente).where(:registrado => false).references(:paciente)
-	end
-
-	def self.pacientes_emergencia_alta
-		pacientes = EmergenciaRegistro.includes(:paciente).where(:registrado => true).references(:paciente)
+	def self.today
+		emergencias = EmergenciaRegistro.includes(paciente: [:cliente]).where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day).references(paciente: [:cliente])
 	end
 
 	def add_parte_mensual

@@ -11,7 +11,7 @@ class DoctorsController < ApplicationController
 		@doctor = current_user.cliente.doctor
 		@turnos_hoy = @doctor.turnos.turnos_today
 		@turnos_manana = @doctor.turnos.turnos_tomorrow
-		@pacientes = @doctor.emergencia_registros
+		@pacientes = @doctor.emergencia_registros.today
 		@enviado = @doctor.jornada_morbilidads.was_send
 		@enviado_preventiva = @doctor.jornada_preventivas.was_send
 	end
@@ -82,10 +82,6 @@ class DoctorsController < ApplicationController
     end
     @doctor.save
     redirect_to doctors_path, :notice => "Doctor modificado"    
-  end
-
-  def jornada_morbilidad
-  	
   end
 
 	def edit
