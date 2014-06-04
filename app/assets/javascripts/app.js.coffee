@@ -56,11 +56,3 @@ $(document).on "ready page:load", ->
     $("#" + tog).prop "value", sel
     $("a[data-toggle=\"" + tog + "\"]").not("[data-title=\"" + sel + "\"]").removeClass("active").addClass "notActive"
     $("a[data-toggle=\"" + tog + "\"][data-title=\"" + sel + "\"]").removeClass("notActive").addClass "active"
-  #autocomlete enfermedad
-  $(".enfermedad").autocomplete
-    minLength: 2
-    source: "/enfermedads/autocomplete.json"
-    select: (event, ui) ->
-      $this = $(this)
-      $(this).prev().prev().find(".codigo_cie").text ui.item.codigo
-      $(this).next().val ui.item.codigo
