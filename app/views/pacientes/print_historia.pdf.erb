@@ -13,13 +13,13 @@
 			</small><br>
 			<small><strong>DISCAPACIDAD: </strong><%= @paciente.discapacidad %></small><br>
 		</div>
-		<div class="col-xs-5">
+		<div class="col-xs-4">
 			<small class="text-muted">LOCALIZACION</small><br>
 			<small><strong>DIRECCION: </strong><%= (@paciente.cliente.direccion).upcase%></small><br>
 			<small><strong>TELEFONO: </strong><%=@paciente.cliente.telefono%></small><br>
 			<small><strong>CORREO: </strong><%=@paciente.cliente.email%></small><br>
 		</div>
-		<div class="col-xs-3">
+		<div class="col-xs-4">
 			<small class="text-muted">CONTACTO/RELACION</small><br>
 			<small><strong><%= @paciente.informacion_adicional_paciente.familiar_cercano%> /
 				<small class="text-muted"><%= @paciente.informacion_adicional_paciente.familiar_parentesco%></small></strong></small><br>

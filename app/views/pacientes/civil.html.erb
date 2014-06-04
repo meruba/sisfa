@@ -4,8 +4,12 @@
 	<div class="row">
 		<div class="col-md-4">
 			<%= f.label :n_hclinica, "Historia Clinica #"%>
-			<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
+			<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica",required: true%>
 			<%= f.hidden_field :tipo %><br>
+		</div>
+		<div class="col-md-4">
+			<%= f.label :discapacidad%>
+			<%= f.select(:discapacidad, ['Ninguna','Fisica','Intelectual','Mental', 'Auditiva','Visual','Otra'], {}, { :class => 'form-control' }) %>
 		</div>
 		<div class="col-md-4">
 			<%= f.label :afiliado%>
@@ -17,17 +21,6 @@
 					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="OTROS">OTROS SEGUROS</a>
 				</div>
 				<%= f.hidden_field :afiliado, id: "afiliado", value: "ninguno"  %>
-			</div>
-			<br>
-		</div>
-		<div class="col-md-4">
-			<%= f.label :discapacidad, "Discapacidad?"%>
-			<div class="input-group">
-				<div id="radioBtn" class="btn-group">
-					<a class="btn btn-info btn-sm notActive" data-toggle="discapacidad" data-title="SI">SI</a>
-					<a class="btn btn-info btn-sm active" data-toggle="discapacidad" data-title="NO">NO</a>
-				</div>
-				<%= f.hidden_field :discapacidad, id: "afiliado", value: "NO"  %>
 			</div>
 			<br>
 		</div>
