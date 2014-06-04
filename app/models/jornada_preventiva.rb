@@ -326,8 +326,9 @@ class JornadaPreventiva < ActiveRecord::Base
 			#total doc
 			if c.doc == "Cervico Uterino"
 				cervico += 1
-			else 
+			else if c.doc == "Mamario"
 				mamario += 1
+			end
 			end
 		end
 		valores = [discpd,m,f,blanco,mestz,afro,indg,montb,colbn,prn,otro_ncl,issfa,iess,isspol,otros_seguro,ejerct,avcn,marn,civil, mil_activo, mil_pasivo, mil_aspirante,mil_conscripto,fam_activo,fam_pasivo,fam_der,prenatal_10_19_p, prenatal_20_49_p, primera_diu, primera_go, primera_otros,edad_1_primera,edad_1_4_primera,nino_consulta_p,prenatal_10_19_s,prenatal_20_49_s,subsecuente_diu,subsecuente_go,subsecuente_otros,edad_1_subsecuente,edad_1_4_subsecuente,nino_consulta_s,edad_5_9, edad_10_14, edad_15_19, edad_20_49, edad_50_64, edad_65,trabajadora,certificado,parto,post_parto,cervico,mamario]
