@@ -10,8 +10,8 @@
 				<% else %>
 				<span class ="fa fa-male fa-5x"></span><br>				
 				<% end %>
-				<small>paciente</small>
-				<%= link_to "imprimir", paciente_print_historia_path(@paciente, :format => 'pdf'), :target => "_blank" %>
+				<span>
+				<%= link_to "Imprimir", paciente_print_historia_path(@paciente, :format => 'pdf'), :target => "_blank",class: "label label-info" %></span>
 			</div>
 			<div class="col-md-8">
 				<h4><strong><%= @paciente.cliente.nombre %></strong></h4>

@@ -11,7 +11,7 @@
 		<div class="col-md-8">
 			<h4><strong><%= @turno.paciente.cliente.nombre %></strong></h4>
 			<small><strong>HISTORIA CLINICA: #</strong><%=@turno.paciente.n_hclinica%></small><br>
-			<small><strong>DISCAPACIDAD: </strong><%= best_in_place @turno.paciente, :discapacidad, type: :select, collection: [["SI", "SI"], ["NO", "NO"]]%></small> <span class="fa fa-pencil text-info">..</span><br>
+			<small><strong>DISCAPACIDAD: </strong> <%= best_in_place @turno.paciente, :discapacidad, type: :select, collection: [['Ninguna', 'Ninguna'],['Fisica','Fisica'],['Intelectual','Intelectual'],['Mental','Mental'],['Auditiva','Auditiva'],['Visual','Visual'],['Otra','Otra']] %></small> <span class="fa fa-pencil text-info">..</span><br>
 			<small><strong>EDAD:</strong>
 				<%= exact_age(@turno.paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"><%= @turno.paciente.cliente.fecha_de_nacimiento %></small>
 			</small><br>

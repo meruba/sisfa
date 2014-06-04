@@ -51,7 +51,14 @@ class PacientesController < ApplicationController
 		if @paciente.save
 			redirect_to pacientes_path, :notice => "Almacenado"
 		else
-			render action: 'new'
+			case @paciente.tipo
+			when "civil"
+				render action: 'civil'
+			when "familiar"
+				render action: 'familiar'
+			when "militar"				
+				render action: 'militar'
+			end
 		end
 	end
 	
