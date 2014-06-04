@@ -51,6 +51,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :hospitalizacion_registros
     resources :emergencia_registros
     get "view_edit"
+    get "print_historia"
   end
 
   resources :turnos do

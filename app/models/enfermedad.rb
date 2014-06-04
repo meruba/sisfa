@@ -12,7 +12,7 @@
 class Enfermedad < ActiveRecord::Base
 	#methods
 	def self.autocomplete(params)
-		enfermedades = Enfermedad.where("nombre like ?", "%#{params}%")
+		enfermedades = Enfermedad.where("codigo like ?", "%#{params}%")
 		enfermedades = enfermedades.map do |enfermedad|
 			{
 				:id => enfermedad.id,
