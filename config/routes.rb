@@ -50,7 +50,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_proformas
   resources :traspasos
   resources :item_traspasos
-  resources :hospitalizacions
+  resources :hospitalizacions do
+    member do
+      post "dar_de_alta"
+    end
+  end
   resources :item_hospitalizacions
   resources :factura_compras
   resources :product_imports

@@ -56,6 +56,10 @@ gem 'roo'
 # edit in place
 gem 'best_in_place', github: 'aaronchi/best_in_place'
 
+group :production do
+  gem 'rails_12factor'
+end
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 
