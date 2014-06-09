@@ -20,11 +20,13 @@
 #  codigo_cie              :string(255)
 #  especialidad_egreso     :string(255)
 #  doctor_id               :integer
+#  alta                    :boolean          default(FALSE)
 #
 
 class HospitalizacionRegistro < ActiveRecord::Base
 	#relations
 	belongs_to :paciente
+	belongs_to :doctor
 
 	#callbacks	
   before_update :set_dias
@@ -32,13 +34,20 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
-
   validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
+	validate :already_hostipalizado, on: :save
+
+	def already_hostipalizado
+		paciente = HospitalizacionRegistro.where(:paciente_id => self.paciente_id, :alta => false).last
+		unless paciente.nil?
+			errors.add :paciente_id, "El paciente ya esta hospitalizado"	
+		end		
+	end
 
 	#methods
 	def set_dias
 		unless self.fecha_de_salida.nil?
-			self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i		
+			self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i
 		end
 	end
 
@@ -51,8 +60,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 		registros = HospitalizacionRegistro.includes(:paciente).where(fecha_de_salida: fecha).references(:paciente)
 	end
 
-	# def self.hospitalizacion
-	# 	registros = HospitalizacionRegistro.where(:tipo => "Hospitalizacion")
-	# end
+	def self.ingresados
+		consultas = HospitalizacionRegistro.includes(paciente: [:informacion_adicional_paciente,:cliente]).where(:alta => false).references(paciente: [:informacion_adicional_paciente,:cliente])
+	end
 end
-

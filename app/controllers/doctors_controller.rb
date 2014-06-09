@@ -12,6 +12,7 @@ class DoctorsController < ApplicationController
 		@turnos_hoy = @doctor.turnos.turnos_today
 		@turnos_manana = @doctor.turnos.turnos_tomorrow
 		@pacientes = @doctor.emergencia_registros.today
+		@hospitalizados = @doctor.hospitalizacion_registros.ingresados
 		@enviado = @doctor.jornada_morbilidads.was_send
 		@enviado_preventiva = @doctor.jornada_preventivas.was_send
 	end

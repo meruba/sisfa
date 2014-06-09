@@ -3,7 +3,7 @@ class HospitalizacionRegistrosController < ApplicationController
   before_action :set_registro, only: [:edit, :update]
 
   def index
-    @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_salida => nil).references(:paciente => :cliente)
+    @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_ingreso => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente => :cliente)
   end
 
   def reporte
@@ -45,7 +45,14 @@ class HospitalizacionRegistrosController < ApplicationController
 
   def update
     respond_to do |format|
-      @registro.update(hospitalizacion_registro_params)
+      @registro.update(hospitalizacion_registro_params.merge(alta: true))
+      format.html { 
+      if @registro.save
+        redirect_to doctors_dashboard_path, notice: 'Paciente Dado de Alta'
+      else
+        render action: 'edit'
+      end
+      }
       format.js { render "salida"}
       format.json { respond_with_bip(@registro) }
     end
@@ -53,7 +60,7 @@ class HospitalizacionRegistrosController < ApplicationController
   private
 
   def hospitalizacion_registro_params
-    params.require(:hospitalizacion_registro).permit :historia_clinica_id,
+    params.require(:hospitalizacion_registro).permit :doctor_id,
       :fecha_de_ingreso,
       :fecha_de_salida,
       :especialidad,
@@ -65,7 +72,8 @@ class HospitalizacionRegistrosController < ApplicationController
       :diagnostico_sec_egreso1,
       :diagnostico_sec_egreso2,
       :condicion_egreso,
-      :codigo_cie
+      :codigo_cie,
+      :alta
   end
 
   def find_paciente

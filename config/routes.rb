@@ -48,7 +48,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :canjes
   end
   resources :pacientes do
-    resources :hospitalizacion_registros
+    resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update]
     resources :emergencia_registros
     get "view_edit"
     get "print_historia"

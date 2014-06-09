@@ -1,13 +1,14 @@
 <div class="modal-header">
-  <h3 class="modal-title" id="myModalLabel"><%= @paciente.cliente.nombre %></h3>
+	<h3 class="modal-title" id="myModalLabel"><%= @paciente.cliente.nombre %></h3>
 </div>
 <%= form_for [@paciente, @registro], :remote => true do |f| %>
 <div class="modal-body">
 	<div class="field">
-	<%= f.label :especialidad %>
-	<%= f.select :especialidad, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
-	<%= f.label :medico_asignado %>
-	<%= f.text_field :medico_asignado, class: "doctor_autocomplete", placeholder: "Ejm: Juan Perez" %>
+		<%= f.label :especialidad%>
+		<%= f.select(:especialidad, ['Cardilogía','Cardilogía Toráxica','Dermatlogía', 'Endocrinología', 'Gastroenterología', 'Infectología', 'Nefrología', 'Neumología', 'Neurología clínica', 'Oftalmología', 'Otorrinolaringología', 'Psiquiatría', 'Oncología', 'Hematología', 'Reumatología', 'Complicaciones y discapacidades', 'Unidad de cuidados intensivos', 'Cirugía pediátrica', 'Neurocirugía', 'Cirugía plástica', 'Cirugía vascular', 'Cirugía maxilo facial', 'Proctología', 'Traumatología', 'Urología', 'Unidad de quemados', 'Ginecología - obstetricia', 'Neonatología ó Pediatría', 'Otra'], {}, { :class => 'select-egreso form-control' }) %>
+		<%= f.label :medico_asignado %>
+		<%= f.text_field :medico_asignado, class: "doctor_autocomplete", placeholder: "Ejm: Juan Perez" %>
+		<%= f.hidden_field :doctor_id, class: "doctor_id"%>
 	</div>
 </div>
 <div class="modal-footer">

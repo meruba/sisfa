@@ -18,14 +18,16 @@
 		<%= f.select(:atencion, ['CLINICO','QUIRURJICO','OBSTETRICO','TRAUMATOLOGIA'], {}, { :class => 'form-control' }) %>
 		<%= f.label :causa%>
 		<%= f.select(:causa, ['ACCIDENTE','ENVENENAMIENTO','VIOLENCIA','OTRAS'], {}, { :class => 'form-control' }) %>
-		<%= f.label :destino%>
-		<%= f.select(:destino, ['ALTA','CONSULTA EXTERNA','OBSERVACION','INTERNAMIENTO','TR. OTR. INST. SAL.','TR. OTR. INST. NO M'], {}, { :class => 'form-control' }) %>
 		<%= f.label :diagnostico%>
 		<%= f.text_field :diagnostico, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
 		<%= f.label :condicion_salir%>
 		<%= f.select(:condicion_salir, ['VIVO','MUERTO'], {}, { :class => 'form-control' }) %>
-	</div>
-	<br>
-	<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
-	<% end %>
+		<%= f.label :destino%>
+		<%= f.select(:destino, ['ALTA','CONSULTA EXTERNA','OBSERVACION','INTERNAMIENTO','TR. OTR. INST. SAL.','TR. OTR. INST. NO M'], {}, { :class => 'form-control' }) %>
+	</br>
+</div>
+<%=link_to ' Hospitalizar?', new_paciente_hospitalizacion_registro_path(@paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',class: "ttip fa fa-hospital-o btn btn-info fix-margin"}%>
+<small>* Solo en caso que destino sea "Internamiento" </small>
+<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
+<% end %>
 </div>

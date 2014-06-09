@@ -15,6 +15,7 @@ class Doctor < ActiveRecord::Base
 	#relations
 	belongs_to :cliente
 	has_many :emergencia_registros
+	has_many :hospitalizacion_registros
 	has_many :jornada_morbilidads
 	has_many :jornada_preventivas
 	has_many :emergencia_parte_mensuals
