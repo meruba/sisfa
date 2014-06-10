@@ -2,9 +2,9 @@
 	<h2 class="fix-margin">Registro de Emergencia</h2>
 </div>
 <div class="row info-paciente">
-	<h3 class="fix-margin"><strong>Paciente: </strong><%= @paciente.cliente.nombre  %></h3>
-	<%= form_for [@paciente, @emergencia] do |f| %>
-	<%= form_errors_for @emergencia %>
+	<%= render "pacientes/informacion_hospitalizacion"  %>
+	<%= form_for [@paciente, @registro] do |f| %>
+	<%= form_errors_for @registro %>
 	<div class="col-md-6">
 		<%= render "condicion/condicion_paciente", f:f %>
 	</div>

@@ -68,12 +68,12 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="Number"><%= r.fecha_de_salida.day %></Data></Cell>
       <Cell><Data ss:Type="String"><%= local_date(r.fecha_de_salida, "date") %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.condicion_egreso %></Data></Cell>
-      <Cell><Data ss:Type="String">r.especialidad_egreso</Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.especialidad_egreso %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.diagnostico_ingreso %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.diagnostico_salida %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.diagnostico_sec_egreso1 %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.diagnostico_sec_egreso2 %></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= r.codigo_cie %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.codigo_cie %></Data></Cell>
     </Row>
     <% end %>
   </Table>

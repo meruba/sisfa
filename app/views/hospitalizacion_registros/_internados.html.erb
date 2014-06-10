@@ -18,7 +18,7 @@
     <h6 class="text-center">Dr(a): <%=r.medico_asignado%></h6>
     <h6 class="tiempo text-muted">
       <span><%=local_date(r.fecha_de_ingreso, "date")%></span>
-      <span class="pull-right clickable"><%= time_ago_in_words(r.fecha_de_ingreso)%></span>
+      <span class="pull-right"><%= time_ago_in_words(r.fecha_de_ingreso)%></span>
     </h6>
   </div>
   <% end %>
