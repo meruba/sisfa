@@ -73,6 +73,7 @@ class HospitalizacionRegistrosController < ApplicationController
       :diagnostico_sec_egreso2,
       :condicion_egreso,
       :codigo_cie,
+      :especialidad_egreso,
       :alta
   end
 

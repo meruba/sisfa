@@ -3,7 +3,7 @@ class EmergenciaRegistrosController < ApplicationController
 	before_action :set_emergencia, only: [:edit, :update, :show]
 
 	def new
-		@emergencia = EmergenciaRegistro.new
+		@registro = EmergenciaRegistro.new
 		respond_to do |format|
 			format.html
 			format.js
@@ -11,10 +11,10 @@ class EmergenciaRegistrosController < ApplicationController
 	end
 
 	def create
-    @emergencia = EmergenciaRegistro.new(emergencia_registro_params.merge(registrado: false))
-		@emergencia.paciente = @paciente
+    @registro = EmergenciaRegistro.new(emergencia_registro_params.merge(registrado: false))
+		@registro.paciente = @paciente
 		respond_to do |format|
-			@emergencia.save
+			@registro.save
 			format.js { render "success" }
 		end
 	end
@@ -24,7 +24,7 @@ class EmergenciaRegistrosController < ApplicationController
 	end
 
 	def edit
-		@emergencia.build_condicion
+		@registro.build_condicion
 		respond_to do |format|
 			format.html
 			format.js
@@ -33,7 +33,7 @@ class EmergenciaRegistrosController < ApplicationController
 
 	def update
 		respond_to do |format|
-			if @emergencia.update(emergencia_registro_params.merge(registrado: true))
+			if @registro.update(emergencia_registro_params.merge(registrado: true))
         format.html { redirect_to doctors_dashboard_path, notice: 'Emergencia Almacenada' }
       else
         format.html { render action: 'edit' }
@@ -78,6 +78,6 @@ class EmergenciaRegistrosController < ApplicationController
 	end
 
 	def set_emergencia
-		@emergencia = EmergenciaRegistro.find(params[:id])
+		@registro = EmergenciaRegistro.find(params[:id])
 	end
 end
