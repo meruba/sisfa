@@ -2,10 +2,6 @@ class EmergenciaRegistrosController < ApplicationController
 	before_action :find_paciente, only: [:new, :create, :edit, :show, :update]
 	before_action :set_emergencia, only: [:edit, :update, :show]
 
-	def index
-		@emergencia = EmergenciaRegistro.all
-	end
-
 	def new
 		@emergencia = EmergenciaRegistro.new
 		respond_to do |format|
