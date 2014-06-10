@@ -45,14 +45,13 @@ class Doctor < ActiveRecord::Base
 
 	def self.turnos_doctores
 		doctores = []
-		Doctor.includes(:turnos).where(:suspendido => false).each do |doctor|
+		Doctor.includes(:cliente).where(:suspendido => false).each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
 				:nombre =>doctor.cliente.nombre, 
 				:turnos_emitidos => num_turnos,
 				:turnos_disponibles => doctor.cantidad_turno - num_turnos,
-				:especialidad => doctor.especialidad,
-				:id => doctor.id
+				:especialidad => doctor.especialidad
 				}
 		end
 		doctores

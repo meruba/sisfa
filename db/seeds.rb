@@ -40,7 +40,30 @@ enfermedades = [
 {	codigo:	"F451"	, nombre:	"Trastorno somatomorfo indiferenciado"},
 {	codigo:	"F452"	, nombre:	"Trastorno hipocondríaco"	},
 {	codigo:	"F453"	, nombre:	"Disfunción autonómica somatomorfa"	},
-{	codigo:	"F454"	, nombre:	"Trastorno de dolor persistente somatomorfo"	}
+{	codigo:	"F454"	, nombre:	"Trastorno de dolor persistente somatomorfo"	},
+{ codigo: "D643" , nombre: "Otras anemias sideroblásticas" },
+{ codigo: "D644" , nombre: "Anemia diseritropoyética congénita " },
+{ codigo: "D648" , nombre: "Otras anemias especificadas" },
+{ codigo: "D649" , nombre: "Anemia de tipo no especificado " },
+{ codigo: "D65" , nombre: "Coagulación intravascular diseminada [síndrome de desfibrinación]" },
+{ codigo: "D66" , nombre: "Deficiencia hereditaria del factor VIII" },
+{ codigo: "D67" , nombre: "Deficiencia hereditaria del factor IX" },
+{ codigo: "D68" , nombre: "Otros defectos de la coagulación " },
+{ codigo: "D680" , nombre: "Enfermedad de von Willebrand " },
+{ codigo: "D681" , nombre: "Deficiencia hereditaria del factor XI" },
+{ codigo: "D682" , nombre: "Deficiencia hereditaria de otros factores de la coagulación" },
+{ codigo: "R460" , nombre: "Muy bajo nivel de higiene personal" },
+{ codigo: "R461" , nombre: "Apariencia personal extraña" },
+{ codigo: "R462" , nombre: "Conducta extraña e inexplicable" },
+{ codigo: "R463" , nombre: "Hiperactividad " },
+{ codigo: "R464" , nombre: "Lentitud y pobre respuesta" },
+{ codigo: "R465" , nombre: "Suspicacia y evasividad marcadas" },
+{ codigo: "R466" , nombre: "Preocupación indebida por sucesos que causan tensión" },
+{ codigo: "P701" , nombre: "Síndrome del recién nacido de madre diabética" },
+{ codigo: "P702" , nombre: "Diabetes mellitus neonatal" },
+{ codigo: "P703" , nombre: "Hipoglicemia neonatal yatrogénica" },
+{ codigo: "P704" , nombre: "Otras hipoglicemias neonatales" },
+{ codigo: "P708" , nombre: "Otros trastornos transitorios del metabolismo de los carbohidratos en el feto y el recién nacido" }
 ].each do |enfermedad|
   Enfermedad.where(codigo: enfermedad[:codigo], nombre: enfermedad[:nombre]).first_or_initialize.tap do |c|
     c.update_attributes! enfermedad

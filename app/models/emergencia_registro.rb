@@ -35,6 +35,14 @@ class EmergenciaRegistro < ActiveRecord::Base
   #validations
   validates :nombre_medico, :presence => true
   validates :atencion, :causa, :diagnostico, :condicion_salir, :presence => true, :on => :update
+	validate :already_ingresado, on: :create
+
+  def already_ingresado
+		paciente = EmergenciaRegistro.where(:paciente_id => self.paciente_id, :registrado => false).last
+		unless paciente.nil?
+			errors.add :paciente_id, "El paciente ya fue registrado"	
+		end		
+	end
 
 	#methods
 	def calculate_values

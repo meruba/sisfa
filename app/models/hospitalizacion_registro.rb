@@ -35,7 +35,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
   validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
-	validate :already_hostipalizado, on: :save
+	validate :already_hostipalizado, on: :create
 
 	def already_hostipalizado
 		paciente = HospitalizacionRegistro.where(:paciente_id => self.paciente_id, :alta => false).last
