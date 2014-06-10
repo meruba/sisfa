@@ -6,7 +6,8 @@
 			<% else %>
 			<span class ="fa fa-male fa-5x"></span><br>				
 			<% end %>
-			<small>GENERO</small>
+			<br>
+			<%= link_to 'Actualizar Datos', paciente_view_edit_path(@turno.paciente),{:target => '_blank', class: "ttip btn btn-info btn-xs"}%>
 		</div>
 		<div class="col-md-8">
 			<h4><strong><%= @turno.paciente.cliente.nombre %></strong></h4>
