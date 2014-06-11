@@ -29,13 +29,14 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	belongs_to :doctor
 
 	#callbacks	
-  before_update :set_dias
+  before_update :set_values
   # before_validation :set_dias, :on => :update
 
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
   validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
 	validate :already_hostipalizado, on: :create
+	validate :validate_fecha_salida, :on => :update
 
 	def already_hostipalizado
 		paciente = HospitalizacionRegistro.where(:paciente_id => self.paciente_id, :alta => false).last
@@ -44,8 +45,15 @@ class HospitalizacionRegistro < ActiveRecord::Base
 		end		
 	end
 
+	def validate_fecha_salida
+		if self.fecha_de_salida < self.fecha_de_ingreso
+      errors.add :fecha_de_salida, "Fecha de salida no válida"			
+		end
+	end
+
 	#methods
-	def set_dias
+	def set_values
+		self.discapacidad = self.paciente.discapacidad
 		unless self.fecha_de_salida.nil?
 			self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i
 		end
