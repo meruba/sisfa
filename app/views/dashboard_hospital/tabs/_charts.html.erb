@@ -1,0 +1,71 @@
+<div class="row">
+	<div class="estadisticas">
+		<div class="row state-overview">
+			<div class="col-lg-4 col-xs-6">
+				<section class="panel" id="charts">
+					<div class="symbol red">
+						<i class="fa fa-plus"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count2">
+							<div class="anim" data-target="<%= @emergencias %>">0</div>
+						</h1>
+						<p>Emergencias</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<section class="panel" id="charts">
+					<div class="symbol yellow">
+						<i class="fa fa-ticket"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count3">
+							<div class="anim" data-target="<%= @turnos %>">0</div>
+						</h1>
+						<p>Turnos</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<section class="panel" id="charts">
+					<div class="symbol blue">
+						<i class="fa fa-hospital-o"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count4">
+							<div class="anim" data-target="<%= @hospitalizados %>">0</div>
+						</h1>
+						<p>Hospitalizados</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<section class="panel" id="charts">
+					<div class="symbol green">
+						<i class="fa fa-stethoscope"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count4">
+							<div class="anim" data-target="<%= @morbilidads %>">0</div>
+						</h1>
+						<p>Morbilidad</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-4 col-xs-6">
+				<section class="panel" id="charts">
+					<div class="symbol blue">
+						<i class="fa fa-stethoscope"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count4">
+							<div class="anim" data-target="<%=@preventivas%>">0</div>
+						</h1>
+						<p>Preventivas</p>
+					</div>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>

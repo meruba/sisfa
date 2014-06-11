@@ -32,6 +32,9 @@ get "jornada_morbilidads/reporte"
 get "enfermedads/autocomplete"
 get "jornada_preventivas/reporte"
 get "emergencia_parte_mensuals/reporte"
+get "dashboard_hospital/index"
+get "dashboard_hospital/estadisticas_hoy"
+get "dashboard_hospital/estadisticas_mes"
 
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
