@@ -5,13 +5,13 @@
 	<div class="row info-paciente">
 		<div class="acciones">
 			<div class="well well-sm">
-				<strong>Acciones: </strong>
-				<div class="btn-group">
-					<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
-				</div>
+				<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
+				<%= link_to 'Hoy',turnos_hoy_path, class: "btn btn-info btn-xs"  %>
+				<%= link_to 'Manana',turnos_manana_path, class: "btn btn-info btn-xs"  %>
 			</div>
 		</div>
 		<ul class="doctores cantidad_turnos">
 			<%= render "doctor_turnos"%>
 		</ul>
 	</div>
+</div>

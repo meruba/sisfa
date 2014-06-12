@@ -65,7 +65,6 @@ class Turno < ActiveRecord::Base
 		else
 			self.numero = 1
 			self.hora = Time.now.tomorrow.beginning_of_day + (510*60) #510x60 = 8:30 am
-
 		end
 	end
 
@@ -81,4 +80,9 @@ class Turno < ActiveRecord::Base
 	def self.turnos_tomorrow
 		turno = Turno.includes(paciente: [:cliente]).where(:fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).references(paciente: [:cliente])
 	end
+
+	def self.turnos_query(fecha)
+		turno = Turno.includes(paciente: [:cliente]).where(:fecha => fecha).references(paciente: [:cliente])
+	end
+
 end
