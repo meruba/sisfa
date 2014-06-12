@@ -35,6 +35,9 @@ get "emergencia_parte_mensuals/reporte"
 get "dashboard_hospital/index"
 get "dashboard_hospital/estadisticas_hoy"
 get "dashboard_hospital/estadisticas_mes"
+get "turnos/hoy"
+get "turnos/manana"
+get "dashboard_hospital/ingresados"
 
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]

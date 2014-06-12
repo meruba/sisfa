@@ -45,7 +45,7 @@ class Doctor < ActiveRecord::Base
 
 	def self.turnos_doctores
 		doctores = []
-		Doctor.includes(:cliente).where(:suspendido => false).each do |doctor|
+		self.includes(:cliente).where(:suspendido => false).each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
 				:nombre =>doctor.cliente.nombre, 
@@ -57,14 +57,24 @@ class Doctor < ActiveRecord::Base
 		doctores
 	end
 
-	def self.doctor_has_turnos_today
-		doctores = Doctor.includes(:turnos).where("turnos.fecha = '%#{Time.now.beginning_of_day..Time.now.end_of_day}%'").references(:turnos)
-	end
-
 	def self.list_turnos_all_doctor
 		doctores = []
-		Doctor.includes(:turnos).each do |doctor|
+		self.includes(:turnos, :cliente).each do |doctor|
 			turno = doctor.turnos.turnos_today
+			unless turno.compact.empty?
+				doctores << {
+					:nombre =>doctor.cliente.nombre, 
+					:turnos => turno
+				}
+			end
+		end
+		doctores
+	end
+
+	def self.list_turnos_query(fecha)
+		doctores = []
+		self.includes(:turnos, :cliente).each do |doctor|
+			turno = doctor.turnos.turnos_query(fecha)
 			unless turno.compact.empty?
 				doctores << {
 					:nombre =>doctor.cliente.nombre, 
