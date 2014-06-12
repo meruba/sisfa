@@ -13,7 +13,8 @@ class DashboardHospitalController < ApplicationController
     estadisticas(Time.now.beginning_of_month..Time.now.end_of_month)
 	end
 
-	def reportes
-		
+	def ingresados
+		@emergencias_mes = EmergenciaRegistro.includes(:paciente).where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente)
+    @hospitalizados_mes = HospitalizacionRegistro.includes(:paciente).where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente)
 	end
 end

@@ -1,3 +1,61 @@
 // Place all the styles related to the dashboardHospital controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+/* ================
+   Assign Variables */
+$primary-color: #6EB590;
+$secondary-color: #9987B5;
+
+/* ===========================
+   Setup Mixins/Helper Classes */
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+
+/* ================
+   Calendar Styling */
+.calendar {
+  background: white;
+  padding: 3em;
+  border-radius: 10px;
+  .month { margin-top: 0; font-weight: normal; font-size: 3em; color: $primary-color; }
+  ol { 
+    list-style: none; margin: 0; padding:0; @extend .clearfix;
+    li { float: left; width: percentage(1/7); }
+  }
+  .day-names {
+    border-bottom: 1px solid #eee;
+    li { text-transform: uppercase; margin-bottom: .5em}
+  }
+  .days {
+    li {
+      border-bottom: 1px solid #eee;
+      min-height: 8em;
+      .date { margin: .5em 0; }
+      .event { 
+        background: $primary-color; 
+        font-size: .75em;
+        padding: 0 .75em;
+        line-height: 1.4em; 
+        color: white;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-radius: 1em;
+        margin-bottom: 1px;
+        &.span-2 { width: 200%; }
+        &.begin { border-radius: 1em 0 0 1em;}
+        &.end { border-radius: 0 1em 1em 0;}
+        &.all-day { background: $secondary-color; }
+        &.clear { background: none;}
+      }
+      &:nth-child(n+29) { border-bottom: none; }
+      &.outside .date { color: #ddd; }
+    }
+  }
+}
