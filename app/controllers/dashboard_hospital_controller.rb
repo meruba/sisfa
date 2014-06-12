@@ -14,7 +14,11 @@ class DashboardHospitalController < ApplicationController
 	end
 
 	def ingresados
-		@emergencias_mes = EmergenciaRegistro.includes(:paciente).where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente)
-    @hospitalizados_mes = HospitalizacionRegistro.includes(:paciente).where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente)
+		# calendario
+		@numero_dias = numero_dias(Time.now)
+		@espacios = number_space(Time.now)
+		# registros
+		@emergencias_mes = EmergenciaRegistro.includes(paciente: [:cliente]).where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).references(paciente: [:cliente])
+    @hospitalizados_mes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month).references(paciente: [:cliente])
 	end
 end

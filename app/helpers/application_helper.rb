@@ -39,8 +39,4 @@ module ApplicationHelper
     end
     date 
   end
-
-  def numero_dias(numero_mes)
-    (Date.new(Time.now.year,12,31).to_date<<(12-numero_mes)).day
-  end
 end
