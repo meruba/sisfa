@@ -8,10 +8,16 @@ class TurnosController < ApplicationController
 
 	def hoy
 		@turnos = Doctor.list_turnos_query(Time.now.beginning_of_day..Time.now.end_of_day)
+		if @turnos.empty?
+			render :template => "results/not_turnos"			
+		end
 	end
 
 	def manana
-		@turnos = Doctor.list_turnos_query(Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day)	
+		@turnos = Doctor.list_turnos_query(Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day)
+		if @turnos.empty?
+			render :template => "results/not_turnos"			
+		end
 	end
 
 	def new

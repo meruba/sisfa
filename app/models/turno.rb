@@ -31,7 +31,7 @@ class Turno < ActiveRecord::Base
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?
 		doctor = Doctor.find(self.doctor_id)
-		ultimo = doctor.turnos.last
+		ultimo = doctor.turnos.last_turno
 		unless ultimo.nil?
 			if ultimo.numero >= doctor.cantidad_turno #limita segun el numero de turnos x doctor
 				errors.add :numero, "Turnos llenos para:" + self.doctor_a_cargo
