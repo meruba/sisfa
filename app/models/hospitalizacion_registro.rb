@@ -9,6 +9,7 @@
 #  medico_asignado         :string(255)
 #  created_at              :datetime
 #  updated_at              :datetime
+#  historia_clinica_id     :integer
 #  diagnostico_ingreso     :string(255)
 #  diagnostico_salida      :string(255)
 #  discapacidad            :string(255)
@@ -20,7 +21,6 @@
 #  codigo_cie              :string(255)
 #  especialidad_egreso     :string(255)
 #  doctor_id               :integer
-#  alta                    :boolean          default(FALSE)
 #
 
 class HospitalizacionRegistro < ActiveRecord::Base

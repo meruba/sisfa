@@ -6,6 +6,7 @@
 #  parroquia           :string(255)
 #  provincia           :string(255)
 #  canton              :string(255)
+#  jefe_de_reparto     :string(255)
 #  familiar_cercano    :string(255)
 #  familiar_direccion  :string(255)
 #  familiar_telefono   :string(255)
