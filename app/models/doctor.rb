@@ -26,11 +26,10 @@ class Doctor < ActiveRecord::Base
 	
 	#	validations
 	validates :especialidad, :cantidad_turno, :presence => true
-	validates :cantidad_turno, :numericality => { :greater_than => 0 }
+	# validates :cantidad_turno, :numericality => { :greater_than => 0 }
 	#methods
-	
 	def self.autocomplete(params)
-		doctores = Doctor.includes(:cliente).where("nombre like ?", "%#{params}%").references(:cliente)
+		doctores = Doctor.includes(:cliente).where("suspendido = false and nombre like ?", "%#{params}%").references(:cliente)
     doctores = doctores.map do |doctor|
       {
         :id => doctor.id,
@@ -45,7 +44,7 @@ class Doctor < ActiveRecord::Base
 
 	def self.turnos_doctores
 		doctores = []
-		self.includes(:cliente).where(:suspendido => false).each do |doctor|
+		self.includes(:cliente).where("suspendido = false and cantidad_turno != 0").each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
 				:nombre =>doctor.cliente.nombre, 

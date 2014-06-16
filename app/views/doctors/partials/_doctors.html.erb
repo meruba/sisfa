@@ -11,9 +11,14 @@
 			<% else %>
 			<%= link_to '', suspender_doctor_path(doctor), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down  text-muted pull-right"%>
 			<% end %>
-			<span><%= link_to "", edit_doctor_path(doctor), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-edit pull-right text-muted"} %></span>
+			<span><%= link_to "", edit_doctor_path(doctor), {:remote => true, :rel=> 'tooltip', :title=>'Editar Turnos','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-edit pull-right text-muted"} %></span>
 		</h5>
-		<h5><%= doctor.especialidad  %> / <span class="text-muted">Atiende: <%=  doctor.cantidad_turno %> turnos</span></h5>
+		<h5><%= doctor.especialidad  %> / 
+			<% if doctor.cantidad_turno == 0 %>
+			<span class="text-muted">No atiende turnos</span></h5>
+			<% else %>
+			<span class="text-muted">Atiende: <%=  doctor.cantidad_turno %> turnos</span></h5>			
+			<% end %>
 		<p>Turnos:
 			<small><%= link_to "Hoy",turnos_dia_doctor_path(doctor),  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small> |
 			<small><%= link_to "Mañana",turnos_manana_doctor_path(doctor),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></small>

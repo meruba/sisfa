@@ -1,0 +1,3 @@
+m = $('#content_modal');
+m.html('<%= j(render partial: 'doctors/partials/edit', locals: {doctor: @doctor}) %>');
+window.Helpers.FormsHelper.init();

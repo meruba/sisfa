@@ -4,7 +4,7 @@ class DoctorsController < ApplicationController
 	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender, :pacientes_emergencia]
 
 	def index
-		@doctores = Doctor.all
+		@doctores = Doctor.includes(:cliente).all
 	end
 
 	def dashboard
@@ -27,7 +27,7 @@ class DoctorsController < ApplicationController
 		@doctor = Doctor.new
 		@doctor.build_cliente
     respond_to do |format|
-      format.js{ render "new_or_edit" }
+      format.js
     end
 	end
 	
@@ -87,7 +87,7 @@ class DoctorsController < ApplicationController
 
 	def edit
 		respond_to do |format|
-      format.js { render "new_or_edit"}
+      format.js
     end
 	end
 
