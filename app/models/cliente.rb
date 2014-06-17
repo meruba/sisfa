@@ -29,7 +29,6 @@ class Cliente < ActiveRecord::Base
 	has_one :doctor
 	has_many :proformas
 	has_many :facturas
-	has_many :registros
 	has_many :hospitalizacions
 
 #methods
