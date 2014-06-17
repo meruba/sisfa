@@ -1,7 +1,7 @@
-<% unless @pacientes.empty?  %>
+<% unless @emergencias.empty?  %>
 <h4 class="fa fa-plus-square text-danger"> Emergencia</h4>
 <ul class="list-group">
-	<% @pacientes.each do |t|  %>
+	<% @emergencias.each do |t|  %>
 	<li class="list-group-item item-turnos" <%= 'style= background-color:#7CC576;color:#fff;' if t.registrado %>>
 		<ul class="list-inline text-center">
 			<li class=" col-md-2 col-xs-2 datos-turno"><spam>E</spam></li>
