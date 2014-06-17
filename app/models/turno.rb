@@ -26,12 +26,12 @@ class Turno < ActiveRecord::Base
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
-	validate :doctor_suspendido, :doctor_limit_turnos, :paciente_has_one_turno, on: :save
+	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, on: :create
 
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?
 		doctor = Doctor.find(self.doctor_id)
-		ultimo = doctor.turnos.last
+		ultimo = doctor.turnos.last_turno
 		unless ultimo.nil?
 			if ultimo.numero >= doctor.cantidad_turno #limita segun el numero de turnos x doctor
 				errors.add :numero, "Turnos llenos para:" + self.doctor_a_cargo
@@ -47,10 +47,10 @@ class Turno < ActiveRecord::Base
 		end		
 	end
 
-	def doctor_suspendido
+	def doctor_suspendido_or_not_turnos
 		doctor = Doctor.find(self.doctor_id)
-		if doctor.suspendido
-				errors.add :doctor_id, "El:" + doctor.nombre + " No esta disponible"
+		if doctor.suspendido or doctor.cantidad_turno == 0
+				errors.add :doctor_id, "El Dr(a):" + doctor.cliente.nombre + " no esta atendiendo"
 		end		
 	end
 

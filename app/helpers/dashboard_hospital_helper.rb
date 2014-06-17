@@ -10,24 +10,8 @@ module DashboardHospitalHelper
 # make space calendar
 	def number_space(date)
 		number = 0
-		day = date.beginning_of_month.strftime("%a")
-		case day
-		when "Sun"
-			number = 6
-		when "Sat"
-			number = 5
-		when "Fri"
-			number = 4
-		when "Thu"
-			number = 3
-		when "Wed"
-			number = 2
-		when "Thu"
-			number = 1
-		when "Mon"					
-			number = 0
-		end
-		number
+		day = date.beginning_of_month
+		number = day.wday # wday devuelve en numero dia semanana
 	end
 	
 #numero de dias del mes

@@ -4,14 +4,14 @@ class DoctorsController < ApplicationController
 	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender, :pacientes_emergencia]
 
 	def index
-		@doctores = Doctor.all
+		@doctores = Doctor.includes(:cliente).all
 	end
 
 	def dashboard
 		@doctor = current_user.cliente.doctor
 		@turnos_hoy = @doctor.turnos.turnos_today
 		@turnos_manana = @doctor.turnos.turnos_tomorrow
-		@pacientes = @doctor.emergencia_registros.today
+		@emergencias = @doctor.emergencia_registros.ingresados
 		@hospitalizados = @doctor.hospitalizacion_registros.ingresados
 		@enviado = @doctor.jornada_morbilidads.was_send
 		@enviado_preventiva = @doctor.jornada_preventivas.was_send
@@ -27,7 +27,7 @@ class DoctorsController < ApplicationController
 		@doctor = Doctor.new
 		@doctor.build_cliente
     respond_to do |format|
-      format.js{ render "new_or_edit" }
+      format.js
     end
 	end
 	
@@ -87,7 +87,7 @@ class DoctorsController < ApplicationController
 
 	def edit
 		respond_to do |format|
-      format.js { render "new_or_edit"}
+      format.js
     end
 	end
 
