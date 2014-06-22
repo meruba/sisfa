@@ -39,7 +39,7 @@ class ClienteImport
       row = Hash[[header,spreadsheet.row(i)].transpose]
       parameters = ActionController::Parameters.new(row.to_hash)
       cliente = Cliente.find_by_id(parameters[:id]) || Cliente.new
-      cliente.attributes = parameters.permit(:id, :fecha_nacimiento,:telefono, :email, :estado_civil, :direccion, :nombre, :numero_de_identificacion, :sexo)
+      cliente.attributes = parameters.permit(:fecha_de_nacimiento, :telefono, :email, :estado_civil, :direccion, :nombre, :numero_de_identificacion, :sexo)
       cliente
     end
   end
