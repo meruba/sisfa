@@ -29,6 +29,11 @@ class TurnosController < ApplicationController
 
 	def create
 		@turno = Turno.new(turno_params)
+		if @_params[:hoy] == "1" #obtiene valor del check_box_tag
+			@turno.fecha = Time.now.beginning_of_day
+			else			
+			@turno.fecha = Time.now.tomorrow.beginning_of_day #fecha para el proximo dia
+		end
 		respond_to do |format|
 			@turno.save
 			format.js { 
