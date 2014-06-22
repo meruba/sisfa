@@ -1,4 +1,8 @@
 <%= link_to 'Nuevo', new_cliente_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
+
+<%= link_to 'Importar clientes', new_cliente_import_path, class: "print_button" %>
+
+
 <h1 class="text-center">Lista de Clientes</h1>
 
 <div class="table-clientes" id="flip-scroll">

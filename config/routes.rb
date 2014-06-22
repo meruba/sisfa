@@ -81,6 +81,7 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_hospitalizacions
   resources :factura_compras
   resources :product_imports
+  resources :cliente_imports
   resources :informacion_adicional_pacientes, :only => [:edit, :update]
   resources :revisions
   resources :doctors do
