@@ -20,7 +20,7 @@ class Cliente < ActiveRecord::Base
 
 #validations
 	validates :nombre, :presence =>true
-	validates :numero_de_identificacion, :uniqueness => true
+	validates :numero_de_identificacion, :uniqueness => true, :if => :numero_de_identificacion?
 	validates_id :numero_de_identificacion, :message => "Cédula incorrecta"
 
 # relationships
@@ -33,7 +33,7 @@ class Cliente < ActiveRecord::Base
 
 #methods
 	def self.autocomplete(params)
-		clientes = Cliente.includes(:paciente).where("numero_de_identificacion like ?", "%#{params}%").references(:paciente)
+		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%")
     clientes = clientes.map do |cliente|
       {
         :id => cliente.id,

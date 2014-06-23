@@ -30,6 +30,7 @@ class EmergenciaRegistro < ActiveRecord::Base
 	#callbacks
 	before_create :calculate_values
 	before_update :set_values
+	# before_validation :set_values
 	after_update :add_parte_mensual
 
   #validations
