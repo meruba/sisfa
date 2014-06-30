@@ -9,15 +9,15 @@
 </td>
 
 <td class ="valor_unitario">
-  <%= item.number_field :valor_unitario, :readonly => true %>
+  <%= item.text_field :valor_unitario, :readonly => true, class: "form-control-border" %>
 </td>
 
 <td class ="iva">
-  <%= item.number_field :iva, :readonly => true %>
+  <%= item.text_field :iva, :readonly => true, class: "form-control-border" %>
 </td>
 
 <td class ="total_item">
-  <%= item.number_field :total, :readonly => true %>
+  <%= item.text_field :total, :readonly => true, class: "form-control-border" %>
 </td>
 
 <td>
