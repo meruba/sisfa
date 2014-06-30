@@ -49,7 +49,7 @@ class Paciente < ActiveRecord::Base
     pacientes = pacientes.map do |paciente|
       {
         :id => paciente.id,
-        :label => paciente.cliente.nombre + " / " + paciente.cliente.numero_de_identificacion,
+        :label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
         :value => paciente.cliente.nombre,
         :nombre => paciente.cliente.nombre,
         :cliente_id => paciente.cliente.id,
