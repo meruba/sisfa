@@ -1,0 +1,2 @@
+module NotaEnfermerasHelper
+end
