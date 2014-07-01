@@ -38,7 +38,7 @@ get "dashboard_hospital/estadisticas_mes"
 get "turnos/hoy"
 get "turnos/manana"
 get "dashboard_hospital/ingresados"
-
+get "dashboard_enfermeria/index"
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
@@ -69,6 +69,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
   resources :hospitalizacion_registros
+  resources :nota_enfermeras
+  resources :item_nota_enfermeras
   resources :item_facturas
   resources :item_proformas
   resources :traspasos

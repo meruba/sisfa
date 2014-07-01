@@ -31,7 +31,11 @@ class HospitalizacionRegistrosController < ApplicationController
     @registro = HospitalizacionRegistro.new(hospitalizacion_registro_params.merge(:fecha_de_ingreso => Time.now))
     @registro.paciente = @paciente
     respond_to do |format|
-      @registro.save
+      if @registro.save
+        @nota = NotaEnfermera.new
+        @nota.hospitalizacion_registro = @registro
+        @nota.save
+      end
       format.js { render "success" }
     end
   end
