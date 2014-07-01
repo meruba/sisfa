@@ -1,0 +1,6 @@
+<tr>
+	<td><%= local_date(item.fecha,"date") %></td>
+	<td><%= local_date(item.hora, "time") %></td>
+	<td><%= item.nota %></td>
+	<td><%= item.user.cliente.nombre %></td>
+</tr>
