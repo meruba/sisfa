@@ -3,12 +3,9 @@
   <div class="hospitalizado items" id='<%=r.id%>'>
     <h4>
       <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
-      <% unless r.alta? %>
-      <span><%= link_to "", nota_enfermera_path(r), {:rel=> 'tooltip', :title=>'Agregar nota', class: "pull-right fa fa-plus"}%>
+      <span><%= link_to "", signo_vital_path(r), {:rel=> 'tooltip', :title=>'Agregar Signos Vitales', class: "pull-right fa fa-stethoscope"}%>
+      <span><%= link_to "", nota_enfermera_path(r), {:rel=> 'tooltip', :title=>'Agregar nota', class: "pull-right fa fa-file-text-o"}%>
       </span>
-      <% else %>
-      <span class="pull-right fa fa-check text-info"></span>
-      <% end %>
     </h4>
     <h4 class="text-center name">
       <strong> <%=r.paciente.cliente.nombre%></strong>

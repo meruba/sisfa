@@ -69,8 +69,10 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
   resources :hospitalizacion_registros
-  resources :nota_enfermeras
+  resources :nota_enfermeras, :only => [:show]
   resources :item_nota_enfermeras
+  resources :signo_vitals, :only => [:show]
+  resources :item_signo_vitals
   resources :item_facturas
   resources :item_proformas
   resources :traspasos

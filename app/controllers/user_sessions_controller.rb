@@ -25,6 +25,9 @@ class UserSessionsController < ApplicationController
         when Rol.administrador_enfermeria
           redirect_to dashboard_enfermeria_index_path
           flash[:notice] = "Bienvenido #{current_user.username}"
+        when Rol.enfermera
+          redirect_to dashboard_enfermeria_index_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
         end
       end
     else

@@ -32,12 +32,13 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
 	#callbacks	
   before_update :set_values
+  after_create :create_signo_vital
   # before_validation :set_dias, :on => :update
 
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
   validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
-	validate :already_hostipalizado, on: :create
+	validate :already_hostipalizado, :on => :create
 	validate :validate_fecha_salida, :on => :update
 
 	def already_hostipalizado
@@ -61,8 +62,10 @@ class HospitalizacionRegistro < ActiveRecord::Base
 		end
 	end
 
-	def update_from_paciente
-		self.dias_hospitalizacion.nil? == false #solo se calcula una vez editado un registro
+	def create_signo_vital
+		s  = SignoVital.new
+		s.hospitalizacion_registro = self
+		s.save
 	end
 
 	#class methods
