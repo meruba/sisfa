@@ -32,7 +32,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
 	#callbacks	
   before_update :set_values
-  after_create :create_signo_vital
+  before_create :build_notas_and_signos
   # before_validation :set_dias, :on => :update
 
   #validations
@@ -62,11 +62,13 @@ class HospitalizacionRegistro < ActiveRecord::Base
 		end
 	end
 
-	def create_signo_vital
-		s  = SignoVital.new
-		s.hospitalizacion_registro = self
-		s.save
+	def build_notas_and_signos
+		build_nota_enfermera
+		true #validations
+		build_signo_vital
+		true #validations
 	end
+
 
 	#class methods
 	def self.reporte(fecha)
