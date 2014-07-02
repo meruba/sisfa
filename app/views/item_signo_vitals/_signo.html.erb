@@ -1,0 +1,10 @@
+<tr>
+	<td><%= local_date(signo.fecha,"date") %></td>
+	<td><%= local_date(signo.hora, "time") %></td>
+	<td><%= signo.temperatura %></td>
+	<td><%= signo.pulso %></td>
+	<td><%= signo.respiracion %></td>
+	<td><%= signo.tension_arterial %></td>
+	<td><%= signo.observacion %></td>
+	<td><%= signo.user.cliente.nombre %></td>
+</tr>
