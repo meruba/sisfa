@@ -28,6 +28,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	belongs_to :paciente
 	belongs_to :doctor
 	has_one :nota_enfermera
+	has_one :signo_vital
 
 	#callbacks	
   before_update :set_values

@@ -24,6 +24,7 @@ authenticates_with_sorcery!
   has_many :traspasos
   has_many :hospitalizacions
   has_many :item_nota_enfermeras
+  has_many :item_signo_vitals
   has_one :user_rol
   has_one :rol, through: :user_rol
 	accepts_nested_attributes_for :cliente
