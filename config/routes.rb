@@ -5,6 +5,7 @@ get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "historia_clinicas/autocomplete"
+get "hospitalizacion_registros/autocomplete"
 get "productos/autocomplete_producto_compra"
 get "productos/inventario"
 get "productos/caducado"
@@ -71,6 +72,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :hospitalizacion_registros
   resources :nota_enfermeras, :only => [:show]
   resources :item_nota_enfermeras
+  resources :entrega_turnos do
+    resources :item_entrega_turnos    
+  end
   resources :signo_vitals, :only => [:show]
   resources :item_signo_vitals
   resources :item_facturas
