@@ -1,0 +1,179 @@
+<h1 class="text-center">Hoja de Entrega y Recepcion de Turno</h1>
+<%= form_for [@entrega, @item] do |f| %>
+<div class="col-md-3">
+	<%=  f.label :tipo_item, "Tipo de Registro"%>
+	<%= f.select(:tipo_item, [['Paciente en Ayunas','ayuna'],['Examenes Especiales y Urgentes','examen'],['Paciente en Aislamiento','aislamiento'],['Defuncion','defuncion'], ['Ingreso, Egreso, Transferencia','movimiento'], ['Paciente Grave','grave']], {}, { :class => 'form-control item_entrega_turno' }) %>
+</div>
+<div class="col-md-3">
+<label>Paciente:</label>
+<input type="text" class= "form-control paciente-hospitalizado" placeholder= " Ingrese Historia Clinica" required= true >
+<%= f.hidden_field :hospitalizacion_registro_id, class: "hospitalizacion_registro_id" %>
+</div>
+<div class="col-md-3">
+<%= f.label :descripcion  %>
+<div class="field_wrapper">
+	<!-- este input es creado desde js -->
+</div>
+</div>
+<br>
+<%= f.submit 'Guardar', class: "btn btn-primary"%>
+<%= javascript_tag do %>
+$(function (){
+window.Helpers.SelectItem.init();
+});
+<% end %>
+<% end %>
+
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr class="title-history">
+				<th colspan="6">PACIENTES EN AYUNAS</th>
+			</tr>
+			<tr>
+				<th>Cama</th>
+				<th>Paciente</th>
+				<th colspan="3">Razones</th>
+				<th >Registrado</th>
+			</tr>
+		</thead>
+		<tbody class="ayuna">
+			<% @ayunas.each do |i| %>
+			<tr>
+				<td>34</td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td colspan="3"><%= i.descripcion  %> </td>	
+				<td><%= i.user.username  %> </td>	
+			</tr>
+			<% end %>
+			<tr class="title-history">
+				<th colspan="6">EXAMENES ESPECIALES Y URGENTES</th>
+			</tr>
+			<tr>
+				<th>Cama</th>
+				<th>Paciente</th>
+				<th colspan="3">Examenes</th>
+				<th >Registrado</th>
+			</tr>
+			<% @examenes.each do |i| %>
+			<tr>
+				<td>34</td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td colspan="3"><%= i.descripcion  %> </td>
+				<td><%= i.user.username  %> </td>	
+			</tr>
+			<% end %>
+			<tr class="title-history">
+				<th colspan="6">INGRESO EGRESO Y TRANSFERNECIAS</th>
+			</tr>
+			<tr>
+				<th>Cama</th>
+				<th>Paciente</th>
+				<th class="text-center">Ingreso</th>
+				<th class="text-center">Egreso</th>
+				<th class="text-center">Transferencia</th>
+				<th>Registrado</th>
+			</tr>
+			<% @movimientos.each do |i| %>
+			<tr>
+				<td>34</td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td class="text-center">
+					<% if i.descripcion == "ingreso" %>
+					<i class="fa fa-check"></i>
+					<% end %>
+				</td>
+				<td class="text-center">
+					<% if i.descripcion == "egreso" %>
+					<i class="fa fa-check"></i>
+					<% end %>
+				</td>
+				<td class="text-center">
+					<% if i.descripcion == "transferencia" %>
+					<i class="fa fa-check"></i>
+					<% end %>
+				</td>
+				<td><%= i.user.username%> </td>	
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<div class="row">
+	<div class="table-responsive col-md-6">
+		<table class="table table-hover">
+			<thead>
+				<tr class="title-blue-head">
+					<th colspan="6">PACIENTES EN AISLAMIENTO</th>
+				</tr>
+				<tr>
+					<th>Cama</th>
+					<th>Paciente / Tipo as.</th>
+					<th>Registrado</th>
+				</tr>
+			</thead>
+			<tbody class="aislamientos">
+				<% @aislamientos.each do |i| %>
+				<tr>
+					<td>34</td>
+					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> / <small class="text-success"><%= i.descripcion  %></small></td>
+					<td><%= i.user.username %> </td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<div class="table-responsive col-md-6">
+		<table class="table table-hover">
+			<thead>
+				<tr class="title-blue-head">
+					<th colspan="3">PACIENTES GRAVES</th>
+				</tr>
+				<tr>
+					<th>Cama</th>
+					<th>Paciente</th>
+					<th>Registrado</th>
+				</tr>
+			</thead>
+			<tbody class="aislamientos">
+				<% @graves.each do |i| %>
+				<tr>
+					<td>34</td>
+					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+					<td><%= i.user.username %> </td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-hover">
+		<thead>
+			<tr class="title-red-head">
+				<th colspan="6">DEFUNCIONES</th>
+			</tr>
+			<tr>
+				<th>Cama</th>
+				<th>Paciente</th>
+				<th>Hora</th>
+				<th>Especialidad</th>
+				<th>Historia C</th>
+				<th>Registrado</th>
+			</tr>
+		</thead>
+		<tbody class="aislamientos">
+			<% @defunciones.each do |i| %>
+			<tr>
+				<td>34</td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td><%= i.descripcion  %> </td>
+				<td><%= i.hospitalizacion_registro.especialidad  %> </td>
+				<td><%= i.hospitalizacion_registro.paciente.n_hclinica  %> </td>
+				<td><%= i.user.username %> </td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+
