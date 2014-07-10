@@ -1,0 +1,49 @@
+<h4>Hojas</h4>
+<div class="col-md-6">
+	<div class="containers">
+		<h1 id="title">Hojas de Hoy</h1>
+		<ul id="list" class="hojas">
+			<% @hojas.each do |hoja|  %>
+			<%= render "hoja_turno", hoja:hoja %>
+			<% end %>
+		</ul>
+		<div class="footer">
+			<%= form_for @hoja, :html => {:class => "form-hoja-turno"}, :remote => true  do |f| %>
+			<div class="col-md-6">
+				<%= f.text_field :servicio, class: "form-control", placeholder: "Ingrese servicio"  %>
+			</div>
+			<%= f.submit 'Guardar', class: "btn btn-info", :remote => true %>
+			<% end %>
+		</div>
+	</div><!-- .container -->
+</div>
+<div class="col-md-6">
+	<div class="table-responsive">
+		<table class="table table-bordered">
+			<thead>
+				<tr class="title-blue-head">
+					<th colspan="3">HOJAS DE LOS ULTIMOS 7 DIAS</th>
+				</tr>
+				<tr>
+					<th>Fecha</th>
+					<th>Servicio</th>
+					<th>Ver</th>
+				</tr>
+			</thead>
+			<tbody class="notas">
+				<% if @hojas_semana.empty? %>
+				<tr>
+					<td colspan="3" class="text-center text-muted">No hay registros</td>
+				</tr>
+				<% end %>
+				<% @hojas_semana.each do |s| %>
+				<tr>
+					<td><%= local_date(s.fecha, "date") %></td>
+					<td><%= s.servicio %></td>
+					<td><%= link_to "" ,entrega_turno_path(s), class: "mostrar_view btn-xs" %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

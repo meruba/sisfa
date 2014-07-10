@@ -11,4 +11,6 @@
 
 class EntregaTurno < ActiveRecord::Base
 	has_many :item_entrega_turnos
+	# validations
+	validates :servicio, :presence =>true
 end

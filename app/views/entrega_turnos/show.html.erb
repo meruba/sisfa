@@ -1,4 +1,7 @@
-<h1 class="text-center">Hoja de Entrega y Recepcion de Turno</h1>
+<div class="row title-history">
+		<h2 class= "fix-margin">Hoja de Entrega y Recepcion de Turno</h2>
+</div>
+<div class="row info-paciente">
 <%= form_for [@entrega, @item] do |f| %>
 <div class="col-md-3">
 	<%=  f.label :tipo_item, "Tipo de Registro"%>
@@ -80,17 +83,17 @@ window.Helpers.SelectItem.init();
 				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
 				<td class="text-center">
 					<% if i.descripcion == "ingreso" %>
-					<i class="fa fa-check"></i>
+					<i class="fa fa-check text-success"></i>
 					<% end %>
 				</td>
 				<td class="text-center">
 					<% if i.descripcion == "egreso" %>
-					<i class="fa fa-check"></i>
+					<i class="fa fa-check text-success"></i>
 					<% end %>
 				</td>
 				<td class="text-center">
 					<% if i.descripcion == "transferencia" %>
-					<i class="fa fa-check"></i>
+					<i class="fa fa-check text-success"></i>
 					<% end %>
 				</td>
 				<td><%= i.user.username%> </td>	
@@ -175,5 +178,6 @@ window.Helpers.SelectItem.init();
 			<% end %>
 		</tbody>
 	</table>
+</div>
 </div>
 

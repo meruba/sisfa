@@ -1,15 +1,24 @@
 class EntregaTurnosController < ApplicationController
   before_action :find_entrega, only: [:show]
+	
+	def index
+		@hoja = EntregaTurno.new
+		@hojas = EntregaTurno.where(:fecha => Time.now.beginning_of_day..Time.zone.now)
+		@hojas_semana = EntregaTurno.where(:fecha => Time.now.beginning_of_week.. Date.yesterday.end_of_day)
+	end
+
 	def new
-		@entrega = EntregaTurno.new
+		@hoja = EntregaTurno.new
+		respond_to do |format|
+      format.js
+    end
 	end
 
 	def create
-		@entrega = EntregaTurno.new(entrega_turno_params.merge(fecha: Time.now))
-		if @entrega.save
-      redirect_to dashboard_enfermeria_index_path, :notice => "guardado"
-    else
-      redirect_to dashboard_enfermeria_index_path, :notice => "ERRORES"
+		@hoja = EntregaTurno.new(entrega_turno_params.merge(fecha: Time.now))
+		@hoja.save
+		respond_to do |format|
+      format.js
     end
 	end
 
