@@ -4,9 +4,9 @@ class ItemEntregaTurnosController < ApplicationController
 		@item = ItemEntregaTurno.new(item_entrega_turno_params.merge(user_id: current_user.id))
 		@item.entrega_turno_id =  @entrega.id
 		if @item.save
-			redirect_to entrega_turno_path(@entrega), :notice => "guardado"
+			redirect_to entrega_turno_view_create_item_path(@entrega), :notice => "guardado"
 		else
-			redirect_to entrega_turno_path(@entrega), :notice => "ERRORES"
+			redirect_to entrega_turno_view_create_item_path(@entrega), :notice => "ERRORES"
 		end
 	end
 

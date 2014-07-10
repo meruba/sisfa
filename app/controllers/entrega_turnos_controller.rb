@@ -1,5 +1,6 @@
 class EntregaTurnosController < ApplicationController
   before_action :find_entrega, only: [:show]
+  before_action :find_entrega_to_item, only: [:view_create_item]
 	
 	def index
 		@hoja = EntregaTurno.new
@@ -23,8 +24,6 @@ class EntregaTurnosController < ApplicationController
 	end
 
 	def show
-		@item = ItemEntregaTurno.new
-		# items = @entrega.item_entrega_turnos.includes(hospitalizacion_registro: [:paciente => :cliente])
 		items = @entrega.item_entrega_turnos.includes(hospitalizacion_registro: [:paciente => :cliente])
 		@examenes = items.where(:tipo_item => "examen")
 		@ayunas = items.where(:tipo_item => "ayuna")
@@ -32,6 +31,11 @@ class EntregaTurnosController < ApplicationController
 		@defunciones = items.where(:tipo_item => "defuncion")
 		@movimientos = items.where(:tipo_item => "movimiento")
 		@graves = items.where(:tipo_item => "grave")
+	end
+
+	def view_create_item
+		@item = ItemEntregaTurno.new
+		show()
 	end
 
 	private
@@ -43,5 +47,9 @@ class EntregaTurnosController < ApplicationController
 
 	def find_entrega
   	@entrega = EntregaTurno.find(params[:id])		
+	end
+
+	def find_entrega_to_item
+  	@entrega = EntregaTurno.find(params[:entrega_turno_id])	
 	end
 end

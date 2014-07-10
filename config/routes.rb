@@ -73,7 +73,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :nota_enfermeras, :only => [:show]
   resources :item_nota_enfermeras
   resources :entrega_turnos do
-    resources :item_entrega_turnos    
+    get "view_create_item"
+    resources :item_entrega_turnos 
   end
   resources :signo_vitals, :only => [:show]
   resources :item_signo_vitals
