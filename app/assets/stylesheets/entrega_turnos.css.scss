@@ -1,3 +1,54 @@
 // Place all the styles related to the EntregaTurnos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+.containers {
+  // width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: #fff;
+  border-bottom: 1px solid #ddd;
+	h1 {
+	  margin: 0;
+	  padding: 10px 15px;
+	  background-color: #2dc1e6;
+	  color: #fff;
+	  font-size: 16px;
+	}
+	ul {
+	  list-style-type: none;
+	  margin: 0;
+	  padding: 0;
+	  counter-reset: li;
+	}
+
+	li {
+	  padding: 10px 15px 10px 40px;
+	  border-bottom: 1px solid #ddd;
+	  position: relative;
+	  &:before {
+	    content: counter(li);
+	    /* Use the counter as content */
+	    counter-increment: li;
+	    /* Increment the counter by 1 */
+	    position: absolute;
+	    top: 0;
+	    left: 0;
+	    -webkit-box-sizing: border-box;
+	    -moz-box-sizing: border-box;
+	    box-sizing: border-box;
+	    background: #f2f2f2;
+	    border-right: 1px solid #ddd;
+	    margin: 0;
+	    padding: 10px;
+	    font-size: 11px;
+	    height: 100%;
+	    color: #999;
+	    text-align: center;
+	  }
+	}
+	.footer{
+		margin: 10px;
+	}
+}
