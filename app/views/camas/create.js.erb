@@ -1,0 +1,9 @@
+<%- if @cama.errors.any? %>
+  <%- @cama.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $('#<%=@cama.cuarto.id %>').append("<%= j render('camas/cama', cama: @cama) %>");
+  $('.form-cuarto').trigger("reset");
+  alertify.success("Agregada nueva cama");
+<%- end %>

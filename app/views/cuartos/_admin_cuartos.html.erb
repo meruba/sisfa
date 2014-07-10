@@ -1,0 +1,11 @@
+<h3>Administracion de Cuartos  y Camas</h3>
+<%= form_for @cuarto, :html => {:class => "form-cuarto"}, :remote => true  do |f| %>
+<%= f.text_field :nombre, class: "form-control", placeholder: "Ingrese servicio"  %>
+<%= f.submit 'Guardar', class: "btn btn-info", :remote => true %>
+<% end %>
+
+<div class="cuartos">
+	<% @cuartos.each do |cuarto|  %>
+	<%= render "cuarto", cuarto:cuarto %>
+	<% end %>
+</div>

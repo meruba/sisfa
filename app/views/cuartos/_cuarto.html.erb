@@ -1,0 +1,15 @@
+<div class="info-paciente col-md-3 line">
+	<h4><%= cuarto.nombre %></h4>
+	<legend>formulario</legend>
+	<%= form_for @cama, :html => {:class => "form-cuarto"}, :remote => true  do |f| %>
+	<%= f.hidden_field :cuarto_id, value: cuarto.id %>
+	<%= f.text_field :numero, class: "form-control", placeholder: "Ingrese numero"  %>
+	<%= f.submit 'Guardar', class: "btn btn-info", :remote => true %>
+	<% end %>
+	<legend>Camas</legend>
+	<div class="camas" id ='<%= cuarto.id  %>'>
+	<% cuarto.camas.each do |cama|  %>
+	<%= render "camas/cama", cama:cama %>
+	<% end %>
+</div>
+</div>
