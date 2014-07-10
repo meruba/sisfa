@@ -18,5 +18,6 @@ class ItemEntregaTurno < ActiveRecord::Base
 	belongs_to :user
 
 	# validations
-	validates :descripcion, :presence =>true
+	validates :descripcion, :hospitalizacion_registro_id, :presence =>true
+	
 end

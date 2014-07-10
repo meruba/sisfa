@@ -23,4 +23,14 @@ class ItemSignoVital < ActiveRecord::Base
 	
 	#validation
 	validates :fecha, :hora, :temperatura, :pulso, :respiracion, :tension_arterial, :observacion, :presence => true
+	validate :validate_hour
+
+	def validate_hour
+		unless self.hora.nil?
+			t = self.hora.to_s.scan(/\d\d/)
+			if t.empty?
+				errors.add :hora, "Formato de hora no valida" 
+			end
+		end
+	end
 end
