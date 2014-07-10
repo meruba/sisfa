@@ -29,6 +29,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	belongs_to :doctor
 	has_one :nota_enfermera
 	has_one :signo_vital
+	has_one :asignacion_cama
 	has_many :item_entrega_turnos
 
 	#callbacks	

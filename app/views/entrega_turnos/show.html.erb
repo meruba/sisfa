@@ -25,7 +25,7 @@
 				<% end %>
 				<% @ayunas.each do |i| %>
 				<tr>
-					<td>34</td>
+					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
 					<td colspan="3"><%= i.descripcion  %> </td>	
 					<td><%= i.user.username  %> </td>	
@@ -45,7 +45,7 @@
 				<% end %>
 				<% @examenes.each do |i| %>
 				<tr>
-					<td>34</td>
+					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
 					<td colspan="3"><%= i.descripcion  %> </td>
 					<td><%= i.user.username  %> </td>	
@@ -67,7 +67,7 @@
 				<% end %>
 				<% @movimientos.each do |i| %>
 				<tr>
-					<td>34</td>
+					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
 					<td class="text-center">
 						<% if i.descripcion == "ingreso" %>
@@ -109,7 +109,7 @@
 					<% end %>
 					<% @aislamientos.each do |i| %>
 					<tr>
-						<td>34</td>
+						<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 						<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> / <small class="text-success"><%= i.descripcion  %></small></td>
 						<td><%= i.user.username %> </td>
 					</tr>
@@ -165,7 +165,7 @@
 				<% end %>
 				<% @defunciones.each do |i| %>
 				<tr>
-					<td>34</td>
+					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
 					<td><%= i.descripcion  %> </td>
 					<td><%= i.hospitalizacion_registro.especialidad  %> </td>

@@ -3,6 +3,7 @@
   <div class="hospitalizado items" id='<%=r.id%>'>
     <h4>
       <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
+      <span><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(r), {:rel=> 'tooltip', :title=>'Asignarle Cama', class: "pull-right fa fa-circle"}%>
       <span><%= link_to "", signo_vital_path(r), {:rel=> 'tooltip', :title=>'Agregar Signos Vitales', class: "pull-right fa fa-stethoscope"}%>
         <span><%= link_to "", nota_enfermera_path(r), {:rel=> 'tooltip', :title=>'Agregar nota', class: "pull-right fa fa-file-text-o"}%>
         </span>

@@ -69,7 +69,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :clientes
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
-  resources :hospitalizacion_registros
+  resources :hospitalizacion_registros do
+    resources :asignacion_camas
+  end
   resources :nota_enfermeras, :only => [:show]
   resources :item_nota_enfermeras
   resources :entrega_turnos do
@@ -82,6 +84,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_proformas
   resources :traspasos
   resources :item_traspasos
+  resources :cuartos
+  resources :camas
   resources :hospitalizacions do
     member do
       post "dar_de_alta"
