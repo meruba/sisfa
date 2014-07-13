@@ -5,6 +5,14 @@ window.Helpers.AutocompletePaciente = {
     $(".identificacion").autocomplete
       minLength: 1
       source: "/pacientes/autocomplete.json"
+      response: (event, ui) ->
+        unless ui.content.length
+          NoExiste =
+            id: "vacio"
+            label: "No esta registrado: #{event.target.value}"
+          ui.content.push NoExiste
+        else
+          $("#message").empty()
       select: (event, ui) ->
         $(".cliente_id").val ui.item.cliente_id
         $(".nombre").val ui.item.nombre
