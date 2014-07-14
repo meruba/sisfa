@@ -6,6 +6,11 @@ class HospitalizacionRegistrosController < ApplicationController
     @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_ingreso => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente => :cliente)
   end
 
+  def autocomplete
+    respond_to do |format|
+      format.json { render :json => HospitalizacionRegistro.autocomplete(params[:term]) }
+    end
+  end
   def reporte
     @fecha = params[:fecha]
     @registros = HospitalizacionRegistro.reporte(params[:fecha].to_time.beginning_of_month..params[:fecha].to_time.end_of_month)

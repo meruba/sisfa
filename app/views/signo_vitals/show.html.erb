@@ -1,0 +1,60 @@
+<div class="row turno">
+	<h2 class="fix-margin">Signos Vitales</h2>
+</div>
+<div class="row info-paciente">
+	<h4>Paciente: <%= @hoja_signos.hospitalizacion_registro.paciente.cliente.nombre  %> </h4>
+	<h4>Historia C: <%= @hoja_signos.hospitalizacion_registro.paciente.n_hclinica  %> </h4>
+	<%= form_for @registro, :html => {:class => "form-signos"}, :remote => true do |f| %>
+	<%= form_errors_for @registro %>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>Temperatura</th>
+					<th>Pulso</th>
+					<th>Respiracion</th>
+					<th>Tension</th>
+					<th class="col-md-3">Observacion</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<%= f.hidden_field :signo_vital_id, value: @hoja_signos.id %>
+					<td><input class="form-control" type="text" value="<%=local_date(Time.now, 'date')%>" readonly ></td>
+					<td><%= f.text_field :hora, class: "form-control", placeholder: "Ejm: 08:00" %></td>
+					<td><%= f.text_field :temperatura, class: "form-control"%></td>
+					<td><%= f.text_field :pulso, class: "form-control"%></td>
+					<td><%= f.text_field :respiracion, class: "form-control"%></td>
+					<td><%= f.text_field :tension_arterial, class: "form-control"%></td>
+					<td><%= f.text_field :observacion, class: "form-control"%></td>
+					<td><%= f.submit 'Guardar', class: "btn btn-success", :remote => true %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<% end %>
+	<div class="table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th>Temperatura</th>
+					<th>Pulso</th>
+					<th>Respiracion</th>
+					<th>Tension</th>
+					<th class="col-md-3">Observacion</th>
+					<th>Enfermera</th>
+				</tr>
+			</thead>
+			<tbody class="signos">
+				<% @signos.each do |signo| %>
+				<%= render "item_signo_vitals/signo", signo:signo %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

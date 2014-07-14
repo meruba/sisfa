@@ -1,0 +1,2 @@
+module CamasHelper
+end
