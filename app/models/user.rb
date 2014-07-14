@@ -32,4 +32,13 @@ authenticates_with_sorcery!
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_presence_of :rol
+
+#methods
+  def cliente_attributes=(attributes)
+    if attributes['id'].present?
+      self.cliente = Cliente.find(attributes['id'])
+    end
+    super
+  end
+    
 end

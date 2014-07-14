@@ -1,0 +1,59 @@
+<div class="paciente">
+	<div class="fix-margin history-registros">
+	<h4>HISTORIA CLINICA # <%= @paciente.n_hclinica%></h4>
+	</div>
+	<h4 class="fix-margin"><strong><%= @paciente.cliente.nombre %></strong></h4>
+	<div class="row-fix-div">
+		<div class="col-xs-4">
+			<small class="text-muted">DATOS PERSONALES</small><br>
+			<small><strong>C.I: </strong><%= (@paciente.cliente.numero_de_identificacion).upcase%></small><br>
+			<small><strong>GENERO: </strong><%= (@paciente.cliente.sexo).upcase%></small><br>
+			<small><strong>EDAD:</strong>
+				<%= exact_age(@paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"> / <%= @paciente.cliente.fecha_de_nacimiento %></small>
+			</small><br>
+			<small><strong>DISCAPACIDAD: </strong><%= @paciente.discapacidad %></small><br>
+		</div>
+		<div class="col-xs-4">
+			<small class="text-muted">LOCALIZACION</small><br>
+			<small><strong>DIRECCION: </strong><%= (@paciente.cliente.direccion).upcase%></small><br>
+			<small><strong>TELEFONO: </strong><%=@paciente.cliente.telefono%></small><br>
+			<small><strong>CORREO: </strong><%=@paciente.cliente.email%></small><br>
+		</div>
+		<div class="col-xs-4">
+			<small class="text-muted">CONTACTO/RELACION</small><br>
+			<small><strong><%= @paciente.informacion_adicional_paciente.familiar_cercano%> /
+				<small class="text-muted"><%= @paciente.informacion_adicional_paciente.familiar_parentesco%></small></strong></small><br>
+				<small><strong>DIRECCION: </strong><%= @paciente.informacion_adicional_paciente.familiar_direccion%></small><br/>
+				<small><strong>TELEFONO: </strong><%= @paciente.informacion_adicional_paciente.familiar_telefono%></small><br/>
+			</div>
+		</div>
+	</div>
+	<div class="fix-margin">
+		<div class="history-registros">
+			ANTECEDENTES
+		</div>
+		<div class="row">
+			<div class="col-xs-6">
+				<small><strong>PERSONALES</strong></small><br>
+				<%=@paciente.antecedentes_personales%>
+			</div>
+			<div class="col-xs-6">
+				<small><strong>FAMILIARES</strong></small><br>
+				<%=@paciente.antecedentes_familiares%>
+			</div>
+		</div>
+	</div>
+	<div class=" fix-margin">
+		<div class="history-registros">
+			REGISTROS MEDICOS
+		</div>
+		<% @paciente.condicions.each do |r|  %>
+		<div class="condiciones">
+			<small><strong>Fecha:</strong> <%= local_date(r.created_at, "date")%></small><br>
+			<small class="text-info"><%= (r.diagnostico_1).upcase %></small><br>
+			<small><strong>Atendido Dr(a): </strong><%= r.medico_asignado %> </small><br>
+			<small><strong>Motivo: </strong><%= r.motivo_de_consulta %> </small><br>
+		</div>
+		<% end %>
+	</div>
+</div>

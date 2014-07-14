@@ -1,0 +1,2 @@
+module JornadaMorbilidadsHelper
+end

@@ -1,0 +1,39 @@
+<div class="row doctor-pacientes">
+	<% @turnos.each do |doctor|  %>
+	<div class="col-md-6">
+		<table class="table table-hover">
+			<thead>
+				<tr class="title-history">
+					<th colspan="4">DR: <%= (doctor[:nombre]).upcase%></th>
+				</tr>
+				<tr>
+					<th>#</th>
+					<th>Paciente</th>
+					<th>Hora</th>
+					<th class="text-center"><i class="fa fa-question"></i></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% doctor[:turnos].each do |turno| %>
+				<tr>
+					<td><%= turno.numero %></td>
+					<td><%= turno.paciente.cliente.nombre %></td>
+					<% if turno.numero >= 15 %>
+					<td>--:--</td>
+					<% else %>
+					<td><%= local_date(turno.hora,"time") %></td>
+					<% end %>
+					<td class="text-center">
+						<% if turno.atendido %>
+						<i class="fa fa-check-circle text-success"></i> 
+						<% else %>
+						<i class="fa fa-circle text-danger"></i>
+						<% end %>
+					</td>
+				</tr>			
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+	<% end %>
+</div>

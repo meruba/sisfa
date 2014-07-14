@@ -1,0 +1,28 @@
+<div class="container">
+	<div class="col-md-6 row-fix-div datos-paciente">
+		<div class="col-md-4 text-center">
+			<% if @turno.paciente.cliente.sexo == "Femenino" %>
+			<span class ="fa fa-female fa-5x"></span><br>
+			<% else %>
+			<span class ="fa fa-male fa-5x"></span><br>				
+			<% end %>
+			<br>
+			<%= link_to 'Actualizar Datos', paciente_view_edit_path(@turno.paciente),{:target => '_blank', class: "ttip btn btn-info btn-xs"}%>
+		</div>
+		<div class="col-md-8">
+			<h4><strong><%= @turno.paciente.cliente.nombre %></strong></h4>
+			<small><strong>HISTORIA CLINICA: #</strong><%=@turno.paciente.n_hclinica%></small><br>
+			<small><strong>DISCAPACIDAD: </strong> <%= best_in_place @turno.paciente, :discapacidad, type: :select, collection: [['Ninguna', 'Ninguna'],['Fisica','Fisica'],['Intelectual','Intelectual'],['Mental','Mental'],['Auditiva','Auditiva'],['Visual','Visual'],['Otra','Otra']] %></small> <span class="fa fa-pencil text-info">..</span><br>
+			<small><strong>EDAD:</strong>
+				<%= exact_age(@turno.paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"><%= @turno.paciente.cliente.fecha_de_nacimiento %></small>
+			</small><br>
+			<small><strong>NACIONALIDAD: </strong><%= @turno.paciente.informacion_adicional_paciente.nacionalidad%></small>
+		</div>
+	</div>
+	<div class="col-md-5">
+		<i class="fa fa-info-circle"></i> <label><strong> Antecedentes Personales</strong></label> <span class="fa fa-pencil text-info">..</span><br>
+		<%= best_in_place @turno.paciente, :antecedentes_personales,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes personales.!!"} %><br>
+		<i class="fa fa-info-circle"></i> <label><strong> Antecedentes Familiares</strong></label> <span class="fa fa-pencil text-info">..</span><br>
+		<%= best_in_place @turno.paciente, :antecedentes_familiares,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes familiares.!!"} %><br>
+	</div>
+</div>

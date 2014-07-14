@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">doctor</Data></Cell>
+      <Cell><Data ss:Type="String">fecha</Data></Cell>
+      <Cell><Data ss:Type="String">discapacitado</Data></Cell>
+      <Cell><Data ss:Type="String">hombre</Data></Cell>
+      <Cell><Data ss:Type="String">mujer</Data></Cell>
+      <Cell><Data ss:Type="String">blanco</Data></Cell>
+      <Cell><Data ss:Type="String">mestizo</Data></Cell>
+      <Cell><Data ss:Type="String">afroecuatoriano</Data></Cell>
+      <Cell><Data ss:Type="String">indigena</Data></Cell>
+      <Cell><Data ss:Type="String">montubio</Data></Cell>
+      <Cell><Data ss:Type="String">colombiano</Data></Cell>
+      <Cell><Data ss:Type="String">peruano</Data></Cell>
+      <Cell><Data ss:Type="String">otra nacionalidad</Data></Cell>      
+      <Cell><Data ss:Type="String">issfa</Data></Cell>
+      <Cell><Data ss:Type="String">iess</Data></Cell>
+      <Cell><Data ss:Type="String">isspol</Data></Cell>
+      <Cell><Data ss:Type="String">otrs seguro</Data></Cell>
+      <Cell><Data ss:Type="String">terrestre</Data></Cell>
+      <Cell><Data ss:Type="String">aerea</Data></Cell>
+      <Cell><Data ss:Type="String">naval</Data></Cell>
+      <Cell><Data ss:Type="String">militar activo</Data></Cell>
+      <Cell><Data ss:Type="String">militar pasivo</Data></Cell>
+      <Cell><Data ss:Type="String">aspirante</Data></Cell>
+      <Cell><Data ss:Type="String">conscripto</Data></Cell>
+      <Cell><Data ss:Type="String">familiar activo </Data></Cell>
+      <Cell><Data ss:Type="String">familiar pasivo</Data></Cell>
+      <Cell><Data ss:Type="String">derecho hab</Data></Cell>
+      <Cell><Data ss:Type="String">civil</Data></Cell>
+      <Cell><Data ss:Type="String">10-19 años primera</Data></Cell>
+      <Cell><Data ss:Type="String">20-49 años primera</Data></Cell>
+      <Cell><Data ss:Type="String">10-19 años subsecuente</Data></Cell>
+      <Cell><Data ss:Type="String">20-49 años subsecuente</Data></Cell>
+      <Cell><Data ss:Type="String">partos</Data></Cell>
+      <Cell><Data ss:Type="String">post partos</Data></Cell>
+      <Cell><Data ss:Type="String">DIU primera</Data></Cell>
+      <Cell><Data ss:Type="String">G.O primera</Data></Cell>
+      <Cell><Data ss:Type="String">OTROS primera</Data></Cell>
+      <Cell><Data ss:Type="String">DIU subsecuente</Data></Cell>
+      <Cell><Data ss:Type="String">G.O subsecuente</Data></Cell>
+      <Cell><Data ss:Type="String">OTROS subsecuente</Data></Cell>
+      <Cell><Data ss:Type="String">cervico uterio</Data></Cell>
+      <Cell><Data ss:Type="String">mamario</Data></Cell>
+      <Cell><Data ss:Type="String">P 1 años</Data></Cell>
+      <Cell><Data ss:Type="String">S 1-4 años</Data></Cell>
+      <Cell><Data ss:Type="String">P 1 años</Data></Cell>
+      <Cell><Data ss:Type="String">S 1-4 años</Data></Cell>
+      <Cell><Data ss:Type="String">consulta P</Data></Cell>
+      <Cell><Data ss:Type="String">consulta S</Data></Cell>
+      <Cell><Data ss:Type="String">5-9 años</Data></Cell>
+      <Cell><Data ss:Type="String">10-14 años</Data></Cell>
+      <Cell><Data ss:Type="String">15-19 años</Data></Cell>
+      <Cell><Data ss:Type="String">20-49 años</Data></Cell>
+      <Cell><Data ss:Type="String">50-64 años</Data></Cell>
+      <Cell><Data ss:Type="String">65 años +</Data></Cell>
+      <Cell><Data ss:Type="String">trabjadora sexual</Data></Cell>
+      <Cell><Data ss:Type="String">certificado medico</Data></Cell>
+      <Cell><Data ss:Type="String">horas trabajadas</Data></Cell>
+    </Row>
+    <% @registros.each do |r| %>
+    <Row>
+      <Cell><Data ss:Type="String"><%= r.doctor.cliente.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= local_date(r.created_at, "date") %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_discapacitados %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_hombre %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_mujer %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_blanco %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_mestizo %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_afroecuatoriano %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_indigena %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_montubio %></Data></Cell>  
+      <Cell><Data ss:Type="Number"><%= r.total_colombiano %></Data></Cell>  
+      <Cell><Data ss:Type="Number"><%= r.total_peruano %></Data></Cell>  
+      <Cell><Data ss:Type="Number"><%= r.total_otra_nacionalidad %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_issfa%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_iess %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_ispol%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_otros_seguros%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_terrestre%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_aerea%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_naval%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_activo%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_pasivo%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_aspirante%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_conscripto%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_activo_familiar%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_pasivo_familiar%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_derecho_hab%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_civilies%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_prenatal_primera_10_19%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_prenatal_primera_20_49%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_prenatal_subsecuente_10_19%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_prenatal_subsecuente_20_49%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_partos%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_post_parto%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_primera_diu%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_primera_go%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_primera_otros%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_subsecuente_diu%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_subsecuente_go%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_subsecuente_otros%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_cervico_uterino%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_mamario%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_1_anio_primera%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_1_4_anio_primera%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_1_anio_subsecuente%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_1_4_anio_subsecuente%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_nino_consulta_p%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_nino_consulta_s%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_5_9_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_10_14_anios %></Data></Cell>     
+      <Cell><Data ss:Type="Number"><%= r.total_15_19_anios %></Data></Cell>     
+      <Cell><Data ss:Type="Number"><%= r.total_20_49_anios %></Data></Cell>     
+      <Cell><Data ss:Type="Number"><%= r.total_50_64_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_65_anios %></Data></Cell>   
+      <Cell><Data ss:Type="Number"><%= r.total_trabajadora_sexual %></Data></Cell>   
+      <Cell><Data ss:Type="Number"><%= r.total_certificado_medico %></Data></Cell>
+      <Cell><Data ss:Type="Double"><%= local_date(r.horas_trabajadas, "time") %></Data></Cell>
+    </Row>
+    <% end %>
+  </Table>
+</Worksheet>
+</Workbook>

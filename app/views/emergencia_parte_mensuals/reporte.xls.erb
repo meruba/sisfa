@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">doctor</Data></Cell>
+      <Cell><Data ss:Type="String">fecha</Data></Cell>
+      <Cell><Data ss:Type="String">hombre</Data></Cell>
+      <Cell><Data ss:Type="String">mujer</Data></Cell>
+      <Cell><Data ss:Type="String">aerea</Data></Cell>
+      <Cell><Data ss:Type="String">naval</Data></Cell>
+      <Cell><Data ss:Type="String">terrestre</Data></Cell>
+      <Cell><Data ss:Type="String">militar activo</Data></Cell>
+      <Cell><Data ss:Type="String">militar pasivo</Data></Cell>
+      <Cell><Data ss:Type="String">aspirante</Data></Cell>
+      <Cell><Data ss:Type="String">conscripto</Data></Cell>
+      <Cell><Data ss:Type="String">familiar activo </Data></Cell>
+      <Cell><Data ss:Type="String">familiar pasivo</Data></Cell>
+      <Cell><Data ss:Type="String">derecho hab</Data></Cell>
+      <Cell><Data ss:Type="String">civil convenio</Data></Cell>
+      <Cell><Data ss:Type="String">civil particular</Data></Cell>
+      <Cell><Data ss:Type="String">menor 1 anio</Data></Cell>
+      <Cell><Data ss:Type="String">1-4 anios</Data></Cell>
+      <Cell><Data ss:Type="String">5-9 anios</Data></Cell>
+      <Cell><Data ss:Type="String">10-14 anios</Data></Cell>
+      <Cell><Data ss:Type="String">15-19 anios</Data></Cell>
+      <Cell><Data ss:Type="String">20-49 anios</Data></Cell>
+      <Cell><Data ss:Type="String">50-64 anios</Data></Cell>
+      <Cell><Data ss:Type="String">65 anios +</Data></Cell>
+      <Cell><Data ss:Type="String">clinico</Data></Cell>
+      <Cell><Data ss:Type="String">quirurjico</Data></Cell>
+      <Cell><Data ss:Type="String">obstetrico</Data></Cell>
+      <Cell><Data ss:Type="String">traumatologia</Data></Cell>
+      <Cell><Data ss:Type="String">accidente</Data></Cell>
+      <Cell><Data ss:Type="String">envenenamiento</Data></Cell>
+      <Cell><Data ss:Type="String">violencia</Data></Cell>
+      <Cell><Data ss:Type="String">otros</Data></Cell>
+      <Cell><Data ss:Type="String">alta</Data></Cell>
+      <Cell><Data ss:Type="String">consulta ext</Data></Cell>
+      <Cell><Data ss:Type="String">observacion</Data></Cell>
+      <Cell><Data ss:Type="String">internamiento</Data></Cell>
+      <Cell><Data ss:Type="String">TR OTR INST SAL</Data></Cell>
+      <Cell><Data ss:Type="String">TR OTR INST NO M</Data></Cell>
+    </Row>
+    <% @registros.each do |r| %>
+    <Row>
+      <Cell><Data ss:Type="String"><%= r.doctor.cliente.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= local_date(r.created_at, "date") %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_hombre %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_mujer %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_aerea%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_naval%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_terrestre%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_militar_sa%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_militar_sp%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_militar_asp%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_militar_cpto%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_familiar_sa%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_familiar_sp%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_familiar_hab%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_civil_convenio%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_civil_particular%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_memor_1_anio %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_1_4_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_5_9_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_10_44_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_15_19_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_20_49_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_50_64_anios %></Data></Cell>      
+      <Cell><Data ss:Type="Number"><%= r.total_65_anios %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_atencion_clinico %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_atencion_quirurjico %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_atencion_obstetrico %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_atencion_traumatologia %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_accidente %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_envenenamiento %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_violencia %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_otras %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_destino_alta %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_destino_consulta %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_destino_observacion %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_destino_internamiento %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_destino_tr_sal %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.total_destino_tr_nom %></Data></Cell>
+    </Row>
+    <% end %>
+  </Table>
+</Worksheet>
+</Workbook>

@@ -41,5 +41,8 @@ class Rol < ActiveRecord::Base
     @@administrador_enfermeria ||= find_by nombre: "Administrador_Enfermería"
   end
 
+  def self.doctor
+    @@doctor ||= find_by nombre: "Doctor"
+  end
 
 end

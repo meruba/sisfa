@@ -2,13 +2,23 @@
 	<h3 class="modal-title" id="myModalLabel">Doctor</h3>
 </div>
 <%= form_for @doctor, :remote => true do |f| %>
-<div class="modal-body">
-	<%= f.label :nombre%>
-	<%= f.text_field :nombre, class: "form-control", placeholder: "Nombre" %>
+<div class="modal-body field">
+	<%= f.fields_for :cliente do |cliente_params| %>
+	<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+	<%=  cliente_params.label :numero_de_identificacion%>
+	<%=  cliente_params.text_field :numero_de_identificacion, class: " numero_de_identificacion", :placeholder => "Cédula o RUC" %>
+	<%=  cliente_params.label :nombre%>
+	<%=  cliente_params.text_field :nombre, class: " nombre", :placeholder => "Nombres Apellidos" %>
+	<%=  cliente_params.label :direccion%>
+	<%=  cliente_params.text_field :direccion, class: "direccion", :placeholder => "direccion"%>
+	<%=  cliente_params.label :telefono%>
+	<%=  cliente_params.text_field :telefono, class: "telefono", :placeholder => "Teléfono"%>
+	<% end %>
 	<%= f.label :especialidad%>
-	<%= f.text_field :especialidad, class: "form-control", placeholder: "Especialidad" %>
+	<%= f.text_field :especialidad, placeholder: "Especialidad" %>
 	<%= f.label :cantidad_turno%>
-	<%= f.text_field :cantidad_turno, class: "form-control", placeholder: "Cantidad de turnos" %>
+	<%= f.text_field :cantidad_turno, placeholder: "Cantidad de turnos" %>
+	<small class="text-warning"> * Ingrese 0 si no acepta turnos</small>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

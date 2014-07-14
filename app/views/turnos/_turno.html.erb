@@ -5,15 +5,16 @@
 <%= form_for @turno, :remote => true do |f| %>
 <div class="modal-body">
 	<div class="field">
-		<small class="text-muted"> * Los turnos se emitiran para el dia de manana</small>
-		<h4>Turno a: <strong class="nombre_paciente"></strong> </h4>
 		<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
-		<input type="text" class="identificacion", placeholder="Ejm: 1105000903">
+		<input type="text" class="identificacion", placeholder="Ingrese nombre paciente">
 		<%= f.hidden_field :paciente_id, class: "paciente_id" %>
 		<%= f.label :doctor_a_cargo, "Doctor Asignado"%>
-    <%= f.text_field :doctor_a_cargo, class: "doctor_autocomplete"%>
+		<%= f.text_field :doctor_a_cargo, class: "doctor_autocomplete", placeholder: "Ingrese nombre Doctor"%>
 		<%= f.hidden_field :doctor_id, class: "doctor_id"%>
 	</div>
+	<%= label_tag :hoy, "Hoy?"  %>
+	<%= check_box_tag :hoy %>
+	<small class="text-danger"> * Haz click en caso de un turno extra</small>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>

@@ -3,7 +3,7 @@
 	<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
 	<div class="col-md-4">
 		<%=  cliente_params.label :numero_de_identificacion%>
-		<%=  cliente_params.text_field :numero_de_identificacion, class: " numero_de_identificacion", :placeholder => "Cédula o RUC" %>
+		<%=  cliente_params.text_field :numero_de_identificacion, class: "identificacion_cliente", :placeholder => "Cédula o RUC" %>
 		<%=  cliente_params.label :nombre%>
 		<%=  cliente_params.text_field :nombre, class: " nombre", :placeholder => "Nombres Apellidos" %>
 		<%=  cliente_params.label :direccion%>
@@ -13,7 +13,7 @@
 		<%=  cliente_params.label :telefono%>
 		<%=  cliente_params.text_field :telefono, class: "telefono", :placeholder => "Teléfono"%>
 		<%=  cliente_params.label :estado_civil%>
-		<%= cliente_params.select(:estado_civil, ['Soltero','Casado','Divorciado','Union Libre'], {}, { :class => 'form-control' }) %>
+		<%= cliente_params.select(:estado_civil, ['Soltero','Casado','Divorciado','Union Libre', 'Viudo'], {}, { :class => 'form-control' }) %>
 		<%=  cliente_params.label :sexo%>
 		<%= cliente_params.select(:sexo, ['Masculino','Femenino'], {}, { :class => 'form-control' }) %>
 	</div>
@@ -23,4 +23,3 @@
 	</div>
 </div>
 <% end %>
-

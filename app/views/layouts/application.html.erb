@@ -19,6 +19,8 @@
         <%= render 'layouts/navbars/vendedor' %>
       <% when Rol.administrador_estadistica %>
         <%= render 'layouts/navbars/estadistica' %>
+      <% when Rol.doctor %>
+        <%= render 'layouts/navbars/doctor' %>
     <% end %>
   </header>
   <%end%> 

@@ -1,6 +1,6 @@
 <div class="modal-body list-modal">
 	<h3>
-		<strong><%= @doctor.nombre %></strong>
+		<strong><%= @doctor.cliente.nombre %></strong>
 		<% unless @turnos.empty? %>
 		<%= link_to '', {:format => :pdf} , {:class => "fa fa-print pull-right text-muted", :target => "_blank",:rel=> 'tooltip', :title=>'Imprimir'} %>
 		<% end %>

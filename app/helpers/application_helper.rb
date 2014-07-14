@@ -39,5 +39,4 @@ module ApplicationHelper
     end
     date 
   end
-
 end

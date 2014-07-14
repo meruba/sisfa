@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">H.Clinica</Data></Cell>
+      <Cell><Data ss:Type="String">Apellido y Nombre</Data></Cell>
+      <Cell><Data ss:Type="String">Nacionalidad</Data></Cell>
+      <Cell><Data ss:Type="String">Pais</Data></Cell>
+      <Cell><Data ss:Type="String">Cedula o Pasaporte</Data></Cell>
+      <Cell><Data ss:Type="String">Sexo</Data></Cell>
+      <Cell><Data ss:Type="String">AÑO AAAA</Data></Cell>
+      <Cell><Data ss:Type="String">MES MM</Data></Cell>
+      <Cell><Data ss:Type="String">DÍA DD</Data></Cell>
+      <Cell><Data ss:Type="String">Fecha de nacimiento</Data></Cell>
+      <Cell><Data ss:Type="String">Edad</Data></Cell>
+      <Cell><Data ss:Type="String">Etnia</Data></Cell>
+      <Cell><Data ss:Type="String">Discapacidad</Data></Cell>
+      <Cell><Data ss:Type="String">Provincia</Data></Cell>
+      <Cell><Data ss:Type="String">Canton</Data></Cell>
+      <Cell><Data ss:Type="String">Parroquia</Data></Cell>
+      <Cell><Data ss:Type="String">Localidad</Data></Cell>
+      <Cell><Data ss:Type="String">AÑO ING AAAA</Data></Cell>
+      <Cell><Data ss:Type="String">MES ING MM</Data></Cell>
+      <Cell><Data ss:Type="String">DÍA ING DD</Data></Cell>
+      <Cell><Data ss:Type="String">Fecha Ingreso</Data></Cell>
+      <Cell><Data ss:Type="String">AÑO EGRS AAAA</Data></Cell>
+      <Cell><Data ss:Type="String">MES EGRS MM</Data></Cell>
+      <Cell><Data ss:Type="String">DÍA EGRS DD</Data></Cell>
+      <Cell><Data ss:Type="String">Fecha Egreso</Data></Cell>
+      <Cell><Data ss:Type="String">CONDICION AL EGRESO</Data></Cell>
+      <Cell><Data ss:Type="String">ESPECIALIDAD DEL EGRESO</Data></Cell>
+      <Cell><Data ss:Type="String">DIAG DE INGRESO</Data></Cell>
+      <Cell><Data ss:Type="String">DIAG DE EGRESO</Data></Cell>
+      <Cell><Data ss:Type="String">1. SEC DE EGRESO</Data></Cell>
+      <Cell><Data ss:Type="String">2. SEC DE EGRESO</Data></Cell>
+      <Cell><Data ss:Type="String">CODIGO CIE</Data></Cell>
+    </Row>
+    <% @registros.each do |r| %>
+    <Row>
+      <Cell><Data ss:Type="Number"><%= r.paciente.n_hclinica %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.nacionalidad %></Data></Cell>
+      <Cell><Data ss:Type="String"></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.numero_de_identificacion %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente.sexo %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.fecha_de_nacimiento.year%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.fecha_de_nacimiento.month%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.fecha_de_nacimiento.day%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente.fecha_de_nacimiento%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= age(r.paciente.cliente.fecha_de_nacimiento)%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.raza %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.discapacidad %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.provincia %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.canton %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.parroquia %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente.direccion%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.fecha_de_ingreso.year %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.fecha_de_ingreso.month %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.fecha_de_ingreso.day %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= local_date(r.fecha_de_ingreso, "date")%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.fecha_de_salida.year %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.fecha_de_salida.month %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.fecha_de_salida.day %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= local_date(r.fecha_de_salida, "date") %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.condicion_egreso %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.especialidad_egreso %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.diagnostico_ingreso %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.diagnostico_salida %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.diagnostico_sec_egreso1 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.diagnostico_sec_egreso2 %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.codigo_cie %></Data></Cell>
+    </Row>
+    <% end %>
+  </Table>
+</Worksheet>
+</Workbook>

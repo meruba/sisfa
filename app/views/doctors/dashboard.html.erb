@@ -1,0 +1,51 @@
+<div class="row">
+	<div class="doctors-left col-md-3">
+		<div class="doctor-profile">
+			<div class="profile-text text-center">
+				<span class="fa-stack fa-lg">
+					<i class="fa fa-circle fa-stack-2x"></i>
+				</span>
+				<h1 class="profile-name"><%= @doctor.cliente.nombre%></h1>
+				<span class="profile-title"><%= @doctor.especialidad %></span>
+			</div>
+		</div>
+		<div class="note info-paciente text-muted">
+			<h4><i>"Recuerda enviar tus reportes al final de tu jornada de trabajo"</i></h4>
+			<span><%=link_to("Morbilidad",new_doctor_jornada_morbilidad_path(@doctor), class: "label label-success")%></span>
+			<span><%=link_to("Preventiva",new_doctor_jornada_preventiva_path(@doctor), class: "label label-info")%></span>
+		</div>
+	</div>
+	<div class="doctor-pacientes col-md-6">
+		<div class="row turnos-hoy">
+			<%= render "doctors/partials/emergencia"  %>
+		</div>
+		<div class="row turnos-hoy">
+			<%= render "doctors/partials/hospitalizados"  %>
+		</div>
+		<div class="row turnos-hoy">
+			<h4 class="fa fa-sun-o "> Pacientes del dia</h4>
+			<%= render "doctors/partials/turnos_hoy"  %>
+		</div>
+	</div>
+	<div class="col-md-3">
+		<div class="co-xs-12">
+			<ul class="list-turnos">
+				<h5 class= "text-muted"> TURNOS DE MANANA</h5>
+				<% if @turnos_manana.empty? %>
+				<div class="text-center text-muted">
+					<span class= "fa fa-ticket fa-2x"></span>
+					<h5>No hay turnos registrados</h5>		
+				</div>
+				<% else %>
+				<% @turnos_manana.each do |t|  %>
+				<li class="item-turnos">
+					<div class="text-center atendidos">
+						<small><%=t.paciente.cliente.nombre%></small>
+					</div> 
+				</li>
+				<% end %>
+				<% end %>
+			</ul>
+		</div>
+	</div>
+</div>

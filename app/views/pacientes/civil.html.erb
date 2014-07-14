@@ -1,31 +1,46 @@
-<div class="info-paciente">
+<div class="row title-history">
+		<h2 class="fix-margin">H.Clinica: civil</h2>
+</div>
+<div class="row info-paciente">
 	<%= nested_form_for @paciente do |f| %>
 	<%= form_errors_for @paciente %>
-	<div class="col-md-3">
-		<%= f.label :n_hclinica, "Historia Clinica #"%>
-		<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica"%>
-		<%= f.hidden_field :tipo %>
+	<div class="row">
+		<div class="col-md-4">
+			<%= f.label :n_hclinica, "Historia Clinica #"%>
+			<%= f.text_field :n_hclinica  , class: "form-control numero_de_hclinica",required: true%>
+			<%= f.hidden_field :tipo %><br>
+		</div>
+		<div class="col-md-4">
+			<%= f.label :discapacidad%>
+			<%= f.select(:discapacidad, ['Ninguna','Fisica','Intelectual','Mental', 'Auditiva','Visual','Otra'], {}, { :class => 'form-control' }) %>
+		</div>
+		<div class="col-md-4">
+			<%= f.label :afiliado%>
+			<div class="input-group">
+				<div id="radioBtn" class="btn-group">
+					<a class="btn btn-info btn-sm active" data-toggle="afiliado" data-title="ninguno">NINGUNO</a>
+					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="IESS">IESS</a>
+					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="ISSPOL">ISSPOL</a>
+					<a class="btn btn-info btn-sm notActive" data-toggle="afiliado" data-title="OTROS">OTROS SEGUROS</a>
+				</div>
+				<%= f.hidden_field :afiliado, id: "afiliado", value: "ninguno"  %>
+			</div>
+			<br>
+		</div>
 	</div>
-	<%= render "pacientes/forms/registro", f:f  %>
-	<br>
-	<br>
-	<br>
-	<br>
 	<div id="rootwizard">
 		<div class="navbar">
 			<div class="navbar-inner">
-				<div class="containers">
-					<ul class="nav nav-pills nav-justified thumbnail setup-panel">
-						<li><a href="#tab1" data-toggle="tab">
-							<span class ="fa fa-user-md fa-2x"></span>
-							<p class="list-group-item-text">Datos del Paciente</p>
-						</a></li>
-						<li><a href="#tab3" data-toggle="tab">
-							<span class ="fa fa-th-list fa-2x"></span>
-							<p class="list-group-item-text">Informacion Adicional</p>
-						</a></li>
-					</ul>
-				</div>
+				<ul class="nav nav-pills nav-justified thumbnail setup-panel">
+					<li><a href="#tab1" data-toggle="tab">
+						<span class ="fa fa-male fa-2x"></span>
+						<p class="list-group-item-text">Datos del Paciente</p>
+					</a></li>
+					<li><a href="#tab3" data-toggle="tab">
+						<span class ="fa fa-th-list fa-2x"></span>
+						<p class="list-group-item-text">Informacion Adicional</p>
+					</a></li>
+				</ul>
 			</div>
 		</div>
 		<div class="tab-content row">
@@ -34,7 +49,7 @@
 			</div>
 			<div class="tab-pane" id="tab3">
 				<%= render "pacientes/forms/informacion_adicional", f:f  %>
-				<%= f.submit :Guardar, class: "btn btn-success" %>
+				<%= f.submit :Guardar, class: "btn btn-success add-margin col-md-offset-3" %>
 			</div>
 		</div> 
 		<% end %>
@@ -45,5 +60,4 @@
 			<li class="next clickable"><a>Siguiente</a></li>
 		</ul>
 	</div>
-
 </div>

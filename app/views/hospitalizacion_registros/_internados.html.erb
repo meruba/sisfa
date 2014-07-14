@@ -1,0 +1,30 @@
+<section class="main searchable-container">
+  <% @registros.each do |r|  %>
+  <div class="hospitalizado items" id='<%=r.id%>'>
+    <h4>
+      <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
+      <% unless r.alta? %>
+      <span><%= link_to "", edit_paciente_hospitalizacion_registro_path(r.paciente, r), {:remote => true, :rel=> 'tooltip', :title=>'Dar de alta','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "pull-right fa fa-arrow-circle-o-right"}%>
+      </span>
+      <% else %>
+      <span class="pull-right fa fa-check text-info"></span>
+      <% end %>
+    </h4>
+    <h4 class="text-center name">
+      <strong> <%=r.paciente.cliente.nombre%></strong>
+    </h4>
+    <h1><%=r.paciente.n_hclinica%></h1>
+    <h6 class="text-center">HISTORIA CLINICA</h6>
+    <h6 class="text-center">Dr(a): <%=r.medico_asignado%></h6>
+    <h6 class="tiempo text-muted">
+      <span><%=local_date(r.fecha_de_ingreso, "date")%></span>
+      <% if r.alta == true %>
+      <span class="pull-right"><%= r.dias_hospitalizacion%> dias</span>
+      <% else %>
+      <span class="pull-right"><%= time_ago_in_words(r.fecha_de_ingreso)%></span> 
+      <% end %>
+    </h6>
+  </div>
+  <% end %>
+</section>
+

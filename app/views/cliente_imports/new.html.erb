@@ -1,0 +1,28 @@
+<h1>Importar clientes</h1>
+
+<p>Debe ser un archivo de Excel (xls o xlsx. La primera fila debe ser el nombre de las columnas.</p>
+
+<ul>
+  <li><strong>id:</strong> No obligatorio. Número sin decimales.</li>
+  <li><strong>nombre:</strong> Obligatorio. Texto</li>
+  <li><strong>direccion:</strong> No obligatorio. Texto</li>
+  <li><strong>numero_de_identificación:</strong> Obligatorio. Número de cédula</li>
+  <li><strong>telefono:</strong> No obligatorio. Texto</li>
+  <li><strong>email:</strong> No obligatorio. Texto</li>
+  <li><strong>sexo:</strong> No obligatorio. Texto</li>
+  <li><strong>estado_civil:</strong> No obligatorio. Texto</li>
+  <li><strong>fecha_nacimiento:</strong> No obligatorio. Texto. Formato DD/MM/AAAA</li>
+</ul>
+
+<p>Si el archivo tiene la columna <strong>id</strong> se actualizará el cliente que corresponda y no se creará uno nuevo</p>
+
+
+<%= form_for @clienteimport do |f| %>
+
+  <%= form_errors_for @clienteimport %>
+
+  <div class="field">
+    <%= f.file_field :file, :required => true %>
+  </div>
+  <div class="action"><%= f.submit "Importar", :data => {:disable_with => "Importando..."} %></div>
+<% end %>

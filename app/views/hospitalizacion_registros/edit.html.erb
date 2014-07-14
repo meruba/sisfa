@@ -1,0 +1,48 @@
+<div class="row title-history">
+	<h1 class="fix-margin"> <span class="fa fa-check-circle"></span> Alta Paciente</h1>
+</div>
+<div class="row info-paciente">
+	<%= render "pacientes/informacion_hospitalizacion"  %>
+	<legend>Registro de Salida</legend>
+	<%= form_for @registro do |f| %>
+	<%= form_errors_for @registro %>
+	<div class="field">
+		<div class="row add-padding-bottom">
+			<div class="col-md-4">
+				<%= f.label :fecha_de_salida%>
+				<%= f.text_field :fecha_de_salida, class: "datepicker", placeholder: "2014-09-24" %>
+			</div>
+			<div class="col-md-4">
+				<%= f.label :condicion_egreso%>
+				<%= f.select(:condicion_egreso, ['Vivo','Fallecido menos de 48 horas','Fallecido mas de 48 horas'], {}, { :class => 'form-control' }) %>
+			</div>
+			<div class="col-md-4">
+				<%= f.label :especialidad_egreso%>
+				<%= f.select(:especialidad_egreso, ['Cardilogía','Cardilogía Toráxica','Dermatlogía', 'Endocrinología', 'Gastroenterología', 'Infectología', 'Nefrología', 'Neumología', 'Neurología clínica', 'Oftalmología', 'Otorrinolaringología', 'Psiquiatría', 'Oncología', 'Hematología', 'Reumatología', 'Complicaciones y discapacidades', 'Unidad de cuidados intensivos', 'Cirugía pediátrica', 'Neurocirugía', 'Cirugía plástica', 'Cirugía vascular', 'Cirugía maxilo facial', 'Proctología', 'Traumatología', 'Urología', 'Unidad de quemados', 'Ginecología - obstetricia', 'Neonatología ó Pediatría', 'Otra'], {}, { :class => 'select-servicio form-control' }) %>
+			</div>
+		</div>
+		<div class="row add-padding-bottom">
+			<div class="col-md-6">
+				<%= f.label :diagnostico_ingreso%>
+				<%= f.text_field :diagnostico_ingreso, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+			</div>
+			<div class="col-md-6">
+				<%= f.label :diagnostico_salida, "Diagnostico Egreso" %>
+				<%= f.text_field :diagnostico_salida, class: "form-control enfermedad", placeholder: "Ejm: OSTEOPOROSIS SIN FRACTURA PATOLOGICA"%>
+				<%= f.hidden_field :codigo_cie, class: "codigo_cie"  %>
+			</div>
+		</div>
+		<div class="row add-padding-bottom">
+			<div class="col-md-6">
+				<%= f.label :diagnostico_sec_egreso1, "1. Secundario de Egreso" %>
+				<%= f.text_field :diagnostico_sec_egreso1, class: "form-control enfermedad",placeholder: "Ejm: DORSALGIA"  %>
+			</div>
+			<div class="col-md-6">
+				<%= f.label :diagnostico_sec_egreso2, "2. Secundario de Egreso"%>
+				<%= f.text_field :diagnostico_sec_egreso2, class: "form-control enfermedad",placeholder: "Ejm: HIPETENSION ARTERIAL"  %>
+			</div>
+		</div>
+	</div>
+	<%= f.submit 'Guardar', class: "btn btn-primary"%>
+	<% end %>
+</div>

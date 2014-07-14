@@ -1,0 +1,48 @@
+<div class="row title-history">
+	<h1 class="fix-margin">Consulta Ext. Preventiva</h1>
+</div>
+<div class="row info-paciente">
+	<%= render "pacientes/informacion_consulta"  %>
+	<%= form_for [@turno, @consulta] do |f| %>
+	<%= form_errors_for @consulta %>
+	<div class="col-md-6">
+		<%= render "condicion/condicion_paciente", f:f %>
+	</div>
+	<div class="col-md-6">
+		<h3>Ficha de Registro Medico</h3>
+		<%= f.label :tipo_de_atencion%>
+		<%= f.select(:tipo_de_atencion, ['Primera','Subcecuente'], {}, { :class => 'form-control' }) %>
+		<% if @turno.paciente.cliente.sexo == "Femenino" %>
+		<% if age(@turno.paciente.cliente.fecha_de_nacimiento) >= 0 && age(@turno.paciente.cliente.fecha_de_nacimiento) < 5 %>
+		<%= f.hidden_field :atencion_preventiva, value: "Niños" %>
+		<% else %>
+		<%= f.label :planificacion_familiar%>
+		<%= f.select(:planificacion_familiar, ['DIU','G.O','OTROS'], {}, { :class => 'form-control' }) %>
+		<%= f.label :atencion_preventiva%>
+		<%= f.select(:atencion_preventiva, ['Mujeres','Niños adolecentes y Adultos'], {}, { :class => 'form-control' }) %>
+		<%= f.label :prenatal%>
+		<%= f.select(:prenatal, ['10-19 años','20-49 años'], {}, { :class => 'form-control' }) %>
+		<%= f.label :doc%>
+		<%= f.select(:doc, ['Cervico Uterino','Mamario'], {}, { :class => 'form-control' }) %><br>
+		<%= f.label :partos%>
+		<%= f.check_box :partos %>
+		<%= f.label :post_partos%>
+		<%= f.check_box :post_partos %>
+		<%= f.label :trabajadora_sexual%>
+		<%= f.check_box :trabajadora_sexual %>
+		<% end %>
+		<% else %>
+		<%= f.label :atencion_preventiva%>
+		<%= f.select(:atencion_preventiva, ['Niños','Niños adolecentes y Adultos'], {}, { :class => 'form-control' }) %><br>
+		<% end %>
+		<%= f.label :certificado_medico%>
+		<%= f.check_box :certificado_medico %>
+		<br>
+		<br>
+	</div>
+	<%=link_to ' Hospitalizar', new_paciente_hospitalizacion_registro_path(@turno.paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',class: "ttip fa fa-hospital-o btn btn-info fix-margin"}%>
+	<small class="text-danger">* Haz click si crees que es necesario </small>
+	<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
+	<small class="fix-margin">* Los campos faltantes seran calculados por el sistema</small>
+	<% end %>
+</div>

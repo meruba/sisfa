@@ -19,23 +19,21 @@
 class Cliente < ActiveRecord::Base
 
 #validations
-	validates :nombre, :numero_de_identificacion, :presence =>true
-	validates :numero_de_identificacion, :uniqueness => true
+	validates :nombre, :presence =>true
+	validates :numero_de_identificacion, :uniqueness => true, :if => :numero_de_identificacion?
 	validates_id :numero_de_identificacion, :message => "Cédula incorrecta"
+
 # relationships
   has_one :user
-	has_one :paciente
+  has_one :paciente
+	has_one :doctor
 	has_many :proformas
 	has_many :facturas
-	has_many :registros
 	has_many :hospitalizacions
-  has_one :cliente_militar
-  has_one :militar, through: :cliente_militar
 
 #methods
-	
 	def self.autocomplete(params)
-		clientes = Cliente.includes(:paciente).where("numero_de_identificacion like ?", "%#{params}%").references(:paciente)
+		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%")
     clientes = clientes.map do |cliente|
       {
         :id => cliente.id,

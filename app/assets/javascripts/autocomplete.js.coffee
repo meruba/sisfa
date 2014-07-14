@@ -111,11 +111,22 @@ window.Helpers.AutocompleteHelper = {
           $(".nombre").val ui.item.nombre_o_razon_social
           $(".direccion").val ui.item.direccion
           $(".telefono").val ui.item.telefono
+
+  init_autocomplete_no_opcions: ->
+    $(".identificacion_cliente").autocomplete
+      minLength: 3
+      source: "/clientes/autocomplete.json"
+      select: (event, ui) ->
+          $(".cliente_id").val ui.item.id
+          $(".nombre").val ui.item.nombre
+          $(".direccion").val ui.item.direccion
+          $(".telefono").val ui.item.telefono
 }
 
 jQuery window.Helpers.AutocompleteHelper.init
 $(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
+$(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocomplete_no_opcions
 
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor

@@ -1,16 +1,30 @@
 <div class="row info-paciente">
 	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
 	<ul class="cbp_tmtimeline">
-		<% @paciente.registros.hospitalizacion.each do |r|  %>
+		<% @paciente.condicions.each do |r|  %>
 		<li>
-			<time class="cbp_tmtime"><span><%= local_date(r.fecha_de_ingreso, "time")%></span> <span><%= local_date(r.fecha_de_ingreso, "date") %></span></time>
-			<div class="cbp_tmicon fa-calendar"></div>
+			<time class="cbp_tmtime">
+				<span><%= local_date(r.created_at, "date")%></span>
+			</time>
+			<% case r.tipo_registro%>
+			<% when "Emergencia"%>
+			<div class="cbp_tmicon fa-plus"></div>
+			<% when "Hospitalizacion"%>
+			<div class="cbp_tmicon fa-hospital-o"></div>
+			<% when "Consulta Externa Morbilidad"%>
+			<div class="cbp_tmicon fa-stethoscope"></div>
+			<% when "Consulta Externa Preventiva"%>
+			<div class="cbp_tmicon fa-stethoscope"></div>
+			<% end %>
 			<div class="cbp_tmlabel">
-				<small>DIAGNOSTICO FINAL</small>
-				<h3><%= r.diagnostico_salida %></h3>
-				<p>Diagnosticos: <%= r.diagnostico_ingreso %>, <%= r.diagnostico_sec_egreso1%>,<%= r.diagnostico_sec_egreso2 %></p>
-				<p>MEDICO: <%= r.medico_asignado %></p>
-				<p>Discapacidad: <%= r.discapacidad %></p>
+				<small>DIAGNOSTICO</small>
+				<h3><%= r.diagnostico_1%></h3>
+				<% unless r.tipo_registro == "Hospitalizacion" %>
+				<p>Enfermedad: <%= r.enfermedad_actual %></p>
+				<% end %>
+				<p>Motivo: <%= r.motivo_de_consulta%></p>
+				<p>Medico: <%= r.medico_asignado %></p>
+				<p>Tipo: <%= r.tipo_registro %></p>
 			</div>
 		</li>
 		<% end %>

@@ -5,30 +5,13 @@
 	<div class="row info-paciente">
 		<div class="acciones">
 			<div class="well well-sm">
-				<strong>Acciones: </strong>
-				<div class="btn-group">
-					<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
-				</div>
+				<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
+				<%= link_to 'Lista Hoy',turnos_hoy_path, class: "btn btn-info btn-xs"  %>
+				<%= link_to 'Lista Mañana',turnos_manana_path, class: "btn btn-info btn-xs"  %>
 			</div>
 		</div>
-		<ul class="doctores">
-			<% @doctores.each do |d|  %>
-			<li class= "list col-md-6">
-				<div class="row-fix-div control-turno" data-id = "<%=d[:id]%>">
-					<div class="row col-md-2 col-xs-2 turnos-emitidos">
-						<span class="t_emitidos"><%= d[:turnos_emitidos]%></span>
-						<h6>emitidos</h6>
-					</div>
-					<div class="row col-md-8 col-xs-8 paciente">
-						<h4><%=d[:nombre]%></h4>
-						<small><%= d[:especialidad]%></small>
-					</div>
-					<div class="row col-md-2 col-xs-2 turnos-disponibles">
-						<span class="t_disponibles"><%= d[:turnos_disponibles] %></span>
-						<h6>disponibles</h6>
-					</div>
-				</div> 
-				<% end %>
-			</li>
+		<ul class="doctores cantidad_turnos">
+			<%= render "doctor_turnos"%>
 		</ul>
 	</div>
+</div>

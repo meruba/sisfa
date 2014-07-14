@@ -1,0 +1,28 @@
+<div class="calendar">
+	<h1 class="month"><%= month_name(Time.now)%></h1>
+	<ol class="day-names"><li>Domingo</li><li>Lunes</li><li>Martes</li><li>Miercoles</li><li>JUeves</li><li>Viernes</li><li>Sabado</li></ol>
+	<ol class="days">
+		<% for i in (1..@espacios) %>
+		<li></li>
+		<% end %>
+		<% for i in(1..@numero_dias) %>
+		<li>
+			<div class="date"><%=i%></div>
+			<% @emergencias_mes.each do |e| %>
+			<div class="event">
+				<% if i == e.created_at.strftime("%d").to_i %>
+				<%= e.paciente.cliente.nombre %>
+				<% end %>
+			</div>
+			<% end %>
+			<% @hospitalizados_mes.each do |e| %>
+			<div class="event hospt">
+				<% if i == e.created_at.strftime("%d").to_i %>
+				<%= e.paciente.cliente.nombre %>
+				<% end %>
+			</div>
+			<% end %>
+		</li>
+		<% end %>
+	</ol>
+</div>

@@ -4,17 +4,48 @@
 	</div>
 	<div class="row info-paciente">
 		<div class="row acciones">
-			<div class="col-md-4">
-				<%= link_to 'Nuevo', new_doctor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
-				<%= link_to ' Listado de hoy',doctors_imprimir_listado_path(:format => :pdf), class: "print_button btn-xs", :target => "_blank" %>	
+			<div class="col-md-3">
+				<%= link_to 'Nuevo', new_doctor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
+				<%= link_to ' Listado de hoy',doctors_imprimir_listado_path(:format => :pdf), class: "print_button", :target => "_blank" %>	
+			</div>
+			<div class="col-md-3">
+				<%= form_tag emergencia_parte_mensuals_reporte_path(:format => 'xls'), method: :get do %>
+				<div class="input-group field fix-margin">
+					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker_month", :placeholder => "Reporte emergencia", :required => true%>
+					<span class="input-group-btn">
+						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+					</span>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-md-3">
+				<%= form_tag jornada_morbilidads_reporte_path(:format => 'xls'), method: :get do %>
+				<div class="input-group field fix-margin">
+					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte morbilidad", :required => true%>
+					<span class="input-group-btn">
+						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+					</span>
+				</div>
+				<% end %>
+			</div>
+			<div class="col-md-3">
+				<%= form_tag jornada_preventivas_reporte_path(:format => 'xls'), method: :get do %>
+				<div class="input-group field fix-margin">
+					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte preventiva", :required => true%>
+					<span class="input-group-btn">
+						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+					</span>
+				</div>
+				<% end %>
 			</div>		
-			<div class="col-md-3 col-md-offset-5">
-				<div class="input-icon-sm icon-addon addon-sm">
+			<div class="col-md-3">
+				<div class="input-icon-md icon-addon addon-md">
 					<input type="search" id="input-search" class="form-control" placeholder="Buscar Doctor..." ><i class="fa fa-search"></i>
 					<i class="fa fa-search"></i>
 				</div>
 			</div>
 		</div>
+		<br>
 		<legend>Doctores Registrados</legend>
 		<ul class="doctores searchable-container">
 			<%= render "doctors/partials/doctors"%>

@@ -5,14 +5,19 @@
 	<div class="container">
 		<div class="col-md-5 row-fix-div">
 			<div class="col-md-4 text-center">
-				<span class ="genero-icon fa fa-male fa-5x"></span><br>
-				<small>paciente</small>
+				<% if @paciente.cliente.sexo == "Femenino" %>
+				<span class ="fa fa-female fa-5x"></span><br>
+				<% else %>
+				<span class ="fa fa-male fa-5x"></span><br>				
+				<% end %>
+				<span>
+				<%= link_to "Imprimir", paciente_print_historia_path(@paciente, :format => 'pdf'), :target => "_blank",class: "label label-info" %></span>
 			</div>
 			<div class="col-md-8">
 				<h4><strong><%= @paciente.cliente.nombre %></strong></h4>
 				<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
 				<small><strong>EDAD:</strong>
-					<%= age(@paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
+					<%= exact_age(@paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
 				</small><br>
 				<small><strong>NACIONALIDAD:</strong>ECUATORIANO</small>
 			</div>
@@ -27,9 +32,10 @@
 			<small class="text-muted">CONTACTO/RELACION</small><br>
 			<span><strong><%= @paciente.informacion_adicional_paciente.familiar_cercano%> /
 				<small class="text-muted"><%= @paciente.informacion_adicional_paciente.familiar_parentesco%></small></strong></span><br>
-			<i class="fa fa-map-marker"></i> <%= @paciente.informacion_adicional_paciente.familiar_direccion%><br/>
-			<i class="fa fa-phone"></i> <%= @paciente.informacion_adicional_paciente.familiar_telefono%><br/>
+				<i class="fa fa-map-marker"></i> <%= @paciente.informacion_adicional_paciente.familiar_direccion%><br/>
+				<i class="fa fa-phone"></i> <%= @paciente.informacion_adicional_paciente.familiar_telefono%><br/>
+			</div>
 		</div>
 	</div>
+	<%= render 'historia_registros' %>
 </div>
-<%= render 'historia_registros' %>

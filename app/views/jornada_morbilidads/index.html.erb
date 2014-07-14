@@ -1,0 +1,49 @@
+<h3>Trabajo del Mes</h3>
+<% @jornadas.each do |j| %>
+<div class="col-md-2">
+	<h5>discapcitados</h5> <%= j.total_discapacitados%>
+	<h5>hombre</h5> <%= j.total_hombre%>
+	<h5>mujer</h5> <%= j.total_mujer %>
+	<h5>blanco</h5> <%= j.total_blanco %>		
+	<h5>mestizo</h5> <%= j.total_mestizo %>					
+	<h5>ecuatoriano</h5> <%= j.total_afroecuatoriano %>	
+	<h5>indigena</h5> <%= j.total_indigena %>				
+	<h5>montubio</h5> <%= j.total_montubio %>		
+	<h5>colombiano</h5> <%= j.total_colombiano 	%>		
+	<h5>peruano</h5> <%= j.total_peruano %> 					
+	<h5>otra nacionalidad</h5> <%= j.total_otra_nacionalidad%>	
+	<h5>issfa</h5> <%= j.total_issfa%>
+	<h5>iess</h5> <%= j.total_iess%>
+	<h5>isspol</h5> <%= j.total_ispol%>						
+	<h5>otro seguro</h5> <%= j.total_otros_seguros%>				
+	<h5>terrestre</h5> <%= j.total_terrestre%>          		
+	<h5>area</h5> <%= j.total_aerea%>                  
+	<h5>naval</h5> <%= j.total_naval  %>                
+	<h5>civil</h5> <%= j.total_civilies  %>             
+	<h5>militar activo</h5> <%= j.total_activo %>                
+	<h5>militar pasivo</h5> <%= j.total_pasivo     %>            
+	<h5>aspirante</h5> <%= j.total_aspirante %>             
+	<h5>conscripto</h5> <%= j.total_conscripto    %>         
+	<h5>familiar activo</h5> <%= j.total_activo_familiar %>       
+	<h5>familiar pasivo</h5> <%= j.total_pasivo_familiar %>       
+	<h5>derecho hab</h5> <%= j.total_derecho_hab  %>          
+	<h5>atencion primera</h5> <%= j.total_atencion_primera %>      
+	<h5>atencion subsecuente</h5> <%= j.total_atencion_subsecuente%>   
+	<h5>atencion interconsulta</h5> <%= j.total_atencion_interconsulta %>
+	<h5>menor 1 mes</h5> <%= j.total_memor_1_mes    %>        
+	<h5>menor 1-11 meses </h5> <%= j.total_memor_1_11_mes   %>      
+	<h5>1 -4 anios</h5> <%= j.total_1_4_anios       %>       
+	<h5>5-9 anios</h5> <%= j.total_5_9_anios      %>        
+	<h5>10-14 anios</h5> <%= j.total_10_44_anios   %>         
+	<h5>15-19 anios</h5> <%= j.total_15_19_anios  %>          
+	<h5>20-49 anios</h5> <%= j.total_20_49_anios  %>          
+	<h5>50-64 anios</h5> <%= j.total_50_64_anios %>           
+	<h5>65 anios +</h5> <%= j.total_65_anios   %>            
+	<h5>Diag. presuntivo</h5> <%= j.total_presuntivo  %>           
+	<h5>Diag. inicial</h5> <%= j.total_inicial    %>            
+	<h5>Diag. control</h5> <%= j.total_control    %>            
+	<h5>Ord. Interconsulta</h5> <%= j.total_interconsulta  %>        
+	<h5>Ord. referencia</h5> <%= j.total_referencia   %>          
+	<h5>Certificado medico</h5> <%= j.total_certificado_medico %>
+</div>
+<% end %>

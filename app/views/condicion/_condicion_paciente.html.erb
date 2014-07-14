@@ -1,0 +1,25 @@
+<h3>Condicion del Paciente</h3>
+<%= f.fields_for :condicion do |c| %>
+<%= c.label :motivo_de_consulta%>
+<%= c.text_field :motivo_de_consulta, class: "form-control" %>
+<%= c.label :enfermedad_actual%>
+<%= c.text_field :enfermedad_actual, class: "form-control",placeholder: "Ejm: DIABETIS"  %>
+<%= c.label :revision_organos_sistema%>
+<%= c.text_area :revision_organos_sistema, class: "form-control"%>
+<%= c.label :presion_arterial%>
+<%= c.text_field :presion_arterial, class: "form-control",placeholder: "Ejm: 23"  %>
+<%= c.label :pulso%>
+<%= c.text_field :pulso, class: "form-control",placeholder: "Ejm: 80"  %>
+<%= c.label :temperatura%>
+<%= c.text_field :temperatura, class: "form-control",placeholder: "Ejm: 28"  %>
+<%= c.label :examen_fisico%>
+<%= c.text_area :examen_fisico, class: "form-control"%>
+<label>Diagnostico Definitivo C.I.E: <strong class="codigo_cie"></strong></label>
+<%= c.text_field :diagnostico_1, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+<%= c.hidden_field :codigo_cie_1, class: "codigo_cie"%>
+<label>Diagnostico Presuntivo C.I.E: <strong class="codigo_cie"></strong></label>
+<%= c.text_field :diagnostico_2, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+<%= c.hidden_field :codigo_cie_2, class: "codigo_cie"%>
+<%= c.label :planes%>
+<%= c.text_area :planes, class: "form-control"  %>
+<% end %>

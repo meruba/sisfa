@@ -1,10 +1,20 @@
 class DoctorsController < ApplicationController
 	before_filter :require_login
 	before_filter :suspendido
-	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender]
+	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender, :pacientes_emergencia]
 
 	def index
-		@doctores = Doctor.all
+		@doctores = Doctor.includes(:cliente).all
+	end
+
+	def dashboard
+		@doctor = current_user.cliente.doctor
+		@turnos_hoy = @doctor.turnos.turnos_today
+		@turnos_manana = @doctor.turnos.turnos_tomorrow
+		@emergencias = @doctor.emergencia_registros.ingresados
+		@hospitalizados = @doctor.hospitalizacion_registros.ingresados
+		@enviado = @doctor.jornada_morbilidads.was_send
+		@enviado_preventiva = @doctor.jornada_preventivas.was_send
 	end
 
 	def autocomplete
@@ -15,9 +25,19 @@ class DoctorsController < ApplicationController
 
 	def new
 		@doctor = Doctor.new
+		@doctor.build_cliente
     respond_to do |format|
-      format.js{ render "new_or_edit" }
+      format.js
     end
+	end
+	
+	def pacientes_emergencia
+		@fecha = Time.now.to_date
+		@pacientes = @doctor.emergencia_registros
+		respond_to do |format|
+			format.html
+			format.js
+		end
 	end
 
 	def turnos_dia
@@ -67,7 +87,7 @@ class DoctorsController < ApplicationController
 
 	def edit
 		respond_to do |format|
-      format.js { render "new_or_edit"}
+      format.js
     end
 	end
 
@@ -107,6 +127,15 @@ class DoctorsController < ApplicationController
 	end
 
 	def doctor_params
-		params.require(:doctor).permit(:nombre, :especialidad, :cantidad_turno, :suspendido)
+		params.require(:doctor).permit :especialidad,
+		 :cantidad_turno,
+		 :suspendido,
+		 :cliente_attributes => [
+				:id,
+				:nombre,
+				:direccion,
+				:telefono,
+				:numero_de_identificacion
+			]
 	end
 end

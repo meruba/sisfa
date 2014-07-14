@@ -1,0 +1,46 @@
+<h3><strong>Paciente:</strong> <%=@paciente.cliente.nombre%> / <span class="text-muted"><%= @paciente.tipo%></span></h3>
+<legend>Datos Personales</legend>
+<p>
+	<strong>C.I:</strong> <%= @paciente.cliente.numero_de_identificacion  %><br>
+	<strong>Estado civil:</strong> <%=best_in_place @paciente.cliente, :estado_civil, type: :select, collection: [["Casado", "Casado"], ["Soltero", "Soltero"], ["Divorciado", "Divorciado"], ["Union Libre", "Union Libre"], ["Viudo", "Viudo"]]  %> <span class="fa fa-pencil text-info">..</span><br>
+	<strong>Direccion:</strong> <%= best_in_place @paciente.cliente, :direccion %> <span class="fa fa-pencil text-info">..</span><br>
+	<strong>Telefono:</strong> <%= best_in_place @paciente.cliente, :telefono %> <span class="fa fa-pencil text-info">..</span><br>
+	<% if  @paciente.tipo == "militar" || @paciente.tipo =="familiar"%>
+	<strong>Afiliado:</strong> <%= @paciente.afiliado%><br>
+	<% else %>
+	<strong>Afiliado:</strong> <%= best_in_place @paciente, :afiliado, type: :select, collection: [["IESS", "IESS"], ["ISSPOL", "ISSPOL"],["OTROS SEGUROS", "OTROS SEGUROS"],["NINGUNO", "NINGUNO"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<% end %>
+</p>
+<% if @paciente.tipo == "familiar" %>
+<legend>Informacion Militar-Familiar</legend>
+<p>
+	<strong>Codigo ISSFA:</strong> <%= best_in_place @paciente, :codigo_issfa %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Parentesco:</strong> <%= best_in_place @paciente, :parentesco, type: :select, collection: [["Hijo", "Hijo"], ["Esposo", "Esposo"], ["Padre", "Padre"], ["Madre", "Madre"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Estado:</strong> <%= best_in_place @paciente, :estado, type: :select, collection: [["Activo", "Activo"], ["Pasivo", "Pasivo"], ["Derecho Hab", "Derecho Hab"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+</p>
+<% else if  @paciente.tipo == "militar"%>	
+<p>
+	<legend>Informacion Militar</legend>
+	<strong>Unidad:</strong> <%= best_in_place @paciente, :unidad %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Codigo ISSFA:</strong> <%= best_in_place @paciente, :codigo_issfa %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Estado:</strong> <%= best_in_place @paciente, :estado, type: :select, collection: [["Activo", "Activo"], ["Pasivo", "Pasivo"], ["Aspirante", "Aspirante"], ["Conscripto", "Conscripto"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Grado:</strong> <%= best_in_place @paciente, :grado, type: :select, collection: [["GRAL", "GRAL"], ["CRNL", "CRNL"], ["TCNRL", "TCNRL"], ["MYR", "MYR"], ["CAP", "CAP"], ["TNTE", "TNTE"], ["SBTNTE", "SBTNTE"], ["SUB MAY", "SUB MAY"], ["SUB SEG", "SUB SEG"], ["SARG PRI", "SARG PRI"], ["SARG SEG", "SARG SEG"], ["CABO PR", "CABO PR"], ["SOLDADO", "SOLDADO"], ["CONSCRIPTO", "CONSCRIPTO"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Pertenece a:</strong> <%= best_in_place @paciente, :pertenece_a, type: :select, collection: [["Ejercito", "Ejercito"], ["Marina", "Marina"], ["Aviacion", "Aviacion"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Jefe de Reparto:</strong> <%= best_in_place @paciente, :jefe_de_reparto%> <span class="fa fa-pencil text-info">..</span><br/>
+</p>
+<% end %>
+<% end %>
+<legend>Informacion Adicional</legend>
+<p>
+	<strong>Nacionalidad:</strong> <%= @paciente.informacion_adicional_paciente.nacionalidad %><br/>
+	<strong>Provincia:</strong> <%= @paciente.informacion_adicional_paciente.provincia %><br/>
+	<strong>Canton:</strong> <%= @paciente.informacion_adicional_paciente.canton%><br/>
+	<strong>Parroquia:</strong> <%= @paciente.informacion_adicional_paciente.parroquia %><br/>
+</p>
+<legend>Informacion Familiar</legend>
+<p>
+	<strong>Familiar Cercano:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_cercano%> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Relacion Familiar:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_parentesco %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Direccion del Familiar:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_direccion %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Telefono del Familiar:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_telefono %> <span class="fa fa-pencil text-info">..</span><br/>
+</p>

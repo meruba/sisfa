@@ -1,0 +1,32 @@
+<div class="row title-green-head">
+	<h1 class="fix-margin">Consulta Ext. Morbilidad</h1>
+</div>
+<div class="row info-paciente">
+	<%= render "pacientes/informacion_consulta"  %>
+	<%= form_for [@turno, @consulta] do |f| %>
+	<%= form_errors_for @consulta %>
+	<div class="col-md-6">
+		<%= render "condicion/condicion_paciente", f:f %>
+	</div>
+	<div class="col-md-6">
+		<h3>Ficha de Registro Medico</h3>
+		<%= f.label :tipo_de_atencion%>
+		<%= f.select(:tipo_de_atencion, ['Primera','Subsecuente','Interconsulta Realizada'], {}, { :class => 'form-control' }) %>
+		<label>Diagnostico Sindrome C.I.E: <strong class="codigo_cie"></strong></label>
+		<%= f.text_field :diagnostico_sindrome, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
+		<%= f.hidden_field :codigo_cie, class: "codigo_cie"%>
+		<%= f.label :condicion_diagnostico%>
+		<%= f.select(:condicion_diagnostico, ['Presuntivo/Sospechoso','Definitivo/Inicial/Confirmado','Definitivo/Control'], {}, { :class => 'form-control' }) %>	
+		<%= f.label :ordenes%>
+		<%= f.select(:ordenes, ['Interconsulta Solicitada','Referencia'], {}, { :class => 'form-control' }) %><br>
+		<%= f.label :certificado_medico, "Certificado medico?"%>
+		<%= f.check_box :certificado_medico%>
+		<br>
+		<br>
+	</div>
+	<%=link_to ' Hospitalizar', new_paciente_hospitalizacion_registro_path(@turno.paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',class: "ttip fa fa-hospital-o btn btn-info fix-margin"}%>
+	<small class="text-danger">* Haz click si crees que es necesario </small>
+	<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5"%>
+	<small class="fix-margin">* Los campos faltantes seran calculados por el sistema</small>
+	<% end %>
+</div>

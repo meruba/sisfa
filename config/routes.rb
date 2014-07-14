@@ -20,13 +20,26 @@ get "dashboard/reportes_cierre_caja_diario"
 get "dashboard/reportes_cierre_caja_mensual"
 get "dashboard/estadisticas_dia"
 get "dashboard/estadisticas_mes"
-get "registros/reporte"
+get "hospitalizacion_registros/reporte"
 get "pacientes/autocomplete"
 get "pacientes/civil"
 get "pacientes/militar"
 get "pacientes/familiar"
 get "doctors/autocomplete"
 get "doctors/imprimir_listado"
+get "doctors/dashboard"
+get "jornada_morbilidads/reporte"
+get "enfermedads/autocomplete"
+get "jornada_preventivas/reporte"
+get "emergencia_parte_mensuals/reporte"
+get "dashboard_hospital/index"
+get "dashboard_hospital/estadisticas_hoy"
+get "dashboard_hospital/estadisticas_mes"
+get "turnos/hoy"
+get "turnos/manana"
+get "dashboard_hospital/ingresados"
+
+
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
 get "logout"  => "user_sessions#destroy",    :as => "logout"
@@ -41,11 +54,21 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :canjes
   end
   resources :pacientes do
-    resources :registros
+    resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update]
+    resources :emergencia_registros
+    get "view_edit"
+    get "print_historia"
   end
+
+  resources :turnos do
+    resources :consulta_externa_morbilidads, :only => [:new, :create]
+    resources :consulta_externa_preventivas, :only => [:new, :create]
+  end
+
   resources :clientes
+  resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
-  resources :registros
+  resources :hospitalizacion_registros
   resources :item_facturas
   resources :item_proformas
   resources :traspasos
@@ -58,10 +81,14 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_hospitalizacions
   resources :factura_compras
   resources :product_imports
+  resources :cliente_imports
   resources :informacion_adicional_pacientes, :only => [:edit, :update]
-  resources :turnos
+  resources :revisions
   resources :doctors do
+    resources :jornada_morbilidads
+    resources :jornada_preventivas
     member do
+      get "pacientes_emergencia"
       get "turnos_dia"
       get "turnos_manana"
       post "suspender"
