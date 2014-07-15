@@ -63,25 +63,49 @@
             <h4>Subtotal 12%: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="subtotal_12">00.00 </h4>
+            <h4 class="subtotal_12">
+              <% if @hospitalizacion.subtotal_12 %>
+                <%= @hospitalizacion.subtotal_12 %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
           <div class="col-xs-6">
             <h4>Subtotal 0%: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="subtotal_0">00.00 </h4>
+            <h4 class="subtotal_0">
+              <% if @hospitalizacion.subtotal %>
+                <%= @hospitalizacion.subtotal %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
           <div class="col-xs-6">
             <h4>Iva 12%: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="iva_factura">00.00 </h4>
+            <h4 class="iva_factura">
+              <% if @hospitalizacion.iva %>
+                <%= @hospitalizacion.iva %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
           <div class="col-xs-6">
             <h4>TOTAL: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="total_factura">00.00 </h4>
+            <h4 class="total_factura">
+              <% if @hospitalizacion.total %>
+                <%= @hospitalizacion.total %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
         </div>
       </div>
