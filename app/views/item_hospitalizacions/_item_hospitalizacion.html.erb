@@ -8,16 +8,16 @@
   <%=  item.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1" %>
 </td>
 
-<td class ="valor_unitario">
-  <%= item.text_field :valor_unitario, :readonly => true, class: "form-control-border" %>
+<td>
+  <%= item.text_field :valor_unitario, :readonly => true, class: "form-control-border valor_unitario" %>
 </td>
 
-<td class ="iva">
-  <%= item.text_field :iva, :readonly => true, class: "form-control-border" %>
+<td>
+  <%= item.text_field :iva, :readonly => true, class: "form-control-border iva" %>
 </td>
 
-<td class ="total_item">
-  <%= item.text_field :total, :readonly => true, class: "form-control-border" %>
+<td>
+  <%= item.text_field :total, :readonly => true, class: "form-control-border total_item" %>
 </td>
 
 <td>
