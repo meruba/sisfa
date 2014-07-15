@@ -1,28 +1,75 @@
-<section class="main searchable-container">
-  <% @registros.each do |r|  %>
-  <div class="hospitalizado items" id='<%=r.id%>'>
-    <h4>
-      <span class="tipo"><%=(r.paciente.tipo).upcase%></span>
-      <span><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(r), {:rel=> 'tooltip', :title=>'Asignarle Cama', class: "pull-right fa fa-circle"}%>
-      <span><%= link_to "", signo_vital_path(r), {:rel=> 'tooltip', :title=>'Agregar Signos Vitales', class: "pull-right fa fa-stethoscope"}%>
-        <span><%= link_to "", nota_enfermera_path(r), {:rel=> 'tooltip', :title=>'Agregar nota', class: "pull-right fa fa-file-text-o"}%>
-        </span>
-      </span>
-    </h4>
-    <h4 class="text-center name">
-      <strong> <%=r.paciente.cliente.nombre%></strong>
-    </h4>
-    <h1><%=r.paciente.n_hclinica%></h1>
-    <h6 class="text-center">HISTORIA CLINICA</h6>
-    <h6 class="text-center">Dr(a): <%=r.medico_asignado%></h6>
-    <h6 class="tiempo text-muted">
-      <span><%=local_date(r.fecha_de_ingreso, "date")%></span>
-      <% if r.alta == true %>
-      <span class="pull-right"><%= r.dias_hospitalizacion%> dias</span>
-      <% else %>
-      <span class="pull-right"><%= time_ago_in_words(r.fecha_de_ingreso)%></span> 
-      <% end %>
-    </h6>
-  </div>
+<div class="new-ingresados">
+  <% unless @sin_camas.empty? %>
+    <h5 class="fix-margin text-warning">Paciente(s) sin cama(s):</h5>    
   <% end %>
-</section>
+  <ul class="internados grid">
+    <% @sin_camas.each do |r|  %>
+    <li class="no-ingresado-item">
+      <span class="internado-name">
+        <%=(r.paciente.cliente.nombre).downcase%>
+      </span>
+      <span class="internado-hc">
+        H.C #<%=r.paciente.n_hclinica%>
+      </span>
+      <div class="pull-right">
+        <span class="type-paciente">
+          <%=(r.paciente.tipo).upcase%>
+        </span>
+        <span class="ingresado-type">
+          <span class="btn-circles"><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(r), {:rel=> 'tooltip', :title=>'Asignarle Cama', class: "fa fa-square"}%></span>        
+        </span>
+      </div>
+    </li>
+    <% end %>
+  </ul> 
+</div>
+
+<div class="ingresados">
+  <ul class="list-inline fix-margin text-muted">
+    <span class="ingresado-type"><span class="circle green-color"></span>MILITAR</span>
+    <li class="ingresado-type"><span class="circle yellow-color"></span> FAMILIAR</li>
+    <li class="ingresado-type"> <span class="circle blue-color"></span> CIVIL</li>
+  </ul>
+  <ul class="internados grid ">
+    <% @camas.each do |r|  %>
+    <li class="ingresado-item">
+      <span class="internado-name">
+        <%=(r.paciente.cliente.nombre).downcase%>
+      </span>
+      <span class="internado-hc">
+        H.C #<%=r.paciente.n_hclinica%>
+      </span>
+      <div class="pull-right">
+        <span class="opcions">
+          <span class="cama-number">
+            <small class="text-muted">CAMA #<%= r.asignacion_cama.numero_cama %></small>
+          </span>
+          <span class="menu">
+            <ul class="list-inline">
+              <li class="btn-circle">
+                <%= link_to "", signo_vital_path(r), {:rel=> 'tooltip', :title=>'Agregar Signos Vitales', class: "fa fa-heart text-danger"}%>
+              </li>
+              <li class="btn-circle">
+                <%= link_to "", nota_enfermera_path(r), {:rel=> 'tooltip', :title=>'Agregar nota', class: "fa fa-file text-success"}%>
+              </li>
+              <li class="btn-circle">
+                <%= link_to "", paciente_path(r.paciente), {:rel=> 'tooltip', :title=>'Historia Clinica', class: "fa fa-h-square text-info"}%>
+              </li>
+            </ul>
+          </span>
+        </span>
+        <span class="ingresado-type">
+          <% case r.paciente.tipo%>
+          <% when "militar"%>
+            <span class="circle militar"></span>
+          <% when "civil"%>
+            <span class="circle civil"></span>
+          <% when "familiar"%>
+            <span class="circle familiar"></span>
+          <% end %>
+        </span>
+      </div>
+    </li>
+    <% end %>
+  </ul> 
+</div>
