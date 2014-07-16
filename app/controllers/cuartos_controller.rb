@@ -14,12 +14,12 @@ class CuartosController < ApplicationController
 	def create
 		@cuarto = Cuarto.new(cuarto_params)
 		@cuarto.save
-    respond_to do |format|
-      format.js{
-      	@cama = Cama.new
+		respond_to do |format|
+			format.js{
+				@cama = Cama.new
 				@camas = @cuarto.camas
-      }
-    end
+			}
+		end
 	end
 
 	private

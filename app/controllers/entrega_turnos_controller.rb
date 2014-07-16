@@ -5,7 +5,7 @@ class EntregaTurnosController < ApplicationController
 	def index
 		@hoja = EntregaTurno.new
 		@hojas = EntregaTurno.where(:fecha => Time.now.beginning_of_day..Time.zone.now)
-		@hojas_semana = EntregaTurno.where(:fecha => Time.now.beginning_of_week.. Date.yesterday.end_of_day)
+		@hojas_semana = EntregaTurno.where(:fecha => 4.days.ago.beginning_of_day.. Date.yesterday.end_of_day)
 	end
 
 	def new
