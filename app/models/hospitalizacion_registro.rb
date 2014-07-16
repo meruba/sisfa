@@ -36,7 +36,6 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	#callbacks	
 	before_update :set_values
 	before_create :build_notas_and_signos
-  # before_validation :set_dias, :on => :update
 
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
@@ -63,6 +62,8 @@ class HospitalizacionRegistro < ActiveRecord::Base
 		unless self.fecha_de_salida.nil?
 			self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i
 		end
+		# cama disponible una vez dado de alta
+			self.asignacion_cama.cama.update(:ocupada => false)
 	end
 
 	def build_notas_and_signos
