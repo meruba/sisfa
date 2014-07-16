@@ -10,4 +10,6 @@
 
 class Cuarto < ActiveRecord::Base
 	has_many :camas, dependent: :destroy
+	validates :nombre, :presence =>true
+	validates_uniqueness_of :nombre, :case_sensitive => false #nombre es unico sea escrito mayuscula o minuscula
 end
