@@ -1,8 +1,9 @@
-<div>
-	<h5><%= cama.numero%></h5>
-	<% if cama.ocupada %>
-	<span class="fa fa-circle text-danger"> Ocupada</span>
-	<% else %>		
-	<span class="fa fa-circle text-success"> Disponible</span>
-	<% end %>
-</div>
+<% unless cama.ocupada %>
+<li class="square-green">
+	<span><%= cama.numero%></span>
+</li>
+<% else %>
+<li class="square-red">
+	<span><%= cama.numero%></span>
+</li>	
+<% end %>

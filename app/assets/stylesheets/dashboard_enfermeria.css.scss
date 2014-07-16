@@ -26,6 +26,10 @@
   @extend %card-style;
 }
 
+.admin-cuartos {
+  @extend %card-style;
+}
+
 .ingresado-type .circle {
   display: inline-block;
   vertical-align: middle;
@@ -60,6 +64,27 @@
     height: 80px;
     width: 250px;
     margin: 10px;
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: auto;
+      height: 80px;
+      margin: 10px auto;
+    }
+  }
+
+  .admin-cuartos {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    height: 220px;
+    width: 250px;
+    margin: 10px;
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: auto;
+      height: 220px;
+      margin: 10px auto;
+    }
   }
   
   .internado-name {
@@ -143,3 +168,28 @@
 }
 
 // red-color #c0392b
+
+// css camas
+%square-style{
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.square-green {
+  @extend %square-style;
+  background-color: #7CC576;
+}
+
+.square-red {
+  @extend %square-style;
+  background-color: #CA6868;
+}
+.input-cuarto{
+  margin-left: 10px;
+}
+//end css camas
+
