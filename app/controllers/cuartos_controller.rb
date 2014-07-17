@@ -1,4 +1,5 @@
 class CuartosController < ApplicationController
+  before_action :find_cuarto, only: [:destroy]
 
 	def index
 		@cuarto = Cuarto.new
@@ -21,9 +22,20 @@ class CuartosController < ApplicationController
 			}
 		end
 	end
+	
+	def destroy
+		respond_to do |format|
+			@cuarto.destroy
+			format.js
+		end
+	end
 
 	private
 	def cuarto_params
 		params.require(:cuarto).permit :nombre		
+	end
+
+	def find_cuarto
+  	@cuarto = Cuarto.find(params[:id])		
 	end
 end

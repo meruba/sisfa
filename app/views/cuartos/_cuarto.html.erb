@@ -1,4 +1,5 @@
 <li class="admin-cuartos">
+	<%= link_to "", cuarto, method: :delete, class: "ttip fa fa-times-circle rmv-cuarto text-muted", :remote => true %>
 	<legend class="text-center"><%= cuarto.nombre %></legend>
 	<%= form_for @cama, :html => {:class => "form-cuarto"}, :remote => true  do |f| %>
 	<div class="input-group">
@@ -10,7 +11,7 @@
 	</div>
 	<% end %>
 	<legend></legend>
-	<ul class="list-inline camas" id ='<%= cuarto.id  %>'>
+	<ul class="list-inline camas" id ='<%= cuarto.id  %>-ct'>
 		<% cuarto.camas.each do |cama|  %>
 		<%= render "camas/cama", cama:cama %>
 		<% end %>
