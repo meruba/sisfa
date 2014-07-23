@@ -22,6 +22,10 @@
   @extend %card-style;
 }
 
+.pacientes-hospitalizados {
+  @extend %card-style;
+}
+
 .no-ingresado-item {
   @extend %card-style;
 }
@@ -53,6 +57,19 @@
       display: block;
       width: auto;
       height: 150px;
+      margin: 10px auto;
+    }
+  }
+
+  .pacientes-hospitalizados{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    width: 250px;
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: auto;
       margin: 10px auto;
     }
   }
