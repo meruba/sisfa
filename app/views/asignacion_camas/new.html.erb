@@ -1,7 +1,0 @@
-<h1>HELLO</h1>
-<legend>formulario</legend>
-<%= form_for [@hospitalizado, @asignacion], :html => {:class => "form-cuarto"} do |f| %>
-<%= f.select :cama_id, Cama.where(:ocupada => false).map { |cama| [cama.numero , cama.id ] }%>
-<%= f.submit 'Guardar', class: "btn btn-info"%>
-<% end %>
-

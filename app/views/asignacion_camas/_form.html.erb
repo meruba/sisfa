@@ -1,0 +1,14 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h1 class="modal-title" id="myModalLabel">Asignar Cama</h1>
+</div>
+<%= form_for [@hospitalizado, @asignacion], :remote => true do |f| %>
+<div class="modal-body">
+	<%= f.label :cama_id, "Seleccionar: Cuato/Cama"  %>
+	<%= f.select :cama_id, Cama.includes(:cuarto).where(:ocupada => false).references(:cuarto).map { |cama| [cama.cuarto.nombre.to_s + " / " + "Cama: " + cama.numero.to_s , cama.id ] }, {}, class: "form-control"%>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= f.submit 'Guardar', class: "btn btn-primary", :remote => true %>
+</div>
+<% end %>

@@ -3,6 +3,9 @@ class AsignacionCamasController < ApplicationController
 
 	def new
 		@asignacion = AsignacionCama.new		
+    respond_to do |format|
+      format.js
+    end
 	end
 
 	def index
@@ -11,11 +14,10 @@ class AsignacionCamasController < ApplicationController
 	def create
 		@asignacion = AsignacionCama.new(asignacion_cama_params)
 		@asignacion.hospitalizacion_registro = @hospitalizado
-		if @asignacion.save
-			redirect_to dashboard_enfermeria_index_path, :notice => "Almacenado"
-		else
-			redirect_to dashboard_enfermeria_index_path, :notice => "Error"
-		end
+    @asignacion.save
+    respond_to do |format|
+      format.js{@hospitalizado}
+    end
 	end
 
 	private

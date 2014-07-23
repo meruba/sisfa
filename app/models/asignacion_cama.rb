@@ -21,10 +21,9 @@ class AsignacionCama < ActiveRecord::Base
 
 	def set_numero_cama
 		self.numero_cama =  self.cama.numero
-		# raise
 	end
+	
 	def update_cama
-		# cama = Cama.find(self.cama_id)
 		self.cama.update(:ocupada => true)
 	end
 end

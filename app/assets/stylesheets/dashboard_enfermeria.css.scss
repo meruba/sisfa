@@ -90,9 +90,13 @@
   .internado-name {
     display: block;
     max-width: 80%;
-    
     font-size: 16px;
     line-height: 20px;
+    text-transform:lowercase;
+  }
+  
+  .internado-name:first-letter {
+    text-transform: uppercase;
   }
   
   .internado-hc {

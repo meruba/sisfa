@@ -3,20 +3,20 @@
     <h5 class="fix-margin text-warning">Paciente(s) sin cama(s):</h5>    
   <% end %>
   <ul class="internados grid">
-    <% @sin_camas.each do |r|  %>
-    <li class="no-ingresado-item">
+    <% @sin_camas.each do |h|  %>
+    <li class="no-ingresado-item" id ='<%= h.id %>-hosp'>
       <span class="internado-name">
-        <%=(r.paciente.cliente.nombre).downcase%>
+        <%=h.paciente.cliente.nombre%>
       </span>
       <span class="internado-hc">
-        H.C #<%=r.paciente.n_hclinica%>
+        H.C #<%=h.paciente.n_hclinica%>
       </span>
       <div class="pull-right">
         <span class="type-paciente">
-          <%=(r.paciente.tipo).upcase%>
+          <%=(h.paciente.tipo).upcase%>
         </span>
         <span class="ingresado-type">
-          <span class="btn-circles"><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(r), {:rel=> 'tooltip', :title=>'Asignarle Cama', class: "fa fa-square"}%></span>        
+          <span class="btn-circles"><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(h), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel=> 'tooltip', :title=>'Asignarle Cama', class: "fa fa-square"}%></span>        
         </span>
       </div>
     </li>
@@ -31,45 +31,8 @@
     <li class="ingresado-type"> <span class="circle blue-color"></span> CIVIL</li>
   </ul>
   <ul class="internados grid ">
-    <% @camas.each do |r|  %>
-    <li class="ingresado-item">
-      <span class="internado-name">
-        <%=(r.paciente.cliente.nombre).downcase%>
-      </span>
-      <span class="internado-hc">
-        H.C #<%=r.paciente.n_hclinica%>
-      </span>
-      <div class="pull-right">
-        <span class="opcions">
-          <span class="cama-number">
-            <small class="text-muted">CAMA #<%= r.asignacion_cama.numero_cama %></small>
-          </span>
-          <span class="menu">
-            <ul class="list-inline">
-              <li class="btn-circle">
-                <%= link_to "", signo_vital_path(r), {:rel=> 'tooltip', :title=>'Agregar Signos Vitales', class: "fa fa-heart text-danger"}%>
-              </li>
-              <li class="btn-circle">
-                <%= link_to "", nota_enfermera_path(r), {:rel=> 'tooltip', :title=>'Agregar nota', class: "fa fa-file text-success"}%>
-              </li>
-              <li class="btn-circle">
-                <%= link_to "", paciente_path(r.paciente), {:rel=> 'tooltip', :title=>'Historia Clinica', class: "fa fa-h-square text-info"}%>
-              </li>
-            </ul>
-          </span>
-        </span>
-        <span class="ingresado-type">
-          <% case r.paciente.tipo%>
-          <% when "militar"%>
-            <span class="circle militar"></span>
-          <% when "civil"%>
-            <span class="circle civil"></span>
-          <% when "familiar"%>
-            <span class="circle familiar"></span>
-          <% end %>
-        </span>
-      </div>
-    </li>
+    <% @camas.each do |cama|  %>
+      <%= render 'asignados_cama', cama:cama  %>
     <% end %>
   </ul> 
 </div>
