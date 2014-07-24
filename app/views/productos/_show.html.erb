@@ -22,7 +22,7 @@
       <strong>Ganancia:</strong>
       <%= @producto.ganancia %> %<br>
       <strong>Incluye iva:</strong>
-      <%= @producto.hasiva%>
+      <%= human_boolean @producto.hasiva%>
       <strong>Stock:</strong>
       <%= @producto.stock%>
     </div>
