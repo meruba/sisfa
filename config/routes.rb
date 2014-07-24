@@ -5,6 +5,7 @@ get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "historia_clinicas/autocomplete"
+get "hospitalizacion_registros/autocomplete"
 get "productos/autocomplete_producto_compra"
 get "productos/inventario"
 get "productos/caducado"
@@ -38,7 +39,7 @@ get "dashboard_hospital/estadisticas_mes"
 get "turnos/hoy"
 get "turnos/manana"
 get "dashboard_hospital/ingresados"
-
+get "dashboard_enfermeria/index"
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
@@ -68,11 +69,23 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :clientes
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
-  resources :hospitalizacion_registros
+  resources :hospitalizacion_registros do
+    resources :asignacion_camas
+  end
+  resources :nota_enfermeras, :only => [:show]
+  resources :item_nota_enfermeras
+  resources :entrega_turnos do
+    get "view_create_item"
+    resources :item_entrega_turnos 
+  end
+  resources :signo_vitals, :only => [:show]
+  resources :item_signo_vitals
   resources :item_facturas
   resources :item_proformas
   resources :traspasos
   resources :item_traspasos
+  resources :cuartos
+  resources :camas
   resources :hospitalizacions do
     member do
       post "dar_de_alta"

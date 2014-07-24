@@ -1,0 +1,9 @@
+<%- if @hoja.errors.any? %>
+  <%- @hoja.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $(".hojas").append("<%= j render('entrega_turnos/hoja_turno', hoja: @hoja) %>");
+  $('.form-hoja-turno').trigger("reset");
+  alertify.success("Hoja Creada");
+<%- end %>

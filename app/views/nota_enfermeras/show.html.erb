@@ -1,0 +1,48 @@
+<div class="row turno">
+	<h2 class="fix-margin">Nota Paciente</h2>
+</div>
+<div class="row info-paciente">
+	<h4>Paciente: <%= @nota.hospitalizacion_registro.paciente.cliente.nombre  %> </h4>
+	<h4>Historia C: <%= @nota.hospitalizacion_registro.paciente.n_hclinica  %> </h4>
+	<%= form_for @registro, :html => {:class => "form-notas"}, :remote => true do |f| %>
+	<%= form_errors_for @registro %>
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th class="col-md-6">Descripcion</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<%= f.hidden_field :nota_enfermera_id, value: @nota.id %>
+					<td><input class="form-control" type="text" value="<%=local_date(Time.now, 'date')%>" readonly ></td>
+					<td><%= f.text_field :hora, class: "form-control", placeholder: "Ejm: 08:00" %></td>
+					<td><%= f.text_field :nota, class: "form-control"%></td>
+					<td><%= f.submit 'Guardar', class: "btn btn-success", :remote => true %></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<% end %>
+	<div class="fix-margin table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Hora</th>
+					<th class="col-md-6">Descripcion</th>
+					<th>Enfermera</th>
+				</tr>
+			</thead>
+			<tbody class="notas">
+				<% @notas.each do |item| %>
+				<%= render "item_nota_enfermeras/nota", item:item %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

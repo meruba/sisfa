@@ -1,0 +1,9 @@
+<%- if @signo.errors.any? %>
+  <%- @signo.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $(".signos").prepend("<%= j render('item_signo_vitals/signo', signo: @signo) %>");
+  $('.form-signos').trigger("reset");
+  alertify.success("Signos Vitales Almacenados");
+<%- end %>

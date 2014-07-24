@@ -30,10 +30,10 @@ var currentTallest = 0,
 }
 
 $(window).on("ready page:load",function() {
-  equalheight('.main .hospitalizado');
+  equalheight('.main .pacientes-hospitalizados');
 });
 
 
 $(window).resize(function(){
-  equalheight('.main .hospitalizado');
+  equalheight('.main .pacientes-hospitalizados');
 });

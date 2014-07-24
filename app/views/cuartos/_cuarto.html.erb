@@ -1,0 +1,20 @@
+<li class="admin-cuartos">
+	<%= link_to "", cuarto, method: :delete, class: "ttip fa fa-times-circle rmv-cuarto text-muted", :remote => true %>
+	<legend class="text-center"><%= cuarto.nombre %></legend>
+	<%= form_for @cama, :html => {:class => "form-cuarto"}, :remote => true  do |f| %>
+	<div class="input-group">
+		<%= f.hidden_field :cuarto_id, value: cuarto.id %>
+		<%= f.text_field :numero, class: "form-control", placeholder: "Ingrese numero cama"  %>
+		<span class="input-group-btn">
+			<%= f.submit '+', class: "btn btn-info", :remote => true %>
+		</span>
+	</div>
+	<% end %>
+	<legend></legend>
+	<ul class="list-inline camas" id ='<%= cuarto.id  %>-ct'>
+		<% cuarto.camas.each do |cama|  %>
+		<%= render "camas/cama", cama:cama %>
+		<% end %>
+	</ul>
+</li>
+

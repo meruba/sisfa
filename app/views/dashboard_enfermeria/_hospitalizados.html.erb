@@ -1,0 +1,38 @@
+<div class="new-ingresados">
+  <% unless @sin_camas.empty? %>
+    <h5 class="fix-margin text-warning">Paciente(s) sin cama(s):</h5>    
+  <% end %>
+  <ul class="internados grid">
+    <% @sin_camas.each do |h|  %>
+    <li class="no-ingresado-item" id ='<%= h.id %>-hosp'>
+      <span class="internado-name">
+        <%=h.paciente.cliente.nombre%>
+      </span>
+      <span class="internado-hc">
+        H.C #<%=h.paciente.n_hclinica%>
+      </span>
+      <div class="pull-right">
+        <span class="type-paciente">
+          <%=(h.paciente.tipo).upcase%>
+        </span>
+        <span class="ingresado-type">
+          <span class="btn-circles"><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(h), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel=> 'tooltip', :title=>'Asignarle Cama', class: "fa fa-square"}%></span>        
+        </span>
+      </div>
+    </li>
+    <% end %>
+  </ul> 
+</div>
+
+<div class="ingresados">
+  <ul class="list-inline fix-margin text-muted">
+    <span class="ingresado-type"><span class="circle green-color"></span>MILITAR</span>
+    <li class="ingresado-type"><span class="circle yellow-color"></span> FAMILIAR</li>
+    <li class="ingresado-type"> <span class="circle blue-color"></span> CIVIL</li>
+  </ul>
+  <ul class="internados grid ">
+    <% @camas.each do |cama|  %>
+      <%= render 'asignados_cama', cama:cama  %>
+    <% end %>
+  </ul> 
+</div>
