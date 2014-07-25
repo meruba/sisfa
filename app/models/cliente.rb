@@ -30,8 +30,15 @@ class Cliente < ActiveRecord::Base
 	has_many :facturas
 	has_many :hospitalizacions
 
+#callbacks
+  before_save :formato_nombre
+
 #methods
-  
+  def formato_nombre #Ejm: corrEA DaNieL = Correa Daniel
+    self.nombre = self.nombre.split.map(&:capitalize).join(' ') 
+    self.direccion = self.direccion.split.map(&:capitalize).join(' ')
+  end
+
   def validate_id_if_necessary
     unless consumidor_final
       errors.add(:numero_de_identificacion, "No es una cédula válida") unless validate_id or self.numero_de_identificacion.blank?
