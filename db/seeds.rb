@@ -8,6 +8,7 @@
 %w(Administrador Enfermera Vendedor Administrador_Estadística Administrador_Farmacia Administrador_Enfermería Doctor).each do |nombre|
   Rol.create(nombre: nombre)
 end
+Cliente.create(nombre: "Consumidor Final", numero_de_identificacion: "9999999999")
 cliente = Cliente.create(nombre: "Fabricio Flores", numero_de_identificacion: "1104015936")
 user = User.create(username: 'fabricio', password:'fabricio', cliente: cliente, rol: Rol.administrador)
 cliente = Cliente.create(nombre: "Angel Valdez", numero_de_identificacion: "1103786990")
