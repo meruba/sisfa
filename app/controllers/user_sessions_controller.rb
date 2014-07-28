@@ -19,6 +19,9 @@ class UserSessionsController < ApplicationController
         when Rol.administrador
           redirect_to productos_alerta_path
           flash[:notice] = "Bienvenido #{current_user.username}"
+        when Rol.vendedor
+          redirect_to productos_alerta_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
         when Rol.doctor
           redirect_to doctors_dashboard_path
           flash[:notice] = "Bienvenido #{current_user.username}"

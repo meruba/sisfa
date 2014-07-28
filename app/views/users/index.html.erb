@@ -1,7 +1,7 @@
 <h3 class="text-center">Administración de Usuarios</h3>
 <% @users.each do |user| %>
   <% if user != current_user%>
-    <div class=" row-user row col-md-7 col-md-offset-2">
+    <div class=" row-user col-md-6">
       <div class="col-sm-4 col-md-2">
         <%= image_tag "/images/user-placeholder.jpg", class: "img-circle", width: 75, height: 75 %>      
       </div>

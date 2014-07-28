@@ -21,6 +21,7 @@ class Cliente < ActiveRecord::Base
 #validations
 	validates :nombre, :presence =>true
 	validate :validate_id_if_necessary
+  validates :numero_de_identificacion, uniqueness: true, :if => :numero_de_identificacion?
 
 # relationships
   has_one :user
