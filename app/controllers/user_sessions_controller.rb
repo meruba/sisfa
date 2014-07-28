@@ -16,8 +16,14 @@ class UserSessionsController < ApplicationController
         when Rol.administrador_estadistica
           redirect_to pacientes_path
           flash[:notice] = "Bienvenido #{current_user.username}"
-        when Rol.administrador
+        when Rol.administrador_farmacia
           redirect_to productos_alerta_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
+        when Rol.administrador_enfermeria
+          redirect_to dashboard_enfermeria_index_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
+        when Rol.auxiliar_estadistica
+          redirect_to pacientes_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         when Rol.vendedor
           redirect_to productos_alerta_path
@@ -25,11 +31,11 @@ class UserSessionsController < ApplicationController
         when Rol.doctor
           redirect_to doctors_dashboard_path
           flash[:notice] = "Bienvenido #{current_user.username}"
-        when Rol.administrador_enfermeria
-          redirect_to dashboard_enfermeria_index_path
-          flash[:notice] = "Bienvenido #{current_user.username}"
         when Rol.enfermera
           redirect_to dashboard_enfermeria_index_path
+          flash[:notice] = "Bienvenido #{current_user.username}"
+        when Rol.administrador
+          redirect_to productos_alerta_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         end
       end
