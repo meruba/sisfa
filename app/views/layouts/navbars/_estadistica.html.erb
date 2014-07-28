@@ -45,15 +45,17 @@
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to("Turnos", turnos_path)%></li>
       </ul>
+      <% if @admin %>
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to("Doctores", doctors_path)%></li>
-      </ul>
+      </ul>  
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to "Libro Diario", hospitalizacion_registros_path %></li>
       </ul>
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to "Actividades", dashboard_hospital_index_path %></li>
       </ul>
+      <% end %>
     </div>
   </div>
 </nav>

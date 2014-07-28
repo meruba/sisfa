@@ -3,7 +3,7 @@
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#todas" data-toggle="tab">Venta</a></li>
 		<li><a href="#anuladas" data-toggle="tab">Anuladas</a></li>
-		<li class="only-admin"><a href="#compra" data-toggle="tab">Compra</a></li>
+		<% if @admin %><li><a href="#compra" data-toggle="tab">Compra</a></li><% end %>
 	</ul>
 	<div class="tab-content">
 		<div class="tab-pane active" id="todas">
