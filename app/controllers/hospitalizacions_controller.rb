@@ -1,6 +1,5 @@
 class HospitalizacionsController < ApplicationController
 	before_filter :require_login
-	before_filter :suspendido
 	before_filter :is_editable, :only => [:edit, :update]
 	before_filter :find_hospitalizacion, :only => [:edit, :update, :show, :dar_de_alta]
 

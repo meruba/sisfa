@@ -1,5 +1,6 @@
 class FacturaComprasController < ApplicationController
   before_filter :require_login
+  before_filter :is_admin_or_vendedor_farmacia
   before_action :set_factura, only: :show
   
   def new

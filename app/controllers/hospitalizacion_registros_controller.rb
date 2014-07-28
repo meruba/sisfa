@@ -1,4 +1,6 @@
 class HospitalizacionRegistrosController < ApplicationController
+  before_filter :require_login
+  before_filter :is_admin_or_auxiliar_estadistica, only: [:index]
   before_action :find_paciente, only: [:new, :create, :edit]
   before_action :set_registro, only: [:edit, :update]
 

@@ -1,6 +1,6 @@
 class DoctorsController < ApplicationController
 	before_filter :require_login
-	before_filter :suspendido
+  before_filter :is_admin_or_auxiliar_estadistica, only: [:index]
 	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender, :pacientes_emergencia]
 
 	def index

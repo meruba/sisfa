@@ -1,4 +1,6 @@
 class NotaEnfermerasController < ApplicationController
+	before_filter :require_login
+  before_filter :is_admin_or_enfermera_enfermeria
 	before_action :find_nota, only: [:show]
 	
 	def show

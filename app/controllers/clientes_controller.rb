@@ -1,9 +1,9 @@
 class ClientesController < ApplicationController
   before_filter :require_login
-  before_filter :suspendido
   before_action :set_cliente, only: [:show, :edit, :update, :destroy]
 
   def index
+    @admin = true
     respond_to do |format|
       format.html
       format.json { render json: ClientesDatatable.new(view_context) }
