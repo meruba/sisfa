@@ -39,7 +39,9 @@
           </a>
           <ul class="dropdown-menu">
             <li><%=link_to("Venta", new_factura_path)%></li>
-            <li><%=link_to("Compra", new_factura_compra_path)%></li>
+            <% if @admin %>
+              <li><%=link_to("Compra", new_factura_compra_path)%></li>              
+            <% end %>
             <li><%=link_to("Hospitalización", new_hospitalizacion_path)%></li>
             <li><%=link_to("Transferencia", new_traspaso_path)%></li>
             <li><%=link_to("Proforma", new_proforma_path)%></li>
@@ -62,9 +64,11 @@
           </ul>
         </li>
       </ul>
+      <% if @admin %>
       <ul class="nav navbar-nav navbar-left">
         <li><%=link_to("<i class='fa fa-ambulance'></i> Proveedores".html_safe, proveedors_path)%></li>
       </ul>
+      <% end %>
     </div>
   </div>
 </nav>
