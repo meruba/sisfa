@@ -20,8 +20,12 @@
       </div>
     </div>
   </div>
-  <legend class="fix-margin"><i class="fa fa-hospital-o"></i> Internados</legend>
-  <div class="internados">
+  <legend class="fix-margin"><i class="fa fa-hospital-o"></i> Internados del mes</legend>
+  <div class="ingresados">
+    <ul class="list-inline fix-margin text-muted">
+      <span class="ingresado-type"><span class="fa fa-check-circle text-success"></span> ALTA</span>
+      <li class="ingresado-type"><span class="fa fa-circle text-info"></span> INTERNADO</li>
+    </ul>
     <%= render 'internados'  %>
   </div>
 </div>

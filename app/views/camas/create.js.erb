@@ -3,7 +3,7 @@
     alertify.error("<%=j msg %>");
   <%- end %>
 <%- else %>
-  $('#<%=@cama.cuarto.id %>').append("<%= j render('camas/cama', cama: @cama) %>");
+  $('#<%=@cama.cuarto.id %>-ct').append("<%= j render('camas/cama', cama: @cama) %>");
   $('.form-cuarto').trigger("reset");
   alertify.success("Agregada nueva cama");
 <%- end %>

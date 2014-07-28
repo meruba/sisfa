@@ -16,6 +16,8 @@
 #
 
 class ItemFactura < ActiveRecord::Base
+
+  attr_accessor :descripcion
   
   #callbacks
   after_create :add_kardex_line, :disminuir_stock
@@ -32,6 +34,13 @@ class ItemFactura < ActiveRecord::Base
   # validate :valida_descuento
 
   # methods
+
+  def descripcion
+    if self.ingreso_producto
+      self.ingreso_producto.producto.nombre
+    end
+  end
+
   def stock
     sin_id = IngresoProducto.find_by_id(self.ingreso_producto_id).nil?
     if sin_id == false

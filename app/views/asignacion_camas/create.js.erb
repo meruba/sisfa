@@ -1,0 +1,12 @@
+<%- if @asignacion.errors.any? %>
+  <%- @asignacion.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModal").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $('#<%=@asignacion.hospitalizacion_registro.id %>-hosp').fadeOut(2000);
+	$(".ingresados .internados").prepend("<%= j render('dashboard_enfermeria/asignados_cama', cama: @hospitalizado) %>");
+  alertify.success("Cama asignada");
+<%- end %>

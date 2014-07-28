@@ -15,6 +15,22 @@ init_datatables = ->
       fnInitComplete: (oSettings, json) ->
         jQuery window.Helpers.TooltipHelper.init
         jQuery window.Helpers.HiddenContent.init
+  $('.data-table-not-search-column').each ->
+    $(this).dataTable
+      sDom: "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"
+      oLanguage:
+        sUrl: "/datatables.spanish.txt"
+      bProcessing: true
+      bServerSide: true
+      bJQueryUI: true,
+      sAjaxSource: $(this).data('source')
+      aoColumnDefs: [
+        bSortable: false
+        aTargets: [0,1,2,3,4]
+      ]
+      fnInitComplete: (oSettings, json) ->
+        jQuery window.Helpers.TooltipHelper.init
+        jQuery window.Helpers.HiddenContent.init
   $('.data-table-without-json').each ->
     $(this).dataTable
       sDom: "<'row'<'col-xs-6'T><'col-xs-6'f>r>t<'row'<'col-xs-6'i><'col-xs-6'p>>"

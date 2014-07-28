@@ -79,6 +79,18 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 .clickable{
   cursor: pointer;
 }
+.rmv-cama a{
+  color: #fff;
+  text-decoration:none !important;
+}
+
+.rmv-cuarto{
+  position: fixed;
+}
+.rmv-cama:hover a{
+  color:red;
+}
+
 .productos-compras{
   padding-bottom: 15px;
 }

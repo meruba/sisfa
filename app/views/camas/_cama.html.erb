@@ -1,8 +1,9 @@
-<div>
-	<h5><%= cama.numero%></h5>
-	<% if cama.ocupada %>
-	<span class="fa fa-circle text-danger"> Ocupada</span>
-	<% else %>		
-	<span class="fa fa-circle text-success"> Disponible</span>
-	<% end %>
-</div>
+<% unless cama.ocupada %>
+<li class="square-green clickable" id ='<%= cama.id  %>'>
+	<span class="rmv-cama"><%= link_to cama.numero, cama, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip",:rel=> 'tooltip', :title=>'Eliminar', :remote => true %></span>
+</li>
+<% else %>
+<li class="square-red">
+	<span><%= cama.numero%></span>
+</li>
+<% end %>

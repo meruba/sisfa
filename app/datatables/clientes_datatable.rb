@@ -34,7 +34,7 @@ private
   end
 
   def fetch_clientes
-    clientes = Cliente.order("#{sort_column} #{sort_direction}")
+    clientes = Cliente.where.not(:numero_de_identificacion => 9999999999).order("#{sort_column} #{sort_direction}")
     clientes = clientes.page(page).per_page(per_page)
     if params[:sSearch].present?
       clientes = clientes.where("nombre like :search or numero_de_identificacion like :search or email like :search", search: "%#{params[:sSearch]}%")

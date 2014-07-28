@@ -1,12 +1,25 @@
-<td class=" col-md-6">
-  <input type="text" class= "form-control-border autocomplete_producto" placeholder= " Ingrese Producto" required= true >
+
+ <td class=" col-md-6">
+  <%= item_factura.text_field :descripcion, class: "form-control-border autocomplete_producto", :placeholder =>" Ingrese Producto", :required => true  %>
 </td>
+
 <td>
   <%=  item_factura.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
-  <%=  item_factura.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1", value: 1 %>
+  <%=  item_factura.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1" %>
 </td>
-<td class ="valor_unitario">0.0</td>
-<td class ="iva">0.0</td>
-<td class ="total_item">0.0</td>
-<td><%= item_factura.link_to_remove '', :class => "delete_destroy eliminar_item" %></td>
-<td><input type="text" class="hasiva hidden"></td>
+
+<td>
+  <%= item_factura.text_field :valor_unitario, :readonly => true, class: "form-control-border valor_unitario" %>
+</td>
+
+<td>
+  <%= item_factura.text_field :iva, :readonly => true, class: "form-control-border iva" %>
+</td>
+
+<td>
+  <%= item_factura.text_field :total, :readonly => true, class: "form-control-border total_item" %>
+</td>
+
+<td>
+  <%= item_factura.link_to_remove '', :class => "delete_destroy eliminar_item" %>
+</td>

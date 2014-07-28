@@ -22,7 +22,15 @@
   @extend %card-style;
 }
 
+.pacientes-hospitalizados {
+  @extend %card-style;
+}
+
 .no-ingresado-item {
+  @extend %card-style;
+}
+
+.admin-cuartos {
   @extend %card-style;
 }
 
@@ -53,6 +61,19 @@
     }
   }
 
+  .pacientes-hospitalizados{
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    margin: 10px;
+    width: 250px;
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: auto;
+      margin: 10px auto;
+    }
+  }
+
   .no-ingresado-item {
     position: relative;
     display: inline-block;
@@ -60,14 +81,39 @@
     height: 80px;
     width: 250px;
     margin: 10px;
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: auto;
+      height: 80px;
+      margin: 10px auto;
+    }
+  }
+
+  .admin-cuartos {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    height: 220px;
+    width: 250px;
+    margin: 10px;
+    @media screen and (max-width: 600px) {
+      display: block;
+      width: auto;
+      height: 220px;
+      margin: 10px auto;
+    }
   }
   
   .internado-name {
     display: block;
     max-width: 80%;
-    
     font-size: 16px;
     line-height: 20px;
+    text-transform:lowercase;
+  }
+  
+  .internado-name:first-letter {
+    text-transform: uppercase;
   }
   
   .internado-hc {
@@ -143,3 +189,28 @@
 }
 
 // red-color #c0392b
+
+// css camas
+%square-style{
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  padding: 6px 0;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 6px;
+}
+.square-green {
+  @extend %square-style;
+  background-color: #7CC576;
+}
+
+.square-red {
+  @extend %square-style;
+  background-color: #CA6868;
+}
+.input-cuarto{
+  margin-left: 10px;
+}
+//end css camas
+
