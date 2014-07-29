@@ -1,7 +1,8 @@
 class DoctorsController < ApplicationController
 	before_filter :require_login
-  before_filter :is_admin_or_auxiliar_estadistica, only: [:index]
-	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender, :pacientes_emergencia]
+  before_filter :shared_permission, except: [:dashboard]
+  before_filter :is_doctor, only: [:dashboard]
+	before_action :set_doctor, only: [:edit, :update, :destroy, :turnos_dia, :turnos_manana, :suspender]
 
 	def index
 		@doctores = Doctor.includes(:cliente).all
@@ -29,15 +30,6 @@ class DoctorsController < ApplicationController
     respond_to do |format|
       format.js
     end
-	end
-	
-	def pacientes_emergencia
-		@fecha = Time.now.to_date
-		@pacientes = @doctor.emergencia_registros
-		respond_to do |format|
-			format.html
-			format.js
-		end
 	end
 
 	def turnos_dia

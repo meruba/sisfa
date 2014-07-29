@@ -1,4 +1,6 @@
 class ItemEntregaTurnosController < ApplicationController
+	before_filter :require_login
+  before_filter :is_admin_or_enfermera_enfermeria
   before_action :find_entrega, only: [:create]
 	def create
 		@item = ItemEntregaTurno.new(item_entrega_turno_params.merge(user_id: current_user.id))

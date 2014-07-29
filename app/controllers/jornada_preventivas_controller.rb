@@ -1,4 +1,7 @@
 class JornadaPreventivasController < ApplicationController
+	before_filter :require_login
+	before_filter :is_doctor, :except => [:reporte]
+  before_filter :shared_permission, :only => [:reporte]
 	before_action :find_doctor, only: [:index, :new, :create, :edit, :update]
 	
 	def index

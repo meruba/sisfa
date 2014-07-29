@@ -1,4 +1,7 @@
 class EmergenciaRegistrosController < ApplicationController
+	before_filter :require_login
+  before_filter :is_doctor, only: [:edit, :update]
+  before_filter :shared_permission, except: [:edit, :update]
 	before_action :find_paciente, only: [:new, :create, :edit, :show, :update]
 	before_action :set_emergencia, only: [:edit, :update, :show]
 
