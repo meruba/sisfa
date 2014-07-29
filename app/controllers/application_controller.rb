@@ -36,6 +36,14 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def is_super_user
+    unless current_user.rol == Rol.administrador
+      logout
+      redirect_to login_path
+      flash[:error] = "No tienes permiso para eso!"
+    end
+  end
+
   def shared_permission
     if current_user.rol == Rol.administrador_farmacia or current_user.rol == Rol.vendedor
       logout

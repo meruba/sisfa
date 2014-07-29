@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <%=link_to image_tag("/images/logo1.png", :width=>45, :heigth=>45), "",class: "brand_img"%>
-      <%=link_to("SISFA",root_path, class: "navbar-brand" )%>
+      <%=link_to("SISFA",panel_control_admin_index_path, class: "navbar-brand" )%>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -22,40 +22,6 @@
             <li><%= link_to 'Perfil', edit_user_path(current_user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></li>
             <li class="divider"></li>
             <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li><%=link_to("<i class='fa fa-users'></i> Clientes".html_safe, clientes_path)%></li>  
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-stack-overflow"></i>
-            Facturación
-            <b class="fa fa-angle-down"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%=link_to("Venta", new_factura_path)%></li>
-            <li><%=link_to("Transferencia", new_traspaso_path)%></li>
-            <li><%=link_to("Hospitalización", new_hospitalizacion_path)%></li>
-            <li><%=link_to("Proforma", new_proforma_path)%></li>
-            <li class="divider"></li>
-            <li><%=link_to("Lista Facturas", facturas_path)%></li>
-            <li><%=link_to("Lista Proformas", proformas_path)%></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-left">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-list"></i>
-            Productos
-            <b class="fa fa-angle-down"></b>
-          </a>
-          <ul class="dropdown-menu">
-            <li><%=link_to("Inventario", productos_path)%></li>
-            <li><%=link_to("Caducados", productos_caducado_path)%></li>
           </ul>
         </li>
       </ul>

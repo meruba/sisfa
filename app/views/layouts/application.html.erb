@@ -13,7 +13,7 @@
   <header>
     <% case current_user.rol %>
       <% when Rol.administrador %>
-        <%= render 'layouts/navbars/adm_farmacia' %>
+        <%= render 'layouts/navbars/admin_system' %>
       <% when Rol.administrador_farmacia %>
         <%= render 'layouts/navbars/adm_farmacia' %>
       <% when Rol.vendedor %>

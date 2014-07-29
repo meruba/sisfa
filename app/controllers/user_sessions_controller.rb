@@ -35,7 +35,7 @@ class UserSessionsController < ApplicationController
           redirect_to dashboard_enfermeria_index_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         when Rol.administrador
-          redirect_to productos_alerta_path
+          redirect_to panel_control_admin_index_path
           flash[:notice] = "Bienvenido #{current_user.username}"
         end
       end

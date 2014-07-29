@@ -21,6 +21,10 @@ module DashboardHelper
       @total_facturas = Factura.where(:created_at => tiempo, :anulada => false).sum(:total)
       @total_hospitalizacion = Hospitalizacion.where(:created_at => tiempo).sum(:total)
       @total_transferencia = Traspaso.where(:created_at => tiempo).sum(:total)
+    when Rol.administrador_farmacia
+      @total_facturas = Factura.where(:created_at => tiempo, :anulada => false).sum(:total)
+      @total_hospitalizacion = Hospitalizacion.where(:created_at => tiempo).sum(:total)
+      @total_transferencia = Traspaso.where(:created_at => tiempo).sum(:total)
     when Rol.vendedor
       @total_facturas = Factura.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :anulada => false, :user_id => current_user.id).sum(:total)
       @total_hospitalizacion = Hospitalizacion.where(:created_at => Time.now.beginning_of_day..Time.zone.now, :user_id => current_user.id).sum(:total)
@@ -35,6 +39,8 @@ module DashboardHelper
   def caja_dia(tiempo)
     case current_user.rol
     when Rol.administrador
+      @facturas = Factura.where(:created_at => tiempo, :anulada => false)
+    when Rol.administrador_farmacia
       @facturas = Factura.where(:created_at => tiempo, :anulada => false)
     when Rol.vendedor
       @facturas = Factura.where(:created_at => tiempo, :anulada => false, :user_id => current_user.id)
