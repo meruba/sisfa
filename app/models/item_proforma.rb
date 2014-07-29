@@ -27,6 +27,11 @@ class ItemProforma < ActiveRecord::Base
   # validate :valida_descuento
   validate :stock
 
+  def descripcion
+    if self.ingreso_producto
+      self.ingreso_producto.producto.nombre
+    end
+  end
 
   # methods
 
