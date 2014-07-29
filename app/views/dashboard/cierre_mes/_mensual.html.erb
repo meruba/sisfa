@@ -5,7 +5,9 @@
         <h3 class="total-num">$ <%= redondear(@total) %></h3>
         <h5>TOTAL DE <span class="mes"></span></h5>
         <h5 class="fecha_sin_hora"></h5>
-        <%= link_to ' Cerrar Mes', dashboard_cierre_de_caja_mes_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info only-admin"} %>
+        <% if @admin %>
+        <%= link_to ' Cerrar Mes', dashboard_cierre_de_caja_mes_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
+        <% end %>
       </div>
       <div class="col-xs-6 col-md-7">
         <%= render 'dashboard/partials/estadisticas'%>

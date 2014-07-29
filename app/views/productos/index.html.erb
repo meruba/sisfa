@@ -1,11 +1,12 @@
+<% if @admin %>
 <%= link_to 'Nuevo', {:controller => 'productos', :action => 'new'},  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 <%= link_to 'Inventario', productos_inventario_path, class: "print_button" %>
 
 <%= link_to 'Importar productos', new_product_import_path, class: "print_button" %>
-
+<% end %>
 
 <h1 class="text-center">LISTA DE PRODUCTOS</h1>
 
 <div class="table-responsive table-productos">
-  <%= render "productos", productos: @productos %>  
+	<%= render "productos", productos: @productos %>  
 </div>

@@ -1,4 +1,7 @@
 class DashboardHospitalController < ApplicationController
+	before_filter :require_login
+  before_filter :is_admin_or_auxiliar_estadistica, only: [:index]
+  
   include DashboardHospitalHelper
 
 	def index

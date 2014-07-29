@@ -1,6 +1,6 @@
 class FacturasController < ApplicationController
 	before_filter :require_login
-	before_filter :suspendido
+  before_filter :is_admin_or_vendedor_farmacia
 	before_action :set_factura, only: [:show, :anular, :imprimir, :anulado]
 	before_action :validates_last_factura, only: :new
 

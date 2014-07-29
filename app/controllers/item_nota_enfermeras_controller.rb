@@ -1,5 +1,7 @@
 class ItemNotaEnfermerasController < ApplicationController
-
+	before_filter :require_login
+  before_filter :is_admin_or_enfermera_enfermeria
+  
 	def create
 		@item = ItemNotaEnfermera.new(item_nota_enfermera_params.merge(fecha: Time.now, user_id: current_user.id))
 		@item.save

@@ -10,14 +10,17 @@
 </head>
 <body>
   <% if current_user %>
-  <span class= "Whos" hidden><%= current_user.rol.nombre%></span>
   <header>
     <% case current_user.rol %>
       <% when Rol.administrador %>
-        <%= render 'layouts/navbars/administrador' %>
+        <%= render 'layouts/navbars/admin_system' %>
+      <% when Rol.administrador_farmacia %>
+        <%= render 'layouts/navbars/adm_farmacia' %>
       <% when Rol.vendedor %>
-        <%= render 'layouts/navbars/vendedor' %>
+        <%= render 'layouts/navbars/adm_farmacia' %>
       <% when Rol.administrador_estadistica %>
+        <%= render 'layouts/navbars/estadistica' %>
+      <% when Rol.auxiliar_estadistica %>
         <%= render 'layouts/navbars/estadistica' %>
       <% when Rol.doctor %>
         <%= render 'layouts/navbars/doctor' %>

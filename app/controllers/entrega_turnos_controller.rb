@@ -1,4 +1,6 @@
 class EntregaTurnosController < ApplicationController
+	before_filter :require_login
+  before_filter :is_admin_or_enfermera_enfermeria
 	before_action :find_entrega, only: [:show]
 	before_action :find_entrega_to_item, only: [:view_create_item]
 	

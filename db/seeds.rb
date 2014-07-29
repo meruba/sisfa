@@ -5,10 +5,10 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-%w(Administrador Enfermera Vendedor Administrador_Estadística Administrador_Farmacia Administrador_Enfermería Doctor).each do |nombre|
+%w(Administrador Enfermera Vendedor Auxiliar_Estadística Administrador_Estadística Administrador_Farmacia Administrador_Enfermería Doctor).each do |nombre|
   Rol.create(nombre: nombre)
 end
-Cliente.create(nombre: "Consumidor Final", numero_de_identificacion: "9999999999")
+Cliente.create(nombre: "Consumidor Final", numero_de_identificacion: "9999999999", direccion: "")
 cliente = Cliente.create(nombre: "Fabricio Flores", numero_de_identificacion: "1104015936")
 user = User.create(username: 'fabricio', password:'fabricio', cliente: cliente, rol: Rol.administrador)
 cliente = Cliente.create(nombre: "Angel Valdez", numero_de_identificacion: "1103786990")

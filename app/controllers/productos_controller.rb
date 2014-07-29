@@ -1,6 +1,6 @@
 class ProductosController < ApplicationController
 	before_filter :require_login
-  before_filter :suspendido
+  before_filter :is_admin_or_vendedor_farmacia
   before_action :set_producto, only: [:show, :edit, :update]
   before_action :find_caducados, only: [:caducado, :alerta]
   

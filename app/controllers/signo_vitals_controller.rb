@@ -1,4 +1,6 @@
 class SignoVitalsController < ApplicationController
+	before_filter :require_login
+  before_filter :is_admin_or_enfermera_enfermeria
 	before_action :find_signo, only: [:show]
 	
 	def show

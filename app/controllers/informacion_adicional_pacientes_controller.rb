@@ -1,5 +1,7 @@
 class InformacionAdicionalPacientesController < ApplicationController
-
+  before_filter :require_login
+  before_filter :shared_permission
+  
 	def update
 		@informacion = InformacionAdicionalPaciente.find(params[:id])
 		respond_to do |format|

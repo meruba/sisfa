@@ -1,5 +1,6 @@
 class TurnosController < ApplicationController
-	
+	before_filter :require_login
+  before_filter :is_admin_or_auxiliar_estadistica
 	before_action :set_turno, only: [:atendido, :siguiente_dia, :edit, :update, :destroy]
 
 	def index

@@ -10,11 +10,13 @@
   <div class="col-md-6">
     <div class="blockquote-box blockquote-danger clearfix">
       <div class="thumbnail square pull-left">
-        <div class="caption only-admin">
+        <% if @admin %>
+        <div class="caption">
           <h5>Hacer Canje</h5>
           <i class ="fa fa-share-square-o fa-2x"></i><br/>
           <%= link_to "Canje", new_ingreso_producto_canje_path(caduco), :class => "label label-default" %>
         </div>
+        <% end %>
         <span class="fa-3x"><%= caduco.producto.nombre.chr.upcase %></span>
       </div>
       <h4><%= caduco.producto.nombre %> /  <%= caduco.producto.casa_comercial %></h4>

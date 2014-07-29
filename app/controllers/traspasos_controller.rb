@@ -1,6 +1,6 @@
 class TraspasosController < ApplicationController
-  before_filter :require_login
-  before_filter :suspendido
+	before_filter :require_login
+  before_filter :is_admin_or_vendedor_farmacia
 
 	 def index
     respond_to do |format|

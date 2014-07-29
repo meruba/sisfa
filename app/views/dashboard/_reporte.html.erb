@@ -20,7 +20,8 @@
 			</div>
 		</div><!-- end panel -->
 	</div><!-- end venta y compra -->
-	<div class="col-sm-4 only-admin">
+	<% if @admin %>
+	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Cierre de Caja</h3>
@@ -47,7 +48,7 @@
 			</div>
 		</div><!-- end panel -->
 	</div><!-- end cierre de caja -->
-	<div class="col-sm-4 only-admin">
+	<div class="col-sm-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h3 class="panel-title">Liquidaciones</h3>
@@ -65,4 +66,5 @@
 			</div>
 		</div><!-- end panel -->
 	</div><!-- end liquidaciones -->
+	<% end %>
 </div>

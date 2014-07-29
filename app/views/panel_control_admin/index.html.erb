@@ -1,0 +1,25 @@
+<h1>Acceso Todo Sistema</h1>
+<ul>
+	<li><%=link_to("CIERRES DE CAJA",root_path)%></li>
+	<li><%= link_to("Usuarios", users_path) %></li>
+	<li><%=link_to("Nuevo Usuario", new_user_path)%></li>
+	<li><%=link_to("Venta", new_factura_path)%></li>
+	<li><%=link_to("Compra", new_factura_compra_path)%></li>              
+	<li><%=link_to("Hospitalización", new_hospitalizacion_path)%></li>
+	<li><%=link_to("Transferencia", new_traspaso_path)%></li>
+	<li><%=link_to("Proforma", new_proforma_path)%></li>
+	<li><%=link_to("Lista Facturas", facturas_path)%></li>
+	<li><%=link_to("Lista Proformas", proformas_path)%></li>
+	<li><%=link_to("Inventario", productos_path)%></li>
+	<li><%=link_to("Caducados", productos_caducado_path)%></li>
+	<li><%=link_to("<i class='fa fa-ambulance'></i> Proveedores".html_safe, proveedors_path)%></li>
+	<li><%=link_to("Militar", pacientes_militar_path)%></li>
+	<li><%=link_to("Familiar", pacientes_familiar_path)%></li>
+	<li><%=link_to("Civil", pacientes_civil_path)%></li>
+	<li><%=link_to("Lista de Pacientes", pacientes_path)%></li>
+	<li><%=link_to("Turnos", turnos_path)%></li>
+	<li><%=link_to("Doctores", doctors_path)%></li>
+	<li><%=link_to "Libro Diario", hospitalizacion_registros_path %></li>
+	<li><%=link_to "Actividades", dashboard_hospital_index_path %></li>
+  <li><%=link_to("Enfermeria",dashboard_enfermeria_index_path )%></li>
+</ul>
