@@ -82,7 +82,8 @@ class FacturasController < ApplicationController
 			:iva,
 			:total,
 			:tipo,
-			:ingreso_producto_id
+			:ingreso_producto_id,
+			:_destroy
 		]
 	end
 
