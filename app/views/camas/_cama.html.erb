@@ -1,7 +1,13 @@
 <% unless cama.ocupada %>
+<% if @admin %>
 <li class="square-green clickable" id ='<%= cama.id  %>'>
 	<span class="rmv-cama"><%= link_to cama.numero, cama, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip",:rel=> 'tooltip', :title=>'Eliminar', :remote => true %></span>
 </li>
+<% else %>
+<li class="square-green">
+	<span><%= cama.numero%></span>
+</li>	
+<% end %>
 <% else %>
 <li class="square-red">
 	<span><%= cama.numero%></span>
