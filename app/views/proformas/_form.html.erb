@@ -42,9 +42,9 @@
             </tr>
           </thead>
           <tbody>
-            <%= f.fields_for :item_proformas, :wrapper => false do |item_proformas| %>
+            <%= f.fields_for :item_proformas, :wrapper => false do |item| %>
             <tr class="fields">
-              <%= render 'item_proformas/item_proformas', item_proformas:item_proformas %>
+              <%= render 'items/items', item:item %>
             </tr>
             <% end %>
             <tr>
@@ -57,31 +57,55 @@
     </div>
     <!-- datos de impuestos proforma -->
     <div class="col-md-4">
-      <div class="form-group">
+            <div class="form-group">
         <div class="row">
           <div class="col-xs-6">
             <h4>Subtotal 12%: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="subtotal_12">00.00 </h4>
+            <h4 class="subtotal_12">
+              <% if @proforma.subtotal_12 %>
+                <%= @proforma.subtotal_12 %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
           <div class="col-xs-6">
             <h4>Subtotal 0%: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="subtotal_0">00.00 </h4>
+            <h4 class="subtotal_0">
+              <% if @proforma.subtotal_0 %>
+                <%= @proforma.subtotal_0 %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
           <div class="col-xs-6">
             <h4>Iva 12%: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="iva_factura">00.00 </h4>
+            <h4 class="iva_factura">
+              <% if @proforma.iva %>
+                <%= @proforma.iva %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
           <div class="col-xs-6">
             <h4>TOTAL: </h4>
           </div>
           <div class="col-xs-6 text-right">
-            <h4 class="total_factura">00.00 </h4>
+            <h4 class="total_factura">
+              <% if @proforma.total %>
+                <%= @proforma.total %> 
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
           </div>
         </div>
       </div>

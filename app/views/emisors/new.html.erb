@@ -1,1 +1,12 @@
+<% if @created_emisor.nil? %>
 <%= render "form" %>
+<% else %>
+<div class="shadow col-md-6	col-md-offset-3">
+	<legend class="text-center">Configuraciones</legend>
+	<h4>Nombre de establecimiento: <%= @created_emisor.nombre_establecimiento%></h4>
+	<h4>Ruc: <%= @created_emisor.ruc  %></h4>
+	<h4>Numero Inicial de Factura: <%= @created_emisor.numero_inicial_factura%></h4>
+	<%= link_to "Editar", edit_emisor_path(@created_emisor), class: "btn btn-warning btn-sm" %><br>
+	<small class="text-muted">* El numero inicial de factura solo afectara al sistema antes de realizar tu primera factura</small>
+</div>
+<% end %>

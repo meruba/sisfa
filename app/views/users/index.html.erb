@@ -1,28 +1,40 @@
-<h3 class="text-center">Administración de Usuarios</h3>
-<% @users.each do |user| %>
-  <% if user != current_user%>
-    <div class=" row-user col-md-6">
+<div class="row title-history">
+  <h3 class="text-center">Administración de Usuarios</h3>
+</div>
+<div class="row info-paciente">
+  <div class="input-icon-sm icon-addon addon-sm">
+    <input type="search" id="input-search" class="form-control" placeholder="Buscar Usuario..." ><i class="fa fa-search"></i>
+    <i class="fa fa-search"></i>
+  </div>
+  <br>
+  <div class="all-users searchable-container">
+    <% @users.each do |user| %>
+    <% if user != current_user%>
+    <div class=" row-fix-div col-md-6 items">
       <div class="col-sm-4 col-md-2">
         <%= image_tag "/images/user-placeholder.jpg", class: "img-circle", width: 75, height: 75 %>      
       </div>
-      <div class="col-sm-4 col-md-4">
+      <div class="col-sm-4 col-md-8">
         <blockquote>
-          <p <%= 'style= text-decoration:line-through;' if user.suspendido %>><%= user.cliente.nombre%></p><small><%= user.rol.nombre%></small>
+          <p <%= 'style= text-decoration:line-through;' if user.suspendido %>><%= user.cliente.nombre%></p>
+          <div class="info-user">
+            <i class="fa fa-envelope malito"></i> <%= user.cliente.email%><br/>
+            <i class="fa fa-map-marker"></i> <%= user.cliente.direccion%><br/>
+            <i class="fa fa-phone"></i> <%= user.cliente.telefono%><br/>
+            <div class="links-users">
+              <% if user.suspendido %>
+              <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Activar', class: "ttip fa fa-thumbs-o-up btn btn-success btn-xs"%>
+              <% else %>
+              <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
+              <% end %>
+              <%= link_to '', edit_user_path(user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Nueva Clave',:class => "ttip fa fa-key btn btn-warning btn-xs"}%>
+            </div>
+          </div>
+          <small><%= user.rol.nombre%></small>
         </blockquote>
       </div>
-      <div class="col-md-5">
-        <i class="fa fa-envelope malito"></i> <%= user.cliente.email%><br/>
-        <i class="fa fa-map-marker"></i> <%= user.cliente.direccion%><br/>
-        <i class="fa fa-phone"></i> <%= user.cliente.telefono%><br/>
-        <div class="links-users">
-          <% if user.suspendido %>
-            <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Activar', class: "ttip fa fa-thumbs-o-up btn btn-success btn-xs"%>
-          <% else %>
-            <%= link_to '', suspender_user_path(user), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
-          <% end %>
-          <%= link_to '', edit_user_path(user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Nueva Clave',:class => "ttip fa fa-key btn btn-warning btn-xs"}%>
-        </div>
-      </div>
     </div>
-  <% end %>
-<% end %>
+    <% end %>
+    <% end %>
+  </div>
+</div>

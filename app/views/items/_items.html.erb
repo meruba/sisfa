@@ -1,10 +1,11 @@
 
  <td class=" col-md-6">
-  <%= item.text_field :descripcion, class: "form-control-border autocomplete_producto", :placeholder =>" Ingrese Producto", :required => true  %>
+  <%= item.text_field :descripcion, class: "form-control-border autocomplete_producto", :placeholder =>" Ingrese Producto"%>
 </td>
 
 <td>
   <%=  item.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
+  <input type="text" class="hasiva hidden">
   <%=  item.number_field  :cantidad, class: "form-control-border cantidad", :placeholder => "0", min: "1" %>
 </td>
 

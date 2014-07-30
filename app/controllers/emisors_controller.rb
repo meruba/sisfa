@@ -1,4 +1,8 @@
 class EmisorsController < ApplicationController
+  before_filter :require_login
+  before_filter :is_super_user
+  before_action :find_emisor, only: [:new]
+
   def new
     @emisor = Emisor.new
   end
@@ -8,8 +12,14 @@ class EmisorsController < ApplicationController
       @emisor = Emisor.first
     else
       redirect_to action: "new"
-    end
-    
+    end    
+  end
+
+  def show
+  end
+
+  def configuracion 
+    # @emisor = Emisor.new   
   end
 
   def create
@@ -36,5 +46,9 @@ class EmisorsController < ApplicationController
     params.require(:emisor).permit(:ruc,
       :nombre_establecimiento,
       :numero_inicial_factura)  
+  end
+
+  def find_emisor
+    @created_emisor = Emisor.first
   end
 end
