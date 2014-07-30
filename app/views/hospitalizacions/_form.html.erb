@@ -44,7 +44,7 @@
           <tbody>
             <%= f.fields_for :item_hospitalizacions, :wrapper => false do |item| %>
             <tr class="fields">
-              <%= render 'item_hospitalizacions/item_hospitalizacion', item:item %>
+              <%= render 'items/items', item:item %>
             </tr>
             <% end %>
             <tr>
