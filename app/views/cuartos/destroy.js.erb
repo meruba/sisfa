@@ -3,6 +3,6 @@
     alertify.error("<%=j msg %>");
   <%- end %>
 <%- else %>
-  $('#<%=@cuarto.id %>-ct').closest('.admin-cuartos').remove();
+  $('#<%=@cuarto.id %>-ct').closest('.items').remove();
 	alertify.success("Cuarto eliminado");
 <%- end %>
