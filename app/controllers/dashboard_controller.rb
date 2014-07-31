@@ -68,7 +68,6 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_dia
-    # cierres = CierreCaja.where(:user_id => current_user.id, :is_cerrado => false)
     caja_dia
     respond_to do |format|
       format.html
