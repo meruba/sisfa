@@ -45,7 +45,8 @@ class EmisorsController < ApplicationController
   def emisor_params
     params.require(:emisor).permit(:ruc,
       :nombre_establecimiento,
-      :numero_inicial_factura)  
+      :numero_inicial_factura,
+      :saldo_inicial_inventario)  
   end
 
   def find_emisor

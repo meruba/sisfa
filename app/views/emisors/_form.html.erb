@@ -8,6 +8,8 @@
     <%= f.text_field :ruc, required:true%>
     <%= f.label :numero_inicial_factura, "Primer número de factura" %>
     <%= f.text_field :numero_inicial_factura %>
+    <%= f.label :saldo_inicial_inventario, "Saldo inicial de Inventario" %>
+    <%= f.text_field :saldo_inicial_inventario %>
   </div>
   <%= f.submit 'Guardar', class: "btn btn-primary"%>
 <% end %>
