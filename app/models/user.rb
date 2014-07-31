@@ -18,6 +18,7 @@ authenticates_with_sorcery!
 
 
 #relationships
+  has_many :cierrecajas
 	belongs_to :cliente
 	has_many :facturas
   has_many :factura_compras

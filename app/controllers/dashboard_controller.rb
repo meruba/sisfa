@@ -68,8 +68,8 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_dia
-    @fecha = Time.now
-    caja_dia(Time.now.beginning_of_day..Time.zone.now)
+    # cierres = CierreCaja.where(:user_id => current_user.id, :is_cerrado => false)
+    caja_dia
     respond_to do |format|
       format.html
       format.js
