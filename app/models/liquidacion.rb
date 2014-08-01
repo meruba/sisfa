@@ -48,18 +48,28 @@ class Liquidacion < ActiveRecord::Base
 		self.create(:saldo_anterior => saldo_inicial, :saldo_final => saldo_inicial, :fecha => Time.now.beginning_of_month)
 	end
 
-	def self.add_hospitalizacion(h, costo_venta)
+	def self.add_hospitalizacion(h)
+		b = self.where(:fecha => h.fecha_emision.beginning_of_month ).first
+		if b.nil? == true
+			self.create(
+				:emitidos_hospitalizacion => 1,
+				:saldo_anterior => self.last.saldo_final, #obtiene el saldo del mes anterior
+				:saldo_final => self.last.saldo_final - costo_venta,
+				:fecha => Time.now.beginning_of_month
+			)
+		else
+			self.update(b, :emitidos_hospitalizacion => b.emitidos_hospitalizacion + 1)
+		end
+	end
+
+	def self.add_item_hospitalizacion(h,iva_item,subtotal_item,subtotal_12_item,total_item,costo_venta)
 		b = self.where(:fecha => h.fecha_emision.beginning_of_month ).first
 		if b.nil? == true # por primera vez
 			self.create(
-			:saldo_anterior => self.last.saldo_final, #obtiene el saldo del mes anterior
-			:saldo_final => self.last.saldo_final - costo_venta,
 			:iva_hospitalizacion => h.iva,
 			:subtotal_hospitalizacion => h.subtotal,
 			:subtotal12_hospitalizacion => h.subtotal_12,
 			:total_hospitalizacion => h.total,
-			:emitidos_hospitalizacion => 1,
-			:fecha => Time.now.beginning_of_month,
 			:iva_venta => h.iva,
 			:subtotal_venta => h.subtotal,
 			:subtotal12_venta => h.subtotal_12,
@@ -72,20 +82,19 @@ class Liquidacion < ActiveRecord::Base
 		else #se actualiza liquidacion mes
 			# raise
 			self.update(b,
-			:iva_hospitalizacion => b.iva_hospitalizacion + h.iva,
-			:subtotal_hospitalizacion => b.subtotal_hospitalizacion + h.subtotal,
-			:subtotal12_hospitalizacion => b.subtotal12_hospitalizacion + h.subtotal_12,
-			:emitidos_hospitalizacion => b.emitidos_hospitalizacion + 1,
-			:total_hospitalizacion => b.total_hospitalizacion + h.total,
-			:iva_venta => b.iva_venta + h.iva,
-			:subtotal_venta => b.subtotal_venta + h.subtotal,
-			:subtotal12_venta => b.subtotal12_venta + h.subtotal_12,
-			:total_sin_iva_hospitalizacion => b.total_sin_iva_hospitalizacion + h.subtotal + h.subtotal_12,
-			:total_sin_iva_venta => b.total_sin_iva_venta + h.subtotal + h.subtotal_12,
-			:total_venta => b.total_venta +  h.total,
+			:iva_hospitalizacion => b.iva_hospitalizacion + iva_item,
+			:subtotal_hospitalizacion => b.subtotal_hospitalizacion + subtotal_item,
+			:subtotal12_hospitalizacion => b.subtotal12_hospitalizacion + subtotal_12_item,
+			:total_hospitalizacion => b.total_hospitalizacion + total_item + iva_item,
+			:iva_venta => b.iva_venta + iva_item,
+			:subtotal_venta => b.subtotal_venta + subtotal_item,
+			:subtotal12_venta => b.subtotal12_venta + subtotal_12_item,
+			:total_sin_iva_hospitalizacion => b.total_sin_iva_hospitalizacion + subtotal_item + subtotal_12_item,
+			:total_sin_iva_venta => b.total_sin_iva_venta + subtotal_item + subtotal_12_item,
+			:total_venta => b.total_venta + total_item,
 			:costo_venta => b.costo_venta + costo_venta,
 			:saldo_final => b.saldo_final - costo_venta,
-			:utilidad => (b.utilidad + h.subtotal + h.subtotal_12)- costo_venta
+			:utilidad => (b.utilidad + subtotal_item + subtotal_12_item)- costo_venta
 			)
 		end
 	end
