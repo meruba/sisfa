@@ -9,7 +9,6 @@
 #  medico_asignado         :string(255)
 #  created_at              :datetime
 #  updated_at              :datetime
-#  historia_clinica_id     :integer
 #  diagnostico_ingreso     :string(255)
 #  diagnostico_salida      :string(255)
 #  discapacidad            :string(255)
@@ -36,6 +35,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	#callbacks	
 	before_update :set_values
 	before_create :build_notas_and_signos
+	after_save :build_comprobante
 
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
@@ -73,6 +73,20 @@ class HospitalizacionRegistro < ActiveRecord::Base
 		true #validations
 	end
 
+	def build_comprobante
+   	h = Hospitalizacion.new(
+			:fecha_emision => Time.now,
+			:numero => Hospitalizacion.last ? Hospitalizacion.last.numero + 1 : 1,
+			:cliente_id => self.paciente.cliente.id,
+			:user_id => self.doctor.cliente.user.id,
+			:iva => 0,
+			:subtotal => 0,
+			:subtotal_12 => 0,
+			:total => 0,
+			:descuento => 0
+		)
+		h.save
+	end
 
 	#class methods
 	def self.autocomplete(params)

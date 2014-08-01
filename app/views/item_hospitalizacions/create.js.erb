@@ -1,0 +1,9 @@
+<%- if @item.errors.any? %>
+  <%- @item.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $(".medicamentos").prepend("<%= j render('item_hospitalizacions/medicamento', item: @item) %>");
+  $('.form-hospitalizacion').trigger("reset");
+  alertify.success("Medicamento Pedido");
+<%- end %>

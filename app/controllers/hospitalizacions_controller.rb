@@ -1,12 +1,16 @@
 class HospitalizacionsController < ApplicationController
 	before_filter :require_login
+	before_action :find_user, :only => [:show]
+	# before_filter :is_admin_or_enfermera_enfermeria, :only => [:index]
 	before_filter :is_editable, :only => [:edit, :update]
 	before_filter :find_hospitalizacion, :only => [:edit, :update, :show, :dar_de_alta]
 
 	def index
+		@todos =  Hospitalizacion.all
     respond_to do |format|
       format.html
       format.json { render json: HospitalizacionsDatatable.new(view_context) }
+      format.js
     end
   end
 
@@ -37,7 +41,10 @@ class HospitalizacionsController < ApplicationController
 	end
 
 	def show
+		@item = ItemHospitalizacion.new
+		@items = @hospitalizacion.item_hospitalizacions
 		respond_to do |format|
+			format.html
 			format.js{ render "show" }
 			format.pdf do
 				render :pdf => "hospitalizacion", :layout => 'report.html', :template => "hospitalizacions/hospitalizacion_pdf.html.erb"
@@ -95,4 +102,11 @@ class HospitalizacionsController < ApplicationController
 		end
 	end
 
+	def find_user
+		if current_user.rol == Rol.administrador_farmacia or current_user.rol == Rol.vendedor
+			@permiso =  false
+		else
+			@permiso = true
+		end
+	end
 end

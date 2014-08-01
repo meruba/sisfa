@@ -21,15 +21,14 @@ private
       [
         (hospitalizado.numero),
         (hospitalizado.cliente.nombre),
-        (hospitalizado.fecha_emision),
-        (hospitalizado.user.username),
         (hospitalizado.subtotal),
         (hospitalizado.iva),
         (hospitalizado.total),
         (@view.human_boolean(hospitalizado.dado_de_alta)),
-        (link_to '', hospitalizado, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info") + " " +
-        (link_to '', @view.edit_hospitalizacion_path(hospitalizado), :rel=> 'tooltip', :title=>'Editar', class: "ttip editar fa fa-edit btn btn-warning") + " " +
-        (link_to '', @view.dar_de_alta_hospitalizacion_path(hospitalizado), method: :post, data: { confirm: '¿Estás seguro? Esta acción es irreversible' }, :rel=> 'tooltip', :title=>'Dar de alta', class: "ttip editar fa fa-edit btn")
+        (link_to '', hospitalizado, :remote => true, :rel=> 'tooltip', :title=>'Imprimir','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-print btn btn-info") + " " +
+        (link_to '', hospitalizado, :rel=> 'tooltip', :title=>'Despachar', class: "ttip mostrar fa fa-check btn btn-success")
+        # (link_to '', @view.edit_hospitalizacion_path(hospitalizado), :rel=> 'tooltip', :title=>'Editar', class: "ttip editar fa fa-edit btn btn-warning") + " " +
+        # (link_to '', @view.dar_de_alta_hospitalizacion_path(hospitalizado), method: :post, data: { confirm: '¿Estás seguro? Esta acción es irreversible' }, :rel=> 'tooltip', :title=>'Dar de alta', class: "ttip editar fa fa-edit btn")
       ]
     end 
   end

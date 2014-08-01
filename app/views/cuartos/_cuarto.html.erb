@@ -1,6 +1,9 @@
-<li class="admin-cuartos">
-	<%= link_to "", cuarto, method: :delete, class: "ttip fa fa-times-circle rmv-cuarto text-muted", :remote => true %>
+<li class="pacientes-hospitalizados items">
+	<% if @admin %>
+		<%= link_to "", cuarto, method: :delete, class: "ttip fa fa-times-circle rmv-cuarto text-muted", :remote => true %>
+	<% end %>
 	<legend class="text-center"><%= cuarto.nombre %></legend>
+	<% if @admin %>
 	<%= form_for @cama, :html => {:class => "form-cuarto"}, :remote => true  do |f| %>
 	<div class="input-group">
 		<%= f.hidden_field :cuarto_id, value: cuarto.id %>
@@ -11,6 +14,7 @@
 	</div>
 	<% end %>
 	<legend></legend>
+	<% end %>
 	<ul class="list-inline camas" id ='<%= cuarto.id  %>-ct'>
 		<% cuarto.camas.each do |cama|  %>
 		<%= render "camas/cama", cama:cama %>

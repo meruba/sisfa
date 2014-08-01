@@ -68,12 +68,12 @@ class DashboardController < ApplicationController
   end
 
   def cierre_de_caja_dia
-    @fecha = Time.now
-    caja_dia(Time.now.beginning_of_day..Time.zone.now)
+    caja_dia
     respond_to do |format|
       format.html
       format.js
       format.pdf do
+        cerrar_caja_dia
         render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
       end
     end

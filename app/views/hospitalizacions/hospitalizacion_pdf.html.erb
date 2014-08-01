@@ -30,6 +30,7 @@
     </thead>
     <tbody>
       <% @hospitalizacion.item_hospitalizacions.each do |item| %>
+      <% unless item.total == 0 %>
       <tr>
         <td><%= item.ingreso_producto.producto.nombre%></td>
         <td><%= item.cantidad %></td>
@@ -37,6 +38,7 @@
         <td><%= item.iva %></td>
         <td class="text-right"><%= item.total %></td>
       </tr>
+      <% end %>
       <% end %>
     </tbody>
   </table>

@@ -12,6 +12,9 @@
 #  updated_at          :datetime
 #  hospitalizacion_id  :integer
 #  ingreso_producto_id :integer
+#  pedido_por          :string(255)
+#  despachado_por      :string(255)
+#  despachado          :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

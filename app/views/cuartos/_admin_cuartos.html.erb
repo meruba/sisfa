@@ -1,18 +1,23 @@
+<legend class="text-center">CAMAS Y CUARTOS</legend>
+<span class="fa fa-square text-success fix-margin"> Disponible</span>
+<span class="fa fa-square text-danger"> Ocupada</span>
 <div class="row">
+	<br>
+	<% if @admin %>
 	<div class="col-md-3 input-cuarto">
 		<%= form_for @cuarto, :html => {:class => "form-cuarto"}, :remote => true  do |f| %>
-		<%= f.label :nombre, "Nombre de habitacion"  %>
 		<div class="input-group">
-			<%= f.text_field :nombre, class: "form-control", placeholder: "Ejm: PEDIATRIA"  %>
+			<%= f.text_field :nombre, class: "form-control", placeholder: "Ingrese nombre cuarto"  %>
 			<span class="input-group-btn">
 				<%= f.submit '+', class: "btn btn-info", :remote => true %>
 			</span>
 		</div>
 		<% end %>
 	</div>
+	<% end %>
 </div>
 <div class="ingresados">
-	<ul class="internados grid cuartos">
+	<ul class="internados grid cuartos main">
 		<% @cuartos.each do |cuarto|  %>
 		<%= render "cuarto", cuarto:cuarto %>
 		<% end %>

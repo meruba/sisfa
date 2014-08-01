@@ -191,7 +191,7 @@
 			<tbody>
 				<tr>
 					<td>Saldo anterio:</td>
-					<td>0.0</td>
+					<td><%= redondear(@liquidacion.saldo_anterior) %></td>
 				</tr>
 				<tr>
 					<td>(+) Compras</td>
@@ -203,7 +203,7 @@
 				</tr>
 				<tr>
 					<td><strong>Saldo Final</strong></td>
-					<td><%= redondear(@liquidacion.total_sin_iva_compra - @liquidacion.costo_venta) %></td>
+					<td><%= redondear(@liquidacion.saldo_final) %></td>
 				</tr>
 			</tbody>
 		</table>
@@ -228,7 +228,7 @@
 				</tr>
 				<tr>
 					<td>TOTAL</td>
-					<td><%= redondear(@liquidacion.total_sin_iva_venta - @liquidacion.costo_venta)%></td>
+					<td><%= redondear(@liquidacion.utilidad)%></td>
 				</tr>
 			</tbody>
 		</table>

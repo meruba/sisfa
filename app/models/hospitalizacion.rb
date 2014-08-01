@@ -18,7 +18,7 @@
 #
 
 class Hospitalizacion < ActiveRecord::Base
-	has_many :item_hospitalizacions
+	has_many :item_hospitalizacions, :order => 'created_at DESC'
 	has_many :ingreso_productos, :through => :item_hospitalizacions
   belongs_to :user
   belongs_to :cliente
@@ -32,8 +32,9 @@ class Hospitalizacion < ActiveRecord::Base
   validates :numero, :numericality => { only_integer: true }
 
   #callbacks
-	after_save :add_liquidacion
-  before_validation :set_hospitalizacion_values 
+	after_create :add_liquidacion
+	# after_update :add_item_liquidacion
+  # before_validation :set_hospitalizacion_values 
 	#methods
 
 	def cliente_attributes=(attributes)
@@ -84,13 +85,16 @@ class Hospitalizacion < ActiveRecord::Base
 	end
 
 	def add_liquidacion
-		total = 0
-		self.item_hospitalizacions.each do |item|
-			ingreso = IngresoProducto.find item.ingreso_producto_id
-			total = total + (ingreso.producto.precio_compra * item.cantidad).round(2)
+		Liquidacion.add_hospitalizacion(self)	
+	end
+
+	def add_item_liquidacion
+		item = self.item_hospitalizacions.first
+		ingreso = IngresoProducto.find item.ingreso_producto_id
+		total = (ingreso.producto.precio_compra * item.cantidad).round(2)
+		# raise
 			#obtine el total de la venta sin ganacia
-		end
-		Liquidacion.add_hospitalizacion(self, total)
+		Liquidacion.add_item_hospitalizacion(self, total)
 	end
 
 end

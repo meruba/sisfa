@@ -24,6 +24,7 @@
 
 class Factura < ActiveRecord::Base
 #relations
+has_many :cierrecajas
 belongs_to :cliente
 belongs_to :proveedor
 belongs_to :user
@@ -42,7 +43,7 @@ validates :total, :numericality => { :greater_than => 0 }
 #callbacks
 before_validation :set_factura_values
 
-after_save :add_liquidacion
+after_save :add_liquidacion, :add_to_cierre
 
 #methods
 
@@ -53,6 +54,9 @@ def cliente_attributes=(attributes)
   super
 end
 
+def add_to_cierre
+	CierreCaja.create(:user => self.user, :factura => self, :is_cerrado => false)
+end
 def set_factura_values
 	self.fecha_de_emision = Time.now
   self.fecha_de_vencimiento = Time.now + 30.days

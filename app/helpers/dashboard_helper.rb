@@ -36,25 +36,64 @@ module DashboardHelper
     @porcentaje_transferencia = regla_de_tres(@total_transferencia, @total)
   end
 
-  def caja_dia(tiempo)
+  def caja_dia
     case current_user.rol
-    when Rol.administrador
-      @facturas = Factura.where(:created_at => tiempo, :anulada => false)
+      when Rol.administrador
+        @cierre = CierreCaja.where(:is_cerrado => false)
     when Rol.administrador_farmacia
-      @facturas = Factura.where(:created_at => tiempo, :anulada => false)
+        @cierre = CierreCaja.where(:is_cerrado => false)
     when Rol.vendedor
-      @facturas = Factura.where(:created_at => tiempo, :anulada => false, :user_id => current_user.id)
+        @cierre = CierreCaja.where(:user => current_user, :is_cerrado => false)
     end
-    @primera_factura = @facturas.first
-    @ultima_factura = @facturas.last
-    values = @facturas.select('SUM(total) total_ventanilla , SUM(subtotal_0) as total_sub_0, SUM(subtotal_12) as total_sub_12, SUM(iva) as total_iva')
-    values = values.collect { |p| [p.total_ventanilla,p.total_sub_0, p.total_sub_12, p.total_iva]}
-    values = nil_0(values)
-    @ventanilla_cantidad = @facturas.count()
-    @ventanilla_total = values[0]
-    @ventanilla_subtotal = values[1]
-    @ventanilla_subtotal12 = values[2]
-    @ventanilla_iva = values[3]
+    @ventanilla_total = 0
+    @ventanilla_subtotal = 0
+    @ventanilla_subtotal12 = 0
+    @ventanilla_iva = 0
+    @ventanilla_cantidad = 0
+    @facturas = []
+    unless @cierre.size == 0
+      @primera_factura = @cierre.first.factura
+      @ultima_factura = @cierre.last.factura
+      @cierre.each do |cierre|
+        @facturas << cierre.factura
+        @ventanilla_total += cierre.factura.total
+        @ventanilla_subtotal += cierre.factura.subtotal_0
+        @ventanilla_subtotal12 += cierre.factura.subtotal_12
+        @ventanilla_iva += cierre.factura.iva
+        @ventanilla_cantidad += 1
+      end
+    end
+  end
+
+  def cerrar_caja_dia
+    case current_user.rol
+      when Rol.administrador
+        @cierre = CierreCaja.where(:is_cerrado => false)
+    when Rol.administrador_farmacia
+        @cierre = CierreCaja.where(:is_cerrado => false)
+    when Rol.vendedor
+        @cierre = CierreCaja.where(:user => current_user, :is_cerrado => false)
+    end
+    @ventanilla_total = 0
+    @ventanilla_subtotal = 0
+    @ventanilla_subtotal12 = 0
+    @ventanilla_iva = 0
+    @ventanilla_cantidad = 0
+    @facturas = []
+    unless @cierre.size == 0
+      @primera_factura = @cierre.first.factura
+      @ultima_factura = @cierre.last.factura
+      @cierre.each do |cierre|
+        @facturas << cierre.factura
+        @ventanilla_total += cierre.factura.total
+        @ventanilla_subtotal += cierre.factura.subtotal_0
+        @ventanilla_subtotal12 += cierre.factura.subtotal_12
+        @ventanilla_iva += cierre.factura.iva
+        @ventanilla_cantidad += 1
+        cierre.is_cerrado = true
+        cierre.save
+      end
+    end
   end
 
   def caja_mes(tiempo)
