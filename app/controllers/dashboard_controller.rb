@@ -73,6 +73,7 @@ class DashboardController < ApplicationController
       format.html
       format.js
       format.pdf do
+        cerrar_caja_dia
         render :pdf => "reporte", :layout => 'report.html', :template => "dashboard/reportes/pdf_caja_dia.html.erb"
       end
     end
