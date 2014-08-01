@@ -92,7 +92,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
       post "dar_de_alta"
     end
   end
-  resources :item_hospitalizacions
+  resources :item_hospitalizacions do
+    member do
+      post "despachar"
+    end
+  end
   resources :factura_compras
   resources :product_imports
   resources :cliente_imports
