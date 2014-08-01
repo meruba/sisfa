@@ -21,6 +21,7 @@
 #  especialidad_egreso     :string(255)
 #  doctor_id               :integer
 #  alta                    :boolean          default(FALSE)
+#  alta_enfermeria         :boolean          default(FALSE)
 #
 
 class HospitalizacionRegistro < ActiveRecord::Base
@@ -30,12 +31,12 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	has_one :nota_enfermera
 	has_one :signo_vital
 	has_one :asignacion_cama
+	has_one :hospitalizacion
 	has_many :item_entrega_turnos
 
 	#callbacks	
 	before_update :set_values
-	before_create :build_notas_and_signos
-	after_save :build_comprobante
+	before_create :build_relations
 
   #validations
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
@@ -66,26 +67,13 @@ class HospitalizacionRegistro < ActiveRecord::Base
 			self.asignacion_cama.cama.update(:ocupada => false)
 	end
 
-	def build_notas_and_signos
+	def build_relations
 		build_nota_enfermera
 		true #validations
 		build_signo_vital
 		true #validations
-	end
-
-	def build_comprobante
-   	h = Hospitalizacion.new(
-			:fecha_emision => Time.now,
-			:numero => Hospitalizacion.last ? Hospitalizacion.last.numero + 1 : 1,
-			:cliente_id => self.paciente.cliente.id,
-			:user_id => self.doctor.cliente.user.id,
-			:iva => 0,
-			:subtotal => 0,
-			:subtotal_12 => 0,
-			:total => 0,
-			:descuento => 0
-		)
-		h.save
+		build_hospitalizacion
+		true #validations
 	end
 
 	#class methods

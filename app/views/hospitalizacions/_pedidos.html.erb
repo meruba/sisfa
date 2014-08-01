@@ -2,7 +2,7 @@
 	<% @todos.each do |h| %>
 	<div class="shadow col-md-3">
 		<strong>Paciente</strong><br>
-		<%= h.cliente.nombre %><br>
+		<%= h.hospitalizacion_registro.paciente.cliente.nombre %><br>
 		<%= link_to "Realizar Pedido", hospitalizacion_path(h) %>
 	</div>
 	<% end %>
