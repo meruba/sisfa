@@ -1,0 +1,17 @@
+<tr class="medicamento" id="<%= item.id  %>">
+	<td><%= local_date(item.created_at,"date") %></td>
+	<td><%= item.ingreso_producto.producto.nombre%></td>
+	<td><%= item.cantidad %></td>
+	<td><%= item.pedido_por %></td>
+	<td><%= if item.despachado_por.nil? then "En espera.." else item.despachado_por end %></td>
+	<% if item.despachado %>
+	<td><span class="fa fa-check-circle fa-2x text-success"></span></td>
+	<% else %>
+	<td>
+		<% unless @permiso %>
+		<%= link_to '', despachar_item_hospitalizacion_path(item), method: :post, class: "fa fa-check-circle fa-2x text-info clickable", :remote => true%>
+		<span class="fa fa-times-circle fa-2x text-danger clickable"></span>
+		<% end %>
+	</td>
+	<% end %>
+</tr>

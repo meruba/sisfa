@@ -1,0 +1,57 @@
+<div class="row title-history">
+	<h3 class="fix-margin">Pedidos</h3>	
+</div>
+<div class="row info-paciente">
+	<h4>Paciente: <%= @hospitalizacion.cliente.paciente.cliente.nombre  %> </h4>
+	<h4>Historia C: <%= @hospitalizacion.cliente.paciente.n_hclinica  %> </h4>
+	<%= form_for @item, :html => {:class => "form-hospitalizacion"}, :remote => true do |f| %>
+	<%= form_errors_for @item %>
+	<% if @permiso %>
+	<table class="table">
+		<thead>
+			<tr>
+				<th class="col-sm-4">Producto</th>
+				<th>Cantidad</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<%= f.hidden_field :hospitalizacion_id, value: @hospitalizacion.id %>
+			<tr class="fields">
+				<td class=" col-md-6">
+					<%= f.text_field :descripcion, class: "form-control autocomplete_producto", :placeholder =>" Ingrese Producto"%>
+				</td>
+
+				<td>
+					<%=  f.hidden_field :ingreso_producto_id, class: "ingreso_producto_id" %>
+					<input type="text" class="hasiva hidden">
+					<%=  f.number_field  :cantidad, class: "form-control cantidad", :placeholder => "0", min: "1" %>
+				</td>
+				<td>
+					<%= f.submit :Guardar, class: "btn btn-block btn-success", data: {disable_with: "Almacenando", :remote => true}%>			
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<% end %>
+	<% end %>
+	<div class="fix-margin table-responsive">
+		<table class="table table-hover">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Medicamento</th>
+					<th>Cantidad</th>
+					<th>Pedido por</th>
+					<th>Despachado por</th>
+					<th>Entregado</th>
+				</tr>
+			</thead>
+			<tbody class="medicamentos">
+				<% @items.each do |item| %>
+				<%= render "item_hospitalizacions/medicamento", item:item %>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>

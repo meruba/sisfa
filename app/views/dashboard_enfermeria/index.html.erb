@@ -3,6 +3,7 @@
   <li class="active"><%=link_to "Hospitalizados",{:controller => 'dashboard_enfermeria', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
   <li><%=link_to "Cambio Turno",{:controller => 'entrega_turnos', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
   <li><%=link_to "Cuartos",{:controller => 'cuartos', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
+   <li><%=link_to "Pedidos",{:controller => 'hospitalizacions', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
 </ul>
 <div class="tab-content info-paciente">
   <%= render 'dashboard_enfermeria/hospitalizados'%>
