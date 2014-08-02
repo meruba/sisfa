@@ -23,6 +23,7 @@ private
         (paciente.cliente.nombre),
         (paciente.cliente.numero_de_identificacion),
         (paciente.tipo),
+        (link_to '', @view.new_paciente_hospitalizacion_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Hospitalizacion', class: "ttip fa fa-hospital-o btn btn-info"})+" "+
         (link_to '', @view.new_paciente_emergencia_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Emergencia', class: "ttip fa fa-plus btn btn-danger"})+" "+
         (link_to '', paciente, :rel => 'tooltip', :title => 'Historia Clinica', class: "ttip fa fa-h-square btn btn-info")+" "+
         (link_to '', @view.paciente_view_edit_path(paciente),{:rel => 'tooltip', :title => 'Ver / Editar', class: "ttip fa fa-eye-slash btn btn-default"})+" "+

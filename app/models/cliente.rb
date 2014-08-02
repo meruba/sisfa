@@ -29,7 +29,6 @@ class Cliente < ActiveRecord::Base
 	has_one :doctor
 	has_many :proformas
 	has_many :facturas
-	has_many :hospitalizacions
 
 #callbacks
   before_save :formato_nombre
@@ -37,7 +36,9 @@ class Cliente < ActiveRecord::Base
 #methods
   def formato_nombre #Ejm: corrEA DaNieL = Correa Daniel
     self.nombre = self.nombre.split.map(&:capitalize).join(' ') 
-    self.direccion = self.direccion.split.map(&:capitalize).join(' ')
+    unless self.direccion.nil?
+      self.direccion = self.direccion.split.map(&:capitalize).join(' ')      
+    end
   end
 
   def validate_id_if_necessary

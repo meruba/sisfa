@@ -63,11 +63,11 @@ class FacturasDatatable
   def fetch_facturas
     case @place
     when "compra"  
-      facturas = Factura.where(:tipo => "compra").order("#{sort_column} #{sort_direction}")
+      facturas = Factura.includes(:proveedor).where(:tipo => "compra").order("#{sort_column} #{sort_direction}").references(:proveedor)
     when "anulada"
-      facturas = Factura.where(:anulada => true).order("#{sort_column} #{sort_direction}")
+      facturas = Factura.includes(:cliente).where(:anulada => true).order("#{sort_column} #{sort_direction}").references(:cliente)
     when "venta"
-      facturas = Factura.where("tipo = 'venta' and anulada = false").order("#{sort_column} #{sort_direction}")
+      facturas = Factura.includes(:cliente).where("tipo = 'venta' and anulada = false").order("#{sort_column} #{sort_direction}").references(:cliente)
     end
     facturas = facturas.page(page).per_page(per_page)
     if params[:sSearch].present?
