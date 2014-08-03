@@ -10,10 +10,14 @@
 	<span class="fa fa fa-file-text-o fa-3x"></span>
 	<h4><li><%=link_to("Factura Venta", new_factura_path)%></li></h4>
 </li>
-<% if @admin %>
+<% if @admin%>
 <li class="pacientes-hospitalizados text-center grey-opcion">
 	<span class="fa fa fa-file-text-o fa-3x"></span>
 	<h4><li><%=link_to("Factura Compra", new_factura_compra_path)%></li></h4>
+</li>
+<li class="pacientes-hospitalizados text-center red-opcion">
+	<span class="fa fa-ambulance fa-3x"></span>
+	<h4><li><%=link_to("Proveedores", proveedors_path)%></li></h4>
 </li>
 <% end %>
 <li class="pacientes-hospitalizados text-center blue-opcion">
@@ -28,12 +32,6 @@
 	<span class="fa fa fa-file-text-o fa-3x"></span>
 	<h4><%=link_to("Hospitalizacion", hospitalizacions_path)%></li></h4>
 </li>
-<% if @admin %>
-<li class="pacientes-hospitalizados text-center red-opcion">
-	<span class="fa fa-ambulance fa-3x"></span>
-	<h4><li><%=link_to("Proveedores", proveedors_path)%></li></h4>
-</li>
-<% end %>
 <li class="pacientes-hospitalizados text-center red-opcion" >
 	<span class="fa fa-shopping-cart fa-3x"></span>
 	<h4><li><%=link_to("Productos", productos_path)%></li></h4>
