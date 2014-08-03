@@ -10,7 +10,7 @@ class UserSessionsController < ApplicationController
         redirect_to login_path
         flash[:error] = "Usuario suspendido"
       else
-        redirect_to panel_aplication_index_path
+        redirect_to root_path
         flash[:notice] = "Bienvenido #{current_user.username}"
       end
     else
