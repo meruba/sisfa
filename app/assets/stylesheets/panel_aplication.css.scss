@@ -1,0 +1,67 @@
+// Place all the styles related to the PanelControlAdmin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.white-font{
+	color: #fff;		
+	a{
+		color: #fff;		
+	}
+}
+
+.red-opcion{
+	@extend .white-font;
+	background-color: #CE5C5B;
+}
+
+.blue-opcion{
+	@extend .white-font;
+	background-color: #2DC1E6;
+}
+
+.green-opcion{
+	@extend .white-font;
+	background-color:  #6EB590;
+}
+
+.dark-opcion{
+	@extend .white-font;
+	background-color:  #333;
+}
+
+.yellow-opcion{
+	@extend .white-font;
+	background-color:  #f8d347; 
+}
+
+.grey-opcion{
+	@extend .white-font;
+	background-color:  #858580;
+}
+
+.thumbnails {
+  position: relative;
+  overflow: hidden;
+}
+
+.captions {
+  position: absolute;
+  top: -100%;
+  right: 0;
+  background: #5ca7df;
+  width: 100%;
+  height: 100%;
+  padding: 2%;
+  text-align: center;
+  color: #fff !important;
+  z-index: 2;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+}
+
+.thumbnails:hover .captions {
+  top: 0%;
+}
