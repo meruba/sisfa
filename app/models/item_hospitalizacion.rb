@@ -31,6 +31,7 @@ class ItemHospitalizacion < ActiveRecord::Base
   
   # validations
   # validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
+  validates :cantidad, :presence => true, :numericality => { :greater_than => 0 }
   validate :stock
 	
 	# methods
@@ -95,11 +96,13 @@ class ItemHospitalizacion < ActiveRecord::Base
     Liquidacion.add_item_hospitalizacion(self, total)
   end
 
-	def stock
-	  if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
-      errors.add :cantidad, "Stock insuficiente de: " + ingreso_producto.producto.nombre + " / " + ingreso_producto.cantidad.to_s
-	  end
-	end
+  def stock
+    unless self.cantidad.nil?
+      if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
+        errors.add :cantidad, "Stock insuficiente de: " + ingreso_producto.producto.nombre + " / " + ingreso_producto.cantidad.to_s
+      end
+    end
+  end
 
   def add_kardex_line
     Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Hospitalizacion" )
