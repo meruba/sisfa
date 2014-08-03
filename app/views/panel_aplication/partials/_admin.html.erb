@@ -1,0 +1,15 @@
+<legend>Sistema</legend>
+<li class="pacientes-hospitalizados text-center dark-opcion" >
+	<span class="fa fa-cogs fa-3x"></span>
+	<h4><%= link_to("Configuraciones", new_emisor_path) %></h4>
+</li>
+<li class="pacientes-hospitalizados text-center blue-opcion" >
+	<span class="fa fa-users fa-3x"></span>
+	<h4><li><%= link_to("Usuarios", users_path) %></li></h4>
+</li>
+<legend>Farmacia</legend>
+<%= render  "panel_aplication/partials/farmacia"%>
+<legend>Estadistica</legend>
+<%= render  "panel_aplication/partials/estadistica"%>
+<legend>Enfermeria</legend>
+<%= render  "panel_aplication/partials/enfermeria"%>

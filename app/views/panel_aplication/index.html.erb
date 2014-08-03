@@ -1,0 +1,25 @@
+<div class="row title-history grey-opcion">
+	<h3 class="fix-margin">Bienvenido</h3>
+</div>
+<div class="row info-paciente">
+	<ul class="internados grid">
+		<% case current_user.rol %>
+		<% when Rol.administrador %>
+		<%= render 'panel_aplication/partials/admin' %>
+		<% when Rol.administrador_farmacia %>
+		<%= render 'panel_aplication/partials/farmacia' %>
+		<% when Rol.vendedor %>
+		<%= render 'panel_aplication/partials/farmacia' %>
+		<% when Rol.administrador_estadistica %>
+		<%= render 'panel_aplication/partials/estadistica' %>
+		<% when Rol.auxiliar_estadistica %>
+		<%= render 'panel_aplication/partials/estadistica' %>
+		<% when Rol.doctor %>
+		<%= render 'panel_aplication/partials/doctor' %>
+		<% when Rol.administrador_enfermeria%>
+		<%= render 'panel_aplication/partials/enfermeria' %>
+		<% when Rol.enfermera%>
+		<%= render 'panel_aplication/partials/enfermeria' %>
+		<% end %>
+	</ul>
+</div>
