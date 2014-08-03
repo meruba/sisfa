@@ -40,7 +40,7 @@ get "turnos/hoy"
 get "turnos/manana"
 get "dashboard_hospital/ingresados"
 get "dashboard_enfermeria/index"
-get "panel_control_admin/index"
+get "panel_aplication/index"
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
