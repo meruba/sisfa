@@ -66,6 +66,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :consulta_externa_morbilidads, :only => [:new, :create]
     resources :consulta_externa_preventivas, :only => [:new, :create]
   end
+  
+  resources :condicions, :only => [:show]
 
   resources :clientes
   resources :consulta_externa_morbilidads, :only => [:show]
