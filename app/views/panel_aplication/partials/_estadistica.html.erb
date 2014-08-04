@@ -1,0 +1,31 @@
+<li class="pacientes-hospitalizados text-center blue-opcion">
+	<span class="fa fa-male fa-3x"></span>
+	<span class="fa fa-female fa-3x"></span>
+	<h4><li><%=link_to("Pacientes", pacientes_path)%></li></h4>
+</li>
+<li class="pacientes-hospitalizados text-center blue-opcion">
+	<span class="fa fa-h-square fa-3x"></span>
+	<ul class="list-inline">
+		<li><h4><%=link_to("Militar", pacientes_militar_path)%></h4></li>
+		<li><h4><%=link_to("Familiar", pacientes_familiar_path)%></h4></li>
+		<li><h4><%=link_to("Civil", pacientes_civil_path)%></h4></li>
+	</ul>
+</li>
+<li class="pacientes-hospitalizados text-center green-opcion">
+	<span class="fa fa-ticket fa-3x"></span>
+	<h4><li><%=link_to("Turnos", turnos_path)%></li></h4>
+</li>
+<% if @admin %>
+<li class="pacientes-hospitalizados text-center green-opcion">
+	<span class="fa fa-book fa-3x"></span>
+	<h4><li><%=link_to("Libro Diario", hospitalizacion_registros_path)%></li></h4>
+</li>
+<li class="pacientes-hospitalizados text-center blue-opcion">
+	<span class="fa fa-user-md fa-3x"></span>
+	<h4><li><%=link_to("Doctores", doctors_path)%></li></h4>
+</li>
+<li class="pacientes-hospitalizados text-center green-opcion">
+	<span class="fa fa-hospital-o fa-3x"></span>
+	<h4><li><%=link_to("Movimiento Hospital", dashboard_hospital_index_path)%></li></h4>
+</li>	
+<% end %>

@@ -1,0 +1,2 @@
+module PanelAplicationHelper
+end

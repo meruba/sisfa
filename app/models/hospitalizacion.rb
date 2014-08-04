@@ -17,7 +17,8 @@
 #
 
 class Hospitalizacion < ActiveRecord::Base
-	has_many :item_hospitalizacions, :order => 'created_at DESC'
+	# has_many :item_hospitalizacions, :order => 'created_at DESC'
+	has_many :item_hospitalizacions
 	has_many :ingreso_productos, :through => :item_hospitalizacions
   belongs_to :hospitalizacion_registro
   belongs_to :user

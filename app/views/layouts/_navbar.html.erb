@@ -8,9 +8,7 @@
         <span class="icon-bar"></span>
       </button>
       <%=link_to image_tag("/images/logo1.png", :width=>45, :heigth=>45), "",class: "brand_img"%>
-      <ul class="nav navbar-nav navbar-left">
-        <%=link_to("SISFA",doctors_dashboard_path, class: "navbar-brand" )%>
-      </ul>
+      <%=link_to("SISFA", root_path, class: "navbar-brand" )%>
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
@@ -23,7 +21,7 @@
           <ul class="dropdown-menu">
             <li><%= link_to 'Perfil', edit_user_path(current_user), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}%></li>
             <li class="divider"></li>
-            <li><%=link_to("Salir", logout_path)%></li>
+            <li><%=link_to("Salir", :controller => 'user_sessions', :action => 'destroy')%></li>
           </ul>
         </li>
       </ul>

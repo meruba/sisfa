@@ -8,9 +8,17 @@
 		<%= @hospitalizacion.hospitalizacion_registro.paciente.cliente.nombre%>
 	</p>
 	<p>
-		<strong>Fecha de Emisión:</strong>
-		<%= @hospitalizacion.fecha_emision %>
+		<strong>Fecha de Ingreso:</strong>
+		<%=local_date(@hospitalizacion.hospitalizacion_registro.fecha_de_ingreso, "date")%>
+		<strong>Fecha de Salida:</strong>
+		<%=local_date(@hospitalizacion.hospitalizacion_registro.fecha_de_salida, "date")%>
 	</p>
+	<% if @hospitalizacion.hospitalizacion_registro.alta %>
+	<p>
+		<strong>Dias de hospitalizacion:</strong>
+		<%=@hospitalizacion.hospitalizacion_registro.dias_hospitalizacion%>
+	</p>
+	<% end %>
 	<table class="table table-hover">
 		<thead class= "well">
 			<tr>

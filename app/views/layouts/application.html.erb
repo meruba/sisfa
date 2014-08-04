@@ -11,24 +11,7 @@
 <body>
   <% if current_user %>
   <header>
-    <% case current_user.rol %>
-      <% when Rol.administrador %>
-        <%= render 'layouts/navbars/admin_system' %>
-      <% when Rol.administrador_farmacia %>
-        <%= render 'layouts/navbars/adm_farmacia' %>
-      <% when Rol.vendedor %>
-        <%= render 'layouts/navbars/adm_farmacia' %>
-      <% when Rol.administrador_estadistica %>
-        <%= render 'layouts/navbars/estadistica' %>
-      <% when Rol.auxiliar_estadistica %>
-        <%= render 'layouts/navbars/estadistica' %>
-      <% when Rol.doctor %>
-        <%= render 'layouts/navbars/doctor' %>
-      <% when Rol.administrador_enfermeria%>
-        <%= render 'layouts/navbars/adm_enfermeria' %>
-      <% when Rol.enfermera%>
-        <%= render 'layouts/navbars/adm_enfermeria' %>
-    <% end %>
+    <%= render 'layouts/navbar' %>
   </header>
   <%end%> 
   <div role="main">
