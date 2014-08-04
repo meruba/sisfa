@@ -1,0 +1,19 @@
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3 class="modal-title" id="myModalLabel">Hospitalizacion<span class="text-right"></span></h3>
+</div>
+<div class="modal-body">
+  <p>Paciente: <%=@registro.paciente.cliente.nombre %></p>
+  <p>Fecha de Ingreso: <%=@registro.fecha_de_ingreso %></p>
+  <p>Fecha de Salida: <%=@registro.fecha_de_salida %></p>
+  <p>Diagnostico Ingreso: <%=@registro.diagnostico_ingreso %></p>
+	<p>Diagnostico Salida:<%=@registro.diagnostico_salida %></p>
+	<p>Condicion Egreso:<%=@registro.condicion_egreso %></p>
+  <p>Especialidad Ingreso: <%=@registro.especialidad %></p>
+  <p>Especialidad Egreso: <%=@registro.especialidad_egreso %></p>
+  <p>Presenta Discapacidad: <%=@registro.discapacidad %></p>
+  <p></p>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+</div>
