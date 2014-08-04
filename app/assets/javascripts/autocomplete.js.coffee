@@ -72,15 +72,17 @@ window.Helpers.AutocompleteHelper = {
     sum_12 = 0
     sum_0 = 0
     $(".total_item").each ->
-      sum += parseFloat($(this).val())
+      if $(this).val() and $(this).is(":visible")
+        sum += parseFloat($(this).val())
     $(".iva").each ->
-      iva = parseFloat($(this).val())
-      sum_iva += iva
-      valor_a_sumar = parseFloat($(this).closest(".fields").find("td:nth-child(5)").find(".total_item").val())
-      if iva != 0
-        sum_12 += valor_a_sumar
-      else
-        sum_0 += valor_a_sumar
+      if $(this).val() and $(this).is(":visible")
+        iva = parseFloat($(this).val())
+        sum_iva += iva
+        valor_a_sumar = parseFloat($(this).closest(".fields").find("td:nth-child(5)").find(".total_item").val())
+        if iva != 0
+          sum_12 += valor_a_sumar
+        else
+          sum_0 += valor_a_sumar
     $(".subtotal_0").text sum_0.toFixed(2)
     $(".subtotal_12").text sum_12.toFixed(2)
     $(".descuento_factura").text 0
@@ -132,3 +134,4 @@ $(document).on "ready page:load", window.Helpers.AutocompleteHelper.init_autocom
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocomplete
 $(document).on "nested:fieldAdded", window.Helpers.AutocompleteHelper.init_autocompleteProveedor
 $(document).on "nested:fieldRemoved", window.Helpers.AutocompleteHelper.calcular_valores_factura
+
