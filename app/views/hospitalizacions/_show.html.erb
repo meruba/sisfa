@@ -66,5 +66,7 @@
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-	<%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-success", :target => "_blank"} %>
+	<% if @hospitalizacion.hospitalizacion_registro.alta %>
+		<%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-success", :target => "_blank"} %>
+	<% end %>
 </div>
