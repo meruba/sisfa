@@ -52,8 +52,10 @@ class HospitalizacionRegistro < ActiveRecord::Base
   end
 
   def validate_fecha_salida
-  	if self.fecha_de_salida < self.fecha_de_ingreso
-  		errors.add :fecha_de_salida, "Fecha de salida no válida"			
+  	unless self.fecha_de_salida.nil?
+  		if self.fecha_de_salida < self.fecha_de_ingreso
+  			errors.add :fecha_de_salida, "Fecha de salida no válida"			
+  		end
   	end
   end
 
@@ -64,7 +66,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 			self.dias_hospitalizacion = (self.fecha_de_salida.to_date - self.fecha_de_ingreso.to_date).to_i
 		end
 		# cama disponible una vez dado de alta
-			self.asignacion_cama.cama.update(:ocupada => false)
+		self.asignacion_cama.cama.update(:ocupada => false)
 	end
 
 	def build_relations
@@ -78,16 +80,16 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
 	#class methods
 	def self.autocomplete(params)
-    pacientes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(alta: false).where("pacientes.n_hclinica like ?", "%#{params}%").references(paciente: [:cliente])
-    pacientes = pacientes.map do |hospitalizado|
-      {
-        :id => hospitalizado.id,
-        :label => hospitalizado.paciente.cliente.nombre + " / " + "H.C:" + hospitalizado.paciente.n_hclinica.to_s,
-        :value => hospitalizado.paciente.cliente.nombre
-      }
-    end
-    pacientes 
-  end
+		pacientes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(alta: false).where("pacientes.n_hclinica like ?", "%#{params}%").references(paciente: [:cliente])
+		pacientes = pacientes.map do |hospitalizado|
+			{
+				:id => hospitalizado.id,
+				:label => hospitalizado.paciente.cliente.nombre + " / " + "H.C:" + hospitalizado.paciente.n_hclinica.to_s,
+				:value => hospitalizado.paciente.cliente.nombre
+			}
+		end
+		pacientes 
+	end
 
 	def self.reporte(fecha)
 		registros = HospitalizacionRegistro.includes(:paciente).where(fecha_de_salida: fecha).references(:paciente)

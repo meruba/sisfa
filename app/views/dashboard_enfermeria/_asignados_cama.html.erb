@@ -1,0 +1,46 @@
+<li class="ingresado-item">
+  <span class="internado-name">
+    <%=cama.paciente.cliente.nombre%>
+  </span>
+  <span class="internado-hc">
+    H.C #<%=cama.paciente.n_hclinica%>
+  </span>
+  <div class="pull-right">
+    <span class="opcions" <%= 'style= background-color:#7CC576;color:#fff;' if cama.alta%>>
+      <% if cama.alta %>
+      <span class="fa fa-check-circle fa-2x"></span>
+      <% else %>        
+      <span class="cama-number">
+        <small class="text-muted">CAMA #<%= cama.asignacion_cama.numero_cama %></small>
+      </span>
+      <% end %>
+      <span class="menu">
+      <% unless cama.alta %>
+        <ul class="list-inline">
+          <li class="btn-circle">
+            <%= link_to "", signo_vital_path(cama), {:rel=> 'tooltip', :title=>'Agregar Signos Vitales', class: "fa fa-heart text-danger"}%>
+          </li>
+          <li class="btn-circle">
+            <%= link_to "", nota_enfermera_path(cama), {:rel=> 'tooltip', :title=>'Agregar nota', class: "fa fa-file text-success"}%>
+          </li>
+          <li class="btn-circle">
+            <%= link_to "", paciente_path(cama.paciente), {:rel=> 'tooltip', :title=>'Historia Clinica', class: "fa fa-h-square text-info"}%>
+          </li>
+        </ul>
+        <% else %>
+        <h5 class="">El doctor ha dado el alta</h5>
+        <% end %>
+      </span>
+    </span>
+    <span class="ingresado-type">
+      <% case cama.paciente.tipo%>
+      <% when "militar"%>
+      <span class="circle militar"></span>
+      <% when "civil"%>
+      <span class="circle civil"></span>
+      <% when "familiar"%>
+      <span class="circle familiar"></span>
+      <% end %>
+    </span>
+  </div>
+</li>
