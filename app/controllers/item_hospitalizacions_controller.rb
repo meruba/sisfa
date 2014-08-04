@@ -7,7 +7,6 @@ class ItemHospitalizacionsController < ApplicationController
   # before_filter :is_admin_or_enfermera_enfermeria
   
   def create
-		# @item = ItemNotaEnfermera.new(item_hospitalizacion_params.merge(fecha: Time.now, user_id: current_user.id))
 		@item = ItemHospitalizacion.new(item_hospitalizacion_params.merge(pedido_por: current_user.cliente.nombre))
 		@item.save
 		respond_to do |format|

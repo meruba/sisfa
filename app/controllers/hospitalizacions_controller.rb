@@ -1,12 +1,9 @@
 class HospitalizacionsController < ApplicationController
 	before_filter :require_login
-	before_action :find_user, :only => [:show]
-	# before_filter :is_admin_or_enfermera_enfermeria, :only => [:index]
-	before_filter :is_editable, :only => [:edit, :update]
-	before_filter :find_hospitalizacion, :only => [:edit, :update, :show, :dar_de_alta]
+	before_action :find_user, :only => [:show_pedido]
+	before_filter :find_hospitalizacion, :only => [:show]
 
 	def index
-		@todos =  Hospitalizacion.all
     respond_to do |format|
       format.html
       format.json { render json: HospitalizacionsDatatable.new(view_context) }
@@ -14,51 +11,22 @@ class HospitalizacionsController < ApplicationController
     end
   end
 
-	def new
-		@hospitalizacion = Hospitalizacion.new
-		@hospitalizacion.item_hospitalizacions.build
-		@hospitalizacion.build_cliente
-	end
+  def pedidos
+		@pedidos =  Hospitalizacion.includes(:hospitalizacion_registro).where("hospitalizacion_registros.alta_enfermeria = false").references(:hospitalizacion_registro)
+  end
 
-	def create
-		@hospitalizacion = Hospitalizacion.new(hospitalizacion_params.merge(user_id: current_user.id))
-		if @hospitalizacion.save
-			redirect_to hospitalizacions_path, :notice => "Almacenado"
-		else
-			render action: 'new'
-		end
-	end
-
-	def edit
-	end
-
-	def update
-		if @hospitalizacion.update(hospitalizacion_params)
-			redirect_to hospitalizacions_path, :notice => "Actualizado"
-		else
-			render action: "edit"
-		end
+	def show_pedido
+		@item = ItemHospitalizacion.new
+		@hospitalizacion = Hospitalizacion.find(params[:hospitalizacion_id])
+		@items = @hospitalizacion.item_hospitalizacions.order('created_at DESC')
 	end
 
 	def show
-		@item = ItemHospitalizacion.new
-		@items = @hospitalizacion.item_hospitalizacions
 		respond_to do |format|
-			format.html
-			format.js{ render "show" }
+			format.js
 			format.pdf do
 				render :pdf => "hospitalizacion", :layout => 'report.html', :template => "hospitalizacions/hospitalizacion_pdf.html.erb"
 			end
-		end
-	end
-
-	def dar_de_alta
-		unless @hospitalizacion.dado_de_alta
-			@hospitalizacion.dado_de_alta = true
-			@hospitalizacion.save
-			redirect_to hospitalizacions_path, :notice => "Dado de alta!"
-		else
-			redirect_to hospitalizacions_path, :notice => "Ya fue dado de alta anteriormente"
 		end
 	end
 
@@ -93,13 +61,6 @@ class HospitalizacionsController < ApplicationController
 
 	def find_hospitalizacion
 		@hospitalizacion = Hospitalizacion.find(params[:id])
-	end
-
-	def is_editable
-		@hospitalizacion = Hospitalizacion.find(params[:id])
-		if @hospitalizacion.dado_de_alta
-			redirect_to hospitalizacions_path, :notice => "Ya se ha dado de alta! No es posible editar"
-		end
 	end
 
 	def find_user

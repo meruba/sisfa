@@ -1,9 +1,28 @@
-<div class="row">
-	<% @todos.each do |h| %>
-	<div class="shadow col-md-3">
-		<strong>Paciente</strong><br>
-		<%= h.hospitalizacion_registro.paciente.cliente.nombre %><br>
-		<%= link_to "Realizar Pedido", hospitalizacion_path(h) %>
-	</div>
-	<% end %>
+<div class="pedidos">
+	<ul class="internados grid">
+		<% @pedidos.each do |p|  %>
+		<li class="pacientes-hospitalizados">
+			<span class="internado-name">
+				<%=p.hospitalizacion_registro.paciente.cliente.nombre%>
+			</span>
+			<span class="internado-hc">
+				Consumo: $<%= p.total%>
+			</span>
+			<div class="pull-right">
+				<span class="type-paciente">
+					<%= link_to "Realizar Pedido", hospitalizacion_show_pedido_path(p), class: "label label-success" %>
+				</span>
+				<% if  p.hospitalizacion_registro.alta?%>
+				<span class="ingresado-type">
+					<span class="fa fa-check-circle text-success"></span>        
+				</span>
+				<% else %>
+				<span class="ingresado-type">
+					<span class="fa fa-circle text-info"></span>        
+				</span>
+				<% end %>
+			</div>
+		</li>
+		<% end %>
+	</ul> 
 </div>

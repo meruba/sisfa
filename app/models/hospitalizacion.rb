@@ -32,8 +32,7 @@ class Hospitalizacion < ActiveRecord::Base
 
   #callbacks
 	before_create :values_and_liquidacion
-	# after_update :add_item_liquidacion
-  # before_validation :set_hospitalizacion_values 
+	
 	#methods
 
 	def self.disminuir_stock (item_hospitalizacions)
@@ -54,17 +53,6 @@ class Hospitalizacion < ActiveRecord::Base
 		self.subtotal_12 = 0
     self.iva = 0
     self.total = 0
-		# raise
 		Liquidacion.add_hospitalizacion(self)	
 	end
-
-	def add_item_liquidacion
-		item = self.item_hospitalizacions.first
-		ingreso = IngresoProducto.find item.ingreso_producto_id
-		total = (ingreso.producto.precio_compra * item.cantidad).round(2)
-		# raise
-			#obtine el total de la venta sin ganacia
-		Liquidacion.add_item_hospitalizacion(self, total)
-	end
-
 end

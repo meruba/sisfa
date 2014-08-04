@@ -1,9 +1,9 @@
 <h1 class= "text-center"><span class="fa fa-bar-chart-o"></span> Administracion</h1>
 <ul class="nav nav-tabs" id="tab_estadisticas">
-  <li class="active"><%=link_to "Hospitalizados",{:controller => 'dashboard_enfermeria', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
-  <li><%=link_to "Cambio Turno",{:controller => 'entrega_turnos', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
-  <li><%=link_to "Cuartos",{:controller => 'cuartos', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
-   <li><%=link_to "Pedidos",{:controller => 'hospitalizacions', :action => 'index'}, :remote => true, :data => {:toogle => "tab"} %></li>
+  <li class="active"><%=link_to "Hospitalizados",dashboard_enfermeria_index_path,:remote => true, :data => {:toogle => "tab"} %></li>
+  <li><%=link_to "Cambio Turno",entrega_turnos_path, :remote => true, :data => {:toogle => "tab"} %></li>
+  <li><%=link_to "Cuartos",cuartos_path, :remote => true, :data => {:toogle => "tab"} %></li>
+   <li><%=link_to "Pedidos", pedidos_hospitalizacions_path, :remote => true, :data => {:toogle => "tab"} %></li>
 </ul>
 <div class="tab-content info-paciente">
   <%= render 'dashboard_enfermeria/hospitalizados'%>

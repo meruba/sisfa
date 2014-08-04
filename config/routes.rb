@@ -4,7 +4,6 @@ Sisfa::Application.routes.draw do
 get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
-get "historia_clinicas/autocomplete"
 get "hospitalizacion_registros/autocomplete"
 get "productos/autocomplete_producto_compra"
 get "productos/inventario"
@@ -89,10 +88,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_traspasos
   resources :cuartos
   resources :camas
-  resources :hospitalizacions do
-    member do
-      post "dar_de_alta"
-    end
+  resources :hospitalizacions, :only => [:index, :show] do
+    get "show_pedido"
+    get 'pedidos', :on => :collection
   end
   resources :item_hospitalizacions do
     member do
