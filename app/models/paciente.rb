@@ -26,6 +26,7 @@ class Paciente < ActiveRecord::Base
 	belongs_to :cliente
 	has_many :condicions, dependent: :destroy
 	has_many :turnos, dependent: :destroy
+	has_many :hospitalizacion_registros, dependent: :destroy
 	has_one :informacion_adicional_paciente, dependent: :destroy
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 	
@@ -49,6 +50,7 @@ class Paciente < ActiveRecord::Base
 		self.fecha_hclinica = Time.now
 	end
 
+#class methods
 	def self.autocomplete(params)
     pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente)
     pacientes = pacientes.map do |paciente|
@@ -63,5 +65,10 @@ class Paciente < ActiveRecord::Base
     end
     pacientes 
   end
-
+	
+	def self.medical_records(paciente)
+		p = Paciente.find(paciente)
+		registros = p.condicions + p.hospitalizacion_registros.where(:alta => true)
+		registros = registros.sort_by(&:created_at)
+	end
 end

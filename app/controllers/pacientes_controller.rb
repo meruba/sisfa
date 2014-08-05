@@ -1,7 +1,7 @@
 class PacientesController < ApplicationController
   before_filter :require_login
-  before_filter :is_admin_or_auxiliar_estadistica, :except => [:show, :view_edit]
-  before_filter :shared_permission, :only => [:show, :view_edit]
+  before_filter :is_admin_or_auxiliar_estadistica, :except => [:show, :view_edit, :edit, :update]
+  before_filter :shared_permission, :only => [:show, :view_edit, :edit, :update]
 	before_action :set_paciente, only: [:edit, :update, :destroy]
 	before_action :new_paciente, only: [:civil, :militar, :familiar]
 
@@ -37,7 +37,7 @@ class PacientesController < ApplicationController
 	end
 	
 	def print_historia
-		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente, :condicions ).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente, :condicions).first
+		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente, :condicions).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente, :condicions).first
 		respond_to do |format|
 			format.pdf do
 				render :pdf => "historia", :layout => 'report.html', :template => "pacientes/print_historia.pdf.erb"
@@ -47,6 +47,7 @@ class PacientesController < ApplicationController
 
 	def show
 		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:id]).references(:cliente, :informacion_adicional_paciente).first
+		@registros = Paciente.medical_records(@paciente)
 	end
 	
 	def create

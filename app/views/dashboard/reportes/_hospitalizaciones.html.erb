@@ -24,13 +24,13 @@
       </tr>
     </thead>
     <tbody>
-      <% @hospitalizacion.each do |h| %>end_date
+      <% @hospitalizacion.each do |h| %>
       <tr>
         <td><%= h.numero %></td>
-        <td><%= h.cliente.nombre%></td>
-        <td><%= h.cliente.direccion %></td>
-        <td>ninguno</td>
-        <td>ninguno</td>
+        <td><%= h.hospitalizacion_registro.paciente.cliente.nombre%></td>
+        <td><%= h.hospitalizacion_registro.paciente.cliente.direccion %></td>
+        <td><%=if h.hospitalizacion_registro.paciente.estado.nil? then "-----" else h.hospitalizacion_registro.paciente.estado end%></td>
+        <td><%=if h.hospitalizacion_registro.paciente.grado.nil? then "-----" else h.hospitalizacion_registro.paciente.grado end%></td>
         <td><%= h.user.username %></td>
         <td><%= local_date(h.created_at,"datetime") %></td>
         <td><%= redondear(h.subtotal_12) %></td>

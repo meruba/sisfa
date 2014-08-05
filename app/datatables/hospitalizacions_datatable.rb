@@ -21,12 +21,10 @@ private
       [
         (h.numero),
         (h.hospitalizacion_registro.paciente.cliente.nombre),
-        (h.subtotal),
-        (h.iva),
         (h.total),
         (@view.human_boolean(h.hospitalizacion_registro.alta)),
         (link_to '', h, :remote => true, :rel=> 'tooltip', :title=>'Imprimir','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-print btn btn-info") + " " +
-        (link_to '', h, :rel=> 'tooltip', :title=>'Despachar', class: "ttip mostrar fa fa-check btn btn-success")
+        (link_to '', @view.hospitalizacion_show_pedido_path(h), :rel=> 'tooltip', :title=>'Despachar', class: "ttip mostrar fa fa-check btn btn-success")
       ]
     end 
   end

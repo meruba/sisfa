@@ -1,32 +1,47 @@
 <div class="row info-paciente">
 	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
 	<ul class="cbp_tmtimeline">
-		<% @paciente.condicions.each do |r|  %>
+		<% @registros.each do |r|  %>
+		<% if r.has_attribute?(:alta)%> 
 		<li>
 			<time class="cbp_tmtime">
 				<span><%= local_date(r.created_at, "date")%></span>
 			</time>
-			<% case r.tipo_registro%>
-			<% when "Emergencia"%>
-			<div class="cbp_tmicon fa-plus"></div>
-			<% when "Hospitalizacion"%>
 			<div class="cbp_tmicon fa-hospital-o"></div>
-			<% when "Consulta Externa Morbilidad"%>
-			<div class="cbp_tmicon fa-stethoscope"></div>
-			<% when "Consulta Externa Preventiva"%>
-			<div class="cbp_tmicon fa-stethoscope"></div>
-			<% end %>
 			<div class="cbp_tmlabel">
 				<small>DIAGNOSTICO</small>
-				<h3><%= r.diagnostico_1%></h3>
-				<% unless r.tipo_registro == "Hospitalizacion" %>
-				<p>Enfermedad: <%= r.enfermedad_actual %></p>
-				<% end %>
-				<p>Motivo: <%= r.motivo_de_consulta%></p>
+				<h3><%= r.diagnostico_salida%></h3>
+				<p>Motivo Ingreso: <%= r.diagnostico_ingreso%></p>
 				<p>Medico: <%= r.medico_asignado %></p>
-				<p>Tipo: <%= r.tipo_registro %></p>
+				<p>Tipo: Hospitalizacion</p>
+				<p><%= link_to "Ver registro", r, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal',  class: "btn btn-default btn-xs" %></p>
 			</div>
 		</li>
+	</li>
+	<% else %>
+	<li>
+		<time class="cbp_tmtime">
+			<span><%= local_date(r.created_at, "date")%></span>
+		</time>
+		<% case r.tipo_registro%>
+		<% when "Emergencia"%>
+		<div class="cbp_tmicon fa-plus"></div>
+		<% when "Consulta Externa Morbilidad"%>
+		<div class="cbp_tmicon fa-stethoscope"></div>
+		<% when "Consulta Externa Preventiva"%>
+		<div class="cbp_tmicon fa-stethoscope"></div>
 		<% end %>
-	</ul>
+		<div class="cbp_tmlabel">
+			<small>DIAGNOSTICO</small>
+			<h3><%= r.diagnostico_1%></h3>
+			<p>Motivo: <%= r.motivo_de_consulta%></p>
+			<p>Medico: <%= r.medico_asignado %></p>
+			<p>Tipo: <%= r.tipo_registro %></p>
+			<p><%= link_to "Ver registro", r, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal',  class: "btn btn-default btn-xs" %></p>
+		</div>
+	</li>
+	<li></li>
+	<% end %>
+	<% end %>
+</ul>
 </div>

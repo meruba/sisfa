@@ -3,7 +3,7 @@ class HospitalizacionRegistrosController < ApplicationController
   before_filter :is_doctor, only: [:edit, :update]
   before_filter :shared_permission, except: [:edit, :update]
   before_action :find_paciente, only: [:new, :create, :edit]
-  before_action :set_registro, only: [:edit, :update]
+  before_action :set_registro, only: [:edit, :update, :show]
 
   def index
     @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_ingreso => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente => :cliente)
@@ -14,6 +14,7 @@ class HospitalizacionRegistrosController < ApplicationController
       format.json { render :json => HospitalizacionRegistro.autocomplete(params[:term]) }
     end
   end
+
   def reporte
     @fecha = params[:fecha]
     @registros = HospitalizacionRegistro.reporte(params[:fecha].to_time.beginning_of_month..params[:fecha].to_time.end_of_month)
@@ -24,6 +25,12 @@ class HospitalizacionRegistrosController < ApplicationController
         format.html
         format.xls
       end
+    end
+  end
+  
+  def show
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -45,10 +52,6 @@ class HospitalizacionRegistrosController < ApplicationController
   end
 
   def edit
-    respond_to do |format|
-      format.html
-      format.js
-    end
   end
 
   def update
@@ -61,10 +64,10 @@ class HospitalizacionRegistrosController < ApplicationController
         render action: 'edit'
       end
       }
-      format.js { render "salida"}
       format.json { respond_with_bip(@registro) }
     end
   end
+
   private
 
   def hospitalizacion_registro_params
