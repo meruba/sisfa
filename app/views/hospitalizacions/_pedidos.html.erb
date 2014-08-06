@@ -1,7 +1,7 @@
 <div class="pedidos">
 	<ul class="internados grid">
 		<% @pedidos.each do |p|  %>
-		<li class="pacientes-hospitalizados">
+		<li class="pacientes-hospitalizados" id="<%= p.hospitalizacion_registro.id %>">
 			<span class="internado-name">
 				<%=p.hospitalizacion_registro.paciente.cliente.nombre%>
 			</span>
@@ -14,7 +14,7 @@
 				</span>
 				<% if  p.hospitalizacion_registro.alta?%>
 				<span class="ingresado-type">
-					<span class="fa fa-check-circle text-success"></span>        
+					<%= link_to '', dar_alta_enfermeria_hospitalizacion_registro_path(p.hospitalizacion_registro), method: :post, class: "ttip fa fa-check-circle text-success clickable", :remote => true, :rel => "tooltip", :title => "Enviar a farmacia"%>
 				</span>
 				<% else %>
 				<span class="ingresado-type">

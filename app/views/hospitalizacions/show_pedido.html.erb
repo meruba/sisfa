@@ -6,7 +6,7 @@
 	<h4>Historia C: <%= @hospitalizacion.hospitalizacion_registro.paciente.n_hclinica  %> </h4>
 	<%= form_for @item, :html => {:class => "form-hospitalizacion"}, :remote => true do |f| %>
 	<%= form_errors_for @item %>
-	<% if @permiso %>
+	<% if @permiso_enfermeria %>
 	<table class="table">
 		<thead>
 			<tr>

@@ -8,7 +8,7 @@
 	<td><span class="fa fa-check-circle fa-2x text-success"></span></td>
 	<% else %>
 	<td>
-		<% unless @permiso %>
+		<% if @permiso_farmacia %>
 		<%= link_to '', despachar_item_hospitalizacion_path(item), method: :post, class: "fa fa-check-circle fa-2x text-info clickable", :remote => true%>
 		<span class="fa fa-times-circle fa-2x text-danger clickable"></span>
 		<% end %>
