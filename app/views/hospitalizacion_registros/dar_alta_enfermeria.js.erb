@@ -1,0 +1,5 @@
+$content = $("<div class='text-center text-success'><i class=' fa fa-spinner fa-spin fa-3x text-center'></i><h5>Enviando...</h5></div>")
+$("#<%= @registro.id %>").html($content).fadeOut(3000, function(){
+	alertify.success("Reporte recibido");
+	$(this).remove();
+});

@@ -73,6 +73,9 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :proveedors
   resources :hospitalizacion_registros do
     resources :asignacion_camas
+    member do
+      post "dar_alta_enfermeria"
+    end
   end
   resources :nota_enfermeras, :only => [:show]
   resources :item_nota_enfermeras
