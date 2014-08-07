@@ -1,0 +1,11 @@
+<%- if @item.errors.any? %>
+  <%- @item.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModal").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $("#<%= @item.id %>").replaceWith("<%= j render('item_hospitalizacions/medicamento', item: @item) %>");
+  alertify.success("Medicamento Anulado");
+<%- end %>

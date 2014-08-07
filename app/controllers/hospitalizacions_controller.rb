@@ -17,11 +17,12 @@ class HospitalizacionsController < ApplicationController
 
 	def show_pedido
 		@item = ItemHospitalizacion.new
-		@hospitalizacion = Hospitalizacion.find(params[:hospitalizacion_id])
-		@items = @hospitalizacion.item_hospitalizacions.order('created_at DESC')
+		@hospitalizacion = Hospitalizacion.includes(hospitalizacion_registro: [paciente: [:cliente]]).where(id: params[:hospitalizacion_id]).references(hospitalizacion_registros: [paciente: [:cliente]]).first
+		@items = @hospitalizacion.item_hospitalizacions.includes(ingreso_producto: [:producto]).order('item_hospitalizacions.created_at DESC').references(ingreso_producto: [:producto])
 	end
 
 	def show
+		@items = @hospitalizacion.item_hospitalizacions.where('anulado = false and total != 0')
 		respond_to do |format|
 			format.js
 			format.pdf do

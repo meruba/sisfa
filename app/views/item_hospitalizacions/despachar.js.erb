@@ -1,11 +1,3 @@
-<%- if @item.errors.any? %>
-  <%- @item.errors.full_messages.each do |msg|%>
-    alertify.error("<%=j msg %>");
-  <%- end %>
-<%- else %>
-  // $("#<%= @item.id %>").css("background-color", "yellow");
-  $("#<%= @item.id %>").remove();
-  $(".medicamentos").prepend("<%= j render('item_hospitalizacions/medicamento', item: @item) %>");
-  $('.form-hospitalizacion').trigger("reset");
-  alertify.success("Medicamento Despachado");
-<%- end %>
+$("#<%= @item.id %>").replaceWith("<%= j render('item_hospitalizacions/medicamento', item: @item) %>");
+alertify.success("Medicamento Despachado");
+
