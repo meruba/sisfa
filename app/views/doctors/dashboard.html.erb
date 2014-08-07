@@ -28,24 +28,20 @@
 		</div>
 	</div>
 	<div class="col-md-3">
-		<div class="co-xs-12">
-			<ul class="list-turnos">
-				<h5 class= "text-muted"> TURNOS DE MANANA</h5>
-				<% if @turnos_manana.empty? %>
+		<div class="col-xs-12 info-paciente">
+			<h5 class= "text-muted text-center"> TURNOS DE MAÑANA</h5>
+			<% if @turnos_manana.empty? %>
 				<div class="text-center text-muted">
 					<span class= "fa fa-ticket fa-2x"></span>
-					<h5>No hay turnos registrados</h5>		
+					<h5>No hay turnos registrados</h5>
 				</div>
-				<% else %>
-				<% @turnos_manana.each do |t|  %>
-				<li class="item-turnos">
-					<div class="text-center atendidos">
-						<small><%=t.paciente.cliente.nombre%></small>
-					</div> 
-				</li>
+			<% else %>
+			<% @turnos_manana.each do |t|  %>
+				<div class="text-center control-turno">
+					<small><%=t.paciente.cliente.nombre%></small>
+				</div>
 				<% end %>
-				<% end %>
-			</ul>
+			<% end %>
 		</div>
 	</div>
 </div>
