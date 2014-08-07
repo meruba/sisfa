@@ -55,7 +55,15 @@ def cliente_attributes=(attributes)
 end
 
 def add_to_cierre
-	CierreCaja.create(:user => self.user, :factura => self, :is_cerrado => false)
+	if self.user.cierre_cajas.last
+		if self.user.cierre_cajas.last.is_cerrado
+			CierreCaja.create(:user => self.user, :is_cerrado => false)			
+		end
+		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)
+	else
+		CierreCaja.create(:user => self.user, :is_cerrado => false)
+		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)	
+	end
 end
 def set_factura_values
 	self.fecha_de_emision = Time.now
