@@ -1,7 +1,6 @@
 Sisfa::Application.routes.draw do
   resources :emisors
 
-get "dashboard/index"
 get "clientes/autocomplete"
 get "productos/autocomplete"
 get "hospitalizacion_registros/autocomplete"
@@ -12,14 +11,6 @@ get "productos/alerta"
 get "proveedors/autocomplete"
 get "facturas/index_compra"
 get "facturas/index_anulada"
-get "dashboard/liquidaciones"
-get "dashboard/generar_reporte"
-get "dashboard/cierre_de_caja_dia"
-get "dashboard/cierre_de_caja_mes"
-get "dashboard/reportes_cierre_caja_diario"
-get "dashboard/reportes_cierre_caja_mensual"
-get "dashboard/estadisticas_dia"
-get "dashboard/estadisticas_mes"
 get "hospitalizacion_registros/reporte"
 get "pacientes/autocomplete"
 get "pacientes/civil"
@@ -128,6 +119,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
       post "facturar"
     end
   end
+
+  resources :cierre_cajas
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -24,7 +24,7 @@
 
 class Factura < ActiveRecord::Base
 #relations
-has_many :cierrecajas
+has_many :cierre_caja_items
 belongs_to :cliente
 belongs_to :proveedor
 belongs_to :user

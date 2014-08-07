@@ -1,0 +1,11 @@
+<h1 class= "text-center"><span class="fa fa-money"></span> Caja y Reportes</h1>
+<ul class="nav nav-tabs" id="tab_estadisticas">
+  <li class="active"><%=link_to "Cierre de Caja", cierre_cajas_path, :remote => true, :data => {:toogle => "tab"} %></li>
+  <li><%=link_to "Reportes", cierre_cajas_path, :remote => true, :data => {:toogle => "tab"} %></li>
+</ul>
+
+<div class="tab-content">
+  <%= render "index"%>
+</div>
+
+<%= javascript_tag "window.Helpers.NavbarVentas.init_estadisticas();" %>
