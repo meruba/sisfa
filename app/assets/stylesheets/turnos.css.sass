@@ -1,18 +1,21 @@
-$red-color: #CE5C5B
-$green-color: #4bbc65
+.hospitalizados
+  padding: 0
+  li
+    list-style: none
+
+.doctores
+  @extend .hospitalizados
+  li
+    padding: 8px
 
 .turno
-  background: $red-color
+  background: #CE5C5B
   color: #fff
 
-.atendidos  
+.control-turno
   background: #fff
   text-align: center
   margin-bottom: 10px
-  .fa
-    color: $green-color
-    padding-top: 12px
-    font-size: 25px
   .paciente
     border-right: 1px dashed #e7e7e7
     border-left: 1px dashed #e7e7e7
@@ -23,30 +26,6 @@ $green-color: #4bbc65
     font-size: 25px
     font-weight: bold
 
-.pendientes
-  @extend .atendidos
-  .fa
-    color: $red-color
-
-//.sortable-list
-.list-turnos
-  background-color: #F5f5f5
-  list-style: none
-  margin: 0
-  padding: 20px
-
-// .sortable-item
-.item-turno
-  background-color: #FFF
-  // cursor: move
-  margin-bottom: 5px
-  text-align: center
-
-.list-modal
-  background-color: #fafafa
-
-.control-turno
-  @extend .atendidos
   .turnos-emitidos
     span
       font-size: 25px
