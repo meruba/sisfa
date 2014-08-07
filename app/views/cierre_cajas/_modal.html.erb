@@ -38,5 +38,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-  <%= link_to 'Cerrar e Imprimir', {:format => :pdf} , {:class => "btn btn-success", :target => "_blank"} %>
+  <%= link_to 'Cerrar e Imprimir', print_and_close_cierre_caja_path(@cierrecaja), {:class => "btn btn-success", :target => "_blank"} %>
 </div>

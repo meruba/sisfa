@@ -16,4 +16,11 @@ class CierreCajasController < ApplicationController
       format.js
     end
   end
+
+  def print_and_close
+    @cierrecaja = CierreCaja.find(params[:id])
+    @cierrecaja.is_cerrado = true
+    @cierrecaja.save
+    render :pdf => "reporte", :layout => 'report.html', :template => "cierre_cajas/pdf.html.erb"
+  end
 end
