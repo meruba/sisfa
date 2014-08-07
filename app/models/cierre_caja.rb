@@ -12,4 +12,13 @@
 class CierreCaja < ActiveRecord::Base
   belongs_to :user
   has_many :cierre_caja_items
+
+  def sumatoria
+    sumatoria = 0
+    self.cierre_caja_items.each do |cierre_caja|
+      sumatoria += cierre_caja.factura.total
+    end
+    sumatoria
+  end
+
 end

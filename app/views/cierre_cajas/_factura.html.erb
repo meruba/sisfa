@@ -1,0 +1,29 @@
+<div class="table-responsive">
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº</th>
+        <th>Cliente</th>
+        <th>Dirección</th>
+        <th>Vendedor</th>
+        <th>Fecha</th>
+        <th>Sub 12%</th>
+        <th>Sub 0%</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= factura.numero %></td>
+        <td><%= factura.cliente.nombre %></td>
+        <td><%= factura.cliente.direccion %></td>
+        <td><%= factura.user.username %></td>
+        <td><%= local_date(factura.created_at,"datetime") %></td>
+        <td><%= factura.subtotal_12 %></td>
+        <td><%= factura.subtotal_0 %></td>
+        <td><%= factura.iva %></td>
+        <td><%= factura.total %></td>
+      </tr>
+    </tbody>
+  </table>

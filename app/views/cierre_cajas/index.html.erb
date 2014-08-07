@@ -1,11 +1,26 @@
-<h1 class= "text-center"><span class="fa fa-money"></span> Caja y Reportes</h1>
-<ul class="nav nav-tabs" id="tab_estadisticas">
-  <li class="active"><%=link_to "Cierre de Caja", cierre_cajas_path, :remote => true, :data => {:toogle => "tab"} %></li>
-  <li><%=link_to "Reportes", cierre_cajas_path, :remote => true, :data => {:toogle => "tab"} %></li>
-</ul>
-
-<div class="tab-content">
-  <%= render "cierre_cajas"%>
+<h1 class= "text-center"><span class="fa fa-money"></span> Cerrar Caja</h1>
+<div class="row">
+  <div class="col-xs-12 col-md-7  estadisticas">
+    <div class="row">
+      <div class="col-xs-6 col-md-5 text-center info-cierre-caja">
+        <h3 class="total-num">$ <%= @cierrecaja.sumatoria %></h3>
+        <h5>TOTAL DE TURNO</h5>
+        <h5>
+          Total Primera Factura: <%= @cierrecaja.cierre_caja_items.first.factura.total %>
+        </h5>
+        <h5>
+          Total Última Factura <%= @cierrecaja.cierre_caja_items.last.factura.total %>
+        </h5>
+        <%= link_to ' Cerrar Caja', root_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
+      </div>
+      <div class="col-xs-6 col-md-7">
+        <h3>Primera Factura</h3>
+        <%= render 'factura', factura: @cierrecaja.cierre_caja_items.first.factura%>
+      </div>
+      <div class="col-xs-6 col-md-7">
+        <h3>Última Factura</h3>
+        <%= render 'factura', factura: @cierrecaja.cierre_caja_items.last.factura%>
+      </div>
+    </div>
+  </div>
 </div>
-
-<%= javascript_tag "window.Helpers.NavbarVentas.init_estadisticas();" %>
