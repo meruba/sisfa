@@ -14,6 +14,8 @@
 #  subtotal      :float            not null
 #  entregado_a   :string(255)
 #  subtotal_12   :float            not null
+#  razon_anulada :string(255)
+#  anulado       :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
