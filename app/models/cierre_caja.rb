@@ -21,4 +21,28 @@ class CierreCaja < ActiveRecord::Base
     sumatoria
   end
 
+  def subtotal12
+    sumatoria = 0
+    self.cierre_caja_items.each do |cierre_caja|
+      sumatoria += cierre_caja.factura.subtotal_12
+    end
+    sumatoria
+  end
+
+  def subtotal0
+    sumatoria = 0
+    self.cierre_caja_items.each do |cierre_caja|
+      sumatoria += cierre_caja.factura.subtotal_12
+    end
+    sumatoria
+  end
+
+  def sumatoriaiva
+    sumatoria = 0
+    self.cierre_caja_items.each do |cierre_caja|
+      sumatoria += cierre_caja.factura.iva
+    end
+    sumatoria
+  end
+
 end

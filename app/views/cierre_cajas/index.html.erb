@@ -9,9 +9,15 @@
           Total Primera Factura: <%= @cierrecaja.cierre_caja_items.first.factura.total %>
         </h5>
         <h5>
+          Fecha Primera Factura: <%= local_date(@cierrecaja.cierre_caja_items.first.factura.created_at, "datetime")%>
+        </h5>
+        <h5>
           Total Última Factura <%= @cierrecaja.cierre_caja_items.last.factura.total %>
         </h5>
-        <%= link_to ' Cerrar Caja', root_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
+        <h5>
+          Fecha Última Factura: <%= local_date(@cierrecaja.cierre_caja_items.last.factura.created_at, "datetime")%>
+        </h5>
+        <%= link_to ' Cerrar Caja', new_cierre_caja_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
       </div>
       <div class="col-xs-6 col-md-7">
         <h3>Primera Factura</h3>

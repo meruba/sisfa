@@ -8,6 +8,12 @@ class CierreCajasController < ApplicationController
       redirect_to root_path
       flash[:notice] = "Aún no has facturado nada"
     end
-    
+  end
+
+  def new
+    @cierrecaja = current_user.cierre_cajas.last
+    respond_to do |format|
+      format.js
+    end
   end
 end
