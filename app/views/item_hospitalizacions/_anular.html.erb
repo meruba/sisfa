@@ -1,0 +1,14 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3 class="modal-title" id="myModalLabel">Anular Pedido</h3>
+</div>
+<%= form_tag anulado_item_hospitalizacion_path, :remote => true do %>
+<div class="modal-body ">
+	<%= label_tag :razon, "Porque desea anular este pedido?" %>
+	<%= text_area_tag :razon, params[:razon], :required => true, class: "form-control", :placeholder => "Ejm: Suspencion medica" %>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= submit_tag "Anular", :remote => true, data: {disable_with: "Anulando..."}, class: "btn btn-danger" %>
+</div>
+<% end %>

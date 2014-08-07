@@ -15,6 +15,8 @@
 #  pedido_por          :string(255)
 #  despachado_por      :string(255)
 #  despachado          :boolean          default(FALSE)
+#  razon_anulada       :string(255)
+#  anulado             :boolean          default(FALSE)
 #
 
 class ItemHospitalizacion < ActiveRecord::Base
@@ -27,7 +29,7 @@ class ItemHospitalizacion < ActiveRecord::Base
   
   #rollbacks
   before_save :add_kardex_line, :disminuir_stock, :if => :fue_despachado
-  before_save :calculated_values
+  before_save :calculated_values, :if => :fue_anulado
   
   # validations
   # validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
@@ -40,6 +42,10 @@ class ItemHospitalizacion < ActiveRecord::Base
     if self.ingreso_producto
       self.ingreso_producto.producto.nombre
     end
+  end
+  
+  def fue_anulado
+    self.anulado == false
   end
 
   def fue_despachado
@@ -71,7 +77,7 @@ class ItemHospitalizacion < ActiveRecord::Base
     self.hospitalizacion.descuento = 0
     self.hospitalizacion.save
     # valores para la liquidacion
-    costo = (ingreso.producto.precio_compra * self.cantidad).round(2)
+    costo = (ingreso.producto.precio_compra * self.cantidad)
     iva_item = self.iva
     subtotal_item = subtotal
     subtotal_12_item = subtotal_12
@@ -85,17 +91,6 @@ class ItemHospitalizacion < ActiveRecord::Base
     end
   end
 
-  def add_item_liquidacion
-    total = 0
-    raise
-    self.item_hospitalizacions.each do |item|
-      ingreso = IngresoProducto.find item.ingreso_producto_id
-      total = total + (ingreso.producto.precio_compra * item.cantidad).round(2)
-      #obtine el total de la venta sin ganacia
-    end
-    Liquidacion.add_item_hospitalizacion(self, total)
-  end
-
   def stock
     unless self.cantidad.nil?
       if self.cantidad > IngresoProducto.find(self.ingreso_producto_id).cantidad
@@ -106,6 +101,35 @@ class ItemHospitalizacion < ActiveRecord::Base
 
   def add_kardex_line
     Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Hospitalizacion" )
+  end
+
+  def rollback_item
+    ingreso_producto = self.ingreso_producto
+    ingreso_producto.cantidad = ingreso_producto.cantidad + self.cantidad
+    ingreso_producto.producto.stock = ingreso_producto.producto.stock + self.cantidad #suma al stock si se anula
+    Lineakardex.create(:kardex => ingreso_producto.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Hospitalizacion", :observaciones => "Pedido Anulado" )
+    ingreso_producto.save
+    ingreso_producto.producto.save
+  end
+
+  def values_hospitalizacion
+    self.hospitalizacion.iva = self.hospitalizacion.iva - self.iva
+    if self.ingreso_producto.producto.hasiva == true
+      self.hospitalizacion.total = self.hospitalizacion.total - (self.total + self.iva)
+      self.hospitalizacion.subtotal_12 = self.hospitalizacion.subtotal_12 - self.total
+    else
+      self.hospitalizacion.total = self.hospitalizacion.total - self.total
+      self.hospitalizacion.subtotal = self.hospitalizacion.subtotal - self.total
+    end
+    self.hospitalizacion.save
+  end
+
+  def anular_item(razon)
+    self.anulado = true
+    self.razon_anulada = razon
+    self.rollback_item
+    self.values_hospitalizacion
+    self.save
   end
 
   private
