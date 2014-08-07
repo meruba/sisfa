@@ -109,9 +109,6 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     resources :jornada_morbilidads
     resources :jornada_preventivas
     member do
-      get "pacientes_emergencia"
-      get "turnos_dia"
-      get "turnos_manana"
       post "suspender"
     end
   end
