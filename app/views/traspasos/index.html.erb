@@ -1,11 +1,14 @@
-<div class="row title-red-head">
-	<span>
-		<i><%= link_to "",  new_traspaso_path, title:'Nueva', class: "ttip fa fa-plus" %></i>
-	</span>
-	<h3>LISTA DE TRANSFERENCIAS</h3>
-</div>
-<div class="row info-paciente">
-	<div class="row">
+<div class="row shadow">
+	<div class="col-md-12">
+		<div class="title-red-head">
+			<span>
+				<i><%= link_to "",  new_traspaso_path, title:'Nueva', class: "ttip fa fa-plus" %></i>
+			</span>
+			<span class="rev-combo pull-right"><i class="fa fa-exchange"></i></span>
+		</span>
+		<h3>LISTA DE TRANSFERENCIAS</h3>
+	</div><br>
+	<div class="transferencias-table">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#todas" data-toggle="tab">Emitidas</a></li>
 			<li><a href="#anuladas" data-toggle="tab">Anuladas</a></li>
