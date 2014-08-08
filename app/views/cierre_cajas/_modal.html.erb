@@ -8,20 +8,20 @@
       <h6 class="text-muted">Total de ventas</h6>
       <div class="today-total">
         <div class = "hoy">
-          <h1 class="total-num">$ <%= @cierrecaja.sumatoria %></h1>
+          <h1 class="total-num">$ <%= redondear(@cierrecaja.sumatoria) %></h1>
         </div>
         <ul class="list-inline numbers text-center">
           <li>
             <span class="text-muted"><small>Sub 12%</small></span><br>
-            <strong><%= @cierrecaja.subtotal12 %></strong> 
+            <strong><%= redondear(@cierrecaja.subtotal12) %></strong> 
           </li>
           <li>
             <span class="text-muted"><small>Sub 0%</small></span><br>
-            <strong><%= @cierrecaja.subtotal0 %></strong>
+            <strong><%= redondear(@cierrecaja.subtotal0) %></strong>
           </li>
           <li>
             <span class="text-muted"><small>Iva</small></span><br>
-            <strong><%= @cierrecaja.sumatoriaiva %></strong>
+            <strong><%= redondear(@cierrecaja.sumatoriaiva) %></strong>
           </li>
         </ul>
       </div>
