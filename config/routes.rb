@@ -31,6 +31,8 @@ get "turnos/manana"
 get "dashboard_hospital/ingresados"
 get "dashboard_enfermeria/index"
 get "panel_aplication/index"
+get "traspasos/index_anulada"
+
 
 # match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
 get "login"   => "user_sessions#new",        :as => "login"
@@ -78,7 +80,12 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_signo_vitals
   resources :item_facturas
   resources :item_proformas
-  resources :traspasos
+  resources :traspasos do
+    member do
+      get "anular"
+      post "anulado"
+    end
+  end
   resources :item_traspasos
   resources :cuartos
   resources :camas
@@ -89,6 +96,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :item_hospitalizacions do
     member do
       post "despachar"
+      get "anular"
+      post "anulado"
     end
   end
   resources :factura_compras
