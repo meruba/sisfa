@@ -1,10 +1,15 @@
-<%= link_to 'Nuevo', new_cliente_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
-
-<%= link_to 'Importar clientes', new_cliente_import_path, class: "print_button" %>
-
-
-<h1 class="text-center">Lista de Clientes</h1>
-
-<div class="table-clientes" id="flip-scroll">
-  <%= render "clientes", clientes: @clientes %>  
+<div class="row shadow">
+	<div class="col-md-12">
+		<div class="title-blue-head">
+			<span>
+				<i><%= link_to '', new_cliente_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',title: "Nuevo", class: "ttip fa fa-plus"}  %></i>
+			</span>
+			<span class="rev-combo pull-right"><i class="fa fa-users"></i></span>
+		</span>
+		<h3>LISTA DE CLIENTES</h3>
+	</div><br>
+	<%= link_to 'Importar clientes', new_cliente_import_path, class: "print_button" %>
+	<div class="table-clientes" id="flip-scroll">
+		<%= render "clientes", clientes: @clientes %>  
+	</div>
 </div>
