@@ -134,6 +134,8 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
       get "print_and_close"
     end
   end
+
+  resources :reportes
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
