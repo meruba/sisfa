@@ -1,32 +1,35 @@
-<h1 class= "text-center"><span class="fa fa-money"></span> Cerrar Caja</h1>
-<div class="row">
-  <div class="col-xs-12 col-md-7  estadisticas">
-    <div class="row">
-      <div class="col-xs-6 col-md-5 text-center info-cierre-caja">
-        <h3 class="total-num">$ <%= @cierrecaja.sumatoria %></h3>
-        <h5>TOTAL DE TURNO</h5>
-        <h5>
-          Total Primera Factura: <%= @cierrecaja.cierre_caja_items.first.factura.total %>
-        </h5>
-        <h5>
-          Fecha Primera Factura: <%= local_date(@cierrecaja.cierre_caja_items.first.factura.created_at, "datetime")%>
-        </h5>
-        <h5>
-          Total Última Factura <%= @cierrecaja.cierre_caja_items.last.factura.total %>
-        </h5>
-        <h5>
-          Fecha Última Factura: <%= local_date(@cierrecaja.cierre_caja_items.last.factura.created_at, "datetime")%>
-        </h5>
-        <%= link_to ' Cerrar Caja', new_cierre_caja_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "fa fa-archive btn btn-info"} %>
-      </div>
-      <div class="col-xs-6 col-md-7">
-        <h3>Primera Factura</h3>
-        <%= render 'factura', factura: @cierrecaja.cierre_caja_items.first.factura%>
-      </div>
-      <div class="col-xs-6 col-md-7">
-        <h3>Última Factura</h3>
-        <%= render 'factura', factura: @cierrecaja.cierre_caja_items.last.factura%>
+<div class="row title-green-head">
+  <h2 class= "text-center">Cerrar Caja</h2>
+</div>
+<div class="row info-paciente">
+  <div class="col-md-3 text-center">
+    <div class="content-card">
+      <div class="card">
+        <div class="front">
+          <h1>$ <%= @cierrecaja.sumatoria %></h1>
+          <h4 class="text-center">Este es el valor recaudado durante tu turno</h4>
+          <small>Deseo cerrar caja!</small><br>
+        </div>
+        <div class="back">
+          <div class="content-back">
+            <h3>Recuerda?</h3>
+            <h4>"La caja se abrira automaticamente cuando vuelvas a facturar"</h4>
+            <%= link_to ' Cerrar Caja', new_cierre_caja_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "label label-default"} %>
+          </div>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="col-md-offset-1 col-md-8">
+    <div class="row title-green-head">
+    <h3>Resumen de facturas</h3>
+    </div>
+    <h3>Primera Factura <span class="pull-right text-muted">
+      <small><i class= "fa fa-clock-o"></i> <%= local_date(@cierrecaja.cierre_caja_items.first.factura.created_at, "time")%></small></span>
+    </h3>
+    <%= render 'factura', factura: @cierrecaja.cierre_caja_items.first.factura%>
+    <h3>Última Factura<span class="pull-right text-muted">
+      <small><i class= "fa fa-clock-o"></i> <%= local_date(@cierrecaja.cierre_caja_items.last.factura.created_at, "time")%></span></small></h3>
+    <%= render 'factura', factura: @cierrecaja.cierre_caja_items.last.factura%>
   </div>
 </div>

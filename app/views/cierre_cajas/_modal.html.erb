@@ -4,34 +4,34 @@
 </div>
 <div class="modal-body">
   <div class="row">
-    <div class="col-md-6 col-xs-12 text-center">
+    <div class="col-md-6 col-xs-6 text-center">
       <h6 class="text-muted">Total de ventas</h6>
       <div class="today-total">
         <div class = "hoy">
           <h1 class="total-num">$ <%= @cierrecaja.sumatoria %></h1>
         </div>
-        <div class="numbers col-xs-12 text-center">
-          <div class="col-md-4 col-xs-4">
-            <span class="text-muted"><small>Sub 12</small></span>
+        <ul class="list-inline numbers text-center">
+          <li>
+            <span class="text-muted"><small>Sub 12%</small></span><br>
             <strong><%= @cierrecaja.subtotal12 %></strong> 
-          </div>
-          <div class="col-md-4 col-xs-4">
-            <span class="text-muted"><small>Sub 0</small></span>
+          </li>
+          <li>
+            <span class="text-muted"><small>Sub 0%</small></span><br>
             <strong><%= @cierrecaja.subtotal0 %></strong>
-          </div>
-          <div class="col-md-4 col-xs-4">
-            <span class="text-muted"><small>Iva</small></span>
+          </li>
+          <li>
+            <span class="text-muted"><small>Iva</small></span><br>
             <strong><%= @cierrecaja.sumatoriaiva %></strong>
-          </div>  
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
-    <div class="col-md-6 col-xs-12 text-muted">
+    <div class="col-md-6 col-xs-6 text-muted">
       <h6 class="text-center">INFORMACION</h6>
       <blockquote>
         <h6><i class= "fa fa-file-o"></i> Facturas Emitidas: <%= @cierrecaja.cierre_caja_items.count %></h6>
-        <h6><i class= "fa fa-clock-o"></i> Primera Factura: <%= local_date(@cierrecaja.cierre_caja_items.first.created_at,"datetime")%></h6>
-        <h6><i class= "fa fa-clock-o"></i> Ultima Factura: <%= local_date(@cierrecaja.cierre_caja_items.last.created_at,"datetime")%></h6>
+        <h6><i class= "fa fa-clock-o"></i> Primera Factura:<br> <%= local_date(@cierrecaja.cierre_caja_items.first.created_at,"datetime")%></h6>
+        <h6><i class= "fa fa-clock-o"></i> Ultima Factura: <br><%= local_date(@cierrecaja.cierre_caja_items.last.created_at,"datetime")%></h6>
       </blockquote>
     </div>
   </div>
