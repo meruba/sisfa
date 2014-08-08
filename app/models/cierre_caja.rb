@@ -32,7 +32,7 @@ class CierreCaja < ActiveRecord::Base
   def subtotal0
     sumatoria = 0
     self.cierre_caja_items.each do |cierre_caja|
-      sumatoria += cierre_caja.factura.subtotal_12
+      sumatoria += cierre_caja.factura.subtotal_0
     end
     sumatoria
   end
