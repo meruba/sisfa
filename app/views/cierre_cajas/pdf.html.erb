@@ -15,19 +15,19 @@
     <tbody>
       <tr>
         <td>Subtotal 12%:</td>
-        <td><%= @cierrecaja.subtotal12 %></td>
+        <td><%= redondear(@cierrecaja.subtotal12) %></td>
       </tr>     
       <tr>
         <td>Subtotal 0%:</td>
-        <td><%= @cierrecaja.subtotal0 %></td>
+        <td><%= redondear(@cierrecaja.subtotal0) %></td>
       </tr>
       <tr>
         <td>Iva:</td>
-        <td><%= @cierrecaja.sumatoriaiva %></td>
+        <td><%= redondear(@cierrecaja.sumatoriaiva) %></td>
       </tr>
       <tr>
         <td><strong>Total</strong></td>
-        <td><strong><%= @cierrecaja.sumatoria %></strong></td>
+        <td><strong><%= redondear(@cierrecaja.sumatoria) %></strong></td>
       </tr>
     </tbody>
   </table>
