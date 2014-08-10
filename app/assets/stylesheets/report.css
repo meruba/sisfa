@@ -5,3 +5,17 @@
 .table-print tbody{
 	background-color: #fff;
 }
+
+/*values print-factura*/
+.print-factura{
+	padding-top: 70px;
+}
+
+.table-factura thead tr th{
+  padding-right: 38px;
+}
+
+.table-factura tbody tr td{
+  padding-bottom: 2px;
+  font-size: 10px;
+}
