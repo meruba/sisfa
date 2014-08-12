@@ -1,43 +1,38 @@
 Sisfa::Application.routes.draw do
   resources :emisors
-
-get "clientes/autocomplete"
-get "productos/autocomplete"
-get "hospitalizacion_registros/autocomplete"
-get "productos/autocomplete_producto_compra"
-get "productos/inventario"
-get "productos/caducado"
-get "productos/alerta"
-get "proveedors/autocomplete"
-get "facturas/index_compra"
-get "facturas/index_anulada"
-get "hospitalizacion_registros/reporte"
-get "pacientes/autocomplete"
-get "pacientes/civil"
-get "pacientes/militar"
-get "pacientes/familiar"
-get "doctors/autocomplete"
-get "doctors/imprimir_listado"
-get "doctors/dashboard"
-get "jornada_morbilidads/reporte"
-get "enfermedads/autocomplete"
-get "jornada_preventivas/reporte"
-get "emergencia_parte_mensuals/reporte"
-get "dashboard_hospital/index"
-get "dashboard_hospital/estadisticas_hoy"
-get "dashboard_hospital/estadisticas_mes"
-get "turnos/hoy"
-get "turnos/manana"
-get "dashboard_hospital/ingresados"
-get "dashboard_enfermeria/index"
-get "panel_aplication/index"
-get "traspasos/index_anulada"
-
-
-# match "dashboard/generar_reporte" => "dashboard#generar_reporte", via: [:get, :post]
-get "login"   => "user_sessions#new",        :as => "login"
-get "logout"  => "user_sessions#destroy",    :as => "logout"
-  
+  get "clientes/autocomplete"
+  get "productos/autocomplete"
+  get "hospitalizacion_registros/autocomplete"
+  get "productos/autocomplete_producto_compra"
+  get "productos/inventario"
+  get "productos/caducado"
+  get "productos/alerta"
+  get "proveedors/autocomplete"
+  get "facturas/index_compra"
+  get "facturas/index_anulada"
+  get "hospitalizacion_registros/reporte"
+  get "pacientes/autocomplete"
+  get "pacientes/civil"
+  get "pacientes/militar"
+  get "pacientes/familiar"
+  get "doctors/autocomplete"
+  get "doctors/imprimir_listado"
+  get "doctors/dashboard"
+  get "jornada_morbilidads/reporte"
+  get "enfermedads/autocomplete"
+  get "jornada_preventivas/reporte"
+  get "emergencia_parte_mensuals/reporte"
+  get "dashboard_hospital/index"
+  get "dashboard_hospital/estadisticas_hoy"
+  get "dashboard_hospital/estadisticas_mes"
+  get "turnos/hoy"
+  get "turnos/manana"
+  get "dashboard_hospital/ingresados"
+  get "dashboard_enfermeria/index"
+  get "panel_aplication/index"
+  get "traspasos/index_anulada"
+  get "login"   => "user_sessions#new",        :as => "login"
+  get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :user_sessions
   resources :users do
     member do
@@ -53,14 +48,11 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
     get "view_edit"
     get "print_historia"
   end
-
   resources :turnos do
     resources :consulta_externa_morbilidads, :only => [:new, :create]
     resources :consulta_externa_preventivas, :only => [:new, :create]
   end
-  
   resources :condicions, :only => [:show]
-
   resources :clientes
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors
@@ -115,79 +107,22 @@ get "logout"  => "user_sessions#destroy",    :as => "logout"
   resources :productos do
     resources :kardexes, :as => "kardex"
   end
-
   resources :facturas do
     member do
       get "anular"
       post "anulado"
     end
   end
-
   resources :proformas do
     member do
       post "facturar"
     end
   end
-
   resources :cierre_cajas do
     member do
       get "print_and_close"
     end
   end
-
   resources :reportes
-  
-  # The priority is based upon order of creation: first created -> highest priority.
-  # See how all your routes lay out with "rake routes".
-
-  # You can have the root of your site routed with "root"
-   root 'panel_aplication#index'
-
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
-
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
-
-  # Example resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
-
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  root 'panel_aplication#index'
 end
