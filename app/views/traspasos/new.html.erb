@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="comprobante">
-		<%= nested_form_for @traspaso, :remote => true do |f| %>
+		<%= nested_form_for @traspaso, :html => {id: "form-traspaso"}, :remote => true do |f| %>
 		<%= form_errors_for @traspaso %>
 		<div class="row-fix-div col-md-12">
 			<div class="col-md-3 col-xs-3 icon-transferencia-center">
@@ -24,7 +24,7 @@
 		</div>
 		<div class="col-md-12">
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table" id="traspaso">
 					<thead class = "text-center">
 						<th class="col-md-5">Producto</th>
 						<th>V.Unit</th>

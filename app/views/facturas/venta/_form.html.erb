@@ -9,7 +9,7 @@
 		</div>
 	</div>
 	<div class="comprobante">
-		<%= nested_form_for @factura, :remote => true do |f| %>
+		<%= nested_form_for @factura, :html => {:id => "form-factura"}, :remote => true do |f| %>
 		<%= form_errors_for @factura %>
 		<div class="col-md-8">
 			<!-- formulario datos del cliente -->

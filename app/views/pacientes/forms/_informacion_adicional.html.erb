@@ -21,7 +21,7 @@
 		<%=  info.label :familiar_cercano%>
 		<%=  info.text_field :familiar_cercano, :placeholder => "Nombre Familiar Cercano"%>
 		<%=  info.label :familiar_parentesco%>
-		<%= info.select(:familiar_parentesco, ['Hijo','Hija','Esposo','Esposa','Madre','Padre'], {}, { :class => 'form-control' }) %>
+		<%= info.text_field :familiar_parentesco, { :class => 'form-control' } %>
 	</div>
 	<div class="col-md-4">
 		<%=  info.label :familiar_direccion%>

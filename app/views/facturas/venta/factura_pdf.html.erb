@@ -1,53 +1,56 @@
-<small>
-  Cliente: <%= @factura.cliente.nombre%>
-</small><br>
-<small>
-  RUC/C.I: <%= @factura.cliente.numero_de_identificacion%>
-</small><br>
-<small>
-  Dirección: <%= @factura.cliente.direccion%>
-</small><br>
-<small>
-  Fecha: <%= local_date(@factura.fecha_de_emision,"date") %>
-</small>
-<div class="factura">
-  <table class="table-factura">
-    <thead>
-      <tr>
-        <th>CANT</th>
-        <th>PRODUCTO</th>
-        <th>V.Unt</th>
-        <th>IVA</th>
-        <th>TOTAL</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @factura.item_facturas.each do |item| %>
-      <tr>
-        <td><%= item.cantidad %></td>
-        <td><%= item.ingreso_producto.producto.nombre%></td>
-        <td><%= item.valor_unitario %></td>
-        <td><%= item.iva %></td>
-        <td>$ <%= item.total %></td>
-      </tr>
-      <% end %>
-      <tr>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td>
-          <small>Sub 12%:</small><br>
-          <small>Sub 0%:</small><br>
-          <small>IVA:</small><br>
-          <small>TOTAL:</small><br>
-        </td>
-        <td>
-          <small>$ <%= @factura.subtotal_12 %></small><br>
-          <small>$ <%= @factura.subtotal_0 %></small><br>
-          <small>$ <%= @factura.iva %></small><br>
-          <small>$ <%= @factura.total%></small><br>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+<div class="print-factura">
+  <small>
+    Cliente: <%= @factura.cliente.nombre%>
+  </small><br>
+  <small>
+    RUC/C.I: <%= @factura.cliente.numero_de_identificacion%>
+  </small><br>
+  <small>
+    Dirección: <%= @factura.cliente.direccion%>
+  </small><br>
+  <small>
+    Fecha: <%= local_date(@factura.fecha_de_emision,"date") %>
+  </small>
+  <div class="factura">
+    <table class="table-factura">
+      <thead>
+        <tr>
+          <th>CANT</th>
+          <th>PRODUCTO</th>
+          <th>V.Unt</th>
+          <th>IVA</th>
+          <th>TOTAL</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @factura.item_facturas.each do |item| %>
+        <tr>
+          <td><%= item.cantidad %></td>
+          <td><%= item.ingreso_producto.producto.nombre%></td>
+          <td><%= item.valor_unitario %></td>
+          <td><%= item.iva %></td>
+          <td>$ <%= item.total %></td>
+        </tr>
+        <% end %>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>
+            <small>Sub 12%:</small><br>
+            <small>Sub 0%:</small><br>
+            <small>IVA:</small><br>
+            <small>TOTAL:</small><br>
+          </td>
+          <td>
+            <small>$ <%= @factura.subtotal_12 %></small><br>
+            <small>$ <%= @factura.subtotal_0 %></small><br>
+            <small>$ <%= @factura.iva %></small><br>
+            <small>$ <%= @factura.total%></small><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
+

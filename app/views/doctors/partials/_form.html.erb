@@ -6,7 +6,7 @@
 	<%= f.fields_for :cliente do |cliente_params| %>
 	<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
 	<%=  cliente_params.label :numero_de_identificacion%>
-	<%=  cliente_params.text_field :numero_de_identificacion, class: " numero_de_identificacion", :placeholder => "Cédula o RUC" %>
+	<%=  cliente_params.text_field :numero_de_identificacion, class: " identificacion_cliente", :placeholder => "Cédula o RUC" %>
 	<%=  cliente_params.label :nombre%>
 	<%=  cliente_params.text_field :nombre, class: " nombre", :placeholder => "Nombres Apellidos" %>
 	<%=  cliente_params.label :direccion%>

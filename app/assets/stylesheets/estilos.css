@@ -42,15 +42,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 .row-user{
-  padding-top: 15px;  
-}
-
-.table-factura thead tr th{
-  padding-right: 38px;
-}
-
-.table-factura tbody tr td{
-  padding-bottom: 2px;
+  padding-top: 15px; 
 }
 
 .fix-margin{

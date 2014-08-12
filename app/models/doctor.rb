@@ -28,6 +28,13 @@ class Doctor < ActiveRecord::Base
 	validates :especialidad, :cantidad_turno, :presence => true
 	# validates :cantidad_turno, :numericality => { :greater_than => 0 }
 	#methods
+	def cliente_attributes=(attributes)
+		if attributes['id'].present?
+    	self.cliente = Cliente.find(attributes['id'])
+  	end
+  super
+	end
+
 	def self.autocomplete(params)
 		doctores = Doctor.includes(:cliente).where("suspendido = false and nombre like ?", "%#{params}%").references(:cliente)
     doctores = doctores.map do |doctor|

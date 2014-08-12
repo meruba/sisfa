@@ -31,13 +31,14 @@ class Paciente < ActiveRecord::Base
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 	
 	#callbacks
-	before_validation :set_values
 
 	#validation
 	validates :tipo, :n_hclinica, :presence => true
   validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
   validates :n_hclinica, :uniqueness =>  true
-
+  validates :grado, :estado, :pertenece_a, :unidad, :presence => true, :if => "tipo == 'militar'"
+  validates :codigo_issfa, :presence => true, :if => "tipo == 'militar' or tipo == 'familiar'"
+  validates :parentesco, :presence => true, :if => "tipo == 'familiar'"
 #methods
 	def cliente_attributes=(attributes)
 		if attributes['id'].present?
@@ -46,8 +47,8 @@ class Paciente < ActiveRecord::Base
 	  super
 	end
 
-	def set_values
-		self.fecha_hclinica = Time.now
+	def is_militar
+		
 	end
 
 #class methods
