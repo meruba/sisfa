@@ -1,6 +1,7 @@
 <h3><strong>Paciente:</strong><%= best_in_place @paciente.cliente, :nombre %> / <span class="text-muted"><%= @paciente.tipo%></span></h3>
 <legend>Datos Personales</legend>
 <p>
+	<strong>Fecha de Nacimiento:</strong> <%= best_in_place @paciente.cliente, :fecha_de_nacimiento %><br>
 	<strong>C.I:</strong> <%= best_in_place @paciente.cliente, :numero_de_identificacion,{:classes => "text-info", :nil => "Deberias registrar su cedula"} %><br>
 	<strong>Estado civil:</strong> <%=best_in_place @paciente.cliente, :estado_civil, type: :select, collection: [["Casado", "Casado"], ["Soltero", "Soltero"], ["Divorciado", "Divorciado"], ["Union Libre", "Union Libre"], ["Viudo", "Viudo"]]  %> <span class="fa fa-pencil text-info">..</span><br>
 	<strong>Direccion:</strong> <%= best_in_place @paciente.cliente, :direccion %> <span class="fa fa-pencil text-info">..</span><br>
