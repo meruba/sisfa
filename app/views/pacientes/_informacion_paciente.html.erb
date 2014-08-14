@@ -2,6 +2,7 @@
 <legend>Datos Personales</legend>
 <p>
 	<strong>Fecha de Nacimiento:</strong> <%= best_in_place @paciente.cliente, :fecha_de_nacimiento %><br>
+	<strong>Sexo:</strong> <%=best_in_place @paciente.cliente, :sexo, type: :select, collection: [["Masculino", "Masculino"], ["Femenino", "Femenino"]] %> <span class="fa fa-pencil text-info">..</span><br>
 	<strong>C.I:</strong> <%= best_in_place @paciente.cliente, :numero_de_identificacion,{:classes => "text-info", :nil => "Deberias registrar su cedula"} %><br>
 	<strong>Estado civil:</strong> <%=best_in_place @paciente.cliente, :estado_civil, type: :select, collection: [["Casado", "Casado"], ["Soltero", "Soltero"], ["Divorciado", "Divorciado"], ["Union Libre", "Union Libre"], ["Viudo", "Viudo"]]  %> <span class="fa fa-pencil text-info">..</span><br>
 	<strong>Direccion:</strong> <%= best_in_place @paciente.cliente, :direccion %> <span class="fa fa-pencil text-info">..</span><br>
@@ -25,7 +26,7 @@
 	<strong>Unidad:</strong> <%= best_in_place @paciente, :unidad %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Codigo ISSFA:</strong> <%= best_in_place @paciente, :codigo_issfa %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Estado:</strong> <%= best_in_place @paciente, :estado, type: :select, collection: [["Activo", "Activo"], ["Pasivo", "Pasivo"], ["Aspirante", "Aspirante"], ["Conscripto", "Conscripto"]] %> <span class="fa fa-pencil text-info">..</span><br/>
-	<strong>Grado:</strong> <%= best_in_place @paciente, :grado, type: :select, collection: [["GRAL", "GRAL"], ["CRNL", "CRNL"], ["TCNRL", "TCNRL"], ["MYR", "MYR"], ["CAP", "CAP"], ["TNTE", "TNTE"], ["SBTNTE", "SBTNTE"], ["SUB MAY", "SUB MAY"], ["SUB SEG", "SUB SEG"], ["SARG PRI", "SARG PRI"], ["SARG SEG", "SARG SEG"], ["CABO PR", "CABO PR"], ["SOLDADO", "SOLDADO"], ["CONSCRIPTO", "CONSCRIPTO"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Grado:</strong> <%= best_in_place @paciente, :grado, type: :select, collection: [["GRAL", "GRAL"], ["CRNL", "CRNL"], ["TCRN", "TCRN"], ["MAYO", "MAYO"], ["CAPT", "CAPT"], ["TNTE", "TNTE"], ["SUBT", "SUBT"], ["SUBM", "SUBM"], ["SUBP", "SUBP"], ["SUBS", "SUBS"], ["SGOP", "SGOP"], ["SGOS", "SGOS"], ["CBOP", "CBOP"], ["CBOS", "CBOS"], ["SLDO", "SLDO"], ["CPTO", "CPTO"]] %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Pertenece a:</strong> <%= best_in_place @paciente, :pertenece_a, type: :select, collection: [["Ejercito", "Ejercito"], ["Marina", "Marina"], ["Aviacion", "Aviacion"]] %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Jefe de Reparto:</strong> <%= best_in_place @paciente, :jefe_de_reparto%> <span class="fa fa-pencil text-info">..</span><br/>
 </p>
