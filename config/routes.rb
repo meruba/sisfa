@@ -33,6 +33,7 @@ Sisfa::Application.routes.draw do
   get "traspasos/index_anulada"
   get "login"   => "user_sessions#new",        :as => "login"
   get "logout"  => "user_sessions#destroy",    :as => "logout"
+  post "reportes/reporte_total"
   resources :user_sessions
   resources :users do
     member do
