@@ -59,7 +59,7 @@ class Traspaso < ActiveRecord::Base
 				item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
 				if ingreso.producto.hasiva == true
 					subtotal_12 = subtotal_12 + item.total
-					item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12)).round(2)
+					item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12).round(2))
 				else
 					subtotal = subtotal + item.total
 					item.iva = 0

@@ -63,7 +63,7 @@ class ItemHospitalizacion < ActiveRecord::Base
     #valores para el comprobante
     if ingreso.producto.hasiva == true
       subtotal_12 = subtotal_12 + self.total
-      self.iva = (cantidad * (ingreso.producto.precio_venta * 0.12)).round(2)
+      self.iva = (cantidad * (ingreso.producto.precio_venta * 0.12).round(2))
     else
       subtotal = subtotal + self.total
       self.iva = 0
