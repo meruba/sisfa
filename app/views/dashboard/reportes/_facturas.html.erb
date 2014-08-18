@@ -3,7 +3,7 @@
 <% unless request.format.to_sym == :pdf %>
 <p>
   Descargar:
-  <%= link_to "PDF", dashboard_generar_reporte_path(params.merge(format: 'pdf')) %>
+  <%= link_to "PDF", reportes_reporte_total_path(params.merge(format: 'pdf')) %>
 </p>
 <% end %>
 <div class="table-responsive">

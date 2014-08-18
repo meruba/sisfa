@@ -9,7 +9,7 @@
         <h3 class="panel-title">Ventas y Compras</h3>
       </div> 
       <div class="panel-body">
-        <%= form_tag reportes_reporte_total_path, :format => :pdf do %>
+        <%= form_tag reportes_reporte_total_path, method: :get do %>
           <%= select_tag :tipo, "<option value='ventanilla'>Ventanilla</option><option value='hospitalizacion'>Hospitalización</option><option value='transferencia'>Transferencias</option><option value='compra'>Compra</option>".html_safe, { :class => "form-control selecttag" } %>
           <div class="input-icon-sm">
             <%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio", :required => true %>
