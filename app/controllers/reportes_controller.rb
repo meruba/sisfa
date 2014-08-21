@@ -21,4 +21,18 @@ class ReportesController < ApplicationController
     end
   end
 
+  def liquidaciones
+    @fecha = params[:fecha]
+    @liquidacion = Liquidacion.where(:fecha => @fecha).first
+    unless @fecha.to_time > Time.now or @liquidacion.nil?
+      respond_to do |format|
+        format.html
+        format.pdf do
+          render :pdf => "liquidaciones", :locals => { :fecha => @fecha }, :layout => 'report.html', :template => "reportes/liquidaciones.html.erb"
+        end
+      end
+    else
+      render :template => "results/not_result"
+    end
+  end
 end

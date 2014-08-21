@@ -32,7 +32,6 @@ has_many :item_facturas
 has_many :ingreso_productos, :through => :item_facturas
 
 #nested
-# accepts_nested_attributes_for :cliente
 accepts_nested_attributes_for :item_facturas, :cliente
 
 #valitations
@@ -65,6 +64,7 @@ def add_to_cierre
 		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)	
 	end
 end
+
 def set_factura_values
 	self.fecha_de_emision = Time.now
   self.fecha_de_vencimiento = Time.now + 30.days
