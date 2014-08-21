@@ -1,0 +1,44 @@
+<h3>Reporte de Facturas  de Compra  desde:</h3>
+<h4><%= @start_date%> hasta <%= @end_date%></h4>
+<table class="table table-hover table-print">
+  <thead>
+    <tr>
+      <th>Nº</th>
+      <th>Proveedor o casa comercial</th>
+      <th>Dirección</th>
+      <th>Emitido por</th>
+      <th>Fecha</th>
+      <th>Sub 12</th>
+      <th>Sub 0</th>
+      <th>IVA</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @compra.each do |factura|  %>
+    <tr>
+      <td><%= factura.numero %></td>
+      <td><%= factura.proveedor.nombre_o_razon_social %></td>
+      <td><%= factura.proveedor.direccion %></td>
+      <td><%= factura.user.username %></td>
+      <td><%= local_date(factura.created_at,"datetime") %></td>
+      <td><%= factura.subtotal_12 %></td>
+      <td><%= factura.subtotal_0 %></td>
+      <td><%= factura.iva %></td>
+      <td><%= factura.total %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><strong><%= redondear(@compra_subtotal_12) %></strong></td>
+      <td><strong><%= redondear(@compra_subtotal_0) %></strong></td>
+      <td><strong><%= redondear(@compra_iva) %></strong></td>
+      <td><strong><%= redondear(@compra_total) %></strong></td>
+    </tr>
+  </tbody>
+</table>
+<h4>Comprobantes Ingresados: <%= @compra_cantidad%> </h4>

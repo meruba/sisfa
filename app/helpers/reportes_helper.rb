@@ -9,7 +9,7 @@ module ReportesHelper
       @facturas_iva = @facturas.sum(:iva)
       @facturas_total = @facturas.sum(:total)
     when "hospitalizacion"
-      @hospitalizacion = Hospitalizacion.includes(:hospitalizacion_registro).where("hospitalizacion_registros.alta = true").where(:created_at => tiempo).references(:hospitalizacion_registro)
+      @hospitalizacion = Hospitalizacion.includes(:hospitalizacion_registro).where(:created_at => tiempo).references(:hospitalizacion_registro)
       @hospitalizacion_cantidad = @hospitalizacion.count()
       @hospitalizacion_subtotal_12 = @hospitalizacion.sum(:subtotal_12)
       @hospitalizacion_subtotal = @hospitalizacion.sum(:subtotal)

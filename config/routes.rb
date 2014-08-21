@@ -35,6 +35,8 @@ Sisfa::Application.routes.draw do
   get "logout"  => "user_sessions#destroy",    :as => "logout"
   get "reportes/reporte_total"
   get "reportes/liquidaciones"
+  get "reportes/cierre_caja_mensual"
+  get "reportes/cierre_caja_diario"
   resources :user_sessions
   resources :users do
     member do

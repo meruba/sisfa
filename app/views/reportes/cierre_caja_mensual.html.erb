@@ -1,0 +1,60 @@
+<h3 class="text-center">Reporte de cierre de caja mensual</h3>
+<h4>MES: <%= month_name(@fecha) %></h4>
+<% unless request.format.to_sym == :pdf %>
+<p>
+  Descargar:
+  <%= link_to "PDF", reportes_cierre_caja_mensual_path(params.merge(format: 'pdf')) %>
+</p>
+<% end %>
+<table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th></th>
+        <th>VENTANILLA</th>
+        <th>HOSPITALIZACIÓN</th>
+        <th>TRANSFERENCIA</th>
+        <th>TOTAL</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Emitidos:</td>
+        <td><%= @liquidacion.emitidos_ventanilla%></td>
+        <td><%= @liquidacion.emitidos_hospitalizacion %></td>
+        <td><%= @liquidacion.emitidos_traspaso %></td>
+        <td><%= @liquidacion.emitidos_ventanilla + @liquidacion.emitidos_hospitalizacion + @liquidacion.emitidos_traspaso
+        %></td>
+      </tr>
+      <tr>
+        <td>Sub 12%:</td>
+        <td><%= redondear(@liquidacion.subtotal12_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.subtotal12_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.subtotal12_traspaso) %></td>
+        <td><%= redondear(@liquidacion.subtotal12_venta) %></td>
+      </tr>
+      <tr>
+        <td>Sub 0%:</td>
+        <td><%= redondear(@liquidacion.subtotal_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.subtotal_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.subtotal_traspaso) %></td>
+        <td><%= redondear(@liquidacion.subtotal_venta) %></td>
+      </tr>
+      <tr>
+        <td>Iva:</td>
+        <td><%= redondear(@liquidacion.iva_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.iva_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.iva_traspaso) %></td>
+        <td><%= redondear(@liquidacion.iva_venta) %></td>
+      </tr>
+      <tr>
+        <td>Total:</td>
+        <td><%= redondear(@liquidacion.total_ventanilla) %></td>
+        <td><%= redondear(@liquidacion.total_hospitalizacion) %></td>
+        <td><%= redondear(@liquidacion.total_traspaso) %></td>
+        <td><strong><%= redondear(@liquidacion.total_venta) %></strong></td>
+      </tr>
+    </tbody>
+</table>
+<% if request.format.to_sym == :pdf %>
+<small>* Este documento es de uso del Hospital Basico 7 B.I Loja</small>
+<% end %>

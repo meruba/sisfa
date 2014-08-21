@@ -1,0 +1,58 @@
+<h3>Reporte de Ventas de Hospitalización desde:</h3>
+<h4><%= @start_date%> hasta <%= @end_date %></h4>
+<% unless request.format.to_sym == :pdf %>
+<p>
+  Descargar:
+  <%= link_to "PDF", reportes_reporte_total_path(params.merge(format: 'pdf')) %>
+</p>
+<% end %>
+<div class="table-responsive">
+  <table class="table table-hover table-print">
+    <thead>
+      <tr>
+        <th>Nº</th>
+        <th>Paciente</th>
+        <th>Tipo</th>
+        <th>Servicio</th>
+        <th>Rango</th>
+        <th>Fecha</th>
+        <th>estado</th>
+        <th>Sub 12%</th>
+        <th>Sub 0%</th>
+        <th>IVA</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @hospitalizacion.each do |h| %>
+      <tr>
+        <td><%= h.numero %></td>
+        <td><%= h.hospitalizacion_registro.paciente.cliente.nombre%></td>
+        <td><%= h.hospitalizacion_registro.paciente.tipo%></td>
+        <td><%=if h.hospitalizacion_registro.paciente.estado.nil? then "-----" else h.hospitalizacion_registro.paciente.estado end%></td>
+        <td><%=if h.hospitalizacion_registro.paciente.grado.nil? then "-----" else h.hospitalizacion_registro.paciente.grado end%></td>
+        <td><%= local_date(h.created_at,"date") %></td>
+        <td><%=if h.hospitalizacion_registro.alta? then "alta" else "aun internado" end%></td>
+        <td><%= redondear(h.subtotal_12) %></td>
+        <td><%= redondear(h.subtotal) %></td>
+        <td><%= redondear(h.iva) %></td>
+        <td><%= redondear(h.total) %></td>
+      </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td><strong><%= redondear(@hospitalizacion_subtotal_12) %></strong></td>
+        <td><strong><%= redondear(@hospitalizacion_subtotal) %></strong></td>
+        <td><strong><%= redondear(@hospitalizacion_iva) %></strong></td>
+        <td><strong><%= redondear(@hospitalizacion_total) %></strong></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4>Comprobantes Emitidos: <%= @hospitalizacion_cantidad%></h4>
