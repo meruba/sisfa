@@ -21,6 +21,6 @@ class Enfermedad < ActiveRecord::Base
 				:codigo => enfermedad.codigo
 			}
 		end
-		enfermedades 
+		enfermedades
 	end
 end

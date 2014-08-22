@@ -71,7 +71,7 @@ class EmergenciaRegistro < ActiveRecord::Base
 		birthday = date
 		now = Time.now.utc.to_date
 		age = now.year - birthday.year - (birthday.to_date.change(:year => now.year) > now ? 1 : 0)
-		case 
+		case
 		when age == 1
 			categoria = '1 AÑO'
 		when age > 0 && age < 5

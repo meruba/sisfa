@@ -42,7 +42,7 @@ class DoctorsController < ApplicationController
 			end
 		end
 	end
-  
+
   def suspender
     if @doctor.suspendido
       @doctor.suspendido = false
@@ -50,7 +50,7 @@ class DoctorsController < ApplicationController
       @doctor.suspendido = true
     end
     @doctor.save
-    redirect_to doctors_path, :notice => "Doctor modificado"    
+    redirect_to doctors_path, :notice => "Doctor modificado"
   end
 
 	def edit
@@ -63,7 +63,7 @@ class DoctorsController < ApplicationController
 		@doctor = Doctor.new(doctor_params)
     respond_to do |format|
       @doctor.save
-      format.js { 
+      format.js {
 				@doctores = Doctor.all
       	render "success"
       }
@@ -74,7 +74,7 @@ class DoctorsController < ApplicationController
     respond_to do |format|
       @doctor.update(doctor_params)
       format.html
-      format.js { 
+      format.js {
 				@doctores = Doctor.all
       	render "success"
       }

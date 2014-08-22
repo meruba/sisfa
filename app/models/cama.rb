@@ -31,9 +31,9 @@ class Cama < ActiveRecord::Base
 
 	private
 	def check_cuartos
-		if self.ocupada?     
+		if self.ocupada?
 			self.errors[:base] << "No se puede eliminar cama ocupada."
-			return false   
+			return false
 		end
 	end
 end

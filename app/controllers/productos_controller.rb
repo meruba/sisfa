@@ -3,7 +3,7 @@ class ProductosController < ApplicationController
   before_filter :is_admin_or_vendedor_farmacia, :except => [:autocomplete]
   before_action :set_producto, only: [:show, :edit, :update]
   before_action :find_caducados, only: [:caducado, :alerta]
-  
+
   def index
     respond_to do |format|
       format.html
@@ -14,13 +14,13 @@ class ProductosController < ApplicationController
   def autocomplete
     respond_to do |format|
       format.json { render :json => IngresoProducto.autocomplete(params[:term]) }
-    end    
+    end
   end
 
   def autocomplete_producto_compra
     respond_to do |format|
       format.json { render :json => Producto.autocomplete_producto_compra(params[:term]) }
-    end  
+    end
   end
 
   def new
@@ -36,7 +36,7 @@ class ProductosController < ApplicationController
       format.js
     end
   end
-  
+
   def edit
     respond_to do |format|
       format.js{ render "new_or_edit" }
@@ -69,11 +69,11 @@ class ProductosController < ApplicationController
   def alerta
     if @caducados.empty? == true
       redirect_to root_path
-    end    
+    end
   end
 
-  private 
-  
+  private
+
   def producto_params
     params.require(:producto).permit :nombre,
     :nombre_generico,
@@ -91,15 +91,15 @@ class ProductosController < ApplicationController
       :producto_id,
       :_destroy,
       :id,
-    ]                                    
-  end  
-  
+    ]
+  end
+
   def set_producto
       @producto = Producto.find(params[:id])
   end
 
   def find_caducados
     @caducados = IngresoProducto.where(:fecha_caducidad =>Time.now.end_of_day..Time.now.months_since(4)).where("cantidad != '0'")
-    @hoy = Date.today    
+    @hoy = Date.today
   end
 end

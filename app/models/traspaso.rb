@@ -33,7 +33,7 @@ class Traspaso < ActiveRecord::Base
   #callbacks
   before_validation :set_transpaso_values
   after_save :add_liquidacion
-  
+
 	#methods
 	def self.disminuir_stock (item_traspasos)
 		item_traspasos.each do |item|

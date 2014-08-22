@@ -46,7 +46,7 @@ authenticates_with_sorcery!
       end
     end
   end
-  
+
 #methods
   def cliente_attributes=(attributes)
     if attributes['id'].present?

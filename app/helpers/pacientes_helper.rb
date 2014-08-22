@@ -11,8 +11,8 @@ module PacientesHelper
 		m=(Date.today.month)-(birthday.month)
 		d=(Date.today.day)-(birthday.day)
 		tipo=""
-	case 
-	when (m<0) 
+	case
+	when (m<0)
 		age= (y-1).to_s + " años"
 	when (m==0)
 		if y==0

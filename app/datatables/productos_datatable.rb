@@ -26,7 +26,7 @@ private
         (link_to '', producto, :remote => true, :rel => 'tooltip', :title=> 'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info mostrar btn-xs") + " " + (link_to '', @view.producto_kardex_index_path(producto), {:rel => 'tooltip', :title => 'Kardex', class: "ttip fa fa-stack-exchange btn btn-success btn-xs"}) ,
         # (link_to '', @view.edit_producto_path(producto), {:remote => true, :rel => 'tooltip', :title => 'Editar', 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-pencil btn btn-warning btn-xs only-admin"})
       ]
-    end 
+    end
   end
 
   def productos

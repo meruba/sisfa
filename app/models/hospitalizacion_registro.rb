@@ -89,7 +89,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 				:value => hospitalizado.paciente.cliente.nombre
 			}
 		end
-		pacientes 
+		pacientes
 	end
 
 	def self.reporte(fecha)

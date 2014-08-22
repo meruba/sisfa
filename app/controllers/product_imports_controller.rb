@@ -4,7 +4,7 @@ class ProductImportsController < ApplicationController
   def new
     @productimport = ProductImport.new
   end
-  
+
   def create
     @productimport = ProductImport.new(productos_import_params)
     if @productimport.save

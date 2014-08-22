@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
-  
+
   before_action :set_user, only: [:show, :suspender,:edit, :update]
   before_filter :require_login
 
   def index
     @users = User.all
   end
-  
+
   def show
   end
 
@@ -58,10 +58,10 @@ class UsersController < ApplicationController
       @user.suspendido = true
     end
     @user.save
-    redirect_to users_path, :notice => "Usuario modificado"    
+    redirect_to users_path, :notice => "Usuario modificado"
   end
 
-  private 
+  private
     def user_params
       params.require(:user).permit :username,
                                     :password,

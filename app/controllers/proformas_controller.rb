@@ -32,7 +32,7 @@ class ProformasController < ApplicationController
 			format.js
 		end
 	end
-  
+
 	def facturar
 		@proforma = Proforma.find(params[:id])
 		@factura = @proforma.cliente.facturas.build(:tipo => "venta", :subtotal_0 => @proforma.subtotal_0, :subtotal_12 => @proforma.subtotal_12, :descuento => @proforma.descuento, :iva => @proforma.iva, :total => @proforma.total)

@@ -64,7 +64,7 @@ class Paciente < ActiveRecord::Base
         :n_hclinica => paciente.n_hclinica
       }
     end
-    pacientes 
+    pacientes
   end
 	
 	def self.medical_records(paciente)

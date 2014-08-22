@@ -46,7 +46,7 @@ class Doctor < ActiveRecord::Base
         :especialidad => doctor.especialidad
       }
     end
-    doctores 
+    doctores
 	end
 
 	def self.turnos_doctores
@@ -54,7 +54,7 @@ class Doctor < ActiveRecord::Base
 		self.includes(:cliente).where("suspendido = false and cantidad_turno != 0").each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
-				:nombre =>doctor.cliente.nombre, 
+				:nombre =>doctor.cliente.nombre,
 				:turnos_emitidos => num_turnos,
 				:turnos_disponibles => doctor.cantidad_turno - num_turnos,
 				:especialidad => doctor.especialidad
@@ -69,7 +69,7 @@ class Doctor < ActiveRecord::Base
 			turno = doctor.turnos.turnos_today
 			unless turno.compact.empty?
 				doctores << {
-					:nombre =>doctor.cliente.nombre, 
+					:nombre =>doctor.cliente.nombre,
 					:turnos => turno
 				}
 			end
@@ -83,7 +83,7 @@ class Doctor < ActiveRecord::Base
 			turno = doctor.turnos.turnos_query(fecha)
 			unless turno.compact.empty?
 				doctores << {
-					:nombre =>doctor.cliente.nombre, 
+					:nombre =>doctor.cliente.nombre,
 					:turnos => turno
 				}
 			end

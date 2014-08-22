@@ -27,7 +27,7 @@ private
         (link_to '', h, :remote => true, :rel=> 'tooltip', :title=>'Reporte','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-print btn btn-info") + " " +
         (link_to '', @view.hospitalizacion_show_pedido_path(h), :rel=> 'tooltip', :title=>'Despachar', class: "ttip mostrar fa fa-check btn btn-success")
       ]
-    end 
+    end
   end
 
   def hospitalizacion

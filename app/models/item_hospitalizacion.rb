@@ -30,7 +30,7 @@ class ItemHospitalizacion < ActiveRecord::Base
   #rollbacks
   before_save :add_kardex_line, :disminuir_stock, :if => :fue_despachado
   before_save :calculated_values, :if => :fue_anulado
-  
+
   # validations
   validates :cantidad, :presence => true, :numericality => { :greater_than => 0 }
   validate :stock
@@ -42,14 +42,14 @@ class ItemHospitalizacion < ActiveRecord::Base
       self.ingreso_producto.producto.nombre
     end
   end
-  
+
   def fue_anulado
     self.anulado == false
   end
 
   def fue_despachado
     if self.despachado == true and self.anulado == false
-      true      
+      true
     end
   end
 
@@ -87,8 +87,8 @@ class ItemHospitalizacion < ActiveRecord::Base
       Liquidacion.add_item_hospitalizacion(self, self.hospitalizacion,iva_item,subtotal_item,subtotal_12_item,total_item,costo)
     else
       self.valor_unitario = 0
-      self.total = 0 
-      self.iva = 0 
+      self.total = 0
+      self.iva = 0
     end
   end
 

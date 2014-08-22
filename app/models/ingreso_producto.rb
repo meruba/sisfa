@@ -12,7 +12,7 @@
 #
 
 class IngresoProducto < ActiveRecord::Base
-  
+
 #relationships
   has_many :item_facturas
   has_many :item_proformas

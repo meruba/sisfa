@@ -1,6 +1,6 @@
 <div class="new-ingresados">
   <% unless @sin_camas.empty? %>
-    <h5 class="fix-margin text-warning">Paciente(s) sin cama(s):</h5>    
+    <h5 class="fix-margin text-warning">Paciente(s) sin cama(s):</h5>
   <% end %>
   <ul class="internados grid">
     <% @sin_camas.each do |h|  %>
@@ -16,12 +16,12 @@
           <%=(h.paciente.tipo).upcase%>
         </span>
         <span class="ingresado-type">
-          <span class="btn-circles"><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(h), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel=> 'tooltip', :title=>'Asignarle Cama', class: "fa fa-square"}%></span>        
+          <span class="btn-circles"><%= link_to "", new_hospitalizacion_registro_asignacion_cama_path(h), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel=> 'tooltip', :title=>'Asignarle Cama', class: "fa fa-square"}%></span>
         </span>
       </div>
     </li>
     <% end %>
-  </ul> 
+  </ul>
 </div>
 
 <div class="ingresados">
@@ -34,5 +34,5 @@
     <% @camas.each do |cama|  %>
       <%= render 'asignados_cama', cama:cama  %>
     <% end %>
-  </ul> 
+  </ul>
 </div>

@@ -4,7 +4,7 @@ class ItemHospitalizacionsController < ApplicationController
 	before_filter :is_admin_or_vendedor_farmacia, :only => [:despachar]
 	before_action :find_user, :only => [:create, :despachar]
   before_action :find_item, :only => [:despachar, :anular, :anulado]
-  
+
   def create
 		@item = ItemHospitalizacion.new(item_hospitalizacion_params.merge(pedido_por: current_user.cliente.nombre))
 		@item.save

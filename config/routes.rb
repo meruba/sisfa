@@ -70,7 +70,7 @@ Sisfa::Application.routes.draw do
   resources :item_nota_enfermeras
   resources :entrega_turnos do
     get "view_create_item"
-    resources :item_entrega_turnos 
+    resources :item_entrega_turnos
   end
   resources :signo_vitals, :only => [:show]
   resources :item_signo_vitals

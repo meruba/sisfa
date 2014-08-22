@@ -2,7 +2,7 @@
 	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
 	<ul class="cbp_tmtimeline">
 		<% @registros.each do |r|  %>
-		<% if r.has_attribute?(:alta)%> 
+		<% if r.has_attribute?(:alta)%>
 		<li>
 			<time class="cbp_tmtime">
 				<span><%= local_date(r.created_at, "date")%></span>

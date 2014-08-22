@@ -43,7 +43,7 @@ class TraspasosDatatable
           (link_to '', traspaso, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info")
         ]
       end
-    end 
+    end
   end
   def traspasos
     @traspasos ||= fetch_traspasos
@@ -51,7 +51,7 @@ class TraspasosDatatable
 
   def fetch_traspasos
     case @place
-    when "no_anulada"  
+    when "no_anulada"
       traspasos = Traspaso.where(:anulado => false).order("#{sort_column} #{sort_direction}")
     when "anulada"
       traspasos = Traspaso.where(:anulado => true).order("#{sort_column} #{sort_direction}")

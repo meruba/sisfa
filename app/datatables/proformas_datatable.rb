@@ -26,7 +26,7 @@ private
         # (link_to 'Mostrar', @view.show(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
         # (link_to '', @view.show_factura_path(factura), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-warning"})
       ]
-    end 
+    end
   end
 
   def proformas

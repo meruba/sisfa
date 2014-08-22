@@ -12,17 +12,17 @@
 #
 
 class FacturaComprasProducto < ActiveRecord::Base
-  
+
   #relationships
     belongs_to :producto
     belongs_to :factura_compra
-  
+
   #validations
     validates_presence_of :producto
-  
+
   #nested attributes
     accepts_nested_attributes_for :producto
-  
+
   #methods
   def producto_attributes=(attributes)
     cantidad = 0

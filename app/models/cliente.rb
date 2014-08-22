@@ -35,9 +35,9 @@ class Cliente < ActiveRecord::Base
 
 #methods
   def formato_nombre #Ejm: corrEA DaNieL = Correa Daniel
-    self.nombre = self.nombre.split.map(&:capitalize).join(' ') 
+    self.nombre = self.nombre.split.map(&:capitalize).join(' ')
     unless self.direccion.nil?
-      self.direccion = self.direccion.split.map(&:capitalize).join(' ')      
+      self.direccion = self.direccion.split.map(&:capitalize).join(' ')
     end
   end
 
@@ -68,7 +68,7 @@ class Cliente < ActiveRecord::Base
         :telefono => cliente.telefono
       }
     end
-    clientes 
+    clientes
 	end
 
 end

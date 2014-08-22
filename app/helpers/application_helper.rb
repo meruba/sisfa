@@ -26,7 +26,7 @@ module ApplicationHelper
 
   def regla_de_tres (comprobante, total_comprobantes)
     if total_comprobantes == 0
-      porcentaje = 0        
+      porcentaje = 0
     else
       porcentaje = (100.0 * comprobante)/total_comprobantes
     end
@@ -46,7 +46,7 @@ module ApplicationHelper
         date = date.strftime("%H:%M")
       end
     end
-    date 
+    date
   end
 
   def human_boolean(boolean)

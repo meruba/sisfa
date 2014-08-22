@@ -18,7 +18,7 @@
 class ItemFactura < ActiveRecord::Base
 
   attr_accessor :descripcion
-  
+
   #callbacks
   after_create :add_kardex_line, :disminuir_stock
 
@@ -30,7 +30,7 @@ class ItemFactura < ActiveRecord::Base
   validates :tipo, :presence => true
   validates :cantidad, :valor_unitario, :total, :presence => true,
                                                             :numericality => { :greater_than_or_equal_to => 0 }
-  validate :stock                                                            
+  validate :stock
   # validate :valida_descuento
 
   # methods

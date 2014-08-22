@@ -26,7 +26,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.total),
         (factura.user.username),
-        (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info") + " " + 
+        (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info") + " " +
         (link_to '', @view.anular_factura_path(factura), :remote => true, :rel => "tooltip",  'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Anular',  class: "ttip fa fa-thumbs-down btn btn-danger")
         # (link_to 'Create PDF',factura, :format => :pdf)
       ]
@@ -41,7 +41,7 @@ class FacturasDatatable
         (factura.user.username),
         (link_to '', factura, :remote => true, :rel => 'tooltip','data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info")
       ]
-    end 
+    end
     when "compra"
     facturas.map do |factura|
       [
@@ -62,7 +62,7 @@ class FacturasDatatable
 
   def fetch_facturas
     case @place
-    when "compra"  
+    when "compra"
       facturas = Factura.includes(:proveedor).where(:tipo => "compra").order("#{sort_column} #{sort_direction}").references(:proveedor)
     when "anulada"
       facturas = Factura.includes(:cliente).where(:anulada => true).order("#{sort_column} #{sort_direction}").references(:cliente)

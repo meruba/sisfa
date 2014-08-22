@@ -22,9 +22,9 @@ module ReportesHelper
       @transferencia_subtotal = @traspaso.sum(:subtotal)
       @transferencia_iva = @traspaso.sum(:iva)
       @transferencia_total = @traspaso.sum(:total)
-    when "compra"    
+    when "compra"
       @compra = FacturaCompra.where(:created_at => tiempo)
-      @compra_cantidad = @compra.count() 
+      @compra_cantidad = @compra.count()
       @compra_subtotal_12 = @compra.sum(:subtotal_12)
       @compra_subtotal_0 = @compra.sum(:subtotal_0)
       @compra_iva = @compra.sum(:iva)

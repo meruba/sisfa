@@ -23,7 +23,7 @@ class FacturaCompra < ActiveRecord::Base
   has_many :factura_compras_productos
   has_many :productos, :through => :factura_compras_productos
   accepts_nested_attributes_for :factura_compras_productos, :proveedor
-  
+
   #callbacks
   before_save :set_values
   after_save :add_liquidacion

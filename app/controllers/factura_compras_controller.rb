@@ -2,13 +2,13 @@ class FacturaComprasController < ApplicationController
   before_filter :require_login
   before_filter :is_admin_or_vendedor_farmacia
   before_action :set_factura, only: :show
-  
+
   def new
     @facturacompra = FacturaCompra.new
     @facturacompra.build_proveedor
     @facturacompra.factura_compras_productos.build.build_producto
   end
-  
+
   def show
     respond_to do |format|
       format.js
@@ -25,7 +25,7 @@ class FacturaComprasController < ApplicationController
   end
 
   private
-  
+
   def factura_params
     params.require(:factura_compra).permit :numero,
     :observacion,

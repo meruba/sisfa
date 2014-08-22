@@ -37,9 +37,9 @@ class TurnosController < ApplicationController
 		end
 		respond_to do |format|
 			@turno.save
-			format.js { 
+			format.js {
 				@doctores = Doctor.turnos_doctores
-				render "success" 
+				render "success"
 			}
 		end
 	end
@@ -53,7 +53,7 @@ class TurnosController < ApplicationController
   def update
     respond_to do |format|
       @turno.update(turno_params)
-      format.js { 
+      format.js {
 				@turnos = Doctor.turnos_doctores
       	render "change"
       }

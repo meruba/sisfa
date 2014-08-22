@@ -1,9 +1,9 @@
 class UserSessionsController < ApplicationController
- 
+
   def new
   end
 
-  def create 
+  def create
     if @user = login(params[:username], params[:password])
       if @user.suspendido
         logout

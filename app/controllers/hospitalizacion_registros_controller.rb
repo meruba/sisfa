@@ -27,7 +27,7 @@ class HospitalizacionRegistrosController < ApplicationController
       end
     end
   end
-  
+
   def show
     respond_to do |format|
       format.js
@@ -57,7 +57,7 @@ class HospitalizacionRegistrosController < ApplicationController
   def update
     respond_to do |format|
       @registro.update(hospitalizacion_registro_params.merge(alta: true))
-      format.html { 
+      format.html {
         if @registro.save
           redirect_to doctors_dashboard_path, notice: 'Paciente Dado de Alta'
         else

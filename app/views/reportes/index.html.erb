@@ -7,7 +7,7 @@
     <div class="panel panel-default">
       <div class="panel-heading">
         <h3 class="panel-title">Ventas y Compras</h3>
-      </div> 
+      </div>
       <div class="panel-body">
         <%= form_tag reportes_reporte_total_path, method: :get do %>
           <%= select_tag :tipo, "<option value='ventanilla'>Ventanilla</option><option value='hospitalizacion'>Hospitalización</option><option value='transferencia'>Transferencias</option><option value='compra'>Compra</option>".html_safe, { :class => "form-control selecttag" } %>
@@ -29,7 +29,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Cierre de Caja</h3>
       </div><!-- end panel-heading -->
-      <div class="panel-body">                        
+      <div class="panel-body">
         <h5>Ingrese Fecha (mes):</h5>
         <%= form_tag reportes_cierre_caja_mensual_path, method: :get, :format => :pdf  do %>
         <div class="input-group field">
@@ -56,7 +56,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Liquidaciones</h3>
       </div><!-- end panel-heading -->
-      <div class="panel-body">                                
+      <div class="panel-body">
         <h5>Ingrese Mes:</h5>
         <%= form_tag reportes_liquidaciones_path, method: :get do %>
         <div class="input-group field">
