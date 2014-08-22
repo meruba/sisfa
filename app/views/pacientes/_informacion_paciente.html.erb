@@ -1,4 +1,5 @@
 <h3><strong>Paciente:</strong><%= best_in_place @paciente.cliente, :nombre %> / <span class="text-muted"><%= @paciente.tipo%></span></h3>
+<h4>Historia Clinica: # <%= best_in_place @paciente, :n_hclinica %> <small>*editable solo en caso error</small></h4>
 <legend>Datos Personales</legend>
 <p>
 	<strong>Fecha de Nacimiento:</strong> <%= best_in_place @paciente.cliente, :fecha_de_nacimiento %><br>
