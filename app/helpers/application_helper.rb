@@ -24,15 +24,6 @@ module ApplicationHelper
     # numero = "$ " + redondeo
   end
 
-  def regla_de_tres (comprobante, total_comprobantes)
-    if total_comprobantes == 0
-      porcentaje = 0
-    else
-      porcentaje = (100.0 * comprobante)/total_comprobantes
-    end
-    return porcentaje
-  end
-
   def local_date(date, tipo)
     if date.nil? == true
       date = "sin fecha"

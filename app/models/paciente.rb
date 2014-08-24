@@ -47,10 +47,6 @@ class Paciente < ActiveRecord::Base
 	  super
 	end
 
-	def is_militar
-		
-	end
-
 #class methods
 	def self.autocomplete(params)
     pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente)

@@ -9,11 +9,7 @@ class ProductImport
   def initialize(attributes = {})
     attributes.each { |name, value| send("#{name}=", value) }
   end
-
-  def persisted?
-    false
-  end
-
+  
   def save
     if imported_products.map(&:valid?).all?
       imported_products.each(&:save!)
