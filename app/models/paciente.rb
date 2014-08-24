@@ -30,6 +30,8 @@ class Paciente < ActiveRecord::Base
 	has_one :informacion_adicional_paciente, dependent: :destroy
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 	
+	delegate :nombre, :direccion, :telefono, :email, :numero_de_identificacion, :sexo, :fecha_de_nacimiento, :estado_civil, :to => :cliente, :prefix => true
+	
 	#callbacks
 
 	#validation

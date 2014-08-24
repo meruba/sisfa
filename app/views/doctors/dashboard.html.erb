@@ -5,7 +5,7 @@
 				<span class="fa-stack fa-lg">
 					<i class="fa fa-circle fa-stack-2x"></i>
 				</span>
-				<h1 class="profile-name"><%= @doctor.cliente.nombre%></h1>
+				<h1 class="profile-name"><%= @doctor.cliente_nombre%></h1>
 				<span class="profile-title"><%= @doctor.especialidad %></span>
 			</div>
 		</div>
@@ -21,14 +21,14 @@
 		</div>
 		<div class="row doctor-pacientes">
 			<div class="row turnos-hoy">
-				<%= render "doctors/partials/emergencia"  %>
+				<%= render "doctors/partials/emergencia", :emergencias => @emergencias  %>
 			</div>
 			<div class="row turnos-hoy">
-				<%= render "doctors/partials/hospitalizados"  %>
+				<%= render "doctors/partials/hospitalizados", :hospitalizados => @hospitalizados  %>
 			</div>
 			<div class="row turnos-hoy">
 				<h4 class="fa fa-sun-o "> Pacientes del dia</h4>
-				<%= render "doctors/partials/turnos_hoy"  %>
+				<%= render "doctors/partials/turnos_hoy", :turnos => @turnos  %>
 			</div>
 		</div>
 	</div>
@@ -43,7 +43,7 @@
 			<% else %>
 			<% @turnos_manana.each do |t|  %>
 			<div class="text-center control-turno">
-				<small><%=t.paciente.cliente.nombre%></small>
+				<small><%=t.paciente.cliente_nombre%></small>
 			</div>
 			<% end %>
 			<% end %>

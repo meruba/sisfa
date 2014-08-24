@@ -18,7 +18,7 @@
 <legend>Informacion Militar-Familiar</legend>
 <p>
 	<strong>Codigo ISSFA:</strong> <%= best_in_place @paciente, :codigo_issfa %> <span class="fa fa-pencil text-info">..</span><br/>
-	<strong>Parentesco:</strong> <%= best_in_place @paciente, :parentesco, type: :select, collection: [["Hijo", "Hijo"], ["Esposo", "Esposo"], ["Padre", "Padre"], ["Madre", "Madre"]] %> <span class="fa fa-pencil text-info">..</span><br/>
+	<strong>Parentesco:</strong> <%= best_in_place @paciente, :parentesco %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Estado:</strong> <%= best_in_place @paciente, :estado, type: :select, collection: [["Activo", "Activo"], ["Pasivo", "Pasivo"], ["Derecho Hab", "Derecho Hab"]] %> <span class="fa fa-pencil text-info">..</span><br/>
 </p>
 <% else if  @paciente.tipo == "militar"%>	

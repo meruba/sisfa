@@ -24,6 +24,7 @@ class Doctor < ActiveRecord::Base
 	has_many :consulta_externa_preventivas, :through => :turnos
 	accepts_nested_attributes_for :cliente
 	
+	delegate :nombre, :to => :cliente, :prefix => true
 	#	validations
 	validates :especialidad, :cantidad_turno, :presence => true
 	# validates :cantidad_turno, :numericality => { :greater_than => 0 }
@@ -40,9 +41,9 @@ class Doctor < ActiveRecord::Base
     doctores = doctores.map do |doctor|
       {
         :id => doctor.id,
-        :label => doctor.cliente.nombre + " / " + doctor.especialidad,
-        :value => doctor.cliente.nombre,
-        :nombre => doctor.cliente.nombre,
+        :label => doctor.cliente_nombre + " / " + doctor.especialidad,
+        :value => doctor.cliente_nombre,
+        :nombre => doctor.cliente_nombre,
         :especialidad => doctor.especialidad
       }
     end
@@ -54,7 +55,7 @@ class Doctor < ActiveRecord::Base
 		self.includes(:cliente).where("suspendido = false and cantidad_turno != 0").each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
-				:nombre =>doctor.cliente.nombre,
+				:nombre =>doctor.cliente_nombre,
 				:turnos_emitidos => num_turnos,
 				:turnos_disponibles => doctor.cantidad_turno - num_turnos,
 				:especialidad => doctor.especialidad
@@ -69,7 +70,7 @@ class Doctor < ActiveRecord::Base
 			turno = doctor.turnos.turnos_today
 			unless turno.compact.empty?
 				doctores << {
-					:nombre =>doctor.cliente.nombre,
+					:nombre =>doctor.cliente_nombre,
 					:turnos => turno
 				}
 			end
@@ -83,7 +84,7 @@ class Doctor < ActiveRecord::Base
 			turno = doctor.turnos.turnos_query(fecha)
 			unless turno.compact.empty?
 				doctores << {
-					:nombre =>doctor.cliente.nombre,
+					:nombre =>doctor.cliente_nombre,
 					:turnos => turno
 				}
 			end

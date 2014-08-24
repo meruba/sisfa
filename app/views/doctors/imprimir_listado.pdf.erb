@@ -15,7 +15,7 @@
 			<% doctor[:turnos].each do |turno| %>
 			<tr>
 				<td><%= turno.numero %></td>
-				<td><%= turno.paciente.cliente.nombre %></td>
+				<td><%= turno.paciente.cliente_nombre %></td>
 				<% if turno.numero >= 15 %>
 				<td>--:--</td>
 				<% else %>

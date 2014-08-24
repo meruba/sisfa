@@ -5,7 +5,7 @@
 	<div class="container">
 		<div class="col-md-5 row-fix-div">
 			<div class="col-md-4 text-center">
-				<% if @paciente.cliente.sexo == "Femenino" %>
+				<% if @paciente.cliente_sexo == "Femenino" %>
 				<span class ="fa fa-female fa-5x"></span><br>
 				<% else %>
 				<span class ="fa fa-male fa-5x"></span><br>				
@@ -14,19 +14,19 @@
 				<%= link_to "Imprimir", paciente_print_historia_path(@paciente, :format => 'pdf'), :target => "_blank",class: "label label-info" %></span>
 			</div>
 			<div class="col-md-8">
-				<h4><strong><%= @paciente.cliente.nombre %></strong></h4>
-				<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente.sexo).upcase%></small><br>
+				<h4><strong><%= @paciente.cliente_nombre %></strong></h4>
+				<small class="genero"><strong>GENERO:</strong><%= (@paciente.cliente_sexo).upcase%></small><br>
 				<small><strong>EDAD:</strong>
-					<%= exact_age(@paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"><%= @paciente.cliente.fecha_de_nacimiento %></small>
+					<%= exact_age(@paciente.cliente_fecha_de_nacimiento) %> <small class="text-muted"><%= @paciente.cliente_fecha_de_nacimiento %></small>
 				</small><br>
 				<small><strong>NACIONALIDAD:</strong>ECUATORIANO</small>
 			</div>
 		</div>
 		<div class="col-md-3 col-xs-6">
 			<small class="text-muted">LOCALIZACION</small><br>
-			<i class="fa fa-map-marker"></i> <%= @paciente.cliente.direccion%><br/>
-			<i class="fa fa-phone"></i> <%= @paciente.cliente.telefono%><br/>
-			<i class="fa fa-envelope malito"></i> <%= @paciente.cliente.email%><br/>
+			<i class="fa fa-map-marker"></i> <%= @paciente.cliente_direccion%><br/>
+			<i class="fa fa-phone"></i> <%= @paciente.cliente_telefono%><br/>
+			<i class="fa fa-envelope malito"></i> <%= @paciente.cliente_email%><br/>
 		</div>
 		<div class="col-md-3 col-xs-6">
 			<small class="text-muted">CONTACTO/RELACION</small><br>
