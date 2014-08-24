@@ -15,13 +15,6 @@ class EmisorsController < ApplicationController
     end
   end
 
-  def show
-  end
-
-  def configuracion
-    # @emisor = Emisor.new
-  end
-
   def create
     @emisor = Emisor.new(emisor_params)
     if @emisor.save

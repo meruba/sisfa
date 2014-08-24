@@ -1,5 +1,4 @@
 Sisfa::Application.routes.draw do
-  resources :emisors
   get "clientes/autocomplete"
   get "productos/autocomplete"
   get "hospitalizacion_registros/autocomplete"
@@ -37,96 +36,97 @@ Sisfa::Application.routes.draw do
   get "reportes/liquidaciones"
   get "reportes/cierre_caja_mensual"
   get "reportes/cierre_caja_diario"
-  resources :user_sessions
-  resources :users do
+  resources :emisors, except: [:show, :destroy, :index]
+  resources :user_sessions, only: [:new, :create, :destroy]
+  resources :users, except: [:destroy] do
     member do
       post "suspender"
     end
   end
-  resources :ingreso_productos do
-    resources :canjes
+  resources :ingreso_productos, only: [:new, :create] do
+    resources :canjes, only: [:new, :create]
   end
-  resources :pacientes do
+  resources :pacientes, except: [:new] do
     resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update]
-    resources :emergencia_registros
+    resources :emergencia_registros, except: [:destroy, :index]
     get "view_edit"
     get "print_historia"
   end
-  resources :turnos do
+  resources :turnos, except: [:show] do
     resources :consulta_externa_morbilidads, :only => [:new, :create]
     resources :consulta_externa_preventivas, :only => [:new, :create]
   end
   resources :condicions, :only => [:show]
   resources :clientes
   resources :consulta_externa_morbilidads, :only => [:show]
-  resources :proveedors
-  resources :hospitalizacion_registros do
-    resources :asignacion_camas
+  resources :proveedors, except: [:destroy]
+  resources :hospitalizacion_registros, except: [:destroy] do
+    resources :asignacion_camas, only: [:new, :create, :index]
     member do
       post "dar_alta_enfermeria"
     end
   end
   resources :nota_enfermeras, :only => [:show]
-  resources :item_nota_enfermeras
-  resources :entrega_turnos do
+  resources :item_nota_enfermeras, only: [:create]
+  resources :entrega_turnos, except: [:edit, :update, :destroy] do
     get "view_create_item"
-    resources :item_entrega_turnos
+    resources :item_entrega_turnos, only: [:create]
   end
   resources :signo_vitals, :only => [:show]
-  resources :item_signo_vitals
+  resources :item_signo_vitals, only: [:create]
   resources :item_facturas
   resources :item_proformas
-  resources :traspasos do
+  resources :traspasos, except: [:edit, :update, :destroy] do
     member do
       get "anular"
       post "anulado"
     end
   end
   resources :item_traspasos
-  resources :cuartos
-  resources :camas
+  resources :cuartos, except: [:show, :edit, :update]
+  resources :camas, only: [:create, :destroy]
   resources :hospitalizacions, :only => [:index, :show] do
     get "show_pedido"
     get 'pedidos', :on => :collection
   end
-  resources :item_hospitalizacions do
+  resources :item_hospitalizacions, only: [:create] do
     member do
       post "despachar"
       get "anular"
       post "anulado"
     end
   end
-  resources :factura_compras
-  resources :product_imports
-  resources :cliente_imports
-  resources :informacion_adicional_pacientes, :only => [:edit, :update]
+  resources :factura_compras, only: [:show, :new, :create]
+  resources :product_imports, only: [:new, :create]
+  resources :cliente_imports, only: [:new, :create]
+  resources :informacion_adicional_pacientes, :only => [:update]
   resources :revisions
-  resources :doctors do
-    resources :jornada_morbilidads
-    resources :jornada_preventivas
+  resources :doctors, except: [:show] do
+    resources :jornada_morbilidads, only: [:new, :create, :index]
+    resources :jornada_preventivas, only: [:new, :create, :index]
     member do
       post "suspender"
     end
   end
-  resources :productos do
-    resources :kardexes, :as => "kardex"
+  resources :productos, except: [:destroy] do
+    resources :kardexes, :as => "kardex", only: [:index]
   end
-  resources :facturas do
+  resources :facturas, except: [:edit, :update, :destroy] do
     member do
       get "anular"
       post "anulado"
     end
   end
-  resources :proformas do
+  resources :proformas, except: [:edit, :update, :destroy] do
     member do
       post "facturar"
     end
   end
-  resources :cierre_cajas do
+  resources :cierre_cajas, only: [:new, :index] do
     member do
       get "print_and_close"
     end
   end
-  resources :reportes
+  resources :reportes, only: [:index]
   root 'panel_aplication#index'
 end
