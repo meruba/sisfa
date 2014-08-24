@@ -46,7 +46,7 @@
 			<% @ayunas.each do |i| %>
 			<tr>
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
-				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td colspan="3"><%= i.descripcion  %> </td>	
 				<td><%= i.user.username  %> </td>	
 			</tr>
@@ -66,7 +66,7 @@
 			<% @examenes.each do |i| %>
 			<tr>
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
-				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td colspan="3"><%= i.descripcion  %> </td>
 				<td><%= i.user.username  %> </td>	
 			</tr>
@@ -88,7 +88,7 @@
 			<% @movimientos.each do |i| %>
 			<tr>
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
-				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td class="text-center">
 					<% if i.descripcion == "ingreso" %>
 					<i class="fa fa-check text-success"></i>
@@ -130,7 +130,7 @@
 				<% @aislamientos.each do |i| %>
 				<tr>
 					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
-					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> / <small class="text-success"><%= i.descripcion  %></small></td>
+					<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> / <small class="text-success"><%= i.descripcion  %></small></td>
 					<td><%= i.user.username %> </td>
 				</tr>
 				<% end %>
@@ -156,7 +156,7 @@
 				<% @graves.each do |i| %>
 				<tr>
 					<td>34</td>
-					<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+					<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 					<td><%= i.user.username %> </td>
 				</tr>
 				<% end %>
@@ -186,7 +186,7 @@
 			<% @defunciones.each do |i| %>
 			<tr>
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
-				<td><%= i.hospitalizacion_registro.paciente.cliente.nombre  %> </td>
+				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td><%= i.descripcion  %> </td>
 				<td><%= i.hospitalizacion_registro.especialidad  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.n_hclinica  %> </td>

@@ -48,7 +48,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
     </Row>
     <% @registros.each do |r| %>
     <Row>
-      <Cell><Data ss:Type="String"><%= r.doctor.cliente.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.doctor.cliente_nombre %></Data></Cell>
       <Cell><Data ss:Type="String"><%= local_date(r.created_at, "date") %></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_hombre %></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_mujer %></Data></Cell>

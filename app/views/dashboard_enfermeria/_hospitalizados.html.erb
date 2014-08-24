@@ -6,7 +6,7 @@
     <% @sin_camas.each do |h|  %>
     <li class="no-ingresado-item" id ='<%= h.id %>-hosp'>
       <span class="internado-name">
-        <%=h.paciente.cliente.nombre%>
+        <%=h.paciente.cliente_nombre%>
       </span>
       <span class="internado-hc">
         H.C #<%=h.paciente.n_hclinica%>

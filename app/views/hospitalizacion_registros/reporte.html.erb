@@ -25,10 +25,10 @@
         <td><%= local_date(r.fecha_de_ingreso, "date") %></td>
         <td><%= local_date(r.fecha_de_salida, "date") %></td>
         <td><%= r.dias_hospitalizacion %></td>
-        <td><%= r.paciente.cliente.nombre %></td>
-        <td><%= r.paciente.cliente.numero_de_identificacion %></td>
-        <td><%= exact_age(r.paciente.cliente.fecha_de_nacimiento) %></td>
-        <td><%= r.paciente.cliente.fecha_de_nacimiento%></td>
+        <td><%= r.paciente.cliente_nombre %></td>
+        <td><%= r.paciente.cliente_numero_de_identificacion %></td>
+        <td><%= exact_age(r.paciente.cliente_fecha_de_nacimiento) %></td>
+        <td><%= r.paciente.cliente_fecha_de_nacimiento%></td>
       </tr>
       <% end %>
     </tbody>

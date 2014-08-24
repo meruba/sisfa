@@ -3,7 +3,7 @@
 		<% @pedidos.each do |p|  %>
 		<li class="pacientes-hospitalizados" id="<%= p.hospitalizacion_registro.id %>">
 			<span class="internado-name">
-				<%=p.hospitalizacion_registro.paciente.cliente.nombre%>
+				<%=p.hospitalizacion_registro.paciente.cliente_nombre%>
 			</span>
 			<span class="internado-hc">
 				Consumo: $<%= p.total%>

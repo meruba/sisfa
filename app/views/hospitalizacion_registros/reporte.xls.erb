@@ -43,22 +43,22 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
     <% @registros.each do |r| %>
     <Row>
       <Cell><Data ss:Type="Number"><%= r.paciente.n_hclinica %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= r.paciente.cliente.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente_nombre %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.nacionalidad %></Data></Cell>
       <Cell><Data ss:Type="String"></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.numero_de_identificacion %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= r.paciente.cliente.sexo %></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.fecha_de_nacimiento.year%></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.fecha_de_nacimiento.month%></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= r.paciente.cliente.fecha_de_nacimiento.day%></Data></Cell>
-      <Cell><Data ss:Type="String"><%= r.paciente.cliente.fecha_de_nacimiento%></Data></Cell>
-      <Cell><Data ss:Type="Number"><%= age(r.paciente.cliente.fecha_de_nacimiento)%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente_numero_de_identificacion %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente_sexo %></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente_fecha_de_nacimiento.year%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente_fecha_de_nacimiento.month%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= r.paciente.cliente_fecha_de_nacimiento.day%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente_fecha_de_nacimiento%></Data></Cell>
+      <Cell><Data ss:Type="Number"><%= age(r.paciente.cliente_fecha_de_nacimiento)%></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.raza %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.discapacidad %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.provincia %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.canton %></Data></Cell>
       <Cell><Data ss:Type="String"><%= r.paciente.informacion_adicional_paciente.parroquia %></Data></Cell>
-      <Cell><Data ss:Type="String"><%= r.paciente.cliente.direccion%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= r.paciente.cliente_direccion%></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.fecha_de_ingreso.year %></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.fecha_de_ingreso.month %></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.fecha_de_ingreso.day %></Data></Cell>
