@@ -44,11 +44,15 @@
 			<tr><td colspan="6" class="text-center text-muted">No se registraron pacientes</td></tr>
 			<% end %>
 			<% @ayunas.each do |i| %>
-			<tr>
+			<tr id="<%= i.id  %>">
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td colspan="3"><%= i.descripcion  %> </td>	
-				<td><%= i.user.username  %> </td>	
+				<td><%= i.user.username  %> 
+					<% if current_user == i.user %>
+					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+					<% end %>
+				</td>
 			</tr>
 			<% end %>
 			<tr class="title-history">
@@ -64,11 +68,15 @@
 			<tr><td colspan="6" class="text-center text-muted">No se registraron pacientes</td></tr>
 			<% end %>
 			<% @examenes.each do |i| %>
-			<tr>
+			<tr id="<%= i.id  %>">
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td colspan="3"><%= i.descripcion  %> </td>
-				<td><%= i.user.username  %> </td>	
+				<td><%= i.user.username  %> 
+					<% if current_user == i.user %>
+					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+					<% end %>
+				</td>
 			</tr>
 			<% end %>
 			<tr class="title-history">
@@ -86,7 +94,7 @@
 			<tr><td colspan="6" class="text-center text-muted">No se registraron pacientes</td></tr>
 			<% end %>
 			<% @movimientos.each do |i| %>
-			<tr>
+			<tr id="<%= i.id  %>">
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td class="text-center">
@@ -104,7 +112,11 @@
 					<i class="fa fa-check text-success"></i>
 					<% end %>
 				</td>
-				<td><%= i.user.username%> </td>	
+				<td><%= i.user.username  %>
+					<% if current_user == i.user %>
+					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+					<% end %>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>
@@ -128,10 +140,14 @@
 				<tr><td colspan="6" class="text-center text-muted">No se registraron pacientes</td></tr>
 				<% end %>
 				<% @aislamientos.each do |i| %>
-				<tr>
+				<tr id="<%= i.id  %>">
 					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 					<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> / <small class="text-success"><%= i.descripcion  %></small></td>
-					<td><%= i.user.username %> </td>
+					<td><%= i.user.username  %>
+					<% if current_user == i.user %>
+					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+					<% end %>
+				</td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -154,10 +170,14 @@
 				<tr><td colspan="6" class="text-center text-muted">No se registraron pacientes</td></tr>
 				<% end %>
 				<% @graves.each do |i| %>
-				<tr>
-					<td>34</td>
+				<tr id="<%= i.id  %>">
+					<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 					<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
-					<td><%= i.user.username %> </td>
+					<td><%= i.user.username  %>
+					<% if current_user == i.user %>
+					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+					<% end %>
+				</td>
 				</tr>
 				<% end %>
 			</tbody>
@@ -184,13 +204,17 @@
 			<tr><td colspan="6" class="text-center text-muted">No se registraron pacientes</td></tr>
 			<% end %>
 			<% @defunciones.each do |i| %>
-			<tr>
+			<tr id="<%= i.id  %>">
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td><%= i.descripcion  %> </td>
 				<td><%= i.hospitalizacion_registro.especialidad  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.n_hclinica  %> </td>
-				<td><%= i.user.username %> </td>
+				<td><%= i.user.username  %>
+					<% if current_user == i.user %>
+					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+					<% end %>
+				</td>
 			</tr>
 			<% end %>
 		</tbody>
