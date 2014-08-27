@@ -1,4 +1,7 @@
-<h1 class= "text-center"><span class="fa fa-bar-chart-o"></span> Administracion</h1>
+<div class="row title-green-head">
+	<h2 class= "text-center"> Central de Enfermeria</h2>
+</div>
+<div class="row info-paciente">
 <ul class="nav nav-tabs" id="tab_estadisticas">
   <li class="active"><%=link_to "Hospitalizados",dashboard_enfermeria_index_path,:remote => true, :data => {:toogle => "tab"} %></li>
   <li><%=link_to "Cambio Turno",entrega_turnos_path, :remote => true, :data => {:toogle => "tab"} %></li>
