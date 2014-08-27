@@ -23,6 +23,7 @@ class Turno < ActiveRecord::Base
 
 	#callbacks
 	before_create :set_values
+	before_destroy :was_atendido
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
@@ -84,4 +85,11 @@ class Turno < ActiveRecord::Base
 		turno = Turno.includes(paciente: [:cliente]).where(:fecha => fecha).references(paciente: [:cliente])
 	end
 
+	private
+	def was_atendido
+		if self.atendido
+			self.errors[:base] << "No se puede eliminar, el turno fue atendido."
+			return false
+		end
+	end
 end
