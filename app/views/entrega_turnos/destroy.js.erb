@@ -1,0 +1,8 @@
+<%- if @entrega.errors.any? %>
+  <%- @entrega.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $('#<%=@entrega.id %>').remove();
+	alertify.success("Hoja eliminada");
+<%- end %>
