@@ -81,7 +81,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
 	#class methods
 	def self.autocomplete(params)
-		pacientes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(alta: false).where("pacientes.n_hclinica like ?", "%#{params}%").references(paciente: [:cliente])
+		pacientes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(alta: false).where("clientes.nombre like ?", "%#{params}%").references(paciente: [:cliente])
 		pacientes = pacientes.map do |hospitalizado|
 			{
 				:id => hospitalizado.id,

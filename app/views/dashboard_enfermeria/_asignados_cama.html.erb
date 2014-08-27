@@ -3,7 +3,8 @@
     <%=cama.paciente.cliente_nombre%>
   </span>
   <span class="internado-hc">
-    H.C #<%=cama.paciente.n_hclinica%>
+    H.C #<%=cama.paciente.n_hclinica%><br>
+    <%=cama.asignacion_cama.cama.cuarto.nombre%>
   </span>
   <div class="pull-right">
     <span class="opcions" <%= 'style= background-color:#7CC576;color:#fff;' if cama.alta%>>
