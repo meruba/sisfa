@@ -15,7 +15,7 @@
 #
 
 class ItemProforma < ActiveRecord::Base
-  
+
   #relationships
   belongs_to :proforma
   belongs_to :ingreso_producto
@@ -23,7 +23,7 @@ class ItemProforma < ActiveRecord::Base
   # validations:
   validates :cantidad, :valor_unitario, :total, :presence => true,
                                                             :numericality => { :greater_than_or_equal_to => 0 }
-                                                   
+
   # validate :valida_descuento
   validate :stock
 

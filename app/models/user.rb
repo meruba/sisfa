@@ -18,7 +18,7 @@ authenticates_with_sorcery!
 
 
 #relationships
-  has_many :cierrecajas
+  has_many :cierre_cajas
 	belongs_to :cliente
 	has_many :facturas
   has_many :factura_compras
@@ -36,6 +36,16 @@ authenticates_with_sorcery!
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_presence_of :rol
+  validate :need_doctor_model
+
+#custom validations
+  def need_doctor_model
+    if self.rol == Rol.doctor
+      if self.cliente.doctor.nil?
+        errors.add :cliente_id, "Necesita ser ingresado como doctor en estadistica"
+      end
+    end
+  end
 
 #methods
   def cliente_attributes=(attributes)
@@ -44,5 +54,4 @@ authenticates_with_sorcery!
     end
     super
   end
-    
 end

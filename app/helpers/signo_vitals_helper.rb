@@ -1,2 +1,0 @@
-module SignoVitalsHelper
-end

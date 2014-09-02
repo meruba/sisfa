@@ -1,6 +1,6 @@
 <div class="container">
 	<div class="row title-history">
-		<h2 class="fix-margin">Administracion Doctores</h2>
+		<h2 class="text-center">Administracion de Doctores</h2>
 	</div>
 	<div class="row info-paciente">
 		<div class="row acciones">
@@ -13,7 +13,7 @@
 				<div class="input-group field fix-margin">
 					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker_month", :placeholder => "Reporte emergencia", :required => true%>
 					<span class="input-group-btn">
-						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+						<%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
 					</span>
 				</div>
 				<% end %>
@@ -23,7 +23,7 @@
 				<div class="input-group field fix-margin">
 					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte morbilidad", :required => true%>
 					<span class="input-group-btn">
-						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+						<%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
 					</span>
 				</div>
 				<% end %>
@@ -33,7 +33,7 @@
 				<div class="input-group field fix-margin">
 					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Reporte preventiva", :required => true%>
 					<span class="input-group-btn">
-						<%= submit_tag "Descargar", name: nil, :class => "btn btn-info" %>
+						<%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
 					</span>
 				</div>
 				<% end %>
@@ -47,8 +47,8 @@
 		</div>
 		<br>
 		<legend>Doctores Registrados</legend>
-		<ul class="doctores searchable-container">
-			<%= render "doctors/partials/doctors"%>
+		<ul class="main searchable-container internados grid all-doctors">
+			<%= render "doctors/partials/doctors", :doctores => @doctores%>
 		</ul>
 	</div>	
 </div>

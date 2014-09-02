@@ -11,14 +11,14 @@
 			<% @emergencias_mes.each do |e| %>
 			<div class="event">
 				<% if i == e.created_at.strftime("%d").to_i %>
-				<%= e.paciente.cliente.nombre %>
+				<%= e.paciente.cliente_nombre %>
 				<% end %>
 			</div>
 			<% end %>
 			<% @hospitalizados_mes.each do |e| %>
 			<div class="event hospt">
 				<% if i == e.created_at.strftime("%d").to_i %>
-				<%= e.paciente.cliente.nombre %>
+				<%= e.paciente.cliente_nombre %>
 				<% end %>
 			</div>
 			<% end %>

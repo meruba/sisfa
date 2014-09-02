@@ -12,8 +12,8 @@
 		<h3>Ficha de Registro Medico</h3>
 		<%= f.label :tipo_de_atencion%>
 		<%= f.select(:tipo_de_atencion, ['Primera','Subcecuente'], {}, { :class => 'form-control' }) %>
-		<% if @turno.paciente.cliente.sexo == "Femenino" %>
-		<% if age(@turno.paciente.cliente.fecha_de_nacimiento) >= 0 && age(@turno.paciente.cliente.fecha_de_nacimiento) < 5 %>
+		<% if @turno.paciente.cliente_sexo == "Femenino" %>
+		<% if age(@turno.paciente.cliente_fecha_de_nacimiento) >= 0 && age(@turno.paciente.cliente_fecha_de_nacimiento) < 5 %>
 		<%= f.hidden_field :atencion_preventiva, value: "Niños" %>
 		<% else %>
 		<%= f.label :planificacion_familiar%>

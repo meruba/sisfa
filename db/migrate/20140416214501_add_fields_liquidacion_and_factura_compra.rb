@@ -11,4 +11,4 @@ class AddFieldsLiquidacionAndFacturaCompra < ActiveRecord::Migration
     remove_column :factura_compras, :subtotal_12
   end
 end
-  
+

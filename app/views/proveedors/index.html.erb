@@ -1,6 +1,15 @@
-<%= link_to 'Nuevo', new_proveedor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
-<h1 class="text-center">LISTA DE PROVEEDORES</h1>
-
-<div class=" col-md-10 col-md-offset-1 table-responsive table-proveedores">
-  <%= render "proveedors", proveedors: @proveedors %>  
+<div class="row shadow">
+  <div class="col-md-12">
+    <div class="title-gris-head">
+      <span>
+        <i><%= link_to '', new_proveedor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', title:'Nuevo Proveedor', class: "ttip fa fa-plus"}  %>
+        </i>
+      <span class="rev-combo pull-right"><i class="fa fa-ambulance"></i></span>
+      </span>
+      <h3 class="text-center">LISTA DE PROVEEDORES</h3>
+    </div><br>
+    <div class="table-responsive table-proveedores">
+  		<%= render "proveedors", proveedors: @proveedors %>
+		</div>
+  </div>
 </div>

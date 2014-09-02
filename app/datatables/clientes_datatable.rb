@@ -22,11 +22,11 @@ private
         (cliente.nombre),
         (cliente.numero_de_identificacion),
         (cliente.direccion),
-        (cliente.telefono),        
+        (cliente.telefono),
         (cliente.email),
         (link_to '', @view.edit_cliente_path(cliente), {:remote => true, :rel=> 'tooltip', :title=>'Editar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-pencil btn btn-warning btn-xs"}) + " " + (link_to '', cliente, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info btn-xs"),
       ]
-    end 
+    end
   end
 
   def clientes

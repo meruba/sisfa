@@ -32,7 +32,7 @@ class Canje < ActiveRecord::Base
   before_validation :set_values
 
 #methods
-  
+
   def changing_with_same
     self.tipo == "mismo_producto"
   end
@@ -65,8 +65,8 @@ class Canje < ActiveRecord::Base
     self.cantidad = self.antiguo.cantidad
     self.precio_salida = self.antiguo.producto.precio_compra
     self.total = self.precio_salida * self.cantidad
-    Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")     
+    Lineakardex.create(:kardex => self.antiguo.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.antiguo.cantidad, :v_unitario => self.antiguo.producto.precio_compra, :observaciones => "Producto Canjeado")
     self.antiguo.cantidad = 0
-    self.antiguo.save 
+    self.antiguo.save
   end
 end

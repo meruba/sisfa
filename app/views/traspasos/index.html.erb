@@ -1,18 +1,25 @@
-<%= link_to 'Nueva', new_traspaso_path, class: "nuevo_new"  %>
-<h1 class="text-center">LISTA DE TRANSFERENCIAS</h1>
-<div class=" col-md-10 col-md-offset-1 table-responsive">
-	<table class="data-table table-bordered" data-source="<%= traspasos_url(format: "json") %>">
-		<thead>
-			<tr>
-				<th>Número</th>
-				<th>Dependencia</th>
-				<th>Emitido por</th>
-				<th>Recibido por</th>
-				<th>Fecha</th>
-				<th>Acciones</th>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-	</table>
+<div class="row shadow">
+	<div class="col-md-12">
+		<div class="title-red-head">
+			<span>
+				<i><%= link_to "",  new_traspaso_path, title:'Nueva', class: "ttip fa fa-plus" %></i>
+			</span>
+			<span class="rev-combo pull-right"><i class="fa fa-exchange"></i></span>
+		</span>
+		<h3>LISTA DE TRANSFERENCIAS</h3>
+	</div><br>
+	<div class="transferencias-table">
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#todas" data-toggle="tab">Emitidas</a></li>
+			<li><a href="#anuladas" data-toggle="tab">Anuladas</a></li>
+		</ul><br>
+		<div class="tab-content">
+			<div class="tab-pane active" id="todas">
+				<%= render "traspasos/transferencias"%>
+			</div>
+			<div class="tab-pane" id="anuladas">
+				<%= render "traspasos/anuladas"%>
+			</div>
+		</div>
+	</div>
 </div>

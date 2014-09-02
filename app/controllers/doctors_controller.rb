@@ -32,30 +32,6 @@ class DoctorsController < ApplicationController
     end
 	end
 
-	def turnos_dia
-		@fecha = Time.now.to_date
-		@turnos = @doctor.turnos.turnos_today
-		respond_to do |format|
-			format.html
-			format.js
-			format.pdf do
-				render :pdf => "turnos de hoy", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
-			end
-		end
-	end
-
-	def turnos_manana
-		@fecha = Time.now.tomorrow.to_date
-		@turnos = @doctor.turnos.turnos_tomorrow
-		respond_to do |format|
-			format.html
-			format.js
-			format.pdf do
-				render :pdf => "turnos de manana", :layout => 'report.html', :template => "doctors/lista_turnos.pdf.erb"
-			end
-		end
-	end
-
 	def imprimir_listado
 		@fecha = Time.now.to_date
 		@lista = Doctor.list_turnos_all_doctor
@@ -66,7 +42,7 @@ class DoctorsController < ApplicationController
 			end
 		end
 	end
-  
+
   def suspender
     if @doctor.suspendido
       @doctor.suspendido = false
@@ -74,7 +50,7 @@ class DoctorsController < ApplicationController
       @doctor.suspendido = true
     end
     @doctor.save
-    redirect_to doctors_path, :notice => "Doctor modificado"    
+    redirect_to doctors_path, :notice => "Doctor modificado"
   end
 
 	def edit
@@ -87,7 +63,7 @@ class DoctorsController < ApplicationController
 		@doctor = Doctor.new(doctor_params)
     respond_to do |format|
       @doctor.save
-      format.js { 
+      format.js {
 				@doctores = Doctor.all
       	render "success"
       }
@@ -98,7 +74,7 @@ class DoctorsController < ApplicationController
     respond_to do |format|
       @doctor.update(doctor_params)
       format.html
-      format.js { 
+      format.js {
 				@doctores = Doctor.all
       	render "success"
       }

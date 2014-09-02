@@ -1,0 +1,72 @@
+<div class="row title-gris-head">
+  <h2 class= "text-center">Reportes</h2>
+</div>
+
+<div class="row info-paciente">
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Ventas y Compras</h3>
+      </div>
+      <div class="panel-body">
+        <%= form_tag reportes_reporte_total_path, method: :get do %>
+          <%= select_tag :tipo, "<option value='ventanilla'>Ventanilla</option><option value='hospitalizacion'>Hospitalización</option><option value='transferencia'>Transferencias</option><option value='compra'>Compra</option>".html_safe, { :class => "form-control selecttag" } %>
+          <div class="input-icon-sm">
+            <%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio", :required => true %>
+            <i class="fa fa-calendar"></i>
+          </div>
+          <div class="input-icon-sm">
+            <%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "Fecha final", :required => true %>
+            <i class="fa fa-calendar"></i>
+          </div>
+        <%= submit_tag "Imprimir", :class => "btn btn-block btn-info", :format => :pdf %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Cierre de Caja</h3>
+      </div><!-- end panel-heading -->
+      <div class="panel-body">
+        <h5>Ingrese Fecha (mes):</h5>
+        <%= form_tag reportes_cierre_caja_mensual_path, method: :get, :format => :pdf  do %>
+        <div class="input-group field">
+          <%= text_field_tag :fecha, params[:fecha],:class =>" datepicker_month", :placeholder => "Fecha", :required => true%>
+          <span class="input-group-btn">
+            <%= submit_tag "Ir", name: nil, :class => "btn btn-info"%>
+          </span>
+        </div>
+        <% end %>
+        <h5>Ingrese Fecha (dia):</h5>
+        <%= form_tag reportes_cierre_caja_diario_path, method: :get do %>
+        <div class="input-group field">
+          <%= text_field_tag :fecha, params[:fecha],:class =>"datepicker", :placeholder => "Fecha", :required => true%>
+          <span class="input-group-btn">
+            <%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
+          </span>
+        </div>
+        <% end %>
+      </div>
+    </div><!-- end panel -->
+  </div><!-- end cierre de caja -->
+  <div class="col-sm-4">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">Liquidaciones</h3>
+      </div><!-- end panel-heading -->
+      <div class="panel-body">
+        <h5>Ingrese Mes:</h5>
+        <%= form_tag reportes_liquidaciones_path, method: :get do %>
+        <div class="input-group field">
+          <%= text_field_tag :fecha, params[:fecha],:class =>"datepicker_month", :placeholder => "Fecha", :required => true%>
+          <span class="input-group-btn">
+            <%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
+          </span>
+        </div>
+        <% end %>
+      </div>
+    </div><!-- end panel -->
+  </div><!-- end liquidaciones -->
+</div>

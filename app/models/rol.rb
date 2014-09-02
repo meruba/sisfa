@@ -20,7 +20,7 @@ class Rol < ActiveRecord::Base
   def self.administrador
     @@administrador ||= find_by nombre: "Administrador"
   end
-  
+
   def self.enfermera
     @@enfermera ||= find_by nombre: "Enfermera"
   end

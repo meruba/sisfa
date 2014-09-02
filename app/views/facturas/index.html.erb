@@ -1,22 +1,28 @@
-<div class="row">
-	<h4>FACTURAS EMITIDAS</h4>
-	<ul class="nav nav-tabs">
-		<li class="active"><a href="#todas" data-toggle="tab">Venta</a></li>
-		<li><a href="#anuladas" data-toggle="tab">Anuladas</a></li>
-		<% if @admin %><li><a href="#compra" data-toggle="tab">Compra</a></li><% end %>
-	</ul>
-	<div class="tab-content">
-		<div class="tab-pane active" id="todas">
-			<div class="table-responsive">
-				<%= render "facturas/datatables/facturas_venta", facturas: @facturas %>
+<div class="row shadow">
+	<div class="col-md-12">
+		<div class="title-blue-head">
+			<span>
+				<i class="fa fa-files-o"></i>
+			</span>
+			<h3>FACTURAS EMITIDAS</h3>
+		</div><br>
+		<ul class="nav nav-tabs">
+			<li class="active"><a href="#todas" data-toggle="tab">Venta</a></li>
+			<li><a href="#anuladas" data-toggle="tab">Anuladas</a></li>
+			<% if @admin %><li><a href="#compra" data-toggle="tab">Compra</a></li><% end %>
+		</ul><br>
+		<div class="tab-content">
+			<div class="tab-pane active" id="todas">
+				<div class="table-responsive">
+					<%= render "facturas/datatables/facturas_venta", facturas: @facturas %>
+				</div>
 			</div>
-		</div>
-		<div class="tab-pane" id="anuladas">
-			<%= render "facturas/datatables/facturas_anuladas", facturas: @facturas %>
-		</div>
-		<div class="tab-pane" id="compra">
-			<%= render "facturas/datatables/facturas_compra", facturas: @facturas %>
+			<div class="tab-pane" id="anuladas">
+				<%= render "facturas/datatables/facturas_anuladas", facturas: @facturas %>
+			</div>
+			<div class="tab-pane" id="compra">
+				<%= render "facturas/datatables/facturas_compra", facturas: @facturas %>
+			</div>
 		</div>
 	</div>
 </div>
-

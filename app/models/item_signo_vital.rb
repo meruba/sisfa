@@ -29,7 +29,7 @@ class ItemSignoVital < ActiveRecord::Base
 		unless self.hora.nil?
 			t = self.hora.to_s.scan(/\d\d/)
 			if t.empty?
-				errors.add :hora, "Formato de hora no valida" 
+				errors.add :hora, "Formato de hora no valida"
 			end
 		end
 	end

@@ -1,7 +1,7 @@
 <div class="militar field">
 	<div class="col-md-4">
 		<%= f.label :parentesco, "Parentesco Militar" %>
-		<%= f.select(:parentesco, ['Hijo','Hija','Esposo', 'Esposa', 'Madre', 'Padre'], {}, { :class => 'form-control' }) %>
+		<%= f.text_field :parentesco, { :class => 'form-control' } %>
 	</div>
 	<div class="col-md-4">
 		<%= f.label :codigo_issfa %>

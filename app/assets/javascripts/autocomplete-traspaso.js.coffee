@@ -21,8 +21,8 @@ window.Helpers.AutocompleteTraspaso = {
         $this.closest(".productos_traspaso").find(".hasiva").val ui.item.iva
         if ui.item.iva == true
           precio_venta = ui.item.precio_venta
-          iva_producto = precio_venta * 0.12
-          $this.closest(".productos_traspaso").find(".iva").text iva_producto.toFixed(2)
+          iva_producto = (precio_venta * 0.12).toFixed(2)
+          $this.closest(".productos_traspaso").find(".iva").text iva_producto
         else
           $this.closest(".productos_traspaso").find(".iva").val "0.0"
         window.Helpers.AutocompleteTraspaso.calcular_total_producto($this)
@@ -44,10 +44,10 @@ window.Helpers.AutocompleteTraspaso = {
     valor_unitario = parseFloat(valor_unitario)
     hasiva = componente.closest(".productos_traspaso").find(".hasiva").val()
     if hasiva == "true"
-      iva_producto = valor_unitario * 0.12
-      componente.closest(".productos_traspaso").find(".iva").text((cantidad * iva_producto).toFixed(2))
-    total = cantidad * valor_unitario
-    componente.closest(".productos_traspaso").find(".total_producto").text(total.toFixed(2))
+      iva_producto = (valor_unitario * 0.12).toFixed(2)
+      componente.closest(".productos_traspaso").find(".iva").text(cantidad * iva_producto)
+    total = (cantidad * valor_unitario).toFixed(2)
+    componente.closest(".productos_traspaso").find(".total_producto").text(total)
     
   calcular_valores_factura: ->
     sum = 0

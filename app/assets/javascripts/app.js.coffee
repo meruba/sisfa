@@ -15,15 +15,6 @@ $(document).on "click", ".panel-heading span.clickable", (e) ->
     $this.parents(".panel-compra").find(".form-producto").slideDown()
     $this.removeClass "panel-collapsed"
     $this.removeClass("fa fa-chevron-down").addClass "fa fa-chevron-up"
-  return
-
-$(document).on 'ready page:load',
--> $(".tipo").each ->
-    tipo =  $(this).text()
-    switch tipo
-      when "MILITAR" then $(this).css("color","#94D5AD")
-      when "CIVIL" then $(this).css("color","#2dc1e6")
-      when "FAMILIAR" then $(this).css("color","#E77666")
 
 $ ->
   $("#input-search").on "keyup", ->
@@ -56,3 +47,6 @@ $(document).on "ready page:load", ->
     $("#" + tog).prop "value", sel
     $("a[data-toggle=\"" + tog + "\"]").not("[data-title=\"" + sel + "\"]").removeClass("active").addClass "notActive"
     $("a[data-toggle=\"" + tog + "\"][data-title=\"" + sel + "\"]").removeClass("notActive").addClass "active"
+
+  $(".card").click ->
+    $(this).toggleClass "flipped"

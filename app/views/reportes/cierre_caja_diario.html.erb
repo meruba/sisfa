@@ -1,0 +1,61 @@
+<h3 class="text-center">REPORTE DE CIERRE DE CAJA DIARIO</h3>
+<h4 class="text-center">Fecha: <%= @fecha  %> </h4>
+<% @cierre_caja.each do |c| %>
+<h4>Usuario: <%= c.user.cliente.nombre %></h4>
+<div class="row">
+	<div class="col-md-4">
+		<table class="table table-print">
+			<thead>
+				<tr>
+					<th>Impuestos</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Subtotal 12%:</td>
+					<td><%= redondear(c.subtotal12) %></td>
+				</tr>
+				<tr>
+					<td>Subtotal 0%:</td>
+					<td><%= redondear(c.subtotal0) %></td>
+				</tr>
+				<tr>
+					<td>Iva:</td>
+					<td><%= redondear(c.sumatoriaiva) %></td>
+				</tr>
+				<tr>
+					<td><strong>Total</strong></td>
+					<td><strong><%= redondear(c.sumatoria) %></strong></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div class="col-md-8">
+		<table class="table table-print">
+			<thead>
+				<tr>
+					<th>Numero</th>
+					<th>Cliente</th>
+					<th>Sub 12%</th>
+					<th>Sub 0%</th>
+					<th>Iva</th>
+					<th>Total</th>
+				</tr>
+			</thead>
+			<tbody>
+				<% c.cierre_caja_items.each do |item|  %>
+				<tr>
+					<td><%= item.factura.numero %></td>
+					<td><%= item.factura.cliente.nombre %></td>
+					<td><%= item.factura.subtotal_12 %></td>
+					<td><%= item.factura.subtotal_0 %></td>
+					<td><%= item.factura.iva %></td>
+					<td><%= item.factura.total %></td>
+				</tr>
+				<% end %>
+			</tbody>
+		</table>
+	</div>
+</div>
+<% end %>

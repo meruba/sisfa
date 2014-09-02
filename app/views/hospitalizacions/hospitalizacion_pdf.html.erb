@@ -10,10 +10,10 @@
     </div>
     <div class="col-xs-6 text-right">
       <h3>REPORTE #<%= @hospitalizacion.numero%></h3>
-      <h4>Paciente: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente.nombre%></h4>
+      <h4>Paciente: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente_nombre%></h4>
       <p>
-        C.I: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente.numero_de_identificacion%><br>
-        Direccion: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente.telefono%><br>
+        C.I: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente_numero_de_identificacion%><br>
+        Direccion: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente_telefono%><br>
       </p>
     </div>
   </div>

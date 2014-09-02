@@ -11,7 +11,7 @@
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
   $(".cantidad_turnos").html('<%= j render 'turnos/doctor_turnos', turnos: @turnos %>');
-  alertify.success("Turno Almacenado");  
+  alertify.success("Turno Almacenado");
   window.Helpers.FormsHelper.init();
   window.Helpers.AutocompletePaciente.init_autocomplete();
   window.Helpers.AutocompleteDoctor.init_autocomplete();

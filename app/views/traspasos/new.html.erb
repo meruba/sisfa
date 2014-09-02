@@ -1,4 +1,4 @@
-<div class="row col-md-8 shadow col-md-offset-1">
+<div class="row col-md-8 shadow col-md-offset-2">
 	<div class="col-md-12">
 		<div class="title-red-head">
 			<span>
@@ -9,23 +9,22 @@
 		</div>
 	</div>
 	<div class="comprobante">
-		<%= nested_form_for @traspaso, :remote => true do |f| %>
+		<%= nested_form_for @traspaso, :html => {id: "form-traspaso"}, :remote => true do |f| %>
 		<%= form_errors_for @traspaso %>
+		<div class="row-fix-div col-md-12">
+			<div class="col-md-3 col-xs-3 icon-transferencia-center">
+				<i class="fa fa-exchange fa-4x"></i><br>
+				<small>transferencia</small>
+			</div>
+			<div class="col-md-8 col-xs-8">
+				<%= f.text_field :entregado_a, :class => "form-control selecttag",:placeholder => "Entregado a:" %>
+				<%= f.select :servicio, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
+				<h6 class="text-muted">Emitido por: <%= current_user.username%></h6>
+			</div>
+		</div>
 		<div class="col-md-12">
-			<div class="tr">
-				<div class="col-md-3 col-xs-3 icon-transferencia-center">
-					<i class="fa fa-exchange fa-4x"></i><br>
-					<small>transferencia</small>
-				</div>
-				<div class="col-md-8 col-xs-8">
-					<%= f.text_field :entregado_a, :class => "form-control selecttag",:placeholder => "Entregado a:" %>
-					<%= f.select :servicio, options_for_select(["Medicina Interna","Cardiología","Ginecología","Gastroenterología","Dermatología","Rayos X","Farmacia","Central de Enfermería","Estadística","Financiero","Traumatología","Odontología","Laboratorio Clínico","Fisiatría","Pediatría"]), {}, { class: "select-servicio form-control"}%>
-					<h6 class="text-muted">Emitido por: <%= current_user.username%></h6>
-
-				</div>
-			</div><br>
 			<div class="table-responsive">
-				<table class="table">
+				<table class="table" id="traspaso">
 					<thead class = "text-center">
 						<th class="col-md-5">Producto</th>
 						<th>V.Unit</th>

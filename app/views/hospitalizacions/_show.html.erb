@@ -1,11 +1,11 @@
 <div class="modal-header">
 	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	<h1 class="modal-title" id="myModalLabel">Información</h1>
+	<h1 class="modal-title" id="myModalLabel">Reporte</h1>
 </div>
 <div class="modal-body">
 	<p>
 		<strong>Paciente:</strong>
-		<%= @hospitalizacion.hospitalizacion_registro.paciente.cliente.nombre%>
+		<%= @hospitalizacion.hospitalizacion_registro.paciente.cliente_nombre%>
 	</p>
 	<p>
 		<strong>Fecha de Ingreso:</strong>
@@ -30,8 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<% @hospitalizacion.item_hospitalizacions.each do |t| %>
-			<% unless t.total == 0 %>
+			<% @items.each do |t| %>
 			<tr>
 				<td><%= t.ingreso_producto.producto.nombre%></td>
 				<td><%= t.cantidad %></td>
@@ -39,7 +38,6 @@
 				<td>$ <%= t.iva %></td>
 				<td>$ <%= t.total %></td>
 			</tr>
-			<% end %>
 			<% end %>
 		</tbody>
 	</table>
@@ -66,7 +64,7 @@
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
-	<% if @hospitalizacion.hospitalizacion_registro.alta %>
+	<% if @hospitalizacion.hospitalizacion_registro.alta_enfermeria %>
 		<%= link_to ' Imprimir', {:format => :pdf} , {:class => "btn btn-success", :target => "_blank"} %>
 	<% end %>
 </div>

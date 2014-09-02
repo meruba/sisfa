@@ -2,7 +2,7 @@ class ProveedorsController < ApplicationController
   before_filter :require_login
   before_filter :is_admin_or_vendedor_farmacia, only: [:index]
   before_action :set_proveedor, only: [:show, :edit, :update]
-  
+
   def index
     respond_to do |format|
       format.html
@@ -12,10 +12,10 @@ class ProveedorsController < ApplicationController
   def autocomplete
     # @proveedor = Proveedor.new
     respond_to do |format|
-      format.html {    
+      format.html {
         @proveedors = Proveedor.all
       }
-      format.json { 
+      format.json {
         @proveedors = Proveedor.where("numero_de_identificacion like ?", "%#{params[:term]}%")
         @proveedors = @proveedors.map do |proveedor|
           {
@@ -29,7 +29,7 @@ class ProveedorsController < ApplicationController
         end
         render :json => @proveedors
       }
-    end    
+    end
   end
 
   # GET /proveedors/1
@@ -63,7 +63,7 @@ class ProveedorsController < ApplicationController
         @proveedors = Proveedor.all
         format.html { redirect_to @proveedor, notice: 'Proveedor was successfully created.' }
         format.json { render action: 'show', status: :created, location: @proveedor }
-        format.js { 
+        format.js {
           render "success"
         }
       else
@@ -91,9 +91,9 @@ class ProveedorsController < ApplicationController
       end
     end
   end
-  
-  
-  private 
+
+
+  private
   def proveedor_params
     params.require(:proveedor).permit(:nombre_o_razon_social, :direccion, :codigo, :numero_de_identificacion, :telefono, :codigo,:ciudad, :pais, :representante_legal, :fax)
   end

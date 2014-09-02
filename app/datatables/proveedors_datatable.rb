@@ -22,15 +22,15 @@ private
         (proveedor.nombre_o_razon_social),
         #(proveedor.direccion),
         (proveedor.numero_de_identificacion),
-        (proveedor.telefono),        
+        (proveedor.telefono),
         (proveedor.codigo),
         #(proveedor.representante_legal),
-        #(proveedor.pais),        
+        #(proveedor.pais),
         (proveedor.ciudad),
         #(proveedor.fax),
         (link_to '', @view.edit_proveedor_path(proveedor), {:remote => true, :rel=> 'tooltip', :title => 'Editar', 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-pencil btn btn-warning"}) + " " + (link_to '', proveedor, :remote => true, :rel => 'tooltip', :title=> 'Mostrar', 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip fa fa-eye btn btn-info")
       ]
-    end 
+    end
   end
 
   def proveedors

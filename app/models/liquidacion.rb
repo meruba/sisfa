@@ -62,7 +62,7 @@ class Liquidacion < ActiveRecord::Base
 		end
 	end
 
-	def self.add_item_hospitalizacion(h,iva_item,subtotal_item,subtotal_12_item,total_item,costo_venta)
+	def self.add_item_hospitalizacion(item, h,iva_item,subtotal_item,subtotal_12_item,total_item,costo_venta)
 		b = self.where(:fecha => h.fecha_emision.beginning_of_month ).first
 		if b.nil? == true # por primera vez
 			self.create(
@@ -80,22 +80,39 @@ class Liquidacion < ActiveRecord::Base
 			:utilidad => (h.subtotal + h.subtotal_12)- costo_venta
 			)
 		else #se actualiza liquidacion mes
-			# raise
-			self.update(b,
-			:iva_hospitalizacion => b.iva_hospitalizacion + iva_item,
-			:subtotal_hospitalizacion => b.subtotal_hospitalizacion + subtotal_item,
-			:subtotal12_hospitalizacion => b.subtotal12_hospitalizacion + subtotal_12_item,
-			:total_hospitalizacion => b.total_hospitalizacion + total_item + iva_item,
-			:iva_venta => b.iva_venta + iva_item,
-			:subtotal_venta => b.subtotal_venta + subtotal_item,
-			:subtotal12_venta => b.subtotal12_venta + subtotal_12_item,
-			:total_sin_iva_hospitalizacion => b.total_sin_iva_hospitalizacion + subtotal_item + subtotal_12_item,
-			:total_sin_iva_venta => b.total_sin_iva_venta + subtotal_item + subtotal_12_item,
-			:total_venta => b.total_venta + total_item,
-			:costo_venta => b.costo_venta + costo_venta,
-			:saldo_final => b.saldo_final - costo_venta,
-			:utilidad => (b.utilidad + subtotal_item + subtotal_12_item)- costo_venta
-			)
+			if item.anulado == false
+				self.update(b,
+					:iva_hospitalizacion => b.iva_hospitalizacion + iva_item,
+					:subtotal_hospitalizacion => b.subtotal_hospitalizacion + subtotal_item,
+					:subtotal12_hospitalizacion => b.subtotal12_hospitalizacion + subtotal_12_item,
+					:total_hospitalizacion => b.total_hospitalizacion + total_item + iva_item,
+					:iva_venta => b.iva_venta + iva_item,
+					:subtotal_venta => b.subtotal_venta + subtotal_item,
+					:subtotal12_venta => b.subtotal12_venta + subtotal_12_item,
+					:total_sin_iva_hospitalizacion => b.total_sin_iva_hospitalizacion + subtotal_item + subtotal_12_item,
+					:total_sin_iva_venta => b.total_sin_iva_venta + subtotal_item + subtotal_12_item,
+					:total_venta => b.total_venta + total_item,
+					:costo_venta => b.costo_venta + costo_venta,
+					:saldo_final => b.saldo_final - costo_venta,
+					:utilidad => (b.utilidad + subtotal_item + subtotal_12_item)- costo_venta
+				)
+			else	#si anulan item se resta valores, se actualiza liquidacion mes
+				self.update(b,
+					:iva_hospitalizacion => b.iva_hospitalizacion - iva_item,
+					:subtotal_hospitalizacion => b.subtotal_hospitalizacion - subtotal_item,
+					:subtotal12_hospitalizacion => b.subtotal12_hospitalizacion - subtotal_12_item,
+					:total_hospitalizacion => b.total_hospitalizacion - total_item - iva_item,
+					:iva_venta => b.iva_venta - iva_item,
+					:subtotal_venta => b.subtotal_venta - subtotal_item,
+					:subtotal12_venta => b.subtotal12_venta - subtotal_12_item,
+					:total_sin_iva_hospitalizacion => b.total_sin_iva_hospitalizacion - subtotal_item - subtotal_12_item,
+					:total_sin_iva_venta => b.total_sin_iva_venta - subtotal_item - subtotal_12_item,
+					:total_venta => b.total_venta - total_item,
+					:costo_venta => b.costo_venta - costo_venta,
+					:saldo_final => b.saldo_final + costo_venta,
+					:utilidad => (b.utilidad - subtotal_item - subtotal_12_item) + costo_venta
+				)
+			end
 		end
 	end
 
@@ -105,7 +122,7 @@ class Liquidacion < ActiveRecord::Base
 			self.create(
 			:saldo_anterior => self.last.saldo_final, #obtiene el saldo del mes anterior
 			:saldo_final => self.last.saldo_final - costo_venta,
-			:iva_ventanilla => f.iva, 
+			:iva_ventanilla => f.iva,
 			:subtotal_ventanilla => f.subtotal_0,
 			:subtotal12_ventanilla => f.subtotal_12,
 			:total_ventanilla => f.total,
@@ -123,7 +140,7 @@ class Liquidacion < ActiveRecord::Base
 		else #se actualiza liquidacion mes
 			if f.anulada != true
 				self.update(b,
-				:iva_ventanilla => b.iva_ventanilla + f.iva, 
+				:iva_ventanilla => b.iva_ventanilla + f.iva,
 				:subtotal_ventanilla => b.subtotal_ventanilla + f.subtotal_0,
 				:subtotal12_ventanilla => b.subtotal12_ventanilla + f.subtotal_12,
 				:total_ventanilla => b.total_ventanilla + f.total,
@@ -137,10 +154,10 @@ class Liquidacion < ActiveRecord::Base
 				:costo_venta => b.costo_venta + costo_venta,
 				:saldo_final => b.saldo_final - costo_venta,
 				:utilidad => (b.utilidad + f.subtotal_0 + f.subtotal_12)- costo_venta
-			)
+				)
 			else	#si anulan factura se resta valores, se actualiza liquidacion mes
 				self.update(b,
-				:iva_ventanilla => b.iva_ventanilla - f.iva, 
+				:iva_ventanilla => b.iva_ventanilla - f.iva,
 				:subtotal_ventanilla => b.subtotal_ventanilla - f.subtotal_0,
 				:subtotal12_ventanilla => b.subtotal12_ventanilla - f.subtotal_12,
 				:total_ventanilla => b.total_ventanilla - f.total,
@@ -166,7 +183,7 @@ class Liquidacion < ActiveRecord::Base
 			self.create(
 			:saldo_anterior => self.last.saldo_final, #obtiene el saldo del mes anterior
 			:saldo_final => self.last.saldo_final - costo_venta,
-			:iva_traspaso => t.iva, 
+			:iva_traspaso => t.iva,
 			:subtotal_traspaso => t.subtotal,
 			:subtotal12_traspaso => t.subtotal_12,
 			:total_traspaso => t.total,
@@ -182,22 +199,41 @@ class Liquidacion < ActiveRecord::Base
 			:utilidad => (t.subtotal + t.subtotal_12)- costo_venta
 			)
 		else #se actualiza liquidacion mes
-			self.update(b,
-			:iva_traspaso => b.iva_traspaso + t.iva, 
-			:subtotal_traspaso => b.subtotal_traspaso + t.subtotal,
-			:subtotal12_traspaso => b.subtotal12_traspaso + t.subtotal_12,
-			:total_traspaso => b.total_traspaso + t.total,
-			:emitidos_traspaso => b.emitidos_traspaso + 1,
-			:iva_venta => b.iva_venta + t.iva,
-			:subtotal_venta => b.subtotal_venta + t.subtotal,
-			:subtotal12_venta => b.subtotal12_venta + t.subtotal_12,
-			:total_sin_iva_traspaso => b.total_sin_iva_traspaso + t.subtotal + t.subtotal_12,
-			:total_sin_iva_venta => b.total_sin_iva_venta + t.subtotal + t.subtotal_12,
-			:total_venta => b.total_venta + t.total,
-			:costo_venta => b.costo_venta + costo_venta,
-			:saldo_final => b.saldo_final - costo_venta,
-			:utilidad => (b.utilidad + t.subtotal + t.subtotal_12)- costo_venta
-			)
+			if t.anulado != true
+				self.update(b,
+				:iva_traspaso => b.iva_traspaso + t.iva,
+				:subtotal_traspaso => b.subtotal_traspaso + t.subtotal,
+				:subtotal12_traspaso => b.subtotal12_traspaso + t.subtotal_12,
+				:total_traspaso => b.total_traspaso + t.total,
+				:emitidos_traspaso => b.emitidos_traspaso + 1,
+				:iva_venta => b.iva_venta + t.iva,
+				:subtotal_venta => b.subtotal_venta + t.subtotal,
+				:subtotal12_venta => b.subtotal12_venta + t.subtotal_12,
+				:total_sin_iva_traspaso => b.total_sin_iva_traspaso + t.subtotal + t.subtotal_12,
+				:total_sin_iva_venta => b.total_sin_iva_venta + t.subtotal + t.subtotal_12,
+				:total_venta => b.total_venta + t.total,
+				:costo_venta => b.costo_venta + costo_venta,
+				:saldo_final => b.saldo_final - costo_venta,
+				:utilidad => (b.utilidad + t.subtotal + t.subtotal_12)- costo_venta
+				)
+			else	#si anulan traspaso se resta valores, se actualiza liquidacion mes
+				self.update(b,
+				:iva_traspaso => b.iva_traspaso - t.iva,
+				:subtotal_traspaso => b.subtotal_traspaso - t.subtotal,
+				:subtotal12_traspaso => b.subtotal12_traspaso - t.subtotal_12,
+				:total_traspaso => b.total_traspaso - t.total,
+				:emitidos_traspaso => b.emitidos_traspaso - 1,
+				:iva_venta => b.iva_venta - t.iva,
+				:subtotal_venta => b.subtotal_venta - t.subtotal,
+				:subtotal12_venta => b.subtotal12_venta - t.subtotal_12,
+				:total_sin_iva_traspaso => b.total_sin_iva_traspaso - t.subtotal - t.subtotal_12,
+				:total_sin_iva_venta => b.total_sin_iva_venta - t.subtotal - t.subtotal_12,
+				:total_venta => b.total_venta - t.total,
+				:costo_venta => b.costo_venta - costo_venta,
+				:saldo_final => b.saldo_final + costo_venta,
+				:utilidad => (b.utilidad - t.subtotal - t.subtotal_12) + costo_venta
+				)
+			end
 		end
 	end
 
@@ -207,7 +243,7 @@ class Liquidacion < ActiveRecord::Base
 			self.create(
 			:saldo_anterior => self.last.saldo_final, #obtiene el saldo del mes anterior
 			:saldo_final => self.last.saldo_final + c.subtotal_0 +  c.subtotal_12,
-			:iva_compra => c.iva, 
+			:iva_compra => c.iva,
 			:subtotal_compra => c.subtotal_0,
 			:subtotal12_compra => c.subtotal_12,
 			:total_sin_iva_compra => c.subtotal_0 +  c.subtotal_12,
@@ -217,7 +253,7 @@ class Liquidacion < ActiveRecord::Base
 			)
 		else #se actualiza liquidacion mes
 			self.update(b,
-			:iva_compra => b.iva_traspaso + c.iva, 
+			:iva_compra => b.iva_traspaso + c.iva,
 			:subtotal_compra => b.subtotal_compra + c.subtotal_0,
 			:subtotal12_compra => b.subtotal12_compra + c.subtotal_12,
 			:total_compra => b.total_compra + c.total,

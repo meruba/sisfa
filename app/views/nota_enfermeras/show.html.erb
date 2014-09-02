@@ -2,7 +2,7 @@
 	<h2 class="fix-margin">Nota Paciente</h2>
 </div>
 <div class="row info-paciente">
-	<h4>Paciente: <%= @nota.hospitalizacion_registro.paciente.cliente.nombre  %> </h4>
+	<h4>Paciente: <%= @nota.hospitalizacion_registro.paciente.cliente_nombre  %> </h4>
 	<h4>Historia C: <%= @nota.hospitalizacion_registro.paciente.n_hclinica  %> </h4>
 	<%= form_for @registro, :html => {:class => "form-notas"}, :remote => true do |f| %>
 	<%= form_errors_for @registro %>

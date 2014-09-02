@@ -16,9 +16,9 @@ class Cuarto < ActiveRecord::Base
 
 	private
 	def check_cuartos
-		unless camas.empty?     
+		unless camas.empty?
 			self.errors[:base] << "No se puede eliminar tiene camas ingresadas."
-			return false   
-		end 
+			return false
+		end
 	end
 end

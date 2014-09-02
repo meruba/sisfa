@@ -45,8 +45,8 @@ window.Helpers.AutocompleteHelper = {
         $this.closest(".fields").find("td:nth-child(2)").find(".hasiva").val ui.item.iva
         if ui.item.iva == "true"
           precio_venta = ui.item.precio_venta
-          iva_producto = precio_venta * 0.12
-          $this.closest(".fields").find("td:nth-child(4)").find(".total_item").val(iva_producto.toFixed(2))
+          iva_producto = (precio_venta * 0.12).toFixed(2)
+          $this.closest(".fields").find("td:nth-child(4)").find(".total_item").val(iva_producto)
         $this.closest(".fields").find("td:nth-child(4)").find(".iva").val("0.0")
 
     $(".cantidad").on "input", ->
@@ -62,7 +62,7 @@ window.Helpers.AutocompleteHelper = {
     hasiva = componente.closest(".fields").find("td:nth-child(2)").find(".hasiva").val()
     if hasiva == "true"
       iva_producto = (valor_unitario * 0.12).toFixed(2)
-      componente.closest(".fields").find("td:nth-child(4)").find(".iva").val((cantidad * iva_producto).toFixed(2))
+      componente.closest(".fields").find("td:nth-child(4)").find(".iva").val(cantidad * iva_producto)
     total_produto = (cantidad * valor_unitario).toFixed(2)
     componente.closest(".fields").find("td:nth-child(5)").find(".total_item").val(total_produto)
 

@@ -28,7 +28,7 @@ private
         (link_to '', @view.paciente_view_edit_path(paciente),{:rel => 'tooltip', :title => 'Ver / Editar', class: "ttip fa fa-eye-slash btn btn-default"})+" "+
         (link_to '', paciente, method: :delete, data: { confirm: 'Estas Seguro?' },:rel => 'tooltip', :title => 'Eliminar', class: "ttip fa fa-times btn btn-default")
       ]
-    end 
+    end
   end
 
   def pacientes

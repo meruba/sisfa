@@ -18,10 +18,10 @@ class ItemTraspaso < ActiveRecord::Base
 #relacionships
 	belongs_to :traspaso
 	belongs_to :ingreso_producto
-  
+
   #rollbacks
   after_create :add_kardex_line, :disminuir_stock
-  
+
   # validations
   validates :cantidad, :valor_unitario, :total, :presence => true, :numericality => { :greater_than => 0 }
   validates :iva, :presence => true
@@ -40,7 +40,7 @@ class ItemTraspaso < ActiveRecord::Base
   end
 
   def add_kardex_line
-    Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Traspaso a " + self.traspaso.servicio )
+    Lineakardex.create(:kardex => self.ingreso_producto.producto.kardex, :tipo => "Salida", :fecha => Time.now, :cantidad => self.cantidad, :v_unitario => self.ingreso_producto.producto.precio_venta, :modulo => "Transferencia a " + self.traspaso.servicio )
   end
 
   private

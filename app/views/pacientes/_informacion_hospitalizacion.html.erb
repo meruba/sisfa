@@ -1,7 +1,7 @@
 <div class="container">
 	<div class="col-md-6 row-fix-div datos-paciente">
 		<div class="col-md-4 text-center">
-			<% if @registro.paciente.cliente.sexo == "Femenino" %>
+			<% if @registro.paciente.cliente_sexo == "Femenino" %>
 			<span class ="fa fa-female fa-5x"></span><br>
 			<% else %>
 			<span class ="fa fa-male fa-5x"></span><br>				
@@ -10,11 +10,11 @@
 			<%= link_to 'Actualizar Datos', paciente_view_edit_path(@registro.paciente),{:target => '_blank', class: "ttip btn btn-info btn-xs"}%>
 		</div>
 		<div class="col-md-8">
-			<h4><strong><%= @registro.paciente.cliente.nombre %></strong></h4>
+			<h4><strong><%= @registro.paciente.cliente_nombre %></strong></h4>
 			<small><strong>HISTORIA CLINICA: #</strong><%=@registro.paciente.n_hclinica%></small><br>
 			<small><strong>DISCAPACIDAD: </strong> <%= best_in_place @registro.paciente, :discapacidad, type: :select, collection: [['Ninguna', 'Ninguna'],['Fisica','Fisica'],['Intelectual','Intelectual'],['Mental','Mental'],['Auditiva','Auditiva'],['Visual','Visual'],['Otra','Otra']] %></small> <span class="fa fa-pencil text-info">..</span><br>
 			<small><strong>EDAD:</strong>
-				<%= exact_age(@registro.paciente.cliente.fecha_de_nacimiento) %> <small class="text-muted"><%= @registro.paciente.cliente.fecha_de_nacimiento %></small>
+				<%= exact_age(@registro.paciente.cliente_fecha_de_nacimiento) %> <small class="text-muted"><%= @registro.paciente.cliente_fecha_de_nacimiento %></small>
 			</small><br>
 			<small><strong>NACIONALIDAD: </strong><%= @registro.paciente.informacion_adicional_paciente.nacionalidad%></small>
 		</div>

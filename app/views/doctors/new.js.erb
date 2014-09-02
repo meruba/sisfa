@@ -1,4 +1,6 @@
 m = $('#content_modal');
 m.html('<%= j(render partial: 'doctors/partials/form', locals: {doctor: @doctor}) %>');
 window.Helpers.FormsHelper.init();
+window.Helpers.AutocompleteHelper.init_autocomplete_no_opcions();
+
 

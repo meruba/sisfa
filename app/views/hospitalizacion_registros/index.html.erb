@@ -1,5 +1,5 @@
-<div class="row title-history">
-  <h2 class="fix-margin">Pacientes Hospitalizados</h2>
+<div class="row title-green-head">
+  <h2 class="text-center">Pacientes Hospitalizados</h2>
 </div>
 <div class="row info-paciente">
   <div class="row">
@@ -26,6 +26,6 @@
       <span class="ingresado-type"><span class="fa fa-check-circle text-success"></span> ALTA</span>
       <li class="ingresado-type"><span class="fa fa-circle text-info"></span> INTERNADO</li>
     </ul>
-    <%= render 'internados'  %>
+    <%= render 'internados', :internados => @internados  %>
   </div>
 </div>

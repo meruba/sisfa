@@ -13,7 +13,7 @@
 		<% @turnos.each do |t| %>
 		<tr>
 			<td><%= t.numero %></td>
-			<td><%= t.paciente.cliente.nombre %></td>
+			<td><%= t.paciente.cliente_nombre %></td>
 			<td><%= local_date(t.hora,"time") %></td>
 			<td>-----------------</td>
 		</tr>			

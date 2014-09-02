@@ -1,0 +1,10 @@
+<%case @tipo_factura%>
+  <%when "ventanilla"%>
+    <%=  render "reportes/tipo/facturas"%>
+  <%when "hospitalizacion"%>
+    <%=  render "reportes/tipo/hospitalizaciones"%>
+  <%when "transferencia"%>
+    <%=  render "reportes/tipo/transferencias"%>
+  <%when "compra"%>
+    <%=  render "reportes/tipo/compras"%>
+<% end %>

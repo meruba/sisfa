@@ -5,12 +5,28 @@
 	<td><%= item.pedido_por %></td>
 	<td><%= if item.despachado_por.nil? then "En espera.." else item.despachado_por end %></td>
 	<% if item.despachado %>
-	<td><span class="fa fa-check-circle fa-2x text-success"></span></td>
+	<td>
+		<% unless item.anulado %>
+		<span class="label label-success">entregado</span>
+		<% else %>
+		<span class="label label-danger">anulado</span>
+		<% end %>
+	</td>
 	<% else %>
 	<td>
-		<% unless @permiso %>
-		<%= link_to '', despachar_item_hospitalizacion_path(item), method: :post, class: "fa fa-check-circle fa-2x text-info clickable", :remote => true%>
-		<span class="fa fa-times-circle fa-2x text-danger clickable"></span>
+		<% if @permiso_farmacia %>
+		<%= link_to '', despachar_item_hospitalizacion_path(item), method: :post, class: "fa fa-check-circle fa-2x text-success clickable", :remote => true%>
+		<% end %>
+	</td>
+	<% end %>
+	<% if item.despachado %>
+	<td>
+		<% if item.anulado %>
+		<%= item.razon_anulada  %>
+		<% else %>
+		<% if @permiso_farmacia%>
+		<%= link_to '', anular_item_hospitalizacion_path(item), :remote => true, :rel => "tooltip",  'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Anular',  class: "ttip fa fa-thumbs-down text-muted fa-2x" %>
+		<% end %>
 		<% end %>
 	</td>
 	<% end %>

@@ -2,7 +2,7 @@
   <% @registros.each do |r|  %>
   <li class="pacientes-hospitalizados items">
     <span class="internado-name">
-      <%=r.paciente.cliente.nombre%>
+      <%=r.paciente.cliente_nombre%>
     </span>
     <span class="internado-hc">
       H.C #<%= r.paciente.n_hclinica%>

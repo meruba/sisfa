@@ -3,7 +3,7 @@ class HospitalizacionRegistrosController < ApplicationController
   before_filter :is_doctor, only: [:edit, :update]
   before_filter :shared_permission, except: [:edit, :update]
   before_action :find_paciente, only: [:new, :create, :edit]
-  before_action :set_registro, only: [:edit, :update, :show]
+  before_action :set_registro, only: [:edit, :update, :show, :dar_alta_enfermeria]
 
   def index
     @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_ingreso => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente => :cliente)
@@ -27,7 +27,7 @@ class HospitalizacionRegistrosController < ApplicationController
       end
     end
   end
-  
+
   def show
     respond_to do |format|
       format.js
@@ -57,14 +57,24 @@ class HospitalizacionRegistrosController < ApplicationController
   def update
     respond_to do |format|
       @registro.update(hospitalizacion_registro_params.merge(alta: true))
-      format.html { 
-      if @registro.save
-        redirect_to doctors_dashboard_path, notice: 'Paciente Dado de Alta'
-      else
-        render action: 'edit'
-      end
+      format.html {
+        if @registro.save
+          redirect_to doctors_dashboard_path, notice: 'Paciente Dado de Alta'
+        else
+          render action: 'edit'
+        end
       }
       format.json { respond_with_bip(@registro) }
+    end
+  end
+
+  def dar_alta_enfermeria
+    unless @registro.alta_enfermeria
+      @registro.alta_enfermeria = true
+      @registro.save
+    end
+    respond_to do |format|
+      format.js
     end
   end
 
@@ -72,20 +82,20 @@ class HospitalizacionRegistrosController < ApplicationController
 
   def hospitalizacion_registro_params
     params.require(:hospitalizacion_registro).permit :doctor_id,
-      :fecha_de_ingreso,
-      :fecha_de_salida,
-      :especialidad,
-      :medico_asignado,
-      :diagnostico_ingreso,
-      :diagnostico_salida,
-      :discapacidad,
-      :dias_hospitalizacion,
-      :diagnostico_sec_egreso1,
-      :diagnostico_sec_egreso2,
-      :condicion_egreso,
-      :codigo_cie,
-      :especialidad_egreso,
-      :alta
+    :fecha_de_ingreso,
+    :fecha_de_salida,
+    :especialidad,
+    :medico_asignado,
+    :diagnostico_ingreso,
+    :diagnostico_salida,
+    :discapacidad,
+    :dias_hospitalizacion,
+    :diagnostico_sec_egreso1,
+    :diagnostico_sec_egreso2,
+    :condicion_egreso,
+    :codigo_cie,
+    :especialidad_egreso,
+    :alta
   end
 
   def find_paciente

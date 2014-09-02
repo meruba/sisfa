@@ -14,6 +14,8 @@
 #  subtotal      :float            not null
 #  entregado_a   :string(255)
 #  subtotal_12   :float            not null
+#  razon_anulada :string(255)
+#  anulado       :boolean          default(FALSE)
 #
 
 class Traspaso < ActiveRecord::Base
@@ -31,7 +33,7 @@ class Traspaso < ActiveRecord::Base
   #callbacks
   before_validation :set_transpaso_values
   after_save :add_liquidacion
-  
+
 	#methods
 	def self.disminuir_stock (item_traspasos)
 		item_traspasos.each do |item|
@@ -57,7 +59,7 @@ class Traspaso < ActiveRecord::Base
 				item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
 				if ingreso.producto.hasiva == true
 					subtotal_12 = subtotal_12 + item.total
-					item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12)).round(2)
+					item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12).round(2))
 				else
 					subtotal = subtotal + item.total
 					item.iva = 0
@@ -71,6 +73,24 @@ class Traspaso < ActiveRecord::Base
 		self.total = self.subtotal + self.subtotal_12 + self.iva
 		self.total = self.total.round(2)
   end
+
+	def rollback_traspaso
+		self.item_traspasos.each do |item|
+			ingreso_producto = item.ingreso_producto
+			ingreso_producto.cantidad = ingreso_producto.cantidad + item.cantidad
+			ingreso_producto.producto.stock = ingreso_producto.producto.stock + item.cantidad #suma al stock si se anula
+			Lineakardex.create(:kardex => ingreso_producto.producto.kardex, :tipo => "Entrada", :fecha => Time.now, :cantidad => item.cantidad, :v_unitario => item.ingreso_producto.producto.precio_venta, :modulo => "Traspaso a " + self.servicio, :observaciones => "Transferencia anulada" )
+			ingreso_producto.save
+			ingreso_producto.producto.save
+		end
+	end
+
+	def anular_traspaso(razon)
+		self.anulado = true
+		self.razon_anulada = razon
+		self.rollback_traspaso
+		self.save
+	end
 
   def add_liquidacion
   	total = 0

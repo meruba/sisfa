@@ -19,10 +19,6 @@ class Kardex < ActiveRecord::Base
   belongs_to :producto
 
 #methods
-	def lineakardex_mes
-		lineas = self.lineakardexes.where(:created_at => Time.now.beginning_of_month..Time.now.end_of_month)
-	end
-
 	def cantidad_salida
 		cantidad = self.lineakardexes.where(:tipo => "Salida", :created_at => Time.now.beginning_of_month..Time.now.end_of_month).sum(:cantidad)
 	end

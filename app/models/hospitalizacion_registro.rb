@@ -9,6 +9,7 @@
 #  medico_asignado         :string(255)
 #  created_at              :datetime
 #  updated_at              :datetime
+#  historia_clinica_id     :integer
 #  diagnostico_ingreso     :string(255)
 #  diagnostico_salida      :string(255)
 #  discapacidad            :string(255)
@@ -80,7 +81,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 
 	#class methods
 	def self.autocomplete(params)
-		pacientes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(alta: false).where("pacientes.n_hclinica like ?", "%#{params}%").references(paciente: [:cliente])
+		pacientes = HospitalizacionRegistro.includes(paciente: [:cliente]).where(alta: false).where("clientes.nombre like ?", "%#{params}%").references(paciente: [:cliente])
 		pacientes = pacientes.map do |hospitalizado|
 			{
 				:id => hospitalizado.id,
@@ -88,7 +89,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 				:value => hospitalizado.paciente.cliente.nombre
 			}
 		end
-		pacientes 
+		pacientes
 	end
 
 	def self.reporte(fecha)

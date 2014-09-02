@@ -23,10 +23,11 @@ private
         (h.hospitalizacion_registro.paciente.cliente.nombre),
         (h.total),
         (@view.human_boolean(h.hospitalizacion_registro.alta)),
-        (link_to '', h, :remote => true, :rel=> 'tooltip', :title=>'Imprimir','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-print btn btn-info") + " " +
+        (@view.human_boolean(h.hospitalizacion_registro.alta_enfermeria)),
+        (link_to '', h, :remote => true, :rel=> 'tooltip', :title=>'Reporte','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-print btn btn-info") + " " +
         (link_to '', @view.hospitalizacion_show_pedido_path(h), :rel=> 'tooltip', :title=>'Despachar', class: "ttip mostrar fa fa-check btn btn-success")
       ]
-    end 
+    end
   end
 
   def hospitalizacion
@@ -34,10 +35,10 @@ private
   end
 
   def fetch_hospitalizacion
-    hospitalizacion = Hospitalizacion.order("#{sort_column} #{sort_direction}")
+    hospitalizacion = Hospitalizacion.includes(hospitalizacion_registro: [paciente: [:cliente]]).order("#{sort_column} #{sort_direction}").references(hospitalizacion_registro: [paciente: [:cliente]])
     hospitalizacion = hospitalizacion.page(page).per_page(per_page)
     if params[:sSearch].present?
-      hospitalizacion = hospitalizacion.where("numero like :search or servicio like :search", search: "%#{params[:sSearch]}%")
+      hospitalizacion = hospitalizacion.includes(hospitalizacion_registro: [paciente: [:cliente]]).where("numero like :search or clientes.nombre like :search", search: "%#{params[:sSearch]}%")
     end
     hospitalizacion
   end
@@ -51,7 +52,7 @@ private
   end
 
   def sort_column
-    columns = %w[numero servicio user_id iva total]
+    columns = %w[numero]
     columns[params[:iSortCol_0].to_i]
   end
 

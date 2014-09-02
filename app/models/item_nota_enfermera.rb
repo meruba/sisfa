@@ -4,7 +4,6 @@
 #
 #  id                :integer          not null, primary key
 #  nota_enfermera_id :integer
-#  user_id           :integer
 #  fecha             :datetime
 #  hora              :datetime
 #  nota              :string(255)
@@ -25,7 +24,7 @@ class ItemNotaEnfermera < ActiveRecord::Base
 		unless self.hora.nil?
 			t = self.hora.to_s.scan(/\d\d/)
 			if t.empty?
-				errors.add :hora, "Formato de hora no valida" 
+				errors.add :hora, "Formato de hora no valida"
 			end
 		end
 	end

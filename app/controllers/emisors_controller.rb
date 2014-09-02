@@ -6,20 +6,13 @@ class EmisorsController < ApplicationController
   def new
     @emisor = Emisor.new
   end
-  
+
   def edit
     if Emisor.first
       @emisor = Emisor.first
     else
       redirect_to action: "new"
-    end    
-  end
-
-  def show
-  end
-
-  def configuracion 
-    # @emisor = Emisor.new   
+    end
   end
 
   def create
@@ -41,12 +34,12 @@ class EmisorsController < ApplicationController
   end
 
   private
-  
+
   def emisor_params
     params.require(:emisor).permit(:ruc,
       :nombre_establecimiento,
       :numero_inicial_factura,
-      :saldo_inicial_inventario)  
+      :saldo_inicial_inventario)
   end
 
   def find_emisor

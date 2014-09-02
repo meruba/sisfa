@@ -8,7 +8,7 @@
   $("#myModal").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
-  $(".doctores").html('<%= j render 'doctors/partials/doctors', doctores: @doctores %>');
+  $(".all-doctors").html('<%= j render 'doctors/partials/doctors', doctores: @doctores %>');
   window.Helpers.FormsHelper.init()
   alertify.success("Doctor modificado");
 <%- end %>

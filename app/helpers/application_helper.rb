@@ -37,7 +37,7 @@ module ApplicationHelper
         date = date.strftime("%H:%M")
       end
     end
-    date 
+    date
   end
 
   def human_boolean(boolean)

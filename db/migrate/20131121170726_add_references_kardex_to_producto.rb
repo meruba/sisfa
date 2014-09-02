@@ -4,7 +4,7 @@ class AddReferencesKardexToProducto < ActiveRecord::Migration
   		t.references :producto, :null => false
   end
   end
-  
+
   def down
   	remove column :kardexes, :producto_id
   end

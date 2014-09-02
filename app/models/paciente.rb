@@ -30,24 +30,23 @@ class Paciente < ActiveRecord::Base
 	has_one :informacion_adicional_paciente, dependent: :destroy
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 	
+	delegate :nombre, :direccion, :telefono, :email, :numero_de_identificacion, :sexo, :fecha_de_nacimiento, :estado_civil, :to => :cliente, :prefix => true
+	
 	#callbacks
-	before_validation :set_values
 
 	#validation
 	validates :tipo, :n_hclinica, :presence => true
   validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
   validates :n_hclinica, :uniqueness =>  true
-
+  validates :grado, :estado, :pertenece_a, :unidad, :presence => true, :if => "tipo == 'militar'"
+  validates :codigo_issfa, :presence => true, :if => "tipo == 'militar' or tipo == 'familiar'"
+  validates :parentesco, :presence => true, :if => "tipo == 'familiar'"
 #methods
 	def cliente_attributes=(attributes)
 		if attributes['id'].present?
 	    self.cliente = Cliente.find(attributes['id'])
 	  end
 	  super
-	end
-
-	def set_values
-		self.fecha_hclinica = Time.now
 	end
 
 #class methods
@@ -63,7 +62,7 @@ class Paciente < ActiveRecord::Base
         :n_hclinica => paciente.n_hclinica
       }
     end
-    pacientes 
+    pacientes
   end
 	
 	def self.medical_records(paciente)

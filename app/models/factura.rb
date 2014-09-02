@@ -24,7 +24,7 @@
 
 class Factura < ActiveRecord::Base
 #relations
-has_many :cierrecajas
+has_many :cierre_caja_items
 belongs_to :cliente
 belongs_to :proveedor
 belongs_to :user
@@ -32,7 +32,6 @@ has_many :item_facturas
 has_many :ingreso_productos, :through => :item_facturas
 
 #nested
-# accepts_nested_attributes_for :cliente
 accepts_nested_attributes_for :item_facturas, :cliente
 
 #valitations
@@ -55,8 +54,17 @@ def cliente_attributes=(attributes)
 end
 
 def add_to_cierre
-	CierreCaja.create(:user => self.user, :factura => self, :is_cerrado => false)
+	if self.user.cierre_cajas.last
+		if self.user.cierre_cajas.last.is_cerrado
+			CierreCaja.create(:user => self.user, :is_cerrado => false)			
+		end
+		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)
+	else
+		CierreCaja.create(:user => self.user, :is_cerrado => false)
+		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)	
+	end
 end
+
 def set_factura_values
 	self.fecha_de_emision = Time.now
   self.fecha_de_vencimiento = Time.now + 30.days
@@ -73,7 +81,7 @@ def set_factura_values
 			item.total = (ingreso.producto.precio_venta * cantidad).round(2) #asigna valor total del item
 			if ingreso.producto.hasiva == true
 				subtotal_12 = subtotal_12 + item.total
-				item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12)).round(2)
+				item.iva = (cantidad * (ingreso.producto.precio_venta * 0.12).round(2))
 			else
 				subtotal_0 = subtotal_0 + item.total
 				item.iva = 0

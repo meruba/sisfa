@@ -1,7 +1,7 @@
 class EntregaTurnosController < ApplicationController
 	before_filter :require_login
   before_filter :is_admin_or_enfermera_enfermeria
-	before_action :find_entrega, only: [:show]
+	before_action :find_entrega, only: [:show, :destroy]
 	before_action :find_entrega_to_item, only: [:view_create_item]
 	
 	def index
@@ -41,6 +41,13 @@ class EntregaTurnosController < ApplicationController
 	def view_create_item
 		@item = ItemEntregaTurno.new
 		show()
+	end
+	
+	def destroy
+		@entrega.destroy
+		respond_to do |format|
+			format.js
+		end
 	end
 
 	private

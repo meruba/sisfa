@@ -1,13 +1,21 @@
 class TraspasosController < ApplicationController
 	before_filter :require_login
   before_filter :is_admin_or_vendedor_farmacia
+  before_action :find_traspaso, :only =>[:show, :anular, :anulado]
 
 	 def index
     respond_to do |format|
       format.html
-      format.json { render json: TraspasosDatatable.new(view_context) }
+      format.json { render json: TraspasosDatatable.new(view_context, "no_anulada") }
     end
   end
+
+  def index_anulada
+		respond_to do |format|
+			format.html
+      format.json { render json: TraspasosDatatable.new(view_context, "anulada") }
+		end
+	end
 
 	def new
 		@traspaso = Traspaso.new
@@ -27,13 +35,25 @@ class TraspasosController < ApplicationController
 	end
 
 	def show
-		@traspaso = Traspaso.find(params[:id])
 		respond_to do |format|
       format.js
       format.pdf do
 				render :pdf => "proforma", :layout => 'report.html', :template => "traspasos/traspaso_pdf.html.erb"
 			end
     end
+	end
+	
+	def anular
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def anulado
+		unless @traspaso.anulado
+			@traspaso.anular_traspaso(params[:razon])
+			redirect_to traspasos_path, :notice => "Transferencia Anulada"
+		end
 	end
 
 	private
@@ -54,6 +74,10 @@ class TraspasosController < ApplicationController
 			:total,
 			:ingreso_producto_id
 		]
+	end
+
+	def find_traspaso
+		@traspaso = Traspaso.find(params[:id])
 	end
 	
 end

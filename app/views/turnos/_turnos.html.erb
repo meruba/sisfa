@@ -25,9 +25,10 @@
 					<% end %>
 					<td class="text-center">
 						<% if turno.atendido %>
-						<i class="fa fa-check-circle text-success"></i> 
+						<i class="fa fa-check-circle text-success"></i>
 						<% else %>
 						<i class="fa fa-circle text-danger"></i>
+						<%= link_to "", turno, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar' %>
 						<% end %>
 					</td>
 				</tr>			

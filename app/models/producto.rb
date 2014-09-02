@@ -17,15 +17,15 @@
 
 class Producto < ActiveRecord::Base
 
-#callbacks 
+#callbacks
   before_create :set_precios
   before_update :set_precios
   after_create :set_kardex
 
-#validations  
+#validations
   validates :nombre, :ganancia, :precio_compra, :presence => true
   validates :nombre, :length => { :maximum => 100 }
- 
+
 #relations
   has_many :ingreso_productos
   has_one :kardex
@@ -55,7 +55,7 @@ class Producto < ActiveRecord::Base
       :nombre_generico => producto.nombre_generico
     }
     end
-    productos 
+    productos
   end
 
   def ingreso_productos_attributes=(attributes)
@@ -76,16 +76,16 @@ class Producto < ActiveRecord::Base
   end
 
   def dinero_venta
-    dinero = self.precio_venta * self.kardex.cantidad_salida 
+    dinero = self.precio_venta * self.kardex.cantidad_salida
   end
 
-  def self.grouped_by_casa
-    agrupados = []
-    Producto.group("casa_comercial").each do |agrupado|
-      agrupados << {:cantidad => agrupado.cantidad_disponible, :casa_comercial => agrupado.casa_comercial, :inversion => agrupado.precio_compra * agrupado.cantidad_disponible }
-    end
-    agrupados
-  end
+  # def self.grouped_by_casa
+  #   agrupados = []
+  #   Producto.group("casa_comercial").each do |agrupado|
+  #     agrupados << {:cantidad => agrupado.cantidad_disponible, :casa_comercial => agrupado.casa_comercial, :inversion => agrupado.precio_compra * agrupado.cantidad_disponible }
+  #   end
+  #   agrupados
+  # end
 
   private
   def set_kardex

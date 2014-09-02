@@ -1,1 +1,4 @@
-<li><%= link_to hoja.servicio ,entrega_turno_view_create_item_path(hoja) %></li>
+<li id="<%= hoja.id  %>">
+	<%= link_to hoja.servicio ,entrega_turno_view_create_item_path(hoja) %>
+	<%= link_to "", hoja, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
+</li>
