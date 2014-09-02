@@ -1,2 +1,2 @@
 m = $('#content_modal');
-m.html('<%= j(render partial: 'show', locals: {factura: @factura}) %>');
+m.html('<%= j(render 'show', factura: @factura) %>');

@@ -39,7 +39,7 @@ class EmergenciaRegistrosController < ApplicationController
 			if @registro.update(emergencia_registro_params.merge(registrado: true))
         format.html { redirect_to doctors_dashboard_path, notice: 'Emergencia Almacenada' }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
 			end
 		end
 	end

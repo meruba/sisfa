@@ -20,7 +20,7 @@ class FacturaComprasController < ApplicationController
       if @facturacompra.save
         redirect_to facturas_path, :notice => "Factura Guardada"
       else
-        render action: "new"
+        render "new"
       end
   end
 

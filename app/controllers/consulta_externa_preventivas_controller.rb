@@ -33,7 +33,7 @@ class ConsultaExternaPreventivasController < ApplicationController
 			if @consulta.update(consulta_registro_params.merge(registrado: true))
         format.html { redirect_to doctors_path, notice: 'Registro Almacenado' }
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
 			end
 		end
 	end

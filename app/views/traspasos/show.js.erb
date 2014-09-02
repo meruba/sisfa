@@ -1,3 +1,3 @@
 m = $('#content_modal');
-m.html('<%= j(render partial: 'show', locals: {trasferencia: @trasferencia}) %>');
+m.html('<%= j(render 'show', trasferencia: @trasferencia) %>');
 window.Helpers.ButtonsHelper.init();

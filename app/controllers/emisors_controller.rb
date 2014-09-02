@@ -11,7 +11,7 @@ class EmisorsController < ApplicationController
     if Emisor.first
       @emisor = Emisor.first
     else
-      redirect_to action: "new"
+      redirect_to "new"
     end
   end
 
@@ -20,7 +20,7 @@ class EmisorsController < ApplicationController
     if @emisor.save
       redirect_to facturas_path, :notice => "Parámetros configurados correctamente"
     else
-      render action: "new"
+      render "new"
     end
   end
 
@@ -29,7 +29,7 @@ class EmisorsController < ApplicationController
     if @emisor.update(emisor_params)
       redirect_to facturas_path, :notice => "Parámetros configurados correctamente"
     else
-      render action: "edit"
+      render "edit"
     end
   end
 

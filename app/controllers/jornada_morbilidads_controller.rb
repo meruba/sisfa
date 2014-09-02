@@ -14,7 +14,7 @@ class JornadaMorbilidadsController < ApplicationController
 			@jornada = JornadaMorbilidad.new
 			@consultas = @doctor.consulta_externa_morbilidads.today
 		else
-			render :template => "results/was_send"
+			render "results/was_send"
 		end
 	end
 
