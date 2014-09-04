@@ -5,7 +5,9 @@
 <%- else %>
   $.getScript("/traspasos/<%= @traspaso.id%>");
   $('#myModal').modal({
-    remote: ""
+    remote: "",
+    backdrop: "static",
+    keyboard: false
   });
   $('#myModal').on("shown.bs.modal", function() {
     $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info reset-fields" href="/traspasos/<%= @traspaso.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')

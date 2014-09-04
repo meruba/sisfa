@@ -26,7 +26,7 @@ class FacturasDatatable
         (factura.numero),
         (factura.total),
         (factura.user.username),
-        (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info") + " " +
+        (link_to '', factura, :remote => true,  :rel => 'tooltip', 'data-toggle' =>  "modal", 'data-target' => '#myModal', 'data-backdrop' => 'static', :title => 'Mostrar', class: "ttip fa fa-eye btn btn-info") + " " +
         (link_to '', @view.anular_factura_path(factura), :remote => true, :rel => "tooltip",  'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Anular',  class: "ttip fa fa-thumbs-down btn btn-danger")
         # (link_to 'Create PDF',factura, :format => :pdf)
       ]
