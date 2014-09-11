@@ -1,25 +1,15 @@
-<div class="col-md-10 col-md-offset-1">
-  <legend>Inventario</legend>
-<table class="table table-print">
-<thead>
-  <tr>
-    <th>Casa comercial</th>
-    <th>Producto</th>
-    <th>Cantidad</th>
-    <th>Precio Compra</th>
-    <th>Inversion</th>
-  </tr>
-</thead>
-<tbody>
-  <% @inventario.each do |i|  %>
-  <tr>
-    <td><%= i.casa_comercial %></td>
-    <td><%= i.nombre %></td>
-    <td><%= i.stock %></td>
-    <td>$ <%= i.precio_compra %></td>
-    <td>$ <%= i.stock * i.precio_compra %></td>
-  </tr>
+<div class="row shadow col-md-10 col-md-offset-1">
+  <% unless request.format.to_sym == :pdf %>
+  <div class="col-md-12">
+    <div class="title-green-head">
+      <span><i><%=link_to "", productos_path, class: "fa fa-arrow-left"%></i></span>
+    </span>
+    <h3>INVENTARIO DE PRODUCTOS</h3>
+  </div><br>
+  <p>
+    Descargar:
+    <%= link_to "PDF", productos_inventario_path(params.merge(format: 'pdf')), :target => "_blank" %>
+  </p>
   <% end %>
-</tbody>
-</table>
+    <%= render "productos/inventario_actual"  %>
 </div>
