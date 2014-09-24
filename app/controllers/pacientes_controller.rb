@@ -57,11 +57,11 @@ class PacientesController < ApplicationController
 		else
 			case @paciente.tipo
 			when "civil"
-				render action: 'civil'
+				render 'civil'
 			when "familiar"
-				render action: 'familiar'
+				render 'familiar'
 			when "militar"				
-				render action: 'militar'
+				render 'militar'
 			end
 		end
 	end

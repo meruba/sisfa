@@ -14,7 +14,7 @@ class JornadaPreventivasController < ApplicationController
 			@jornada = JornadaPreventiva.new
 			@consultas = @doctor.consulta_externa_preventivas.today
 		else
-			render :template => "results/was_send"
+			render "results/was_send"
 		end
 	end
 

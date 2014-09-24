@@ -1,0 +1,35 @@
+<% if request.format.to_sym == :pdf %>
+<h3 class="text-center">INVENTARIO DE PRODUCTOS ACTUAL</h3>
+<h5>Fecha y Hora: <%= local_date(Time.now, "datetime")  %> </h5>
+<% end %>
+<table class="table table-hover">
+  <thead>
+    <tr class="title-green-head">
+      <th>Producto</th>
+      <th>Cantidad</th>
+      <th>Precio C</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @grouped.each do |casa_comercial, productos|  %>
+    <tr>
+      <th colspan="4"><%= casa_comercial%></th>
+    </tr>  
+    <% productos.each do |producto| %>      
+    <tr>
+      <td><%= producto.nombre %></td>
+      <td><%= producto.stock %></td>
+      <td>$<%= producto.precio_compra %></td>
+      <td>$<%= producto.stock * producto.precio_compra %></td>
+    </tr>
+    <% end %>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>TOTAL:</strong> </td>
+      <td><strong>$<%= redondear(@total_inventario)  %> </strong></td>
+    </tr>
+  </tbody>
+</table>

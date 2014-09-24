@@ -67,7 +67,7 @@ class ProveedorsController < ApplicationController
           render "success"
         }
       else
-        format.html { render action: 'new' }
+        format.html { render 'new' }
         format.js{
           render "success"
         }
@@ -85,7 +85,7 @@ class ProveedorsController < ApplicationController
         format.json { render action: 'show', status: :created, location: @proveedor}
         format.js { render "success"}
       else
-        format.html { render action: 'edit' }
+        format.html { render 'edit' }
         format.json { render json: @proveedor.errors, status: :unprocessable_entity }
         format.js { render "success"}
       end

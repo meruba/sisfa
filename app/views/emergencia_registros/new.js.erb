@@ -1,5 +1,5 @@
 m = $('#content_modal');
-m.html('<%= j(render partial: 'form_new', locals: {emergencia: @emergencia}) %>');
+m.html('<%= j(render 'form_new', emergencia: @emergencia) %>');
 window.Helpers.ButtonsHelper.init();
 window.Helpers.FormsHelper.init()
 window.Helpers.AutocompleteDoctor.init_autocomplete();

@@ -19,7 +19,7 @@ class HospitalizacionRegistrosController < ApplicationController
     @fecha = params[:fecha]
     @registros = HospitalizacionRegistro.reporte(params[:fecha].to_time.beginning_of_month..params[:fecha].to_time.end_of_month)
     if @registros.empty?
-      render :template => "results/not_result"
+      render "results/not_result"
     else
       respond_to do |format|
         format.html
@@ -61,7 +61,7 @@ class HospitalizacionRegistrosController < ApplicationController
         if @registro.save
           redirect_to doctors_dashboard_path, notice: 'Paciente Dado de Alta'
         else
-          render action: 'edit'
+          render 'edit'
         end
       }
       format.json { respond_with_bip(@registro) }

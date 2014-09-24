@@ -59,8 +59,15 @@ class ProductosController < ApplicationController
   end
 
   def inventario
-    # @inventario = Producto.includes(:ingreso_productos).where("ingreso_productos.cantidad != 0").references(:ingreso_productos)
-    @inventario = Producto.where("stock != 0")
+    inventario = Producto.where("stock != 0")
+    @grouped = inventario.group_by &:casa_comercial
+    @total_inventario = Producto.total_inventario()
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "inventario", :layout => 'report.html', :template => "productos/inventario.html.erb"
+      end
+    end
   end
 
   def caducado

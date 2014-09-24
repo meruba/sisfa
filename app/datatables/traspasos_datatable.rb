@@ -27,7 +27,7 @@ class TraspasosDatatable
           (traspaso.user.username),
           (traspaso.entregado_a),
           (traspaso.fecha_emision),
-          (link_to '', traspaso, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', class: "ttip mostrar fa fa-eye btn btn-info") + " " +
+          (link_to '', traspaso, :remote => true, :rel=> 'tooltip', :title=>'Mostrar','data-toggle' =>  "modal", 'data-target' => '#myModal', 'data-backdrop' => 'static', class: "ttip mostrar fa fa-eye btn btn-info") + " " +
           (link_to '', @view.anular_traspaso_path(traspaso), :remote => true, :rel => "tooltip",  'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Anular',  class: "ttip fa fa-thumbs-down btn btn-danger")
         ]
       end

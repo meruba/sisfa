@@ -79,13 +79,14 @@ class Producto < ActiveRecord::Base
     dinero = self.precio_venta * self.kardex.cantidad_salida
   end
 
-  # def self.grouped_by_casa
-  #   agrupados = []
-  #   Producto.group("casa_comercial").each do |agrupado|
-  #     agrupados << {:cantidad => agrupado.cantidad_disponible, :casa_comercial => agrupado.casa_comercial, :inversion => agrupado.precio_compra * agrupado.cantidad_disponible }
-  #   end
-  #   agrupados
-  # end
+  def self.total_inventario
+    total = 0
+    productos = Producto.where("stock != 0")
+    productos.each do |p|
+      total = total + p.stock * p.precio_venta
+    end
+    total
+  end
 
   private
   def set_kardex

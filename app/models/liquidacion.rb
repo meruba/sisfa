@@ -54,7 +54,7 @@ class Liquidacion < ActiveRecord::Base
 			self.create(
 				:emitidos_hospitalizacion => 1,
 				:saldo_anterior => self.last.saldo_final, #obtiene el saldo del mes anterior
-				:saldo_final => self.last.saldo_final - costo_venta,
+				:saldo_final => self.last.saldo_final,
 				:fecha => Time.now.beginning_of_month
 			)
 		else

@@ -7,7 +7,7 @@
 	</div><br>
 	<% if @admin %>
 	<%= link_to 'Inventario', productos_inventario_path, class: "print_button" %>
-	<%= link_to 'Importar productos', new_product_import_path, class: "print_button" %>
+	<%= link_to 'Importar productos', new_product_import_path, class: "btn btn-info" %>
 	<% end %>
 	<div class="table-responsive table-productos">
 		<%= render "productos", productos: @productos %>

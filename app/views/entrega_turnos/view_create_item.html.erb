@@ -48,7 +48,7 @@
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td colspan="3"><%= i.descripcion  %> </td>	
-				<td><%= i.user.username  %> 
+				<td><%= i.user.username  %>
 					<% if current_user == i.user %>
 					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
 					<% end %>
@@ -72,7 +72,7 @@
 				<td><%= i.hospitalizacion_registro.asignacion_cama.numero_cama  %> </td>
 				<td><%= i.hospitalizacion_registro.paciente.cliente_nombre  %> </td>
 				<td colspan="3"><%= i.descripcion  %> </td>
-				<td><%= i.user.username  %> 
+				<td><%= i.user.username  %>
 					<% if current_user == i.user %>
 					<%= link_to "", entrega_turno_item_entrega_turno_path(i.entrega_turno, i), method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar',:remote => true %>
 					<% end %>

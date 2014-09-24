@@ -1,2 +1,2 @@
 m = $('#content_modal');
-m.html('<%= j(render partial: 'show', locals: {producto: @producto}) %>');
+m.html('<%= j(render 'show', producto: @producto) %>');

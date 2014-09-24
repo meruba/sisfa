@@ -1,5 +1,5 @@
 m = $('#content_modal');
-m.html('<%= j(render partial: 'turno', locals: {turno: @turno}) %>');
+m.html('<%= j(render 'turno', turno: @turno) %>');
 window.Helpers.ButtonsHelper.init();
 window.Helpers.FormsHelper.init();
 window.Helpers.AutocompletePaciente.init_autocomplete();

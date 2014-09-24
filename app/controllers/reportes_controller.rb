@@ -32,7 +32,7 @@ class ReportesController < ApplicationController
         end
       end
     else
-      render :template => "results/not_result"
+      render "results/not_result"
     end
   end
 
@@ -47,7 +47,7 @@ class ReportesController < ApplicationController
         end
       end
     else
-      render :template => "results/not_result"
+      render "results/not_result"
     end
   end
 
@@ -63,7 +63,7 @@ class ReportesController < ApplicationController
         end
       end
     else
-      render :template => "results/not_result"
+      render "results/not_result"
     end
   end
 end
