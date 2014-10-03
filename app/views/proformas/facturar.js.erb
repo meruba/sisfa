@@ -1,0 +1,16 @@
+<%- if @factura.errors.any? %>
+  <%- @factura.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $.getScript("/facturas/<%= @factura.id%>");
+  $('#myModal').modal({
+    remote: "",
+    backdrop: "static",
+    keyboard: false
+  });
+  $('#myModal').on("shown.bs.modal", function() {
+    $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info reset-fields" href="/facturas/<%= @factura.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')
+  });
+    alertify.success("Receta Facturada");
+<%- end %>

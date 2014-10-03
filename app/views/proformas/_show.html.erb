@@ -56,4 +56,5 @@
 </div>
 <div class="modal-footer">
   <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+  <%= link_to "Facturar", facturar_proforma_path(proforma),:remote => true, method: :post, data: { confirm: 'Esta seguro?' }, :rel => "tooltip", :title => 'Facturar', class: "ttip btn btn-success"%>
 </div>
