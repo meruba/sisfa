@@ -1,10 +1,7 @@
 <div class="row col-md-10 shadow col-md-offset-1">
   <div class="col-md-12">
     <div class="title-blue-head">
-      <span>
-        <i><%= link_to "", new_proforma_path, title:'Nueva Proforma', class: "ttip fa fa-plus" %></i>
-      </span>
-      <h3>LISTA DE PROFORMAS</h3>
+      <h3>RECETAS EMITIDAS</h3>
     </div><br>
     <div class="table-responsive">
       <table class="data-table table-bordered data-table" data-source="<%= proformas_url(format: "json") %>">

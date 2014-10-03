@@ -3,13 +3,12 @@
     alertify.error("<%=j msg %>");
   <%- end %>
 <%- else %>
-alertify.success("Proforma Guardada");
+alertify.success("Receta Eviada");
 $.getScript("/proformas/<%= @proforma.id%>");
 $('#myModal').modal({
   remote: ""
 });
 $('#myModal').on("shown.bs.modal", function() {
-  $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info reset-fields" href="/proformas/<%= @proforma.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')
-  window.Helpers.ResetFields.init();
+  // window.Helpers.ResetFields.init();
 });
 <%- end %>

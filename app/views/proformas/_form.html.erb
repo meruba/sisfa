@@ -1,10 +1,7 @@
 <div class="row col-md-10 shadow col-md-offset-1">
   <div class="col-md-12">
     <div class="title-blue-head">
-      <span>
-        <i><%= link_to "", proformas_path, title:'Ver Proformas', class: "ttip fa fa-list" %></i>
-      </span>
-      <h3>Proforma</h3>
+      <h3>Emitir Receta</h3>
       <span class="rev-combo pull-right fecha_sin_hora"></span>
     </div>
   </div>
@@ -16,7 +13,7 @@
       <div class="row-fix-div">
         <div class="col-md-3 icon-client-center">
           <i class="fa fa-user fa-4x"></i><br>
-          <small>cliente</small>
+          <small>paciente</small>
         </div>
         <div class="col-md-8">
           <%= f.fields_for :cliente do |cliente_params| %>

@@ -19,10 +19,14 @@
 	<span class="fa fa-ambulance fa-3x"></span>
 	<h4><li><%=link_to("Proveedores", proveedors_path)%></li></h4>
 </li>
+<li class="pacientes-hospitalizados text-center grey-opcion" >
+  <span class="fa fa-book fa-3x"></span>
+  <h4><li><%= link_to("Reportes", reportes_path) %></li></h4>
+</li>
 <% end %>
 <li class="pacientes-hospitalizados text-center blue-opcion">
 	<span class="fa fa fa-file-text-o fa-3x"></span>
-	<h4><li><%=link_to("Proforma", new_proforma_path)%></li></h4>
+	<h4><li><%=link_to("Facturar recetas", proformas_path)%></li></h4>
 </li>
 <li class="pacientes-hospitalizados text-center red-opcion">
 	<span class="fa fa fa-exchange fa-3x"></span>
