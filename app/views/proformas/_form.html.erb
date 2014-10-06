@@ -6,7 +6,7 @@
     </div>
   </div>
   <div class="comprobante">
-    <%= nested_form_for @proforma, :html => {:id => "form-proforma"}, :remote => true do |f| %>
+    <%= nested_form_for @proforma, :html => {:id => "form-proforma"} do |f| %>
     <%= form_errors_for @proforma %>
     <div class="col-md-8">
       <!-- formulario datos del cliente -->

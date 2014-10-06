@@ -26,10 +26,11 @@ class ProformasController < ApplicationController
 	end
 
 	def create
-		respond_to do |format|
-			@proforma = Proforma.new(proforma_params)
-			@proforma.save
-			format.js
+		@proforma = Proforma.new(proforma_params)
+		if @proforma.save
+			redirect_to doctors_dashboard_path, :notice => "Receta enviada a farmacia"
+		else
+			render "new"
 		end
 	end
 
