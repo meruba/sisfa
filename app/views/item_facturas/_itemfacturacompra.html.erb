@@ -26,7 +26,7 @@
           </div>
           <div class="col-md-6">
             <%= f.label :categoria, "Categoría" %>
-            <%= f.text_field :categoria, :class => "categoria"%>
+            <%= f.select(:categoria, ['MEDICAMENTO','INSUMO','QUIRURJICOS'], {}, { :class => 'form-control' }) %>
           </div>
         </div>
         <%= f.label :casa_comercial %>
