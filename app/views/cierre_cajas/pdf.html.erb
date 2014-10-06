@@ -47,7 +47,7 @@
     </thead>
     <tbody>
       <% @cierrecaja.cierre_caja_items.each do |item|  %>
-      <tr>
+      <tr <%= 'style= text-decoration:line-through;' if item.factura.anulada %>>
         <td><%= item.factura.numero %></td>
         <td><%= item.factura.cliente.nombre %></td>
         <td><%= item.factura.subtotal_12 %></td>

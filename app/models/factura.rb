@@ -42,7 +42,8 @@ validates :total, :numericality => { :greater_than => 0 }
 #callbacks
 before_validation :set_factura_values
 
-after_save :add_liquidacion, :add_to_cierre
+after_save :add_liquidacion
+after_create :add_to_cierre
 
 #methods
 

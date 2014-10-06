@@ -16,7 +16,9 @@ class CierreCaja < ActiveRecord::Base
   def sumatoria
     sumatoria = 0
     self.cierre_caja_items.each do |cierre_caja|
-      sumatoria += cierre_caja.factura.total
+      unless cierre_caja.factura.anulada == true
+        sumatoria += cierre_caja.factura.total
+      end
     end
     sumatoria
   end
@@ -24,7 +26,9 @@ class CierreCaja < ActiveRecord::Base
   def subtotal12
     sumatoria = 0
     self.cierre_caja_items.each do |cierre_caja|
-      sumatoria += cierre_caja.factura.subtotal_12
+      unless cierre_caja.factura.anulada == true
+        sumatoria += cierre_caja.factura.subtotal_12
+      end      
     end
     sumatoria
   end
@@ -32,7 +36,9 @@ class CierreCaja < ActiveRecord::Base
   def subtotal0
     sumatoria = 0
     self.cierre_caja_items.each do |cierre_caja|
-      sumatoria += cierre_caja.factura.subtotal_0
+      unless cierre_caja.factura.anulada == true
+        sumatoria += cierre_caja.factura.subtotal_0
+      end      
     end
     sumatoria
   end
@@ -40,7 +46,9 @@ class CierreCaja < ActiveRecord::Base
   def sumatoriaiva
     sumatoria = 0
     self.cierre_caja_items.each do |cierre_caja|
-      sumatoria += cierre_caja.factura.iva
+      unless cierre_caja.factura.anulada == true
+        sumatoria += cierre_caja.factura.iva
+      end
     end
     sumatoria
   end

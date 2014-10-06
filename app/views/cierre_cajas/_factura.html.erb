@@ -3,15 +3,17 @@
     <tr>
       <th>Nº</th>
       <th>Cliente</th>
+      <th>Vendedor</th>
       <th>Dirección</th>
       <th>Fecha</th>
       <th>Total</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
+    <tr <%= 'style= text-decoration:line-through;' if factura.anulada %>>
       <td><%= factura.numero %></td>
       <td><%= factura.cliente.nombre %></td>
+      <td><%= factura.user.username %></td>
       <td><%= factura.cliente.direccion %></td>
       <td><%= local_date(factura.created_at,"date") %></td>
       <td><%= factura.total %></td>
