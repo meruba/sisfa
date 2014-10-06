@@ -40,7 +40,7 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality =>
 validates :total, :numericality => { :greater_than => 0 }
 
 #callbacks
-before_validation :set_factura_values
+before_validation :set_factura_values, :on => :create
 
 after_save :add_liquidacion
 after_create :add_to_cierre
