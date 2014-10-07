@@ -12,16 +12,19 @@ class FacturaComprasController < ApplicationController
   def show
     respond_to do |format|
       format.js
+      format.html
+      format.pdf do
+        render :pdf => "factura", :layout => 'report.html', :template => "factura_compras/pdf.html.erb"
+      end
     end
   end
 
   def create
+    respond_to do |format|
       @facturacompra = FacturaCompra.new(factura_params.merge(user_id: current_user.id))
-      if @facturacompra.save
-        redirect_to facturas_path, :notice => "Factura Guardada"
-      else
-        render "new"
-      end
+      @facturacompra.save
+      format.js
+    end
   end
 
   private
@@ -61,7 +64,8 @@ class FacturaComprasController < ApplicationController
           :lote,
           :fecha_caducidad,
           :cantidad,
-          :id
+          :id,
+          :_destroy
         ]
       ]
     ]

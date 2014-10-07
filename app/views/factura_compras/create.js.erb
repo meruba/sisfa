@@ -1,0 +1,17 @@
+<%- if @facturacompra.errors.any? %>
+  <%- @facturacompra.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $.getScript("/factura_compras/<%= @facturacompra.id%>");
+  $('#myModal').modal({
+    remote: "",
+    backdrop: "static",
+    keyboard: false
+  });
+  $('#myModal').on("shown.bs.modal", function() {
+    $('.modal-footer').html('<a class="print_button looks_like_button btn btn-info reset-fields" href="/factura_compras/<%= @facturacompra.id%>.pdf" target="_blank"><i class="fa fa-print"></i>  Imprimir</a>')
+    // window.Helpers.ResetFields.init();
+  });
+    alertify.success("Factura Guardada");
+<%- end %>

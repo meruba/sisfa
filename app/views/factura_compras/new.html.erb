@@ -9,7 +9,7 @@
     </div>
   </div>
   <div class="comprobante">
-    <%= nested_form_for @facturacompra, :html => {:class => "new_factura"} do |f| %>
+    <%= nested_form_for @facturacompra, :html => {:id => "form-factura"}, :remote => true do |f| %>
     <%= form_errors_for @facturacompra %>
     <div class="col-md-8">
       <div class="panel-group" id="accordion">
