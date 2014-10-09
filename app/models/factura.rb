@@ -57,12 +57,12 @@ end
 def add_to_cierre
 	if self.user.cierre_cajas.last
 		if self.user.cierre_cajas.last.is_cerrado
-			CierreCaja.create(:user => self.user, :is_cerrado => false)			
+			CierreCaja.create(:user => self.user, :is_cerrado => false)
 		end
-		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)
+		CierreCajaItem.create(:factura => self, :cierre_caja => self.user.cierre_cajas.last)
 	else
 		CierreCaja.create(:user => self.user, :is_cerrado => false)
-		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)	
+		CierreCajaItem.create(:factura => self, :cierre_caja => self.user.cierre_cajas.last)
 	end
 end
 
