@@ -13,6 +13,7 @@
 #  created_at    :datetime
 #  updated_at    :datetime
 #  cliente_id    :integer          not null
+#  facturado     :boolean          default(FALSE)
 #
 
 class Proforma < ActiveRecord::Base

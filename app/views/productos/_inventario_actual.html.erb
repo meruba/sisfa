@@ -23,14 +23,14 @@
       <td><%= producto.stock %></td>
       <td>$<%= producto.precio_compra %></td>
       <td>$<%= producto.dinero_compra()%></td>
-      <% total =  total + producto.dinero_compra()%>
+      <% total = total + producto.dinero_compra()%>
     </tr>
     <% end %>
     <tr>
       <td></td>
       <td></td>
       <td><strong>Total casa:</strong></td> 
-      <td><strong>$<%= total %></strong></td>
+      <td><strong>$<%= redondear(total) %></strong></td>
     </tr>
     <% end %>
     <tr>
