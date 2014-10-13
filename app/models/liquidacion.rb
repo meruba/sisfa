@@ -253,7 +253,7 @@ class Liquidacion < ActiveRecord::Base
 			)
 		else #se actualiza liquidacion mes
 			self.update(b,
-			:iva_compra => b.iva_traspaso + c.iva,
+			:iva_compra => b.iva_compra + c.iva,
 			:subtotal_compra => b.subtotal_compra + c.subtotal_0,
 			:subtotal12_compra => b.subtotal12_compra + c.subtotal_12,
 			:total_compra => b.total_compra + c.total,
