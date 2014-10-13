@@ -19,8 +19,10 @@ window.Helpers.Datepicker = {
 
 jQuery window.Helpers.Datepicker.init_datepicker
 $(document).on "page:load", window.Helpers.Datepicker.init_datepicker
-$(document).on "page:load", window.Helpers.Datepicker.init_datepicker_month
 $(document).on "nested:fieldAdded", window.Helpers.Datepicker.init_datepicker
+
+jQuery window.Helpers.Datepicker.init_datepicker_month
+$(document).on "page:load", window.Helpers.Datepicker.init_datepicker_month
 $(document).on "nested:fieldAdded", window.Helpers.Datepicker.init_datepicker_month
 
 
