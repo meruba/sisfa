@@ -29,9 +29,11 @@ class FacturaComprasProducto < ActiveRecord::Base
     cantidad = 0
     if attributes['id'].present?
       self.producto = Producto.find(attributes['id'])
-      attributes[:ingreso_productos_attributes].each do |value,key|
-        cantidad = cantidad + key[:cantidad].to_f
-      end
+      if attributes[:ingreso_productos_attributes].blank? == false
+        attributes[:ingreso_productos_attributes].each do |value,key|
+          cantidad = cantidad + key[:cantidad].to_f
+        end
+      end 
       if attributes['hasiva'] == "0"
         iva = 0
       else
