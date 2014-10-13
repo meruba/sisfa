@@ -3,15 +3,22 @@
     <h3 class="text-center">
       <%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %>
       HOSPITAL BÁSICO 7 B.I LOJA</h3>
-    <div class="col-xs-8">
-      <h4>Factura de compra: #<%= @factura.numero%></h4>
+    <div class="col-xs-7">
       <h4>Proveedor: <%= @factura.proveedor.nombre_o_razon_social%></h4>
       <p>
         C.I o R.U.C: <%= @factura.proveedor.numero_de_identificacion%><br>
         Direccion: <%= @factura.proveedor.direccion%><br>
         Telefono: <%= @factura.proveedor.telefono%><br>
+        
       </p>
       <h3>
+    </div>
+    <div class="col-xs-5">
+      <h4>Factura: #<%= @factura.numero%></h4>
+      <p>
+        Fecha de factura: <%= local_date(@factura.fecha_de_emision,"date")  %><br>
+        Fecha de ingreso: <%= local_date(@factura.created_at,"date")  %>
+      </p>
     </div>
   </div>
   <table class="table table-bordered">
@@ -40,8 +47,8 @@
     <div class="col-xs-2 col-xs-offset-8">
       <p>
         <strong>
-          Sub 12%: <br>
-          Sub 0%: <br>
+          Sub 12% : <br>
+          Sub 0% : <br>
           IVA : <br>
           Total : <br>
         </strong>

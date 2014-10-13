@@ -33,7 +33,8 @@
                   <%=  proveedor_params.text_field :nombre_o_razon_social, class: "form-control-border nombre", :placeholder => "Nombre o Razon Social" %>
                   <%=  proveedor_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección"%>
                   <%=  proveedor_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono"%>
-                  <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de Factura", required: true%>
+                  <%= f.text_field :numero, class: "form-control-border", :placeholder => "Ingrese # de factura", required: true%>
+                  <%= f.text_field :fecha_de_emision, class: "form-control-border datepicker", :placeholder => "Fecha de factura", required: true%>
                   <% end %>
                 </div>
               </div>
