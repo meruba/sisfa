@@ -55,4 +55,21 @@ class Hospitalizacion < ActiveRecord::Base
     self.total = 0
 		Liquidacion.add_hospitalizacion(self)	
 	end
+
+	def grouped_by_categoria
+		medicamento, insumo, quirurjico,grouped = [],[],[],[]
+		self.item_hospitalizacions.where('anulado = false and total != 0').each do |item|
+			case item.ingreso_producto.producto.categoria
+			when "MEDICAMENTO"
+				medicamento << item
+			when "INSUMO"
+				insumo << item
+			when "QUIRURJICO"
+				quirurjico << item	
+			end
+			grouped = [medicamento, insumo, quirurjico]
+		end
+		grouped
+	end
+
 end

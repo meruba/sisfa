@@ -4,6 +4,9 @@
 <div class="row info-paciente">
 	<h4>Paciente: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente_nombre  %> </h4>
 	<h4>Historia C: <%= @hospitalizacion.hospitalizacion_registro.paciente.n_hclinica  %> </h4>
+	<% if @permiso_farmacia%>
+  <%= link_to "Reporte PDF", hospitalizacion_show_pedido_path(params.merge(format: 'pdf')), :target => "_blank" %>
+  <% end %>
 	<%= form_for @item, :html => {:class => "form-hospitalizacion"}, :remote => true do |f| %>
 	<%= form_errors_for @item %>
 	<% if @permiso_enfermeria %>

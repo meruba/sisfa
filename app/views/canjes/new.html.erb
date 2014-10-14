@@ -37,7 +37,7 @@
           </div>
           <div class="col-md-6">
             <%= producto_params.label :categoria %>
-            <%= producto_params.text_field :categoria, :class => "categoria"%>
+            <%= producto_params.select(:categoria, ['MEDICAMENTO','INSUMO','QUIRURJICO'], {}, { :class => 'form-control' }) %>
           </div>
         </div>
         <%= producto_params.label :casa_comercial %>
