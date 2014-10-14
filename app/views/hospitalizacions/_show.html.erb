@@ -19,28 +19,49 @@
 		<%=@hospitalizacion.hospitalizacion_registro.dias_hospitalizacion%>
 	</p>
 	<% end %>
-	<table class="table table-hover">
-		<thead class= "well">
-			<tr>
-				<th>Producto</th>
-				<th>Cantidad</th>
-				<th>Precio</th>
-				<th>Iva</th>
-				<th>Total</th>
-			</tr>
-		</thead>
-		<tbody>
-			<% @items.each do |t| %>
-			<tr>
-				<td><%= t.ingreso_producto.producto.nombre%></td>
-				<td><%= t.cantidad %></td>
-				<td>$ <%= t.valor_unitario %></td>
-				<td>$ <%= t.iva %></td>
-				<td>$ <%= t.total %></td>
-			</tr>
-			<% end %>
-		</tbody>
-	</table>
+    <table class="table table-bordered">
+      <thead class="well">
+        <tr>
+          <th>Producto</th>
+          <th>Cantidad</th>
+          <th>Precio</th>
+          <th>Iva</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><th colspan="5">MEDICAMENTO</th></tr>
+        <% @items[0].each do |item| %>
+        <tr>
+          <td><%= item.ingreso_producto.producto.nombre%></td>
+          <td><%= item.cantidad %></td>
+          <td><%= item.valor_unitario %></td>
+          <td><%= item.iva %></td>
+          <td class="text-right"><%= item.total %></td>
+        </tr>
+        <% end %>
+        <tr><th colspan="5">INSUMOS</th></tr>
+        <% @items[1].each do |item| %>
+        <tr>
+          <td><%= item.ingreso_producto.producto.nombre%></td>
+          <td><%= item.cantidad %></td>
+          <td><%= item.valor_unitario %></td>
+          <td><%= item.iva %></td>
+          <td class="text-right"><%= item.total %></td>
+        </tr>
+        <% end %>
+        <tr><th colspan="5">QUIRURJICOS</th></tr>
+        <% @items[2].each do |item| %>
+        <tr>
+          <td><%= item.ingreso_producto.producto.nombre%></td>
+          <td><%= item.cantidad %></td>
+          <td><%= item.valor_unitario %></td>
+          <td><%= item.iva %></td>
+          <td class="text-right"><%= item.total %></td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
 	<div class="row">
 		<div class="col-xs-2 col-xs-offset-8">
 			<p>
