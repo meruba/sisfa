@@ -32,17 +32,6 @@ class DoctorsController < ApplicationController
     end
 	end
 
-	def imprimir_listado
-		@fecha = Time.now.to_date
-		@lista = Doctor.list_turnos_all_doctor
-		respond_to do |format|
-			format.html
-			format.pdf do
-				render :pdf => "turnos doctores", :layout => 'report.html', :template => "doctors/imprimir_listado.pdf.erb"
-			end
-		end
-	end
-
   def suspender
     if @doctor.suspendido
       @doctor.suspendido = false
