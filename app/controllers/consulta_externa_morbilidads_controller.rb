@@ -1,4 +1,6 @@
 class ConsultaExternaMorbilidadsController < ApplicationController
+	before_action :require_login
+	before_filter :is_doctor
 	before_action :find_turno, only: [:new, :create, :edit, :update]
 	before_action :set_consulta, only: [:edit, :update, :show]
 

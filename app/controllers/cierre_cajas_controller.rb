@@ -1,5 +1,6 @@
 class CierreCajasController < ApplicationController
   before_filter :require_login
+  before_filter :is_admin_or_vendedor_farmacia
 
   def index
     if current_user.cierre_cajas.last and current_user.cierre_cajas.last.is_cerrado == false

@@ -1,5 +1,6 @@
 class ProductImportsController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
+  before_filter :is_admin_or_vendedor_farmacia
 
   def new
     @productimport = ProductImport.new

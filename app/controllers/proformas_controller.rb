@@ -1,6 +1,7 @@
 class ProformasController < ApplicationController
 	before_filter :require_login
-  # before_filter :is_admin_or_vendedor_farmacia
+	before_filter :is_doctor, :except => [:index, :show, :facturar]
+	before_filter :is_admin_or_vendedor_farmacia, :only => [:index, :show, :facturar]
 	before_action :set_proforma, only: [:show]
 
 	def index

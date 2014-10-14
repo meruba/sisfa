@@ -1,6 +1,6 @@
 class PacientesController < ApplicationController
   before_filter :require_login
-  before_filter :is_admin_or_auxiliar_estadistica, :except => [:show, :view_edit, :edit, :update]
+  before_filter :is_admin_or_auxiliar_estadistica, :except => [:show, :view_edit, :edit, :update, :print_historia]
   before_filter :shared_permission, :only => [:show, :view_edit, :edit, :update]
 	before_action :set_paciente, only: [:edit, :update, :destroy]
 	before_action :new_paciente, only: [:civil, :militar, :familiar]
