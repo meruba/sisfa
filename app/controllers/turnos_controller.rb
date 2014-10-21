@@ -19,7 +19,7 @@ class TurnosController < ApplicationController
 	end
 
 	def manana
-		@turnos = Doctor.list_turnos_query(Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day)
+		@turnos = Doctor.list_turnos_query(Time.now.tomorrow.beginning_of_day..3.days.from_now.end_of_day)
 		@fecha =  Time.now.tomorrow
 		respond_to do |format|
 			format.html
@@ -40,8 +40,12 @@ class TurnosController < ApplicationController
 		@turno = Turno.new(turno_params)
 		if @_params[:hoy] == "1" #obtiene valor del check_box_tag
 			@turno.fecha = Time.now.beginning_of_day
-		else			
+		else
+			if Time.now.wday == 5 #is friday?
+				@turno.fecha = 3.days.from_now.beginning_of_day #fecha del viernes al lunes
+			else
 			@turno.fecha = Time.now.tomorrow.beginning_of_day #fecha para el proximo dia
+			end
 		end
 		respond_to do |format|
 			@turno.save
