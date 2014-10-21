@@ -70,7 +70,7 @@ class Turno < ActiveRecord::Base
 
 	#class methods
 	def self.last_turno
-		turno = Turno.where(:fecha => Time.now.tomorrow.beginning_of_day..Time.now.tomorrow.end_of_day).last
+		turno = Turno.where(:fecha => Time.now.tomorrow.beginning_of_day..3.days.from_now.end_of_day).last
 	end
 
 	def self.turnos_today

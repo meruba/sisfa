@@ -5,7 +5,7 @@
 		</span>
 		<span class="rev-combo pull-right"><i><%= link_to '',turnos_manana_path(params.merge(format: 'pdf')), class: "ttip fa fa-print", :target => "_blank", title:'Imprimir' %></i></span>
 		</span>
-		<h3>TURNOS DE MAÑANA</h3>
+		<h3>TURNOS DE <%= to_monday(Time.now)%></h3>
 	</div>
 </div>
 <div class="admin-turnos">
