@@ -1,0 +1,33 @@
+<% @turnos.each do |doctor|  %>
+<div class="page-break">
+	<h3 class="text-center">Dr(a): <%= doctor[:nombre]%></h3>
+	<h4 class="text-center">Fecha: <%= local_date(@fecha, "date") %></h4>
+	<table class="table table-print">
+		<thead>
+			<tr>
+				<th>#</th>
+				<th>Paciente</th>
+				<th>Historia C</th>
+				<th>Hora</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% doctor[:turnos].each do |turno| %>
+			<tr>
+				<td><%= turno.numero %></td>
+				<td><%= turno.paciente.cliente.nombre %></td>
+				<td>#<%= turno.paciente.n_hclinica %></td>
+				<% if turno.numero >= 15 %>
+				<td>--:--</td>
+				<% else %>
+				<td><%= local_date(turno.hora,"time") %></td>
+				<% end %>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	<strong>NOTA:</strong>
+	<h5 class="text-muted">1. En caso de no presentarse a tiempo pasara al ultimo lugar.</h5>
+	<h5 class="text-muted">2. Si usted no ha sido atendido por falta de tiempo, por favor acercarse a estadistica para postegar su turno al dia de manana</h5>
+</div>
+<% end %>

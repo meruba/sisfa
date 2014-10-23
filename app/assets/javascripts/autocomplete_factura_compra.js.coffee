@@ -31,8 +31,8 @@ window.Helpers.AutocompleteCompraHelper = {
       select: (event, ui) ->
         $this = $(this)
         $this.prop("disabled", true)
-        # $this.closest(".fields").find(".producto_id").val ui.item.id
-        $(".producto_id").val ui.item.id
+        $this.closest(".fields").find(".producto_id").val ui.item.id
+        # $(".producto_id").val ui.item.id
         # $this.closest(".fields").find(".nombre_item").text($this.val() + " $")
         $this.closest(".fields").find(".nombre_generico").val ui.item.nombre_generico
         $this.closest(".fields").find(".nombre_generico").prop("disabled", true)

@@ -19,6 +19,7 @@ class FacturaComprasProducto < ActiveRecord::Base
 
   #validations
     validates_presence_of :producto
+    validates :cantidad, :iva, :total, :presence =>true
 
   #nested attributes
     accepts_nested_attributes_for :producto
@@ -28,9 +29,11 @@ class FacturaComprasProducto < ActiveRecord::Base
     cantidad = 0
     if attributes['id'].present?
       self.producto = Producto.find(attributes['id'])
-      attributes[:ingreso_productos_attributes].each do |value,key|
-        cantidad = cantidad + key[:cantidad].to_f
-      end
+      if attributes[:ingreso_productos_attributes].blank? == false
+        attributes[:ingreso_productos_attributes].each do |value,key|
+          cantidad = cantidad + key[:cantidad].to_f
+        end
+      end 
       if attributes['hasiva'] == "0"
         iva = 0
       else
@@ -46,13 +49,15 @@ class FacturaComprasProducto < ActiveRecord::Base
       else
         iva = (attributes['precio_compra'].to_f * 0.12).round(2)
       end
-      attributes[:ingreso_productos_attributes].each do |value,key|
-        cantidad = cantidad + key[:cantidad].to_f
+      if attributes[:ingreso_productos_attributes].blank? == false
+        attributes[:ingreso_productos_attributes].each do |value,key|
+          cantidad = cantidad + key[:cantidad].to_f
+        end
+        self.cantidad = cantidad
+        self.valor_unitario = attributes['precio_compra']
+        self.iva = iva
+        self.total = self.cantidad * self.valor_unitario
       end
-      self.cantidad = cantidad
-      self.valor_unitario = attributes['precio_compra']
-      self.iva = iva
-      self.total = self.cantidad * self.valor_unitario
     end
     super
   end

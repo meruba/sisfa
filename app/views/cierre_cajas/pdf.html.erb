@@ -43,6 +43,7 @@
         <th>Sub 0%</th>
         <th>Iva</th>
         <th>Total</th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -54,9 +55,25 @@
         <td><%= item.factura.subtotal_0 %></td>
         <td><%= item.factura.iva %></td>
         <td><%= item.factura.total %></td>
+        <% if item.factura.anulada %><td>anulada</td><% else %><td></td><% end %>
       </tr>
       <% end %>
     </tbody>
   </table>
 </div>
-
+<br><br>
+<div class="firmas text-center">
+  <ul class="list-inline">
+    <li>
+      <small>---------------------------</small>
+      <h5>Recibi conforme</h5>
+    </li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li>
+      <small>---------------------------</small>
+      <h5>Entrege conforme</h5>
+    </li>
+  </ul>
+</div>

@@ -15,7 +15,6 @@ Sisfa::Application.routes.draw do
   get "pacientes/militar"
   get "pacientes/familiar"
   get "doctors/autocomplete"
-  get "doctors/imprimir_listado"
   get "doctors/dashboard"
   get "jornada_morbilidads/reporte"
   get "enfermedads/autocomplete"

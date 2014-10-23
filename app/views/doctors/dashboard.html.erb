@@ -34,7 +34,7 @@
 	</div>
 	<div class="col-md-3">
 		<div class="col-xs-12 info-paciente">
-			<h5 class= "text-muted text-center"> TURNOS DE MAÑANA</h5>
+			<h5 class= "text-muted text-center"> TURNOS DE <%= to_monday(Time.now)  %></h5>
 			<% if @turnos_manana.empty? %>
 			<div class="text-center text-muted">
 				<span class= "fa fa-ticket fa-2x"></span>
@@ -47,6 +47,9 @@
 			</div>
 			<% end %>
 			<% end %>
+		</div>
+		<div class ="col-xs-12 info-paciente text-center">
+			<span><%= link_to "Crear Receta", new_proforma_path, :class => "btn btn-info" %></span>
 		</div>
 	</div>
 </div>

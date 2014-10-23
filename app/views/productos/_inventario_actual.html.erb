@@ -15,20 +15,28 @@
     <% @grouped.each do |casa_comercial, productos|  %>
     <tr>
       <th colspan="4"><%= casa_comercial%></th>
-    </tr>  
+    </tr>
+    <% total = 0.0 %>
     <% productos.each do |producto| %>      
     <tr>
       <td><%= producto.nombre %></td>
       <td><%= producto.stock %></td>
       <td>$<%= producto.precio_compra %></td>
-      <td>$<%= producto.stock * producto.precio_compra %></td>
+      <td>$<%= producto.dinero_compra()%></td>
+      <% total = total + producto.dinero_compra()%>
     </tr>
-    <% end %>
     <% end %>
     <tr>
       <td></td>
       <td></td>
-      <td><strong>TOTAL:</strong> </td>
+      <td><strong>Total casa:</strong></td> 
+      <td><strong>$<%= redondear(total) %></strong></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>Total Inventario:</strong> </td>
       <td><strong>$<%= redondear(@total_inventario)  %> </strong></td>
     </tr>
   </tbody>

@@ -3,7 +3,7 @@ class ItemHospitalizacionsController < ApplicationController
 	before_filter :is_admin_or_enfermera_enfermeria, :only => [:create]
 	before_filter :is_admin_or_vendedor_farmacia, :only => [:despachar]
 	before_action :find_user, :only => [:create, :despachar]
-  before_action :find_item, :only => [:despachar, :anular, :anulado]
+  before_action :find_item, :only => [:despachar, :anular, :anulado, :edit, :update]
 
   def create
 		@item = ItemHospitalizacion.new(item_hospitalizacion_params.merge(pedido_por: current_user.cliente.nombre))
@@ -13,6 +13,20 @@ class ItemHospitalizacionsController < ApplicationController
 			format.js
 		end
 	end
+
+  def edit
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def update
+    respond_to do |format|
+      @item.update(item_hospitalizacion_params)
+      format.js
+      format.json { respond_with_bip(@cliente) }
+    end
+  end
 
 	def despachar
 		unless @item.despachado

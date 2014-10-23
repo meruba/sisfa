@@ -1,6 +1,7 @@
 class ProformasController < ApplicationController
 	before_filter :require_login
-  before_filter :is_admin_or_vendedor_farmacia
+	before_filter :is_doctor, :except => [:index, :show, :facturar]
+	before_filter :is_admin_or_vendedor_farmacia, :only => [:index, :show, :facturar]
 	before_action :set_proforma, only: [:show]
 
 	def index
@@ -26,10 +27,11 @@ class ProformasController < ApplicationController
 	end
 
 	def create
-		respond_to do |format|
-			@proforma = Proforma.new(proforma_params)
-			@proforma.save
-			format.js
+		@proforma = Proforma.new(proforma_params)
+		if @proforma.save
+			redirect_to doctors_dashboard_path, :notice => "Receta enviada a farmacia"
+		else
+			render "new"
 		end
 	end
 
@@ -41,11 +43,11 @@ class ProformasController < ApplicationController
 		@factura.fecha_de_emision = Time.now
 		@factura.fecha_de_vencimiento = Time.now + 30.days
 		@factura.item_facturas = Factura.create_items_facturas(@proforma.item_proformas)
-		if @factura.save
-			redirect_to facturas_path, :notice => "Factura Creada"
-		else
-			redirect_to proformas_path
-			flash[:error] = 'Error al crear la factura'
+		respond_to do |format|
+			@factura.save
+			@proforma.facturado = true
+			@proforma.save
+			format.js
 		end
 	end
 	

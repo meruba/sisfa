@@ -19,10 +19,16 @@ class HospitalizacionsController < ApplicationController
 		@item = ItemHospitalizacion.new
 		@hospitalizacion = Hospitalizacion.includes(hospitalizacion_registro: [paciente: [:cliente]]).where(id: params[:hospitalizacion_id]).references(hospitalizacion_registros: [paciente: [:cliente]]).first
 		@items = @hospitalizacion.item_hospitalizacions.includes(ingreso_producto: [:producto]).order('item_hospitalizacions.created_at DESC').references(ingreso_producto: [:producto])
+		respond_to do |format|
+			format.html
+			format.pdf do
+				render :pdf => "reporte de consumo", :layout => 'report.html', :template => "hospitalizacions/reporte_consumo_pdf.html.erb", :orientation => 'Landscape'
+      end
+		end
 	end
 
 	def show
-		@items = @hospitalizacion.item_hospitalizacions.where('anulado = false and total != 0')
+		@items = @hospitalizacion.grouped_by_categoria()
 		respond_to do |format|
 			format.js
 			format.pdf do

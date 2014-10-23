@@ -40,9 +40,10 @@ validates :numero, :subtotal_0, :subtotal_12, :descuento, :iva, :numericality =>
 validates :total, :numericality => { :greater_than => 0 }
 
 #callbacks
-before_validation :set_factura_values
+before_validation :set_factura_values, :on => :create
 
-after_save :add_liquidacion, :add_to_cierre
+after_save :add_liquidacion
+after_create :add_to_cierre
 
 #methods
 
@@ -56,12 +57,12 @@ end
 def add_to_cierre
 	if self.user.cierre_cajas.last
 		if self.user.cierre_cajas.last.is_cerrado
-			CierreCaja.create(:user => self.user, :is_cerrado => false)			
+			CierreCaja.create(:user => self.user, :is_cerrado => false)
 		end
-		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)
+		CierreCajaItem.create(:factura => self, :cierre_caja => self.user.cierre_cajas.last)
 	else
 		CierreCaja.create(:user => self.user, :is_cerrado => false)
-		CierreCajaItem.create(:factura => self, :cierre_caja => CierreCaja.last)	
+		CierreCajaItem.create(:factura => self, :cierre_caja => self.user.cierre_cajas.last)
 	end
 end
 

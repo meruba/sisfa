@@ -43,4 +43,13 @@ module ApplicationHelper
   def human_boolean(boolean)
     boolean ? 'Si' : 'No'
   end
+
+  def to_monday(date)
+    if date.wday == 5
+      dia = "LUNES"
+    else
+      dia = "MAÑANA"
+    end
+    dia
+  end
 end

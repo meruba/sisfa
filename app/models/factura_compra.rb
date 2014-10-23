@@ -24,6 +24,9 @@ class FacturaCompra < ActiveRecord::Base
   has_many :productos, :through => :factura_compras_productos
   accepts_nested_attributes_for :factura_compras_productos, :proveedor
 
+  #validations
+  validates :numero, :fecha_de_emision, :proveedor_id, :presence =>true
+
   #callbacks
   before_save :set_values
   after_save :add_liquidacion
@@ -36,7 +39,7 @@ class FacturaCompra < ActiveRecord::Base
   end
 
   def set_values
-    self.fecha_de_emision = Time.now
+    # self.fecha_de_emision = Time.now
     self.fecha_de_vencimiento = Time.now + 30.days
   end
 

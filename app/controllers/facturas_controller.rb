@@ -56,10 +56,10 @@ class FacturasController < ApplicationController
 
 	def create
 		respond_to do |format|
-				@factura = Factura.new(factura_params.merge(user_id: current_user.id, tipo: "venta"))
-				@factura.save
-				format.js
-			end
+			@factura = Factura.new(factura_params.merge(user_id: current_user.id, tipo: "venta"))
+			@factura.save
+			format.js
+		end
 	end
 	
 	private

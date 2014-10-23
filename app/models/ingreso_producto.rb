@@ -29,7 +29,7 @@ class IngresoProducto < ActiveRecord::Base
 #validations
   validates :cantidad, :lote, :presence => true
   validates :cantidad, :numericality => { :greater_than_or_equal_to => 0}
-  validate :validate_fecha_caducidad
+  validate :validate_fecha_caducidad, :on => :create
 
   def validate_fecha_caducidad
     if self.fecha_caducidad.nil?

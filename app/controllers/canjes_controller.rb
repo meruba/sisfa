@@ -1,5 +1,6 @@
 class CanjesController < ApplicationController
   before_action :require_login
+  before_filter :is_admin_or_vendedor_farmacia
   before_action :find_ingreso
 
   def new

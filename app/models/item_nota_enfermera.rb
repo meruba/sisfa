@@ -4,6 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  nota_enfermera_id :integer
+#  user_id           :integer
 #  fecha             :datetime
 #  hora              :datetime
 #  nota              :string(255)

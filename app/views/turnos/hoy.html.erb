@@ -3,6 +3,8 @@
 		<span>
 			<i><%= link_to "", turnos_path, title:'Volver', class: "ttip fa fa-arrow-left" %></i>
 		</span>
+		<span class="rev-combo pull-right"><i><%= link_to '',turnos_hoy_path(params.merge(format: 'pdf')), class: "ttip fa fa-print", :target => "_blank", title:'Imprimir' %></i></span>
+		</span>
 		<h3>TURNOS DE HOY</h3>
 	</div>
 </div>

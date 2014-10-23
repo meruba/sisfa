@@ -1,0 +1,53 @@
+<div class="fix-margin">
+	<h3 class="text-center"><%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3>
+	<h4>Paciente: <%= @hospitalizacion.hospitalizacion_registro.paciente.cliente_nombre  %> </h4>
+	<h4>Historia C: #<%= @hospitalizacion.hospitalizacion_registro.paciente.n_hclinica%> </h4>
+	<p>
+		<strong>Fecha de Ingreso:</strong>
+		<%=local_date(@hospitalizacion.hospitalizacion_registro.fecha_de_ingreso, "date")%>
+		<strong>Fecha de Salida:</strong>
+		<%=local_date(@hospitalizacion.hospitalizacion_registro.fecha_de_salida, "date")%>
+	</p>
+	<br>
+	<h5>Lista de productos consumidos por el paciente</h5>
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Fecha</th>
+				<th>Medicamento</th>
+				<th>Cantidad</th>
+				<th>Pedido por</th>
+				<th>Despachado por</th>
+				<th>Estado</th>
+				<th>Razon/Anulado</th>
+			</tr>
+		</thead>
+		<tbody class="medicamentos">
+			<% @items.each do |item| %>
+			<tr class="medicamento">
+				<td><%= local_date(item.created_at,"date") %></td>
+				<td><%= item.ingreso_producto.producto.nombre%></td>
+				<td><%= item.cantidad %></td>
+				<td><%= item.pedido_por %></td>
+				<td><%= if item.despachado_por.nil? then "En espera.." else item.despachado_por end %></td>
+				<% if item.despachado %>
+				<td>
+					<% unless item.anulado %>
+					<span class="label label-success">entregado</span>
+					<% else %>
+					<span class="label label-danger">anulado</span>
+					<% end %>
+				</td>
+				<% end %>
+				<% if item.despachado %>
+				<td>
+					<% if item.anulado %>
+					<%= item.razon_anulada  %>
+					<% end %>
+				</td>
+				<% end %>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
