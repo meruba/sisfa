@@ -51,7 +51,7 @@ class PacientesController < ApplicationController
 	end
 	
 	def create
-		@paciente = Paciente.new(paciente_params.merge(:fecha_hclinica => Time.now))
+		@paciente = Paciente.new(paciente_params.merge(:fecha_hclinica => Time.now, :registrado_por => current_user.cliente.nombre + " / usuario: " + current_user.username))
 		if @paciente.save
 			redirect_to pacientes_path, :notice => "Almacenado"
 		else
