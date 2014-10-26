@@ -29,6 +29,18 @@ class TurnosController < ApplicationController
 		end
 	end
 
+	def consulta_turnos
+	end
+
+	def consulta_resultados
+		@start_date = params[:fecha_inicial]
+		@end_date = params[:fecha_final]
+		@turnos = Doctor.list_turnos_query(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+		respond_to do |format|
+			format.js
+		end
+	end
+
 	def new
 		@turno = Turno.new
 		respond_to do |format|

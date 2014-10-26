@@ -1,0 +1,38 @@
+<div class="row">
+	<div class="title-blue-head">
+		<span>
+			<i><%= link_to "", turnos_path, title:'Volver', class: "ttip fa fa-arrow-left" %></i>
+		</span>
+		<span class="rev-combo pull-right"><i class = "fa fa-ticket"></i></span>
+	</span>
+	<h3>CONSULTA DE TURNOS</h3>
+</div>
+</div>
+<div class="row info-paciente">
+	<div class="row">
+		<%= form_tag turnos_consulta_resultados_path, :remote => true, method: :get do %>
+		<div class="col-md-3">
+			<div class="input-icon-sm">
+				<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control-border datepicker", placeholder: "Fecha de inicio", :required => true %>
+				<i class="fa fa-calendar"></i>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="input-icon-sm">
+				<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control-border datepicker", placeholder: "Fecha final", :required => true %>
+				<i class="fa fa-calendar"></i>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<%= submit_tag "Buscar", :class => "btn btn-info", :remote => true %>
+		</div>
+		<% end %>
+	</div>
+	<div class="row text-center">
+		<br>
+		<div class="resultados">
+			<i class= "fa fa-search fa-3x"></i>
+			<h5>Aqui se mostraran los resultados de tu busqueda</h5>
+		</div>
+	</div>
+</div>
