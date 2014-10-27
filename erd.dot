@@ -1,0 +1,813 @@
+digraph Sisfa {
+rankdir = "LR";
+ranksep = "0.5";
+nodesep = "0.4";
+pad = "0.4,0.4";
+margin = "0,0";
+concentrate = "true";
+labelloc = "t";
+fontsize = "13";
+fontname = "Arial Bold";
+node[ shape  =  "Mrecord" , fontsize  =  "10" , fontname  =  "Arial" , margin  =  "0.07,0.05" , penwidth  =  "1.0"];
+edge[ fontname  =  "Arial" , fontsize  =  "7" , dir  =  "both" , arrowsize  =  "0.9" , penwidth  =  "1.0" , labelangle  =  "32" , labeldistance  =  "1.8"];
+label = "Sisfa domain model\n\n";
+m_AsignacionCama [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">AsignacionCama</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="numero_cama">numero_cama <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_Cama [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Cama</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="ocupada">ocupada <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+</table>
+>];
+m_Canje [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Canje</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="precio_salida">precio_salida <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tipo">tipo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_CierreCaja [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">CierreCaja</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="is_cerrado">is_cerrado <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+</table>
+>];
+m_CierreCajaItem [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">CierreCajaItem</font></td></tr>
+</table>
+>];
+m_Cliente [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Cliente</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="direccion">direccion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="edad">edad <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="email">email <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="estado_civil">estado_civil <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_de_nacimiento">fecha_de_nacimiento <font face="Arial Italic" color="grey60">date</font></td></tr>
+  <tr><td align="left" width="130" port="nombre">nombre <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero_de_identificacion">numero_de_identificacion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="sexo">sexo <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="telefono">telefono <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_Condicion [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Condicion</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="codigo_cie_1">codigo_cie_1 <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="codigo_cie_2">codigo_cie_2 <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_1">diagnostico_1 <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_2">diagnostico_2 <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="enfermedad_actual">enfermedad_actual <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="examen_fisico">examen_fisico <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="medico_asignado">medico_asignado <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="motivo_de_consulta">motivo_de_consulta <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="planes">planes <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="presion_arterial">presion_arterial <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="pulso">pulso <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="revision_organos_sistema">revision_organos_sistema <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="temperatura">temperatura <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tipo_registro">tipo_registro <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_ConsultaExternaMorbilidad [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ConsultaExternaMorbilidad</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="certificado_medico">certificado_medico <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="codigo_cie">codigo_cie <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="condicion_diagnostico">condicion_diagnostico <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_sindrome">diagnostico_sindrome <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="grupos_de_edad">grupos_de_edad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="horas_trabajadas">horas_trabajadas <font face="Arial Italic" color="grey60">time</font></td></tr>
+  <tr><td align="left" width="130" port="nombre_medico">nombre_medico <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="ordenes">ordenes <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="tipo_de_atencion">tipo_de_atencion <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_ConsultaExternaPreventiva [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ConsultaExternaPreventiva</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="atencion_preventiva">atencion_preventiva <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="certificado_medico">certificado_medico <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="doc">doc <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="grupos_de_edad">grupos_de_edad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="horas_trabajadas">horas_trabajadas <font face="Arial Italic" color="grey60">time</font></td></tr>
+  <tr><td align="left" width="130" port="nombre_medico">nombre_medico <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="partos">partos <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="planificacion_familiar">planificacion_familiar <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="post_partos">post_partos <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="prenatal">prenatal <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="tipo_de_atencion">tipo_de_atencion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="trabajadora_sexual">trabajadora_sexual <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+</table>
+>];
+m_Cuarto [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Cuarto</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="nombre">nombre <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_Doctor [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Doctor</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad_turno">cantidad_turno <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="especialidad">especialidad <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="suspendido">suspendido <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+</table>
+>];
+m_EmergenciaParteMensual [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">EmergenciaParteMensual</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="total_10_44_anios">total_10_44_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_15_19_anios">total_15_19_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_1_4_anios">total_1_4_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_20_49_anios">total_20_49_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_50_64_anios">total_50_64_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_5_9_anios">total_5_9_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_65_anios">total_65_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_accidente">total_accidente <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_aerea">total_aerea <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_clinico">total_atencion_clinico <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_obstetrico">total_atencion_obstetrico <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_quirurjico">total_atencion_quirurjico <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_traumatologia">total_atencion_traumatologia <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_civil_convenio">total_civil_convenio <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_civil_particular">total_civil_particular <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_destino_alta">total_destino_alta <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_destino_consulta">total_destino_consulta <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_destino_internamiento">total_destino_internamiento <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_destino_observacion">total_destino_observacion <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_destino_tr_nom">total_destino_tr_nom <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_destino_tr_sal">total_destino_tr_sal <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_envenenamiento">total_envenenamiento <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_familiar_hab">total_familiar_hab <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_familiar_sa">total_familiar_sa <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_familiar_sp">total_familiar_sp <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_hombre">total_hombre <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_memor_1_anio">total_memor_1_anio <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_militar_asp">total_militar_asp <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_militar_cpto">total_militar_cpto <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_militar_sa">total_militar_sa <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_militar_sp">total_militar_sp <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_mujer">total_mujer <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_naval">total_naval <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_otras">total_otras <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_terrestre">total_terrestre <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_violencia">total_violencia <font face="Arial Italic" color="grey60">integer</font></td></tr>
+</table>
+>];
+m_EmergenciaRegistro [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">EmergenciaRegistro</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="atencion">atencion <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="causa">causa <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="condicion_salir">condicion_salir <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="destino">destino <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico">diagnostico <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="especialidad">especialidad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="grupos_etareos">grupos_etareos <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="nombre_medico">nombre_medico <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="registrado">registrado <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="tipo_usuario">tipo_usuario <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_Emisor [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Emisor</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="nombre_establecimiento">nombre_establecimiento <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero_inicial_factura">numero_inicial_factura <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="ruc">ruc <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="saldo_inicial_inventario">saldo_inicial_inventario <font face="Arial Italic" color="grey60">float</font></td></tr>
+</table>
+>];
+m_Enfermedad [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Enfermedad</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="codigo">codigo <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="nombre">nombre <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_EntregaTurno [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">EntregaTurno</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="servicio">servicio <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_Factura [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Factura</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="anulada">anulada <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="descuento">descuento <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_de_emision">fecha_de_emision <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_de_vencimiento">fecha_de_vencimiento <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="observacion">observacion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="razon_anulada">razon_anulada <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_0">subtotal_0 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_12">subtotal_12 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tipo">tipo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_FacturaCompra [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">FacturaCompra</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fecha_de_emision">fecha_de_emision <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_de_vencimiento">fecha_de_vencimiento <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="observacion">observacion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_0">subtotal_0 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_12">subtotal_12 <font face="Arial Italic" color="grey60">float</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_FacturaComprasProducto [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">FacturaComprasProducto</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="valor_unitario">valor_unitario <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_Hospitalizacion [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Hospitalizacion</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="descuento">descuento <font face="Arial Italic" color="grey60">float</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_emision">fecha_emision <font face="Arial Italic" color="grey60">date ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal">subtotal <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_12">subtotal_12 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_HospitalizacionRegistro [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">HospitalizacionRegistro</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="alta">alta <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="alta_enfermeria">alta_enfermeria <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="codigo_cie">codigo_cie <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="condicion_egreso">condicion_egreso <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_ingreso">diagnostico_ingreso <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_salida">diagnostico_salida <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_sec_egreso1">diagnostico_sec_egreso1 <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="diagnostico_sec_egreso2">diagnostico_sec_egreso2 <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="dias_hospitalizacion">dias_hospitalizacion <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="discapacidad">discapacidad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="especialidad">especialidad <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="especialidad_egreso">especialidad_egreso <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_de_ingreso">fecha_de_ingreso <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_de_salida">fecha_de_salida <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="medico_asignado">medico_asignado <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_InformacionAdicionalPaciente [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">InformacionAdicionalPaciente</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="canton">canton <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="familiar_cercano">familiar_cercano <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="familiar_direccion">familiar_direccion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="familiar_parentesco">familiar_parentesco <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="familiar_telefono">familiar_telefono <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="nacionalidad">nacionalidad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="observacion">observacion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="parroquia">parroquia <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="provincia">provincia <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="raza">raza <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_IngresoProducto [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">IngresoProducto</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_caducidad">fecha_caducidad <font face="Arial Italic" color="grey60">date</font></td></tr>
+  <tr><td align="left" width="130" port="lote">lote <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_ItemEntregaTurno [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemEntregaTurno</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="descripcion">descripcion <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tipo_item">tipo_item <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_ItemFactura [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemFactura</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="descuento">descuento <font face="Arial Italic" color="grey60">float</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tipo">tipo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="valor_unitario">valor_unitario <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_ItemHospitalizacion [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemHospitalizacion</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="anulado">anulado <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="descuento">descuento <font face="Arial Italic" color="grey60">float</font></td></tr>
+  <tr><td align="left" width="130" port="despachado">despachado <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="despachado_por">despachado_por <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="pedido_por">pedido_por <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="razon_anulada">razon_anulada <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="valor_unitario">valor_unitario <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_ItemNotaEnfermera [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemNotaEnfermera</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="hora">hora <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="nota">nota <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_ItemProforma [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemProforma</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="descuento">descuento <font face="Arial Italic" color="grey60">float</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="valor_unitario">valor_unitario <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_ItemSignoVital [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemSignoVital</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="hora">hora <font face="Arial Italic" color="grey60">datetime ∗</font></td></tr>
+  <tr><td align="left" width="130" port="observacion">observacion <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="pulso">pulso <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="respiracion">respiracion <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="temperatura">temperatura <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tension_arterial">tension_arterial <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_ItemTraspaso [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">ItemTraspaso</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="valor_unitario">valor_unitario <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_JornadaMorbilidad [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">JornadaMorbilidad</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fin_atencion">fin_atencion <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="horas_trabajadas">horas_trabajadas <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="inicio_atencion">inicio_atencion <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="total_10_44_anios">total_10_44_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_15_19_anios">total_15_19_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_1_4_anios">total_1_4_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_20_49_anios">total_20_49_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_50_64_anios">total_50_64_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_5_9_anios">total_5_9_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_65_anios">total_65_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_activo">total_activo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_activo_familiar">total_activo_familiar <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_aerea">total_aerea <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_afroecuatoriano">total_afroecuatoriano <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_aspirante">total_aspirante <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_interconsulta">total_atencion_interconsulta <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_primera">total_atencion_primera <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_atencion_subsecuente">total_atencion_subsecuente <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_blanco">total_blanco <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_certificado_medico">total_certificado_medico <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_civilies">total_civilies <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_colombiano">total_colombiano <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_conscripto">total_conscripto <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_control">total_control <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_derecho_hab">total_derecho_hab <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_discapacitados">total_discapacitados <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_hombre">total_hombre <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_iess">total_iess <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_indigena">total_indigena <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_inicial">total_inicial <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_interconsulta">total_interconsulta <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_ispol">total_ispol <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_issfa">total_issfa <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_memor_1_11_mes">total_memor_1_11_mes <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_memor_1_mes">total_memor_1_mes <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_mestizo">total_mestizo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_montubio">total_montubio <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_mujer">total_mujer <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_naval">total_naval <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_otra_nacionalidad">total_otra_nacionalidad <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_otros_seguros">total_otros_seguros <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_pasivo">total_pasivo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_pasivo_familiar">total_pasivo_familiar <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_peruano">total_peruano <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_presuntivo">total_presuntivo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_referencia">total_referencia <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_terrestre">total_terrestre <font face="Arial Italic" color="grey60">integer</font></td></tr>
+</table>
+>];
+m_JornadaPreventiva [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">JornadaPreventiva</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fin_atencion">fin_atencion <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="horas_trabajadas">horas_trabajadas <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="inicio_atencion">inicio_atencion <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="total_10_14_anios">total_10_14_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_15_19_anios">total_15_19_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_1_4_anio_primera">total_1_4_anio_primera <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_1_4_anio_subsecuente">total_1_4_anio_subsecuente <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_1_anio_primera">total_1_anio_primera <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_1_anio_subsecuente">total_1_anio_subsecuente <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_20_49_anios">total_20_49_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_50_64_anios">total_50_64_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_5_9_anios">total_5_9_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_65_anios">total_65_anios <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_activo">total_activo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_activo_familiar">total_activo_familiar <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_aerea">total_aerea <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_afroecuatoriano">total_afroecuatoriano <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_aspirante">total_aspirante <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_blanco">total_blanco <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_certificado_medico">total_certificado_medico <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_cervico_uterino">total_cervico_uterino <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_civilies">total_civilies <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_colombiano">total_colombiano <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_conscripto">total_conscripto <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_derecho_hab">total_derecho_hab <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_discapacitados">total_discapacitados <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_hombre">total_hombre <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_iess">total_iess <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_indigena">total_indigena <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_ispol">total_ispol <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_issfa">total_issfa <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_mamario">total_mamario <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_mestizo">total_mestizo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_montubio">total_montubio <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_mujer">total_mujer <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_naval">total_naval <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_nino_consulta_p">total_nino_consulta_p <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_nino_consulta_s">total_nino_consulta_s <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_otra_nacionalidad">total_otra_nacionalidad <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_otros_seguros">total_otros_seguros <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_partos">total_partos <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_pasivo">total_pasivo <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_pasivo_familiar">total_pasivo_familiar <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_peruano">total_peruano <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_post_parto">total_post_parto <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_prenatal_primera_10_19">total_prenatal_primera_10_19 <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_prenatal_primera_20_49">total_prenatal_primera_20_49 <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_prenatal_subsecuente_10_19">total_prenatal_subsecuente_10_19 <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_prenatal_subsecuente_20_49">total_prenatal_subsecuente_20_49 <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_primera_diu">total_primera_diu <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_primera_go">total_primera_go <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_primera_otros">total_primera_otros <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_subsecuente_diu">total_subsecuente_diu <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_subsecuente_go">total_subsecuente_go <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_subsecuente_otros">total_subsecuente_otros <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_terrestre">total_terrestre <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="total_trabajadora_sexual">total_trabajadora_sexual <font face="Arial Italic" color="grey60">integer</font></td></tr>
+</table>
+>];
+m_Kardex [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Kardex</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">date ∗</font></td></tr>
+</table>
+>];
+m_Lineakardex [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Lineakardex</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="cantidad">cantidad <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">date ∗</font></td></tr>
+  <tr><td align="left" width="130" port="modulo">modulo <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="observaciones">observaciones <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="tipo">tipo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="v_unitario">v_unitario <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_Liquidacion [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Liquidacion</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="anulados_ventanilla">anulados_ventanilla <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="costo_venta">costo_venta <font face="Arial Italic" color="grey60">decimal (9,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="emitidos_compra">emitidos_compra <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="emitidos_hospitalizacion">emitidos_hospitalizacion <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="emitidos_traspaso">emitidos_traspaso <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="emitidos_ventanilla">emitidos_ventanilla <font face="Arial Italic" color="grey60">integer</font></td></tr>
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">date</font></td></tr>
+  <tr><td align="left" width="130" port="iva_compra">iva_compra <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva_hospitalizacion">iva_hospitalizacion <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva_traspaso">iva_traspaso <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva_venta">iva_venta <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva_ventanilla">iva_ventanilla <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="saldo_anterior">saldo_anterior <font face="Arial Italic" color="grey60">decimal (9,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="saldo_final">saldo_final <font face="Arial Italic" color="grey60">decimal (9,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal12_compra">subtotal12_compra <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal12_hospitalizacion">subtotal12_hospitalizacion <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal12_traspaso">subtotal12_traspaso <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal12_venta">subtotal12_venta <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal12_ventanilla">subtotal12_ventanilla <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_compra">subtotal_compra <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_hospitalizacion">subtotal_hospitalizacion <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_traspaso">subtotal_traspaso <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_venta">subtotal_venta <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_ventanilla">subtotal_ventanilla <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_compra">total_compra <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_hospitalizacion">total_hospitalizacion <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_sin_iva_compra">total_sin_iva_compra <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_sin_iva_hospitalizacion">total_sin_iva_hospitalizacion <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_sin_iva_traspaso">total_sin_iva_traspaso <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_sin_iva_venta">total_sin_iva_venta <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_sin_iva_ventanilla">total_sin_iva_ventanilla <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_traspaso">total_traspaso <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_venta">total_venta <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total_ventanilla">total_ventanilla <font face="Arial Italic" color="grey60">decimal (8,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="utilidad">utilidad <font face="Arial Italic" color="grey60">decimal (9,2) ∗</font></td></tr>
+</table>
+>];
+m_NotaEnfermera [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">NotaEnfermera</font></td></tr>
+</table>
+>];
+m_Paciente [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Paciente</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="afiliado">afiliado <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="antecedentes_familiares">antecedentes_familiares <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="antecedentes_personales">antecedentes_personales <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="codigo_issfa">codigo_issfa <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="discapacidad">discapacidad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="estado">estado <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_hclinica">fecha_hclinica <font face="Arial Italic" color="grey60">date</font></td></tr>
+  <tr><td align="left" width="130" port="grado">grado <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="jefe_de_reparto">jefe_de_reparto <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="n_hclinica">n_hclinica <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="parentesco">parentesco <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="pertenece_a">pertenece_a <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="tipo">tipo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="unidad">unidad <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_Producto [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Producto</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="casa_comercial">casa_comercial <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="categoria">categoria <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="codigo">codigo <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="ganancia">ganancia <font face="Arial Italic" color="grey60">decimal (4,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="hasiva">hasiva <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="nombre">nombre <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="nombre_generico">nombre_generico <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="precio_compra">precio_compra <font face="Arial Italic" color="grey60">decimal (4,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="precio_venta">precio_venta <font face="Arial Italic" color="grey60">decimal (4,2) ∗</font></td></tr>
+  <tr><td align="left" width="130" port="stock">stock <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+</table>
+>];
+m_Proforma [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Proforma</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="descuento">descuento <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="facturado">facturado <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_emision">fecha_emision <font face="Arial Italic" color="grey60">date ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_0">subtotal_0 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_12">subtotal_12 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_Proveedor [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Proveedor</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="ciudad">ciudad <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="codigo">codigo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="direccion">direccion <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="fax">fax <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="nombre_o_razon_social">nombre_o_razon_social <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero_de_identificacion">numero_de_identificacion <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="pais">pais <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="representante_legal">representante_legal <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="telefono">telefono <font face="Arial Italic" color="grey60">string</font></td></tr>
+</table>
+>];
+m_Rol [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Rol</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="nombre">nombre <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_SignoVital [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">SignoVital</font></td></tr>
+</table>
+>];
+m_Traspaso [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Traspaso</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="anulado">anulado <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="entregado_a">entregado_a <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha_emision">fecha_emision <font face="Arial Italic" color="grey60">date ∗</font></td></tr>
+  <tr><td align="left" width="130" port="iva">iva <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer ∗</font></td></tr>
+  <tr><td align="left" width="130" port="razon_anulada">razon_anulada <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="servicio">servicio <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal">subtotal <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="subtotal_12">subtotal_12 <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+  <tr><td align="left" width="130" port="total">total <font face="Arial Italic" color="grey60">float ∗</font></td></tr>
+</table>
+>];
+m_Turno [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">Turno</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="atendido">atendido <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="doctor_a_cargo">doctor_a_cargo <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+  <tr><td align="left" width="130" port="fecha">fecha <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="hora">hora <font face="Arial Italic" color="grey60">datetime</font></td></tr>
+  <tr><td align="left" width="130" port="numero">numero <font face="Arial Italic" color="grey60">integer</font></td></tr>
+</table>
+>];
+m_User [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">User</font></td></tr>
+</table>
+|
+<table border="0" align="left" cellspacing="2" cellpadding="0" width="134">
+  <tr><td align="left" width="130" port="crypted_password">crypted_password <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="salt">salt <font face="Arial Italic" color="grey60">string</font></td></tr>
+  <tr><td align="left" width="130" port="suspendido">suspendido <font face="Arial Italic" color="grey60">boolean</font></td></tr>
+  <tr><td align="left" width="130" port="username">username <font face="Arial Italic" color="grey60">string ∗</font></td></tr>
+</table>
+>];
+m_UserRol [label = <<table border="0" align="center" cellspacing="0.5" cellpadding="0" width="134">
+  <tr><td align="center" valign="bottom" width="130"><font face="Arial Bold" point-size="11">UserRol</font></td></tr>
+</table>
+>];
+  m_HospitalizacionRegistro -> m_AsignacionCama [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Cama -> m_AsignacionCama [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Cuarto -> m_Cama [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_IngresoProducto -> m_Canje [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_IngresoProducto -> m_Canje [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Producto -> m_Canje [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_CierreCaja [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_CierreCaja -> m_CierreCajaItem [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Factura -> m_CierreCajaItem [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Cliente -> m_User [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Cliente -> m_Paciente [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Cliente -> m_Doctor [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Cliente -> m_Proforma [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Cliente -> m_Factura [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Condicion -> m_EmergenciaRegistro [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Condicion -> m_ConsultaExternaMorbilidad [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Condicion -> m_ConsultaExternaPreventiva [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Paciente -> m_Condicion [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_Condicion [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Paciente -> m_ConsultaExternaMorbilidad [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Doctor -> m_ConsultaExternaMorbilidad [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Turno -> m_ConsultaExternaMorbilidad [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Paciente -> m_ConsultaExternaPreventiva [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Doctor -> m_ConsultaExternaPreventiva [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_Turno -> m_ConsultaExternaPreventiva [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_EmergenciaRegistro [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_HospitalizacionRegistro [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_JornadaMorbilidad [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_JornadaPreventiva [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_EmergenciaParteMensual [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_Turno [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Doctor -> m_ConsultaExternaMorbilidad [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Doctor -> m_ConsultaExternaPreventiva [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Paciente -> m_EmergenciaRegistro [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_EntregaTurno -> m_ItemEntregaTurno [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Proveedor -> m_Factura [arrowhead = "normal", arrowtail = "none", weight = "1"];
+  m_User -> m_Factura [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Factura -> m_ItemFactura [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Factura -> m_IngresoProducto [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Proveedor -> m_FacturaCompra [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_FacturaCompra [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_FacturaCompra -> m_FacturaComprasProducto [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_FacturaCompra -> m_Producto [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "2", constraint = "false"];
+  m_Producto -> m_FacturaComprasProducto [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Hospitalizacion -> m_ItemHospitalizacion [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Hospitalizacion -> m_IngresoProducto [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_HospitalizacionRegistro -> m_Hospitalizacion [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_User -> m_Hospitalizacion [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Paciente -> m_HospitalizacionRegistro [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_HospitalizacionRegistro -> m_NotaEnfermera [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_HospitalizacionRegistro -> m_SignoVital [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_HospitalizacionRegistro -> m_ItemEntregaTurno [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Paciente -> m_InformacionAdicionalPaciente [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_IngresoProducto -> m_ItemFactura [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_IngresoProducto -> m_ItemProforma [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_IngresoProducto -> m_ItemTraspaso [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_IngresoProducto -> m_ItemHospitalizacion [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Producto -> m_IngresoProducto [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_ItemEntregaTurno [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_NotaEnfermera -> m_ItemNotaEnfermera [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_ItemNotaEnfermera [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Proforma -> m_ItemProforma [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_SignoVital -> m_ItemSignoVital [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_ItemSignoVital [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Traspaso -> m_ItemTraspaso [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Kardex -> m_Lineakardex [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Producto -> m_Kardex [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_Paciente -> m_Turno [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Proforma -> m_IngresoProducto [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Rol -> m_UserRol [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_Rol -> m_User [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_Traspaso -> m_IngresoProducto [style = "dotted", arrowhead = "normal", arrowtail = "none", weight = "1", constraint = "false"];
+  m_User -> m_Traspaso [arrowhead = "normal", arrowtail = "none", weight = "2"];
+  m_User -> m_UserRol [arrowhead = "none", arrowtail = "none", weight = "2"];
+  m_User -> m_Rol [style = "dotted", arrowhead = "none", arrowtail = "none", weight = "1", constraint = "false"];
+}
