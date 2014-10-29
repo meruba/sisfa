@@ -5,29 +5,38 @@
 	<div class="fix-margin history-registros">
 	<h4>HISTORIA CLINICA # <%= @paciente.n_hclinica%></h4>
 	</div>
-	<h4 class="fix-margin"><strong><%= @paciente.cliente_nombre %> / <%=@paciente.tipo%> / <%= @paciente.grado %></strong></h4>
+	<h4 class="fix-margin"><strong><%= @paciente.cliente.nombre %> / <%=@paciente.tipo%> / <%= @paciente.grado %></strong></h4>
 	<h5 class="text-rigth fix-margin">Fecha de admision: <%= local_date(@paciente.created_at, "datetime")%></h5>
+	<h5 class="text-rigth fix-margin">Registrado por: <%= @paciente.registrado_por%></h5>
 	<div class="row-fix-div">
 		<div class="col-xs-4">
 			<strong>DATOS PERSONALES</strong><br>
-			<small><strong>C.I: </strong><%= (@paciente.cliente_numero_de_identificacion).upcase%></small><br>
-			<small><strong>GENERO: </strong><%= (@paciente.cliente_sexo).upcase%></small><br>
+			<small><strong>C.I: </strong><%= (@paciente.cliente.numero_de_identificacion).upcase%></small><br>
+			<small><strong>GENERO: </strong><%= (@paciente.cliente.sexo).upcase%></small><br>
 			<small><strong>EDAD:</strong>
-				<%= exact_age(@paciente.cliente_fecha_de_nacimiento) %> <small class="text-muted"> / <%= @paciente.cliente_fecha_de_nacimiento %></small>
+				<%= exact_age(@paciente.cliente.fecha_de_nacimiento) %>
 			</small><br>
-			<small><strong>ESTADO CIVIL: </strong><%= @paciente.cliente_estado_civil %></small><br>
-			<small><strong>DISCAPACIDAD: </strong><%= @paciente.discapacidad %></small><br>
+			<small><strong>FECHA DE NACIMIENTO: </strong><%= @paciente.cliente.fecha_de_nacimiento %></small><br>
+			<small><strong>ESTADO CIVIL: </strong><%= (@paciente.cliente.estado_civil).upcase %></small><br>
+			<small><strong>DISCAPACIDAD: </strong><%= (@paciente.discapacidad).upcase %></small><br>
 		</div>
+						<div class="col-xs-4">
+			<strong>MEDICO</strong><br>
+				<small><strong>MED Y ESP: </strong><%= (@paciente.informacion_adicional_paciente.observacion).upcase %></small><br/>
+			</div>
 		<div class="col-xs-4">
 			<strong>LOCALIZACION</strong><br>
-			<small><strong>DIRECCION: </strong><%= (@paciente.cliente_direccion).upcase%></small><br>
-			<small><strong>TELEFONO: </strong><%=@paciente.cliente_telefono%></small><br>
+			<small><strong>PROVINCIA: </strong><%= (@paciente.informacion_adicional_paciente.provincia).upcase%></small><br>
+			<small><strong>CANTON: </strong><%= (@paciente.informacion_adicional_paciente.canton).upcase%></small><br>
+			<small><strong>PARROQUIA: </strong><%= (@paciente.informacion_adicional_paciente.parroquia).upcase%></small><br>
+			<small><strong>DIRECCION: </strong><%= (@paciente.cliente.direccion).upcase%></small><br>
+			<small><strong>TELEFONO: </strong><%=@paciente.cliente.telefono%></small><br>
 		</div>
 		<div class="col-xs-4">
 			<strong>CONTACTO/RELACION</strong><br>
-			<small><strong><%= @paciente.informacion_adicional_paciente.familiar_cercano%> /
-				<small class="text-muted"><%= @paciente.informacion_adicional_paciente.familiar_parentesco%></small></strong></small><br>
-				<small><strong>DIRECCION: </strong><%= @paciente.informacion_adicional_paciente.familiar_direccion%></small><br/>
+			<small><strong><%= (@paciente.informacion_adicional_paciente.familiar_cercano).upcase%> /
+				<small class="text-muted"><%= (@paciente.informacion_adicional_paciente.familiar_parentesco).upcase%></small></strong></small><br>
+				<small><strong>DIRECCION: </strong><%= (@paciente.informacion_adicional_paciente.familiar_direccion).upcase%></small><br/>
 				<small><strong>TELEFONO: </strong><%= @paciente.informacion_adicional_paciente.familiar_telefono%></small><br/>
 			</div>
 		</div>
@@ -37,22 +46,23 @@
 		<div class="col-xs-4">
 			<strong>INFORMACION MILITAR</strong><br>
 				<small><strong>CODIGO ISSFA: </strong><%= @paciente.codigo_issfa %></small><br>
-				<small><strong>ESTADO: </strong><%= @paciente.estado %></small><br/>
-				<small><strong>PERTENECE A: </strong><%= @paciente.pertenece_a %></small><br/>
-				<small><strong>UNIDAD: </strong><%= @paciente.unidad %></small><br/>
-				<small><strong>COMANDANTE: </strong><%= @paciente.jefe_de_reparto %></small><br/>
+				<small><strong>ESTADO: </strong><%= (@paciente.estado).upcase %></small><br/>
+				<small><strong>PERTENECE A: </strong><%= (@paciente.pertenece_a).upcase %></small><br/>
+				<small><strong>UNIDAD: </strong><%= (@paciente.unidad).upcase %></small><br/>
+				<small><strong>COMANDANTE: </strong><%= (@paciente.jefe_de_reparto).upcase %></small><br/>
 			</div>
 		</div>
 		<% end %>
 		<% if @paciente.tipo == "familiar" %>
 		<div class="col-xs-4">
 			<strong>INFORMACION MILITAR</strong><br>
-				<small><strong>CODIGO ISSFA: </strong><%= @paciente.codigo_issfa %></small><br>
-				<small><strong>PARENTESCO: </strong><%= @paciente.parentesco %></small><br/>
-				<small><strong>ESTADO: </strong><%= @paciente.estado %></small><br/>
+				<small><strong>CODIGO ISSFA: </strong><%= (@paciente.codigo_issfa).upcase %></small><br>
+				<small><strong>PARENTESCO: </strong><%= (@paciente.parentesco).upcase%></small><br/>
+				<small><strong>ESTADO: </strong><%= (@paciente.estado).upcase %></small><br/>
 			</div>
 		</div>
 		<% end %>
+	</div>
 	</div>
 	<div class="fix-margin">
 		<div class="history-registros">

@@ -27,7 +27,9 @@ class Doctor < ActiveRecord::Base
 	delegate :nombre, :to => :cliente, :prefix => true
 	#	validations
 	validates :especialidad, :cantidad_turno, :presence => true
+	validates :cliente_id, :uniqueness => {:message => "Ya esta registrado como doctor"}
 	# validates :cantidad_turno, :numericality => { :greater_than => 0 }
+	
 	#methods
 	def cliente_attributes=(attributes)
 		if attributes['id'].present?

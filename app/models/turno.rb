@@ -24,6 +24,7 @@ class Turno < ActiveRecord::Base
 	#callbacks
 	before_create :set_values
 	before_destroy :was_atendido
+	after_destroy :new_order
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
@@ -55,7 +56,7 @@ class Turno < ActiveRecord::Base
 		end		
 	end
 
-	#methos
+	#methods
 	def set_values
 		self.atendido = false
 		ultimo = Turno.where(:doctor_id => self.doctor_id, :fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).last
@@ -90,6 +91,22 @@ class Turno < ActiveRecord::Base
 		if self.atendido
 			self.errors[:base] << "No se puede eliminar, el turno fue atendido."
 			return false
+		end
+	end
+
+	def new_order
+		turnos = Turno.where(:doctor_id => self.doctor_id, :fecha => self.fecha.beginning_of_day..self.fecha.end_of_day)
+		numero =  0
+		hora = Time.now.tomorrow.beginning_of_day + (510*60)
+		turnos.each do |t|
+			numero = numero + 1
+			t.numero = numero
+			if t.numero == 1
+				t.hora = hora
+			else
+				t.hora = hora + ((15*60) * (numero-1))
+			end
+			t.save
 		end
 	end
 end
