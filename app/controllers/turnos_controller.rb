@@ -2,7 +2,7 @@ class TurnosController < ApplicationController
 	before_filter :require_login
 	before_filter :is_admin_or_auxiliar_estadistica
 	before_action :set_turno, only: [:atendido, :destroy]
-	before_action :day, only: [:manana, :create]
+	before_action :day, only: [:manana]
 
 	def index
 		@doctores = Doctor.turnos_doctores
@@ -50,11 +50,6 @@ class TurnosController < ApplicationController
 
 	def create
 		@turno = Turno.new(turno_params)
-		if @_params[:hoy] == "1" #obtiene valor del check_box_tag
-			@turno.fecha = Time.now.beginning_of_day
-		else
-			@turno.fecha = @fecha
-		end
 		respond_to do |format|
 			@turno.save
 			format.js {

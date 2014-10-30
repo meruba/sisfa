@@ -3,6 +3,7 @@
   window.Helpers.FormsHelper.init();
   window.Helpers.AutocompletePaciente.init_autocomplete();
   window.Helpers.AutocompleteDoctor.init_autocomplete();
+  window.Helpers.Datepicker.init_datepicker();
   <%- @turno.errors.full_messages.each do |msg|%>
     alertify.error("<%=j msg %>");
   <%- end %>
@@ -12,7 +13,5 @@
   $('.modal-backdrop').remove();
   $(".cantidad_turnos").html('<%= j render 'turnos/doctor_turnos', turnos: @turnos %>');
   alertify.success("Turno Almacenado");
-  window.Helpers.FormsHelper.init();
-  window.Helpers.AutocompletePaciente.init_autocomplete();
-  window.Helpers.AutocompleteDoctor.init_autocomplete();
 <%- end %>
+

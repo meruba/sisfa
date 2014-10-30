@@ -28,7 +28,7 @@ class Turno < ActiveRecord::Base
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
-	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, on: :create
+	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, :date_less, on: :create
 
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?
@@ -43,17 +43,26 @@ class Turno < ActiveRecord::Base
 	end
 
 	def paciente_has_one_turno
-		turnos = Turno.where(:paciente_id => self.paciente_id, :doctor_id => self.doctor_id, :fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).last
+		turnos = Turno.where(:paciente_id => self.paciente_id, :fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).last
 		unless turnos.nil?
-			errors.add :paciente_id, "Ya tiene asignado un turno"	
+			errors.add :paciente_id, "Ya tiene asignado un turno con el doctor: "+ self.doctor.cliente.nombre	
 		end		
 	end
 
 	def doctor_suspendido_or_not_turnos
 		doctor = Doctor.find(self.doctor_id)
 		if doctor.suspendido or doctor.cantidad_turno == 0
-				errors.add :doctor_id, "El Dr(a):" + doctor.cliente.nombre + " no esta atendiendo"
+			errors.add :doctor_id, "El Dr(a):" + doctor.cliente.nombre + " no esta atendiendo"
 		end		
+	end
+
+	def date_less
+		if self.fecha.wday == 6 or self.fecha.wday == 0
+			errors.add :fecha, "No se emiten turnos para sabado y domingo"
+		end
+		if self.fecha.beginning_of_day <= 1.days.ago.beginning_of_day
+			errors.add :fecha, "La fecha no puede ser menor a 1 dia"
+		end
 	end
 
 	#methods

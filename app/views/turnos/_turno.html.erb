@@ -11,10 +11,14 @@
 		<%= f.label :doctor_a_cargo, "Doctor Asignado"%>
 		<%= f.text_field :doctor_a_cargo, class: "doctor_autocomplete", placeholder: "Ingrese nombre Doctor"%>
 		<%= f.hidden_field :doctor_id, class: "doctor_id"%>
+		<%= f.label :fecha, "Fecha del turno"%>
+		<% if Time.now.wday == 5  %>
+		<%= f.text_field :fecha, class: "datepicker form-control", placeholder: "Ingrese fecha", value: local_date(3.days.from_now, "date"), readonly: true %>
+		<% else %>
+		<%= f.text_field :fecha, class: "datepicker form-control", placeholder: "Ingrese fecha", value: local_date(Time.now.tomorrow, "date"), readonly: true %>
+		<% end %>
 	</div>
-	<%= label_tag :hoy, "Hoy?"  %>
-	<%= check_box_tag :hoy %>
-	<small class="text-danger"> * Haz click en caso de un turno extra</small>
+	<samll class="text-info">* Haz click sobre el campo fecha si deseas cambiar a una nueva fecha</samll>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
