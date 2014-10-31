@@ -1,6 +1,6 @@
 m = $('#content_modal');
 m.html('<%= j(render 'turno', turno: @turno) %>');
-window.Helpers.ButtonsHelper.init();
 window.Helpers.FormsHelper.init();
 window.Helpers.AutocompletePaciente.init_autocomplete();
-window.Helpers.AutocompleteDoctor.init_autocomplete()
+window.Helpers.AutocompleteDoctor.init_autocomplete();
+window.Helpers.Datepicker.init_datepicker();

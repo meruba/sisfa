@@ -4,11 +4,23 @@
 	</div>
 	<div class="row info-paciente">
 		<div class="acciones">
-			<div class="well well-sm">
-				<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
-				<%= link_to 'Lista Hoy',turnos_hoy_path, class: "btn btn-info btn-xs"  %>
-				<%= link_to 'Lista Mañana',turnos_manana_path, class: "btn btn-info btn-xs"  %>
-				<%= link_to 'Consulta de turnos',turnos_consulta_turnos_path, class: "btn btn-info btn-xs"  %>
+			<div class="well well-sm row">
+				<div class="col-md-9">
+					<%= link_to 'Nuevo',new_turno_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new btn-xs"}  %>
+					<%= link_to 'Lista Hoy',turnos_hoy_path, class: "btn btn-info btn-xs"  %>
+					<%= link_to 'Lista Mañana',turnos_manana_path, class: "btn btn-info btn-xs"  %>
+					<%= link_to 'Consulta de turnos',turnos_consulta_turnos_path, class: "btn btn-info btn-xs"  %>
+				</div>
+				<% if @permiso %>
+				<div class="col-md-3">
+					<% if Emisor.last.otros_dias == true %>
+					<%= check_box_tag :otros_dias, 1, true %>
+					<% else %>
+					<%= check_box_tag :otros_dias %>
+					<% end %>
+					<%= label_tag :otros_dias, "Habiltar turnos otras fechas?"  %>
+				</div>
+				<% end %>
 			</div>
 		</div>
 		<ul class="doctores cantidad_turnos">
@@ -16,3 +28,4 @@
 		</ul>
 	</div>
 </div>
+

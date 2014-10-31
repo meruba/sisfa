@@ -1,7 +1,8 @@
 class EmisorsController < ApplicationController
   before_filter :require_login
-  before_filter :is_super_user
-  before_action :find_emisor, only: [:new]
+  before_filter :is_super_user, except: [:turnos_otros_dias]
+  before_filter :is_admin_or_auxiliar_estadistica, only: [:turnos_otros_dias]
+  before_action :find_emisor, only: [:new, :turnos_otros_dias]
 
   def new
     @emisor = Emisor.new
@@ -31,6 +32,16 @@ class EmisorsController < ApplicationController
     else
       render "edit"
     end
+  end
+
+  def turnos_otros_dias
+    if @created_emisor.otros_dias
+      @created_emisor.otros_dias = false
+    else
+      @created_emisor.otros_dias = true
+    end
+    @created_emisor.save
+    render :text => "#{@created_emisor.otros_dias}"
   end
 
   private

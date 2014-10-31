@@ -50,3 +50,13 @@ $(document).on "ready page:load", ->
 
   $(".card").click ->
     $(this).toggleClass "flipped"
+  
+  $("#otros_dias").on "click", ->
+    $this = $(this)
+    if $this.is(':checked') == true
+      $.get("/emisors/1/turnos_otros_dias");
+      alertify.success("Turnos habilitados para otras fechas")
+    else
+      $.get("/emisors/1/turnos_otros_dias");
+      alertify.log("Turnos desahabilitados para otras fechas")
+

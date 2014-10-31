@@ -2,7 +2,7 @@ class TurnosController < ApplicationController
 	before_filter :require_login
 	before_filter :is_admin_or_auxiliar_estadistica
 	before_action :set_turno, only: [:atendido, :destroy]
-	before_action :day, only: [:manana, :create]
+	before_action :find_user, only: [:index]
 
 	def index
 		@doctores = Doctor.turnos_doctores
@@ -38,6 +38,9 @@ class TurnosController < ApplicationController
 		@turnos = Doctor.list_turnos_query(params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
 		respond_to do |format|
 			format.js
+			format.pdf do
+				render :pdf => "turnos consulta", :layout => 'report.html', :template => "turnos/print_resultados.html.erb"
+			end
 		end
 	end
 
@@ -50,11 +53,6 @@ class TurnosController < ApplicationController
 
 	def create
 		@turno = Turno.new(turno_params)
-		if @_params[:hoy] == "1" #obtiene valor del check_box_tag
-			@turno.fecha = Time.now.beginning_of_day
-		else
-			@turno.fecha = @fecha
-		end
 		respond_to do |format|
 			@turno.save
 			format.js {
@@ -87,12 +85,11 @@ class TurnosController < ApplicationController
 		@turno = Turno.find(params[:id])
 	end
 
-	def day
-		if Time.now.wday == 5 #is friday?
-			@fecha = 3.days.from_now.beginning_of_day #fecha del viernes al lunes
+	def find_user #views
+		if current_user.rol == Rol.administrador_estadistica or current_user.rol == Rol.administrador
+			@permiso = true
 		else
-			@fecha =  Time.now.tomorrow.beginning_of_day #fecha para el proximo dia
+			@permiso = false
 		end
-		@fecha
 	end
 end
