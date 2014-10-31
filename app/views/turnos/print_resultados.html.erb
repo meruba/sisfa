@@ -1,0 +1,28 @@
+<% @turnos.each do |doctor|  %>
+<div class="page-break">
+	<h3 class="text-center">Dr(a): <%= doctor[:nombre]%></h3>
+	<h5 class="text-center">Turnos desde: <%=@start_date %> a <%=@end_date  %> </h5>
+	<table class="table table-print">
+		<thead>
+			<tr>
+				<th>Fecha</th>
+				<th>#</th>
+				<th>Paciente</th>
+				<th>Historia C</th>
+				<th>Hora</th>
+			</tr>
+		</thead>
+		<tbody>
+			<% doctor[:turnos].each do |turno| %>
+			<tr>
+				<td><%= local_date(turno.fecha, "date") %></td>
+				<td><%= turno.numero %></td>
+				<td><%= turno.paciente.cliente.nombre %></td>
+				<td>#<%= turno.paciente.n_hclinica %></td>
+				<td><%= local_date(turno.hora,"time") %></td>
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+</div>
+<% end %>

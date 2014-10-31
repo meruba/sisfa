@@ -28,6 +28,8 @@ class Turno < ActiveRecord::Base
 	
 	#	validations
 	validates :doctor_a_cargo, :presence => true
+	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
+	validates :doctor_id, :presence => { :message => "Debe elejir al doctor de la lista de resultados" }
 	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, :date_less, on: :create
 
 	def doctor_limit_turnos
@@ -50,10 +52,12 @@ class Turno < ActiveRecord::Base
 	end
 
 	def doctor_suspendido_or_not_turnos
+		unless self.doctor_id.nil?
 		doctor = Doctor.find(self.doctor_id)
-		if doctor.suspendido or doctor.cantidad_turno == 0
-			errors.add :doctor_id, "El Dr(a):" + doctor.cliente.nombre + " no esta atendiendo"
-		end		
+			if doctor.suspendido or doctor.cantidad_turno == 0
+				errors.add :doctor_id, "El Dr(a):" + doctor.cliente.nombre + " no esta atendiendo"
+			end
+		end
 	end
 
 	def date_less
@@ -62,6 +66,11 @@ class Turno < ActiveRecord::Base
 		end
 		if self.fecha.beginning_of_day <= 1.days.ago.beginning_of_day
 			errors.add :fecha, "La fecha no puede ser menor a 1 dia"
+		end
+		unless Emisor.last.otros_dias == true
+			if self.fecha > 2.days.from_now.beginning_of_day
+				errors.add :fecha, "No hay permiso del administrador"
+			end			
 		end
 	end
 

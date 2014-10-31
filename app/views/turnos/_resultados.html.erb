@@ -1,13 +1,19 @@
+<div class="row">
+	<div class="title-green-head">
+		<span class="rev-combo pull-right"><i><%= link_to '',turnos_consulta_resultados_path(params.merge(format: 'pdf')), class: "ttip fa fa-print", :target => "_blank", title:'Imprimir' %></i></span>
+	</span>
+	<h3>RESULTADOS DE TU BUSQUEDA</h3>
+</div>
 <div class="row doctor-pacientes">
 	<% @turnos.each do |doctor|  %>
 	<div class="col-md-6">
 		<table class="table table-hover">
 			<thead>
-				<tr class="title-history">
+				<tr class="title-green-head">
 					<th colspan="5 ">DR: <%= (doctor[:nombre]).upcase%></th>
 				</tr>
 				<tr>
-          <th>Fecha</th>
+					<th>Fecha</th>
 					<th>#</th>
 					<th>Paciente</th>
 					<th>Hora</th>
@@ -17,7 +23,7 @@
 			<tbody>
 				<% doctor[:turnos].each do |turno| %>
 				<tr>
-          <td><%= local_date(turno.fecha, "date") %></td>
+					<td><%= local_date(turno.fecha, "date") %></td>
 					<td><%= turno.numero %></td>
 					<td><%= turno.paciente.cliente.nombre %></td>
 					<td><%= local_date(turno.hora,"time") %></td>
@@ -26,7 +32,7 @@
 						<i class="fa fa-check-circle text-success"></i>
 						<% else %>
 						<% unless turno.fecha < Time.now %>
-							<%= link_to "", turno, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar' %>
+						<%= link_to "", turno, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar' %>
 						<% end %>
 						<i class="fa fa-circle text-danger"></i>
 						<% end %>

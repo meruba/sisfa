@@ -37,7 +37,11 @@ Sisfa::Application.routes.draw do
   get "reportes/cierre_caja_diario"
   get "turnos/consulta_turnos"
   get "turnos/consulta_resultados"
-  resources :emisors, except: [:show, :destroy, :index]
+  resources :emisors, except: [:show, :destroy, :index] do
+    member do
+      get 'turnos_otros_dias'
+    end
+  end
   resources :user_sessions, only: [:new, :create, :destroy]
   resources :users, except: [:destroy] do
     member do
