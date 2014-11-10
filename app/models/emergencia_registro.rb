@@ -35,14 +35,20 @@ class EmergenciaRegistro < ActiveRecord::Base
 
   #validations
   validates :nombre_medico, :presence => true
+  validates :doctor_id, :presence => { :message => "Debe elejir al doctor de la lista de resultados" }
   validates :atencion, :causa, :diagnostico, :condicion_salir, :presence => true, :on => :update
 	validate :already_ingresado, on: :create
 
   def already_ingresado
 		paciente = EmergenciaRegistro.where(:paciente_id => self.paciente_id, :registrado => false).last
 		unless paciente.nil?
-			errors.add :paciente_id, "El paciente ya fue registrado"	
-		end		
+			errors.add :paciente_id, "El paciente ya fue registrado"
+		else
+			hospitalizado = HospitalizacionRegistro.where(:paciente_id => self.paciente_id, :alta => false).last
+			unless hospitalizado.nil?
+				errors.add :paciente_id, "El paciente esta ingresado por hospitalizacion"
+			end
+		end
 	end
 
 	#methods

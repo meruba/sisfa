@@ -39,6 +39,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	before_create :build_relations
 
   #validations
+	validates :doctor_id, :presence => { :message => "Debe elejir al doctor de la lista de resultados" }
   validates :fecha_de_ingreso, :medico_asignado, :presence => true
   validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
   validate :already_hostipalizado, :on => :create
