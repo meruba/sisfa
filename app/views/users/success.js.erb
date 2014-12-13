@@ -3,6 +3,7 @@
   window.Helpers.ButtonsHelper.init();
   <%- @user.errors.full_messages.each do |msg|%>
     alertify.error("<%=j msg %>");
+    window.Helpers.FormsHelper.init();
   <%- end %>
 <%- else %>
   $("#myModal").modal("hide");
