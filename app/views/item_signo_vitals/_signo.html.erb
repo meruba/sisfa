@@ -1,10 +1,18 @@
 <tr>
 	<td><%= local_date(signo.fecha,"date") %></td>
 	<td><%= local_date(signo.hora, "time") %></td>
+	<% if current_user == signo.user  %>
+	<td><%= best_in_place signo, :temperatura %></td>
+	<td><%= best_in_place signo, :pulso %></td>
+	<td><%= best_in_place signo, :respiracion %></td>
+	<td><%= best_in_place signo, :tension_arterial %></td>
+	<td><%= best_in_place signo, :observacion %></td>
+	<% else %>
 	<td><%= signo.temperatura %></td>
 	<td><%= signo.pulso %></td>
 	<td><%= signo.respiracion %></td>
 	<td><%= signo.tension_arterial %></td>
 	<td><%= signo.observacion %></td>
+	<% end %>
 	<td><%= signo.user.cliente.nombre %></td>
 </tr>

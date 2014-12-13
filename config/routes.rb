@@ -73,13 +73,13 @@ Sisfa::Application.routes.draw do
     end
   end
   resources :nota_enfermeras, :only => [:show]
-  resources :item_nota_enfermeras, only: [:create]
+  resources :item_nota_enfermeras, only: [:create, :edit, :update]
   resources :entrega_turnos, except: [:edit, :update] do
     get "view_create_item"
     resources :item_entrega_turnos, only: [:create, :destroy]
   end
   resources :signo_vitals, :only => [:show]
-  resources :item_signo_vitals, only: [:create]
+  resources :item_signo_vitals, only: [:create, :edit, :update]
   resources :item_facturas
   resources :item_proformas
   resources :traspasos, except: [:edit, :update, :destroy] do
