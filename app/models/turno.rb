@@ -30,7 +30,7 @@ class Turno < ActiveRecord::Base
 	validates :doctor_a_cargo, :presence => true
 	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
 	validates :doctor_id, :presence => { :message => "Debe elejir al doctor de la lista de resultados" }
-	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, :date_less, on: :create
+	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, :date_less, :hour_turnos, on: :create
 
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?
@@ -74,6 +74,16 @@ class Turno < ActiveRecord::Base
 		end
 	end
 
+	def hour_turnos
+		five_pm_hour = Time.now.beginning_of_day + (1020*60)
+		eight_am_hour = Time.now.beginning_of_day + (480*60)
+		if Time.now > five_pm_hour
+			errors.add :fecha, "No se emiten turnos ha esta hora"
+		end
+		if Time.now < eight_am_hour
+			errors.add :fecha, "No se emiten turnos ha esta hora"
+		end
+	end
 	#methods
 	def set_values
 		self.atendido = false
