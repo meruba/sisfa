@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   before_filter :require_login
 
   def index
-    @users = User.all
+    @users = User.all.includes(:cliente, :rol)
   end
 
   def show

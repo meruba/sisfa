@@ -54,7 +54,7 @@ class Doctor < ActiveRecord::Base
 
 	def self.turnos_doctores
 		doctores = []
-		self.includes(:cliente).where("suspendido = false and cantidad_turno != 0").each do |doctor|
+		self.includes(:cliente, :turnos).where("suspendido = false and cantidad_turno != 0").each do |doctor|
 			num_turnos = unless doctor.turnos.last_turno.nil? then doctor.turnos.last.numero else 0 end
 			doctores << {
 				:nombre =>doctor.cliente_nombre,
