@@ -22,13 +22,13 @@
 					<ul class="list-inline">
 						<li class="btn-circle">
 							<% if doctor.suspendido %>
-							<%= link_to '', suspender_doctor_path(doctor), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Activar', class: "ttip fa fa-thumbs-up text-muted text-success"%>
+							<%= link_to '', suspender_doctor_path(doctor), method: :post, data: { confirm: 'Esta seguro de activar este doctor?' },:rel => 'tooltip', :title => 'Activar', class: "ttip fa fa-thumbs-up text-muted text-success"%>
 							<% else %>
-							<%= link_to '', suspender_doctor_path(doctor), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-down"%>
+							<%= link_to '', suspender_doctor_path(doctor), method: :post, data: { confirm: 'Esta seguro de suspender este doctor?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-down"%>
 							<% end %>
 						</li>
 						<li class="btn-circle">
-							<%= link_to "", doctor, method: :delete, data: { confirm: 'Esta seguro?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar' %>
+							<%= link_to "", doctor, method: :delete, data: { confirm: 'Esta seguro de eliminar este doctor?' }, class: "ttip fa fa-times-circle text-danger",:rel=> 'tooltip', :title=>'Eliminar' %>
 						</li>
 					</ul>
 				</span>

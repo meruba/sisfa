@@ -26,7 +26,7 @@ private
         (link_to '', @view.new_paciente_hospitalizacion_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Hospitalizacion', class: "ttip fa fa-hospital-o btn btn-info"})+" "+
         (link_to '', @view.new_paciente_emergencia_registro_path(paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',:rel => 'tooltip', :title => 'Emergencia', class: "ttip fa fa-plus btn btn-danger"})+" "+
         (link_to '', @view.paciente_view_edit_path(paciente),{:rel => 'tooltip', :title => 'Ver / Editar', class: "ttip fa fa-eye-slash btn btn-default"})+" "+
-        (link_to '', paciente, method: :delete, data: { confirm: 'Estas Seguro?' },:rel => 'tooltip', :title => 'Eliminar', class: "ttip fa fa-times btn btn-default")
+        (link_to '', paciente, method: :delete, data: { confirm: 'Estas seguro de eliminar este paciente?' },:rel => 'tooltip', :title => 'Eliminar', class: "ttip fa fa-times btn btn-default")
       ]
     end
   end
