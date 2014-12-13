@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:x="urn:schemas-microsoft-com:office:excel"
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+xmlns:html="http://www.w3.org/TR/REC-html40">
+<Worksheet ss:Name="Sheet1">
+  <Table>
+    <Row>
+      <Cell><Data ss:Type="String">H.C</Data></Cell>
+      <Cell><Data ss:Type="String">Nombres y Apellidos</Data></Cell>
+      <Cell><Data ss:Type="String">Cedula</Data></Cell>
+      <Cell><Data ss:Type="String">Tipo</Data></Cell>
+      <Cell><Data ss:Type="String">Direccion</Data></Cell>
+    </Row>
+    <% @pacientes.each do |p| %>
+    <Row>
+      <Cell><Data ss:Type="String"><%= p.n_hclinica%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= p.cliente.nombre %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= p.cliente.numero_de_identificacion %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= p.tipo%></Data></Cell>
+      <Cell><Data ss:Type="String"><%= p.cliente.direccion %></Data></Cell>
+    </Row>
+    <% end %>
+  </Table>
+</Worksheet>
+</Workbook>

@@ -18,6 +18,14 @@ class PacientesController < ApplicationController
 		end
 	end
 
+	def reporte
+		@pacientes = Paciente.all.includes(:cliente)
+		respond_to do |format|
+			format.html
+			format.xls
+		end
+	end
+
 	def civil
 		@paciente.tipo = "civil"
 	end
