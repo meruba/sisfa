@@ -25,6 +25,7 @@
 		<br>
 	</div>
 	<%=link_to ' Hospitalizar', new_paciente_hospitalizacion_registro_path(@turno.paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',class: "ttip fa fa-hospital-o btn btn-info fix-margin"}%>
+	<%=link_to ' Recetar', cliente_proformas_receta_path(@turno.paciente.cliente), target: "_blank", class: "btn btn-primary btn-sm"%>
 	<small class="text-danger">* Haz click si crees que es necesario </small>
 	<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5", data: { confirm: "Esta seguro?"}%>
 	<small class="fix-margin">* Los campos faltantes seran calculados por el sistema</small>

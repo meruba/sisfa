@@ -63,7 +63,9 @@ Sisfa::Application.routes.draw do
     resources :consulta_externa_preventivas, :only => [:new, :create]
   end
   resources :condicions, :only => [:show]
-  resources :clientes
+  resources :clientes do
+    get "proformas/receta"
+  end
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors, except: [:destroy]
   resources :hospitalizacion_registros, except: [:destroy] do

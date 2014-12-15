@@ -1,0 +1,113 @@
+<div class="row col-md-10 shadow col-md-offset-1">
+  <div class="col-md-12">
+    <div class="title-blue-head">
+      <h3>Emitir Receta</h3>
+      <span class="rev-combo pull-right fecha_sin_hora"></span>
+    </div>
+  </div>
+  <div class="comprobante">
+    <%= nested_form_for @proforma, :html => {:id => "form-receta"}, :remote => true  do |f| %>
+    <%= form_errors_for @proforma %>
+    <div class="col-md-8">
+      <!-- formulario datos del cliente -->
+      <div class="row-fix-div">
+        <div class="col-md-3 icon-client-center">
+          <i class="fa fa-user fa-4x"></i><br>
+          <small>paciente</small>
+        </div>
+        <div class="col-md-8">
+          <%= f.fields_for :cliente do |cliente_params| %>
+          <%=  cliente_params.hidden_field :id, class: "cliente_id", value: @cliente.id %>
+          <%=  cliente_params.text_field :numero_de_identificacion, class: "form-control-border", value: @cliente.numero_de_identificacion, readonly: true %>
+          <%=  cliente_params.text_field :nombre, class: "form-control-border", :placeholder => "Nombres Apellidos", value: @cliente.nombre, readonly: true %>
+          <%=  cliente_params.text_field :direccion, class: "form-control-border direccion", :placeholder => "Dirección", value: @cliente.direccion%>
+          <%=  cliente_params.text_field :telefono, class: "form-control-border telefono", :placeholder => "Teléfono", value: @cliente.telefono%>
+          <% end %>
+        </div>
+      </div>
+      <!-- item proformas -->
+      <div class="table-responsive">
+        <table class="table" id="proforma">
+          <thead>
+            <tr>
+              <th>Producto</th>
+              <th>Cantidad</th>
+              <th>V.Unit</th>
+              <th>I.V.A.</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <%= f.fields_for :item_proformas, :wrapper => false do |item| %>
+            <tr class="fields">
+              <%= render 'items/items', item:item %>
+            </tr>
+            <% end %>
+            <tr>
+              <td><%= f.link_to_add "Producto", :item_proformas, :class => "nuevo_new_default"%>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- datos de impuestos proforma -->
+    <div class="col-md-4">
+            <div class="form-group">
+        <div class="row">
+          <div class="col-xs-6">
+            <h4>Subtotal 12%: </h4>
+          </div>
+          <div class="col-xs-6 text-right">
+            <h4 class="subtotal_12">
+              <% if @proforma.subtotal_12 %>
+                <%= @proforma.subtotal_12 %>
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
+          </div>
+          <div class="col-xs-6">
+            <h4>Subtotal 0%: </h4>
+          </div>
+          <div class="col-xs-6 text-right">
+            <h4 class="subtotal_0">
+              <% if @proforma.subtotal_0 %>
+                <%= @proforma.subtotal_0 %>
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
+          </div>
+          <div class="col-xs-6">
+            <h4>Iva 12%: </h4>
+          </div>
+          <div class="col-xs-6 text-right">
+            <h4 class="iva_factura">
+              <% if @proforma.iva %>
+                <%= @proforma.iva %>
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
+          </div>
+          <div class="col-xs-6">
+            <h4>TOTAL: </h4>
+          </div>
+          <div class="col-xs-6 text-right">
+            <h4 class="total_factura">
+              <% if @proforma.total %>
+                <%= @proforma.total %>
+              <% else %>
+                0.0
+              <% end %>
+            </h4>
+          </div>
+        </div>
+      </div>
+      <%= f.submit :Guardar, class: "btn btn-block btn-info", data: {disable_with: "Almacenando"}, :remote => true%>
+    </div>
+    <% end %>
+  </div>
+</div>

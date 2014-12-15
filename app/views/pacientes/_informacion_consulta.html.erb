@@ -23,6 +23,7 @@
 		<i class="fa fa-info-circle"></i> <label><strong> Antecedentes Personales</strong></label> <span class="fa fa-pencil text-info">..</span><br>
 		<%= best_in_place @turno.paciente, :antecedentes_personales,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes personales.!!"} %><br>
 		<i class="fa fa-info-circle"></i> <label><strong> Antecedentes Familiares</strong></label> <span class="fa fa-pencil text-info">..</span><br>
-		<%= best_in_place @turno.paciente, :antecedentes_familiares,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes familiares.!!"} %><br>
+		<%= best_in_place @turno.paciente, :antecedentes_familiares,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes familiares.!!"} %><br><br>
+		<%= link_to ' Ver Historia Clinica', @turno.paciente,{:target => '_blank'}%>
 	</div>
 </div>

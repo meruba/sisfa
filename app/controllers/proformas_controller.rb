@@ -3,6 +3,7 @@ class ProformasController < ApplicationController
 	before_filter :is_doctor, :except => [:index, :show, :facturar]
 	before_filter :is_admin_or_vendedor_farmacia, :only => [:index, :show, :facturar]
 	before_action :set_proforma, only: [:show]
+	before_action :get_cliente, only: [:receta]
 
 	def index
 		respond_to do |format|
@@ -12,6 +13,12 @@ class ProformasController < ApplicationController
 	end
 
 	def new
+		@proforma = Proforma.new
+		@proforma.item_proformas.build
+		@proforma.build_cliente
+	end
+
+	def receta
 		@proforma = Proforma.new
 		@proforma.item_proformas.build
 		@proforma.build_cliente
@@ -28,10 +35,9 @@ class ProformasController < ApplicationController
 
 	def create
 		@proforma = Proforma.new(proforma_params)
-		if @proforma.save
-			redirect_to doctors_dashboard_path, :notice => "Receta enviada a farmacia"
-		else
-			render "new"
+		@proforma.save
+		respond_to do |format|
+			format.js
 		end
 	end
 
@@ -74,6 +80,10 @@ class ProformasController < ApplicationController
 
 	def set_proforma
 		@proforma = Proforma.find(params[:id])
+	end
+
+	def get_cliente
+		@cliente = Cliente.find(params[:cliente_id])
 	end
 
 end

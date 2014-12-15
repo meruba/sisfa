@@ -8,6 +8,7 @@
 			<% end %>
 			<br>
 			<%= link_to 'Actualizar Datos', paciente_view_edit_path(@registro.paciente),{:target => '_blank', class: "ttip btn btn-info btn-xs"}%>
+
 		</div>
 		<div class="col-md-8">
 			<h4><strong><%= @registro.paciente.cliente_nombre %></strong></h4>
@@ -23,6 +24,7 @@
 		<i class="fa fa-info-circle"></i> <label><strong> Antecedentes Personales</strong></label> <span class="fa fa-pencil text-info">..</span><br>
 		<%= best_in_place @registro.paciente, :antecedentes_personales,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes personales.!!"} %><br>
 		<i class="fa fa-info-circle"></i> <label><strong> Antecedentes Familiares</strong></label> <span class="fa fa-pencil text-info">..</span><br>
-		<%= best_in_place @registro.paciente, :antecedentes_familiares,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes familiares.!!"} %><br>
+		<%= best_in_place @registro.paciente, :antecedentes_familiares,{:classes => "area-max", :type => :textarea, :nil => "El paciente no tiene registrado antecedentes familiares.!!"} %><br><br>
+			<%= link_to ' Ver Historia Clinica', @registro.paciente,{:target => '_blank'}%>
 	</div>
 </div>
