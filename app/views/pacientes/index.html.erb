@@ -8,7 +8,7 @@
 			<%=link_to("Militar", pacientes_militar_path, class: "nuevo_new btn-xs")%>
 			<%=link_to("Familiar", pacientes_familiar_path, class: "nuevo_new btn-xs")%>
 			<%=link_to("Civil", pacientes_civil_path, class: "nuevo_new btn-xs")%>
-			<%=link_to("Descargar Pacientes", reporte_pacientes_path(:format => "xls"), class: "btn btn-success btn-xs",data: {disable_with: "<i class='fa fa-spinner fa-spin'></i> Descargando..."})%>
+			<%=link_to("PDF Pacientes", reporte_pacientes_path(:format => "pdf"), class: "btn btn-success btn-xs", target: "_blank")%>
 		</div>
 	</div>
 	<div class="table-historias" id="flip-scroll">

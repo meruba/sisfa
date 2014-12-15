@@ -1,0 +1,31 @@
+<h3 class="text-center">LISTA DE HISTORIAS CLINICAS</h3>
+<h4>Fecha de impresion: <%= local_date(Time.now, "date") %> </h4>
+<h4>Total de H.C: <%= @pacientes.count() %></h4>
+<table>
+	<thead>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<table class="table table-hover">
+  <thead>
+    <tr class="title-green-head">
+      <th>H.C</th>
+      <th>NOMBRE</th>
+      <th>C.I / RUC</th>
+      <th>TIPO</th>
+      <th>DIRECCION</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pacientes.each do |p|  %>      
+    <tr>
+      <td><%= p.n_hclinica %></td>
+      <td><%= p.cliente.nombre %></td>
+      <td><%= p.cliente.numero_de_identificacion %></td>
+      <td><%= p.tipo%></td>
+      <td><%= p.cliente.direccion%></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

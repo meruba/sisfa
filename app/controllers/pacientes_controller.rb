@@ -19,10 +19,12 @@ class PacientesController < ApplicationController
 	end
 
 	def reporte
-		@pacientes = Paciente.all.includes(:cliente)
+		@pacientes = Paciente.all.includes(:cliente).order('n_hclinica asc')
 		respond_to do |format|
 			format.html
-			format.xls
+			format.pdf do
+				render :pdf => "historias clinicas", :layout => 'report.html', :template => "pacientes/reporte.pdf.erb", :orientation => 'Landscape'
+			end
 		end
 	end
 
