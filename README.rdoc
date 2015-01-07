@@ -6,5 +6,6 @@ Application RoR about invoices, reports, clients etc
 
 There is a demo in http://sisfa.heroku.com
 
-
+username: demo
+password: demo
 
