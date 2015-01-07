@@ -4,7 +4,6 @@ class CreateItemTratamientos < ActiveRecord::Migration
     	t.string :codigo
     	t.string :nombre
     	t.references :tratamiento, index: true
-
       t.timestamps
     end
   end
