@@ -20,6 +20,7 @@
 #  discapacidad            :string(255)
 #  antecedentes_personales :string(255)
 #  antecedentes_familiares :string(255)
+#  registrado_por          :string(255)
 #
 
 class Paciente < ActiveRecord::Base

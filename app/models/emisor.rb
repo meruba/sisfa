@@ -9,6 +9,7 @@
 #  created_at               :datetime
 #  updated_at               :datetime
 #  saldo_inicial_inventario :float
+#  otros_dias               :boolean          default(FALSE)
 #
 
 class Emisor < ActiveRecord::Base
