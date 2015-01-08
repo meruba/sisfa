@@ -20,20 +20,20 @@ class Hospitalizacion < ActiveRecord::Base
 	# has_many :item_hospitalizacions, :order => 'created_at DESC'
 	has_many :item_hospitalizacions
 	has_many :ingreso_productos, :through => :item_hospitalizacions
-  belongs_to :hospitalizacion_registro
-  belongs_to :user
+	belongs_to :hospitalizacion_registro
+	belongs_to :user
 
 	accepts_nested_attributes_for :item_hospitalizacions, :allow_destroy => true
 
 	#validations
-	validates :user_id, :presence => true
+	# validates :user_id, :presence => true
   # validates :user_id, :numero, :iva, :total, :subtotal, :subtotal_12, :fecha_emision, presence: true
   # validates :subtotal, :total, :numericality => { :greater_than_or_equal_to => 0}
   # validates :numero, :numericality => { only_integer: true }
 
   #callbacks
-	before_create :values_and_liquidacion
-	
+  before_create :values_and_liquidacion
+  
 	#methods
 
 	def self.disminuir_stock (item_hospitalizacions)
@@ -52,8 +52,8 @@ class Hospitalizacion < ActiveRecord::Base
 		self.user = self.hospitalizacion_registro.doctor.cliente.user
 		self.subtotal = 0
 		self.subtotal_12 = 0
-    self.iva = 0
-    self.total = 0
+		self.iva = 0
+		self.total = 0
 		Liquidacion.add_hospitalizacion(self)	
 	end
 
