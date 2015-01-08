@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: item_tratamientos
+#
+#  id             :integer          not null, primary key
+#  codigo         :string(255)
+#  nombre         :string(255)
+#  tratamiento_id :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#
+
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 # This model initially had no columns defined.  If you add columns to the
