@@ -7,7 +7,6 @@
 #  paciente_id :integer
 #  created_at  :datetime
 #  updated_at  :datetime
-#
-
 class Horario < ActiveRecord::Base
+	validates :hora, :paciente_id, :presences => true	
 end

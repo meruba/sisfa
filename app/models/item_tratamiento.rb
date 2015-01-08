@@ -8,7 +8,7 @@
 #  tratamiento_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime
-#
 
 class ItemTratamiento < ActiveRecord::Base
+	validates :nombre, :codigo, :tratamiento_id, :presence => true
 end
