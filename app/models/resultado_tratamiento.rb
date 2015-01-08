@@ -7,7 +7,6 @@
 #  resultado   :string(255)
 #  created_at  :datetime
 #  updated_at  :datetime
-#
-
 class ResultadoTratamiento < ActiveRecord::Base
+	validates :resultado, :personal_id, :presence => true
 end

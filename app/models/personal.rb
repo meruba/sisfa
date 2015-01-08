@@ -7,6 +7,6 @@
 #  created_at :datetime
 #  updated_at :datetime
 #
-
 class Personal < ActiveRecord::Base
+	validates :cliente_id, :presences => true
 end
