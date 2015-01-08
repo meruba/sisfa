@@ -1,0 +1,7 @@
+<%= form_for @tratamiento do |f| %>
+<%=f.label :nombre, "Ingrese Tratamiento"%>
+<%=f.text_field :nombre, class: "form-control"%>
+<%=f.label :numeracion, "Ingrese Numeracion"%>
+<%=f.text_field :numeracion, class: "form-control"%>
+<%=f.submit  "GUARDAR",class: "btn btn-primary"%>
+<% end %>
