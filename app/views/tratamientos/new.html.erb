@@ -1,7 +1,17 @@
-<%= form_for @tratamiento do |f| %>
-<%=f.label :nombre, "Ingrese Tratamiento"%>
+<%= nested_form_for @tratamiento do |f| %> 
+<%=f.label :nombre, "Ingrese Terapia"%>
 <%=f.text_field :nombre, class: "form-control"%>
 <%=f.label :numeracion, "Ingrese Numeracion"%>
 <%=f.text_field :numeracion, class: "form-control"%>
+<%=f.fields_for :item_tratamientos do |it|%>
+<%=it.label :nombre, "Ingrese Tratamiento"%>
+<%=it.text_field :nombre, class: "form-control"%>
+<%=it.label :codigo, "Ingrese Codigo"%>
+<%=it.text_field :codigo, class: "form-control"%>
+<%=it.hidden_field :tratamiento_id %>
+<%= it.link_to_remove "Eliminar", class: "btn btn-danger btn-xs"%>
+<% end %>
+<%=f.link_to_add "Agregar", :item_tratamientos, class: "btn btn-success btn-xs" %>
 <%=f.submit  "GUARDAR",class: "btn btn-primary"%>
+
 <% end %>
