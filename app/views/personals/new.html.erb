@@ -1,0 +1,17 @@
+<%= nested_form_for @personal do |f| %> 
+
+<%=f.fields_for :cliente do |pe|%>
+<%=pe.label :nombre, "Nombre Terapista"%>
+<%=pe.text_field :nombre, class: "form-control"%>
+<%=pe.label :numero_de_identificacion, "Ingrese Cedula"%>
+<%=pe.text_field :numero_de_identificacion, class: "form-control"%>
+<%=pe.label :telefono, "Numero Telefonico"%>
+<%=pe.text_field :telefono, class: "form-control"%>
+<%=pe.label :direccion, "Direccion"%>
+<%=pe.text_field :direccion, class: "form-control"%>
+
+
+<% end %>
+<%=f.submit  "GUARDAR",class: "btn btn-primary"%>
+
+<% end %>
