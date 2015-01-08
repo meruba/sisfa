@@ -11,5 +11,6 @@
 
 class ItemTratamiento < ActiveRecord::Base
 	belongs_to :tratamiento
-	validates :nombre, :codigo, :tratamiento_id, :presence => true
+	validates :nombre, :codigo, :presence => true
+
 end
