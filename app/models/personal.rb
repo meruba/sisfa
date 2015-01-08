@@ -8,5 +8,6 @@
 #  updated_at :datetime
 #
 class Personal < ActiveRecord::Base
-	validates :cliente_id, :presences => true
+	belongs_to :cliente
+	accepts_nested_attributes_for :cliente
 end

@@ -10,7 +10,7 @@
 #
 
 class Tratamiento < ActiveRecord::Base
-	has_many :item_tratamientos
+	has_many :item_tratamientos #relacion
 	accepts_nested_attributes_for :item_tratamientos
 	validates :nombre, :presence => true 
 end
