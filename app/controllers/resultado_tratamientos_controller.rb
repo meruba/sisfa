@@ -1,0 +1,2 @@
+class ResultadoTratamientosController < ApplicationController
+end
