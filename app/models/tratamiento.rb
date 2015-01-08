@@ -10,5 +10,7 @@
 #
 
 class Tratamiento < ActiveRecord::Base
+	has_many :item_tratamientos
+	accepts_nested_attributes_for :item_tratamientos
 	validates :nombre, :presence => true 
 end

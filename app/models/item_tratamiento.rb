@@ -10,5 +10,6 @@
 #  updated_at     :datetime
 
 class ItemTratamiento < ActiveRecord::Base
+	belongs_to :tratamiento
 	validates :nombre, :codigo, :tratamiento_id, :presence => true
 end
