@@ -8,5 +8,6 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 class Horario < ActiveRecord::Base
-	validates :hora, :paciente_id, :presences => true	
+	belongs_to :paciente
+	# validates :hora, :presences => true	
 end
