@@ -1,4 +1,7 @@
 Sisfa::Application.routes.draw do
+  get "configuraciones_fisiatria/index"
+  get "reportes_fisiatria/index"
+  get "calendario/index"
   get "clientes/autocomplete"
   get "productos/autocomplete"
   get "hospitalizacion_registros/autocomplete"
@@ -137,4 +140,5 @@ Sisfa::Application.routes.draw do
   root 'panel_aplication#index'
   resources :tratamientos
   resources :personals
+  resources :horarios
 end

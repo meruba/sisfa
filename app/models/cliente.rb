@@ -26,6 +26,7 @@ class Cliente < ActiveRecord::Base
 # relationships
   has_one :user
   has_one :paciente
+  has_one :personal
 	has_one :doctor
 	has_many :proformas
 	has_many :facturas

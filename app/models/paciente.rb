@@ -24,7 +24,9 @@
 #
 
 class Paciente < ActiveRecord::Base
+
 	belongs_to :cliente
+	has_one :horario 
 	has_many :condicions, dependent: :destroy
 	has_many :turnos, dependent: :destroy
 	has_many :hospitalizacion_registros, dependent: :destroy
@@ -37,38 +39,38 @@ class Paciente < ActiveRecord::Base
 
 	#validation
 	validates :tipo, :n_hclinica, :presence => true
-  validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
-  validates :n_hclinica, :uniqueness =>  true
-  validates :grado, :estado, :pertenece_a, :unidad, :presence => true, :if => "tipo == 'militar'"
-  validates :codigo_issfa, :presence => true, :if => "tipo == 'militar' or tipo == 'familiar'"
-  validates :parentesco, :presence => true, :if => "tipo == 'familiar'"
+	validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
+	validates :n_hclinica, :uniqueness =>  true
+	validates :grado, :estado, :pertenece_a, :unidad, :presence => true, :if => "tipo == 'militar'"
+	validates :codigo_issfa, :presence => true, :if => "tipo == 'militar' or tipo == 'familiar'"
+	validates :parentesco, :presence => true, :if => "tipo == 'familiar'"
 #methods
-	def cliente_attributes=(attributes)
-		if attributes['id'].present?
-	    self.cliente = Cliente.find(attributes['id'])
-	  end
-	  super
+def cliente_attributes=(attributes)
+	if attributes['id'].present?
+		self.cliente = Cliente.find(attributes['id'])
 	end
+	super
+end
 
 #class methods
-	def self.autocomplete(params)
-    pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente)
-    pacientes = pacientes.map do |paciente|
-      {
-        :id => paciente.id,
-        :label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
-        :value => paciente.cliente.nombre,
-        :nombre => paciente.cliente.nombre,
-        :cliente_id => paciente.cliente.id,
-        :n_hclinica => paciente.n_hclinica
-      }
-    end
-    pacientes
-  end
-	
-	def self.medical_records(paciente)
-		p = Paciente.find(paciente)
-		registros = p.condicions + p.hospitalizacion_registros.where(:alta => true)
-		registros = registros.sort_by(&:created_at)
+def self.autocomplete(params)
+	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente)
+	pacientes = pacientes.map do |paciente|
+		{
+			:id => paciente.id,
+			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
+			:value => paciente.cliente.nombre,
+			:nombre => paciente.cliente.nombre,
+			:cliente_id => paciente.cliente.id,
+			:n_hclinica => paciente.n_hclinica
+		}
 	end
+	pacientes
+end
+
+def self.medical_records(paciente)
+	p = Paciente.find(paciente)
+	registros = p.condicions + p.hospitalizacion_registros.where(:alta => true)
+	registros = registros.sort_by(&:created_at)
+end
 end
