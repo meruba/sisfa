@@ -44,6 +44,7 @@ class HospitalizacionRegistro < ActiveRecord::Base
   validates :fecha_de_salida, :diagnostico_ingreso, :diagnostico_salida, :presence => true, :on => :update
   validate :already_hostipalizado, :on => :create
   validate :validate_fecha_salida, :on => :update
+  validate :doctor_not_have_account, :on => :create
 
   def already_hostipalizado
   	paciente = HospitalizacionRegistro.where(:paciente_id => self.paciente_id, :alta => false).last
@@ -58,6 +59,12 @@ class HospitalizacionRegistro < ActiveRecord::Base
   			errors.add :fecha_de_salida, "Fecha de salida no válida"			
   		end
   	end
+  end
+
+  def doctor_not_have_account
+    if self.doctor.cliente.user.nil?
+      errors.add :doctor_id, "El doctor no tiene una cuenta de usuario"
+    end
   end
 
 	#methods
