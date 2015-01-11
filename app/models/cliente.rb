@@ -57,7 +57,7 @@ class Cliente < ActiveRecord::Base
   end
 
 	def self.autocomplete(params)
-		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%")
+		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%").limit(10)
     clientes = clientes.map do |cliente|
       {
         :id => cliente.id,

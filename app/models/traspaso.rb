@@ -31,7 +31,7 @@ class Traspaso < ActiveRecord::Base
   validates :numero, :numericality => { only_integer: true }
 
   #callbacks
-  before_validation :set_transpaso_values
+  before_validation :set_transpaso_values, on: :create
   after_save :add_liquidacion
 
 	#methods

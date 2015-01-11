@@ -28,6 +28,6 @@
 </div>
 <%=link_to ' Hospitalizar?', new_paciente_hospitalizacion_registro_path(@paciente),{:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal',class: "ttip fa fa-hospital-o btn btn-info fix-margin"}%>
 <small>* Solo en caso que destino sea "Internamiento" </small>
-<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5",data: { confirm: "Esta seguro?"%>
+<%= f.submit 'Guardar', class: "btn btn-primary col-md-offset-5",data: { confirm: "Esta seguro?"} %>
 <% end %>
 </div>
