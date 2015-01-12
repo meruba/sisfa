@@ -36,7 +36,7 @@ authenticates_with_sorcery!
   validates_presence_of :username
   validates_uniqueness_of :username
   validates_presence_of :rol
-  validates :password, length: { minimum: 4 }
+  validates :password, length: { minimum: 4 }, :on => :create
   validate :need_doctor_model
 
 #custom validations

@@ -25,7 +25,9 @@
 		<%= item.razon_anulada  %>
 		<% else %>
 		<% if @permiso_farmacia%>
+		<% if item.hospitalizacion.hospitalizacion_registro.alta_enfermeria == false%>
 		<%= link_to '', anular_item_hospitalizacion_path(item), :remote => true, :rel => "tooltip",  'data-toggle' =>  "modal", 'data-target' => '#myModal', :title => 'Anular',  class: "ttip fa fa-thumbs-down text-muted fa-2x" %>
+		<% end %>
 		<% end %>
 		<% end %>
 	</td>
