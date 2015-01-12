@@ -123,7 +123,7 @@ xmlns:html="http://www.w3.org/TR/REC-html40">
       <Cell><Data ss:Type="Number"><%= r.total_65_anios %></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_trabajadora_sexual %></Data></Cell>
       <Cell><Data ss:Type="Number"><%= r.total_certificado_medico %></Data></Cell>
-      <Cell><Data ss:Type="Double"><%= local_date(r.horas_trabajadas, "time") %></Data></Cell>
+      <Cell><Data ss:Type="String"><%= local_date(r.horas_trabajadas, "time") %></Data></Cell>
     </Row>
     <% end %>
   </Table>
