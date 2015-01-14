@@ -1,7 +1,9 @@
 class PersonalsController < ApplicationController
+	
 	def index
-		
+		@personals = Personal.all
 	end
+
 	def new 
 		@personal = Personal.new #CREA UN OBJETO personal 
 		@personal.build_cliente #permite crear itemtratamientos
@@ -21,7 +23,7 @@ class PersonalsController < ApplicationController
 	def update
 
 	end
-	def anular
+	def suspender
 
 	end	
 	
