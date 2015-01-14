@@ -139,6 +139,10 @@ Sisfa::Application.routes.draw do
   resources :reportes, only: [:index]
   root 'panel_aplication#index'
   resources :tratamientos
-  resources :personals
+  resources :personals do
+    member do
+      post "suspender"
+    end    
+  end
   resources :horarios
 end
