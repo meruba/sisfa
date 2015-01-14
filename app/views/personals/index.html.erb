@@ -1,0 +1,38 @@
+<div class="row title-history">
+  <h3 class="text-center">Administración de Terapistas</h3>
+</div>
+<div class="row info-paciente">
+  <%=link_to("Nuevo Terapista", new_personal_path, class: "btn btn-info")%><br><br>
+  <div class="input-icon-sm icon-addon addon-sm">
+    <input type="search" id="input-search" class="form-control" placeholder="Buscar Terapista..." ><i class="fa fa-search"></i>
+    <i class="fa fa-search"></i>
+  </div>
+  <br>
+  <div class="all-users searchable-container">
+    <% @personals.each do |p| %>
+    <div class=" row-fix-div col-md-6 items">
+      <div class="col-sm-4 col-md-2">
+        <%= image_tag "/images/user-placeholder.jpg", class: "img-circle", width: 75, height: 75 %>
+      </div>
+      <div class="col-sm-4 col-md-8">
+        <blockquote>
+          <p <%= 'style= text-decoration:line-through;' if p.suspendido %>><%= p.cliente.nombre%></p>
+          <div class="info-p">
+            <i class="fa fa-envelope malito"></i> <%= p.cliente.email%><br/>
+            <i class="fa fa-map-marker"></i> <%= p.cliente.direccion%><br/>
+            <i class="fa fa-phone"></i> <%= p.cliente.telefono%><br/>
+            <div class="links-ps">
+              <% if p.suspendido %>
+              <%= link_to '', suspender_personal_path(p), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Activar', class: "ttip fa fa-thumbs-o-up btn btn-success btn-xs"%>
+              <% else %>
+              <%= link_to '', suspender_personal_path(p), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
+              <% end %>
+              <%= link_to '', edit_personal_path(p), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Nueva Clave',:class => "ttip fa fa-pencil btn btn-warning btn-xs"}%>
+            </div>
+          </div>
+        </blockquote>
+      </div>
+    </div>
+    <% end %>
+  </div>
+</div>
