@@ -8,12 +8,10 @@ class HorariosController < ApplicationController
 	end
 	def create
 		@horario = Horario.new(horario_params)
-		if @horario.save
-			redirect_to new_horario_path, :notice => "GUARDADO"
-		else
-			raise
-			redirect_to new_horario_path, :notice => "NO GUARDADO"	
-		end	
+		@horario.save
+		respond_to do |format|
+			format.js
+		end
 	end
 	def edit
 
@@ -24,7 +22,7 @@ class HorariosController < ApplicationController
 	def anular
 
 	end	
-	
+
 	private
 
 	def horario_params
