@@ -20,14 +20,12 @@ class AsignarHorario < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :resultado_tratamientos
 	
-	before_save :set_values
+	after_create :set_values
 
 	def set_values
-		numero = self.numero_terapias
-		for i in (1..numero)
-			item = ResultadoTratamiento.new(:asignar_horario_id => self)
-			raise
-			item.save
+		self.numero_terapias.times do
+			sesion = self.resultado_tratamientos.build
+			sesion.save
 		end
 	end
 end
