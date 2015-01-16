@@ -6,6 +6,7 @@
 #  cliente_id :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  suspendido :boolean          default(FALSE)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

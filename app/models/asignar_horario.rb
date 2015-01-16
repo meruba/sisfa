@@ -9,6 +9,7 @@
 #  item_tratamiento_id :integer
 #  created_at          :datetime
 #  updated_at          :datetime
+#  paciente_id         :integer
 #
 
 class AsignarHorario < ActiveRecord::Base
