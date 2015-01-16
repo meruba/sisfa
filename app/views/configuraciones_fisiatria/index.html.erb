@@ -20,3 +20,12 @@
 		</div>
 	</div>
 </div>
+<div class="row tratamientos info-paciente">
+	<legend>Lista de Tratamientos</legend>
+	<% @tratamientos.each do |t|%>
+	<strong><h4><%= t.numeracion%>. <%= t.nombre%></h4></strong>
+	<% t.item_tratamientos.each do |i|%>
+	<h5><strong><%= i.codigo%></strong>. <%= i.nombre%> <i class="fa fa-pencil pull-rigth"></i> <i class="fa fa-times pull-rigth"></i></h5>
+	<% end %>
+	<% end %>
+</div>
