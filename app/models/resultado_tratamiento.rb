@@ -10,6 +10,7 @@
 #  atendido           :boolean          default(FALSE)
 #  razon_editado      :string(255)
 #  asignar_horario_id :integer
+#  fecha              :datetime
 #
 
 class ResultadoTratamiento < ActiveRecord::Base
