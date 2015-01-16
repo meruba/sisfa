@@ -12,6 +12,21 @@
 #
 
 class AsignarHorario < ActiveRecord::Base
-	validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presences => true
+	belongs_to :paciente
+	has_many :resultado_tratamientos
+	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
+	
+	accepts_nested_attributes_for :resultado_tratamientos
+	
+	before_save :set_values
+
+	def set_values
+		numero = self.numero_terapias
+		for i in (1..numero)
+			item = ResultadoTratamiento.new(:asignar_horario_id => self)
+			raise
+			item.save
+		end
+	end
 end

@@ -1,0 +1,13 @@
+<h1>AsignarHorarios</h1>
+<%= form_for @horario do |f|%>
+<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
+<input type="text" class="identificacion form-control", placeholder="Ingrese nombre paciente">
+<%= f.hidden_field :paciente_id, class: "paciente_id" %>
+<%= f.label :numero_terapias, "Ingrese numero de terapias" %>
+<%= f.number_field :numero_terapias, class: "form-control", :placeholder => "Ejm:2 " %>
+<%= f.label :fecha_inicio, "Ingrese fecha de inicio" %>
+<%= f.text_field :fecha_inicio, class: "form-control datepicker", :placeholder => "Ejm: 2012-12-02 " %>
+<%= f.label :fecha_final, "Ingrese fecha final " %>
+<%= f.text_field :fecha_final, class: "form-control datepicker", :placeholder => "Ejm: 2012-12-02 " %>
+<%= f.submit "Guardar", class: "btn btn-primary"%>
+<% end %>
