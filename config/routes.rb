@@ -1,4 +1,5 @@
 Sisfa::Application.routes.draw do
+  get "asignar_horarios/new"
   get "configuraciones_fisiatria/index"
   get "reportes_fisiatria/index"
   get "calendario/index"
@@ -145,4 +146,5 @@ Sisfa::Application.routes.draw do
     end    
   end
   resources :horarios
+  resources :asignar_horarios
 end

@@ -8,5 +8,6 @@
 #  created_at  :datetime
 #  updated_at  :datetime
 class ResultadoTratamiento < ActiveRecord::Base
-	validates :resultado, :personal_id, :presence => true
+	belongs_to :asignar_horario
+	validates :resultado, :personal_id, :presence => true, :on => :update
 end
