@@ -26,7 +26,18 @@ class AsignarHorario < ActiveRecord::Base
 		self.numero_terapias.times do |i|
 			day = self.fecha_inicio + i.days
 			sesion = self.resultado_tratamientos.build
-			sesion.fecha = not_weekend_days(day)
+			fecha_parcial = not_weekend_days(day)
+			fecha_definitiva = fecha_parcial
+			r  = ResultadoTratamiento.last
+			unless r.nil?
+				if r.fecha == fecha_parcial or r.fecha > fecha_parcial #se encarga de hacer solo una session x dia
+					fecha_definitiva = r.fecha + 1.days 
+				else
+					fecha_definitiva = fecha_parcial
+				end
+				fecha_definitiva
+			end
+			sesion.fecha = fecha_definitiva
 			sesion.save
 		end
 	end
@@ -41,14 +52,5 @@ class AsignarHorario < ActiveRecord::Base
 			day = day + 1.days
 		end
 		day
-		# if day.wday == 6 #es sabado	
-		# 	day = day + 2.days
-		# else if day.wday == 0 #es domingo
-		# 	day = day + 1.days
-		# 	raise
-		# else
-		# 	day = day
-		# end
-		# end
 	end
 end
