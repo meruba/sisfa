@@ -4,5 +4,6 @@ class CalendarioController < ApplicationController
   	# calendario
   	@numero_dias = numero_dias(Time.now)
   	@espacios = number_space(Time.now)
+  	@turnos = ResultadoTratamiento.all
   end
 end

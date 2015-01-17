@@ -11,8 +11,13 @@
 		<% for i in(1..@numero_dias) %>
 		<li>
 			<div class="date"><%=i%></div>
+			<% @turnos.each do |e| %>
 			<div class="event">
+				<% if i == e.fecha.strftime("%d").to_i %>
+				turno
+				<% end %>
 			</div>
+			<% end %>
 			<div class="event hospt">
 			</div>
 		</li>
