@@ -23,9 +23,32 @@ class AsignarHorario < ActiveRecord::Base
 	after_create :set_values
 
 	def set_values
-		self.numero_terapias.times do
+		self.numero_terapias.times do |i|
+			day = self.fecha_inicio + i.days
 			sesion = self.resultado_tratamientos.build
+			sesion.fecha = not_weekend_days(day)
 			sesion.save
 		end
+	end
+	
+	private
+
+	def not_weekend_days(day)
+		case
+		when day.wday == 6
+			day = day + 2.days
+		when day.wday == 0
+			day = day + 1.days
+		end
+		day
+		# if day.wday == 6 #es sabado	
+		# 	day = day + 2.days
+		# else if day.wday == 0 #es domingo
+		# 	day = day + 1.days
+		# 	raise
+		# else
+		# 	day = day
+		# end
+		# end
 	end
 end
