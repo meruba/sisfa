@@ -10,10 +10,10 @@ end
 def create
 	@horario = AsignarHorario.new(horario_params)
 	if @horario.save
-		redirect_to new_horario_path, :notice => "GUARDADO"
+		redirect_to calendario_index_path, :notice => "GUARDADO"
 	else
 			# raise
-			redirect_to new_horario_path, :notice => "NO GUARDADO"	
+			redirect_to calendario_index_path, :notice => "NO GUARDADO"	
 		end	
 	end
 	
