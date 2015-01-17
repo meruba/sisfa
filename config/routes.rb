@@ -2,7 +2,6 @@ Sisfa::Application.routes.draw do
   get "asignar_horarios/new"
   get "configuraciones_fisiatria/index"
   get "reportes_fisiatria/index"
-  get "calendario/index"
   get "clientes/autocomplete"
   get "productos/autocomplete"
   get "hospitalizacion_registros/autocomplete"
@@ -41,6 +40,12 @@ Sisfa::Application.routes.draw do
   get "reportes/cierre_caja_diario"
   get "turnos/consulta_turnos"
   get "turnos/consulta_resultados"
+  #fisiatria
+  get "calendario/index"
+  get "calendario/next_month"
+  get "calendario/prev_month"
+  get "calendario/current_month"
+
   resources :emisors, except: [:show, :destroy, :index] do
     member do
       get 'turnos_otros_dias'

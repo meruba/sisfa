@@ -1,26 +1,8 @@
 <h2 class="text-center">CONTROL DE HORARIOS FISIATRIA</h2>
-<span><%=link_to("Nuevo Horario", new_asignar_horario_path)%></span>
-
-<div class="calendar">
-	<h1 class="month"><%= month_name(Time.now)%></h1>
-	<ol class="day-names"><li>Domingo</li><li>Lunes</li><li>Martes</li><li>Miercoles</li><li>JUeves</li><li>Viernes</li><li>Sabado</li></ol>
-	<ol class="days">
-		<% for i in (1..@espacios) %>
-		<li></li>
-		<% end %>
-		<% for i in(1..@numero_dias) %>
-		<li>
-			<div class="date"><%=i%></div>
-			<% @turnos.each do |e| %>
-			<div class="event">
-				<% if i == e.fecha.strftime("%d").to_i %>
-				turno
-				<% end %>
-			</div>
-			<% end %>
-			<div class="event hospt">
-			</div>
-		</li>
-		<% end %>
-	</ol>
+<%=link_to("Nuevo Horario", new_asignar_horario_path, class: "btn btn-primary btn-sm")%> |
+<%= link_to "Mes anterior", calendario_prev_month_path(), :remote => true , class: "btn btn-info btn-sm"%>
+<%= link_to "Mes actual", calendario_current_month_path(), :remote => true , class: "btn btn-info btn-sm"%>
+<%= link_to "Mes siguiente", calendario_next_month_path(), :remote => true , class: "btn btn-info btn-sm"%>
+<div class="contenido-calendario">
+		<%= render "calendario/calendario" %>
 </div>

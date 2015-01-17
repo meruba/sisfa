@@ -31,7 +31,8 @@ class AsignarHorario < ActiveRecord::Base
 			r  = ResultadoTratamiento.last
 			unless r.nil?
 				if r.fecha == fecha_parcial or r.fecha > fecha_parcial #se encarga de hacer solo una session x dia
-					fecha_definitiva = r.fecha + 1.days 
+					fecha_definitiva = r.fecha + 1.days
+					fecha_definitiva = not_weekend_days(fecha_definitiva)
 				else
 					fecha_definitiva = fecha_parcial
 				end
