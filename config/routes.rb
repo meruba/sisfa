@@ -45,6 +45,7 @@ Sisfa::Application.routes.draw do
   get "calendario/next_month"
   get "calendario/prev_month"
   get "calendario/current_month"
+  get "item_tratamientos/autocomplete"
 
   resources :emisors, except: [:show, :destroy, :index] do
     member do
