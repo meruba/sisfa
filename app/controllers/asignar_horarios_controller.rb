@@ -5,6 +5,7 @@ class AsignarHorariosController < ApplicationController
 # end
 def new
 	@horario = AsignarHorario.new
+	@horario.tratamiento_registros.build
 end
 
 def create
@@ -28,7 +29,17 @@ def create
 	private 
 
 	def horario_params
-		params.require(:asignar_horario).permit(:paciente_id,:numero_terapias, :fecha_inicio, :fecha_final
+		params.require(:asignar_horario).permit(:paciente_id,
+			:numero_terapias,
+			:fecha_inicio,
+			:fecha_final,
+			:horario_id,
+			:tratamiento_registros_attributes => [
+				:nombre_tratamiento,
+				:asignar_horario_id,
+				:item_tratamiento_id,
+				:_destroy
+			]
 			)	
 	end	
 end
