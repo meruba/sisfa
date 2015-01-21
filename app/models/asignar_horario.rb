@@ -2,23 +2,25 @@
 #
 # Table name: asignar_horarios
 #
-#  id                  :integer          not null, primary key
-#  numero_terapias     :integer
-#  fecha_inicio        :datetime
-#  fecha_final         :datetime
-#  item_tratamiento_id :integer
-#  created_at          :datetime
-#  updated_at          :datetime
-#  paciente_id         :integer
+#  id              :integer          not null, primary key
+#  numero_terapias :integer
+#  fecha_inicio    :datetime
+#  fecha_final     :datetime
+#  created_at      :datetime
+#  updated_at      :datetime
+#  paciente_id     :integer
+#  horario_id      :integer
 #
 
 class AsignarHorario < ActiveRecord::Base
 	belongs_to :paciente
-	has_many :resultado_tratamientos
+	has_many :resultado_tratamientos, dependent: :destroy
+	has_many :tratamiento_registros, dependent: :destroy
+	has_one :horario
 	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
 	
-	accepts_nested_attributes_for :resultado_tratamientos
+	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
 	
 	after_create :set_values
 
