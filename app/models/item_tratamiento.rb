@@ -11,6 +11,20 @@
 
 class ItemTratamiento < ActiveRecord::Base
 	belongs_to :tratamiento
+	has_many :tratamiento_registros, dependent: :destroy
+
 	validates :nombre, :codigo, :presence => true
 
+#class methods
+	def self.autocomplete(params)
+		tratamientos = ItemTratamiento.includes(:tratamiento).where("codigo like ?", "%#{params}%").references(:tratamientos)
+		tratamientos = tratamientos.map do |t|
+			{
+				:id => t.id,
+				:label => t.nombre + " / " + "Seccion:" + t.tratamiento.nombre.to_s,
+				:value => t.nombre
+			}
+		end
+		tratamientos
+	end
 end
