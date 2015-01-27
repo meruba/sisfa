@@ -22,7 +22,13 @@ class AsignarHorario < ActiveRecord::Base
 	
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
 	
-	after_create :set_values
+	before_create :set_values
+	before_create :fix_date
+
+	def fix_date
+		self.fecha = self.fecha.to_date
+		raise
+	end
 
 	def set_values
 		self.numero_terapias.times do |i|

@@ -2,30 +2,78 @@
 	<h2 class= "text-center"> Configuraciones Fisiatria</h2>
 </div>
 <div class="row info-paciente">
-	<div class="col-md-3 input-cuarto">
-		<%= form_for @horario, :html => {:class => "form-horario"}, :remote => true  do |f| %>
-		<%= f.label :hora, "Ingrese Hora"%>
-		<div class="input-group">
-			<%= f.text_field :hora, class: "form-control", placeholder: "Ejm: 7:00 - 7:30"  %>
-			<span class="input-group-btn">
-				<%= f.submit '+', class: "btn btn-info", :remote => true %>
-			</span>
-		</div>
-		<% end %>
-		<h4 class= "text-center">Lista de horarios</h4>
-		<div id="horarios">
-			<% @horarios.each do |horario|%>
-			<%= render "horarios/horario", horario:horario %>
+	<div class="row horarios">
+		<div class="col-md-3 input-cuarto">
+			<%= form_for @horario, :html => {:class => "form-horario"}, :remote => true  do |f| %>
+			<%= f.label :hora, "Ingrese Hora"%>
+			<div class="input-group">
+				<%= f.text_field :hora, class: "form-control", placeholder: "Ejm: 7:00 - 7:30"  %>
+				<span class="input-group-btn">
+					<%= f.submit '+', class: "btn btn-info", :remote => true %>
+				</span>
+			</div>
 			<% end %>
+			<h4 class= "text-center">Lista de horarios</h4>
+			<div id="horarios">
+				<% @horarios.each do |horario|%>
+				<%= render "horarios/horario", horario:horario %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<div class="row terapias">
+		<div class="col-md-6">
+			<legend>Registro de Tratamientos</legend>
+			<%= nested_form_for @tratamiento, :html => {:class => "form-tratamiento"}, :remote => true do |f| %>
+			<div class="col-md-3">
+				<%=f.label :numeracion, "# Num."%>
+				<%=f.text_field :numeracion, class: "form-control", placeholder: "Ejm: 3.3"%>
+			</div>
+			<div class="col-md-9">
+				<%=f.label :nombre, "Ingrese Terapia"%>
+				<%=f.text_field :nombre, class: "form-control", placeholder: "Ejm: ELECTROTERAPIA"%>
+			</div>
+			<legend>Tratamientos</legend>
+			<div class="table-responsive">
+				<table class="table" id="factura">
+					<thead>
+						<tr>
+							<th># Codigo</th>
+							<th>Nombre de Tratamiento</th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<%=f.fields_for :item_tratamientos, :wrapper => false do |it|%>
+						<tr class="fields">
+							<td class="col-md-2"><%=it.text_field :codigo, class: "form-control", placeholder: "Ejm: 291327"%></td>
+							<td style="display:none"><%=it.hidden_field :tratamiento_id %></td>
+							<td class="col-md-8"><%=it.text_field :nombre, class: "form-control", placeholder: "Ejm: LASER TERAPIA"%></td>
+							<td><%= it.link_to_remove "", class: "delete_destroy"%></td>
+						</tr>
+						<% end %>
+						<tr>
+							<td><%= f.link_to_add "Tratamiento", :item_tratamientos, :class => "nuevo_new_default"%>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<br><%=f.submit  "GUARDAR",class: "btn btn-success", :remote => true%>
+			<% end %>
+		</div>
+		<div class="col-md-6">
+			<div id="tratamientos">
+				<legend>Lista de Terapias</legend>
+				<% @tratamientos.each do |tratamiento|%>
+				<%= render "tratamientos/tratamiento", tratamiento:tratamiento %>
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
-<div class="row tratamientos info-paciente">
-	<legend>Lista de Tratamientos</legend>
-	<% @tratamientos.each do |t|%>
-	<strong><h4><%= t.numeracion%>. <%= t.nombre%></h4></strong>
-	<% t.item_tratamientos.each do |i|%>
-	<h5><strong><%= i.codigo%></strong>. <%= i.nombre%> <i class="fa fa-pencil pull-rigth"></i> <i class="fa fa-times pull-rigth"></i></h5>
-	<% end %>
-	<% end %>
-</div>
+
+
+
+
+

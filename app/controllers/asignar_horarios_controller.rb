@@ -1,8 +1,5 @@
 class AsignarHorariosController < ApplicationController
-# 	def new
-# 		@horario = AsignarHorario.new
-# 		@horario.resultado_tratamientos.build
-# end
+
 def new
 	@horario = AsignarHorario.new
 	@horario.tratamiento_registros.build
