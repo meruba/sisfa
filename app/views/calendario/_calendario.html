@@ -9,11 +9,19 @@
 		<li>
 			<div class="date"><%=i%></div>
 			<% @turnos.each do |e| %>
+			<% if i == e.dia.strftime("%d").to_i %>
+			<% if e.lleno == true %>
 			<div class="event">
-				<% if i == e.fecha.strftime("%d").to_i %>
-				turno
-				<% end %>
+				turnos llenos
+				<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia) %>
 			</div>
+			<%else%>
+			<div class="event hospt">
+				disponibles
+				<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia) %>
+			</div>
+			<%end %>
+			<% end %>
 			<% end %>
 		</li>
 		<% end %>
