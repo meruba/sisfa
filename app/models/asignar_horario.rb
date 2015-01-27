@@ -23,7 +23,7 @@ class AsignarHorario < ActiveRecord::Base
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
 	
 	before_create :set_values
-	before_create :fix_date
+	# before_create :fix_date
 
 	def fix_date
 		self.fecha = self.fecha.to_date

@@ -18,7 +18,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 	has_one :disponibilidad_horario
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validate :isfull
-	after_save :add_disponiblidad
+	after_create :add_disponiblidad
 	accepts_nested_attributes_for :disponibilidad_horario
 
 	def isfull
@@ -31,8 +31,8 @@ class ResultadoTratamiento < ActiveRecord::Base
 	def add_disponiblidad
 		unless DisponiblidadHorario.last.nil?
 			numero_de_turnos = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).count()
-			if numero_de_turnos == 1
-			raise
+			if numero_de_turnos == 2
+			# raise
 				horario = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).last
 				horario.lleno = true
 				horario.save
