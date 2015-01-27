@@ -7,20 +7,22 @@ class TratamientosController < ApplicationController
 		@tratamiento.item_tratamientos.build #permite crear itemtratamientos
 	end
 	def create
+		raise
 		@tratamiento = Tratamiento.new(tratamiento_params)
-		if @tratamiento.save
-			redirect_to new_tratamiento_path, :notice => "GUARDADO"
-		else
-			raise
-			redirect_to new_tratamiento_path, :notice => "NO GUARDADO"	
-		end	
+		@tratamiento.save
+		respond_to do |format|
+			format.js
+		end
 	end
+
 	def edit
 
 	end
+
 	def update
 
 	end
+
 	def anular
 
 	end	
@@ -28,6 +30,7 @@ class TratamientosController < ApplicationController
 	private
 
 	def tratamiento_params
+		raise
 		params.require(:tratamiento).permit(:nombre,
 		 :numeracion, 
 		 :item_tratamientos_attributes=>[ :codigo, :nombre, :tratamiento_id, :_destroy]
