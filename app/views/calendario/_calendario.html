@@ -13,12 +13,12 @@
 			<% if e.lleno == true %>
 			<div class="event">
 				turnos llenos
-				<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia) %>
+				<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'}  %>
 			</div>
 			<%else%>
 			<div class="event hospt">
 				disponibles
-				<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia) %>
+				<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal'} %>
 			</div>
 			<%end %>
 			<% end %>

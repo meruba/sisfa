@@ -1,2 +1,4 @@
-<h1>ReportesFisiatria#index</h1>
-<p>Find me in app/views/reportes_fisiatria/index.html.erb</p>
+<h1 class="text-center">Reportes de Fisiatria</h1>
+<% @last_registros.each do |r|%>
+<%= r.personal_id %>
+<% end %>
