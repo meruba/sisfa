@@ -31,18 +31,21 @@ class ResultadoTratamiento < ActiveRecord::Base
 	def add_disponiblidad
 		unless DisponiblidadHorario.last.nil?
 			numero_de_turnos = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).count()
+			 #raise
 			if numero_de_turnos == 2
-			# raise
+			raise
 				horario = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).last
 				horario.lleno = true
 				horario.save
 			else
-				horario = DisponiblidadHorario.new
-				horario.dia = self.fecha
-				horario.resultado_tratamiento = self
-				horario.save
+				# raise
+				# horario = DisponiblidadHorario.new
+				# horario.dia = self.fecha
+				# horario.resultado_tratamiento = self
+				# horario.save
 			end
 		else
+			raise
 			horario = DisponiblidadHorario.new
 			horario.dia = self.fecha
 			horario.resultado_tratamiento = self

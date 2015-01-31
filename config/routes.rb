@@ -47,6 +47,7 @@ Sisfa::Application.routes.draw do
   get "calendario/current_month"
   get "item_tratamientos/autocomplete"
   get "resultado_tratamientos/by_day"
+  get "personals/by_day"
 
 
   resources :emisors, except: [:show, :destroy, :index] do
@@ -155,4 +156,5 @@ Sisfa::Application.routes.draw do
   end
   resources :horarios
   resources :asignar_horarios
+  resources :resultado_tratamientos
 end
