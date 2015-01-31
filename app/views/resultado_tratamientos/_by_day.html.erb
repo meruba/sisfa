@@ -1,13 +1,33 @@
-<% @turnos.each do |t|%>
-<% if t.atendido == false %>
-<h3 class="text-info"><%= t.asignar_horario.paciente.cliente.nombre%><br></h3>
-<% h = Horario.find(t.asignar_horario.horario_id)%>
-Hora de Terapia: <%= h.hora%><br>
-<%= link_to " Registrar Terapia", edit_resultado_tratamiento_path(t), class: "btn btn-xs btn-success" %><br><br>	
-<% else %>
-<h3 class="text-success"><%= t.asignar_horario.paciente.cliente.nombre%><br></h3>
-<% h = Horario.find(t.asignar_horario.horario_id)%>
-Hora de Terapia: <%= h.hora%><br>
-<%= link_to " Editar", edit_resultado_tratamiento_path(t), class: "btn btn-xs btn-warning" %><br><br>
-<% end%>
-<% end %>
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3 class="modal-title" id="myModalLabel">Listado de Horarios</h3>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-3 text-center">
+			<legend>Horarios</legend>
+		<% @horarios.each do |t|%>
+		<h4><%= t.hora%></h4>
+		<% end %>
+	</div>
+	<div class="col-md-9">
+		<legend>Pacientes en este horario</legend>
+		<% @turnos.each do |t|%>
+			<% if t.atendido == false %>
+				<h3 class="text-info"><%= t.asignar_horario.paciente.cliente.nombre%><br></h3>
+				<% h = Horario.find(t.asignar_horario.horario_id)%>
+				Hora de Terapia: <%= h.hora%><br>
+				<%= link_to " Registrar Terapia", edit_resultado_tratamiento_path(t), class: "btn btn-xs btn-success" %><br><br>	
+			<% else %>
+				<h3 class="text-success"><%= t.asignar_horario.paciente.cliente.nombre%><br></h3>
+				<% h = Horario.find(t.asignar_horario.horario_id)%>
+				Hora de Terapia: <%= h.hora%><br>
+				<%= link_to " Editar", edit_resultado_tratamiento_path(t), class: "btn btn-xs btn-warning" %><br><br>
+			<% end%>
+		<% end %>
+	</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+</div>
