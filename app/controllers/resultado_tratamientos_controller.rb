@@ -1,9 +1,17 @@
 class ResultadoTratamientosController < ApplicationController
 	before_filter :find_resultado, :only => [:edit, :update]
 	def by_day
-		fecha = params[:dia].to_date
-		@turnos = ResultadoTratamiento.where(:fecha => fecha.beginning_of_day..fecha.end_of_day)
+		@fecha = params[:dia].to_date
 		@horarios = Horario.all
+		respond_to do |format|
+			format.js
+		end
+	end
+
+	def hour_and_day
+		fecha = params[:dia].to_date
+		@hora = params[:hora]
+		@turnos = ResultadoTratamiento.includes(:asignar_horario).where(:fecha => fecha.beginning_of_day..fecha.end_of_day)
 		respond_to do |format|
 			format.js
 		end

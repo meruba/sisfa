@@ -13,6 +13,7 @@ class HorariosController < ApplicationController
 			format.js
 		end
 	end
+
 	def edit
 
 	end
@@ -21,7 +22,8 @@ class HorariosController < ApplicationController
 	end
 	def anular
 
-	end	
+	end
+
 
 	private
 
