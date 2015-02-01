@@ -47,6 +47,7 @@ Sisfa::Application.routes.draw do
   get "calendario/current_month"
   get "item_tratamientos/autocomplete"
   get "resultado_tratamientos/by_day"
+  get "resultado_tratamientos/hour_and_day"
   get "personals/by_day"
 
 

@@ -1,0 +1,26 @@
+<div class=" col-md-12 info-paciente">
+	  <ul class="internados grid">
+    <% @turnos.each do |turno|  %>
+    	<% h = Horario.find(turno.asignar_horario.horario_id)%>
+			<% if @hora  == h.hora %>
+		    <li class="no-ingresado-item">
+		      <span class="internado-name">
+		        <%= turno.asignar_horario.paciente.cliente_nombre%>
+		      </span>
+		      <div class="pull-right">
+		        <span class="type-paciente">
+		        H.C: #<%= turno.asignar_horario.paciente.n_hclinica%>
+		        </span>
+		        <span class="ingresado-type">
+						<% if turno.atendido %>
+		          <span class="btn-circles"><%= link_to "", edit_resultado_tratamiento_path(turno), class: "fa fa-check text-success" %></span>
+		          <% else %>
+		          <span class="btn-circles"><%= link_to "", edit_resultado_tratamiento_path(turno), class: "fa fa-pencil text-warning" %></span>
+		          <% end %>
+		        </span>
+		      </div>
+		    </li>
+	    <% end %>
+    <% end %>
+  </ul>
+</div>
