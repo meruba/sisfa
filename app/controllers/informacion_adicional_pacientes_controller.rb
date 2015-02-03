@@ -24,6 +24,7 @@ class InformacionAdicionalPacientesController < ApplicationController
 		:familiar_direccion,
 		:familiar_telefono,
 		:observacion,
-		:paciente_id
+		:paciente_id,
+		:representante_legal
 	end
 end

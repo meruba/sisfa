@@ -20,6 +20,8 @@
 	<div class="col-md-4">
 		<%=  cliente_params.label :fecha_de_nacimiento %>
 		<%=  cliente_params.text_field :fecha_de_nacimiento, class: "form-control", :placeholder => "Ejm: 1997-02-20"%>
+		<%=  cliente_params.label :ocupacion%>
+		<%= cliente_params.text_field :ocupacion, :class => 'form-control', :placeholder => "Ejm: Estudiante" %>
 	</div>
 </div>
 <% end %>

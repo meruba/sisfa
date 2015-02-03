@@ -118,7 +118,8 @@ class PacientesController < ApplicationController
 			:numero_de_identificacion,
 			:sexo,
 			:edad,
-			:estado_civil
+			:estado_civil,
+			:ocupacion
 			],
 			:informacion_adicional_paciente_attributes => [
 				:parroquia,
@@ -131,7 +132,8 @@ class PacientesController < ApplicationController
 				:familiar_direccion,
 				:familiar_telefono,
 				:observacion,
-				:paciente_id
+				:paciente_id,
+				:representante_legal
 			]
 		end
 

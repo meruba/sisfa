@@ -13,6 +13,7 @@
 	<% else %>
 	<strong>Afiliado:</strong> <%= best_in_place @paciente, :afiliado, type: :select, collection: [["IESS", "IESS"], ["ISSPOL", "ISSPOL"],["OTROS SEGUROS", "OTROS SEGUROS"],["NINGUNO", "NINGUNO"]] %> <span class="fa fa-pencil text-info">..</span><br/>
 	<% end %>
+	<strong>Ocupacion:</strong> <%= best_in_place @paciente.cliente, :ocupacion %> <span class="fa fa-pencil text-info">..</span><br>
 </p>
 <% if @paciente.tipo == "familiar" %>
 <legend>Informacion Militar-Familiar</legend>
@@ -46,4 +47,5 @@
 	<strong>Relacion Familiar:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_parentesco %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Direccion del Familiar:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_direccion %> <span class="fa fa-pencil text-info">..</span><br/>
 	<strong>Telefono del Familiar:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :familiar_telefono %> <span class="fa fa-pencil text-info">..</span><br/>
+		<strong>Representante Legal:</strong> <%= best_in_place @paciente.informacion_adicional_paciente, :representante_legal %> <span class="fa fa-pencil text-info">..</span>
 </p>

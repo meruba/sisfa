@@ -18,6 +18,8 @@
 			</small><br>
 			<small><strong>FECHA DE NACIMIENTO: </strong><%= @paciente.cliente.fecha_de_nacimiento %></small><br>
 			<small><strong>ESTADO CIVIL: </strong><%= (@paciente.cliente.estado_civil).upcase %></small><br>
+			<small><strong>OCUPACION: </strong><%= (@paciente.cliente.ocupacion).upcase %></small><br>
+			<small><strong>REPRESENTANTE LEGAL: </strong><%= (@paciente.informacion_adicional_paciente.representante_legal).upcase %></small><br>
 			<small><strong>DISCAPACIDAD: </strong><%= (@paciente.discapacidad).upcase %></small><br>
 		</div>
 						<div class="col-xs-4">
