@@ -1,7 +1,4 @@
 Sisfa::Application.routes.draw do
-  get "asignar_horarios/new"
-  get "configuraciones_fisiatria/index"
-  get "reportes_fisiatria/index"
   get "clientes/autocomplete"
   get "productos/autocomplete"
   get "hospitalizacion_registros/autocomplete"
@@ -49,7 +46,12 @@ Sisfa::Application.routes.draw do
   get "resultado_tratamientos/by_day"
   get "resultado_tratamientos/hour_and_day"
   get "personals/by_day"
-
+  get "asignar_horarios/new"
+  get "reportes_fisiatria/index"
+  get "configuraciones_fisiatria/horarios"
+  get "configuraciones_fisiatria/tratamientos"
+  get "configuraciones_fisiatria/sistema"
+  get "configuraciones_fisiatria/index"
 
   resources :emisors, except: [:show, :destroy, :index] do
     member do
@@ -155,7 +157,7 @@ Sisfa::Application.routes.draw do
   resources :personals do
     member do
       post "suspender"
-    end    
+    end
   end
   resources :horarios
   resources :asignar_horarios
