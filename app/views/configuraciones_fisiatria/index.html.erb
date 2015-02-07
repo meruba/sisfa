@@ -1,0 +1,20 @@
+<div class="row title-green-head">
+	<h2 class= "text-center"> Configuraciones Fisiatria</h2>
+</div>
+<div class="row info-paciente">
+	<ul class="nav nav-tabs" id="tab_estadisticas">
+		<li class="active"><%=link_to "Tratamientos",{:controller => 'configuraciones_fisiatria', :action => 'tratamientos'}, :remote => true, :data => {:toogle => "tab"} %></li>
+		<li><%=link_to "Horarios",{:controller => 'configuraciones_fisiatria', :action => 'horarios'}, :remote => true, :data => {:toogle => "tab"} %></li>
+		<li><%=link_to "Sistema",{:controller => 'configuraciones_fisiatria', :action => 'sistema'}, :remote => true, :data => {:toogle => "tab"} %></li>
+	</ul>
+	<div class="tab-content">
+		<%= render 'configuraciones_fisiatria/tratamientos'%>
+	</div>
+
+<%= javascript_tag "window.Helpers.NavbarVentas.init_estadisticas();" %>
+</div>
+
+
+
+
+
