@@ -1,17 +1,25 @@
-<%= nested_form_for @personal do |f| %> 
-
-<%=f.fields_for :cliente do |pe|%>
-<%=pe.label :nombre, "Nombre Terapista"%>
-<%=pe.text_field :nombre, class: "form-control"%>
-<%=pe.label :numero_de_identificacion, "Ingrese Cedula"%>
-<%=pe.text_field :numero_de_identificacion, class: "form-control"%>
-<%=pe.label :telefono, "Numero Telefonico"%>
-<%=pe.text_field :telefono, class: "form-control"%>
-<%=pe.label :direccion, "Direccion"%>
-<%=pe.text_field :direccion, class: "form-control"%>
-
-
-<% end %>
-<%=f.submit  "GUARDAR",class: "btn btn-primary"%>
-
+<%= nested_form_for @personal do |f| %>
+<%= form_errors_for @personal %>
+<div class="row">
+	<div class="col-md-4 col-md-offset-4">
+		<div class="panel panel-default">
+			<div class="panel-body field">
+				<h3 class= "text-center">Crear Terapista</h3>
+				<%= f.fields_for :cliente do |cliente_params| %>
+				<%=  cliente_params.hidden_field :id, class: "cliente_id" %>
+				<%=cliente_params.label :nombre, "Ingrese Nombres y Apellidos"%>
+				<%=  cliente_params.text_field :nombre, class: " nombre" %>
+				<%=cliente_params.label :numero_de_identificacion, "Ingrese Cedula"%>
+				<%=cliente_params.text_field :numero_de_identificacion, class: "form-control numero_de_identificacion"%>
+				<%=cliente_params.label :telefono, "Numero Telefonico"%>
+				<%=cliente_params.text_field :telefono, class: "form-control"%>
+				<%=cliente_params.label :direccion, "Direccion"%>
+				<%=cliente_params.text_field :direccion, class: "form-control"%>
+				<% end %>
+				<%= f.hidden_field(:cliente_id) %><br>
+				<%= f.submit :Guardar, class: "btn btn-success", data: {disable_with: "Almacenando"}%>
+			</div>
+		</div>
+	</div>
+</div>
 <% end %>

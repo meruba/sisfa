@@ -11,11 +11,12 @@
 				<% @turnos.each do |e| %>
 					<% if i == e.dia.strftime("%d").to_i %>
 							<div class = "<%= e.lleno ? 'lleno' : 'disponible' %>" >
-								<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "btn btn-xs btn-default"}  %>
+								<%= link_to	"ver", resultado_tratamientos_by_day_path(:dia => e.dia), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModallg', class: "btn btn-xs btn-default"}  %>
+							</div>
 					<% end %>
 				<% end %>
 			</li>
 		<% end %>
 	</ol>
 </div>
-	
+
