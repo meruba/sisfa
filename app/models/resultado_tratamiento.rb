@@ -15,6 +15,7 @@
 
 class ResultadoTratamiento < ActiveRecord::Base
 	belongs_to :asignar_horario
+	belongs_to :personal
 	has_one :disponibilidad_horario
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validate :isfull
