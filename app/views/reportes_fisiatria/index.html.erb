@@ -1,4 +1,84 @@
 <h1 class="text-center">Reportes de Fisiatria</h1>
-<% @last_registros.each do |r|%>
-<%= r.personal_id %>
-<% end %>
+<legend>Reporte por Terapista</legend>
+<div class="row reporte-personal">
+	<%= form_tag reportes_fisiatria_personal_path, :remote => true, method: :get do %>
+	<div class="col-md-4">
+		<%= label_tag :personal, "Seleccione Personal"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-user"></i>
+			</div>
+			<%= select_tag :personal, options_for_select(Personal.all.collect{ |u| [u.cliente.nombre, u.id] }), class: "form-control"%>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<%= label_tag :fecha_inicial, "Fecha Inicial"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<%= label_tag :fecha_final, "Fecha Final"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<br>
+		<%= submit_tag "Buscar", :class => "btn btn-block btn-info", :remote => true%>
+	</div>
+	<% end %>
+</div>
+<div class="row info-paciente">
+	<div class="resultado-busqueda-personal">
+		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
+	</div>
+</div>
+<legend>Reporte de Pacientes</legend>
+<div class="row reporte-personal">
+	<%= form_tag reportes_fisiatria_paciente_path, :remote => true, method: :get do %>
+	<div class="col-md-4">
+		<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-user"></i>
+			</div>
+			<%= text_field_tag :paciente, params[:paciente], :class => "form-control identificacion", :required => true %>
+			<%= hidden_field_tag :paciente_id, params[:paciente_id], class: "paciente_id" %>
+		</div>
+	</div>
+		<div class="col-md-2">
+		<%= label_tag :fecha_inicial, "Fecha Inicial"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<%= label_tag :fecha_final, "Fecha Final"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<br>
+		<%= submit_tag "Imprimir", :class => "btn btn-block btn-info", :remote => true%>
+	</div>
+	<% end %>
+</div>
+<div class="row info-paciente">
+	<div class="resultado-busqueda-paciente">
+		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
+	</div>
+</div>

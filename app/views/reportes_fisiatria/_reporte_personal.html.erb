@@ -1,0 +1,21 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Hora</th>
+			<th>Fecha</th>
+			<th>Paciente</th>
+			<th>Resultado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @resultados.each do |r|%>
+		<tr>
+			<td>Ndf</td>
+			<td><%= local_date(r.fecha, "date") %></td>
+			<td><%= r.asignar_horario.paciente.cliente.nombre %></td>
+			<td><%= r.resultado %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= link_to "Imprimir PDF", reportes_fisiatria_personal_path(params.merge(format: 'pdf')), class: "btn btn-success", target: "_blank" %>
