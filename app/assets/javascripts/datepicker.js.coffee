@@ -30,3 +30,5 @@ $ ->
   $("#myModal").on "shown.bs.modal", ->
     jQuery window.Helpers.Datepicker.init_datepicker
     jQuery window.Helpers.Datepicker.init_datepicker_month
+   $("#myModallg").on "shown.bs.modal", ->
+    jQuery window.Helpers.Datepicker.init_datepicker
