@@ -1,0 +1,29 @@
+<h3 class="text-center"><%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3><br>
+<h4 class="text-center"><strong>REPORTE DE ATENCIÓN POR TERAPISTA</strong></h4>
+<h5>Terapista: <%= @terapista.cliente.nombre %> </h5>
+<h5>Desde el: <%= @start_date%> hasta <%= @end_date%></h5>
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Hora</th>
+			<th>Fecha</th>
+			<th>Paciente</th>
+			<th>Resultado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @resultados.each do |r|%>
+		<tr>
+			<td>Ndf</td>
+			<td><%= local_date(r.fecha, "date") %></td>
+			<td><%= r.asignar_horario.paciente.cliente.nombre %></td>
+			<td><%= r.resultado %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<br><br><br><br>
+<div class="firma text-center">
+<small>---------------------------------</small>
+<h5><%= @terapista.cliente.nombre %> </h5>
+</div>
