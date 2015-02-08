@@ -1,0 +1,6 @@
+m = $('#content_modal_lg');
+m.html('<%= j(render 'form', horario: @horario) %>');
+window.Helpers.ButtonsHelper.init();
+window.Helpers.FormsHelper.init();
+window.Helpers.AutocompletePaciente.init_autocomplete();
+window.Helpers.Datepicker.init_datepicker();
