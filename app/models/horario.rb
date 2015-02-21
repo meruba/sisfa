@@ -8,6 +8,7 @@
 #  updated_at  :datetime
 #  hora_inicio :string(255)
 #  hora_final  :string(255)
+#  anulado     :boolean          default(FALSE)
 #
 
 class Horario < ActiveRecord::Base

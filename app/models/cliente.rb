@@ -14,7 +14,6 @@
 #  edad                     :integer
 #  estado_civil             :string(255)
 #  fecha_de_nacimiento      :date
-#  ocupacion                :string(255)      default("")
 #
 
 class Cliente < ActiveRecord::Base
