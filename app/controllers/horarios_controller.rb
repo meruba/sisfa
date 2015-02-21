@@ -1,7 +1,7 @@
 class HorariosController < ApplicationController
-	def index
 
-	end
+  before_action :find_horario, only: [:edit, :update, :suspender]
+
 	def new
 		@horario = Horario.new #CREA UN OBJETO TIPO TRATAMIENTO
 		@horarios = Horario.all
@@ -23,14 +23,15 @@ class HorariosController < ApplicationController
 	end
 
 	def suspender
-		raise
     if @horario.anulado
       @horario.anulado = false
     else
       @horario.anulado = true
     end
     @horario.save
-    redirect_to configuraciones_fisiatria_index_path, :notice => "Anulado"
+    respond_to do |format|
+      format.js
+    end
 	end
 
 
@@ -39,4 +40,8 @@ class HorariosController < ApplicationController
 	def horario_params
 		params.require(:horario).permit(:hora, :hora_inicio, :hora_final)
 	end
+
+  def find_horario
+    @horario = Horario.find(params[:id])
+  end
 end
