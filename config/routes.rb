@@ -159,7 +159,11 @@ Sisfa::Application.routes.draw do
       post "suspender"
     end
   end
-  resources :horarios
+  resources :horarios do
+    member do
+      post "suspender"
+    end
+  end
   resources :asignar_horarios
   resources :resultado_tratamientos
 end
