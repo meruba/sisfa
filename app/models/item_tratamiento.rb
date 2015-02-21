@@ -8,6 +8,8 @@
 #  tratamiento_id :integer
 #  created_at     :datetime
 #  updated_at     :datetime
+#  suspendido     :boolean          default(FALSE)
+#
 
 class ItemTratamiento < ActiveRecord::Base
 	belongs_to :tratamiento

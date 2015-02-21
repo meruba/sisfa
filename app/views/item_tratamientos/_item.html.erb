@@ -1,0 +1,4 @@
+<li id="<%= item.id  %>-it" <%= 'style= text-decoration:line-through;' if item.suspendido %>><strong>
+  <%= best_in_place item, :codigo%></strong>. <%= best_in_place item, :nombre%>
+  <%= link_to "", suspender_item_tratamiento_path(item), :class => (item.suspendido? ? 'fa fa-thumbs-up pull-right text-success' : 'fa fa-thumbs-down pull-right text-danger'), :method => "post", :remote => true %>
+</li =>
