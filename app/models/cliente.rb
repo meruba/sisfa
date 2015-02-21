@@ -14,6 +14,7 @@
 #  edad                     :integer
 #  estado_civil             :string(255)
 #  fecha_de_nacimiento      :date
+#  ocupacion                :string(255)      default("")
 #
 
 class Cliente < ActiveRecord::Base
@@ -58,7 +59,7 @@ class Cliente < ActiveRecord::Base
   end
 
 	def self.autocomplete(params)
-		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%")
+		clientes = Cliente.where("numero_de_identificacion like ?", "%#{params}%").limit(10)
     clientes = clientes.map do |cliente|
       {
         :id => cliente.id,
