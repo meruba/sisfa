@@ -1,6 +1,7 @@
 class TratamientosController < ApplicationController
-	def index
 
+  before_action :find_tratamiento, only: [:edit, :update]
+	def index
 	end
 	def new
 		@tratamiento = Tratamiento.new #CREA UN OBJETO TIPO TRATAMIENTO
@@ -10,7 +11,9 @@ class TratamientosController < ApplicationController
 		@tratamiento = Tratamiento.new(tratamiento_params)
 		@tratamiento.save
 		respond_to do |format|
-			format.js
+			format.js{
+        @item = ItemTratamiento.new
+      }
 		end
 	end
 
@@ -19,11 +22,10 @@ class TratamientosController < ApplicationController
 	end
 
 	def update
-
-	end
-
-	def anular
-
+    respond_to do |format|
+      @tratamiento.update(tratamiento_params)
+      format.json { respond_with_bip(@tratamiento) }
+    end
 	end
 
 	private
@@ -34,4 +36,8 @@ class TratamientosController < ApplicationController
 		 :item_tratamientos_attributes=>[ :codigo, :nombre, :tratamiento_id, :_destroy]
 		 )
 	end
+
+	def find_tratamiento
+     @tratamiento = Tratamiento.find(params[:id])
+   end
 end

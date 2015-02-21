@@ -1,0 +1,10 @@
+<%- if @item_tratamiento.suspendido %>
+  alertify.log("Tratamiento suspendido");
+  $('#<%=@item_tratamiento.id %>-it').css("text-decoration","line-through");
+  $('#<%=@item_tratamiento.id %>-it').find("a").removeClass("fa fa fa-thumbs-down text-danger").addClass("fa fa fa-thumbs-up text-success");
+<%- else %>
+  $('#<%=@item_tratamiento.id %>-it').css("text-decoration","");
+  alertify.success("Tratamiento habilitado");
+  $('#<%=@item_tratamiento.id %>-it').find("a").removeClass("fa fa fa-thumbs-up text-success").addClass("fa fa fa-thumbs-down text-danger");
+
+<%- end %>
