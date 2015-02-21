@@ -12,4 +12,13 @@
 class Personal < ActiveRecord::Base
 	belongs_to :cliente
 	accepts_nested_attributes_for :cliente
+
+  #methods
+  def cliente_attributes=(attributes)
+    if attributes['id'].present?
+      self.cliente = Cliente.find(attributes['id'])
+    end
+    super
+  end
+
 end

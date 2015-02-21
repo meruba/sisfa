@@ -10,11 +10,11 @@
 				<%= cliente_params.label :nombre, "Ingrese Nombres y Apellidos"%>
 				<%= cliente_params.text_field :nombre, class: " nombre" %>
 				<%= cliente_params.label :numero_de_identificacion, "Ingrese Cedula"%>
-				<%= cliente_params.text_field :numero_de_identificacion, class: "form-control numero_de_identificacion"%>
+				<%= cliente_params.text_field :numero_de_identificacion, class: "form-control identificacion_cliente"%>
 				<%= cliente_params.label :telefono, "Numero Telefonico"%>
-				<%= cliente_params.text_field :telefono, class: "form-control"%>
+				<%= cliente_params.text_field :telefono, class: "form-control telefono"%>
 				<%= cliente_params.label :direccion, "Direccion"%>
-				<%= cliente_params.text_field :direccion, class: "form-control"%>
+				<%= cliente_params.text_field :direccion, class: "form-control direccion"%>
 				<% end %>
 				<%= f.hidden_field(:cliente_id) %><br>
 				<%= f.submit :Guardar, class: "btn btn-success", data: {disable_with: "Almacenando"}%>
