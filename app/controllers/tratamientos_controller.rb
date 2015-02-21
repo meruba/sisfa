@@ -1,9 +1,9 @@
 class TratamientosController < ApplicationController
 	def index
-		
+
 	end
-	def new 
-		@tratamiento = Tratamiento.new #CREA UN OBJETO TIPO TRATAMIENTO 
+	def new
+		@tratamiento = Tratamiento.new #CREA UN OBJETO TIPO TRATAMIENTO
 		@tratamiento.item_tratamientos.build #permite crear itemtratamientos
 	end
 	def create
@@ -24,14 +24,14 @@ class TratamientosController < ApplicationController
 
 	def anular
 
-	end	
-	
+	end
+
 	private
 
 	def tratamiento_params
 		params.require(:tratamiento).permit(:nombre,
-		 :numeracion, 
+		 :numeracion,
 		 :item_tratamientos_attributes=>[ :codigo, :nombre, :tratamiento_id, :_destroy]
-		 )	
-	end	
+		 )
+	end
 end

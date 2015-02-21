@@ -14,6 +14,7 @@
 #  edad                     :integer
 #  estado_civil             :string(255)
 #  fecha_de_nacimiento      :date
+#  ocupacion                :string(255)      default("")
 #
 
 require 'test_helper'

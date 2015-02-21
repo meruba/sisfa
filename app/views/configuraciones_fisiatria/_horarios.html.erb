@@ -1,12 +1,16 @@
 <div class="row horarios">
-	<div class="col-md-3 input-cuarto">
+	<div class="col-md-6 input-cuarto">
 		<%= form_for @horario, :html => {:class => "form-horario"}, :remote => true  do |f| %>
-		<%= f.label :hora, "Ingrese Hora"%>
-		<div class="input-group">
-			<%= f.text_field :hora, class: "form-control", placeholder: "Ejm: 7:00 - 7:30"  %>
-			<span class="input-group-btn">
+		<div class="row">
+			<div class="col-md-4">
+				<%= f.text_field :hora_inicio, placeholder: "Hora Inicio: 7:00", class: "form-control" %>
+			</div>
+			<div class="col-md-4">
+				<%= f.text_field :hora_final, placeholder: "Hora Final: 7:30", class: "form-control" %>
+			</div>
+			<div class="col-md-4">
 				<%= f.submit '+', class: "btn btn-info", :remote => true %>
-			</span>
+			</div>
 		</div>
 		<% end %>
 		<h4 class= "text-center">Lista de horarios</h4>
@@ -17,3 +21,4 @@
 		</div>
 	</div>
 </div>
+
