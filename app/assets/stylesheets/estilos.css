@@ -42,7 +42,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 .row-user{
-  padding-top: 15px; 
+  padding-top: 15px;
 }
 
 .fix-margin{
@@ -106,7 +106,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 .line{
-border: 1px solid #e7e7e7;  
+border: 1px solid #e7e7e7;
 }
 
 .hospitalizado {
@@ -229,5 +229,12 @@ border: 1px solid #e7e7e7;
   background-color: #fff;
   list-style: none;
   margin: 2px;
+  padding: 10px;
   font-size: 16px;
+}
+
+.grey-backg{
+  background-color: #e7e7e7;
+  padding: 4px;
+  /*color: #e7e7e7;*/
 }

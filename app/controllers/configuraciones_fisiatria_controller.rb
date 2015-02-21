@@ -3,6 +3,8 @@ class ConfiguracionesFisiatriaController < ApplicationController
   	@tratamiento = Tratamiento.new
   	@tratamiento.item_tratamientos.build
   	@tratamientos = Tratamiento.all
+    @item = ItemTratamiento.new
+
   end
   def horarios
   	@horario = Horario.new
@@ -10,9 +12,7 @@ class ConfiguracionesFisiatriaController < ApplicationController
   end
 
   def tratamientos
-  	@tratamiento = Tratamiento.new
-  	@tratamiento.item_tratamientos.build
-  	@tratamientos = Tratamiento.all
+  	index
   end
 
   def sistema
