@@ -26,16 +26,16 @@
 class Paciente < ActiveRecord::Base
 
 	belongs_to :cliente
-	has_one :horario 
+	has_one :horario
 	has_many :condicions, dependent: :destroy
 	has_many :turnos, dependent: :destroy
 	has_many :hospitalizacion_registros, dependent: :destroy
 	has_many :asignar_horarios
 	has_one :informacion_adicional_paciente, dependent: :destroy
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
-	
+
 	delegate :nombre, :direccion, :telefono, :email, :numero_de_identificacion, :sexo, :fecha_de_nacimiento, :estado_civil, :to => :cliente, :prefix => true
-	
+
 	#callbacks
 
 	#validation
@@ -55,7 +55,7 @@ end
 
 #class methods
 def self.autocomplete(params)
-	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente)
+	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente).limit(10)
 	pacientes = pacientes.map do |paciente|
 		{
 			:id => paciente.id,
