@@ -1,9 +1,19 @@
-<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
-<input type="text" class="identificacion form-control", placeholder="Ingrese nombre paciente">
-<%= f.hidden_field :paciente_id, class: "paciente_id" %>
-<%= f.label :numero_terapias, "Ingrese numero de terapias" %>
-<%= f.number_field :numero_terapias, :placeholder => "Ejm:2 " %>
-<%= f.label :fecha_inicio, "Ingrese fecha de inicio" %>
-<%= f.text_field :fecha_inicio, class: "datepicker", :placeholder => "Ejm: 2012-12-02 " %>
-<%= f.label :fecha_final, "Ingrese fecha final " %>
-<%= f.text_field :fecha_final, class: "datepicker", :placeholder => "Ejm: 2012-12-02 " %>
+<div class="row">
+  <div class="col-md-6">
+    <label>Paciente H.C: <strong class="n_hclinica"></strong></label>
+    <input type="text" class="identificacion form-control", placeholder="Ingrese nombre paciente">
+    <%= f.hidden_field :paciente_id, class: "paciente_id" %>
+    <%= f.label :numero_factura, "# Factura" %>
+    <%= f.text_field :numero_factura, :placeholder => "Ejm: 2345" %>
+    <%= f.label :total_factura, "Total de factura" %>
+    <%= f.number_field :total_factura %>
+  </div>
+  <div class="col-md-6">
+  </div>
+  <div class="col-md-12">
+    <%= f.label :diagnostico, "Ingrese diagnostico del paciente" %>
+    <%= f.text_area :diagnostico, :placeholder => "Ejm: paralisis facial", class: "form-control" %>
+  </div>
+</div>
+
+

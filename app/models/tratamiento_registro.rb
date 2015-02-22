@@ -16,7 +16,8 @@ class TratamientoRegistro < ActiveRecord::Base
 	belongs_to :asignar_horario
 	belongs_to :item_tratamiento
 
-	# after_save :set_values
+	validates :nombre_tratamiento, :presence => true
+	after_save :set_values
 
 	def tratamiento_recibido
 		if self.item_tratamiento

@@ -9,6 +9,9 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  paciente_id     :integer
+#  numero_factura  :integer
+#  total_factura   :float            default(0.0)
+#  diagnostico     :string(255)
 #
 
 require 'test_helper'

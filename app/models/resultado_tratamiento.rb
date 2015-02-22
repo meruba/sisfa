@@ -18,10 +18,13 @@ class ResultadoTratamiento < ActiveRecord::Base
 	belongs_to :asignar_horario
 	belongs_to :personal
 	belongs_to :horario
-	# has_one :disponibilidad_horario
+	has_one :disponibilidad_horario
+
+	#validations
 	validates :resultado, :personal_id, :presence => true, :on => :update
-	validate :isfull
-	# after_create :add_disponiblidad
+	validates :fecha, :horario_id, :presence => true, :on => :create
+	# validate :isfull
+	after_create :add_disponiblidad
 	# accepts_nested_attributes_for :disponibilidad_horario
 
 	def isfull
