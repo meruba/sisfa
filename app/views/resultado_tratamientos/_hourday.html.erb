@@ -1,8 +1,7 @@
 <div class=" col-md-12 info-paciente">
 	  <ul class="internados grid">
     <% @turnos.each do |turno|  %>
-    	<% h = Horario.find(turno.asignar_horario.horario_id)%>
-			<% if @hora  == h.hora %>
+			<% if @hora  == turno.horario.hora %>
 		    <li class="no-ingresado-item">
 		      <span class="internado-name">
 		        <%= turno.asignar_horario.paciente.cliente_nombre%>
