@@ -9,7 +9,6 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  paciente_id     :integer
-#  horario_id      :integer
 #
 
 require 'test_helper'

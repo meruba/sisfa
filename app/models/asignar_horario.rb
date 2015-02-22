@@ -9,20 +9,18 @@
 #  created_at      :datetime
 #  updated_at      :datetime
 #  paciente_id     :integer
-#  horario_id      :integer
 #
 
 class AsignarHorario < ActiveRecord::Base
 	belongs_to :paciente
 	has_many :resultado_tratamientos, dependent: :destroy
 	has_many :tratamiento_registros, dependent: :destroy
-	has_one :horario
 	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
-	
+
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
-	
-	before_create :set_values
+
+	# before_create :set_values
 	# before_create :fix_date
 
 	def fix_date
@@ -54,7 +52,7 @@ class AsignarHorario < ActiveRecord::Base
 			sesion.save
 		end
 	end
-	
+
 	private
 
 	def not_weekend_days(day)

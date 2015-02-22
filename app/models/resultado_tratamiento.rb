@@ -11,16 +11,18 @@
 #  razon_editado      :string(255)
 #  asignar_horario_id :integer
 #  fecha              :datetime
+#  horario_id         :integer
 #
 
 class ResultadoTratamiento < ActiveRecord::Base
 	belongs_to :asignar_horario
 	belongs_to :personal
-	has_one :disponibilidad_horario
+	belongs_to :horario
+	# has_one :disponibilidad_horario
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validate :isfull
-	after_create :add_disponiblidad
-	accepts_nested_attributes_for :disponibilidad_horario
+	# after_create :add_disponiblidad
+	# accepts_nested_attributes_for :disponibilidad_horario
 
 	def isfull
 		numero_de_turnos = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).count()

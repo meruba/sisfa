@@ -11,6 +11,7 @@
 #  razon_editado      :string(255)
 #  asignar_horario_id :integer
 #  fecha              :datetime
+#  horario_id         :integer
 #
 
 require 'test_helper'

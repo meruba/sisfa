@@ -12,7 +12,7 @@
 #
 
 class Horario < ActiveRecord::Base
-	# belongs_to :paciente
+	has_many :resultado_tratamientos
 	belongs_to :asignar_horario
 	validates :hora_inicio, :hora_final, :presence =>true
 	validates_uniqueness_of :hora, :case_sensitive => false #nombre es unico sea escrito mayuscula o minuscula

@@ -3,52 +3,39 @@
 	<h3 class="modal-title" id="myModalLabel">Registro de Terapia</h3>
 </div>
 <%= nested_form_for @horario, :remote => true do |f|%>
-<div class="modal-body">
-	<div class="field">
-		<div class="row">
-			<div class="col-md-4">
-				<legend>Datos de Ingreso</legend>
-				<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
-				<input type="text" class="identificacion form-control", placeholder="Ingrese nombre paciente">
-				<%= f.hidden_field :paciente_id, class: "paciente_id" %>
-				<%= f.label :horario_id, "Seleccione horario"  %>
-				<%= f.select :horario_id, Horario.all.map { |h| [h.hora, h.id ] },{}, {class: "form-control"}%>
-				<%= f.label :numero_terapias, "Ingrese numero de terapias" %>
-				<%= f.number_field :numero_terapias, :placeholder => "Ejm:2 " %>
-				<%= f.label :fecha_inicio, "Ingrese fecha de inicio" %>
-				<%= f.text_field :fecha_inicio, class: "datepicker", :placeholder => "Ejm: 2012-12-02 " %>
-				<%= f.label :fecha_final, "Ingrese fecha final " %>
-				<%= f.text_field :fecha_final, class: "datepicker", :placeholder => "Ejm: 2012-12-02 " %>
-			</div>
-			<div class="col-md-5">
-				<legend>Terapias</legend>
-				<label>Ingrese codigo de terapia</label>
-				<%=f.fields_for :tratamiento_registros do |t|%>
-				<%= t.hidden_field :asignar_horario_id %>
-				<div class="input-group">
-					<%= t.text_field :nombre_tratamiento, class: "tratamiento", :placeholder =>"Ejm: 2914 / COMPRESAS QUIMICAS"%>
-					<%= t.hidden_field :item_tratamiento_id, class: "item_id"  %>
-					<span class="input-group-btn">
-						<%= t.link_to_remove "X", class: "btn btn-danger"%>
-					</span>
-				</div>
-				<br>
-				<% end %>
-				<%=f.link_to_add "Agregar", :tratamiento_registros, class: "nuevo_new_default btn-sm" %><br><br>
-			</div>
-			<div class="col-md-3">
-				<legend>Horarios Generados</legend>
-				<div class="info-paciente">
-					<small>Lunes 7:30</small>
-					<small>Lunes 8:30</small><br>
-					<small>Lunes 9:30</small>
-					<small>Lunes 7:30</small><br>
-					<small>Lunes 7:30</small>
-					<small>Lunes 7:30</small>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="modal-body info-paciente">
+  <div id="rootwizard">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+          <li><a href="#tab1" data-toggle="tab">
+            <span class ="fa fa-male fa-2x"></span>
+            <p class="list-group-item-text">Datos del Paciente</p>
+          </a></li>
+          <li><a href="#tab2" data-toggle="tab">
+            <span class ="fa fa-th-list fa-2x"></span>
+            <p class="list-group-item-text">Terapias</p>
+          </a></li>
+          <li><a href="#tab3" data-toggle="tab">
+            <span class ="fa fa-clock-o fa-2x"></span>
+            <p class="list-group-item-text">Horarios</p>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content row">
+      <div class="tab-pane field" id="tab1">
+        <%= render "asignar_horarios/forms/datos_paciente", f:f  %>
+      </div>
+      <div class="tab-pane field" id="tab2">
+        <%= render "asignar_horarios/forms/tratamientos", f:f  %>
+      </div>
+      <div class="tab-pane field" id="tab3">
+        <%= render "asignar_horarios/forms/horarios", f:f  %>
+
+      </div>
+    </div>
+  </div>
 </div>
 <div class="modal-footer">
 	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
