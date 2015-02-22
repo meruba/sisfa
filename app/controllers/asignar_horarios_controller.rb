@@ -3,6 +3,7 @@ class AsignarHorariosController < ApplicationController
 def new
 	@horario = AsignarHorario.new
 	@horario.tratamiento_registros.build
+	@horario.resultado_tratamientos.build
 	respond_to do |format|
     format.js
   end
@@ -10,6 +11,7 @@ end
 
 def create
 	@horario = AsignarHorario.new(horario_params)
+	@horario.save
 	respond_to do |format|
     format.js
   end
