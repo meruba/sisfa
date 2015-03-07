@@ -73,7 +73,7 @@
 	</div>
 	<div class="col-md-2">
 		<br>
-		<%= submit_tag "Imprimir", :class => "btn btn-block btn-info", :remote => true%>
+		<%= submit_tag "Buscar", :class => "btn btn-block btn-info", :remote => true%>
 	</div>
 	<% end %>
 </div>
@@ -82,3 +82,37 @@
 		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
 	</div>
 </div>
+
+<legend>Reporte de Factura</legend>
+<div class="row reporte-personal">
+	<%= form_tag reportes_fisiatria_factura_path, :remote => true, method: :get do %>
+	<div class="col-md-2">
+		<%= label_tag :fecha_inicial, "Fecha Inicial"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<%= label_tag :fecha_final, "Fecha Final"%>
+		<div class="input-group">
+			<div class="input-group-addon">
+				<i class="fa fa-calendar"></i>
+			</div>
+			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<br>
+		<%= submit_tag "Buscar", :class => "btn btn-block btn-info", :remote => true%>
+	</div>
+	<% end %>
+</div>
+<div class="row info-paciente">
+	<div class="resultado-busqueda-factura">
+		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
+	</div>
+</div>
+

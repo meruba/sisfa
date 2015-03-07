@@ -5,7 +5,6 @@ class CalendarioController < ApplicationController
   	@numero_dias = numero_dias(Time.now)
   	@espacios = number_space(Time.now)
   	@fecha = Time.now
-    # @turnos = ResultadoTratamiento.where(:fecha => Time.now.beginning_of_month..Time.now.end_of_month)
   	@turnos = DisponiblidadHorario.where(:dia => Time.now.beginning_of_month..Time.now.end_of_month)
   end
 
