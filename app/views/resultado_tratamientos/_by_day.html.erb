@@ -7,7 +7,7 @@
 		<div class="col-md-3 text-center">
 			<legend>Horarios</legend>
 			<% @horarios.each do |horario|%>
-			<h4><%= link_to	horario.hora, resultado_tratamientos_hour_and_day_path(:dia => @fecha, :hora => horario.hora), remote: true %></h4>
+					<h4><%= link_to	horario.hora, resultado_tratamientos_hour_and_day_path(:dia => @fecha, :hora => horario.hora), remote: true, class: horario.anulado ? 'text-muted' : 'text-info' %></h4>
 			<% end %>
 		</div>
 		<div class="col-md-9 text-center">

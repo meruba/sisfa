@@ -26,37 +26,6 @@ class AsignarHorario < ActiveRecord::Base
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
 
 	# before_create :set_values
-	# before_create :fix_date
-
-	def fix_date
-		self.fecha = self.fecha.to_date
-		raise
-	end
-
-	def set_values
-		self.numero_terapias.times do |i|
-			day = self.fecha_inicio + i.days
-			sesion = self.resultado_tratamientos.build
-			fecha_parcial = not_weekend_days(day)
-			fecha_definitiva = fecha_parcial
-			r  = ResultadoTratamiento.last
-			unless r.nil?
-				if r.fecha == fecha_parcial or r.fecha < fecha_parcial #se encarga de hacer solo una session x dia
-					fecha_definitiva = r.fecha + 1.days
-					fecha_definitiva = not_weekend_days(fecha_definitiva)
-				# raise
-				else
-				# raise
-
-					fecha_definitiva = fecha_parcial
-				end
-				fecha_definitiva
-			end
-			# raise
-			sesion.fecha = fecha_definitiva
-			sesion.save
-		end
-	end
 
 	private
 

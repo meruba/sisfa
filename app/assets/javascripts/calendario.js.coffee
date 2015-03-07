@@ -2,13 +2,12 @@ window.Helpers ||= {}
 
 window.Helpers.CalendarHelper = {
   init: ->
-  	$(".disponible").each ->
-  		$this = $(this)
-  		$this.parent().addClass("is-aviable")
-
-    $(".lleno").each ->
-  		$this = $(this)
-  		$this.parent().addClass("is-full")
+    $('div .days-turno').each ->
+      $this = $(this)
+      if $this.hasClass("lleno")
+        $this.parent().addClass("is-full")
+      else
+        $this.parent().addClass("is-aviable")
 }
 
 jQuery window.Helpers.CalendarHelper.init

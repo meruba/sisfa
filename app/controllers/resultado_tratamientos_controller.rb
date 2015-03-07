@@ -2,7 +2,7 @@ class ResultadoTratamientosController < ApplicationController
 	before_filter :find_resultado, :only => [:edit, :update]
 	def by_day
 		@fecha = params[:dia].to_date
-		@horarios = Horario.where(:anulado => false)
+		@horarios = Horario.all
 		respond_to do |format|
 			format.js
 		end

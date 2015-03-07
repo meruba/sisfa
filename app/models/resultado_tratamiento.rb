@@ -23,40 +23,33 @@ class ResultadoTratamiento < ActiveRecord::Base
 	#validations
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validates :fecha, :horario_id, :presence => true, :on => :create
-	# validate :isfull
+	validate :isfull, :on => :create
 	after_create :add_disponiblidad
 	# accepts_nested_attributes_for :disponibilidad_horario
 
 	def isfull
-		numero_de_turnos = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).count()
-		if numero_de_turnos == 4
-			errors.add :asignar_horario_id, "Turnos llenos para:" + self.asignar_horario.horario.hora
+		numero_de_turnos = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day, :horario_id => self.horario_id ).count() #turnos en ese horario
+		if numero_de_turnos == Emisor.last.numero_turnos_fisiatria # configuracion de turnos x hora
+			errors.add :asignar_horario_id, "Turnos llenos para la fecha: " + self.fecha.strftime("%Y-%m-%d")
 		end
 	end
 
 	def add_disponiblidad
-		unless DisponiblidadHorario.last.nil?
-			numero_de_turnos = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).count()
-			 # raise
-			if numero_de_turnos == 2
-			raise
-				horario = DisponiblidadHorario.where(:dia => self.fecha.beginning_of_day..self.fecha.end_of_day).last
-				horario.lleno = true
-				horario.save
-			else if numero_de_turnos == 0
-				# raise
-				horario = DisponiblidadHorario.new
-				horario.dia = self.fecha
-				horario.resultado_tratamiento = self
-				horario.save
-			end
+		turnos_config = Emisor.last.numero_turnos_fisiatria
+		numero_de_horarios = Horario.where(:anulado => false).count()
+		turnos_por_dia = numero_de_horarios * turnos_config
+		turnos_emitidos_dia = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).count() #turnos de todo el dia
+		dia_turno = DisponiblidadHorario.where(:dia => self.fecha).last
+		unless dia_turno.nil? # no existe ese registro en ese dia
+			if turnos_emitidos_dia == turnos_por_dia
+				dia_turno.lleno = true
+				dia_turno.save #actualiza el dia a lleno
 			end
 		else
-			# raise
 			horario = DisponiblidadHorario.new
 			horario.dia = self.fecha
-			horario.resultado_tratamiento = self
-			horario.save
+			horario.save # crea un nuevo dia
 		end
 	end
+
 end
