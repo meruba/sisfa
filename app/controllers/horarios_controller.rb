@@ -3,23 +3,16 @@ class HorariosController < ApplicationController
   before_action :find_horario, only: [:edit, :update, :suspender]
 
 	def new
-		@horario = Horario.new #CREA UN OBJETO TIPO TRATAMIENTO
+		@horario = Horario.new
 		@horarios = Horario.all
 	end
+
 	def create
 		@horario = Horario.new(horario_params)
 		@horario.save
 		respond_to do |format|
 			format.js
 		end
-	end
-
-	def edit
-
-	end
-
-	def update
-
 	end
 
 	def suspender

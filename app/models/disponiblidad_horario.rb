@@ -2,15 +2,13 @@
 #
 # Table name: disponiblidad_horarios
 #
-#  id                       :integer          not null, primary key
-#  lleno                    :boolean          default(FALSE)
-#  resultado_tratamiento_id :integer
-#  dia                      :datetime
-#  created_at               :datetime
-#  updated_at               :datetime
+#  id                   :integer          not null, primary key
+#  lleno                :boolean          default(FALSE)
+#  dia                  :datetime
+#  created_at           :datetime
+#  updated_at           :datetime
+#  numero_actual_turnos :integer
 #
 
 class DisponiblidadHorario < ActiveRecord::Base
-		#relations
-		belongs_to :resultado_tratamiento
 end

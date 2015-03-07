@@ -10,9 +10,9 @@
 	<tbody>
 		<% @resultados.each do |r|%>
 		<tr>
-			<td>Ndf</td>
+			<td><%= r.horario.hora %></td>
 			<td><%= local_date(r.fecha, "date") %></td>
-			<td><%= r.personal.cliente.nombre %></td>
+			<td><%= r.personal.cliente.nombre%></td>
 			<td><%= r.resultado %></td>
 		</tr>
 		<% end %>

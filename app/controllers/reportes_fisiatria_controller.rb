@@ -17,13 +17,14 @@ class ReportesFisiatriaController < ApplicationController
 	end
 
 	def paciente
-		@paciente = params[:paciente_id]
-		# @resultados = ResultadoTratamiento.includes(:asignar_horario).where(:paciente_id => params[:paciente_id], :created_at => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
-		@resultados =  ResultadoTratamiento.includes(:asignar_horario).where("asignar_horarios.paciente_id = #{@paciente}", :atendido => true).references(:asignar_horario)
+		@paciente = Paciente.find(params[:paciente_id])
+		@start_date = params[:fecha_inicial]
+		@end_date = params[:fecha_final]
+		@resultados =  ResultadoTratamiento.includes(:asignar_horario).where("asignar_horarios.paciente_id = #{@paciente.id} and atendido = true").references(:asignar_horario)
 		respond_to do |format|
 			format.js
 			format.pdf do
-				render :pdf => "reporte de paciente", :layout => 'report.html', :template => "reportes_fisiatria/reporte_personal.pdf.erb"
+				render :pdf => "reporte de paciente", :layout => 'report.html', :template => "reportes_fisiatria/reporte_paciente.pdf.erb", :orientation => 'Landscape'
 			end
 		end
 	end
