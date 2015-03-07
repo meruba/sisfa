@@ -6,5 +6,7 @@
   $("#myModallg").modal("hide");
   $('body').removeClass('modal-open');
   $('.modal-backdrop').remove();
+  $(".contenido-calendario").html('<%= j render 'calendario/calendario', turnos: @turnos %>');
+  window.Helpers.CalendarHelper.init();
   alertify.success("Horario creado");
 <%- end %>

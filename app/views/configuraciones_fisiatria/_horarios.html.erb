@@ -23,7 +23,7 @@
 	</div>
 	<div class="col-md-5 horario">
 		<legend class="text-center">Turnos Por Hora</legend>
-		<h5 class="text-center text-info">Actualmente se llevan 4 turnos por hora</h5>
+		<h5 class="text-center text-info">Actualmente se llevan <%= best_in_place @emisor, :numero_turnos_fisiatria, {:nil => "0 sin ingreso"} %> turnos por hora</h5>
 	</div>
 </div>
 

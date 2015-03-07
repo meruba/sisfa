@@ -50,6 +50,7 @@ Sisfa::Application.routes.draw do
   get "reportes_fisiatria/index"
   get "reportes_fisiatria/personal"
   get "reportes_fisiatria/paciente"
+  get "reportes_fisiatria/factura"
   get "configuraciones_fisiatria/horarios"
   get "configuraciones_fisiatria/tratamientos"
   get "configuraciones_fisiatria/sistema"
@@ -58,6 +59,7 @@ Sisfa::Application.routes.draw do
   resources :emisors, except: [:show, :destroy, :index] do
     member do
       get 'turnos_otros_dias'
+      post 'update_turnos_fisiatria'
     end
   end
   resources :user_sessions, only: [:new, :create, :destroy]

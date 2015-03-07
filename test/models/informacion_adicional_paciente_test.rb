@@ -16,6 +16,7 @@
 #  nacionalidad        :string(255)
 #  raza                :string(255)
 #  familiar_parentesco :string(255)
+#  representante_legal :string(255)      default("")
 #
 
 require 'test_helper'

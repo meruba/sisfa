@@ -1,5 +1,5 @@
 class AsignarHorariosController < ApplicationController
-
+include DashboardHospitalHelper
 	def new
 		@horario = AsignarHorario.new
 		@horario.tratamiento_registros.build
@@ -13,7 +13,12 @@ class AsignarHorariosController < ApplicationController
 		@horario = AsignarHorario.new(horario_params)
 		@horario.save
 		respond_to do |format|
-	    format.js
+	    format.js{
+	    	@numero_dias = numero_dias(Time.now)
+  			@espacios = number_space(Time.now)
+  			@fecha = Time.now
+	    	@turnos = DisponiblidadHorario.where(:dia => Time.now.beginning_of_month..Time.now.end_of_month)
+	    }
 	  end
 	end
 

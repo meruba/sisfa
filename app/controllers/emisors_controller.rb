@@ -27,11 +27,18 @@ class EmisorsController < ApplicationController
 
   def update
     @emisor = Emisor.first
-    if @emisor.update(emisor_params)
-      redirect_to facturas_path, :notice => "Parámetros configurados correctamente"
-    else
-      render "edit"
+    @emisor.update(emisor_params)
+    respond_to do |format|
+      format.html{
+        if @emisor
+          redirect_to facturas_path, :notice => "Parámetros configurados correctamente"
+        else
+          render "edit"
+        end
+      }
+      format.json { respond_with_bip(@emisor) }
     end
+
   end
 
   def turnos_otros_dias
@@ -50,7 +57,8 @@ class EmisorsController < ApplicationController
     params.require(:emisor).permit(:ruc,
       :nombre_establecimiento,
       :numero_inicial_factura,
-      :saldo_inicial_inventario)
+      :saldo_inicial_inventario,
+      :numero_turnos_fisiatria)
   end
 
   def find_emisor
