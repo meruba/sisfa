@@ -1,5 +1,12 @@
 class AsignarHorariosController < ApplicationController
 include DashboardHospitalHelper
+
+  def autocomplete
+    respond_to do |format|
+      format.json { render :json => AsignarHorario.autocomplete(params[:term]) }
+    end
+  end
+
 	def new
 		@horario = AsignarHorario.new
 		@horario.tratamiento_registros.build
@@ -20,14 +27,6 @@ include DashboardHospitalHelper
 	    	@turnos = DisponiblidadHorario.where(:dia => Time.now.beginning_of_month..Time.now.end_of_month)
 	    }
 	  end
-	end
-
-	def edit
-
-	end
-
-	def update
-
 	end
 
 	private

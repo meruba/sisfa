@@ -27,6 +27,18 @@ class AsignarHorario < ActiveRecord::Base
 
 	# before_create :set_values
 
+	def self.autocomplete(params)
+		pacientes = AsignarHorario.includes(paciente: [:cliente]).where("clientes.nombre like ?", "%#{params}%").references(paciente: [:cliente])
+		pacientes = pacientes.map do |terapia|
+			{
+				:id => terapia.id,
+				:label => terapia.paciente.cliente.nombre + " / " + "H.C:" + terapia.paciente.n_hclinica.to_s,
+				:value => terapia.paciente.cliente.nombre
+			}
+		end
+		pacientes
+	end
+
 	private
 
 	def not_weekend_days(day)
