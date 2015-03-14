@@ -1,13 +1,13 @@
 class ReportesFisiatriaController < ApplicationController
+
 	def index
-		@last_registros = ResultadoTratamiento.where(:atendido => true)
 	end
 
 	def personal
 		@terapista = Personal.find(params[:personal])
 		@start_date = params[:fecha_inicial]
 		@end_date = params[:fecha_final]
-		@resultados = ResultadoTratamiento.where(:personal_id => params[:personal], :created_at => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+		@resultados = ResultadoTratamiento.where(:personal_id => params[:personal], :fecha => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
 		respond_to do |format|
 			format.js
 			format.pdf do
