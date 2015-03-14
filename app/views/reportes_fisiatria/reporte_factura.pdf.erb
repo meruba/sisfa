@@ -1,0 +1,30 @@
+<h3 class="text-center"><%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3>
+<hr>
+<h4 class="text-center"><strong>REPORTE DE FACTURAS FISIATRÍA</strong></h4>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th># Factura</th>
+      <th>Paciente</th>
+      <th>Fecha</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resultados.each do |r|%>
+    <tr>
+      <td><%= r.numero_factura %></td>
+      <td><%= r.paciente.cliente_nombre %></td>
+      <td><%= local_date(r.created_at, "date") %></td>
+      <td>$ <%= r.total_factura %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td><strong>TOTAL</strong></td>
+      <td><strong>$ <%= @resultados.sum(:total_factura)%></strong></td>
+    </tr>
+  </tbody>
+</table>
+
