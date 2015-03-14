@@ -32,7 +32,11 @@ class ReportesFisiatriaController < ApplicationController
 	def factura
 		@start_date = params[:fecha_inicial]
 		@end_date = params[:fecha_final]
-		@resultados =  AsignarHorario.where(:created_at => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+		if params[:tipo] == "1"
+			@resultados =  AsignarHorario.where(:created_at => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day)
+		else
+			@resultados =  AsignarHorario.where(:numero_factura => params[:numero_inicial]..params[:numero_final])
+		end
 		respond_to do |format|
 			format.js
 			format.pdf do

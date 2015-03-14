@@ -53,7 +53,7 @@
 			<%= hidden_field_tag :paciente_id, params[:paciente_id], class: "paciente_id" %>
 		</div>
 	</div>
-		<div class="col-md-2">
+	<div class="col-md-2">
 		<%= label_tag :fecha_inicial, "Fecha Inicial"%>
 		<div class="input-group">
 			<div class="input-group-addon">
@@ -86,27 +86,45 @@
 <legend>Reporte de Factura</legend>
 <div class="row reporte-personal">
 	<%= form_tag reportes_fisiatria_factura_path, :remote => true, method: :get do %>
-	<div class="col-md-2">
-		<%= label_tag :fecha_inicial, "Fecha Inicial"%>
-		<div class="input-group">
-			<div class="input-group-addon">
-				<i class="fa fa-calendar"></i>
-			</div>
-			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true %>
+	<div class="col-md-12	">
+		<div class="col-md-2">
+			<%= label_tag :tipo, "Tipo de busqueda"%>
+			<%= select_tag(:tipo, options_for_select([['Fecha', 1], ['Número de factura', 2]], selected: :tipo ), class: "form-control type-search-factura") %>
 		</div>
-	</div>
-	<div class="col-md-2">
-		<%= label_tag :fecha_final, "Fecha Final"%>
-		<div class="input-group">
-			<div class="input-group-addon">
-				<i class="fa fa-calendar"></i>
+		<div class="tipo1">
+			<div class="col-md-2">
+				<%= label_tag :fecha_inicial, "Fecha Inicial"%>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker"%>
+				</div>
 			</div>
-			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true %>
+			<div class="col-md-2">
+				<%= label_tag :fecha_final, "Fecha Final"%>
+				<div class="input-group">
+					<div class="input-group-addon">
+						<i class="fa fa-calendar"></i>
+					</div>
+					<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker" %>
+				</div>
+			</div>
 		</div>
-	</div>
-	<div class="col-md-2">
-		<br>
-		<%= submit_tag "Buscar", :class => "btn btn-block btn-info", :remote => true%>
+		<div class="tipo2" style="display:none;">
+			<div class="col-md-2">
+				<%= label_tag :numero_inicial, "Número Inicial"%>
+				<%= number_field_tag :numero_inicial, params[:numero_inicial], :class => "form-control"%>
+			</div>
+			<div class="col-md-2">
+				<%= label_tag :numero_final, "Número Final"%>
+				<%= number_field_tag :numero_final, params[:numero_final], :class => "form-control" %>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<br>
+				<%= submit_tag "Buscar", :class => "btn btn-block btn-info", :remote => true%>
+		</div>
 	</div>
 	<% end %>
 </div>
