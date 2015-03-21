@@ -31,6 +31,7 @@ class Paciente < ActiveRecord::Base
 	has_many :turnos, dependent: :destroy
 	has_many :hospitalizacion_registros, dependent: :destroy
 	has_many :asignar_horarios
+	has_many :resultado_tratamientos
 	has_one :informacion_adicional_paciente, dependent: :destroy
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 

@@ -20,7 +20,8 @@ class ReportesFisiatriaController < ApplicationController
 		@paciente = Paciente.find(params[:paciente_id])
 		@start_date = params[:fecha_inicial]
 		@end_date = params[:fecha_final]
-		@resultados =  ResultadoTratamiento.includes(:asignar_horario).where("asignar_horarios.paciente_id = #{@paciente.id} and atendido = true").references(:asignar_horario)
+		@resultados =  ResultadoTratamiento.includes(:paciente).where(:paciente_id => params[:paciente_id], :atendido => true, :fecha => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day).references(:paciente)
+		# @resultados =  ResultadoTratamiento.includes(:asignar_horario).where("asignar_horarios.paciente_id = #{@paciente.id} and atendido = true").where(:fecha => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day).references(:asignar_horario)
 		respond_to do |format|
 			format.js
 			format.pdf do

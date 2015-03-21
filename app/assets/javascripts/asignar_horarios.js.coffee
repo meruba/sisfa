@@ -14,7 +14,7 @@ window.Helpers.AutocompletePacienteRegistroHorario = {
         else
           $("#message").empty()
       select: (event, ui) ->
-        $(".paciente_as_id").val ui.item.id
+        $(".paciente_as_id").val ui.item.paciente_id
 }
 
 jQuery window.Helpers.AutocompletePacienteRegistroHorario.init

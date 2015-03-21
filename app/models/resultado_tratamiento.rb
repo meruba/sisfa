@@ -19,6 +19,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 	belongs_to :asignar_horario
 	belongs_to :personal
 	belongs_to :horario
+	belongs_to :paciente
 	has_one :disponibilidad_horario
 
 	#validations
@@ -26,7 +27,12 @@ class ResultadoTratamiento < ActiveRecord::Base
 	validates :fecha, :horario_id, :presence => true, :on => :create
 	validate :isfull, :on => :create
 	after_create :add_disponiblidad
+	before_create :set_values
 	# accepts_nested_attributes_for :disponibilidad_horario
+
+	def set_values
+		self.paciente =  self.asignar_horario.paciente
+	end
 
 	def isfull
 		numero_de_turnos = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day, :horario_id => self.horario_id ).count() #turnos en ese horario

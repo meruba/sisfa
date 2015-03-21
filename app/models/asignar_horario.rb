@@ -25,13 +25,11 @@ class AsignarHorario < ActiveRecord::Base
 
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
 
-	# before_create :set_values
-
 	def self.autocomplete(params)
 		pacientes = AsignarHorario.includes(paciente: [:cliente]).where("clientes.nombre like ?", "%#{params}%").references(paciente: [:cliente])
 		pacientes = pacientes.map do |terapia|
 			{
-				:id => terapia.id,
+				:paciente_id => terapia.paciente.id,
 				:label => terapia.paciente.cliente.nombre + " / " + "H.C:" + terapia.paciente.n_hclinica.to_s,
 				:value => terapia.paciente.cliente.nombre
 			}

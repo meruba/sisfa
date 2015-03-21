@@ -45,6 +45,7 @@ include DashboardHospitalHelper
 			:resultado_tratamientos_attributes => [
 				:fecha,
 				:horario_id,
+				:paciente_id,
 				:_destroy
 			]
 			)
