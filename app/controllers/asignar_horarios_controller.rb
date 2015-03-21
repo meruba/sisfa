@@ -11,6 +11,7 @@ include DashboardHospitalHelper
 		@horario = AsignarHorario.new
 		@horario.tratamiento_registros.build
 		@horario.resultado_tratamientos.build
+		@tratamientos =  ItemTratamiento.where(:suspendido => false)
 		respond_to do |format|
 	    format.js
 	  end
@@ -35,6 +36,7 @@ include DashboardHospitalHelper
 		params.require(:asignar_horario).permit(:paciente_id,
 			:numero_factura,
 			:total_factura,
+			:doctor_remitente,
 			:diagnostico,
 			:tratamiento_registros_attributes => [
 				:nombre_tratamiento,

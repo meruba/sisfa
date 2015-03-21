@@ -1,9 +1,9 @@
-<div class="col-md-6 horario">
+<div class="col-md-7 horario">
   <legend>Ingresa los tratamientos</legend>
   <%=f.fields_for :tratamiento_registros do |t|%>
   <%= t.hidden_field :asignar_horario_id %>
   <div class="input-group">
-    <%= t.text_field :nombre_tratamiento, class: "tratamiento", :placeholder =>"Ejm: 2914 / COMPRESAS QUIMICAS"%>
+    <%= t.text_field :nombre_tratamiento, class: "tratamiento", :placeholder =>"Ejm: 2914 / LASER TERAPIA"%>
     <%= t.hidden_field :item_tratamiento_id, class: "item_id"  %>
     <span class="input-group-btn">
       <%= t.link_to_remove "X", class: "btn btn-danger"%>
@@ -13,9 +13,9 @@
   <% end %>
   <%=f.link_to_add "Agregar", :tratamiento_registros, class: "nuevo_new_default btn-sm" %>
 </div>
-<div class="col-md-5 horario mygrid-wrapper-div">
+<div class="col-md-4 horario mygrid-wrapper-div">
   <legend>Codigos</legend>
-  <% ItemTratamiento.all.each do |i|%>
+  <% @tratamientos.each do |i|%>
     <h6><%= i.codigo %> / <%= i.nombre %></h6>
   <% end %>
 </div>
