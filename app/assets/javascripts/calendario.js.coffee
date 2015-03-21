@@ -6,8 +6,10 @@ window.Helpers.CalendarHelper = {
       $this = $(this)
       if $this.hasClass("lleno")
         $this.parent().addClass("is-full")
+        $this.prev().remove()
       else
         $this.parent().addClass("is-aviable")
+        $this.prev().remove()
 }
 
 jQuery window.Helpers.CalendarHelper.init
