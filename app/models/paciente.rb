@@ -70,6 +70,10 @@ def self.autocomplete(params)
 	pacientes
 end
 
+def self.last_terapia_fisiatria(paciente)
+	terapias = paciente.asignar_horarios.last
+end
+
 def self.medical_records(paciente)
 	p = Paciente.find(paciente)
 	registros = p.condicions + p.hospitalizacion_registros.where(:alta => true)

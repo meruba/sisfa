@@ -51,6 +51,7 @@ Sisfa::Application.routes.draw do
   get "reportes_fisiatria/index"
   get "reportes_fisiatria/personal"
   get "reportes_fisiatria/paciente"
+  get "reportes_fisiatria/paciente_certificado"
   get "reportes_fisiatria/factura"
   get "configuraciones_fisiatria/horarios"
   get "configuraciones_fisiatria/tratamientos"
