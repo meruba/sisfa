@@ -18,7 +18,9 @@ window.Helpers.Datepicker = {
   init_datepicker_not_weekend: ->
     $('.datepicker-not-weekend').datepicker({
       daysOfWeekDisabled: [0,6],
-      format: 'yyyy-mm-dd'
+      format: 'yyyy-mm-dd',
+      language: "es",
+      autoclose: true
     });
 }
 
