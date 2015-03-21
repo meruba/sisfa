@@ -11,7 +11,7 @@
       <tbody>
         <%=f.fields_for :resultado_tratamientos, :wrapper => false do |t|%>
         <tr class="fields">
-          <td class="col-md-6"><%= t.text_field :fecha, class: "datepicker", :placeholder => "Ejm: 2012-12-02 "%></td>
+          <td class="col-md-6"><%= t.text_field :fecha, class: "datepicker-not-weekend", :placeholder => "Ejm: 2012-12-02 "%></td>
           <td class="col-md-6"><%= t.select :horario_id, Horario.where(:anulado => false).map { |h| [h.hora, h.id ] },{}, {class: "form-control"}%></td>
           <td><%= t.hidden_field :asignar_horario_id %></td>
           <td><%= t.link_to_remove "", class: "delete_destroy"%></td>
