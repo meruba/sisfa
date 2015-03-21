@@ -18,4 +18,6 @@
 		<% end %>
 	</tbody>
 </table>
-<%= link_to "Imprimir PDF", reportes_fisiatria_paciente_path(params.merge(format: 'pdf')), class: "btn btn-success", target: "_blank" %>
+<%= link_to "Reporte PDF", reportes_fisiatria_paciente_path(params.merge(format: 'pdf')), class: "btn btn-success", target: "_blank" %>
+
+<%= link_to "Certificado PDF", reportes_fisiatria_paciente_certificado_path(params.merge(format: 'pdf')), class: "btn btn-primary", target: "_blank" %>
