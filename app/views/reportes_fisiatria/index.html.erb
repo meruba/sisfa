@@ -1,4 +1,7 @@
-<h1 class="text-center">Reportes de Fisiatria</h1>
+<div class="row title-green-head">
+	<h2 class= "text-center">Reportes de Fisiatría</h2>
+</div>
+<div class="row info-paciente">
 <legend>Reporte por Terapista</legend>
 <div class="row reporte-personal">
 	<%= form_tag reportes_fisiatria_personal_path, :remote => true, method: :get do %>
@@ -40,7 +43,8 @@
 		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
 	</div>
 </div>
-<legend>Reporte de Pacientes</legend>
+<hr>
+<legend>Reporte de Pacientes / Certificado</legend>
 <div class="row reporte-personal">
 	<%= form_tag reportes_fisiatria_paciente_path, :remote => true, method: :get do %>
 	<div class="col-md-4">
@@ -82,7 +86,7 @@
 		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
 	</div>
 </div>
-
+<hr>
 <legend>Reporte de Factura</legend>
 <div class="row reporte-personal">
 	<%= form_tag reportes_fisiatria_factura_path, :remote => true, method: :get do %>
@@ -132,5 +136,6 @@
 	<div class="resultado-busqueda-factura">
 		<h5 class="text-center text-muted"><i class= "fa fa-search"></i> Los resultados se veran en esta seccion</h5>
 	</div>
+</div>
 </div>
 
