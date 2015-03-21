@@ -3,13 +3,14 @@
     <label>Paciente H.C: <strong class="n_hclinica"></strong></label>
     <input type="text" class="identificacion form-control", placeholder="Ingrese nombre paciente">
     <%= f.hidden_field :paciente_id, class: "paciente_id" %>
+    <%= f.label :doctor_remitente %>
+    <%= f.text_field :doctor_remitente, :placeholder => "Ejm: Dr. Maita" %>
+  </div>
+  <div class="col-md-6">
     <%= f.label :numero_factura, "# Factura" %>
     <%= f.text_field :numero_factura, :placeholder => "Ejm: 2345" %>
     <%= f.label :total_factura, "Total de factura" %>
-    <%= f.number_field :total_factura %>
-  </div>
-  <div class="col-md-6">
-  </div>
+    <%= f.number_field :total_factura %></div>
   <div class="col-md-12">
     <%= f.label :diagnostico, "Ingrese diagnostico del paciente" %>
     <%= f.text_area :diagnostico, :placeholder => "Ejm: paralisis facial", class: "form-control" %>
