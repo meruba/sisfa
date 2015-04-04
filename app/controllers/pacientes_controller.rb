@@ -60,6 +60,10 @@ class PacientesController < ApplicationController
 		@registros = Paciente.medical_records(@paciente)
 	end
 
+	def terapias
+		@terapias = Paciente.find(params[:paciente_id]).asignar_horarios
+	end
+
 	def create
 		@paciente = Paciente.new(paciente_params.merge(:fecha_hclinica => Time.now, :registrado_por => current_user.cliente.nombre + " / usuario: " + current_user.username))
 		if @paciente.save
