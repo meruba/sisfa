@@ -22,6 +22,10 @@ include DashboardHospitalHelper
 	  end
 	end
 
+  def view_edit
+    @registros = AsignarHorario.last(10)
+  end
+
 	def create
 		@horario = AsignarHorario.new(horario_params)
 		@horario.save
