@@ -1,5 +1,7 @@
 <div class="row info-paciente">
-	<legend><i class="fa fa-stethoscope"></i> Registros Medicos</legend>
+	<legend><i class="fa fa-stethoscope"></i> Registros Medicos
+		<span class="pull-right">
+			<%= link_to "TERAPIAS", paciente_terapias_path(@paciente), class: "label label-success" %></span></legend>
 	<ul class="cbp_tmtimeline">
 		<% @registros.each do |r|  %>
 		<% if r.has_attribute?(:alta)%>

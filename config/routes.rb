@@ -78,6 +78,7 @@ Sisfa::Application.routes.draw do
     resources :emergencia_registros, except: [:destroy, :index]
     get "view_edit"
     get "print_historia"
+    get "terapias"
     get 'reporte', :on => :collection
   end
   resources :turnos, except: [:show] do

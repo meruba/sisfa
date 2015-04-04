@@ -1,0 +1,18 @@
+<h2 class="text-center">TERAPIAS DEL PACIENTE</h2>
+<div class="text-center">
+  <% @terapias.each do |consulta| %>
+  <legend>Información de Registro</legend>
+  <h5>Doctor: <%= consulta.doctor_remitente %> </h5>
+  <h5>Diagnostico: <%= consulta.diagnostico %> </h5>
+  <legend>Tratamientos</legend>
+  <% consulta.tratamiento_registros.each do |tratamiento| %>
+    <%= tratamiento.item_tratamiento.nombre %><br>
+  <% end %>
+  <legend>Resultados</legend>
+  <% consulta.resultado_tratamientos.each do |resultado| %>
+    <%= resultado.resultado %><br>
+  <% end %>
+  <% end %>
+</div>
+
+
