@@ -25,12 +25,12 @@ class Turno < ActiveRecord::Base
 	before_create :set_values
 	before_destroy :was_atendido
 	after_destroy :new_order
-	
+
 	#	validations
 	validates :doctor_a_cargo, :presence => true
 	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
 	validates :doctor_id, :presence => { :message => "Debe elejir al doctor de la lista de resultados" }
-	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, :date_less, on: :create
+	validate :doctor_suspendido_or_not_turnos, :doctor_limit_turnos, :paciente_has_one_turno, on: :create
 
 	def doctor_limit_turnos
 		unless self.doctor_id.nil?
@@ -47,8 +47,8 @@ class Turno < ActiveRecord::Base
 	def paciente_has_one_turno
 		turnos = Turno.where(:paciente_id => self.paciente_id, :fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).last
 		unless turnos.nil?
-			errors.add :paciente_id, "Ya tiene asignado un turno con el doctor: "+ self.doctor.cliente.nombre	
-		end		
+			errors.add :paciente_id, "Ya tiene asignado un turno con el doctor: "+ self.doctor.cliente.nombre
+		end
 	end
 
 	def doctor_suspendido_or_not_turnos
@@ -70,7 +70,7 @@ class Turno < ActiveRecord::Base
 		unless Emisor.last.otros_dias == true
 			if self.fecha > 2.days.from_now.beginning_of_day
 				errors.add :fecha, "No hay permiso del administrador"
-			end			
+			end
 		end
 	end
 

@@ -16,11 +16,13 @@
 		<%= f.text_field :diagnostico_sindrome, class: "form-control enfermedad",placeholder: "Ejm: CERVICODORSALGIA"  %>
 		<%= f.hidden_field :codigo_cie, class: "codigo_cie"%>
 		<%= f.label :condicion_diagnostico%>
-		<%= f.select(:condicion_diagnostico, ['Presuntivo/Sospechoso','Definitivo/Inicial/Confirmado','Definitivo/Control'], {}, { :class => 'form-control' }) %>	
+		<%= f.select(:condicion_diagnostico, ['Presuntivo/Sospechoso','Definitivo/Inicial/Confirmado','Definitivo/Control'], {}, { :class => 'form-control' }) %>
 		<%= f.label :ordenes%>
 		<%= f.select(:ordenes, ['Interconsulta Solicitada','Referencia'], {}, { :class => 'form-control' }) %><br>
 		<%= f.label :certificado_medico, "Certificado medico?"%>
 		<%= f.check_box :certificado_medico%>
+		<%= label_tag :enviar_fisiatria, "Necesita Terapia?"%>
+		<%= check_box_tag :enviar_fisiatria%>
 		<br>
 		<br>
 	</div>

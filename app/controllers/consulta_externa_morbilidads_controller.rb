@@ -16,14 +16,18 @@ class ConsultaExternaMorbilidadsController < ApplicationController
 		@consulta.paciente = @turno.paciente
 		@consulta.turno = @turno
 		if @consulta.save
+			if params[:enviar_fisiatria] == "1"
+				n = NecesitaTerapia.new(paciente: @turno.paciente, consulta_externa_morbilidad: @consulta)
+				n.save
+			end
 			redirect_to doctors_dashboard_path, :notice => "Almacenado"
 		else
 			render 'new'
 		end
 	end
-	
+
 	def show
-	
+
 	end
 
 	def edit

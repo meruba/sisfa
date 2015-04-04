@@ -33,6 +33,7 @@ class Paciente < ActiveRecord::Base
 	has_many :asignar_horarios
 	has_many :resultado_tratamientos
 	has_one :informacion_adicional_paciente, dependent: :destroy
+	has_many :necesita_terapias
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
 
 	delegate :nombre, :direccion, :telefono, :email, :numero_de_identificacion, :sexo, :fecha_de_nacimiento, :estado_civil, :to => :cliente, :prefix => true
@@ -65,6 +66,23 @@ def self.autocomplete(params)
 			:nombre => paciente.cliente.nombre,
 			:cliente_id => paciente.cliente.id,
 			:n_hclinica => paciente.n_hclinica
+		}
+	end
+	pacientes
+end
+
+def self.autocomplete_fisiatria(params)
+	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente).limit(10)
+	pacientes = pacientes.map do |paciente|
+		{
+			:id => paciente.id,
+			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
+			:value => paciente.cliente.nombre,
+			:nombre => paciente.cliente.nombre,
+			:cliente_id => paciente.cliente.id,
+			:n_hclinica => paciente.n_hclinica,
+			:diagnostico => paciente.necesita_terapias.last.consulta_externa_morbilidad.diagnostico_sindrome,
+			:doctor => paciente.necesita_terapias.last.consulta_externa_morbilidad.nombre_medico
 		}
 	end
 	pacientes
