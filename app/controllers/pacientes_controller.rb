@@ -18,6 +18,12 @@ class PacientesController < ApplicationController
 		end
 	end
 
+	def autocomplete_fisiatria
+		respond_to do |format|
+			format.json { render :json => Paciente.autocomplete_fisiatria(params[:term]) }
+		end
+	end
+
 	def reporte
 		@pacientes = Paciente.all.includes(:cliente).order('n_hclinica asc')
 		respond_to do |format|

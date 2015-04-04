@@ -11,6 +11,7 @@ Sisfa::Application.routes.draw do
   get "facturas/index_anulada"
   get "hospitalizacion_registros/reporte"
   get "pacientes/autocomplete"
+  get "pacientes/autocomplete_fisiatria"
   get "pacientes/civil"
   get "pacientes/militar"
   get "pacientes/familiar"

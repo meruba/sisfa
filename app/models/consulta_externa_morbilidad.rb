@@ -25,6 +25,7 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 	belongs_to :doctor
 	belongs_to :condicion
 	belongs_to :turno
+	has_many :necesita_terapias
 	accepts_nested_attributes_for :condicion
 
   validates :turno_id, :uniqueness =>  { :message => "Este turno ya fue registrado" }
@@ -47,7 +48,7 @@ class ConsultaExternaMorbilidad < ActiveRecord::Base
 		self.condicion.save
 		self.turno.update(:atendido => true)
 	end
-	
+
 	def self.today
 		consultas = ConsultaExternaMorbilidad.includes(paciente: [:informacion_adicional_paciente,:cliente]).where(:created_at => Time.now.beginning_of_day..Time.now.end_of_day).references(paciente: [:informacion_adicional_paciente,:cliente])
 	end
