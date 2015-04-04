@@ -74,6 +74,16 @@ end
 def self.autocomplete_fisiatria(params)
 	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente).limit(10)
 	pacientes = pacientes.map do |paciente|
+		if paciente.necesita_terapias.last.nil?
+		{
+			:id => paciente.id,
+			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
+			:value => paciente.cliente.nombre,
+			:nombre => paciente.cliente.nombre,
+			:cliente_id => paciente.cliente.id,
+			:n_hclinica => paciente.n_hclinica
+		}
+		else
 		{
 			:id => paciente.id,
 			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
@@ -84,6 +94,7 @@ def self.autocomplete_fisiatria(params)
 			:diagnostico => paciente.necesita_terapias.last.consulta_externa_morbilidad.diagnostico_sindrome,
 			:doctor => paciente.necesita_terapias.last.consulta_externa_morbilidad.nombre_medico
 		}
+		end
 	end
 	pacientes
 end
