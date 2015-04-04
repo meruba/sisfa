@@ -1,0 +1,24 @@
+<h2 class="text-center">Reporte de pacientes registrados</h2>
+<h3 class="text-center"><%= month_name(@fecha) %></h3>
+<table class="table table-hover table-print">
+  <thead>
+    <tr>
+      <th>Paciente</th>
+      <th>Tipo</th>
+      <th>Fecha</th>
+      <th># Factura</th>
+      <th>Valor</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ingresados.each do |i|  %>
+    <tr>
+      <td><%= i.paciente.cliente_nombre %></td>
+      <td><%= i.paciente.tipo %></td>
+      <td><%= local_date(i.created_at, "date") %></td>
+      <td><%= i.numero_factura %></td>
+      <td><%= i.total_factura %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
