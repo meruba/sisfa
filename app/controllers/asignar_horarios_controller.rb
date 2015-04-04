@@ -7,6 +7,11 @@ include DashboardHospitalHelper
     end
   end
 
+  def reporte_ingresados
+  	@fecha = params[:fecha]
+  	@ingresados = AsignarHorario.reporte_mensual(@fecha)
+  end
+
 	def new
 		@horario = AsignarHorario.new
 		@horario.tratamiento_registros.build

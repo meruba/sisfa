@@ -48,6 +48,7 @@ Sisfa::Application.routes.draw do
   get "personals/by_day"
   get "asignar_horarios/new"
   get "asignar_horarios/autocomplete"
+  get "asignar_horarios/reporte_ingresados"
   get "reportes_fisiatria/index"
   get "reportes_fisiatria/personal"
   get "reportes_fisiatria/paciente"

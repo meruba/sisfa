@@ -38,6 +38,11 @@ class AsignarHorario < ActiveRecord::Base
 		pacientes
 	end
 
+	def self.reporte_mensual(date)
+		fecha = date.to_time
+		ingresados = self.where(:created_at => fecha.beginning_of_month..fecha.end_of_month)
+	end
+
 	private
 
 	def not_weekend_days(day)
