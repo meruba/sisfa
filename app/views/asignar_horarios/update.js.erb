@@ -1,0 +1,10 @@
+<%- if @horario.errors.any? %>
+  <%- @horario.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModallg").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  alertify.success("Registro Modificado");
+<%- end %>

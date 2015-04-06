@@ -3,27 +3,33 @@
 </div>
 <div class="row info-paciente">
   <% @registros.each do |consulta| %>
-  <div class="col-md-12 horario">
-    <legend>Información de Registro <span class="fa fa-times text-danger pull-right"></span></legend>
-      <div class="row">
-      <div class="col-md-6">
-        <h5>Doctor: <%= consulta.doctor_remitente %> </h5>
-        <h5>Diagnostico: <%= consulta.diagnostico %> </h5>
-      </div>
-      <div class="col-md-6">
-        <h5># Factura: <%= consulta.numero_factura %> </h5>
-        <h5>Total Factura: <%= consulta.total_factura %> </h5>
-      </div>
-      </div>
+  <div class="col-md-12 registro_terapia">
+    <div class="col-md-12">
+      <span></span>
+      <legend><i class="fa fa-user"></i> <%= link_to "", edit_asignar_horario_path(consulta), :remote => true,'data-toggle' =>  "modal", 'data-target' => '#myModallg', class: "ttip fa fa-pencil pull-right" %><%= consulta.paciente.cliente_nombre%><span class="fa fa-times text-danger pull-right"></span></legend>
+    </div>
+    <div class="col-md-6">
+      <h5>Doctor: <%= consulta.doctor_remitente %> </h5>
+      <h5>Diagnostico: <%= consulta.diagnostico %> </h5>
+    </div>
+    <div class="col-md-6">
+      <h5># Factura: <%= consulta.numero_factura %> </h5>
+      <h5>Total Factura: <%= consulta.total_factura %> </h5>
+    </div>
+    <div class="col-md-6">
       <legend>Tratamientos</legend>
       <% consulta.tratamiento_registros.each do |tratamiento| %>
-        <h5><%= tratamiento.item_tratamiento.codigo %> / <%= tratamiento.item_tratamiento.nombre %></h5>
+      <h5><%= tratamiento.item_tratamiento.codigo %> / <%= tratamiento.item_tratamiento.nombre %></h5>
       <% end %>
+    </div>
+    <div class="col-md-6">
       <legend>Dias</legend>
       <% consulta.resultado_tratamientos.each do |resultado| %>
         <%= local_date(resultado.fecha, "date") %><br>
       <% end %>
     </div>
+  </div>
+  <br>
   <% end %>
 </div>
 
