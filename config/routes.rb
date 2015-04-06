@@ -95,7 +95,7 @@ Sisfa::Application.routes.draw do
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors, except: [:destroy]
   resources :hospitalizacion_registros, except: [:destroy] do
-    resources :asignacion_camas, only: [:new, :create, :index]
+    resources :asignacion_camas
     member do
       post "dar_alta_enfermeria"
     end
