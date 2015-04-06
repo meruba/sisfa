@@ -28,7 +28,7 @@ class Horario < ActiveRecord::Base
     if self.anulado
     dias = DisponiblidadHorario.where(:dia => self.updated_at.beginning_of_day..self.updated_at.end_of_year)
       dias.each do |dia|
-        dia.lleno = check_is_full(d.dia)
+        dia.lleno = check_is_full(dia.dia)
         dia.save
       end
     else
