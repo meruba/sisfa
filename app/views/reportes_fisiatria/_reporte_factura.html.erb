@@ -17,7 +17,7 @@
     <tr>
       <td></td>
       <td>TOTAL</td>
-      <td><strong>$ <%= @resultados.sum(:total_factura)%></strong></td>
+      <td><strong>$ <%= redondear(@resultados.sum(:total_factura))%></strong></td>
     </tr>
   </tbody>
 </table>
