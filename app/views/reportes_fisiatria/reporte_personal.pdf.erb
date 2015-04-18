@@ -14,7 +14,7 @@
 	<tbody>
 		<% @resultados.each do |r|%>
 		<tr>
-			<td>Ndf</td>
+			<td><%= r.horario.hora %></td>
 			<td><%= local_date(r.fecha, "date") %></td>
 			<td><%= r.asignar_horario.paciente.cliente.nombre %></td>
 			<td><%= r.resultado %></td>
@@ -24,6 +24,6 @@
 </table>
 <br><br><br><br>
 <div class="firma text-center">
-<small>---------------------------------</small>
+<small>--------------------------------------------------------</small>
 <h5><%= @terapista.cliente.nombre %> </h5>
 </div>

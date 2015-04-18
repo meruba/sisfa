@@ -11,7 +11,7 @@ class ReportesFisiatriaController < ApplicationController
 		respond_to do |format|
 			format.js
 			format.pdf do
-				render :pdf => "reporte de terapista", :layout => 'report.html', :template => "reportes_fisiatria/reporte_personal.pdf.erb"
+				render :pdf => "reporte de terapista", :layout => 'report.html', :template => "reportes_fisiatria/reporte_personal.pdf.erb", :orientation => 'Landscape'
 			end
 		end
 	end
