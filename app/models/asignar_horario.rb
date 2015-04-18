@@ -20,7 +20,9 @@ class AsignarHorario < ActiveRecord::Base
 	has_many :resultado_tratamientos, dependent: :destroy
 	has_many :tratamiento_registros, dependent: :destroy
 
-	validates :paciente_id, :numero_factura, :total_factura, :diagnostico, :presence => true
+	validates :numero_factura, :total_factura, :diagnostico, :presence => true
+	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
+
 	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	# validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
 

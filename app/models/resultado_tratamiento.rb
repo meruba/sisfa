@@ -26,6 +26,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validates :fecha, :horario_id, :presence => true, :on => :create
 	validate :isfull, :on => :create
+
 	after_create :add_disponiblidad
 	before_create :set_values
 	# accepts_nested_attributes_for :disponibilidad_horario
@@ -35,9 +36,11 @@ class ResultadoTratamiento < ActiveRecord::Base
 	end
 
 	def isfull
-		numero_de_turnos = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day, :horario_id => self.horario_id ).count() #turnos en ese horario
-		if numero_de_turnos == Emisor.last.numero_turnos_fisiatria # configuracion de turnos x hora
-			errors.add :asignar_horario_id, "Turnos llenos para la fecha: " + self.fecha.strftime("%Y-%m-%d")
+		unless self.fecha.nil?
+			numero_de_turnos = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day, :horario_id => self.horario_id ).count() #turnos en ese horario
+			if numero_de_turnos == Emisor.last.numero_turnos_fisiatria # configuracion de turnos x hora
+				errors.add :asignar_horario_id, "Turnos llenos para la fecha: " + self.fecha.strftime("%Y-%m-%d")
+			end
 		end
 	end
 
