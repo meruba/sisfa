@@ -38,6 +38,7 @@
   <thead>
     <tr>
       <th>Fecha</th>
+      <th>Resultado</th>
       <th>Firma</th>
     </tr>
   </thead>
@@ -45,6 +46,7 @@
     <% @resultados.each do |r|%>
     <tr>
       <td><%= local_date(r.fecha, "date") %></td>
+      <td><%= r.resultado %></td>
       <td></td>
     </tr>
     <% end %>
