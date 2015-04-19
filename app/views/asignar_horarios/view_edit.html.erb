@@ -3,10 +3,10 @@
 </div>
 <div class="row info-paciente">
   <% @registros.each do |consulta| %>
-  <div class="col-md-12 registro_terapia">
+  <div class="col-md-12 registro_terapia" id="<%= consulta.id%>-hr">
     <div class="col-md-12">
       <span></span>
-      <legend><i class="fa fa-user"></i> <%= link_to "", edit_asignar_horario_path(consulta), :remote => true,'data-toggle' =>  "modal", 'data-target' => '#myModallg', class: "ttip fa fa-pencil pull-right" %><%= consulta.paciente.cliente_nombre%><span class="fa fa-times text-danger pull-right"></span></legend>
+      <legend><i class="fa fa-user"> <%= consulta.paciente.cliente_nombre%></i><%= link_to "", consulta, method: :delete, data: { confirm: 'Esta seguro?' }, class: "fa fa-times text-danger pull-right",:rel=> 'tooltip', :title=>'Eliminar', :remote => true %></legend>
     </div>
     <div class="col-md-6">
       <h5>Doctor: <%= consulta.doctor_remitente %> </h5>
