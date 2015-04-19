@@ -26,7 +26,6 @@ include DashboardHospitalHelper
     @registros = AsignarHorario.includes(paciente: [:cliente], tratamiento_registros: [:item_tratamiento]).last(10)
     # turnos = Turno.includes(paciente: [:cliente]).where(:fecha => Time.now.beginning_of_day..Time.now.end_of_day).references(paciente: [:cliente])
     # @paciente = Paciente.includes(:cliente, :informacion_adicional_paciente, :condicions).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente, :condicions).first
-
   end
 
   def edit
@@ -55,6 +54,13 @@ include DashboardHospitalHelper
 	    }
 	  end
 	end
+
+  def destroy
+    @horario.destroy
+    respond_to do |format|
+      format.js
+    end
+  end
 
 	private
 

@@ -3,8 +3,6 @@
     alertify.error("<%=j msg %>");
   <%- end %>
 <%- else %>
-  $("#myModallg").modal("hide");
-  $('body').removeClass('modal-open');
-  $('.modal-backdrop').remove();
-  alertify.success("Registro Modificado");
+  $('#<%=@horario.id %>-hr').remove();
+  alertify.success("Horario eliminado");
 <%- end %>
