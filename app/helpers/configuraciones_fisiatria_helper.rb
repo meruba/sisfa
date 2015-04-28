@@ -1,0 +1,2 @@
+module ConfiguracionesFisiatriaHelper
+end

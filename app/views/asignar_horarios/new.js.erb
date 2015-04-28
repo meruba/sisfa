@@ -1,0 +1,7 @@
+m = $('#content_modal_lg');
+m.html('<%= j(render 'form', horario: @horario) %>');
+window.Helpers.ButtonsHelper.init();
+window.Helpers.FormsHelper.init();
+window.Helpers.AutocompletePaciente.init_autocomplete_fisiatria();
+window.Helpers.Datepicker.init_datepicker_not_weekend();
+window.Helpers.AutocompleteTratamiento.init_autocomplete();

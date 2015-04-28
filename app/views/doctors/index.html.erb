@@ -5,10 +5,14 @@
 	<div class="row info-paciente">
 		<div class="row acciones">
 			<div class="col-md-3">
-				<div class="input-icon-md icon-addon addon-md">
-					<input type="search" id="input-search" class="form-control" placeholder="Buscar Doctor..." ><i class="fa fa-search"></i>
-					<i class="fa fa-search"></i>
+				<%= form_tag asignar_horarios_reporte_ingresados_path(), method: :get do %>
+				<div class="input-group field fix-margin">
+					<%= text_field_tag :fecha, params[:fecha],:class =>"datepicker_month", :placeholder => "Reporte fisiatria", :required => true%>
+					<span class="input-group-btn">
+						<%= submit_tag "Ir", name: nil, :class => "btn btn-info" %>
+					</span>
 				</div>
+				<% end %>
 			</div>
 			<div class="col-md-3">
 				<%= form_tag emergencia_parte_mensuals_reporte_path(:format => 'xls'), method: :get do %>
@@ -40,14 +44,19 @@
 				</div>
 				<% end %>
 			</div>
+		</div>
+		<div class="row">
 			<div class="col-md-3">
 				<%= link_to 'Nuevo', new_doctor_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', class: "nuevo_new"}  %>
 			</div>
 		</div>
 		<br>
 		<legend>Doctores Registrados</legend>
+			<div class="input-icon-md icon-addon addon-md">
+				<input type="search" id="input-search" class="form-control" placeholder="Buscar Doctor..." ><i class="fa fa-search"></i>
+			</div>
 		<ul class="main searchable-container internados grid all-doctors">
 			<%= render "doctors/partials/doctors", :doctores => @doctores%>
 		</ul>
-	</div>	
+	</div>
 </div>

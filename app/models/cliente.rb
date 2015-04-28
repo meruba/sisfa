@@ -14,6 +14,7 @@
 #  edad                     :integer
 #  estado_civil             :string(255)
 #  fecha_de_nacimiento      :date
+#  ocupacion                :string(255)      default("")
 #
 
 class Cliente < ActiveRecord::Base
@@ -26,6 +27,7 @@ class Cliente < ActiveRecord::Base
 # relationships
   has_one :user
   has_one :paciente
+  has_one :personal
 	has_one :doctor
 	has_many :proformas
 	has_many :facturas

@@ -1,6 +1,6 @@
 class PacientesController < ApplicationController
   before_filter :require_login
-  before_filter :is_admin_or_auxiliar_estadistica, :except => [:show, :view_edit, :edit, :update, :print_historia]
+  before_filter :is_admin_or_auxiliar_estadistica, :except => [:show, :view_edit, :edit, :update, :print_historia, :autocomplete]
   before_filter :shared_permission, :only => [:show, :view_edit, :edit, :update]
 	before_action :set_paciente, only: [:edit, :update, :destroy]
 	before_action :new_paciente, only: [:civil, :militar, :familiar]
@@ -15,6 +15,12 @@ class PacientesController < ApplicationController
 	def autocomplete
 		respond_to do |format|
 			format.json { render :json => Paciente.autocomplete(params[:term]) }
+		end
+	end
+
+	def autocomplete_fisiatria
+		respond_to do |format|
+			format.json { render :json => Paciente.autocomplete_fisiatria(params[:term]) }
 		end
 	end
 
@@ -45,7 +51,7 @@ class PacientesController < ApplicationController
 	def view_edit
 		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente).first
 	end
-	
+
 	def print_historia
 		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente, :condicions).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente, :condicions).first
 		respond_to do |format|
@@ -59,7 +65,11 @@ class PacientesController < ApplicationController
 		@paciente = Paciente.includes(:cliente, :informacion_adicional_paciente).where(:id => params[:id]).references(:cliente, :informacion_adicional_paciente).first
 		@registros = Paciente.medical_records(@paciente)
 	end
-	
+
+	def terapias
+		@terapias = Paciente.find(params[:paciente_id]).asignar_horarios
+	end
+
 	def create
 		@paciente = Paciente.new(paciente_params.merge(:fecha_hclinica => Time.now, :registrado_por => current_user.cliente.nombre + " / usuario: " + current_user.username))
 		if @paciente.save
@@ -70,12 +80,12 @@ class PacientesController < ApplicationController
 				render 'civil'
 			when "familiar"
 				render 'familiar'
-			when "militar"				
+			when "militar"
 				render 'militar'
 			end
 		end
 	end
-	
+
 	def edit
 	end
 

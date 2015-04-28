@@ -1,0 +1,3 @@
+m = $('.contenido-calendario');
+m.html('<%= j(render 'calendario', fecha: @fecha) %>');
+window.Helpers.CalendarHelper.init();

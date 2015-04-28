@@ -48,4 +48,9 @@ class Rol < ActiveRecord::Base
   def self.auxiliar_estadistica
     @@auxiliar_estadistica ||= find_by nombre: "Auxiliar_Estadística"
   end
+
+  def self.administrador_fisiatria
+    @@administrador_fisiatria ||= find_by nombre: "Administrador_Fisiatría"
+  end
+
 end

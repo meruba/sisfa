@@ -1,0 +1,24 @@
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th># Factura</th>
+      <th>Fecha</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resultados.each do |r|%>
+    <tr>
+      <td><%= r.numero_factura %></td>
+      <td><%= local_date(r.created_at, "date") %></td>
+      <td>$ <%= r.total_factura %></td>
+    </tr>
+    <% end %>
+    <tr>
+      <td></td>
+      <td>TOTAL</td>
+      <td><strong>$ <%= redondear(@resultados.sum(:total_factura))%></strong></td>
+    </tr>
+  </tbody>
+</table>
+<%= link_to "Imprimir PDF", reportes_fisiatria_factura_path(params.merge(format: 'pdf')), class: "btn btn-success", target: "_blank" %>

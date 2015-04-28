@@ -1,0 +1,25 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3 class="modal-title" id="myModalLabel">Listado de Horarios <%= @fecha%>  </h3>
+</div>
+<div class="modal-body">
+	<div class="row">
+		<div class="col-md-3 text-center">
+			<legend>Horarios</legend>
+			<% @horarios.each do |horario|%>
+					<h4><%= link_to	horario.hora, resultado_tratamientos_hour_and_day_path(:dia => @fecha, :hora => horario.hora), remote: true, class: horario.anulado ? 'text-muted' : 'text-info' %></h4>
+			<% end %>
+		</div>
+		<div class="col-md-9 text-center">
+			<legend>Pacientes en este Horario</legend>
+			<div class="turnos-fisiatria">
+				<i class="fa fa-male fa-3x"></i>
+				<i class="fa fa-female fa-3x"></i><br>
+				<small>Por favor seleccion el horario</small>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+</div>

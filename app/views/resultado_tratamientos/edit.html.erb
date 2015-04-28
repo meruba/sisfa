@@ -1,0 +1,12 @@
+<h3>Resultado de Terapia</h3>
+<%= form_for @resultado do |f| %>
+  <% if @resultado.atendido %>
+    <%= f.label :razon_editado, "Razon por que quieres editarlo?", class: "text-danger" %>
+    <%= f.text_field :razon_editado, class: "form-control", :placeholder => "Ejm: Diagnostico ingresado por error"%>
+  <% end %>
+	<%= f.label :personal_id, "Seleccione terapista"  %>
+	<%= f.select :personal_id, Personal.where(:suspendido => false).map { |h| [h.cliente.nombre, h.id ] },{}, {class: "form-control"}%>
+    <%= f.label :resultado %>
+    <%= f.text_area :resultado, required:true, class: "form-control", :placeholder => "Ejm: En esta terapia se aplico al paciente una laser terpia" %><br>
+  <%= f.submit 'Guardar', class: "btn btn-primary", :remote => true %>
+<% end %>

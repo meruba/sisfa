@@ -1,0 +1,27 @@
+<div class="calendario-fisiatria">
+	<div class="title-blue-head">
+		<span>
+			<i><%= link_to "", calendario_prev_month_path(), :remote => true , class: "fa fa-arrow-left"%></i>
+		</span>
+		<h3 class="text-month"><strong><%= month_name(@fecha)%></strong></h3>
+		<span class="rev-combo pull-right"><i><%= link_to "", calendario_next_month_path(), :remote => true , class: "fa fa-arrow-right"%></i></span>
+	</div>
+	<ol class="day-names"><li>Domingo</li><li>Lunes</li><li>Martes</li><li>Miercoles</li><li>Jueves</li><li>Viernes</li><li>Sábado</li></ol>
+	<ol class="days">
+		<% for i in (1..@espacios) %>
+		<li></li>
+		<% end %>
+		<% for i in(1..@numero_dias) %>
+		<li>
+			<div class="date not-turno"><%=i%></div>
+			<% @turnos.each do |e| %>
+			<% if i == e.dia.strftime("%d").to_i %>
+			<div class = "<%= e.lleno ? 'lleno date' : 'disponible date' %> days-turno" >
+				<%= link_to	i, resultado_tratamientos_by_day_path(:dia => e.dia), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModallg'}  %>
+			</div>
+			<% end %>
+			<% end %>
+		</li>
+		<% end %>
+	</ol>
+</div>

@@ -1,0 +1,12 @@
+<%- if @horario.errors.any? %>
+  <%- @horario.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $("#myModallg").modal("hide");
+  $('body').removeClass('modal-open');
+  $('.modal-backdrop').remove();
+  $(".contenido-calendario").html('<%= j render 'calendario/calendario', turnos: @turnos %>');
+  window.Helpers.CalendarHelper.init();
+  alertify.success("Horario creado");
+<%- end %>

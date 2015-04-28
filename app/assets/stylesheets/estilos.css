@@ -42,7 +42,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 .row-user{
-  padding-top: 15px; 
+  padding-top: 15px;
 }
 
 .fix-margin{
@@ -106,7 +106,7 @@ table.dataTable tr.even{ background-color: white; border:1px lightgrey; }
 }
 
 .line{
-border: 1px solid #e7e7e7;  
+border: 1px solid #e7e7e7;
 }
 
 .hospitalizado {
@@ -225,3 +225,36 @@ border: 1px solid #e7e7e7;
   /*background-color: #fafafa;*/
 }
 
+.horario{
+  background-color: #fff;
+  list-style: none;
+  margin: 2px;
+  padding: 10px;
+  font-size: 16px;
+  border-top: solid 4px #6eb590;
+}
+
+.registro_terapia{
+  background-color: #fff;
+  margin: 10px;
+  padding: 10px;
+  /*font-size: 16px;*/
+  border-top: solid 4px #2dc1e6;
+}
+
+.grey-backg{
+  background-color: #f3f3f2;
+  padding: 4px;
+  /*color: #e7e7e7;*/
+}
+
+.horario-list{
+  background-color: #fafafa;
+  padding: 8px;
+  margin: 3px;
+}
+
+.mygrid-wrapper-div {
+    overflow: scroll;
+    height: 250px;
+}

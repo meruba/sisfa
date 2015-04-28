@@ -1,0 +1,35 @@
+<div class="row title-blue-head">
+  <h2 class= "text-center">1O ULTIMOS REGISTROS</h2>
+</div>
+<div class="row info-paciente">
+  <% @registros.each do |consulta| %>
+  <div class="col-md-12 registro_terapia" id="<%= consulta.id%>-hr">
+    <div class="col-md-12">
+      <span></span>
+      <legend><i class="fa fa-user"> <%= consulta.paciente.cliente_nombre%></i><%= link_to "", consulta, method: :delete, data: { confirm: 'Esta seguro?' }, class: "fa fa-times text-danger pull-right",:rel=> 'tooltip', :title=>'Eliminar', :remote => true %></legend>
+    </div>
+    <div class="col-md-6">
+      <h5>Doctor: <%= consulta.doctor_remitente %> </h5>
+      <h5>Diagnostico: <%= consulta.diagnostico %> </h5>
+    </div>
+    <div class="col-md-6">
+      <h5># Factura: <%= consulta.numero_factura %> </h5>
+      <h5>Total Factura: <%= consulta.total_factura %> </h5>
+    </div>
+    <div class="col-md-6">
+      <legend>Tratamientos</legend>
+      <% consulta.tratamiento_registros.each do |tratamiento| %>
+      <h5><%= tratamiento.item_tratamiento.codigo %> / <%= tratamiento.item_tratamiento.nombre %></h5>
+      <% end %>
+    </div>
+    <div class="col-md-6">
+      <legend>Dias</legend>
+      <% consulta.resultado_tratamientos.each do |resultado| %>
+        <%= local_date(resultado.fecha, "date") %><br>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <% end %>
+</div>
+

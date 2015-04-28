@@ -1,0 +1,27 @@
+<div class="col-md-6 row-fix-div">
+  <h4 class="grey-backg"><%= best_in_place tratamiento, :nombre %> <i class="fa fa-plus pull-rigth show-form-tratamiento clickable pull-right show-form"></i></h4>
+
+  <div class="add-tratamiento" style="display: none;">
+    <%= form_for @item, :html => {:class => "form-item-tratamiento"}, :remote => true  do |f| %>
+    <div class="row">
+      <div class="col-md-3">
+        <%= f.hidden_field :tratamiento_id, value: tratamiento.id %>
+        <%= f.text_field :codigo, class: "form-control", placeholder: "Codigo"  %>
+      </div>
+      <div class="col-md-6">
+        <%= f.text_field :nombre, class: "form-control", placeholder: "Ingrese nombre"  %>
+      </div>
+      <div class="col-md-3">
+        <%= f.submit '+', class: "btn btn-info", :remote => true %>
+      </div>
+    </div>
+    <% end %>
+  </div>
+  <div id ='<%= tratamiento.id  %>-ct', class = "all-tratamientos">
+    <% tratamiento.item_tratamientos.each do |item|%>
+    <ul>
+      <%=  render "item_tratamientos/item", item:item%>
+    </ul>
+    <% end %>
+  </div>
+</div>

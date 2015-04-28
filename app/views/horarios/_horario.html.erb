@@ -1,0 +1,5 @@
+<div class="horario-list col-md-5" id="<%= horario.id%>-h"<%= 'style= text-decoration:line-through;' if horario.anulado %>>
+	<i class="fa fa-clock-o"></i>
+	<%= horario.hora%>
+  <%= link_to "", suspender_horario_path(horario), :class => (horario.anulado? ? 'fa fa-thumbs-up pull-right text-success' : 'fa fa-thumbs-down pull-right text-danger'), :remote => true, method: :post %>
+</div>

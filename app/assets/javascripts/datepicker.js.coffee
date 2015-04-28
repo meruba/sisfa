@@ -15,6 +15,13 @@ window.Helpers.Datepicker = {
 	    language: "es",
 	    autoclose: true
 	  })
+  init_datepicker_not_weekend: ->
+    $('.datepicker-not-weekend').datepicker({
+      daysOfWeekDisabled: [0,6],
+      format: 'yyyy-mm-dd',
+      language: "es",
+      autoclose: true
+    });
 }
 
 jQuery window.Helpers.Datepicker.init_datepicker
@@ -25,8 +32,13 @@ jQuery window.Helpers.Datepicker.init_datepicker_month
 $(document).on "page:load", window.Helpers.Datepicker.init_datepicker_month
 $(document).on "nested:fieldAdded", window.Helpers.Datepicker.init_datepicker_month
 
+jQuery window.Helpers.Datepicker.init_datepicker_not_weekend
+$(document).on "page:load", window.Helpers.Datepicker.init_datepicker_not_weekend
+$(document).on "nested:fieldAdded", window.Helpers.Datepicker.init_datepicker_not_weekend
 
 $ ->
   $("#myModal").on "shown.bs.modal", ->
     jQuery window.Helpers.Datepicker.init_datepicker
     jQuery window.Helpers.Datepicker.init_datepicker_month
+   $("#myModallg").on "shown.bs.modal", ->
+    jQuery window.Helpers.Datepicker.init_datepicker

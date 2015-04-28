@@ -1,4 +1,4 @@
-%w(Administrador Enfermera Vendedor Auxiliar_Estadística Administrador_Estadística Administrador_Farmacia Administrador_Enfermería Doctor).each do |nombre|
+%w(Administrador Enfermera Vendedor Auxiliar_Estadística Administrador_Estadística Administrador_Farmacia Administrador_Enfermería Doctor Administrador_Fisiatría).each do |nombre|
   Rol.create(nombre: nombre)
 end
 Cliente.create(nombre: "Consumidor Final", numero_de_identificacion: "9999999999", direccion: "")

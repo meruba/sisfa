@@ -1,0 +1,44 @@
+<div class="modal-header">
+	<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	<h3 class="modal-title" id="myModalLabel">Registro de Terapia</h3>
+</div>
+<%= nested_form_for @horario, :remote => true do |f|%>
+<div class="modal-body info-paciente">
+  <div id="rootwizard">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <ul class="nav nav-pills nav-justified thumbnail setup-panel">
+          <li><a href="#tab1" data-toggle="tab">
+            <span class ="fa fa-male fa-2x"></span>
+            <p class="list-group-item-text">Datos del Paciente</p>
+          </a></li>
+          <li><a href="#tab2" data-toggle="tab">
+            <span class ="fa fa-th-list fa-2x"></span>
+            <p class="list-group-item-text">Terapias</p>
+          </a></li>
+          <li><a href="#tab3" data-toggle="tab">
+            <span class ="fa fa-clock-o fa-2x"></span>
+            <p class="list-group-item-text">Horarios</p>
+          </a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="tab-content row">
+      <div class="tab-pane field" id="tab1">
+        <%= render "asignar_horarios/forms/datos_paciente", f:f  %>
+      </div>
+      <div class="tab-pane field" id="tab2">
+        <%= render "asignar_horarios/forms/tratamientos", f:f  %>
+      </div>
+      <div class="tab-pane field" id="tab3">
+        <%= render "asignar_horarios/forms/horarios", f:f  %>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+	<button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+	<%= f.submit 'Guardar', class: "btn btn-primary", :remote => true %>
+</div>
+<% end %>

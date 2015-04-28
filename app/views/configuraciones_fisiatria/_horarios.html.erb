@@ -1,0 +1,32 @@
+<div class="row info-paciente">
+	<div class="col-md-6 horario">
+		<legend class= "text-center">Lista de horarios</legend>
+		<%= form_for @horario, :html => {:class => "form-horario"}, :remote => true  do |f| %>
+		<div class=" row-fix-div">
+			<div class="col-md-5">
+				<%= f.text_field :hora_inicio, placeholder: "Hora Inicio: 7:00", class: "form-control" %>
+			</div>
+			<div class="col-md-5">
+				<%= f.text_field :hora_final, placeholder: "Hora Final: 7:30", class: "form-control" %>
+			</div>
+			<div class="col-md-1">
+				<%= f.submit '+', class: "btn btn-info", :remote => true %>
+			</div>
+		</div>
+		<hr>
+		<% end %>
+		<div id="horarios">
+			<% @horarios.each do |horario|%>
+			<%= render "horarios/horario", horario:horario %>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-5 horario">
+		<legend class="text-center">Turnos Por Hora</legend>
+		<h5 class="text-center text-info">Actualmente tienes registrado</h5>
+		<div class="text-center">
+			<h3><%= best_in_place @emisor, :numero_turnos_fisiatria, {:nil => "0 sin ingreso"} %></h3>
+		</div>
+	</div>
+</div>
+

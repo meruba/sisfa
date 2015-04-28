@@ -1,0 +1,23 @@
+<table class="table table-bordered">
+	<thead>
+		<tr>
+			<th>Hora</th>
+			<th>Fecha</th>
+			<th>Terapista</th>
+			<th>Resultado</th>
+		</tr>
+	</thead>
+	<tbody>
+		<% @resultados.each do |r|%>
+		<tr>
+			<td><%= r.horario.hora %></td>
+			<td><%= local_date(r.fecha, "date") %></td>
+			<td><%= r.personal.cliente.nombre%></td>
+			<td><%= r.resultado %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+<%= link_to "Reporte PDF", reportes_fisiatria_paciente_path(params.merge(format: 'pdf')), class: "btn btn-success", target: "_blank" %>
+
+<%= link_to "Certificado PDF", reportes_fisiatria_paciente_certificado_path(params.merge(format: 'pdf')), class: "btn btn-primary", target: "_blank" %>

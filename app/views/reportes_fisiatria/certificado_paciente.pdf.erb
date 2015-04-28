@@ -1,0 +1,54 @@
+<h3 class="text-center"><%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3><br>
+<h4 class="text-center"><strong>CERTIFICADO  DEL DEPARTAMENTO DE REHABILITACIÓN  FÍSICA</strong></h4>
+<h5 class="text-center">Lic. Ft. CATOTA Y. EDISON R.</h5>
+<div class="row">
+  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong><%= @paciente.cliente.nombre %></div>
+  <div class="col-md-8"><strong>con N de planilla:</strong> <%= @terapia.numero_factura %> <strong>H.C:</strong> <%= @paciente.n_hclinica%></div>
+  <div class="col-md-6"><strong>COD:</strong> <%= @paciente.cliente.numero_de_identificacion%></div>
+</div>
+<hr>
+<h5>Se encuentra realizando el siguiente tratamiento:</h5>
+
+<% @terapia.tratamiento_registros.each do |t|%>
+<strong><%= t.nombre_tratamiento %></strong><br>
+<% end %>
+<h5>Nº de Sesiones: <%= @terapia.tratamiento_registros.count %></h5>
+<p>
+  Cabe recalcar que el paciente se encuentra respondiendo favorablemente
+  con las sesiones de rehabilitación respecto a su cuadro clínico inicial.
+</p>
+<div class="fecha-de-impresion text-right">
+  <strong>Fecha: <%= local_date(Time.now, "date")%></strong>
+</div>
+<div class="text-center">
+  <h5><strong>Lic. Tf. CATOTA Y. EDISON R.</strong></h5>
+  <h5><strong>SGOS. DE SND.</strong></h5>
+  <h5><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h5>
+  <strong>REGISTRO DE ASISTENCIA DE PACIENTES EN EL AREA DE FISIOTERAPIA DEL HOSPITAL BÁSICO DE 7 - B.I "LOJA"</strong>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong><%= @paciente.cliente.nombre %></div>
+  <div class="col-md-8"><strong>con N de planilla:</strong> <%= @terapia.numero_factura %> <strong>H.C:</strong> <%= @paciente.n_hclinica%></div>
+  <div class="col-md-6"><strong>COD:</strong> <%= @paciente.cliente.numero_de_identificacion%></div>
+</div>
+<div><strong>DIAGNOSTICO: </strong><%= @terapia.diagnostico %> </div>
+<strong>DIAS DE ASISTENCIA</strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Resultado</th>
+      <th>Firma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @resultados.each do |r|%>
+    <tr>
+      <td><%= local_date(r.fecha, "date") %></td>
+      <td><%= r.resultado %></td>
+      <td></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

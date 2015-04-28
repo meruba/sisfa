@@ -1,0 +1,13 @@
+<div class="row title-blue-head">
+  <h2 class= "text-center">CONTROL DE HORARIOS FISIATRIA</h2>
+</div>
+<div class="row info-paciente">
+  <div class="title-white-head">
+  <%=link_to " Registrar Paciente", new_asignar_horario_path, :remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModallg', title: "Nuevo", class: "btn btn-success fa fa-user" %>
+  <%=link_to " Editar Registro", asignar_horarios_view_edit_path, class: "btn btn-default fa fa-pencil" %>
+  <%=link_to " Generar Reporte", reportes_fisiatria_index_path, title: "Nuevo", class: "btn btn-primary fa fa-print" %>
+  </div>
+  <div class="contenido-calendario">
+    <%= render "calendario/calendario" %>
+  </div>
+</div>

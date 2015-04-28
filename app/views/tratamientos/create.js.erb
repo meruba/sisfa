@@ -1,0 +1,11 @@
+<%- if @tratamiento.errors.any? %>
+  <%- @tratamiento.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  $('.hoja-tratamientos').append("<%= j render('tratamientos/tratamiento', tratamiento: @tratamiento) %>");
+  $('.form-tratamientos').trigger("reset");
+  $('.hoja-tratamientos').toggle('show');
+  $('.form-tratamiento').toggle('hide');
+  alertify.success("Tratamiento Agregado");
+<%- end %>

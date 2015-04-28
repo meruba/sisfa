@@ -24,51 +24,88 @@
 #
 
 class Paciente < ActiveRecord::Base
+
 	belongs_to :cliente
+	has_one :horario
 	has_many :condicions, dependent: :destroy
 	has_many :turnos, dependent: :destroy
 	has_many :hospitalizacion_registros, dependent: :destroy
+	has_many :asignar_horarios
+	has_many :resultado_tratamientos
 	has_one :informacion_adicional_paciente, dependent: :destroy
+	has_many :necesita_terapias
 	accepts_nested_attributes_for :cliente, :informacion_adicional_paciente
-	
+
 	delegate :nombre, :direccion, :telefono, :email, :numero_de_identificacion, :sexo, :fecha_de_nacimiento, :estado_civil, :to => :cliente, :prefix => true
-	
+
 	#callbacks
 
 	#validation
 	validates :tipo, :n_hclinica, :presence => true
-  validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
-  validates :n_hclinica, :uniqueness =>  true
-  validates :grado, :estado, :pertenece_a, :unidad, :presence => true, :if => "tipo == 'militar'"
-  validates :codigo_issfa, :presence => true, :if => "tipo == 'militar' or tipo == 'familiar'"
-  validates :parentesco, :presence => true, :if => "tipo == 'familiar'"
+	validates :cliente_id, :uniqueness =>  { :message => "Esta persona ya tiene una historia clinica" }
+	validates :n_hclinica, :uniqueness =>  true
+	validates :grado, :estado, :pertenece_a, :unidad, :presence => true, :if => "tipo == 'militar'"
+	validates :codigo_issfa, :presence => true, :if => "tipo == 'militar' or tipo == 'familiar'"
+	validates :parentesco, :presence => true, :if => "tipo == 'familiar'"
 #methods
-	def cliente_attributes=(attributes)
-		if attributes['id'].present?
-	    self.cliente = Cliente.find(attributes['id'])
-	  end
-	  super
+def cliente_attributes=(attributes)
+	if attributes['id'].present?
+		self.cliente = Cliente.find(attributes['id'])
 	end
+	super
+end
 
 #class methods
-	def self.autocomplete(params)
-    pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente)
-    pacientes = pacientes.map do |paciente|
-      {
-        :id => paciente.id,
-        :label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
-        :value => paciente.cliente.nombre,
-        :nombre => paciente.cliente.nombre,
-        :cliente_id => paciente.cliente.id,
-        :n_hclinica => paciente.n_hclinica
-      }
-    end
-    pacientes
-  end
-	
-	def self.medical_records(paciente)
-		p = Paciente.find(paciente)
-		registros = p.condicions + p.hospitalizacion_registros.where(:alta => true)
-		registros = registros.sort_by(&:created_at)
+def self.autocomplete(params)
+	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente).limit(10)
+	pacientes = pacientes.map do |paciente|
+		{
+			:id => paciente.id,
+			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
+			:value => paciente.cliente.nombre,
+			:nombre => paciente.cliente.nombre,
+			:cliente_id => paciente.cliente.id,
+			:n_hclinica => paciente.n_hclinica
+		}
 	end
+	pacientes
+end
+
+def self.autocomplete_fisiatria(params)
+	pacientes = Paciente.includes(:cliente).where("clientes.nombre like ?", "%#{params}%").references(:cliente).limit(10)
+	pacientes = pacientes.map do |paciente|
+		if paciente.necesita_terapias.last.nil?
+		{
+			:id => paciente.id,
+			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
+			:value => paciente.cliente.nombre,
+			:nombre => paciente.cliente.nombre,
+			:cliente_id => paciente.cliente.id,
+			:n_hclinica => paciente.n_hclinica
+		}
+		else
+		{
+			:id => paciente.id,
+			:label => paciente.cliente.nombre + " / " + "H.C:" + paciente.n_hclinica.to_s,
+			:value => paciente.cliente.nombre,
+			:nombre => paciente.cliente.nombre,
+			:cliente_id => paciente.cliente.id,
+			:n_hclinica => paciente.n_hclinica,
+			:diagnostico => paciente.necesita_terapias.last.consulta_externa_morbilidad.diagnostico_sindrome,
+			:doctor => paciente.necesita_terapias.last.consulta_externa_morbilidad.nombre_medico
+		}
+		end
+	end
+	pacientes
+end
+
+def self.last_terapia_fisiatria(paciente)
+	terapias = paciente.asignar_horarios.last
+end
+
+def self.medical_records(paciente)
+	p = Paciente.find(paciente)
+	registros = p.condicions + p.hospitalizacion_registros.where(:alta => true)
+	registros = registros.sort_by(&:created_at)
+end
 end

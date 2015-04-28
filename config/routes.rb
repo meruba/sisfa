@@ -11,6 +11,7 @@ Sisfa::Application.routes.draw do
   get "facturas/index_anulada"
   get "hospitalizacion_registros/reporte"
   get "pacientes/autocomplete"
+  get "pacientes/autocomplete_fisiatria"
   get "pacientes/civil"
   get "pacientes/militar"
   get "pacientes/familiar"
@@ -37,9 +38,33 @@ Sisfa::Application.routes.draw do
   get "reportes/cierre_caja_diario"
   get "turnos/consulta_turnos"
   get "turnos/consulta_resultados"
+  #fisiatria
+  get "calendario/index"
+  get "calendario/next_month"
+  get "calendario/prev_month"
+  get "calendario/current_month"
+  get "item_tratamientos/autocomplete"
+  get "resultado_tratamientos/by_day"
+  get "resultado_tratamientos/hour_and_day"
+  get "personals/by_day"
+  get "asignar_horarios/new"
+  get "asignar_horarios/autocomplete"
+  get "asignar_horarios/reporte_ingresados"
+  get "asignar_horarios/view_edit"
+  get "reportes_fisiatria/index"
+  get "reportes_fisiatria/personal"
+  get "reportes_fisiatria/paciente"
+  get "reportes_fisiatria/paciente_certificado"
+  get "reportes_fisiatria/factura"
+  get "configuraciones_fisiatria/horarios"
+  get "configuraciones_fisiatria/tratamientos"
+  get "configuraciones_fisiatria/sistema"
+  get "configuraciones_fisiatria/index"
+
   resources :emisors, except: [:show, :destroy, :index] do
     member do
       get 'turnos_otros_dias'
+      post 'update_turnos_fisiatria'
     end
   end
   resources :user_sessions, only: [:new, :create, :destroy]
@@ -56,6 +81,7 @@ Sisfa::Application.routes.draw do
     resources :emergencia_registros, except: [:destroy, :index]
     get "view_edit"
     get "print_historia"
+    get "terapias"
     get 'reporte', :on => :collection
   end
   resources :turnos, except: [:show] do
@@ -69,7 +95,7 @@ Sisfa::Application.routes.draw do
   resources :consulta_externa_morbilidads, :only => [:show]
   resources :proveedors, except: [:destroy]
   resources :hospitalizacion_registros, except: [:destroy] do
-    resources :asignacion_camas, only: [:new, :create, :index]
+    resources :asignacion_camas
     member do
       post "dar_alta_enfermeria"
     end
@@ -137,4 +163,22 @@ Sisfa::Application.routes.draw do
   end
   resources :reportes, only: [:index]
   root 'panel_aplication#index'
+  resources :tratamientos
+  resources :personals do
+    member do
+      post "suspender"
+    end
+  end
+  resources :horarios do
+    member do
+      post "suspender"
+    end
+  end
+  resources :asignar_horarios
+  resources :resultado_tratamientos
+  resources :item_tratamientos, only: [:edit, :update, :new, :create] do
+    member do
+      post "suspender"
+    end
+  end
 end
