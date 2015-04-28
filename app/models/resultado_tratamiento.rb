@@ -26,6 +26,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validates :fecha, :horario_id, :presence => true, :on => :create
 	validate :isfull, :on => :create
+	validate :save_only_current_day, :on => :edit
 
 	after_create :add_disponiblidad
 	before_create :set_values
@@ -41,6 +42,12 @@ class ResultadoTratamiento < ActiveRecord::Base
 			if numero_de_turnos == Emisor.last.numero_turnos_fisiatria # configuracion de turnos x hora
 				errors.add :asignar_horario_id, "Turnos llenos para la fecha: " + self.fecha.strftime("%Y-%m-%d")
 			end
+		end
+	end
+
+	def save_only_current_day
+		unless self.fecha.to_time.beginning_of_day == Time.now.beginning_of_day
+			errors.add :fecha, "No puedes ingresar resultados de dias pasados o futuro"
 		end
 	end
 

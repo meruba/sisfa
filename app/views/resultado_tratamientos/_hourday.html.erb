@@ -13,6 +13,10 @@
 							<small>H.C: #<%= turno.asignar_horario.paciente.n_hclinica%></small>
 						</div>
 						<div class="row col-md-2 col-xs-2 turnos-disponibles">
+							<% if turno.fecha.beginning_of_day != Time.now.beginning_of_day%>
+								<span class="t_disponibles"><i class="fa fa-pencil text-muted"></i></span>
+								<h6>No Dispnb.</h6>
+							<% else %>
 						<% if turno.atendido %>
 		          <span class="t_disponibles"><%= link_to "", edit_resultado_tratamiento_path(turno), class: "fa fa-check-circle text-success" %></span>
 							<h6>editar</h6>
@@ -20,6 +24,7 @@
 		          <span class="t_disponibles"><%= link_to "", edit_resultado_tratamiento_path(turno), class: "fa fa-pencil text-success" %></span>
 								<h6>registrar</h6>
 		          <% end %>
+						<% end %>
 						</div>
 					</div>
 				</li>
