@@ -10,7 +10,7 @@
 #  updated_at               :datetime
 #  saldo_inicial_inventario :float
 #  otros_dias               :boolean          default(FALSE)
-#  numero_turnos_fisiatria  :integer
+#  numero_turnos_fisiatria  :integer          default(1)
 #
 
 class Emisor < ActiveRecord::Base
