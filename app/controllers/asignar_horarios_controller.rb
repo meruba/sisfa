@@ -10,6 +10,13 @@ include DashboardHospitalHelper
   def reporte_ingresados
   	@fecha = params[:fecha]
   	@ingresados = AsignarHorario.reporte_mensual(@fecha)
+    @total = @ingresados.sum(:total_factura)
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render :pdf => "reporte de terapista", :layout => 'report.html', :template => "asignar_horarios/reporte_ingresados.pdf.erb", :orientation => 'Landscape'
+      end
+    end
   end
 
 	def new
