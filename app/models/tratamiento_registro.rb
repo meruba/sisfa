@@ -17,6 +17,9 @@ class TratamientoRegistro < ActiveRecord::Base
 	belongs_to :item_tratamiento
 
 	validates :nombre_tratamiento, :presence => true
+	validates :item_tratamiento_id, :presence => true
+	validates :item_tratamiento_id, :uniqueness => { :message => "Tratamiento Repetido" }
+
 	after_save :set_values
 
 	def tratamiento_recibido

@@ -25,7 +25,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 	#validations
 	validates :resultado, :personal_id, :presence => true, :on => :update
 	validates :fecha, :horario_id, :presence => true, :on => :create
-	validate :isfull, :on => :create
+	validate :isfull, :not_create_before_current_day, :on => :create
 	validate :save_only_current_day, :on => :edit
 
 	after_create :add_disponiblidad
@@ -48,6 +48,12 @@ class ResultadoTratamiento < ActiveRecord::Base
 	def save_only_current_day
 		unless self.fecha.to_time.beginning_of_day == Time.now.beginning_of_day
 			errors.add :fecha, "No puedes ingresar resultados de dias pasados o futuro"
+		end
+	end
+
+	def not_create_before_current_day
+		if self.fecha.to_time.beginning_of_day < Time.now.beginning_of_day
+			errors.add :fecha, "No puedes registrar dias anteriores a la fecha"
 		end
 	end
 

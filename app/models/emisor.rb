@@ -15,6 +15,7 @@
 
 class Emisor < ActiveRecord::Base
   validates :nombre_establecimiento, :ruc, :numero_inicial_factura, :presence => true
+  validates :numero_turnos_fisiatria, :numericality => { :greater_than => 0 }
 
   after_create :add_saldo_inicial_to_liquidacion
 
