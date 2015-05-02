@@ -67,7 +67,8 @@ class PacientesController < ApplicationController
 	end
 
 	def terapias
-		@terapias = Paciente.find(params[:paciente_id]).asignar_horarios
+		@paciente = Paciente.find(params[:paciente_id])
+		@terapias = @paciente.asignar_horarios
 	end
 
 	def create

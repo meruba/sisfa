@@ -18,7 +18,7 @@ class TratamientoRegistro < ActiveRecord::Base
 
 	validates :nombre_tratamiento, :presence => true
 	validates :item_tratamiento_id, :presence => true
-	validates :item_tratamiento_id, :uniqueness => { :message => "Tratamiento Repetido" }
+	# validates :item_tratamiento_id, :uniqueness => { :message => "Tratamiento Repetido" }
 
 	after_save :set_values
 
