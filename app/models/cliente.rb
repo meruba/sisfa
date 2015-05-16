@@ -23,7 +23,7 @@ class Cliente < ActiveRecord::Base
 	validates :nombre, :presence =>true
 	validate :validate_id_if_necessary
   validates :numero_de_identificacion, uniqueness: true, :if => :numero_de_identificacion?
-
+  validates_format_of :nombre, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/
 # relationships
   has_one :user
   has_one :paciente
