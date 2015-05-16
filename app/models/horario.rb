@@ -15,13 +15,26 @@ class Horario < ActiveRecord::Base
 	has_many :resultado_tratamientos
 	belongs_to :asignar_horario
 	validates :hora_inicio, :hora_final, :presence =>true
-	validates_uniqueness_of :hora, :case_sensitive => false #nombre es unico sea escrito mayuscula o minuscula
+  validates_format_of :hora_inicio, :hora_final, :with => /\A([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]\Z/i
+  validate :uniqueness_hour
+  validate :less_hour
 
-  before_save :set_values
-  after_update :update_disponibilidad
+  # before_create :set_values
+  # after_update :update_disponibilidad
 
-  def set_values
+  def uniqueness_hour
     self.hora = self.hora_inicio + " - " + self.hora_final
+    Horario.all.each do |h|
+      if self.hora == h.hora
+        errors.add :hora, "Ya existe este horario"
+      end
+    end
+  end
+
+  def less_hour
+    if self.hora_inicio.to_time > self.hora_final.to_time
+        errors.add :hora_inicio, "Hora de inicio incorrecta"
+    end
   end
 
   def update_disponibilidad
