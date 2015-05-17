@@ -1,5 +1,9 @@
 class CalendarioController < ApplicationController
+  before_filter :require_login
+  before_filter :is_admin_or_fisiatra_fisiatria
+
 	include DashboardHospitalHelper
+
 	def index
   	# calendario
   	@numero_dias = numero_dias(Time.now)
