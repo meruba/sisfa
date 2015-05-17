@@ -9,9 +9,14 @@ class ConfiguracionesFisiatriaController < ApplicationController
     @item = ItemTratamiento.new
 
   end
+
   def horarios
   	@horario = Horario.new
   	@horarios = Horario.all
+    @config = FisiatriaConfiguracion.last
+  end
+
+  def certificados
     @config = FisiatriaConfiguracion.last
   end
 

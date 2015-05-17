@@ -1,0 +1,67 @@
+<div class="row info-paciente">
+  <div class="col-md-10 shadow col-md-offset-1">
+    <h4 class="text-center"><strong>CERTIFICADO  DEL DEPARTAMENTO DE REHABILITACIÓN  FÍSICA</strong></h4>
+    <h3 class="text-center"><%= image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3><br>
+
+<h5 class="text-center"><%= @config.encargado_departamento %></h5>
+<div class="row">
+  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong>Angel Alberto Masache</div>
+  <div class="col-md-8"><strong>con N de planilla:</strong> 2357 <strong>H.C:</strong> 3245</div>
+  <div class="col-md-6"><strong>COD:</strong> 1104890000</div>
+</div>
+<hr>
+<h5>Se encuentra realizando el siguiente tratamiento:</h5>
+<strong>Laser Terapira</strong><br>
+<strong>Hidro Terapira</strong><br>
+<strong>Compresas</strong><br>
+<h5>Nº de Sesiones: 3</h5>
+<p>
+  <%= @config.respuesta_tratamiento %>
+</p>
+<div class="fecha-de-impresion text-right">
+  <strong>Fecha: <%= local_date(Time.now, "date")%></strong>
+</div>
+<hr>
+<div class="text-center">
+  <h5><strong><%= @config.encargado_departamento %></strong></h5>
+  <h5><strong><%= @config.grado_director %></strong></h5>
+  <h5><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h5>
+  <strong>REGISTRO DE ASISTENCIA DE PACIENTES EN EL AREA DE FISIOTERAPIA DEL HOSPITAL BÁSICO DE 7 - B.I "LOJA"</strong>
+</div>
+<hr>
+<div class="row">
+  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong>Angel Alberto Masache</div>
+  <div class="col-md-8"><strong>con N de planilla:</strong> 2357 <strong>H.C:</strong> 3245</div>
+  <div class="col-md-6"><strong>COD:</strong> 1104890000</div>
+</div>
+<div><strong>DIAGNOSTICO: </strong>Paralisis Facial</div>
+<strong>DIAS DE ASISTENCIA</strong>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Fecha</th>
+      <th>Resultado</th>
+      <th>Firma</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= local_date(Time.now, "date") %></td>
+      <td>Paciente responde favorablemente</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><%= local_date(Time.now, "date") %></td>
+      <td>Paciente responde favorablemente</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><%= local_date(Time.now, "date") %></td>
+      <td>Paciente responde favorablemente</td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+  </div>
+</div>
+

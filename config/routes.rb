@@ -58,7 +58,7 @@ Sisfa::Application.routes.draw do
   get "reportes_fisiatria/factura"
   get "configuraciones_fisiatria/horarios"
   get "configuraciones_fisiatria/tratamientos"
-  get "configuraciones_fisiatria/sistema"
+  get "configuraciones_fisiatria/certificados"
   get "configuraciones_fisiatria/index"
 
   resources :emisors, except: [:show, :destroy, :index] do
