@@ -12,6 +12,7 @@
 class Personal < ActiveRecord::Base
 	belongs_to :cliente
   has_many :resultado_tratamientos
+  validates :cliente_id, uniqueness: true
 	accepts_nested_attributes_for :cliente
 
   #methods
