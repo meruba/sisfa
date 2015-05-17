@@ -3,7 +3,7 @@ window.Helpers ||= {}
 window.Helpers.AutocompletePaciente = {
   init_autocomplete: ->
     $(".identificacion").autocomplete
-      minLength: 1
+      minLength: 3
       source: "/pacientes/autocomplete.json"
       response: (event, ui) ->
         unless ui.content.length
@@ -14,7 +14,6 @@ window.Helpers.AutocompletePaciente = {
         else
           $("#message").empty()
       select: (event, ui) ->
-        debugger
         $(".cliente_id").val ui.item.cliente_id
         $(".nombre").val ui.item.nombre
         $(".paciente_id").val ui.item.id
@@ -23,7 +22,7 @@ window.Helpers.AutocompletePaciente = {
 
   init_autocomplete_fisiatria: ->
     $(".nombre_identificacion").autocomplete
-      minLength: 1
+      minLength: 3
       source: "/pacientes/autocomplete_fisiatria.json"
       response: (event, ui) ->
         unless ui.content.length
