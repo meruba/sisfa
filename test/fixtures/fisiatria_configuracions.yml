@@ -1,15 +1,14 @@
 # == Schema Information
 #
-# Table name: emisors
+# Table name: fisiatria_configuracions
 #
-#  id                       :integer          not null, primary key
-#  nombre_establecimiento   :string(255)
-#  ruc                      :string(255)
-#  numero_inicial_factura   :integer
-#  created_at               :datetime
-#  updated_at               :datetime
-#  saldo_inicial_inventario :float
-#  otros_dias               :boolean          default(FALSE)
+#  id                     :integer          not null, primary key
+#  numero_turnos          :integer
+#  encargado_departamento :string(255)
+#  grado_director         :string(255)
+#  respuesta_tratamiento  :text
+#  created_at             :datetime
+#  updated_at             :datetime
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
