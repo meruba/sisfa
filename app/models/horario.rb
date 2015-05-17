@@ -32,8 +32,10 @@ class Horario < ActiveRecord::Base
   end
 
   def less_hour
-    if self.hora_inicio.to_time > self.hora_final.to_time
+    if self.hora_inicio.nil? || self.hora_final.nil?
+      if self.hora_inicio.to_time > self.hora_final.to_time
         errors.add :hora_inicio, "Hora de inicio incorrecta"
+      end
     end
   end
 

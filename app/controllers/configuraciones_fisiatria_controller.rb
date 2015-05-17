@@ -12,7 +12,7 @@ class ConfiguracionesFisiatriaController < ApplicationController
   def horarios
   	@horario = Horario.new
   	@horarios = Horario.all
-    @emisor = Emisor.last
+    @config = FisiatriaConfiguracion.last
   end
 
   def tratamientos

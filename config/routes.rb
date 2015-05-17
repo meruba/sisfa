@@ -181,4 +181,5 @@ Sisfa::Application.routes.draw do
       post "suspender"
     end
   end
+  resources :fisiatria_configuracions, only: [:edit, :update]
 end
