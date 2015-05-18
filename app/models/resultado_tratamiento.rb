@@ -58,7 +58,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 	end
 
 	def add_disponiblidad
-		turnos_config = Emisor.last.numero_turnos_fisiatria
+		turnos_config = FisiatriaConfiguracion.last.numero_turnos
 		numero_de_horarios = Horario.where(:anulado => false).count()
 		turnos_por_dia = numero_de_horarios * turnos_config
 		turnos_emitidos_dia = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).count() #turnos de todo el dia
