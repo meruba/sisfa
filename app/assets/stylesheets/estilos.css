@@ -258,3 +258,11 @@ border: 1px solid #e7e7e7;
     overflow: scroll;
     height: 250px;
 }
+
+.text-bold{
+  font-weight: bold;
+}
+
+.text-uppercase{
+  text-transform: uppercase;
+}

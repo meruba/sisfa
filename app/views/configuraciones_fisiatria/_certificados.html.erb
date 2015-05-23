@@ -1,13 +1,14 @@
 <div class="row info-paciente">
   <div class="col-md-10 shadow col-md-offset-1">
-    <h4 class="text-center"><strong>CERTIFICADO  DEL DEPARTAMENTO DE REHABILITACIÓN  FÍSICA</strong></h4>
     <h3 class="text-center"><%= image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3><br>
-
-<h5 class="text-center"><%= @config.encargado_departamento %></h5>
+    <h4 class="text-center text-bold">CERTIFICADO  DEL DEPARTAMENTO DE REHABILITACIÓN  FÍSICA</h4>
+    <h5 class="text-center text-bold"><%= best_in_place @config, :encargado_departamento %> <i class="fa fa-pencil text-info"></i></h5>
+    <h5 class="text-center text-bold">ENCARGADO  DEL DEPARTAMENTO DE REHABILITACIÓN FÍSICA DEL HB-7 "LOJA"</h5>
+    <h5 class="text-left">El suscrito fisioterapista,</h5>
 <div class="row">
-  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong>Angel Alberto Masache</div>
-  <div class="col-md-8"><strong>con N de planilla:</strong> 2357 <strong>H.C:</strong> 3245</div>
-  <div class="col-md-6"><strong>COD:</strong> 1104890000</div>
+  <div class="col-md-12"><strong>CERTIFICA que el/la paciente:  </strong><span class="text-uppercase">Alvarado Medina Alberto Andres</span></div>
+  <div class="col-md-12"><strong>con N de planilla:</strong> 2357 <strong>H.C:</strong> 3245</div>
+  <div class="col-md-12"><strong>COD:</strong> 1104890000</div>
 </div>
 <hr>
 <h5>Se encuentra realizando el siguiente tratamiento:</h5>
@@ -16,26 +17,30 @@
 <strong>Compresas</strong><br>
 <h5>Nº de Sesiones: 3</h5>
 <p>
-  <%= @config.respuesta_tratamiento %>
+  <%= best_in_place @config, :respuesta_tratamiento, {:classes => "area-max", :type => :textarea, :nil => "Por favor ingresa texto acerca de respuesta del tratamiento"} %>
+  <i class="fa fa-pencil text-info"></i>
 </p>
 <div class="fecha-de-impresion text-right">
   <strong>Fecha: <%= local_date(Time.now, "date")%></strong>
 </div>
-<hr>
+<br>
+<br>
+<br>
 <div class="text-center">
-  <h5><strong><%= @config.encargado_departamento %></strong></h5>
-  <h5><strong><%= @config.grado_director %></strong></h5>
-  <h5><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h5>
-  <strong>REGISTRO DE ASISTENCIA DE PACIENTES EN EL AREA DE FISIOTERAPIA DEL HOSPITAL BÁSICO DE 7 - B.I "LOJA"</strong>
+  <span>--------------------------------------------------</span>
+  <h6><strong><%= @config.encargado_departamento %></strong></h6>
+  <h6><strong><%= @config.grado_director %></strong></h6>
+  <h6><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h6>
 </div>
-<hr>
-<div class="row">
-  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong>Angel Alberto Masache</div>
-  <div class="col-md-8"><strong>con N de planilla:</strong> 2357 <strong>H.C:</strong> 3245</div>
-  <div class="col-md-6"><strong>COD:</strong> 1104890000</div>
+  <hr>
+<div class="col-md-12">
+  <h5 class="text-center text-bold">REGISTRO DE ASISTENCIA DE PACIENTES EN EL AREA DE FISIOTERAPIA DEL HOSPITAL BÁSICO DE 7 - B.I "LOJA"</h5>
+  <h5><strong>APELLIDOS Y NOMBRES:  </strong><span class="text-uppercase">Alvarado Medina Alberto Andres</span></h5>
+  <h5><strong>H.C: </strong>2357   <strong>PLANILLA: </strong>3245</h5>
+  <h5><strong>DIAGNÓSTICO: </strong>Paralisis Facial</h5>
+  <strong>DIAS DE ASISTENCIA</strong>
+
 </div>
-<div><strong>DIAGNOSTICO: </strong>Paralisis Facial</div>
-<strong>DIAS DE ASISTENCIA</strong>
 <table class="table">
   <thead>
     <tr>
@@ -47,21 +52,30 @@
   <tbody>
     <tr>
       <td><%= local_date(Time.now, "date") %></td>
-      <td>Paciente responde favorablemente</td>
+      <td>Dia 1 paciente responde favorablemente</td>
       <td></td>
     </tr>
     <tr>
       <td><%= local_date(Time.now, "date") %></td>
-      <td>Paciente responde favorablemente</td>
+      <td>Dia 2 paciente responde favorablemente</td>
       <td></td>
     </tr>
     <tr>
       <td><%= local_date(Time.now, "date") %></td>
-      <td>Paciente responde favorablemente</td>
+      <td>Dia 3 paciente responde favorablemente</td>
       <td></td>
     </tr>
   </tbody>
 </table>
+<br>
+<br>
+<br>
+<div class="text-center">
+  <span>--------------------------------------------------</span>
+  <h6><strong><%= @config.encargado_departamento %></strong></h6>
+  <h6><strong><%= @config.grado_director %></strong></h6>
+  <h6><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h6>
+</div>
   </div>
 </div>
 

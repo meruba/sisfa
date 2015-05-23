@@ -1,10 +1,12 @@
 <h3 class="text-center"><%= wicked_pdf_image_tag "/images/logo1.png", width: 45, height: 45 %> HOSPITAL BÁSICO 7 B.I LOJA</h3><br>
-<h4 class="text-center"><strong>CERTIFICADO  DEL DEPARTAMENTO DE REHABILITACIÓN  FÍSICA</strong></h4>
-<h5 class="text-center">Lic. Ft. CATOTA Y. EDISON R.</h5>
+<h4 class="text-center text-bold">CERTIFICADO  DEL DEPARTAMENTO DE REHABILITACIÓN  FÍSICA</h4>
+<h5 class="text-center text-bold"><%= @certificado.encargado_departamento %></h5>
+<h5 class="text-center text-bold">ENCARGADO  DEL DEPARTAMENTO DE REHABILITACIÓN FÍSICA DEL HB-7 "LOJA"</h5>
+<h5 class="text-left">El suscrito fisioterapista,</h5>
 <div class="row">
-  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong><%= @paciente.cliente.nombre %></div>
-  <div class="col-md-8"><strong>con N de planilla:</strong> <%= @terapia.numero_factura %> <strong>H.C:</strong> <%= @paciente.n_hclinica%></div>
-  <div class="col-md-6"><strong>COD:</strong> <%= @paciente.cliente.numero_de_identificacion%></div>
+  <div class="col-md-12"><strong>CERTIFICA que el/la paciente:  </strong><span class="text-uppercase"><%= @paciente.cliente.nombre %></span></div>
+  <div class="col-md-12"><strong>con N de planilla:</strong> <%= @terapia.numero_factura %> <strong>H.C:</strong> <%= @paciente.n_hclinica%></div>
+  <div class="col-md-12"><strong>COD:</strong> <%= @paciente.cliente.numero_de_identificacion%></div>
 </div>
 <hr>
 <h5>Se encuentra realizando el siguiente tratamiento:</h5>
@@ -14,8 +16,7 @@
 <% end %>
 <h5>Nº de Sesiones: <%= @terapia.tratamiento_registros.count %></h5>
 <p>
-  Cabe recalcar que el paciente se encuentra respondiendo favorablemente
-  con las sesiones de rehabilitación respecto a su cuadro clínico inicial.
+  <%= @certificado.respuesta_tratamiento %>
 </p>
 <div class="fecha-de-impresion text-right">
   <strong>Fecha: <%= local_date(Time.now, "date")%></strong>
@@ -28,9 +29,8 @@
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-2"><strong>CERTIFICA que el/la paciente:  </strong><%= @paciente.cliente.nombre %></div>
-  <div class="col-md-8"><strong>con N de planilla:</strong> <%= @terapia.numero_factura %> <strong>H.C:</strong> <%= @paciente.n_hclinica%></div>
-  <div class="col-md-6"><strong>COD:</strong> <%= @paciente.cliente.numero_de_identificacion%></div>
+  <div class="col-md-2"><strong>APELLIDOS Y NOMBRES:  </strong><span class="text-uppercase"><%= @paciente.cliente.nombre %></span></div>
+  <div class="col-md-8"><strong>H.C:</strong> <%= @paciente.n_hclinica%> <strong>PLANILLA:</strong> <%= @terapia.numero_factura %></div>
 </div>
 <div><strong>DIAGNOSTICO: </strong><%= @terapia.diagnostico %> </div>
 <strong>DIAS DE ASISTENCIA</strong>
