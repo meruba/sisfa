@@ -39,8 +39,8 @@ class ResultadoTratamiento < ActiveRecord::Base
 	def isfull
 		unless self.fecha.nil?
 			numero_de_turnos = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day, :horario_id => self.horario_id ).count() #turnos en ese horario
-			if numero_de_turnos == Emisor.last.numero_turnos_fisiatria # configuracion de turnos x hora
-				errors.add :asignar_horario_id, "Turnos llenos para la fecha: " + self.fecha.strftime("%Y-%m-%d")
+			if numero_de_turnos == FisiatriaConfiguracion.last.numero_turnos # configuracion de turnos x hora
+				errors.add :asignar_horario_id, "Turnos llenos horario: " + self.horario.hora + " Fecha: " + self.fecha.strftime("%Y-%m-%d")
 			end
 		end
 	end
@@ -58,19 +58,29 @@ class ResultadoTratamiento < ActiveRecord::Base
 	end
 
 	def add_disponiblidad
-		turnos_config = FisiatriaConfiguracion.last.numero_turnos
-		numero_de_horarios = Horario.where(:anulado => false).count()
-		turnos_por_dia = numero_de_horarios * turnos_config
-		turnos_emitidos_dia = ResultadoTratamiento.where(:fecha => self.fecha.beginning_of_day..self.fecha.end_of_day).count() #turnos de todo el dia
+		#primero buscar si existe algun registro del dia
 		dia_turno = DisponiblidadHorario.where(:dia => self.fecha).last
-		unless dia_turno.nil? # no existe ese registro en ese dia
-			if turnos_emitidos_dia == turnos_por_dia
+		#condicion si existe
+		unless dia_turno.nil?
+			#saber cuantos turnos quedan
+			if dia_turno.numero_actual_turnos + 1 == dia_turno.turnos_por_dia
+				#actualizar a lleno
 				dia_turno.lleno = true
-				dia_turno.save #actualiza el dia a lleno
+				dia_turno.numero_actual_turnos = dia_turno.numero_actual_turnos + 1
+				dia_turno.save
+			else
+				#actualizar solo el numero actual de turnos
+				dia_turno.numero_actual_turnos = dia_turno.numero_actual_turnos + 1
+				dia_turno.save
 			end
 		else
+			#crear el dia por primera vez
 			horario = DisponiblidadHorario.new
 			horario.dia = self.fecha
+			horario.numero_horarios = Horario.where(:anulado => false).count()
+			horario.config_turnos = FisiatriaConfiguracion.last.numero_turnos
+			horario.turnos_por_dia = horario.numero_horarios * horario.config_turnos
+			horario.numero_actual_turnos = 1
 			horario.save # crea un nuevo dia
 		end
 	end

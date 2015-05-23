@@ -16,12 +16,13 @@ class Horario < ActiveRecord::Base
 	belongs_to :asignar_horario
 	validates :hora_inicio, :hora_final, :presence =>true
   validates_format_of :hora_inicio, :hora_final, :with => /\A([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]\Z/i
-  validate :uniqueness_hour
+  validate :uniqueness_hour, on: :create
   validate :less_hour
+  validate :not_anulado
 
-  # before_create :set_values
-  # after_update :update_disponibilidad
+  after_save :update_disponibilidad
 
+  #validations
   def uniqueness_hour
     self.hora = self.hora_inicio + " - " + self.hora_final
     Horario.all.each do |h|
@@ -39,36 +40,63 @@ class Horario < ActiveRecord::Base
     end
   end
 
+  def not_anulado
+    if self.anulado
+      dias = ResultadoTratamiento.where(['fecha >= ?', Time.now.beginning_of_day])
+      unless dias.empty?
+        dias.each do |d|
+          if d.horario == self
+            return errors.add :hora, "No se puede anular hay turnos asignados"
+          end
+        end
+      end
+    end
+  end
+
+  #methods
   def update_disponibilidad
     if self.anulado
-    dias = DisponiblidadHorario.where(:dia => self.updated_at.beginning_of_day..self.updated_at.end_of_year)
-      dias.each do |dia|
-        dia.lleno = check_is_full(dia.dia)
-        dia.save
-      end
+      horario_anulado()
     else
-    dias = DisponiblidadHorario.where(:dia => self.updated_at.beginning_of_day..self.updated_at.end_of_month)
-      dias.each do |d|
-        d.lleno = false
-        d.save
-      end
+      add_horario()
     end
   end
 
   private
 
-  def check_is_full(day)
-    is_full = false
-    turnos_config = Emisor.last.numero_turnos_fisiatria
-    numero_de_horarios = Horario.where(:anulado => false).count()
-    turnos_por_dia = numero_de_horarios * turnos_config
-    turnos_emitidos_dia = ResultadoTratamiento.where(:fecha => day.beginning_of_day..day.end_of_day).count() #turnos de todo el dia
-    if turnos_emitidos_dia == turnos_por_dia
-      is_full = true
-    else
-      is_full = false
+  def add_horario
+    #obtener los dias de la fecha actual en adelante
+    dias = DisponiblidadHorario.where(['dia >= ?', Time.now.beginning_of_day])
+    #actualizar horarios
+    unless dias.empty?
+      dias.each do |d|
+        d.lleno = false
+        d.numero_horarios = d.numero_horarios + 1
+        d.turnos_por_dia = d.numero_horarios * d.config_turnos
+        d.save
+      end
     end
-    return is_full
+  end
+
+  def horario_anulado
+    #obtener los dias de la fecha actual en adelante
+    dias = DisponiblidadHorario.where(['dia >= ?', Time.now.beginning_of_day])
+    #actualizar horarios
+    unless dias.empty?
+      dias.each do |d|
+        #recalcular numero de turnos
+        numero_horarios = d.numero_horarios - 1
+        turnos_por_dia = numero_horarios * d.config_turnos
+        #actualizar a lleno
+        if d.numero_actual_turnos == turnos_por_dia
+          d.lleno = true
+        end
+        #actualizar
+        d.numero_horarios = numero_horarios
+        d.turnos_por_dia = turnos_por_dia
+        d.save
+      end
+    end
   end
 
 end
