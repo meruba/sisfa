@@ -8,6 +8,9 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  numero_actual_turnos :integer
+#  numero_horarios      :integer
+#  turnos_por_dia       :integer
+#  config_turnos        :integer
 #
 
 require 'test_helper'
