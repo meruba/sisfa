@@ -45,6 +45,8 @@ class FisiatriaConfiguracion < ActiveRecord::Base
           #actualizar a lleno
           if d.numero_actual_turnos == turnos_por_dia
             d.lleno = true
+          else
+            d.lleno = false
           end
           d.config_turnos = self.numero_turnos
           d.turnos_por_dia = turnos_por_dia
