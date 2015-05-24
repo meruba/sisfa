@@ -30,6 +30,7 @@ class ResultadoTratamiento < ActiveRecord::Base
 
 	after_create :add_disponiblidad
 	before_create :set_values
+	after_destroy :update_disponibilidad
 	# accepts_nested_attributes_for :disponibilidad_horario
 
 	def set_values
@@ -57,6 +58,26 @@ class ResultadoTratamiento < ActiveRecord::Base
 		end
 	end
 
+	def update_disponibilidad
+		if self.personal.nil?
+			dia_turno = DisponiblidadHorario.where(:dia => self.fecha).last
+			dia_turno.numero_actual_turnos = dia_turno.numero_actual_turnos - 1
+      #recalcular numero de turnos
+      turnos_por_dia = dia_turno.numero_horarios * dia_turno.numero_actual_turnos
+      #actualizar a lleno
+      if turnos_por_dia == 0
+      	dia_turno.destroy
+      else
+	      if dia_turno.numero_actual_turnos == turnos_por_dia
+	        dia_turno.lleno = true
+	      else
+	        dia_turno.lleno = false
+	      end
+	      dia_turno.save
+      end
+		end
+	end
+
 	def add_disponiblidad
 		#primero buscar si existe algun registro del dia
 		dia_turno = DisponiblidadHorario.where(:dia => self.fecha).last
@@ -81,6 +102,9 @@ class ResultadoTratamiento < ActiveRecord::Base
 			horario.config_turnos = FisiatriaConfiguracion.last.numero_turnos
 			horario.turnos_por_dia = horario.numero_horarios * horario.config_turnos
 			horario.numero_actual_turnos = 1
+			if horario.turnos_por_dia == 1
+				horario.lleno = true
+			end
 			horario.save # crea un nuevo dia
 		end
 	end
