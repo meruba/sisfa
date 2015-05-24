@@ -47,12 +47,12 @@ Sisfa::Application.routes.draw do
   get "resultado_tratamientos/by_day"
   get "resultado_tratamientos/hour_and_day"
   get "personals/by_day"
-  get "asignar_horarios/new"
   get "asignar_horarios/autocomplete"
   get "asignar_horarios/reporte_ingresados"
   get "asignar_horarios/view_edit"
   get "reportes_fisiatria/index"
   get "reportes_fisiatria/personal"
+  get "reportes_fisiatria/search_paciente"
   get "reportes_fisiatria/paciente"
   get "reportes_fisiatria/paciente_certificado"
   get "reportes_fisiatria/factura"
@@ -174,7 +174,11 @@ Sisfa::Application.routes.draw do
       post "suspender"
     end
   end
-  resources :asignar_horarios
+  resources :asignar_horarios do
+   member do
+      post "dar_alta"
+    end
+  end
   resources :resultado_tratamientos
   resources :item_tratamientos, only: [:edit, :update, :new, :create] do
     member do

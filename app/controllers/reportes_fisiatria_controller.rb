@@ -18,11 +18,18 @@ class ReportesFisiatriaController < ApplicationController
 		end
 	end
 
+	def search_paciente
+		@paciente = Paciente.find(params[:paciente_id])
+		@resultados =  AsignarHorario.includes(:paciente).where(:paciente_id => params[:paciente_id], :created_at => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day).references(:paciente)
+		respond_to do |format|
+			format.js
+		end
+	end
+
 	def paciente
 		@paciente = Paciente.find(params[:paciente_id])
-		@start_date = params[:fecha_inicial]
-		@end_date = params[:fecha_final]
-		@resultados =  ResultadoTratamiento.includes(:paciente).where(:paciente_id => params[:paciente_id], :atendido => true, :fecha => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day).references(:paciente)
+		horario =  AsignarHorario.find(params[:registro].to_i)
+		@resultados =  horario.resultado_tratamientos
 		respond_to do |format|
 			format.js
 			format.pdf do
@@ -33,10 +40,8 @@ class ReportesFisiatriaController < ApplicationController
 
 	def paciente_certificado
 		@paciente = Paciente.find(params[:paciente_id])
-		@start_date = params[:fecha_inicial]
-		@end_date = params[:fecha_final]
-		@resultados =  ResultadoTratamiento.includes(:paciente).where(:paciente_id => params[:paciente_id], :atendido => true, :fecha => params[:fecha_inicial].to_time.beginning_of_day..params[:fecha_final].to_time.end_of_day).references(:paciente)
-		@terapia = Paciente.last_terapia_fisiatria(@paciente)
+		@terapia =  AsignarHorario.find(params[:registro].to_i)
+		@resultados =  @terapia.resultado_tratamientos
     @certificado = FisiatriaConfiguracion.last
 		respond_to do |format|
 			format.js
