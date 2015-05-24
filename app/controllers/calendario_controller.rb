@@ -15,7 +15,7 @@ class CalendarioController < ApplicationController
   def next_month
   	@numero_dias = numero_dias(Time.now + 1.month)
   	@espacios = number_space(Time.now + 1.month)
-  	@fecha = Time.now + 1.month
+    @fecha = params[:fecha].to_time + 1.month
   	@turnos = DisponiblidadHorario.where(:dia => @fecha.beginning_of_month..@fecha.end_of_month)
   	respond_to do |format|
   		format.js
@@ -25,7 +25,7 @@ class CalendarioController < ApplicationController
   def prev_month
   	@numero_dias = numero_dias(Time.now - 1.month)
   	@espacios = number_space(Time.now - 1.month)
-  	@fecha = Time.now - 1.month
+  	@fecha = params[:fecha].to_time - 1.month
   	@turnos = DisponiblidadHorario.where(:dia => @fecha.beginning_of_month..@fecha.end_of_month)
   	respond_to do |format|
 			format.js
