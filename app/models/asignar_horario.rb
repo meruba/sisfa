@@ -23,11 +23,19 @@ class AsignarHorario < ActiveRecord::Base
 
 	validates :numero_factura, :total_factura, :diagnostico, :presence => true
 	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
+	validate :yet_in_tratamiento, on: :create
 
 	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	# validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
 
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
+
+	def yet_in_tratamiento
+		is_tratamiento = AsignarHorario.where(:paciente_id => self.paciente, :alta => false).last
+		unless is_tratamiento.nil?
+      errors.add :paciente_id, "El paciente ya esta recibiendo tratamiento"
+		end
+	end
 
 	def self.autocomplete(params)
 		pacientes = AsignarHorario.includes(paciente: [:cliente]).where("clientes.nombre like ?", "%#{params}%").references(paciente: [:cliente])
