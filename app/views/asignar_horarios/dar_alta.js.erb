@@ -1,0 +1,15 @@
+<%- if @horario.errors.any? %>
+  <%- @horario.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
+<%- else %>
+  <%- if @horario.alta %>
+    alertify.success("Tratamiento Finalizada");
+    $('#<%=@horario.id %>-estado').text("Finalizada");
+    $('#<%=@horario.id %>-registro').removeClass("text-muted").addClass("text-success");
+  <%- else %>
+    alertify.log("Tratamiento en progreso");
+    $('#<%=@horario.id %>-estado').text("No Finalizada...");
+    $('#<%=@horario.id %>-registro').removeClass("text-success").addClass("text-muted");
+  <%- end %>
+<%- end %>

@@ -1,6 +1,11 @@
 <div class="horario mygrid-wrapper-div">
 	<% @resultados.each do |r|%>
 	<h5>Fecha de registro: <%= local_date(r.created_at, "date")%></h5>
+	<h5>
+		Deseas dar por terminado la terapia?
+		<a class="fa fa-check-circle alta-certificado <%= r.alta? ? 'text-success' : 'text-muted'%>" data-registro= "<%= r.id %>" href="javascript:void(0)" id="<%=r.id%>-registro"></a>
+		<span class="pull-right <%= r.alta? ? 'text-success' : 'text-muted'%>" id="<%=r.id%>-estado"><%= r.alta? ? 'Finalizada' : 'No Finalizada...'%></span>
+	</h5>
 	<table class="table table-bordered">
 		<thead>
 			<tr>

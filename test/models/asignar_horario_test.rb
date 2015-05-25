@@ -13,6 +13,7 @@
 #  total_factura    :float            default(0.0)
 #  diagnostico      :string(255)
 #  doctor_remitente :string(255)
+#  alta             :boolean          default(FALSE)
 #
 
 require 'test_helper'

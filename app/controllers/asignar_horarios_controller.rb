@@ -1,6 +1,6 @@
 class AsignarHorariosController < ApplicationController
 include DashboardHospitalHelper
-  before_action :find_horario, only: [:edit, :update, :destroy]
+  before_action :find_horario, only: [:edit, :update, :destroy, :dar_alta]
   def autocomplete
     respond_to do |format|
       format.json { render :json => AsignarHorario.autocomplete(params[:term]) }
@@ -31,8 +31,18 @@ include DashboardHospitalHelper
 
   def view_edit
     @registros = AsignarHorario.includes(paciente: [:cliente], tratamiento_registros: [:item_tratamiento]).last(10)
-    # turnos = Turno.includes(paciente: [:cliente]).where(:fecha => Time.now.beginning_of_day..Time.now.end_of_day).references(paciente: [:cliente])
-    # @paciente = Paciente.includes(:cliente, :informacion_adicional_paciente, :condicions).where(:id => params[:paciente_id]).references(:cliente, :informacion_adicional_paciente, :condicions).first
+  end
+
+  def dar_alta
+    if @horario.alta
+      @horario.alta = false
+    else
+      @horario.alta = true
+    end
+    @horario.save
+    respond_to do |format|
+      format.js
+    end
   end
 
   def edit
