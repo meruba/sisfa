@@ -53,8 +53,10 @@ class ResultadoTratamiento < ActiveRecord::Base
 	end
 
 	def not_create_before_current_day
-		if self.fecha.to_time.beginning_of_day < Time.now.beginning_of_day
-			errors.add :fecha, "No puedes registrar dias anteriores a la fecha"
+		unless self.fecha.nil?
+			if self.fecha.to_time.beginning_of_day < Time.now.beginning_of_day
+				errors.add :fecha, "No puedes registrar dias anteriores a la fecha"
+			end
 		end
 	end
 

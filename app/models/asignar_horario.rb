@@ -22,6 +22,7 @@ class AsignarHorario < ActiveRecord::Base
 	has_many :tratamiento_registros, dependent: :destroy
 
 	validates :numero_factura, :total_factura, :diagnostico, :presence => true
+	validates :numero_factura, :total_factura, :numericality => { :greater_than_or_equal_to => 0 }
 	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
 	validate :yet_in_tratamiento, on: :create
 
