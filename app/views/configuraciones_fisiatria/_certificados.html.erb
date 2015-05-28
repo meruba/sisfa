@@ -29,8 +29,8 @@
 <div class="text-center">
   <span>--------------------------------------------------</span>
   <h6><strong><%= @config.encargado_departamento %></strong></h6>
-  <h6><strong><%= @config.grado_director %></strong></h6>
-  <h6><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h6>
+  <h6><strong><%= best_in_place @config, :grado_director %></strong> <i class="fa fa-pencil text-info"></i></h6>
+  <h6><strong><%= best_in_place @config, :cargo_fisiatria %> <i class="fa fa-pencil text-info"></i></strong></h6>
 </div>
   <hr>
 <div class="col-md-12">
