@@ -9,6 +9,7 @@
 #  respuesta_tratamiento  :text
 #  created_at             :datetime
 #  updated_at             :datetime
+#  cargo_fisiatria        :string(255)
 #
 
 class FisiatriaConfiguracion < ActiveRecord::Base
