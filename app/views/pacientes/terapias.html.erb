@@ -15,7 +15,9 @@
     <div class="col-md-6">
       <h4 class="text-info"><i class="fa fa-dot-circle-o"></i> Información de ingreso</h4>
       <h5>Doctor remitente: <%= consulta.doctor_remitente %> </h5>
-      <h5>Diagnostico</h5>
+      <h5>Fecha de Inicio: <%= local_date(consulta.fecha_inicio, "date") %> </h5>
+      <h5>Fecha Final: <%= local_date(consulta.fecha_final, "date") %> </h5>
+      <h5 class="text-bold">Diagnostico</h5>
       <p class="text-muted"><%= consulta.diagnostico %></p>
     </div>
     <div class="col-md-6">
