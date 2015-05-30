@@ -84,7 +84,10 @@ include DashboardHospitalHelper
 	def horario_params
 		params.require(:asignar_horario).permit(:paciente_id,
 			:numero_factura,
-			:total_factura,
+      :total_factura,
+      :fecha_inicio,
+      :horario_id,
+			:numero_terapias,
 			:doctor_remitente,
 			:diagnostico,
       :id,

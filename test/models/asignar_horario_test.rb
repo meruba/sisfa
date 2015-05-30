@@ -14,6 +14,7 @@
 #  diagnostico      :string(255)
 #  doctor_remitente :string(255)
 #  alta             :boolean          default(FALSE)
+#  horario_id       :integer
 #
 
 require 'test_helper'

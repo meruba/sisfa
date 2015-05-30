@@ -14,6 +14,7 @@
 #  diagnostico      :string(255)
 #  doctor_remitente :string(255)
 #  alta             :boolean          default(FALSE)
+#  horario_id       :integer
 #
 
 class AsignarHorario < ActiveRecord::Base
@@ -26,10 +27,29 @@ class AsignarHorario < ActiveRecord::Base
 	validates :paciente_id, :presence => { :message => "Debe elejir al paciente de la lista de resultados" }
 	validate :yet_in_tratamiento, on: :create
 
+	before_create :set_resultado_tratamientos
+
 	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	# validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
 
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
+
+	def set_resultado_tratamientos
+		resultados = []
+		day_final  = self.resultado_tratamientos.first.fecha
+		self.fecha_inicio = day_final
+		self.numero_terapias.times do |i|
+			if i > 0
+				day_final = not_weekend_days(day_final + 1.days)
+				resultados << ResultadoTratamiento.new(:fecha => day_final, :horario_id => self.resultado_tratamientos.first.horario_id)
+			else
+				resultados << self.resultado_tratamientos.first
+			end
+		end
+		self.fecha_final = resultados.last.fecha
+		self.resultado_tratamientos = resultados
+		# self.fecha_final = set_resultado_tratamientos.last.fecha
+	end
 
 	def yet_in_tratamiento
 		is_tratamiento = AsignarHorario.where(:paciente_id => self.paciente, :alta => false).last
@@ -58,10 +78,10 @@ class AsignarHorario < ActiveRecord::Base
 	private
 
 	def not_weekend_days(day)
-		case
-		when day.wday == 6
+		if day.wday == 6
 			day = day + 2.days
-		when day.wday == 0
+		end
+		if day.wday == 0
 			day = day + 1.days
 		end
 		day
