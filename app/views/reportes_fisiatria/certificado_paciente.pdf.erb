@@ -14,7 +14,7 @@
 <% @terapia.tratamiento_registros.each do |t|%>
 <strong><%= t.nombre_tratamiento %></strong><br>
 <% end %>
-<h5>Nº de Sesiones: <%= @terapia.tratamiento_registros.count %></h5>
+<h5>Nº de Sesiones: <%= @terapia.numero_terapias %></h5>
 <p>
   <%= @certificado.respuesta_tratamiento %>
 </p>
@@ -22,10 +22,10 @@
   <strong>Fecha: <%= local_date(Time.now, "date")%></strong>
 </div>
 <div class="text-center">
-  <h5><strong>Lic. Tf. CATOTA Y. EDISON R.</strong></h5>
-  <h5><strong>SGOS. DE SND.</strong></h5>
-  <h5><strong>FISIOTERAPISTA DEL  HB-7 "LOJA"</strong></h5>
-  <strong>REGISTRO DE ASISTENCIA DE PACIENTES EN EL AREA DE FISIOTERAPIA DEL HOSPITAL BÁSICO DE 7 - B.I "LOJA"</strong>
+  <h5><strong><%= @certificado.encargado_departamento %></strong></h5>
+  <h5><strong><%= @certificado.grado_director %></strong></h5>
+  <h5><strong><%= @certificado.cargo_fisiatria %></strong></h5>
+  <strong>REGISTRO DE ASISTENCIA DE PACIENTES EN EL ÁREA DE FISIOTERAPIA DEL HOSPITAL BÁSICO DE 7 - B.I "LOJA"</strong>
 </div>
 <hr>
 <div class="row">
@@ -38,7 +38,6 @@
   <thead>
     <tr>
       <th>Fecha</th>
-      <th>Resultado</th>
       <th>Firma</th>
     </tr>
   </thead>
@@ -46,7 +45,6 @@
     <% @resultados.each do |r|%>
     <tr>
       <td><%= local_date(r.fecha, "date") %></td>
-      <td><%= r.resultado %></td>
       <td></td>
     </tr>
     <% end %>

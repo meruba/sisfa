@@ -10,7 +10,6 @@ class FisiatriaConfiguracionsController < ApplicationController
   end
 
   def update
-    @configuracion = FisiatriaConfiguracion.first
     @configuracion.update(configuracion_params)
     respond_to do |format|
       format.json { respond_with_bip(@configuracion) }
@@ -27,6 +26,6 @@ class FisiatriaConfiguracionsController < ApplicationController
   end
 
   def find_config
-    @configuracion = FisiatriaConfiguracion.first
+    @configuracion = FisiatriaConfiguracion.last
   end
 end
