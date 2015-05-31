@@ -7,6 +7,10 @@
 	<span class="fa fa-users fa-3x"></span>
 	<h4><li><%= link_to("Usuarios", users_path) %></li></h4>
 </li>
+<li class="pacientes-hospitalizados text-center green-opcion">
+  <span class="fa fa-user-md  fa-3x"></span>
+  <h4><li><%=link_to("Registros Medicos", admin_medical_records_index_path)%></li></h4>
+</li>
 <legend>Farmacia</legend>
 <%= render  "panel_aplication/partials/farmacia"%>
 <legend>Estadística</legend>

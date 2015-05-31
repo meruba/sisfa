@@ -60,6 +60,10 @@ Sisfa::Application.routes.draw do
   get "configuraciones_fisiatria/tratamientos"
   get "configuraciones_fisiatria/certificados"
   get "configuraciones_fisiatria/index"
+  get "admin_medical_records/index"
+  get "admin_medical_records/hospitalizaciones"
+  get "admin_medical_records/emergencias"
+  get "admin_medical_records/consultas"
 
   resources :emisors, except: [:show, :destroy, :index] do
     member do
@@ -77,8 +81,8 @@ Sisfa::Application.routes.draw do
     resources :canjes, only: [:new, :create]
   end
   resources :pacientes, except: [:new] do
-    resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update]
-    resources :emergencia_registros, except: [:destroy, :index]
+    resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update, :destroy]
+    resources :emergencia_registros, except: [:index]
     get "view_edit"
     get "print_historia"
     get "terapias"

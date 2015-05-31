@@ -1,0 +1,20 @@
+<div class="horario mygrid-wrapper-div">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Historia Medica</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resultados.each do |r|%>
+      <tr>
+        <td><%= r.paciente.cliente_nombre %></td>
+        <td><%= local_date(r.created_at, "date") %></td>
+        <td><%= link_to "Ir", paciente_path(r.paciente), class: " btn btn-info btn-xs", :target => "_blank"%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

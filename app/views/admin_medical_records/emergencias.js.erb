@@ -1,0 +1,7 @@
+m = $(".resultado-busqueda-emergencias");
+content = $("<div class='text-center'><i class=' fa fa-warning fa-3x text-center'></i><h5>No hay resultados</h5></div>")
+<%- if @resultados.empty? %>
+  m.html(content);
+<%- else %>
+  m.html("<%= j render('admin_medical_records/emergencias') %>");
+<%- end %>

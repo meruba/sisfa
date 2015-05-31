@@ -2,8 +2,8 @@ class EmergenciaRegistrosController < ApplicationController
 	before_filter :require_login
   before_filter :is_doctor, only: [:edit, :update]
   before_filter :shared_permission, except: [:edit, :update]
-	before_action :find_paciente, only: [:new, :create, :edit, :show, :update]
-	before_action :set_emergencia, only: [:edit, :update, :show]
+	before_action :find_paciente, only: [:new, :create, :edit, :show, :update, :destroy]
+	before_action :set_emergencia, only: [:edit, :update, :show, :destroy]
 
 	def new
 		@registro = EmergenciaRegistro.new
@@ -21,9 +21,9 @@ class EmergenciaRegistrosController < ApplicationController
 			format.js { render "success" }
 		end
 	end
-	
+
 	def show
-	
+
 	end
 
 	def edit
@@ -43,6 +43,15 @@ class EmergenciaRegistrosController < ApplicationController
 			end
 		end
 	end
+
+	def destroy
+    if @registro.destroy
+      redirect_to admin_medical_records_index_path, notice: 'Emergencia Eliminada'
+    else
+      redirect_to admin_medical_records_index_path, alert: 'No se ha podido eliminar'
+    end
+  end
+
 	private
 
 	def emergencia_registro_params
