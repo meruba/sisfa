@@ -1,6 +1,6 @@
 class AdminMedicalRecordsController < ApplicationController
   def index
-    @doctors = Doctor.where(:suspendido => false)
+    @doctors = Doctor.includes(:cliente).where(:suspendido => false).references(:cliente)
   end
 
   def hospitalizaciones
