@@ -28,11 +28,21 @@ class AsignarHorario < ActiveRecord::Base
 	validate :yet_in_tratamiento, on: :create
 
 	before_create :set_resultado_tratamientos
+	before_destroy :not_destroy, prepend: true
 
 	# validates :numero_terapias, :fecha_inicio, :item_tratamiento_id, :presence => true
 	# validates :numero_terapias, :numericality => { :greater_than_or_equal_to => 0, :less_than_or_equal_to => 40, :message => "Rango maximo de 0-40 terapias" }
 
 	accepts_nested_attributes_for :resultado_tratamientos, :tratamiento_registros
+
+	def not_destroy
+		resultado_tratamientos.each do |r|
+			if r.atendido?
+      	errors.add :paciente_id, "El paciente tiene registrado tratamientos"
+      	return false
+			end
+		end
+	end
 
 	def set_resultado_tratamientos
 		resultados = []
