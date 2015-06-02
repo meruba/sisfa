@@ -38,6 +38,7 @@ class Cliente < ActiveRecord::Base
 
 #methods
   def formato_nombre #Ejm: corrEA DaNieL = Correa Daniel
+    self.nombre = self.nombre.mb_chars.downcase.to_s
     self.nombre = self.nombre.split.map(&:capitalize).join(' ')
     unless self.direccion.nil?
       self.direccion = self.direccion.split.map(&:capitalize).join(' ')
