@@ -1,0 +1,25 @@
+# == Schema Information
+#
+# Table name: fisiatria_configuracions
+#
+#  id                     :integer          not null, primary key
+#  numero_turnos          :integer
+#  encargado_departamento :string(255)
+#  grado_director         :string(255)
+#  respuesta_tratamiento  :text
+#  created_at             :datetime
+#  updated_at             :datetime
+#  cargo_fisiatria        :string(255)
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+# This model initially had no columns defined.  If you add columns to the
+# model remove the '{}' from the fixture names and add the columns immediately
+# below each fixture, per the syntax in the comments below
+#
+one: {}
+# column: value
+#
+two: {}
+#  column: value

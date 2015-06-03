@@ -1,9 +1,15 @@
-<%- if @horario.anulado %>
-  alertify.log("Horario suspendido");
-  $('#<%=@horario.id %>-h').css("text-decoration","line-through");
-  $('#<%=@horario.id %>-h').find("a").removeClass("fa fa-thumbs-down text-danger").addClass("fa fa fa-thumbs-up text-success");
+<%- if @horario.errors.any? %>
+  <%- @horario.errors.full_messages.each do |msg|%>
+    alertify.error("<%=j msg %>");
+  <%- end %>
 <%- else %>
-  $('#<%=@horario.id %>-h').css("text-decoration","");
-  alertify.success("Horario habilitado");
-  $('#<%=@horario.id %>-h').find("a").removeClass("fa fa-thumbs-up text-success").addClass("fa fa fa-thumbs-down text-danger");
+  <%- if @horario.anulado %>
+    alertify.log("Horario suspendido");
+    $('#<%=@horario.id %>-h').css("text-decoration","line-through");
+    $('#<%=@horario.id %>-h').find("a").removeClass("fa fa-thumbs-down text-danger").addClass("fa fa fa-thumbs-up text-success");
+  <%- else %>
+    $('#<%=@horario.id %>-h').css("text-decoration","");
+    alertify.success("Horario habilitado");
+    $('#<%=@horario.id %>-h').find("a").removeClass("fa fa-thumbs-up text-success").addClass("fa fa fa-thumbs-down text-danger");
+  <%- end %>
 <%- end %>

@@ -28,6 +28,10 @@ class ApplicationController < ActionController::Base
     permission(Rol.administrador_enfermeria, Rol.enfermera)
   end
 
+  def is_admin_or_fisiatra_fisiatria
+    permission(Rol.administrador_fisiatria, Rol.fisiatra)
+  end
+
   def is_doctor
     unless current_user.rol == Rol.doctor
       logout

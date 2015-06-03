@@ -1,4 +1,6 @@
 class PersonalsController < ApplicationController
+	before_filter :require_login
+  before_filter :is_admin_or_fisiatra_fisiatria
 	before_action :find_personal, only: [:suspender]
 
 	def index
@@ -9,18 +11,20 @@ class PersonalsController < ApplicationController
 		@personal = Personal.new #CREA UN OBJETO personal
 		@personal.build_cliente #permite crear cliente
 	end
+
 	def create
 		@personal = Personal.new(personal_params)
 		if @personal.save
 			redirect_to personals_path, :notice => "GUARDADO"
 		else
-			raise
-			redirect_to new_personal_path, :notice => "NO GUARDADO"
+			render 'new'
 		end
 	end
+
 	def edit
 
 	end
+
 	def update
 
 	end

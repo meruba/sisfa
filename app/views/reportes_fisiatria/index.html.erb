@@ -20,7 +20,7 @@
 			<div class="input-group-addon">
 				<i class="fa fa-calendar"></i>
 			</div>
-			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true %>
+			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true, :readonly => true %>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -29,7 +29,7 @@
 			<div class="input-group-addon">
 				<i class="fa fa-calendar"></i>
 			</div>
-			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true %>
+			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true, :readonly => true %>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -46,15 +46,15 @@
 <hr>
 <legend>Reporte de Pacientes / Certificado</legend>
 <div class="row reporte-personal">
-	<%= form_tag reportes_fisiatria_paciente_path, :remote => true, method: :get do %>
+	<%= form_tag reportes_fisiatria_search_paciente_path, :remote => true, method: :get do %>
 	<div class="col-md-4">
 		<label>Paciente H.C: <strong class="n_hclinica"></strong></label>
 		<div class="input-group">
 			<div class="input-group-addon">
 				<i class="fa fa-user"></i>
 			</div>
-			<%= text_field_tag :paciente, params[:paciente], :class => "form-control paciente-fisitria", :required => true %>
-			<%= hidden_field_tag :paciente_id, params[:paciente_id], class: "paciente_as_id" %>
+			<%= text_field_tag :paciente, params[:paciente], :class => "form-control identificacion", :required => true, :placeholder => "Ingrese nombre del paciente" %>
+			<%= hidden_field_tag :paciente_id, params[:paciente_id], class: "paciente_id" %>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -63,7 +63,7 @@
 			<div class="input-group-addon">
 				<i class="fa fa-calendar"></i>
 			</div>
-			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true %>
+			<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :required => true, :readonly => true%>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -72,7 +72,7 @@
 			<div class="input-group-addon">
 				<i class="fa fa-calendar"></i>
 			</div>
-			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true %>
+			<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :required => true, :readonly => true%>
 		</div>
 	</div>
 	<div class="col-md-2">
@@ -102,7 +102,7 @@
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker"%>
+					<%= text_field_tag :fecha_inicial, params[:fecha_inicial], :class => "form-control datepicker", :readonly => true%>
 				</div>
 			</div>
 			<div class="col-md-2">
@@ -111,7 +111,7 @@
 					<div class="input-group-addon">
 						<i class="fa fa-calendar"></i>
 					</div>
-					<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker" %>
+					<%= text_field_tag :fecha_final, params[:fecha_final], :class => "form-control datepicker", :readonly => true%>
 				</div>
 			</div>
 		</div>

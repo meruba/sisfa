@@ -8,6 +8,9 @@
 #  created_at           :datetime
 #  updated_at           :datetime
 #  numero_actual_turnos :integer
+#  numero_horarios      :integer
+#  turnos_por_dia       :integer
+#  config_turnos        :integer
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

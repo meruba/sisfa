@@ -1,0 +1,22 @@
+<div class="horario mygrid-wrapper-div">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Fecha</th>
+        <th>Alta</th>
+        <th>Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @resultados.each do |r|%>
+      <tr>
+        <td><%= r.paciente.cliente_nombre %></td>
+        <td><%= local_date(r.created_at, "date") %></td>
+        <td><i class="<%= r.registrado ? 'fa fa-check-circle text-success' : 'fa fa-times-circle text-danger'%>"></i></td>
+        <td><%= link_to "Eliminar", paciente_emergencia_registro_path(r.paciente, r), method: :delete, data: { confirm: 'Esta seguro?' }, class: " btn btn-danger btn-xs"%></td>
+      </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

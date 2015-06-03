@@ -47,19 +47,23 @@ Sisfa::Application.routes.draw do
   get "resultado_tratamientos/by_day"
   get "resultado_tratamientos/hour_and_day"
   get "personals/by_day"
-  get "asignar_horarios/new"
   get "asignar_horarios/autocomplete"
   get "asignar_horarios/reporte_ingresados"
   get "asignar_horarios/view_edit"
   get "reportes_fisiatria/index"
   get "reportes_fisiatria/personal"
+  get "reportes_fisiatria/search_paciente"
   get "reportes_fisiatria/paciente"
   get "reportes_fisiatria/paciente_certificado"
   get "reportes_fisiatria/factura"
   get "configuraciones_fisiatria/horarios"
   get "configuraciones_fisiatria/tratamientos"
-  get "configuraciones_fisiatria/sistema"
+  get "configuraciones_fisiatria/certificados"
   get "configuraciones_fisiatria/index"
+  get "admin_medical_records/index"
+  get "admin_medical_records/hospitalizaciones"
+  get "admin_medical_records/emergencias"
+  get "admin_medical_records/consultas"
 
   resources :emisors, except: [:show, :destroy, :index] do
     member do
@@ -77,8 +81,8 @@ Sisfa::Application.routes.draw do
     resources :canjes, only: [:new, :create]
   end
   resources :pacientes, except: [:new] do
-    resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update]
-    resources :emergencia_registros, except: [:destroy, :index]
+    resources :hospitalizacion_registros, :only => [:new, :create, :edit, :update, :destroy]
+    resources :emergencia_registros, except: [:index]
     get "view_edit"
     get "print_historia"
     get "terapias"
@@ -174,11 +178,16 @@ Sisfa::Application.routes.draw do
       post "suspender"
     end
   end
-  resources :asignar_horarios
+  resources :asignar_horarios do
+   member do
+      post "dar_alta"
+    end
+  end
   resources :resultado_tratamientos
   resources :item_tratamientos, only: [:edit, :update, :new, :create] do
     member do
       post "suspender"
     end
   end
+  resources :fisiatria_configuracions, only: [:edit, :update]
 end

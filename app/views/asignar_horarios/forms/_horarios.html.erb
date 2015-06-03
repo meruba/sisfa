@@ -1,29 +1,14 @@
 <div class="col-md-8 col-md-offset-2">
   <div class="table-responsive horario">
-    <table class="table" id="factura">
-      <thead>
-        <tr>
-          <th>Fecha</th>
-          <th>Hora</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <%=f.fields_for :resultado_tratamientos, :wrapper => false do |t|%>
-        <tr class="fields">
-          <td class="col-md-6"><%= t.text_field :fecha, class: "datepicker-not-weekend", :placeholder => "Ejm: 2012-12-02 "%></td>
-          <td class="col-md-6"><%= t.select :horario_id, Horario.where(:anulado => false).map { |h| [h.hora, h.id ] },{}, {class: "form-control"}%></td>
-          <td><%= t.hidden_field :asignar_horario_id %></td>
-          <td><%= t.link_to_remove "", class: "delete_destroy"%></td>
-        </tr>
-        <% end %>
-        <tr>
-          <td>
-            <%=f.link_to_add "Agregar", :resultado_tratamientos, class: "nuevo_new_default btn-sm" %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <%= f.label :numero_terapias %>
+  <%= f.text_field :numero_terapias, placeholder: "Ejm: 10" %>
+  <%=f.fields_for :resultado_tratamientos, :wrapper => false do |t|%>
+    <%= t.label :fecha, "Fecha de Inicio de Tratamiento" %>
+    <%= t.text_field :fecha, class: "datepicker-not-weekend", placeholder: "Ejm: 2012-12-02" %>
+    <%= t.label :horario_id, "Horario del paciente" %>
+    <%= t.select :horario_id, Horario.where(:anulado => false).map { |h| [h.hora, h.id ] }, {}, class: "form-control"%>
+  <% end %>
   </div>
 </div>
+
 

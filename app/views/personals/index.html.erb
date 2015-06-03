@@ -27,7 +27,7 @@
               <% else %>
               <%= link_to '', suspender_personal_path(p), method: :post, data: { confirm: 'Esta seguro?' },:rel => 'tooltip', :title => 'Suspender', class: "ttip fa fa-thumbs-o-down btn btn-danger btn-xs"%>
               <% end %>
-              <%= link_to '', edit_cliente_path(p.cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Nueva Clave',:class => "tedit_cliente_path(cliente)tip fa fa-pencil btn btn-warning btn-xs"}%>
+              <%= link_to '', edit_cliente_path(p.cliente), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#myModal', :rel => 'tooltip', :title => 'Editar',:class => "ttip fa fa-pencil btn btn-warning btn-xs"}%>
             </div>
           </div>
         </blockquote>

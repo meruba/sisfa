@@ -2,6 +2,7 @@
   <thead>
     <tr>
       <th># Factura</th>
+      <th>Nombre</th>
       <th>Fecha</th>
       <th>Total</th>
     </tr>
@@ -10,11 +11,13 @@
     <% @resultados.each do |r|%>
     <tr>
       <td><%= r.numero_factura %></td>
+      <td><%= r.paciente.cliente_nombre %></td>
       <td><%= local_date(r.created_at, "date") %></td>
       <td>$ <%= r.total_factura %></td>
     </tr>
     <% end %>
     <tr>
+      <td></td>
       <td></td>
       <td>TOTAL</td>
       <td><strong>$ <%= redondear(@resultados.sum(:total_factura))%></strong></td>

@@ -1,5 +1,16 @@
-<h2 class="text-center">Reporte de pacientes registrados</h2>
-<h3 class="text-center"><%= month_name(@fecha) %></h3>
+<div class="row">
+  <div class="title-blue-head">
+    <span>
+      <i><%= link_to "", doctors_path, title:'Volver', class: "ttip fa fa-arrow-left" %></i>
+    </span>
+    <span class="rev-combo pull-right"><i class=" fa fa-user"></i></span>
+    </span>
+    <h3 class="text-month"><strong>Reporte de paciente registrados</strong></h3>
+  </div>
+</div>
+<div class="row info-paciente">
+
+<h3>MES: <%= month_name(@fecha) %> <%= link_to "Reporte PDF", asignar_horarios_reporte_ingresados_path(params.merge(format: 'pdf')), :target => "_blank", class: "btn btn-default pull-right" %></h3>
 <table class="table table-hover table-print">
   <thead>
     <tr>
@@ -17,8 +28,17 @@
       <td><%= i.paciente.tipo %></td>
       <td><%= local_date(i.created_at, "date") %></td>
       <td><%= i.numero_factura %></td>
-      <td><%= i.total_factura %></td>
+      <td>$ <%= i.total_factura %></td>
     </tr>
     <% end %>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td><strong>$ <%= redondear(@total) %></strong></td>
+    </tr>
   </tbody>
 </table>
+</div>
+

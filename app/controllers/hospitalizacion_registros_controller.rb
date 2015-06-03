@@ -2,8 +2,8 @@ class HospitalizacionRegistrosController < ApplicationController
   before_filter :require_login
   before_filter :is_doctor, only: [:edit, :update]
   before_filter :shared_permission, except: [:edit, :update]
-  before_action :find_paciente, only: [:new, :create, :edit]
-  before_action :set_registro, only: [:edit, :update, :show, :dar_alta_enfermeria]
+  before_action :find_paciente, only: [:new, :create, :edit, :destroy]
+  before_action :set_registro, only: [:edit, :update, :show, :dar_alta_enfermeria, :destroy]
 
   def index
     @registros = HospitalizacionRegistro.includes(:paciente => :cliente).where(:fecha_de_ingreso => Time.now.beginning_of_month..Time.now.end_of_month).references(:paciente => :cliente)
@@ -65,6 +65,14 @@ class HospitalizacionRegistrosController < ApplicationController
         end
       }
       format.json { respond_with_bip(@registro) }
+    end
+  end
+
+  def destroy
+    if @registro.destroy
+      redirect_to admin_medical_records_index_path, notice: 'Hospitalizacion Eliminada'
+    else
+      redirect_to admin_medical_records_index_path, alert: 'No se ha podido eliminar'
     end
   end
 

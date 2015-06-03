@@ -3412,7 +3412,7 @@ tbody.collapse.in {
   position: absolute;
   top: 100%;
   left: 0;
-  z-index: 1000;
+  z-index: 1050;
   display: none;
   float: left;
   min-width: 160px;
@@ -4966,15 +4966,15 @@ a.thumbnail.active {
 .alert-warning .alert-link {
   color: #66512c;
 }
-.alert-danger {
+.alert-error {
   color: #a94442;
   background-color: #f2dede;
   border-color: #ebccd1;
 }
-.alert-danger hr {
+.alert-error hr {
   border-top-color: #e4b9c0;
 }
-.alert-danger .alert-link {
+.alert-error .alert-link {
   color: #843534;
 }
 @-webkit-keyframes progress-bar-stripes {
@@ -5707,7 +5707,7 @@ button.close {
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  z-index: 1924;
   display: none;
   overflow: hidden;
   -webkit-overflow-scrolling: touch;

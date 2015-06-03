@@ -23,7 +23,8 @@ class Cliente < ActiveRecord::Base
 	validates :nombre, :presence =>true
 	validate :validate_id_if_necessary
   validates :numero_de_identificacion, uniqueness: true, :if => :numero_de_identificacion?
-
+  validates_format_of :nombre, :with => /\A[^0-9`!@#\$%\^&*+_=]+\z/
+  validates :telefono, :numericality => true
 # relationships
   has_one :user
   has_one :paciente
@@ -37,6 +38,7 @@ class Cliente < ActiveRecord::Base
 
 #methods
   def formato_nombre #Ejm: corrEA DaNieL = Correa Daniel
+    self.nombre = self.nombre.mb_chars.downcase.to_s
     self.nombre = self.nombre.split.map(&:capitalize).join(' ')
     unless self.direccion.nil?
       self.direccion = self.direccion.split.map(&:capitalize).join(' ')

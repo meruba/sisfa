@@ -15,7 +15,16 @@ window.Helpers.AutocompleteTratamiento = {
           $("#message").empty()
       select: (event, ui) ->
         $this = $(this)
-        $this.next(".item_id").val ui.item.id
+        isRepeat = false
+        $(".item_id").each ->
+          if $(this).prev().is(":visible") != false
+            if $(this).val() == ui.item.id.toString()
+              alertify.log("Ya ingresaste este tratamiento");
+              return isRepeat = true
+        if !isRepeat
+          $this.next(".item_id").val ui.item.id
+        else
+          $this.parents('.fields').remove()
 }
 
 jQuery window.Helpers.AutocompleteTratamiento.init

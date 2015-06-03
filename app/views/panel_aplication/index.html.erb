@@ -22,6 +22,8 @@
 		<%= render 'panel_aplication/partials/enfermeria' %>
 		<% when Rol.administrador_fisiatria%>
 		<%= render 'panel_aplication/partials/fisiatria' %>
+		<% when Rol.fisiatra%>
+		<%= render 'panel_aplication/partials/fisiatria' %>
 		<% end %>
 	</ul>
 </div>

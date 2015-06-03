@@ -28,13 +28,13 @@ class HospitalizacionRegistro < ActiveRecord::Base
 	#relations
 	belongs_to :paciente
 	belongs_to :doctor
-	has_one :nota_enfermera
-	has_one :signo_vital
-	has_one :asignacion_cama
-	has_one :hospitalizacion
-	has_many :item_entrega_turnos
+	has_one :nota_enfermera, dependent: :destroy
+	has_one :signo_vital, dependent: :destroy
+	has_one :asignacion_cama, dependent: :destroy
+	has_one :hospitalizacion, dependent: :destroy
+	has_many :item_entrega_turnos, dependent: :destroy
 
-	#callbacks	
+	#callbacks
 	before_update :set_values
 	before_create :build_relations
 
@@ -49,14 +49,14 @@ class HospitalizacionRegistro < ActiveRecord::Base
   def already_hostipalizado
   	paciente = HospitalizacionRegistro.where(:paciente_id => self.paciente_id, :alta => false).last
   	unless paciente.nil?
-  		errors.add :paciente_id, "El paciente ya esta hospitalizado"	
-  	end		
+  		errors.add :paciente_id, "El paciente ya esta hospitalizado"
+  	end
   end
 
   def validate_fecha_salida
   	unless self.fecha_de_salida.nil?
   		if self.fecha_de_salida < self.fecha_de_ingreso
-  			errors.add :fecha_de_salida, "Fecha de salida no válida"			
+  			errors.add :fecha_de_salida, "Fecha de salida no válida"
   		end
   	end
   end

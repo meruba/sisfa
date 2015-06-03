@@ -10,7 +10,6 @@
 #  updated_at               :datetime
 #  saldo_inicial_inventario :float
 #  otros_dias               :boolean          default(FALSE)
-#  numero_turnos_fisiatria  :integer
 #
 
 require 'test_helper'

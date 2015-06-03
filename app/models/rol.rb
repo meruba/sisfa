@@ -53,4 +53,8 @@ class Rol < ActiveRecord::Base
     @@administrador_fisiatria ||= find_by nombre: "Administrador_Fisiatría"
   end
 
+  def self.fisiatra
+    @@fisiatra ||= find_by nombre: "Fisiatra"
+  end
+
 end
